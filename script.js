@@ -1,5 +1,5 @@
 // Universal LexClinic Web Substrate Script: Auth, Modal, Version Sync, Mobile Nav, and Cross-Tab Login
-const BUILD_VERSION = "20260829_1855";
+const BUILD_VERSION = "20260829_1900";
 
 function getSanitizedEmail() {
   const raw = localStorage.getItem("lexclinic_user_email");

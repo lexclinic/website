@@ -5,13 +5,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>20-Question Media Quiz (Aug 28, 2026) | LexClinic Education</title>
   <meta name="description" content="LexClinic Session Media Quiz (August 28, 2026). 20-question media assessment with Magic Link authentication.">
-  <link rel="stylesheet" href="/styles.css?v=20260829_1855">
+  <link rel="stylesheet" href="/styles.css?v=20260829_1900">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <!-- Ethers.js for client-side Keccak256 payload hashing -->
   <script src="https://cdn.jsdelivr.net/npm/ethers@5.7.2/dist/ethers.umd.min.js"></script>
-  <script src="/script.js?v=20260829_1855" defer></script>
+  <script src="/script.js?v=20260829_1900" defer></script>
 </head>
 <body>
 
@@ -355,17 +355,12 @@
   </footer>
 
   <!-- Quiz & Magic Link Authentication JavaScript with Strict Form Lock & Cross-Tab Sync -->
-  <script>
+    <script>
     let currentPayloadHash = "";
-    
     let quizScoreVal = 0;
     let cachedAnsSummary = [];
     let cachedAnsweredCount = 0;
     let firstMissingCardId = "";
-    let isMagicLinkDispatching = false;
-
-    // Cross-Tab Broadcast Channel for Instant Magic Link Sync across tabs
-    
 
     const questionLabels = {
       q1: "Q1.1 (Playbill Metaphor)", q2: "Q1.2 (Movement 2)", q3: "Q1.3 (Movement 4)", q4: "Q1.4 (Movement 6)",
@@ -383,42 +378,14 @@
       q17: "A", q18: "A", q19: "A", q20: "A"
     };
 
-    // On Page Load: Check URL Magic Link Params, update Auth UI, and broadcast to other tabs
-    
-        }
-
-        // Clean URL params
-        window.history.replaceState({}, document.title, window.location.pathname);
-      }
-
-      updateAuthUI();
-    });
-
-    // Cross-tab broadcast listener
-    ;
-    }
-
-    // Storage event listener for cross-tab sync fallback
-    
-
-
-    
-
-    
-
-    
-
     async function handleFormSubmit() {
-      if (!loggedInEmail) {
-        openNavLoginModal();
+      const activeEmail = window.getSanitizedEmail ? window.getSanitizedEmail() : (localStorage.getItem("lexclinic_user_email") || "").trim();
+      if (!activeEmail) {
+        window.openNavLoginModal();
       } else {
         initialQuizCheck();
       }
     }
-
-    
-
-    
 
     function initialQuizCheck() {
       let score = 0;
@@ -455,7 +422,7 @@
         listElem.innerHTML = unansweredList.map(item => `<li>${item}</li>`).join("");
         confirmCard.style.display = "block";
         document.getElementById("quiz-results-box").style.display = "none";
-        confirmCard.scrollIntoView({ behavior: 'smooth' });
+        confirmCard.scrollIntoView({ behavior: "smooth" });
       } else {
         confirmCard.style.display = "none";
         finalizeQuizSubmission();
@@ -465,9 +432,9 @@
     function goBackToFinish() {
       document.getElementById("confirmation-notice-card").style.display = "none";
       if (firstMissingCardId) {
-        document.getElementById(firstMissingCardId).scrollIntoView({ behavior: 'smooth' });
+        document.getElementById(firstMissingCardId).scrollIntoView({ behavior: "smooth" });
       } else {
-        document.getElementById("quiz-form").scrollIntoView({ behavior: 'smooth' });
+        document.getElementById("quiz-form").scrollIntoView({ behavior: "smooth" });
       }
     }
 
@@ -476,19 +443,19 @@
 
       const timestamp = new Date().toISOString();
       const activeEmail = window.getSanitizedEmail ? window.getSanitizedEmail() : (localStorage.getItem("lexclinic_user_email") || "").trim();
-      const rawString = `${activeEmail}|${cachedAnsSummary.join('|')}|score:${quizScoreVal}/20|answered:${cachedAnsweredCount}/20|ts:${timestamp}`;
+      const rawString = `${activeEmail}|${cachedAnsSummary.join("|")}|score:${quizScoreVal}/20|answered:${cachedAnsweredCount}/20|ts:${timestamp}`;
 
       // Compute Keccak-256 hash using ethers.js
       if (window.ethers) {
         currentPayloadHash = ethers.utils.keccak256(ethers.utils.toUtf8Bytes(rawString));
       } else {
-        currentPayloadHash = "0x" + Array.from(new TextEncoder().encode(rawString)).map(b => b.toString(16).padStart(2, '0')).join('');
+        currentPayloadHash = "0x" + Array.from(new TextEncoder().encode(rawString)).map(b => b.toString(16).padStart(2, "0")).join("");
       }
 
       document.getElementById("score-header").innerText = `Score: ${quizScoreVal} / 20 (${(quizScoreVal/20)*100}%) — [${cachedAnsweredCount}/20 Answered]`;
       document.getElementById("payload-hash-display").innerText = currentPayloadHash;
       document.getElementById("quiz-results-box").style.display = "block";
-      document.getElementById("quiz-results-box").scrollIntoView({ behavior: 'smooth' });
+      document.getElementById("quiz-results-box").scrollIntoView({ behavior: "smooth" });
 
       // Post submission payload to Cloudflare Pages API endpoint /api/submit-quiz
       try {
