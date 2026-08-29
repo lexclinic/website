@@ -1,5 +1,5 @@
 /*
   Cache-Control: public, max-age=0, must-revalidate
-  Set-Cookie: lexclinic_build=20260829_1905; Path=/; SameSite=Lax
+  Set-Cookie: lexclinic_build=20260829_1910; Path=/; SameSite=Lax
   X-Content-Type-Options: nosniff
   Referrer-Policy: strict-origin-when-cross-origin

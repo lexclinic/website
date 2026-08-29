@@ -5,12 +5,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Class 2.1 Quiz | LexClinic Education</title>
   <meta name="description" content="Class 2.1 Quiz: 4-question assessment for Class 2.1: The Composer Metaphor: Designing Before "Play" with Magic Link authentication.">
-  <link rel="stylesheet" href="/styles.css?v=20260829_1905">
+  <link rel="stylesheet" href="/styles.css?v=20260829_1910">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/npm/ethers@5.7.2/dist/ethers.umd.min.js"></script>
-  <script src="/script.js?v=20260829_1905" defer></script>
+  <script src="/script.js?v=20260829_1910" defer></script>
 </head>
 <body>
 
@@ -173,56 +173,11 @@
     </div>
   </footer>
 
-  <script>
+    <script>
     let currentPayloadHash = "";
-    let loggedInEmail = localStorage.getItem("lexclinic_user_email") || "";
     let quizScoreVal = 0;
     let cachedAnsSummary = [];
-    const authChannel = window.BroadcastChannel ? new BroadcastChannel("lexclinic_auth_channel") : null;
-
     const correctAnswers = { "q1": "A", "q2": "A", "q3": "A", "q4": "A" };
-
-    window.addEventListener("DOMContentLoaded", () => {
-      const urlParams = new URLSearchParams(window.location.search);
-      const token = urlParams.get("token");
-      const emailParam = urlParams.get("email");
-
-      if (token && emailParam) {
-        loggedInEmail = decodeURIComponent(emailParam);
-        localStorage.setItem("lexclinic_user_email", loggedInEmail);
-        if (authChannel) {
-          authChannel.postMessage({ type: "LOGIN_SUCCESS", email: loggedInEmail });
-        }
-        window.history.replaceState({}, document.title, window.location.pathname);
-      }
-
-      updateAuthUI();
-    });
-
-    if (authChannel) {
-      authChannel.onmessage = (event) => {
-        if (event.data && event.data.type === "LOGIN_SUCCESS") {
-          loggedInEmail = event.data.email;
-          updateAuthUI();
-          closeNavLoginModal();
-        }
-      };
-    }
-
-    window.addEventListener("storage", (e) => {
-      if (e.key === "lexclinic_user_email") {
-        loggedInEmail = e.newValue || "";
-        updateAuthUI();
-        closeNavLoginModal();
-      }
-    });
-
-
-    
-
-    
-
-    
 
     async function handleFormSubmit() {
       const activeEmail = window.getSanitizedEmail ? window.getSanitizedEmail() : (localStorage.getItem("lexclinic_user_email") || "").trim();
@@ -251,18 +206,18 @@
       quizScoreVal = score;
       const timestamp = new Date().toISOString();
       const activeEmail = window.getSanitizedEmail ? window.getSanitizedEmail() : (localStorage.getItem("lexclinic_user_email") || "").trim();
-      const rawString = `${activeEmail}|class_2.1|${cachedAnsSummary.join('|')}|score:${quizScoreVal}/4|ts:${timestamp}`;
+      const rawString = `${activeEmail}|class_2.1|${cachedAnsSummary.join("|")}|score:${quizScoreVal}/4|ts:${timestamp}`;
 
       if (window.ethers) {
         currentPayloadHash = ethers.utils.keccak256(ethers.utils.toUtf8Bytes(rawString));
       } else {
-        currentPayloadHash = "0x" + Array.from(new TextEncoder().encode(rawString)).map(b => b.toString(16).padStart(2, '0')).join('');
+        currentPayloadHash = "0x" + Array.from(new TextEncoder().encode(rawString)).map(b => b.toString(16).padStart(2, "0")).join("");
       }
 
       document.getElementById("score-header").innerText = `Score: ${quizScoreVal} / 4 (${Math.round((quizScoreVal/4)*100)}%)`;
       document.getElementById("payload-hash-display").innerText = currentPayloadHash;
       document.getElementById("quiz-results-box").style.display = "block";
-      document.getElementById("quiz-results-box").scrollIntoView({ behavior: 'smooth' });
+      document.getElementById("quiz-results-box").scrollIntoView({ behavior: "smooth" });
 
       try {
         const payload = {
