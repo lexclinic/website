@@ -1,5 +1,5 @@
 // Universal LexClinic Web Substrate Script: Auth, Modal, Version Sync, Mobile Nav, and Cross-Tab Login
-const BUILD_VERSION = "20260829_1815";
+const BUILD_VERSION = "20260829_1840";
 
 function getSanitizedEmail() {
   const raw = localStorage.getItem("lexclinic_user_email");
@@ -14,15 +14,15 @@ const authChannel = window.BroadcastChannel ? new BroadcastChannel("lexclinic_au
 // Build Version Cookie & Cache Synchronization
 checkBuildVersion();
 
-// Universal Login Modal Injection (Execute immediately so it is available even before DOMContentLoaded)
-injectUniversalLoginModal();
-
-// Attach global functions to window
+// Attach global functions to window immediately
 window.openNavLoginModal = openNavLoginModal;
 window.closeNavLoginModal = closeNavLoginModal;
 window.triggerModalMagicLink = triggerModalMagicLink;
 window.resendMagicLinkModal = resendMagicLinkModal;
 window.handleLogout = handleLogout;
+
+// Universal Login Modal Injection (Execute immediately so it is available even before DOMContentLoaded)
+injectUniversalLoginModal();
 
 document.addEventListener('DOMContentLoaded', async () => {
 
@@ -97,7 +97,7 @@ function checkBuildVersion() {
   }
 }
 
-// Mobile Hamburger Navigation Expansion (Supports Touch & Click)
+// Mobile Hamburger Navigation Expansion
 function bindMobileToggle() {
   const mobileToggle = document.getElementById('mobile-toggle');
   const navLinks = document.getElementById('nav-links');
@@ -105,10 +105,11 @@ function bindMobileToggle() {
   if (mobileToggle && navLinks) {
     const toggleMenu = (e) => {
       if (e) {
-        e.preventDefault();
-        e.stopPropagation();
+        if (e.preventDefault) e.preventDefault();
+        if (e.stopPropagation) e.stopPropagation();
       }
       navLinks.classList.toggle('active');
+      return false;
     };
 
     mobileToggle.onclick = toggleMenu;
@@ -123,7 +124,7 @@ function injectUniversalLoginModal() {
   const modalHtml = `
     <div id="login-modal-overlay" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.88); z-index: 9999999; justify-content: center; align-items: center; padding: 1rem;">
       <div style="background: #0a1128; border: 2px solid #fbbf24; border-radius: 10px; max-width: 480px; width: 100%; padding: 2rem; position: relative; box-shadow: 0 10px 30px rgba(0,0,0,0.9);">
-        <button type="button" onclick="closeNavLoginModal()" ontouchend="closeNavLoginModal()" style="position: absolute; top: 1rem; right: 1rem; background: none; border: none; color: #94a3b8; font-size: 1.5rem; cursor: pointer;">✕</button>
+        <button type="button" onclick="window.closeNavLoginModal()" ontouchend="window.closeNavLoginModal()" style="position: absolute; top: 1rem; right: 1rem; background: none; border: none; color: #94a3b8; font-size: 1.5rem; cursor: pointer;">✕</button>
         <h2 style="color: #fbbf24; margin-top: 0; font-size: 1.4rem;">🔒 Login to Record Quiz Scores</h2>
         <p style="color: #e2e8f0; font-size: 0.95rem; margin-bottom: 1.25rem;">
           Anyone taking the assessment can log in with their email address to receive a secure <strong>magic link email from kyle@lex.clinic</strong> to record their quiz scores.
@@ -147,7 +148,7 @@ function injectUniversalLoginModal() {
             Please open your email inbox, check for an email from <strong>kyle@lex.clinic</strong>, and click the magic link to log in.
           </p>
           <p style="margin: 0; font-size: 0.85rem; color: #94a3b8;">
-            Didn't receive it? <a href="#" onclick="resendMagicLinkModal(event)" style="color: #38bdf8; text-decoration: underline;">Click here to send magic link again</a>.
+            Didn't receive it? <a href="javascript:void(0)" onclick="resendMagicLinkModal(event)" style="color: #38bdf8; text-decoration: underline;">Click here to send magic link again</a>.
           </p>
         </div>
       </div>
@@ -168,10 +169,11 @@ function bindNavLoginButtons() {
   btns.forEach(btn => {
     const handleAuthTrigger = (e) => {
       if (e) {
-        e.preventDefault();
-        e.stopPropagation();
+        if (e.preventDefault) e.preventDefault();
+        if (e.stopPropagation) e.stopPropagation();
       }
       openNavLoginModal(e);
+      return false;
     };
 
     btn.onclick = handleAuthTrigger;
@@ -181,7 +183,7 @@ function bindNavLoginButtons() {
 
 function openNavLoginModal(e) {
   if (e) {
-    e.preventDefault();
+    if (e.preventDefault) e.preventDefault();
     if (e.stopPropagation) e.stopPropagation();
   }
 
@@ -202,15 +204,28 @@ function openNavLoginModal(e) {
   if (modalNotice) modalNotice.style.display = "none";
 
   const overlay = document.getElementById("login-modal-overlay");
-  if (overlay) overlay.style.display = "flex";
+  if (overlay) {
+    overlay.style.setProperty("display", "flex", "important");
+    overlay.style.setProperty("visibility", "visible", "important");
+    overlay.style.setProperty("opacity", "1", "important");
+  }
   
   const input = document.getElementById("modal-email-input");
   if (input) input.focus();
+
+  return false;
 }
 
-function closeNavLoginModal() {
+function closeNavLoginModal(e) {
+  if (e) {
+    if (e.preventDefault) e.preventDefault();
+    if (e.stopPropagation) e.stopPropagation();
+  }
   const overlay = document.getElementById("login-modal-overlay");
-  if (overlay) overlay.style.display = "none";
+  if (overlay) {
+    overlay.style.setProperty("display", "none", "important");
+  }
+  return false;
 }
 
 function updateAuthUI() {
@@ -265,7 +280,7 @@ function updateAuthUI() {
 
 function handleLogout(e) {
   if (e) {
-    e.preventDefault();
+    if (e.preventDefault) e.preventDefault();
     if (e.stopPropagation) e.stopPropagation();
   }
   localStorage.removeItem("lexclinic_user_email");
@@ -275,6 +290,7 @@ function handleLogout(e) {
   if (resBox) resBox.style.display = "none";
   const confCard = document.getElementById("confirmation-notice-card");
   if (confCard) confCard.style.display = "none";
+  return false;
 }
 
 async function triggerModalMagicLink() {
@@ -320,7 +336,7 @@ async function triggerModalMagicLink() {
 
 function resendMagicLinkModal(e) {
   if (e) {
-    e.preventDefault();
+    if (e.preventDefault) e.preventDefault();
     if (e.stopPropagation) e.stopPropagation();
   }
   const modalForm = document.getElementById("modal-login-form");
@@ -333,4 +349,5 @@ function resendMagicLinkModal(e) {
   modalBtn.innerText = "✨ Send Magic Link to Email Inbox 📧";
   modalBtn.disabled = false;
   isMagicLinkDispatching = false;
+  return false;
 }
