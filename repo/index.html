@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Open-Source Repositories & Public Goods | LexClinic Education</title>
+  <meta name="description" content="LexClinic Ecosystem Repositories: Open-source code, ERC-7827 standards, agentic AI CLI tools, and hardware runtimes across lexclinic, diy-make, and cheerbotme.">
+  <link rel="stylesheet" href="/styles.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <!-- Navigation Bar -->
+  <header class="navbar">
+    <div class="nav-container">
+      <a href="/index.html" class="brand-logo">
+        <span class="logo-icon">⚖️</span>
+        <span class="logo-text">Lex<span class="highlight">Clinic</span></span>
+      </a>
+      <nav class="nav-links" id="nav-links">
+        <a href="/index.html">About</a>
+        <a href="/event.html">Events &amp; Sessions</a>
+        <a href="/101">Legal Engineering 101</a>
+        <a href="/repo/" class="active-link">Repositories</a>
+        <a href="/erc7827.html">ERC-7827</a>
+        <a href="https://open.spotify.com/show/0348ivoLaNfKBq1HeIYC9b" target="_blank" rel="noopener" class="btn-spotify">🎧 Spotify Show</a>
+        <a href="https://www.youtube.com/watch?v=ONwiUkc_tt4&list=PLbPukKwpmk5E" target="_blank" rel="noopener" class="btn-nav">YouTube 101 Playlist ➔</a>
+        <a href="#" onclick="openNavLoginModal(event)" id="nav-login-btn" style="background: #fbbf24; color: #0a1128; font-weight: 800; font-size: 0.9rem; padding: 0.45rem 1rem; border-radius: 6px; margin-left: 0.5rem; text-decoration: none; border: 2px solid #f59e0b; box-shadow: 0 0 10px rgba(251, 191, 36, 0.4); display: inline-block;">🔒 Login</a>
+      </nav>
+      <button class="mobile-toggle" id="mobile-toggle" aria-label="Toggle navigation">
+        ☰
+      </button>
+    </div>
+  </header>
+
+  <!-- Hero Header -->
+  <section class="hero page-hero">
+    <div class="container hero-content">
+      <div class="hero-badge">💻 Open Source Public Goods</div>
+      <h1 class="hero-title">Ecosystem <span class="gradient-text">Repositories</span></h1>
+      <p class="hero-subtitle">
+        Explore open-source software, agentic CLI tools, smart contract specifications, and hardware runtimes maintained across LexClinic and its sister organizations.
+      </p>
+      <div class="hero-actions">
+        <a href="#lexclinic-org" class="btn btn-primary">LexClinic Core ⚖️</a>
+        <a href="#diy-make-org" class="btn btn-outline">DIY-Make 🛠️</a>
+        <a href="#cheerbotme-org" class="btn btn-outline">CheerBotMe 🤖</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Repository Sections -->
+  <section class="section event-detail-section">
+    <div class="container">
+
+      <!-- CLUSTER 1: LexClinic Core -->
+      <div class="events-group-container" id="lexclinic-org" style="margin-bottom: 3rem;">
+        <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; margin-bottom: 1.5rem; border-bottom: 2px solid var(--accent-cyan); padding-bottom: 0.75rem;">
+          <h2 style="color: var(--accent-cyan); margin: 0; font-size: 1.6rem;">⚖️ LexClinic Core (`github.com/lexclinic`)</h2>
+          <a href="https://github.com/lexclinic" target="_blank" rel="noopener" class="btn btn-outline" style="font-size: 0.85rem; padding: 0.35rem 0.85rem;">View Organization on GitHub ➔</a>
+        </div>
+
+        <div class="grid grid-2">
+
+          <div class="card pillar-card" style="border: 1px solid var(--accent-cyan);">
+            <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 0.5rem;">
+              <h3 style="color: var(--accent-cyan); margin: 0;">website</h3>
+              <span class="status-badge media-available">HTML / JS / CF</span>
+            </div>
+            <p style="margin-bottom: 1rem; color: var(--text-main); font-size: 0.95rem;">
+              Sovereign Tri-Git production web substrate deployed to Cloudflare Pages for lex.clinic. Houses 101 courseware, Edge API functions, and ERC-7827 specs.
+            </p>
+            <a href="https://github.com/lexclinic/website" target="_blank" rel="noopener" class="btn btn-outline" style="font-size: 0.85rem; padding: 0.4rem 0.9rem;">View Repository ➔</a>
+          </div>
+
+          <div class="card pillar-card">
+            <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 0.5rem;">
+              <h3 style="color: var(--accent-gold); margin: 0;">Templates</h3>
+              <span class="status-badge notebook-available">Templates • 1 ⭐</span>
+            </div>
+            <p style="margin-bottom: 1rem; color: var(--text-main); font-size: 0.95rem;">
+              Repository for standardized legal engineering templates, contract structuring models, and open document patterns.
+            </p>
+            <a href="https://github.com/lexclinic/Templates" target="_blank" rel="noopener" class="btn btn-outline" style="font-size: 0.85rem; padding: 0.4rem 0.9rem;">View Repository ➔</a>
+          </div>
+
+          <div class="card pillar-card">
+            <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 0.5rem;">
+              <h3 style="color: var(--accent-gold); margin: 0;">Grants</h3>
+              <span class="status-badge notebook-available">Library</span>
+            </div>
+            <p style="margin-bottom: 1rem; color: var(--text-main); font-size: 0.95rem;">
+              The LexGrants open library for legal clinic funding proposals, public goods initiatives, and institutional intake.
+            </p>
+            <a href="https://github.com/lexclinic/Grants" target="_blank" rel="noopener" class="btn btn-outline" style="font-size: 0.85rem; padding: 0.4rem 0.9rem;">View Repository ➔</a>
+          </div>
+
+          <div class="card pillar-card">
+            <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 0.5rem;">
+              <h3 style="color: var(--accent-cyan); margin: 0;">research</h3>
+              <span class="status-badge media-available">Research / HTML</span>
+            </div>
+            <p style="margin-bottom: 1rem; color: var(--text-main); font-size: 0.95rem;">
+              Core computational law, statutory AST decomposition, sublinear scaling models, and legal engineering research specifications.
+            </p>
+            <a href="https://github.com/lexclinic/research" target="_blank" rel="noopener" class="btn btn-outline" style="font-size: 0.85rem; padding: 0.4rem 0.9rem;">View Repository ➔</a>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- CLUSTER 2: DIY-Make -->
+      <div class="events-group-container" id="diy-make-org" style="margin-bottom: 3rem;">
+        <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; margin-bottom: 1.5rem; border-bottom: 2px solid var(--accent-gold); padding-bottom: 0.75rem;">
+          <h2 style="color: var(--accent-gold); margin: 0; font-size: 1.6rem;">🛠️ DIY-Make (`github.com/diy-make`) — Under LexClinic's Wing</h2>
+          <a href="https://github.com/diy-make" target="_blank" rel="noopener" class="btn btn-outline" style="font-size: 0.85rem; padding: 0.35rem 0.85rem;">View Organization on GitHub ➔</a>
+        </div>
+
+        <div class="grid grid-2">
+
+          <div class="card pillar-card" style="border: 1px solid var(--accent-gold);">
+            <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 0.5rem;">
+              <h3 style="color: var(--accent-gold); margin: 0;">gemini-cli</h3>
+              <span class="status-badge media-available">Python / CLI</span>
+            </div>
+            <p style="margin-bottom: 1rem; color: var(--text-main); font-size: 0.95rem;">
+              An open-source AI agent that brings the power of Gemini models directly into your terminal for software engineering and automation.
+            </p>
+            <a href="https://github.com/diy-make/gemini-cli" target="_blank" rel="noopener" class="btn btn-outline" style="font-size: 0.85rem; padding: 0.4rem 0.9rem;">View Repository ➔</a>
+          </div>
+
+          <div class="card pillar-card">
+            <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 0.5rem;">
+              <h3 style="color: var(--accent-cyan); margin: 0;">clawed</h3>
+              <span class="status-badge notebook-available">TypeScript</span>
+            </div>
+            <p style="margin-bottom: 1rem; color: var(--text-main); font-size: 0.95rem;">
+              Autonomous agentic framework and orchestration tool built in TypeScript for multi-turn task execution.
+            </p>
+            <a href="https://github.com/diy-make/clawed" target="_blank" rel="noopener" class="btn btn-outline" style="font-size: 0.85rem; padding: 0.4rem 0.9rem;">View Repository ➔</a>
+          </div>
+
+          <div class="card pillar-card">
+            <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 0.5rem;">
+              <h3 style="color: var(--accent-gold); margin: 0;">reality-merge</h3>
+              <span class="status-badge notebook-available">Python • 1 ⭐</span>
+            </div>
+            <p style="margin-bottom: 1rem; color: var(--text-main); font-size: 0.95rem;">
+              Spatial computing, augmented reality, and Python legal engineering integration runtime.
+            </p>
+            <a href="https://github.com/diy-make/reality-merge" target="_blank" rel="noopener" class="btn btn-outline" style="font-size: 0.85rem; padding: 0.4rem 0.9rem;">View Repository ➔</a>
+          </div>
+
+          <div class="card pillar-card">
+            <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 0.5rem;">
+              <h3 style="color: var(--accent-cyan); margin: 0;">zui</h3>
+              <span class="status-badge media-available">Python UI</span>
+            </div>
+            <p style="margin-bottom: 1rem; color: var(--text-main); font-size: 0.95rem;">
+              Zero-overhead User Interface (`Zui`) library for Python terminal applications and agentic user interfaces.
+            </p>
+            <a href="https://github.com/diy-make/zui" target="_blank" rel="noopener" class="btn btn-outline" style="font-size: 0.85rem; padding: 0.4rem 0.9rem;">View Repository ➔</a>
+          </div>
+
+          <div class="card pillar-card">
+            <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 0.5rem;">
+              <h3 style="color: var(--accent-cyan); margin: 0;">portal</h3>
+              <span class="status-badge notebook-available">Python</span>
+            </div>
+            <p style="margin-bottom: 1rem; color: var(--text-main); font-size: 0.95rem;">
+              Gateway/Portal architecture for secure inter-agent data transport and encrypted channel communication.
+            </p>
+            <a href="https://github.com/diy-make/portal" target="_blank" rel="noopener" class="btn btn-outline" style="font-size: 0.85rem; padding: 0.4rem 0.9rem;">View Repository ➔</a>
+          </div>
+
+          <div class="card pillar-card">
+            <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 0.5rem;">
+              <h3 style="color: var(--accent-gold); margin: 0;">OSO_hack</h3>
+              <span class="status-badge notebook-available">Python</span>
+            </div>
+            <p style="margin-bottom: 1rem; color: var(--text-main); font-size: 0.95rem;">
+              Open Source Observer (OSO) metrics, hackathon analytics tools, and public goods impact tracking.
+            </p>
+            <a href="https://github.com/diy-make/OSO_hack" target="_blank" rel="noopener" class="btn btn-outline" style="font-size: 0.85rem; padding: 0.4rem 0.9rem;">View Repository ➔</a>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- CLUSTER 3: CheerBotMe -->
+      <div class="events-group-container" id="cheerbotme-org" style="margin-bottom: 3rem;">
+        <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; margin-bottom: 1.5rem; border-bottom: 2px solid var(--accent-cyan); padding-bottom: 0.75rem;">
+          <h2 style="color: var(--accent-cyan); margin: 0; font-size: 1.6rem;">🤖 CheerBotMe (`github.com/cheerbotme`) — Under LexClinic's Wing</h2>
+          <a href="https://github.com/cheerbotme" target="_blank" rel="noopener" class="btn btn-outline" style="font-size: 0.85rem; padding: 0.35rem 0.85rem;">View Organization on GitHub ➔</a>
+        </div>
+
+        <div class="grid grid-2">
+
+          <div class="card pillar-card" style="border: 1px solid var(--accent-cyan);">
+            <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 0.5rem;">
+              <h3 style="color: var(--accent-cyan); margin: 0;">jsonState</h3>
+              <span class="status-badge media-available">Solidity • 2 ⭐</span>
+            </div>
+            <p style="margin-bottom: 1rem; color: var(--text-main); font-size: 0.95rem;">
+              Generalized object store in Solidity with version control for state changes on the blockchain (Foundational work leading to ERC-7827).
+            </p>
+            <a href="https://github.com/cheerbotme/jsonState" target="_blank" rel="noopener" class="btn btn-outline" style="font-size: 0.85rem; padding: 0.4rem 0.9rem;">View Repository ➔</a>
+          </div>
+
+          <div class="card pillar-card">
+            <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 0.5rem;">
+              <h3 style="color: var(--accent-gold); margin: 0;">webmonetization</h3>
+              <span class="status-badge notebook-available">JavaScript • 4 ⭐</span>
+            </div>
+            <p style="margin-bottom: 1rem; color: var(--text-main); font-size: 0.95rem;">
+              Using the WebMonetization.org standard to remote control Raspberry Pi hardware devices via micropayments.
+            </p>
+            <a href="https://github.com/cheerbotme/webmonetization" target="_blank" rel="noopener" class="btn btn-outline" style="font-size: 0.85rem; padding: 0.4rem 0.9rem;">View Repository ➔</a>
+          </div>
+
+          <div class="card pillar-card">
+            <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 0.5rem;">
+              <h3 style="color: var(--accent-gold); margin: 0;">pixelart</h3>
+              <span class="status-badge notebook-available">Python • 3 ⭐</span>
+            </div>
+            <p style="margin-bottom: 1rem; color: var(--text-main); font-size: 0.95rem;">
+              Hardware pixelart functionality and display controller for Raspberry Pi Zero W embedded runtimes.
+            </p>
+            <a href="https://github.com/cheerbotme/pixelart" target="_blank" rel="noopener" class="btn btn-outline" style="font-size: 0.85rem; padding: 0.4rem 0.9rem;">View Repository ➔</a>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Contact Footer -->
+  <footer class="footer">
+    <div class="container footer-content">
+      <div class="footer-col">
+        <div class="brand-logo footer-logo">
+          <span class="logo-icon">⚖️</span>
+          <span class="logo-text">Lex<span class="highlight">Clinic</span></span>
+        </div>
+        <p class="footer-tagline">LexClinic Education</p>
+        <p class="footer-address">
+          Authors of ERC-7827 | Open-Source Computational Law & Legal Engineering
+        </p>
+      </div>
+      <div class="footer-col">
+        <h4>Navigation</h4>
+        <ul>
+          <li><a href="/index.html">About</a></li>
+          <li><a href="/event.html">Events &amp; Sessions</a></li>
+          <li><a href="/101">Legal Engineering 101</a></li>
+          <li><a href="/repo/">Repositories</a></li>
+          <li><a href="/erc7827.html">ERC-7827 Standard</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Connect & Media</h4>
+        <p>YouTube: <a href="https://www.youtube.com/watch?v=ONwiUkc_tt4&list=PLbPukKwpmk5E" target="_blank" rel="noopener">Legal Engineering 101 Playlist</a></p>
+        <p>Spotify: <a href="https://open.spotify.com/show/0348ivoLaNfKBq1HeIYC9b" target="_blank" rel="noopener">LexClinic Spotify Show</a></p>
+        <p class="disclaimer">
+          © 2026 LexClinic Education. Open public goods published under AGPL-3.0 & Creative Commons Attribution-ShareAlike.
+        </p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="/script.js"></script>
+</body>
+</html>
