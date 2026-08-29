@@ -5,17 +5,17 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Class 2.2 Quiz | LexClinic Education</title>
   <meta name="description" content="Class 2.2 Quiz: 4-question assessment for Class 2.2: Minimizing Social Transaction Costs with Magic Link authentication.">
-  <link rel="stylesheet" href="/styles.css?v=20260829_1810">
+  <link rel="stylesheet" href="/styles.css?v=20260829_1815">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/npm/ethers@5.7.2/dist/ethers.umd.min.js"></script>
-  <script src="/script.js?v=20260829_1810" defer></script>
+  <script src="/script.js?v=20260829_1815" defer></script>
 </head>
 <body>
 
   <!-- Navigation Bar -->
-  <header class="navbar">
+    <header class="navbar">
     <div class="nav-container">
       <a href="/index.html" class="brand-logo">
         <span class="logo-icon">⚖️</span>
@@ -23,16 +23,13 @@
       </a>
       <nav class="nav-links" id="nav-links">
         <a href="/index.html">About</a>
-        <a href="/event.html">Events & Sessions</a>
-        <a href="/101" class="active">Legal Engineering 101</a>
+        <a href="/event.html">Events &amp; Sessions</a>
+        <a href="/101" class="active-link">Legal Engineering 101</a>
+        <a href="/repo/">Repositories</a>
         <a href="/erc7827.html">ERC-7827</a>
         <a href="https://open.spotify.com/show/0348ivoLaNfKBq1HeIYC9b" target="_blank" rel="noopener" class="btn-spotify">🎧 Spotify Show</a>
         <a href="https://www.youtube.com/watch?v=ONwiUkc_tt4&list=PLbPukKwpmk5E" target="_blank" rel="noopener" class="btn-nav">YouTube 101 Playlist ➔</a>
-        
-        <!-- High-Contrast Top-Right Login Button -->
-        <a href="#" onclick="window.openNavLoginModal(event)" id="nav-login-btn" style="background: #fbbf24; color: #0a1128; font-weight: 800; font-size: 0.9rem; padding: 0.45rem 1rem; border-radius: 6px; margin-left: 0.5rem; text-decoration: none; border: 2px solid #f59e0b; box-shadow: 0 0 10px rgba(251, 191, 36, 0.4); display: inline-block;">
-          🔒 Login
-        </a>
+        <a href="#" onclick="window.openNavLoginModal(event)" id="nav-login-btn" style="background: #fbbf24; color: #0a1128; font-weight: 800; font-size: 0.9rem; padding: 0.45rem 1rem; border-radius: 6px; margin-left: 0.5rem; text-decoration: none; border: 2px solid #f59e0b; box-shadow: 0 0 10px rgba(251, 191, 36, 0.4); display: inline-block;">🔒 Login</a>
       </nav>
       <button class="mobile-toggle" id="mobile-toggle" aria-label="Toggle navigation">
         ☰
@@ -143,7 +140,7 @@
   </section>
 
   <!-- Footer -->
-  <footer class="footer">
+    <footer class="footer">
     <div class="container footer-content">
       <div class="footer-col">
         <div class="brand-logo footer-logo">
@@ -151,13 +148,17 @@
           <span class="logo-text">Lex<span class="highlight">Clinic</span></span>
         </div>
         <p class="footer-tagline">LexClinic Education</p>
+        <p class="footer-address">
+          Authors of ERC-7827 | Open-Source Computational Law & Legal Engineering
+        </p>
       </div>
       <div class="footer-col">
         <h4>Navigation</h4>
         <ul>
           <li><a href="/index.html">About</a></li>
-          <li><a href="/event.html">Events & Sessions</a></li>
-          <li><a href="/101">Legal Engineering 101</a></li>
+          <li><a href="/event.html">Events &amp; Sessions</a></li>
+          <li><a href="/101" class="active-link">Legal Engineering 101</a></li>
+          <li><a href="/repo/">Repositories</a></li>
           <li><a href="/erc7827.html">ERC-7827 Standard</a></li>
         </ul>
       </div>
@@ -165,6 +166,9 @@
         <h4>Connect & Media</h4>
         <p>YouTube: <a href="https://www.youtube.com/watch?v=ONwiUkc_tt4&list=PLbPukKwpmk5E" target="_blank" rel="noopener">Legal Engineering 101 Playlist</a></p>
         <p>Spotify: <a href="https://open.spotify.com/show/0348ivoLaNfKBq1HeIYC9b" target="_blank" rel="noopener">LexClinic Spotify Show</a></p>
+        <p class="disclaimer">
+          © 2026 LexClinic Education. Open public goods published under AGPL-3.0 & Creative Commons Attribution-ShareAlike.
+        </p>
       </div>
     </div>
   </footer>
