@@ -5,13 +5,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>20-Question Media Quiz (Aug 28, 2026) | LexClinic Education</title>
   <meta name="description" content="LexClinic Session Media Quiz (August 28, 2026). 20-question media assessment with Magic Link authentication.">
-  <link rel="stylesheet" href="/styles.css?v=20260829_1830">
+  <link rel="stylesheet" href="/styles.css?v=20260829_1835">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <!-- Ethers.js for client-side Keccak256 payload hashing -->
   <script src="https://cdn.jsdelivr.net/npm/ethers@5.7.2/dist/ethers.umd.min.js"></script>
-  <script src="/script.js?v=20260829_1830" defer></script>
+  <script src="/script.js?v=20260829_1835" defer></script>
 </head>
 <body>
 
@@ -426,51 +426,11 @@
     });
 
 
-    function closeNavLoginModal() {
-      document.getElementById("login-modal-overlay").style.display = "none";
-    }
+    
 
-    function updateAuthUI() {
-      const loggedInBar = document.getElementById("logged-in-bar");
-      const userDisplay = document.getElementById("user-email-display");
-      const quizForm = document.getElementById("quiz-form");
-      const navBtn = document.getElementById("nav-login-btn");
-      const promptBanner = document.getElementById("logged-out-prompt-banner");
+    
 
-      if (loggedInEmail) {
-        loggedInBar.style.display = "flex";
-        userDisplay.innerText = loggedInEmail;
-        promptBanner.style.display = "none";
-        quizForm.style.display = "block"; // STRICTLY UNLOCK QUIZ FORM WHEN LOGGED IN
-
-        navBtn.innerText = `🔓 ${loggedInEmail.split('@')[0]} (Logout)`;
-        navBtn.style.background = "rgba(52, 211, 153, 0.2)";
-        navBtn.style.color = "var(--accent-green)";
-        navBtn.style.borderColor = "var(--accent-green)";
-        navBtn.style.boxShadow = "none";
-        navBtn.onclick = handleLogout;
-      } else {
-        loggedInBar.style.display = "none";
-        promptBanner.style.display = "block";
-        quizForm.style.display = "none"; // STRICTLY HIDE QUIZ FORM WHEN LOGGED OUT
-
-        navBtn.innerText = "🔒 Login";
-        navBtn.style.background = "var(--accent-gold)";
-        navBtn.style.color = "#0a1128";
-        navBtn.style.borderColor = "#f59e0b";
-        navBtn.style.boxShadow = "0 0 10px rgba(251, 191, 36, 0.4)";
-        navBtn.onclick = openNavLoginModal;
-      }
-    }
-
-    function handleLogout(e) {
-      if (e) e.preventDefault();
-      localStorage.removeItem("lexclinic_user_email");
-      loggedInEmail = "";
-      updateAuthUI();
-      document.getElementById("quiz-results-box").style.display = "none";
-      document.getElementById("confirmation-notice-card").style.display = "none";
-    }
+    
 
     async function handleFormSubmit() {
       if (!loggedInEmail) {
@@ -480,47 +440,9 @@
       }
     }
 
-    async function triggerModalMagicLink() {
-      if (isMagicLinkDispatching) return;
+    
 
-      const emailInput = document.getElementById("modal-email-input").value.trim();
-      if (!emailInput) {
-        alert("Please enter a valid email address.");
-        return;
-      }
-
-      const modalBtn = document.getElementById("modal-send-btn");
-      modalBtn.innerText = "⏳ Dispatching Real Email...";
-      modalBtn.disabled = true;
-      isMagicLinkDispatching = true;
-
-      try {
-        const res = await fetch("/api/magic-link", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            email: emailInput,
-            redirectUrl: window.location.href.split("?")[0]
-          })
-        });
-
-        const result = await res.json();
-        document.getElementById("modal-target-email").innerText = emailInput;
-        document.getElementById("modal-sent-notice").style.display = "block";
-        modalBtn.innerText = "✨ Send Magic Link Again 📧";
-      } catch (err) {
-        alert("Error sending magic link email: " + err.message);
-        modalBtn.innerText = "✨ Send Magic Link to Email Inbox 📧";
-      } finally {
-        modalBtn.disabled = false;
-        isMagicLinkDispatching = false;
-      }
-    }
-
-    function resendMagicLinkModal(e) {
-      if (e) e.preventDefault();
-      triggerModalMagicLink();
-    }
+    
 
     function initialQuizCheck() {
       let score = 0;
