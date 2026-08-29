@@ -1182,3 +1182,11 @@ a, p, span, code, .card, .hero-subtitle {
   overflow-wrap: anywhere;
   word-break: break-word;
 }
+
+
+/* Touch & Mobile Button Responsiveness */
+button, .btn, a, input[type="submit"], input[type="radio"], label, #mobile-toggle {
+  touch-action: manipulation !important;
+  cursor: pointer !important;
+  -webkit-tap-highlight-color: rgba(56, 189, 248, 0.2) !important;
+}

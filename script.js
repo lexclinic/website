@@ -14,7 +14,7 @@ const authChannel = window.BroadcastChannel ? new BroadcastChannel("lexclinic_au
 // Build Version Cookie & Cache Synchronization
 checkBuildVersion();
 
-// Universal Login Modal Injection
+// Universal Login Modal Injection (Execute immediately so it is available even before DOMContentLoaded)
 injectUniversalLoginModal();
 
 // Attach global functions to window
@@ -97,7 +97,7 @@ function checkBuildVersion() {
   }
 }
 
-// Mobile Hamburger Navigation Expansion
+// Mobile Hamburger Navigation Expansion (Supports Touch & Click)
 function bindMobileToggle() {
   const mobileToggle = document.getElementById('mobile-toggle');
   const navLinks = document.getElementById('nav-links');
@@ -112,6 +112,7 @@ function bindMobileToggle() {
     };
 
     mobileToggle.onclick = toggleMenu;
+    mobileToggle.ontouchend = toggleMenu;
   }
 }
 
@@ -122,7 +123,7 @@ function injectUniversalLoginModal() {
   const modalHtml = `
     <div id="login-modal-overlay" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.88); z-index: 9999999; justify-content: center; align-items: center; padding: 1rem;">
       <div style="background: #0a1128; border: 2px solid #fbbf24; border-radius: 10px; max-width: 480px; width: 100%; padding: 2rem; position: relative; box-shadow: 0 10px 30px rgba(0,0,0,0.9);">
-        <button type="button" onclick="closeNavLoginModal()" style="position: absolute; top: 1rem; right: 1rem; background: none; border: none; color: #94a3b8; font-size: 1.5rem; cursor: pointer;">✕</button>
+        <button type="button" onclick="closeNavLoginModal()" ontouchend="closeNavLoginModal()" style="position: absolute; top: 1rem; right: 1rem; background: none; border: none; color: #94a3b8; font-size: 1.5rem; cursor: pointer;">✕</button>
         <h2 style="color: #fbbf24; margin-top: 0; font-size: 1.4rem;">🔒 Login to Record Quiz Scores</h2>
         <p style="color: #e2e8f0; font-size: 0.95rem; margin-bottom: 1.25rem;">
           Anyone taking the assessment can log in with their email address to receive a secure <strong>magic link email from kyle@lex.clinic</strong> to record their quiz scores.
@@ -163,15 +164,18 @@ function injectUniversalLoginModal() {
 }
 
 function bindNavLoginButtons() {
-  const btns = document.querySelectorAll('#nav-login-btn, [onclick*="openNavLoginModal"]');
+  const btns = document.querySelectorAll('#nav-login-btn, [onclick*="openNavLoginModal"], #logged-out-prompt-banner button');
   btns.forEach(btn => {
-    btn.onclick = (e) => {
+    const handleAuthTrigger = (e) => {
       if (e) {
         e.preventDefault();
         e.stopPropagation();
       }
       openNavLoginModal(e);
     };
+
+    btn.onclick = handleAuthTrigger;
+    btn.ontouchend = handleAuthTrigger;
   });
 }
 
@@ -236,6 +240,7 @@ function updateAuthUI() {
       navBtn.style.borderColor = "#34d399";
       navBtn.style.boxShadow = "none";
       navBtn.onclick = handleLogout;
+      navBtn.ontouchend = handleLogout;
     });
   } else {
     if (loggedInBar) loggedInBar.style.display = "none";
@@ -253,6 +258,7 @@ function updateAuthUI() {
       navBtn.style.borderColor = "#f59e0b";
       navBtn.style.boxShadow = "0 0 10px rgba(251, 191, 36, 0.4)";
       navBtn.onclick = openNavLoginModal;
+      navBtn.ontouchend = openNavLoginModal;
     });
   }
 }
