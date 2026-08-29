@@ -1,14 +1,95 @@
-const CLIENT_ID = "288664971084-dt9rnn61mj4ej185qcr7chr5du63cao1.apps.googleusercontent.com";
-const CLIENT_SECRET = "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";
-const REFRESH_TOKEN = "1//06owsSactvT2qCgYIARAAGAYSNwF-L9IrGw8a2BNUsfUAbyfIMgWmf5GHdm9s-e3iZfhgUmhyAPToK6HBrHik5QPfvBApxjmto2A";
+const SERVICE_ACCOUNT_EMAIL = "lexclinic-agent@metagit.iam.gserviceaccount.com";
+const DELEGATED_USER = "kyle@lex.clinic";
+const DRIVE_SCOPE = "https://www.googleapis.com/auth/drive";
 const DRIVE_FILE_ID = "1GidiMBXRYmcDMnAPrgndS35-MsjY1WT7";
 
-async function getGoogleAccessToken() {
+const FALLBACK_CLIENT_ID = "288664971084-dt9rnn61mj4ej185qcr7chr5du63cao1.apps.googleusercontent.com";
+const FALLBACK_CLIENT_SECRET = "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";
+const FALLBACK_REFRESH_TOKEN = "1//06owsSactvT2qCgYIARAAGAYSNwF-L9IrGw8a2BNUsfUAbyfIMgWmf5GHdm9s-e3iZfhgUmhyAPToK6HBrHik5QPfvBApxjmto2A";
+
+function pemToBinary(pem) {
+  const cleanPem = pem
+    .replace(/-----BEGIN [A-Z ]+-----/g, "")
+    .replace(/-----END [A-Z ]+-----/g, "")
+    .replace(/[\r\n\s]/g, "");
+
+  const binaryDerString = atob(cleanPem);
+  const binaryDer = new Uint8Array(binaryDerString.length);
+  for (let i = 0; i < binaryDerString.length; i++) {
+    binaryDer[i] = binaryDerString.charCodeAt(i);
+  }
+  return binaryDer.buffer;
+}
+
+function base64UrlEncode(str) {
+  return btoa(str)
+    .replace(/=/g, "")
+    .replace(/\+/g, "-")
+    .replace(/\//g, "_");
+}
+
+function arrayBufferToBase64Url(buffer) {
+  let binary = "";
+  const bytes = new Uint8Array(buffer);
+  for (let i = 0; i < bytes.byteLength; i++) {
+    binary += String.fromCharCode(bytes[i]);
+  }
+  return base64UrlEncode(binary);
+}
+
+async function getServiceAccountAccessToken(privateKeyPem) {
+  const now = Math.floor(Date.now() / 1000);
+  const header = { alg: "RS256", typ: "JWT" };
+  const claimSet = {
+    iss: SERVICE_ACCOUNT_EMAIL,
+    sub: DELEGATED_USER,
+    scope: DRIVE_SCOPE,
+    aud: "https://oauth2.googleapis.com/token",
+    exp: now + 3600,
+    iat: now
+  };
+
+  const encodedHeader = base64UrlEncode(JSON.stringify(header));
+  const encodedClaimSet = base64UrlEncode(JSON.stringify(claimSet));
+  const unsignedJwt = `${encodedHeader}.${encodedClaimSet}`;
+
+  const binaryKey = pemToBinary(privateKeyPem);
+  const cryptoKey = await crypto.subtle.importKey(
+    "pkcs8",
+    binaryKey,
+    { name: "RSASSA-PKCS1-v1_5", hash: "SHA-256" },
+    false,
+    ["sign"]
+  );
+
+  const encoder = new TextEncoder();
+  const signature = await crypto.subtle.sign(
+    "RSASSA-PKCS1-v1_5",
+    cryptoKey,
+    encoder.encode(unsignedJwt)
+  );
+
+  const jwt = `${unsignedJwt}.${arrayBufferToBase64Url(signature)}`;
+
+  const tokenRes = await fetch("https://oauth2.googleapis.com/token", {
+    method: "POST",
+    headers: { "Content-Type": "application/x-www-form-urlencoded" },
+    body: new URLSearchParams({
+      grant_type: "urn:ietf:params:oauth:grant-type:jwt-bearer",
+      assertion: jwt
+    })
+  });
+
+  const tokenData = await tokenRes.json();
+  return tokenData.access_token;
+}
+
+async function getFallbackAccessToken() {
   const tokenUrl = "https://oauth2.googleapis.com/token";
   const params = new URLSearchParams({
-    client_id: CLIENT_ID,
-    client_secret: CLIENT_SECRET,
-    refresh_token: REFRESH_TOKEN,
+    client_id: FALLBACK_CLIENT_ID,
+    client_secret: FALLBACK_CLIENT_SECRET,
+    refresh_token: FALLBACK_REFRESH_TOKEN,
     grant_type: "refresh_token"
   });
 
@@ -25,7 +106,7 @@ async function getGoogleAccessToken() {
 export async function onRequestPost(context) {
   try {
     const data = await context.request.json();
-    const { email, score, answered, total, payload_hash, timestamp, summary } = data;
+    const { email, class_id, score, answered, total, payload_hash, timestamp, summary } = data;
 
     if (!email || !payload_hash) {
       return new Response(JSON.stringify({ error: "Missing required fields" }), {
@@ -37,15 +118,36 @@ export async function onRequestPost(context) {
     const newSubmission = {
       submissionId: "sub_" + Date.now(),
       email,
+      class_id: class_id || "2026-08-28",
       score: `${score}/${total || 20}`,
-      answered: `${answered}/${total || 20}`,
+      answered: `${answered || score}/${total || 20}`,
       payload_hash,
       timestamp: timestamp || new Date().toISOString(),
       summary: summary || []
     };
 
-    // 1. Get Access Token
-    const accessToken = await getGoogleAccessToken();
+    // 1. Get Access Token (Prefer Service Account with Domain-Wide Delegation)
+    let accessToken = null;
+    const pemKey = context.env ? context.env.GCP_PRIVATE_KEY : null;
+
+    if (pemKey) {
+      try {
+        accessToken = await getServiceAccountAccessToken(pemKey);
+      } catch (err) {
+        console.log("Service Account token error, using fallback:", err);
+      }
+    }
+
+    if (!accessToken) {
+      accessToken = await getFallbackAccessToken();
+    }
+
+    if (!accessToken) {
+      return new Response(JSON.stringify({ error: "Failed to authenticate with Google Drive API" }), {
+        status: 500,
+        headers: { "Content-Type": "application/json", "Access-Control-Allow-Origin": "*" }
+      });
+    }
 
     // 2. Fetch Existing File Content from Google Drive
     const fileUrl = `https://www.googleapis.com/drive/v3/files/${DRIVE_FILE_ID}?alt=media`;
