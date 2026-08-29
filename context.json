@@ -1,26 +1,29 @@
 {
   "agentic_repository_design": {
-    "version": "2.0.0",
+    "version": "3.0.0",
     "architecture": "Sovereign Tri-Repository Metagit Architecture",
     "target_operator": "Autonomous AI Agent & Human Peer Programmers",
-    "philosophy": "Agentic Repository Design: Tri-Git separation between local agent memory management, public production web releases, and private remote audit backups.",
+    "philosophy": "Agentic Repository Design: Tri-Git separation between local agent memory management (_mgit), public production web releases (_github), and private remote audit backups (_github_context).",
     "tri_git_specifications": {
       "git_local_mgit": {
         "name": "_mgit (Local Memory & Workspace Management)",
         "role": "Local-only repository used strictly for agentic internal memory management, workspace state, and turn-by-turn execution tracking.",
+        "metadata_dir": ".git_mgit",
         "remote": "None (Local workspace only)"
       },
       "git_github_public": {
-        "name": "_github_public (Kairos Production Axis)",
-        "role": "Clean, secret-free production web substrate deployed to Cloudflare Pages (lex.clinic).",
-        "remote": "git@github.com:lexclinic/website.git",
+        "name": "_github (Kairos Production Axis)",
+        "role": "Clean, secret-free public production web substrate deployed to Cloudflare Pages (lex.clinic).",
+        "metadata_dir": ".git_github",
+        "remote": "git@github.com:lexclinic/website.git (or newly designated public repo)",
         "contents": "kairos_mgit/ (101/, event/, functions/api/, index.html, styles.css, script.js, ARCHITECTURE.md, context.json)"
       },
-      "git_github_private": {
-        "name": "_github_private (Chronos Audit Vault)",
+      "git_github_context": {
+        "name": "_github_context (Chronos Audit Vault)",
         "role": "Private encrypted cloud backup containing full chronological audit trails, execution logs, and memory snapshots.",
-        "remote": "git@github.com:lexclinic/website-private-audit.git (or designated private remote)",
-        "contents": "kairos_mgit/ + chronos_mgit/ (date-sharded memory snapshots, WeDo manifests, raw transcripts)"
+        "metadata_dir": ".git_github_context",
+        "remote": "git@github.com:lexclinic/website_context.git",
+        "contents": "chronos_mgit/ (date-sharded memory snapshots, WeDo manifests, raw transcripts)"
       }
     },
     "airgap_specifications": {

@@ -4,65 +4,52 @@
 
 The **Sovereign Tri-Repository Metagit Architecture** is designed primarily for **Agents and Humans entering from the Git / CLI (Command Line Interface) environment**.
 
-GitHub (`github.com/lexclinic/website`) is used **strictly for Git code sharing, version control, and specification documentation**. There is **NO web hosting on GitHub**—live web hosting is handled exclusively by Cloudflare Pages on `https://lex.clinic`.
+The architecture enforces a strict **Tri-Git Separation** between local agent memory management (`_mgit`), public production web releases (`_github`), and private remote audit backups (`_github_context`).
 
-The architecture enforces a strict **Tri-Git Separation** between local agent memory management, public production code sharing, and private remote audit backups.
+While the Git / CLI workspace is the primary environment for agentic engineering and memory management, the **BI (Browser Interface)** at `https://lex.clinic` serves as a projected learning reflection of the public production substrate.
 
 ```text
-                        ┌──────────────────────────────────────────────┐
-                        │       GitHub Repository Root                 │
-                        │   (git@github.com:lexclinic/website.git)     │
-                        └──────────────────────┬───────────────────────┘
-                                               │
-                         ┌─────────────────────┴─────────────────────┐
-                         ▼                                           ▼
-       ┌───────────────────────────────────┐       ┌───────────────────────────────────┐
-       │     Public Production Git Repo    │       │     Private Audit Git Repo        │
-       │    (github.com/lexclinic/website) │       │   (github.com/lexclinic/...-audit)│
-       ├───────────────────────────────────┤       ├───────────────────────────────────┤
-       │ • Public Git Code Sharing         │       │ • Private Remote Backup           │
-       │ • Deploys to Cloudflare Pages     │       │ • Full Chronological Audit Trail  │
-       │ • Root: ARCHITECTURE.md, 101/,    │       │ • Sharded Memory Snapshots        │
-       │   functions/api/, index.html      │       │ • WeDo-JSON Task Manifests        │
-       │ • 0 Secrets / Clean Kairos Sub    │       │ • Private Memory & State Vaults   │
-       └───────────────────────────────────┘       └───────────────────────────────────┘
+                               ┌────────────────────────────────────────┐
+                               │       Sovereign Workspace Root         │
+                               │        (/home/bestape/mgit/)           │
+                               └───────────────────┬────────────────────┘
+                                                   │
+         ┌─────────────────────────────────────────┼─────────────────────────────────────────┐
+         ▼                                         ▼                                         ▼
+┌───────────────────────────────────┐    ┌───────────────────────────────────┐     ┌───────────────────────────────────┐
+│        1. _mgit (Local)           │    │       2. _github (Kairos)         │     │    3. _github_context (Chronos)   │
+├───────────────────────────────────┤    ├───────────────────────────────────┤     ├───────────────────────────────────┤
+│ • Local Memory & Workspace Mgmt   │    │ • Public Production Source Code   │     │ • Private Remote Audit Backup     │
+│ • Metadata Dir: .git_mgit         │    │ • Metadata Dir: .git_github       │     │ • Metadata Dir: .git_github_cntxt │
+│ • No Public Remote Push           │    │ • Deploys to Cloudflare Pages     │     │ • Remote: website_context.git     │
+│ • Local-Only Workspace State      │    │ • 0 Secrets / Clean Kairos Sub    │     │ • Full Chronological Audit Trail  │
+└───────────────────────────────────┘    └───────────────────────────────────┘     └───────────────────────────────────┘
 ```
 
 ---
 
-## 2. GitHub Repository Structure (`github.com/lexclinic/website`)
-
-The GitHub repository contains the clean, public source code published directly at its root:
-
-* **Repository Root**: **[https://github.com/lexclinic/website](https://github.com/lexclinic/website)**
-* **Architecture Specification Document**: **[https://github.com/lexclinic/website/blob/main/ARCHITECTURE.md](https://github.com/lexclinic/website/blob/main/ARCHITECTURE.md)**
-* **Agentic Design Manifest**: **[https://github.com/lexclinic/website/blob/main/context.json](https://github.com/lexclinic/website/blob/main/context.json)**
-* **101 Curriculum Axis**: **[https://github.com/lexclinic/website/tree/main/101](https://github.com/lexclinic/website/tree/main/101)**
-* **Serverless Edge Functions**: **[https://github.com/lexclinic/website/tree/main/functions/api](https://github.com/lexclinic/website/tree/main/functions/api)**
-
----
-
-## 3. The Tri-Git Specifications
+## 2. The Tri-Git Specifications
 
 ### **1. `_mgit` — Local Agent Memory & Workspace Management**
+* **Metadata Directory**: **`.git_mgit/`**
 * **Role**: Used exclusively by the AI agent to manage local memory, track file changes across turns, and maintain workspace cohesion.
 * **Remote**: **None** (Strictly local to the engineering workstation).
-* **Scope**: Tracks the entire workspace, including local configurations and staging data.
 
-### **2. `_github_public` — Kairos Production Release Axis**
-* **Role**: Public Git repository holding the clean, data-compressed source code.
-* **Remote**: **`git@github.com:lexclinic/website.git`**
+### **2. `_github` — Kairos Production Release Axis**
+* **Metadata Directory**: **`.git_github/`**
+* **Role**: Holds the clean, data-compressed public production web application (`kairos_mgit/`).
 * **Live Web Deployment**: Cloudflare Pages (`https://lex.clinic`).
 * **Security Mandate**: **100% Secret-Free**. Uses `.localonly` pre-commit secret linting to prevent credential leakage.
 
-### **3. `_github_private` — Chronos Time-Sharded Audit Vault**
+### **3. `_github_context` — Chronos Time-Sharded Audit Vault**
+* **Metadata Directory**: **`.git_github_context/`**
 * **Role**: Serves as the private remote cloud backup for complete chronological audit trails, time-sharded memory snapshots (`chronos_mgit/YYYY-MM-DD/`), and execution logs.
-* **Remote**: Designated private GitHub audit remote (e.g. `git@github.com:lexclinic/website-private-audit.git`).
-* **Security Policy**: Restricted access / Private repository.
+* **Remote**: **`git@github.com:lexclinic/website_context.git`**
+* **Security Policy**: Restricted access / Private audit repository.
 
 ---
 
-## 4. The Temporal Dichotomy: Kairos vs. Chronos
+## 3. The Temporal Dichotomy: Kairos vs. Chronos
 
 ### **A. Kairos — Eternal, Condensed (Data-Compressed) Time**
 * **Meaning**: Kairos is eternal, timeless, and highly condensed. It represents the compression of knowledge, rules, and logic into distilled, reusable artifacts.
@@ -80,13 +67,13 @@ The GitHub repository contains the clean, public source code published directly 
 
 ---
 
-## 5. Workspace Filesystem Hierarchy
+## 4. Workspace Filesystem Hierarchy
 
 ```text
 /home/bestape/mgit/
 ├── lex_clinic_website_mgit/            <-- Web Application Package
-│   ├── repo_mgit/                      <-- [LOCAL _mgit GIT REPOSITORY ROOT]
-│   │   ├── kairos_mgit/                <-- [GITHUB_PUBLIC REPOSITORY ROOT (github.com/lexclinic/website)]
+│   ├── repo_mgit/                      <-- [ROOT FOR .git_mgit, .git_github, .git_github_context]
+│   │   ├── kairos_mgit/                <-- [PUBLIC PRODUCTION SOURCE CODE]
 │   │   │   ├── mgit_dual_commit.py     <-- [COMMIT & SECRET-SCAN ORCHESTRATOR]
 │   │   │   ├── 101/                    <-- Condensed Curriculum Modules (1.1, 1.2, 2.1, 2.2)
 │   │   │   ├── event/                  <-- Unfolding Event Route Namespace (/event/YYYY-MM-DD/)
@@ -96,7 +83,7 @@ The GitHub repository contains the clean, public source code published directly 
 │   │   │   ├── script.js              <-- Universal Auth & Cross-Tab Sync
 │   │   │   ├── context.json            <-- [AGENTIC REPOSITORY SPECIFICATION]
 │   │   │   └── ARCHITECTURE.md         <-- [THIS DEFINITION SPECIFICATION]
-│   │   └── chronos_mgit/               <-- Chronos Axis (Local Memory Vault)
+│   │   └── chronos_mgit/               <-- Chronos Axis (Pushed to github.com/lexclinic/website_context)
 │   │       └── YYYY-MM-DD/             <-- Daily Memory Snapshots & Execution Audits
 │   └── blob_mgit/                      <-- Uncompiled Media & Video Assets
 ├── data_room_mgit/                     <-- Intake Manifests & Master WeDo JSON Files
@@ -107,11 +94,11 @@ The GitHub repository contains the clean, public source code published directly 
 
 ---
 
-## 6. Operational Rules for Agents & Human Engineers
+## 5. Operational Rules for Agents & Human Engineers
 
 1. **Git Code Sharing Only**: GitHub is used strictly for Git version control and code sharing. Live website hosting is handled exclusively by Cloudflare Pages (`https://lex.clinic`).
 2. **Tri-Git Boundary Enforcement**:
-   * Local workspace edits are committed locally to **`_mgit`**.
-   * Secret-scanned production releases in `kairos_mgit/` are pushed to **`_github_public`** (`git@github.com:lexclinic/website.git`).
-   * Chronos memory snapshots and execution logs are archived in **`_github_private`**.
-3. **Automated Orchestration**: Execute `mgit_dual_commit.py` to audit secrets, enforce `.localonly` air-gaps, stage Kairos code for public GitHub push, and archive the Chronos memory shard.
+   * Local workspace edits are committed locally to **`_mgit`** (`.git_mgit`).
+   * Secret-scanned production releases in `kairos_mgit/` are pushed to **`_github`** (`.git_github`).
+   * Chronos memory snapshots and execution logs in `chronos_mgit/` are pushed to **`_github_context`** (`git@github.com:lexclinic/website_context.git`).
+3. **Automated Orchestration**: Execute `mgit_dual_commit.py` to audit secrets, enforce `.localonly` air-gaps, stage Kairos code for public GitHub push, and push Chronos memory snapshots to `website_context`.
