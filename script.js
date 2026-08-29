@@ -1,5 +1,5 @@
 // Universal LexClinic Web Substrate Script: Auth, Modal, Version Sync, Mobile Nav, and Cross-Tab Login
-const BUILD_VERSION = "20260829_1800";
+const BUILD_VERSION = "20260829_1805";
 let loggedInEmail = localStorage.getItem("lexclinic_user_email") || "";
 let isMagicLinkDispatching = false;
 const authChannel = window.BroadcastChannel ? new BroadcastChannel("lexclinic_auth_channel") : null;
