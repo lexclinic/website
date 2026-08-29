@@ -1,7 +1,11 @@
-// Universal LexClinic Web Substrate Script: Auth, Modal, and Cross-Tab Login Sync
+// Universal LexClinic Web Substrate Script: Auth, Modal, Version Sync, and Cross-Tab Login
+const BUILD_VERSION = "20260829_1736";
 let loggedInEmail = localStorage.getItem("lexclinic_user_email") || "";
 let isMagicLinkDispatching = false;
 const authChannel = window.BroadcastChannel ? new BroadcastChannel("lexclinic_auth_channel") : null;
+
+// Build Version Cookie & Cache Synchronization
+checkBuildVersion();
 
 // Universal Login Modal Injection (Execute immediately so it is available even before DOMContentLoaded)
 injectUniversalLoginModal();
@@ -93,6 +97,25 @@ document.addEventListener('DOMContentLoaded', async () => {
     });
   }
 });
+
+function checkBuildVersion() {
+  const lastBuild = localStorage.getItem("lexclinic_build");
+  if (lastBuild && lastBuild !== BUILD_VERSION) {
+    localStorage.setItem("lexclinic_build", BUILD_VERSION);
+    
+    // Unregister any stale Service Workers
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.getRegistrations().then(regs => {
+        for (let reg of regs) reg.unregister();
+      });
+    }
+    
+    // Force cache-bypassing reload
+    window.location.reload(true);
+  } else {
+    localStorage.setItem("lexclinic_build", BUILD_VERSION);
+  }
+}
 
 // Universal Login Modal Injection
 function injectUniversalLoginModal() {
