@@ -1,30 +1,34 @@
 {
   "agentic_repository_design": {
-    "version": "1.0.0",
-    "architecture": "Sovereign Dual-Axis Metagit Architecture",
+    "version": "2.0.0",
+    "architecture": "Sovereign Tri-Repository Metagit Architecture",
     "target_operator": "Autonomous AI Agent & Human Peer Programmers",
-    "philosophy": "Agentic Repository Design: Purpose-built for autonomous CLI agents to engineer, audit, linter-enforce, and dual-commit software securely.",
-    "specifications": {
+    "philosophy": "Agentic Repository Design: Tri-Git separation between local agent memory management, public production web releases, and private remote audit backups.",
+    "tri_git_specifications": {
+      "git_local_mgit": {
+        "name": "_mgit (Local Memory & Workspace Management)",
+        "role": "Local-only repository used strictly for agentic internal memory management, workspace state, and turn-by-turn execution tracking.",
+        "remote": "None (Local workspace only)"
+      },
+      "git_github_public": {
+        "name": "_github_public (Kairos Production Axis)",
+        "role": "Clean, secret-free production web substrate deployed to Cloudflare Pages (lex.clinic).",
+        "remote": "git@github.com:lexclinic/website.git",
+        "contents": "kairos_mgit/ (101/, event/, functions/api/, index.html, styles.css, script.js, ARCHITECTURE.md, context.json)"
+      },
+      "git_github_private": {
+        "name": "_github_private (Chronos Audit Vault)",
+        "role": "Private encrypted cloud backup containing full chronological audit trails, execution logs, and memory snapshots.",
+        "remote": "git@github.com:lexclinic/website-private-audit.git (or designated private remote)",
+        "contents": "kairos_mgit/ + chronos_mgit/ (date-sharded memory snapshots, WeDo manifests, raw transcripts)"
+      }
+    },
+    "airgap_specifications": {
       "localonly_pattern": {
         "suffix": ".localonly",
         "description": "Any file containing local configs, secrets, private keys, or staging logs must append .localonly before its extension (e.g. config.localonly.js, wallet.localonly.json).",
         "gitignore_enforcement": "*.localonly, *.localonly.*",
-        "linter_rule": "The pre-commit scanner blocks commits if secrets are found in non-.localonly files."
-      },
-      "dual_git_metadata_routing": {
-        "git_github": ".git_github (Public GitHub Remote Tracking: git@github.com:lexclinic/website.git)",
-        "git_mgit": ".git_mgit (Private Chronos Metagit Audit Tracking)",
-        "cli_routing": "Commands route via --git-dir=.git_github --work-tree=. or env vars GIT_DIR / GIT_WORK_TREE."
-      },
-      "dual_commit_orchestration": {
-        "script": "kairos_mgit/mgit_dual_commit.py",
-        "workflow": [
-          "1. Scan kairos_mgit for hardcoded keys in non-.localonly files.",
-          "2. Enforce .localonly suffix for private artifacts.",
-          "3. Purge .wrangler build caches.",
-          "4. Stage clean code & push kairos_mgit to git@github.com:lexclinic/website.git.",
-          "5. Archive time-sharded memory snapshot into chronos_mgit/YYYY-MM-DD/."
-        ]
+        "linter_rule": "Pre-commit secret scanner blocks public commits if keys are found in non-.localonly files."
       }
     }
   }
