@@ -1,29 +1,29 @@
 {
   "agentic_repository_design": {
-    "version": "3.0.0",
+    "version": "4.0.0",
     "architecture": "Sovereign Tri-Repository Metagit Architecture",
     "target_operator": "Autonomous AI Agent & Human Peer Programmers",
-    "philosophy": "Agentic Repository Design: Tri-Git separation between local agent memory management (_mgit), public production web releases (_github), and private remote audit backups (_github_context).",
-    "tri_git_specifications": {
-      "git_local_mgit": {
-        "name": "_mgit (Local Memory & Workspace Management)",
-        "role": "Local-only repository used strictly for agentic internal memory management, workspace state, and turn-by-turn execution tracking.",
-        "metadata_dir": ".git_mgit",
-        "remote": "None (Local workspace only)"
-      },
-      "git_github_public": {
-        "name": "_github (Kairos Production Axis)",
-        "role": "Clean, secret-free public production web substrate deployed to Cloudflare Pages (lex.clinic).",
+    "philosophy": "Agentic Repository Design: Strict Inclusion Hierarchy where .git_github ⊂ .git_github_context ⊂ .git_mgit, governing public code releases, private cloud audit backups, and local workspace memory.",
+    "inclusion_hierarchy": {
+      "formula": ".git_github ⊂ .git_github_context ⊂ .git_mgit",
+      "level_1_github_public": {
         "metadata_dir": ".git_github",
-        "remote": "git@github.com:lexclinic/website.git (or newly designated public repo)",
-        "contents": "kairos_mgit/ (101/, event/, functions/api/, index.html, styles.css, script.js, ARCHITECTURE.md, context.json)"
+        "scope": "Public Sub-Set",
+        "remote": "git@github.com:lexclinic/website.git",
+        "contents": "Clean production web substrate (kairos_mgit/), 101 courseware, Edge Functions, public event routes, and elevated Chronos public goods.",
+        "security": "100% secret-free. Excludes .localonly files and private Chronos snapshots."
       },
-      "git_github_context": {
-        "name": "_github_context (Chronos Audit Vault)",
-        "role": "Private encrypted cloud backup containing full chronological audit trails, execution logs, and memory snapshots.",
+      "level_2_github_context": {
         "metadata_dir": ".git_github_context",
+        "scope": "Private Super-Set of .git_github",
         "remote": "git@github.com:lexclinic/website_context.git",
-        "contents": "chronos_mgit/ (date-sharded memory snapshots, WeDo manifests, raw transcripts)"
+        "contents": "Includes EVERYTHING in .git_github PLUS chronos_mgit/ time-sharded memory snapshots, execution audit logs, WeDo manifests, and raw transcripts."
+      },
+      "level_3_local_mgit": {
+        "metadata_dir": ".git_mgit",
+        "scope": "Complete Super-Set of All Workspace Files",
+        "remote": "None (Strictly local to workstation)",
+        "contents": "Includes EVERYTHING in .git_github_context PLUS local .localonly configuration files, local EVM wallets, staging logs, and internal workspace state."
       }
     },
     "airgap_specifications": {
@@ -31,7 +31,7 @@
         "suffix": ".localonly",
         "description": "Any file containing local configs, secrets, private keys, or staging logs must append .localonly before its extension (e.g. config.localonly.js, wallet.localonly.json).",
         "gitignore_enforcement": "*.localonly, *.localonly.*",
-        "linter_rule": "Pre-commit secret scanner blocks public commits if keys are found in non-.localonly files."
+        "linter_rule": "Pre-commit secret scanner blocks public .git_github commits if keys are found in non-.localonly files."
       }
     }
   }
