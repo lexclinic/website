@@ -5,13 +5,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>20-Question Media Quiz (Aug 28, 2026) | LexClinic Education</title>
   <meta name="description" content="LexClinic Session Media Quiz (August 28, 2026). 20-question media assessment with Magic Link authentication.">
-  <link rel="stylesheet" href="/styles.css?v=20260829_1850">
+  <link rel="stylesheet" href="/styles.css?v=20260829_1855">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <!-- Ethers.js for client-side Keccak256 payload hashing -->
   <script src="https://cdn.jsdelivr.net/npm/ethers@5.7.2/dist/ethers.umd.min.js"></script>
-  <script src="/script.js?v=20260829_1850" defer></script>
+  <script src="/script.js?v=20260829_1855" defer></script>
 </head>
 <body>
 
@@ -357,7 +357,7 @@
   <!-- Quiz & Magic Link Authentication JavaScript with Strict Form Lock & Cross-Tab Sync -->
   <script>
     let currentPayloadHash = "";
-    let loggedInEmail = localStorage.getItem("lexclinic_user_email") || "";
+    
     let quizScoreVal = 0;
     let cachedAnsSummary = [];
     let cachedAnsweredCount = 0;
@@ -365,7 +365,7 @@
     let isMagicLinkDispatching = false;
 
     // Cross-Tab Broadcast Channel for Instant Magic Link Sync across tabs
-    const authChannel = window.BroadcastChannel ? new BroadcastChannel("lexclinic_auth_channel") : null;
+    
 
     const questionLabels = {
       q1: "Q1.1 (Playbill Metaphor)", q2: "Q1.2 (Movement 2)", q3: "Q1.3 (Movement 4)", q4: "Q1.4 (Movement 6)",
@@ -384,18 +384,7 @@
     };
 
     // On Page Load: Check URL Magic Link Params, update Auth UI, and broadcast to other tabs
-    window.addEventListener("DOMContentLoaded", () => {
-      const urlParams = new URLSearchParams(window.location.search);
-      const token = urlParams.get("token");
-      const emailParam = urlParams.get("email");
-
-      if (token && emailParam) {
-        loggedInEmail = decodeURIComponent(emailParam);
-        localStorage.setItem("lexclinic_user_email", loggedInEmail);
-        
-        // Broadcast login success to original browser tab
-        if (authChannel) {
-          authChannel.postMessage({ type: "LOGIN_SUCCESS", email: loggedInEmail });
+    
         }
 
         // Clean URL params
@@ -406,24 +395,11 @@
     });
 
     // Cross-tab broadcast listener
-    if (authChannel) {
-      authChannel.onmessage = (event) => {
-        if (event.data && event.data.type === "LOGIN_SUCCESS") {
-          loggedInEmail = event.data.email;
-          updateAuthUI();
-          closeNavLoginModal();
-        }
-      };
+    ;
     }
 
     // Storage event listener for cross-tab sync fallback
-    window.addEventListener("storage", (e) => {
-      if (e.key === "lexclinic_user_email") {
-        loggedInEmail = e.newValue || "";
-        updateAuthUI();
-        closeNavLoginModal();
-      }
-    });
+    
 
 
     

@@ -1,5 +1,5 @@
 // Universal LexClinic Web Substrate Script: Auth, Modal, Version Sync, Mobile Nav, and Cross-Tab Login
-const BUILD_VERSION = "20260829_1850";
+const BUILD_VERSION = "20260829_1855";
 
 function getSanitizedEmail() {
   const raw = localStorage.getItem("lexclinic_user_email");
@@ -7,9 +7,9 @@ function getSanitizedEmail() {
   return raw.trim();
 }
 
-let loggedInEmail = getSanitizedEmail();
-let isMagicLinkDispatching = false;
-const authChannel = window.BroadcastChannel ? new BroadcastChannel("lexclinic_auth_channel") : null;
+var loggedInEmail = getSanitizedEmail();
+var isMagicLinkDispatching = false;
+var authChannel = window.BroadcastChannel ? new BroadcastChannel("lexclinic_auth_channel") : null;
 
 // Attach global functions to window immediately
 window.getSanitizedEmail = getSanitizedEmail;
