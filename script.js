@@ -1,5 +1,5 @@
-// Universal LexClinic Web Substrate Script: Auth, Modal, Version Sync, and Cross-Tab Login
-const BUILD_VERSION = "20260829_1752";
+// Universal LexClinic Web Substrate Script: Auth, Modal, Version Sync, Mobile Nav, and Cross-Tab Login
+const BUILD_VERSION = "20260829_1800";
 let loggedInEmail = localStorage.getItem("lexclinic_user_email") || "";
 let isMagicLinkDispatching = false;
 const authChannel = window.BroadcastChannel ? new BroadcastChannel("lexclinic_auth_channel") : null;
@@ -38,9 +38,10 @@ document.addEventListener('DOMContentLoaded', async () => {
     window.history.replaceState({}, document.title, window.location.pathname);
   }
 
-  // 2. Ensure modal is injected and click handlers bound
+  // 2. Ensure modal is injected and click/touch handlers bound
   injectUniversalLoginModal();
   bindNavLoginButtons();
+  bindMobileToggle();
 
   // 3. Initialize Auth UI
   updateAuthUI();
@@ -74,28 +75,6 @@ document.addEventListener('DOMContentLoaded', async () => {
       closeNavLoginModal();
     }
   });
-
-  // Mobile Navigation Toggle
-  const mobileToggle = document.getElementById('mobile-toggle');
-  const navLinks = document.getElementById('nav-links');
-
-  if (mobileToggle && navLinks) {
-    mobileToggle.addEventListener('click', () => {
-      if (navLinks.style.display === 'flex') {
-        navLinks.style.display = 'none';
-      } else {
-        navLinks.style.display = 'flex';
-        navLinks.style.flexDirection = 'column';
-        navLinks.style.position = 'absolute';
-        navLinks.style.top = '100%';
-        navLinks.style.left = '0';
-        navLinks.style.right = '0';
-        navLinks.style.background = '#0a1128';
-        navLinks.style.padding = '1.5rem';
-        navLinks.style.borderBottom = '1px solid rgba(255,255,255,0.1)';
-      }
-    });
-  }
 });
 
 function checkBuildVersion() {
@@ -117,13 +96,28 @@ function checkBuildVersion() {
   }
 }
 
+// Mobile Hamburger Navigation Expansion (Supports Touch & Click)
+function bindMobileToggle() {
+  const mobileToggle = document.getElementById('mobile-toggle');
+  const navLinks = document.getElementById('nav-links');
+
+  if (mobileToggle && navLinks) {
+    const toggleMenu = (e) => {
+      if (e) e.preventDefault();
+      navLinks.classList.toggle('active');
+    };
+
+    mobileToggle.onclick = toggleMenu;
+  }
+}
+
 // Universal Login Modal Injection
 function injectUniversalLoginModal() {
   if (document.getElementById("login-modal-overlay")) return;
 
   const modalHtml = `
-    <div id="login-modal-overlay" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.85); z-index: 999999; justify-content: center; align-items: center; padding: 1rem;">
-      <div style="background: #0a1128; border: 2px solid #fbbf24; border-radius: 10px; max-width: 480px; width: 100%; padding: 2rem; position: relative; box-shadow: 0 10px 30px rgba(0,0,0,0.8);">
+    <div id="login-modal-overlay" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.88); z-index: 9999999; justify-content: center; align-items: center; padding: 1rem;">
+      <div style="background: #0a1128; border: 2px solid #fbbf24; border-radius: 10px; max-width: 480px; width: 100%; padding: 2rem; position: relative; box-shadow: 0 10px 30px rgba(0,0,0,0.9);">
         <button onclick="closeNavLoginModal()" style="position: absolute; top: 1rem; right: 1rem; background: none; border: none; color: #94a3b8; font-size: 1.5rem; cursor: pointer;">✕</button>
         <h2 style="color: #fbbf24; margin-top: 0; font-size: 1.4rem;">🔒 Login to Record Quiz Scores</h2>
         <p style="color: #e2e8f0; font-size: 0.95rem; margin-bottom: 1.25rem;">
@@ -168,7 +162,7 @@ function bindNavLoginButtons() {
   const btns = document.querySelectorAll('#nav-login-btn, [onclick*="openNavLoginModal"]');
   btns.forEach(btn => {
     btn.onclick = (e) => {
-      e.preventDefault();
+      if (e) e.preventDefault();
       openNavLoginModal(e);
     };
   });
