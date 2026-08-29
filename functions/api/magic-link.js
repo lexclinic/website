@@ -31,15 +31,15 @@ export async function onRequestPost(context) {
         </p>
         <hr style="border-color: #1e293b; margin-top: 20px;">
         <p style="font-size: 0.75rem; color: #64748b;">
-          Sent from <strong>login@lex.clinic</strong> for LexClinic Education quiz participants. If you did not request this email, you can safely ignore it.
+          Sent from <strong>kyle@lex.clinic</strong> for LexClinic Education quiz participants. If you did not request this email, you can safely ignore it.
         </p>
       </div>
     `;
 
     // Dispatch email payload directly
     const emailPayload = {
-      from: "login@lex.clinic",
-      fromName: "LexClinic Login",
+      from: "kyle@lex.clinic",
+      fromName: "LexClinic Education (Kyle)",
       to: email,
       subject: "Your Magic Link Login to LexClinic Education",
       html: htmlBody,
@@ -57,7 +57,7 @@ export async function onRequestPost(context) {
 
     return new Response(JSON.stringify({
       success: true,
-      message: `Magic link dispatched from login@lex.clinic to ${email}`,
+      message: `Magic link dispatched from kyle@lex.clinic to ${email}`,
       token,
       magicLinkUrl,
       emailDispatch: emailData

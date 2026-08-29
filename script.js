@@ -104,7 +104,7 @@ function injectUniversalLoginModal() {
         <button onclick="closeNavLoginModal()" style="position: absolute; top: 1rem; right: 1rem; background: none; border: none; color: #94a3b8; font-size: 1.5rem; cursor: pointer;">✕</button>
         <h2 style="color: #fbbf24; margin-top: 0; font-size: 1.4rem;">🔒 Login to Record Quiz Scores</h2>
         <p style="color: #e2e8f0; font-size: 0.95rem; margin-bottom: 1.25rem;">
-          Anyone taking the assessment can log in with their email address to receive a secure <strong>magic link email from login@lex.clinic</strong> to record their quiz scores.
+          Anyone taking the assessment can log in with their email address to receive a secure <strong>magic link email from kyle@lex.clinic</strong> to record their quiz scores.
         </p>
         
         <form id="modal-login-form" onsubmit="event.preventDefault(); triggerModalMagicLink();">
@@ -122,7 +122,7 @@ function injectUniversalLoginModal() {
         <div id="modal-sent-notice" style="display: none; margin-top: 1rem; background: rgba(52, 211, 153, 0.15); border: 1px solid #34d399; padding: 1.25rem; border-radius: 6px; color: #fff; font-size: 0.92rem;">
           <strong style="color: #34d399; font-size: 1.05rem;">✉️ Magic Link Sent to <span id="modal-target-email">...</span>!</strong>
           <p style="margin: 0.5rem 0 0.75rem 0; color: #e2e8f0; line-height: 1.5;">
-            Please open your email inbox, check for an email from <strong>login@lex.clinic</strong>, and click the magic link to log in.
+            Please open your email inbox, check for an email from <strong>kyle@lex.clinic</strong>, and click the magic link to log in.
           </p>
           <p style="margin: 0; font-size: 0.85rem; color: #94a3b8;">
             Didn't receive it? <a href="#" onclick="resendMagicLinkModal(event)" style="color: #38bdf8; text-decoration: underline;">Click here to send magic link again</a>.
@@ -192,7 +192,7 @@ function updateAuthUI() {
     if (loggedInBar) loggedInBar.style.display = "flex";
     if (userDisplay) userDisplay.innerText = loggedInEmail;
     if (promptBanner) promptBanner.style.display = "none";
-    if (quizForm) quizForm.style.display = "block"; // UNLOCK QUIZ FORM WHEN LOGGED IN
+    if (quizForm) quizForm.style.display = "block";
     if (badge) {
       badge.innerText = `🔓 Logged In as ${loggedInEmail.substring(0, 12)}...`;
       badge.className = "status-badge media-available";
@@ -209,7 +209,7 @@ function updateAuthUI() {
   } else {
     if (loggedInBar) loggedInBar.style.display = "none";
     if (promptBanner) promptBanner.style.display = "block";
-    if (quizForm) quizForm.style.display = "none"; // HIDE QUIZ FORM WHEN LOGGED OUT
+    if (quizForm) quizForm.style.display = "none";
     if (badge) {
       badge.innerText = "🔒 Magic Link Auth Required";
       badge.className = "status-badge notebook-available";

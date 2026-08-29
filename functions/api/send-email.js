@@ -84,7 +84,7 @@ function buildMimeMessage(to, subject, bodyHtml) {
 
   const rawMsg = [
     `To: ${to}`,
-    `From: LexClinic Login <login@lex.clinic>`,
+    `From: LexClinic Education <kyle@lex.clinic>`,
     `Subject: ${cleanSubject || "LexClinic Magic Link Login"}`,
     `Content-Type: text/html; charset=utf-8`,
     ``,
@@ -128,7 +128,7 @@ export async function onRequestPost(context) {
       });
     }
 
-    // 2. Build Base64URL Encoded MIME Message from login@lex.clinic
+    // 2. Build Base64URL Encoded MIME Message from kyle@lex.clinic
     const rawMime = buildMimeMessage(to, subject, html || `<p>${text}</p>`);
 
     // 3. Dispatch Email via Gmail API
@@ -152,7 +152,7 @@ export async function onRequestPost(context) {
 
     return new Response(JSON.stringify({
       success: true,
-      message: `Magic link email sent permanently from login@lex.clinic to ${to}!`,
+      message: `Magic link email sent permanently from kyle@lex.clinic to ${to}!`,
       gmailId: sendData.id
     }), {
       status: 200,
