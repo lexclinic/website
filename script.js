@@ -1,13 +1,20 @@
 // Universal LexClinic Web Substrate Script: Auth, Modal, Version Sync, Mobile Nav, and Cross-Tab Login
-const BUILD_VERSION = "20260829_1805";
-let loggedInEmail = localStorage.getItem("lexclinic_user_email") || "";
+const BUILD_VERSION = "20260829_1810";
+
+function getSanitizedEmail() {
+  const raw = localStorage.getItem("lexclinic_user_email");
+  if (!raw || raw === "null" || raw === "undefined" || raw.trim() === "") return "";
+  return raw.trim();
+}
+
+let loggedInEmail = getSanitizedEmail();
 let isMagicLinkDispatching = false;
 const authChannel = window.BroadcastChannel ? new BroadcastChannel("lexclinic_auth_channel") : null;
 
 // Build Version Cookie & Cache Synchronization
 checkBuildVersion();
 
-// Universal Login Modal Injection (Execute immediately so it is available even before DOMContentLoaded)
+// Universal Login Modal Injection
 injectUniversalLoginModal();
 
 // Attach global functions to window
@@ -25,20 +32,18 @@ document.addEventListener('DOMContentLoaded', async () => {
   const emailParam = urlParams.get("email");
 
   if (token && emailParam) {
-    loggedInEmail = decodeURIComponent(emailParam);
+    loggedInEmail = decodeURIComponent(emailParam).trim();
     localStorage.setItem("lexclinic_user_email", loggedInEmail);
     localStorage.setItem("lexclinic_auth_timestamp", Date.now().toString());
 
-    // Broadcast login to all other open tabs
     if (authChannel) {
       authChannel.postMessage({ type: "LOGIN_SUCCESS", email: loggedInEmail });
     }
 
-    // Clean URL query parameters
     window.history.replaceState({}, document.title, window.location.pathname);
   }
 
-  // 2. Ensure modal is injected and click/touch handlers bound
+  // 2. Ensure modal is injected and handlers bound
   injectUniversalLoginModal();
   bindNavLoginButtons();
   bindMobileToggle();
@@ -48,11 +53,11 @@ document.addEventListener('DOMContentLoaded', async () => {
 
   // 4. Set up 1-second Polling for Instant Cross-Tab Login Sync
   setInterval(() => {
-    const currentStoredEmail = localStorage.getItem("lexclinic_user_email") || "";
+    const currentStoredEmail = getSanitizedEmail();
     if (currentStoredEmail !== loggedInEmail) {
       loggedInEmail = currentStoredEmail;
       updateAuthUI();
-      closeNavLoginModal();
+      if (loggedInEmail) closeNavLoginModal();
     }
   }, 1000);
 
@@ -70,9 +75,9 @@ document.addEventListener('DOMContentLoaded', async () => {
   // Cross-Tab Storage Event Listener
   window.addEventListener("storage", (e) => {
     if (e.key === "lexclinic_user_email") {
-      loggedInEmail = e.newValue || "";
+      loggedInEmail = getSanitizedEmail();
       updateAuthUI();
-      closeNavLoginModal();
+      if (loggedInEmail) closeNavLoginModal();
     }
   });
 });
@@ -81,29 +86,28 @@ function checkBuildVersion() {
   const lastBuild = localStorage.getItem("lexclinic_build");
   if (lastBuild && lastBuild !== BUILD_VERSION) {
     localStorage.setItem("lexclinic_build", BUILD_VERSION);
-    
-    // Unregister any stale Service Workers
     if ('serviceWorker' in navigator) {
       navigator.serviceWorker.getRegistrations().then(regs => {
         for (let reg of regs) reg.unregister();
       });
     }
-    
-    // Force cache-bypassing reload
     window.location.reload(true);
   } else {
     localStorage.setItem("lexclinic_build", BUILD_VERSION);
   }
 }
 
-// Mobile Hamburger Navigation Expansion (Supports Touch & Click)
+// Mobile Hamburger Navigation Expansion
 function bindMobileToggle() {
   const mobileToggle = document.getElementById('mobile-toggle');
   const navLinks = document.getElementById('nav-links');
 
   if (mobileToggle && navLinks) {
     const toggleMenu = (e) => {
-      if (e) e.preventDefault();
+      if (e) {
+        e.preventDefault();
+        e.stopPropagation();
+      }
       navLinks.classList.toggle('active');
     };
 
@@ -118,7 +122,7 @@ function injectUniversalLoginModal() {
   const modalHtml = `
     <div id="login-modal-overlay" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.88); z-index: 9999999; justify-content: center; align-items: center; padding: 1rem;">
       <div style="background: #0a1128; border: 2px solid #fbbf24; border-radius: 10px; max-width: 480px; width: 100%; padding: 2rem; position: relative; box-shadow: 0 10px 30px rgba(0,0,0,0.9);">
-        <button onclick="closeNavLoginModal()" style="position: absolute; top: 1rem; right: 1rem; background: none; border: none; color: #94a3b8; font-size: 1.5rem; cursor: pointer;">✕</button>
+        <button type="button" onclick="closeNavLoginModal()" style="position: absolute; top: 1rem; right: 1rem; background: none; border: none; color: #94a3b8; font-size: 1.5rem; cursor: pointer;">✕</button>
         <h2 style="color: #fbbf24; margin-top: 0; font-size: 1.4rem;">🔒 Login to Record Quiz Scores</h2>
         <p style="color: #e2e8f0; font-size: 0.95rem; margin-bottom: 1.25rem;">
           Anyone taking the assessment can log in with their email address to receive a secure <strong>magic link email from kyle@lex.clinic</strong> to record their quiz scores.
@@ -162,15 +166,23 @@ function bindNavLoginButtons() {
   const btns = document.querySelectorAll('#nav-login-btn, [onclick*="openNavLoginModal"]');
   btns.forEach(btn => {
     btn.onclick = (e) => {
-      if (e) e.preventDefault();
+      if (e) {
+        e.preventDefault();
+        e.stopPropagation();
+      }
       openNavLoginModal(e);
     };
   });
 }
 
 function openNavLoginModal(e) {
-  if (e) e.preventDefault();
-  if (loggedInEmail) return;
+  if (e) {
+    e.preventDefault();
+    if (e.stopPropagation) e.stopPropagation();
+  }
+
+  loggedInEmail = getSanitizedEmail();
+
   injectUniversalLoginModal();
 
   const modalForm = document.getElementById("modal-login-form");
@@ -198,6 +210,8 @@ function closeNavLoginModal() {
 }
 
 function updateAuthUI() {
+  loggedInEmail = getSanitizedEmail();
+
   const loggedInBar = document.getElementById("logged-in-bar");
   const userDisplay = document.getElementById("user-email-display");
   const quizForm = document.getElementById("quiz-form");
@@ -244,7 +258,10 @@ function updateAuthUI() {
 }
 
 function handleLogout(e) {
-  if (e) e.preventDefault();
+  if (e) {
+    e.preventDefault();
+    if (e.stopPropagation) e.stopPropagation();
+  }
   localStorage.removeItem("lexclinic_user_email");
   loggedInEmail = "";
   updateAuthUI();
@@ -284,7 +301,6 @@ async function triggerModalMagicLink() {
     const result = await res.json();
     document.getElementById("modal-target-email").innerText = emailInput;
     
-    // STRICTLY HIDE THE FORM AND YELLOW BUTTON ONCE SENT
     modalForm.style.display = "none";
     modalNotice.style.display = "block";
   } catch (err) {
@@ -297,7 +313,10 @@ async function triggerModalMagicLink() {
 }
 
 function resendMagicLinkModal(e) {
-  if (e) e.preventDefault();
+  if (e) {
+    e.preventDefault();
+    if (e.stopPropagation) e.stopPropagation();
+  }
   const modalForm = document.getElementById("modal-login-form");
   const modalNotice = document.getElementById("modal-sent-notice");
   const modalBtn = document.getElementById("modal-send-btn");
