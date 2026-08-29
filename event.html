@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LexClinic Sessions & Event Hub | LexClinic Education</title>
+  <meta name="description" content="LexClinic Educational Sessions: View upcoming live meetings, Notebook links, video explainers, Socratic quizzes, or click past sessions to open dedicated educational pages.">
+  <link rel="stylesheet" href="/styles.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <!-- Navigation -->
+  <header class="navbar">
+    <div class="nav-container">
+      <a href="index.html" class="brand-logo">
+        <span class="logo-icon">⚖️</span>
+        <span class="logo-text">Lex<span class="highlight">Clinic</span></span>
+      </a>
+      <nav class="nav-links" id="nav-links">
+        <a href="index.html">About</a>
+        <a href="event.html" class="active-link">Events & Sessions</a>
+        <a href="/101">Legal Engineering 101</a>
+        <a href="erc7827.html">ERC-7827</a>
+        <a href="https://open.spotify.com/show/0348ivoLaNfKBq1HeIYC9b" target="_blank" rel="noopener" class="btn-spotify">🎧 Spotify Show</a>
+        <a href="https://www.youtube.com/watch?v=ONwiUkc_tt4&list=PLbPukKwpmk5E" target="_blank" rel="noopener" class="btn-nav">YouTube 101 Playlist ➔</a>
+        <a href="#" onclick="openNavLoginModal(event)" id="nav-login-btn" style="background: #fbbf24; color: #0a1128; font-weight: 800; font-size: 0.9rem; padding: 0.45rem 1rem; border-radius: 6px; margin-left: 0.5rem; text-decoration: none; border: 2px solid #f59e0b; box-shadow: 0 0 10px rgba(251, 191, 36, 0.4); display: inline-block;">🔒 Login</a>
+      </nav>
+      <button class="mobile-toggle" id="mobile-toggle" aria-label="Toggle navigation">
+        ☰
+      </button>
+    </div>
+  </header>
+
+  <!-- Hero Banner -->
+  <section class="hero page-hero">
+    <div class="container hero-content">
+      <div class="hero-badge">📅 LexClinic Schedule & Event Hub</div>
+      <h1 class="hero-title">LexClinic <span class="gradient-text">Sessions & Notebooks</span></h1>
+      <p class="hero-subtitle">
+        Click any session tile to open its dedicated educational page with notebook links, video explainers, Socratic quizzes, and transcripts.
+      </p>
+    </div>
+  </section>
+
+  <!-- Sessions Tiles Section -->
+  <section class="section calendar-section" id="calendar">
+    <div class="container">
+
+      <!-- Today's Session Spotlight: Aug 28 -->
+      <div class="events-group-container">
+        <h3 class="group-title">🔥 Today's Session (August 28, 2026)</h3>
+        <div class="card pillar-card event-list-card today-card" style="margin-bottom: 2.5rem;">
+          <div style="display: flex; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 0.75rem;">
+            <span class="event-type-badge today-badge">🔥 TODAY'S SESSION</span>
+            <span class="status-badge notebook-available">📓 Notebook Available</span>
+            <span class="status-badge media-available">🎥 5 Media Explainers</span>
+            <span class="status-badge notebook-available">✍️ 20-Q Quiz Enabled</span>
+          </div>
+          <div class="event-date-tag">Aug 28, 2026 • 16:30 CDT (14:30 PDT)</div>
+          <h3>LexClinic 2026 Session (Aug 28, 2026)</h3>
+          <p>
+            Socratic session covering website multi-page sharding, Cloudflare edge routing, 5 Google NotebookLM video/audio explainers, and an interactive 20-question media assessment.
+          </p>
+          <div class="notebook-invite-box" style="background: rgba(56, 189, 248, 0.1); border-left: 4px solid var(--accent-cyan); padding: 0.85rem 1rem; border-radius: 4px; margin: 1rem 0;">
+            <p style="margin: 0; font-size: 0.92rem; color: #ffffff;">
+              💡 <strong>Google Notebook Link:</strong> <a href="https://notebook.google.com/notebook/a674b42e-e594-4fee-8d9a-647c9f7e7f32" target="_blank" rel="noopener" style="color: var(--accent-gold); font-weight: 600;">Open Google Notebook 📓</a><br>
+              <em>LexClinic members are welcome to enter the notebook and generate their own videos.</em>
+            </p>
+          </div>
+          <div class="card-actions">
+            <a href="event/2026-08-28/lexclinic-session.html" class="btn btn-primary" style="font-size: 0.88rem; padding: 0.5rem 1.1rem;">Open Session Educational Page ➔</a>
+            <a href="event/2026-08-28/lexclinic-session.html#quiz-module" class="btn btn-outline" style="font-size: 0.88rem; padding: 0.5rem 1.1rem;">Take 20-Q Socratic Quiz ✍️</a>
+            <a href="https://notebook.google.com/notebook/a674b42e-e594-4fee-8d9a-647c9f7e7f32" target="_blank" rel="noopener" class="btn btn-outline" style="font-size: 0.88rem; padding: 0.5rem 1.1rem;">Open Notebook 📓</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Featured Session: Aug 24 Clinic Misc -->
+      <div class="events-group-container">
+        <h3 class="group-title">🎥 Session Media Spotlight (Clinic Misc. - Aug 24, 2026)</h3>
+        <div class="card pillar-card event-list-card" style="margin-bottom: 2.5rem;">
+          <div style="display: flex; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 0.75rem;">
+            <span class="event-type-badge today-badge">🎥 SESSION RECORDINGS & AUDIO (6 CLIPS)</span>
+            <span class="status-badge notebook-pending">❌ Notebook Pending</span>
+            <span class="status-badge media-available">🎥 Media Generated</span>
+          </div>
+          <div class="event-date-tag">Aug 24, 2026 • 13:00 CDT (11:00 PDT)</div>
+          <h3>Clinic Misc. Session (August 24, 2026)</h3>
+          <p>
+            Socratic session covering replacing paper contracts with software runtimes, Chopsticks legal engineering, secure legal VM setup, Cloudflare Pages infrastructure, and Git task workflows.
+          </p>
+          <div class="card-actions">
+            <a href="event/2026-08-24/clinic-misc.html" class="btn btn-primary" style="font-size: 0.88rem; padding: 0.5rem 1.1rem;">Open Session Page & Watch Clips ➔</a>
+            <a href="https://meet.google.com/miy-vsmf-qhv" target="_blank" rel="noopener" class="btn btn-outline" style="font-size: 0.88rem; padding: 0.5rem 1.1rem;">Google Meet Room 📹</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Past & All Educational Session Tiles -->
+      <div class="events-group-container">
+        <h3 class="group-title">📜 Educational Sessions & Status (Click Tile to Open Page)</h3>
+        <div class="grid grid-2">
+
+          <!-- Session Item 1: Aug 28 -->
+          <div class="card pillar-card event-list-card">
+            <div style="display: flex; gap: 0.4rem; flex-wrap: wrap; margin-bottom: 0.5rem;">
+              <span class="status-badge notebook-available">📓 Notebook Available</span>
+              <span class="status-badge media-available">🎥 5 Media Explainers</span>
+              <span class="status-badge notebook-available">✍️ 20-Q Quiz</span>
+            </div>
+            <div class="event-date-tag">Aug 28, 2026 • 14:30 PDT</div>
+            <h3>LexClinic 2026 Session (Aug 28)</h3>
+            <p>Features Google Notebook link, 5 NotebookLM media explainers, 20-question Socratic quiz, and multi-page sharding.</p>
+            <a href="event/2026-08-28/lexclinic-session.html" class="btn btn-outline" style="margin-top: 1rem; display: inline-block;">Open Educational Page ➔</a>
+          </div>
+
+          <!-- Session Item 2: Clinic Misc -->
+          <div class="card pillar-card event-list-card">
+            <div style="display: flex; gap: 0.4rem; flex-wrap: wrap; margin-bottom: 0.5rem;">
+              <span class="status-badge notebook-pending">❌ Notebook Pending</span>
+              <span class="status-badge media-available">🎥 Media Generated</span>
+            </div>
+            <div class="event-date-tag">Aug 24, 2026 • 11:00 PDT</div>
+            <h3>Clinic Misc. Session</h3>
+            <p>Features 6 watchable media clips covering software runtimes, Chopsticks engineering, VM setup, and Cloudflare Pages.</p>
+            <a href="event/2026-08-24/clinic-misc.html" class="btn btn-outline" style="margin-top: 1rem; display: inline-block;">Open Educational Page ➔</a>
+          </div>
+
+          <!-- Session Item 3: Clinic + Exp Wit -->
+          <div class="card pillar-card event-list-card">
+            <div style="display: flex; gap: 0.4rem; flex-wrap: wrap; margin-bottom: 0.5rem;">
+              <span class="status-badge notebook-pending">❌ Notebook Pending</span>
+              <span class="status-badge media-available">🎥 Media Generated</span>
+            </div>
+            <div class="event-date-tag">Aug 22, 2026 • 11:00 PDT</div>
+            <h3>LexClinic Session: Clinic & Expert Witness</h3>
+            <p>Socratic session on documentation strategy, research policies, SEC time-delayed publishing, and Web3 VC scaling models.</p>
+            <a href="event/2026-08-22/clinic-exp-wit.html" class="btn btn-outline" style="margin-top: 1rem; display: inline-block;">Open Educational Page ➔</a>
+          </div>
+
+          <!-- Session Item 4: Directors Aug 21 -->
+          <div class="card pillar-card event-list-card">
+            <div style="display: flex; gap: 0.4rem; flex-wrap: wrap; margin-bottom: 0.5rem;">
+              <span class="status-badge notebook-pending">❌ Notebook Pending</span>
+              <span class="status-badge media-pending">❌ Media Pending</span>
+            </div>
+            <div class="event-date-tag">Aug 21, 2026 • 14:22 PDT</div>
+            <h3>LexClinic Directors Session</h3>
+            <p>Reviewing open-source educational courseware publishing, faculty models, and computational law curriculum development.</p>
+            <a href="event/2026-08-21/directors-session.html" class="btn btn-outline" style="margin-top: 1rem; display: inline-block;">Open Educational Page ➔</a>
+          </div>
+
+          <!-- Session Item 5: Aug 20 -->
+          <div class="card pillar-card event-list-card">
+            <div style="display: flex; gap: 0.4rem; flex-wrap: wrap; margin-bottom: 0.5rem;">
+              <span class="status-badge notebook-pending">❌ Notebook Pending</span>
+              <span class="status-badge media-available">🎥 Media Generated</span>
+            </div>
+            <div class="event-date-tag">Aug 20, 2026 • 14:02 PDT</div>
+            <h3>LexClinic Socratic Session</h3>
+            <p>Evaluating legal engineering decision trees, statutory AST decomposition, and computational contract execution.</p>
+            <a href="event/2026-08-20/socratic-session.html" class="btn btn-outline" style="margin-top: 1rem; display: inline-block;">Open Educational Page ➔</a>
+          </div>
+
+          <!-- Session Item 6: Aug 13 -->
+          <div class="card pillar-card event-list-card">
+            <div style="display: flex; gap: 0.4rem; flex-wrap: wrap; margin-bottom: 0.5rem;">
+              <span class="status-badge notebook-pending">❌ Notebook Pending</span>
+              <span class="status-badge media-available">🎥 Media Generated</span>
+            </div>
+            <div class="event-date-tag">Aug 13, 2026 • 14:30 PDT</div>
+            <h3>LexClinic Courseware & Syllabus Session</h3>
+            <p>Developing open-source legal software syllabus, self-help decision trees, and ERC-7827 state versioning.</p>
+            <a href="event/2026-08-13/courseware-syllabus.html" class="btn btn-outline" style="margin-top: 1rem; display: inline-block;">Open Educational Page ➔</a>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Contact Footer -->
+  <footer class="footer">
+    <div class="container footer-content">
+      <div class="footer-col">
+        <div class="brand-logo footer-logo">
+          <span class="logo-icon">⚖️</span>
+          <span class="logo-text">Lex<span class="highlight">Clinic</span></span>
+        </div>
+        <p class="footer-tagline">LexClinic Education</p>
+        <p class="footer-address">
+          Authors of ERC-7827 | Open-Source Computational Law & Legal Engineering
+        </p>
+      </div>
+      <div class="footer-col">
+        <h4>Navigation</h4>
+        <ul>
+          <li><a href="index.html">About</a></li>
+          <li><a href="event.html">Events & Sessions</a></li>
+          <li><a href="/101">Legal Engineering 101</a></li>
+          <li></li>
+          <li><a href="erc7827.html">ERC-7827 Standard</a></li>
+          <li></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Connect & Media</h4>
+        <p>YouTube: <a href="https://www.youtube.com/watch?v=ONwiUkc_tt4&list=PLbPukKwpmk5E" target="_blank" rel="noopener">Legal Engineering 101 Playlist</a></p>
+        <p>Spotify: <a href="https://open.spotify.com/show/0348ivoLaNfKBq1HeIYC9b" target="_blank" rel="noopener">LexClinic Spotify Show</a></p>
+        <p class="disclaimer">
+          © 2026 LexClinic Education. Open public goods published under AGPL-3.0 & Creative Commons Attribution-ShareAlike.
+        </p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="/script.js"></script>
+</body>
+</html>

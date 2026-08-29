@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Class 2.2 Quiz | LexClinic Education</title>
+  <meta name="description" content="Class 2.2 Quiz: 4-question assessment for Class 2.2: Minimizing Social Transaction Costs with Magic Link authentication.">
+  <link rel="stylesheet" href="/styles.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/ethers@5.7.2/dist/ethers.umd.min.js"></script>
+</head>
+<body>
+
+  <!-- Navigation Bar -->
+  <header class="navbar">
+    <div class="nav-container">
+      <a href="/index.html" class="brand-logo">
+        <span class="logo-icon">⚖️</span>
+        <span class="logo-text">Lex<span class="highlight">Clinic</span></span>
+      </a>
+      <nav class="nav-links" id="nav-links">
+        <a href="/index.html">About</a>
+        <a href="/event.html">Events & Sessions</a>
+        <a href="/101" class="active">Legal Engineering 101</a>
+        <a href="/erc7827.html">ERC-7827</a>
+        <a href="https://open.spotify.com/show/0348ivoLaNfKBq1HeIYC9b" target="_blank" rel="noopener" class="btn-spotify">🎧 Spotify Show</a>
+        <a href="https://www.youtube.com/watch?v=ONwiUkc_tt4&list=PLbPukKwpmk5E" target="_blank" rel="noopener" class="btn-nav">YouTube 101 Playlist ➔</a>
+        
+        <!-- High-Contrast Top-Right Login Button -->
+        <a href="#" onclick="openNavLoginModal(event)" id="nav-login-btn" style="background: #fbbf24; color: #0a1128; font-weight: 800; font-size: 0.9rem; padding: 0.45rem 1rem; border-radius: 6px; margin-left: 0.5rem; text-decoration: none; border: 2px solid #f59e0b; box-shadow: 0 0 10px rgba(251, 191, 36, 0.4); display: inline-block;">
+          🔒 Login
+        </a>
+      </nav>
+      <button class="mobile-toggle" id="mobile-toggle" aria-label="Toggle navigation">
+        ☰
+      </button>
+    </div>
+  </header>
+
+  <!-- Hero Header -->
+  <section class="hero event-hero">
+    <div class="container hero-content">
+      <div class="hero-badge">✍️ Class 2.2 Quiz</div>
+      <h1 class="hero-title">Class 2.2: Minimizing Social Transaction Costs <span class="gradient-text">Quiz</span></h1>
+      <p class="hero-subtitle">
+        4-Question Assessment covering Class 2.2: Minimizing Social Transaction Costs. Log in via magic link email to unlock the questions and record your score.
+      </p>
+      <div class="hero-actions">
+        <a href="/101/2.2" class="btn btn-primary">Watch Class 2.2 Video 🎥</a>
+        <a href="/101" class="btn btn-outline">Back to 101 Curriculum ➔</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Educational Content Container -->
+  <section class="section event-detail-section">
+    <div class="container">
+
+      <!-- Interactive Quiz Card -->
+      <div class="card event-module-card" id="quiz-module" style="border: 2px solid var(--accent-gold); background: rgba(15, 23, 42, 0.95);">
+        <div class="module-header">
+          <span class="badge-tag" style="background: var(--accent-gold); color: var(--bg-dark);">4-Question Assessment</span>
+          <h2 style="color: var(--accent-gold);">Class 2.2 Assessment (Login Required)</h2>
+        </div>
+
+        <!-- Logged-in State Bar -->
+        <div id="logged-in-bar" style="display: none; background: rgba(52, 211, 153, 0.15); border: 1px solid var(--accent-green); padding: 0.85rem 1.2rem; border-radius: 6px; margin-bottom: 1.5rem; justify-content: space-between; align-items: center; flex-wrap: wrap;">
+          <span style="color: #fff; font-weight: 600;">
+            🔓 Logged in as <span id="user-email-display" style="color: var(--accent-green);">member@lex.clinic</span>
+          </span>
+          <button onclick="handleLogout()" class="btn btn-outline" style="font-size: 0.8rem; padding: 0.3rem 0.8rem; border-color: rgba(255,255,255,0.3); color: #fff;">
+            Logout 🚪
+          </button>
+        </div>
+
+        <!-- Logged-Out Quiz Locked Card -->
+        <div id="logged-out-prompt-banner" style="text-align: center; padding: 2.5rem 1.5rem; background: rgba(10, 17, 40, 0.8); border: 2px dashed var(--accent-gold); border-radius: 8px; margin-bottom: 1.5rem;">
+          <span style="font-size: 3rem; display: block; margin-bottom: 0.5rem;">🔒</span>
+          <h2 style="color: var(--accent-gold); margin-bottom: 0.75rem;">Quiz Questions Locked</h2>
+          <p style="color: var(--text-main); max-width: 520px; margin: 0 auto 1.5rem auto; font-size: 0.98rem; line-height: 1.6;">
+            The Class 2.2 assessment is restricted to logged-in users. Please log in with your email address to receive a magic link email from <strong>login@lex.clinic</strong> to unlock the quiz questions and record your score.
+          </p>
+          <button onclick="openNavLoginModal(event)" class="btn btn-primary" style="background: var(--accent-gold); color: #0a1128; font-weight: 800; font-size: 1.05rem; padding: 0.75rem 1.5rem; border: 2px solid #f59e0b; box-shadow: 0 0 15px rgba(251, 191, 36, 0.4);">
+            ✨ Click Here to Log In & Unlock Quiz 🔒
+          </button>
+        </div>
+
+        <!-- Quiz Form -->
+        <form id="quiz-form" style="display: none;" onsubmit="event.preventDefault(); handleFormSubmit();">
+          
+          <div style="background: rgba(10, 17, 40, 0.6); border: 1px solid var(--border-color); border-radius: 8px; padding: 1.25rem; margin-bottom: 1rem;" id="card-q1">
+            <p style="color: var(--accent-cyan); font-weight: 600; margin-bottom: 0.5rem;">4.1 What are "Social Transaction Costs" in legal economics?</p>
+            <label style="display: block; margin-bottom: 0.4rem; cursor: pointer;"><input type="radio" name="q1" value="A"> A) Friction, overhead, and litigation costs associated with verifying compliance and enforcing agreements.</label><label style="display: block; margin-bottom: 0.4rem; cursor: pointer;"><input type="radio" name="q1" value="B"> B) The price of hosting a social gathering.</label><label style="display: block; margin-bottom: 0.4rem; cursor: pointer;"><input type="radio" name="q1" value="C"> C) Standard monthly credit card processing fees.</label>
+          </div>
+        
+          <div style="background: rgba(10, 17, 40, 0.6); border: 1px solid var(--border-color); border-radius: 8px; padding: 1.25rem; margin-bottom: 1rem;" id="card-q2">
+            <p style="color: var(--accent-cyan); font-weight: 600; margin-bottom: 0.5rem;">4.2 How does legal engineering minimize social transaction costs?</p>
+            <label style="display: block; margin-bottom: 0.4rem; cursor: pointer;"><input type="radio" name="q2" value="A"> A) By automating performance verification and making state transitions deterministic in code.</label><label style="display: block; margin-bottom: 0.4rem; cursor: pointer;"><input type="radio" name="q2" value="B"> B) By increasing manual paperwork requirements.</label><label style="display: block; margin-bottom: 0.4rem; cursor: pointer;"><input type="radio" name="q2" value="C"> C) By mandating 10-year court litigation for minor breaches.</label>
+          </div>
+        
+          <div style="background: rgba(10, 17, 40, 0.6); border: 1px solid var(--border-color); border-radius: 8px; padding: 1.25rem; margin-bottom: 1rem;" id="card-q3">
+            <p style="color: var(--accent-cyan); font-weight: 600; margin-bottom: 0.5rem;">4.3 What macroeconomic impact occurs when transaction friction approaches zero?</p>
+            <label style="display: block; margin-bottom: 0.4rem; cursor: pointer;"><input type="radio" name="q3" value="A"> A) Economic trade and automated collaboration scale sublinearly without exponential administrative bloat.</label><label style="display: block; margin-bottom: 0.4rem; cursor: pointer;"><input type="radio" name="q3" value="B"> B) Global economic activity collapses completely.</label><label style="display: block; margin-bottom: 0.4rem; cursor: pointer;"><input type="radio" name="q3" value="C"> C) Legal contracts cease to have any enforceability.</label>
+          </div>
+        
+          <div style="background: rgba(10, 17, 40, 0.6); border: 1px solid var(--border-color); border-radius: 8px; padding: 1.25rem; margin-bottom: 1rem;" id="card-q4">
+            <p style="color: var(--accent-cyan); font-weight: 600; margin-bottom: 0.5rem;">4.4 Why is Nick Szabo's concept of "hardcoding consideration" foundational to transaction cost reduction?</p>
+            <label style="display: block; margin-bottom: 0.4rem; cursor: pointer;"><input type="radio" name="q4" value="A"> A) It links asset exchange directly to cryptographic condition verification, eliminating breach risk.</label><label style="display: block; margin-bottom: 0.4rem; cursor: pointer;"><input type="radio" name="q4" value="B"> B) It replaces digital tokens with physical gold coins.</label><label style="display: block; margin-bottom: 0.4rem; cursor: pointer;"><input type="radio" name="q4" value="C"> C) It requires manual handshakes between remote transacters.</label>
+          </div>
+        
+
+          <button type="submit" id="main-action-btn" class="btn btn-primary" style="font-size: 1rem; padding: 0.75rem 1.5rem; background: var(--accent-gold); color: #0a1128; font-weight: 800;">
+            ⚡ Calculate Score & Submit Class 2.2 Quiz (4 Questions)
+          </button>
+        </form>
+
+        <!-- Final Quiz Output Box -->
+        <div id="quiz-results-box" style="display: none; margin-top: 1.5rem; background: rgba(10, 17, 40, 0.8); border: 1px solid var(--accent-cyan); border-radius: 8px; padding: 1.5rem;">
+          <h3 style="color: var(--accent-gold); margin-bottom: 0.5rem;" id="score-header">Score: 0 / 4</h3>
+          <p id="score-summary" style="color: var(--text-main); margin-bottom: 1rem;">
+            Assessment completed.
+          </p>
+
+          <div style="background: rgba(0,0,0,0.4); border-radius: 6px; padding: 1rem; font-family: var(--font-mono); font-size: 0.85rem; color: var(--accent-cyan); margin-bottom: 1.25rem; word-break: break-all;">
+            <strong>Computed Payload Hash (Keccak-256):</strong><br>
+            <span id="payload-hash-display">0x...</span>
+          </div>
+
+          <div id="submission-notice" style="background: rgba(52, 211, 153, 0.15); border: 1px solid var(--accent-green); padding: 1rem; border-radius: 6px; color: #fff;">
+            <strong style="color: var(--accent-green);">🎉 Class 2.2 Submission Recorded in LexClinic Student Store!</strong><br>
+            <span style="font-size: 0.9rem; color: var(--text-main);" id="store-status-text">
+              Your response and Keccak-256 payload hash have been saved.
+            </span>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container footer-content">
+      <div class="footer-col">
+        <div class="brand-logo footer-logo">
+          <span class="logo-icon">⚖️</span>
+          <span class="logo-text">Lex<span class="highlight">Clinic</span></span>
+        </div>
+        <p class="footer-tagline">LexClinic Education</p>
+      </div>
+      <div class="footer-col">
+        <h4>Navigation</h4>
+        <ul>
+          <li><a href="/index.html">About</a></li>
+          <li><a href="/event.html">Events & Sessions</a></li>
+          <li><a href="/101">Legal Engineering 101</a></li>
+          <li><a href="/erc7827.html">ERC-7827 Standard</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Connect & Media</h4>
+        <p>YouTube: <a href="https://www.youtube.com/watch?v=ONwiUkc_tt4&list=PLbPukKwpmk5E" target="_blank" rel="noopener">Legal Engineering 101 Playlist</a></p>
+        <p>Spotify: <a href="https://open.spotify.com/show/0348ivoLaNfKBq1HeIYC9b" target="_blank" rel="noopener">LexClinic Spotify Show</a></p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    let currentPayloadHash = "";
+    let loggedInEmail = localStorage.getItem("lexclinic_user_email") || "";
+    let quizScoreVal = 0;
+    let cachedAnsSummary = [];
+    const authChannel = window.BroadcastChannel ? new BroadcastChannel("lexclinic_auth_channel") : null;
+
+    const correctAnswers = { "q1": "A", "q2": "A", "q3": "A", "q4": "A" };
+
+    window.addEventListener("DOMContentLoaded", () => {
+      const urlParams = new URLSearchParams(window.location.search);
+      const token = urlParams.get("token");
+      const emailParam = urlParams.get("email");
+
+      if (token && emailParam) {
+        loggedInEmail = decodeURIComponent(emailParam);
+        localStorage.setItem("lexclinic_user_email", loggedInEmail);
+        if (authChannel) {
+          authChannel.postMessage({ type: "LOGIN_SUCCESS", email: loggedInEmail });
+        }
+        window.history.replaceState({}, document.title, window.location.pathname);
+      }
+
+      updateAuthUI();
+    });
+
+    if (authChannel) {
+      authChannel.onmessage = (event) => {
+        if (event.data && event.data.type === "LOGIN_SUCCESS") {
+          loggedInEmail = event.data.email;
+          updateAuthUI();
+          closeNavLoginModal();
+        }
+      };
+    }
+
+    window.addEventListener("storage", (e) => {
+      if (e.key === "lexclinic_user_email") {
+        loggedInEmail = e.newValue || "";
+        updateAuthUI();
+        closeNavLoginModal();
+      }
+    });
+
+
+    function closeNavLoginModal() {
+      if (window.closeNavLoginModal) window.closeNavLoginModal();
+    }
+
+    function updateAuthUI() {
+      const loggedInBar = document.getElementById("logged-in-bar");
+      const userDisplay = document.getElementById("user-email-display");
+      const quizForm = document.getElementById("quiz-form");
+      const promptBanner = document.getElementById("logged-out-prompt-banner");
+
+      if (loggedInEmail) {
+        if (loggedInBar) loggedInBar.style.display = "flex";
+        if (userDisplay) userDisplay.innerText = loggedInEmail;
+        if (promptBanner) promptBanner.style.display = "none";
+        if (quizForm) quizForm.style.display = "block";
+      } else {
+        if (loggedInBar) loggedInBar.style.display = "none";
+        if (promptBanner) promptBanner.style.display = "block";
+        if (quizForm) quizForm.style.display = "none";
+      }
+    }
+
+    function handleLogout(e) {
+      if (e) e.preventDefault();
+      localStorage.removeItem("lexclinic_user_email");
+      loggedInEmail = "";
+      updateAuthUI();
+      document.getElementById("quiz-results-box").style.display = "none";
+    }
+
+    async function handleFormSubmit() {
+      if (!loggedInEmail) {
+        openNavLoginModal();
+      } else {
+        finalizeQuizSubmission();
+      }
+    }
+
+    async function finalizeQuizSubmission() {
+      let score = 0;
+      cachedAnsSummary = [];
+
+      for (let i = 1; i <= 4; i++) {
+        const key = `q${i}`;
+        const val = document.querySelector(`input[name="${key}"]:checked`)?.value;
+        if (val) {
+          if (val === correctAnswers[key]) score++;
+          cachedAnsSummary.push(`${key}:${val}`);
+        } else {
+          cachedAnsSummary.push(`${key}:unanswered`);
+        }
+      }
+
+      quizScoreVal = score;
+      const timestamp = new Date().toISOString();
+      const rawString = `${loggedInEmail}|class_2.2|${cachedAnsSummary.join('|')}|score:${quizScoreVal}/4|ts:${timestamp}`;
+
+      if (window.ethers) {
+        currentPayloadHash = ethers.utils.keccak256(ethers.utils.toUtf8Bytes(rawString));
+      } else {
+        currentPayloadHash = "0x" + Array.from(new TextEncoder().encode(rawString)).map(b => b.toString(16).padStart(2, '0')).join('');
+      }
+
+      document.getElementById("score-header").innerText = `Score: ${quizScoreVal} / 4 (${Math.round((quizScoreVal/4)*100)}%)`;
+      document.getElementById("payload-hash-display").innerText = currentPayloadHash;
+      document.getElementById("quiz-results-box").style.display = "block";
+      document.getElementById("quiz-results-box").scrollIntoView({ behavior: 'smooth' });
+
+      try {
+        const payload = {
+          email: loggedInEmail,
+          class_id: "2.2",
+          score: quizScoreVal,
+          total: 4,
+          payload_hash: currentPayloadHash,
+          timestamp: timestamp,
+          summary: cachedAnsSummary
+        };
+
+        await fetch("/api/submit-quiz", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(payload)
+        });
+      } catch (err) {
+        console.log("Local submission hashed:", err);
+      }
+    }
+  </script>
+
+  <script src="/script.js"></script>
+</body>
+</html>

@@ -1,0 +1,659 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>20-Question Media Quiz (Aug 28, 2026) | LexClinic Education</title>
+  <meta name="description" content="LexClinic Session Media Quiz (August 28, 2026). 20-question media assessment with Magic Link authentication.">
+  <link rel="stylesheet" href="/styles.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <!-- Ethers.js for client-side Keccak256 payload hashing -->
+  <script src="https://cdn.jsdelivr.net/npm/ethers@5.7.2/dist/ethers.umd.min.js"></script>
+</head>
+<body>
+
+  <!-- Navigation Bar -->
+  <header class="navbar">
+    <div class="nav-container">
+      <a href="../../../index.html" class="brand-logo">
+        <span class="logo-icon">⚖️</span>
+        <span class="logo-text">Lex<span class="highlight">Clinic</span></span>
+      </a>
+      <nav class="nav-links" id="nav-links">
+        <a href="../../../index.html">About</a>
+        <a href="../../../event.html">Events & Sessions</a>
+        <a href="../../../media.html">101 Media</a>
+        <a href="../../../curriculum.html">Interactive 101</a>
+        <a href="../../../erc7827.html">ERC-7827</a>
+        <a href="../../../architecture.html">Architecture</a>
+        <a href="https://open.spotify.com/show/0348ivoLaNfKBq1HeIYC9b" target="_blank" rel="noopener" class="btn-spotify">🎧 Spotify Show</a>
+        <a href="https://www.youtube.com/watch?v=ONwiUkc_tt4&list=PLbPukKwpmk5E" target="_blank" rel="noopener" class="btn-nav">YouTube 101 Playlist ➔</a>
+        
+        <!-- High-Contrast Member Login Button -->
+        <a href="#" onclick="openNavLoginModal(event)" id="nav-login-btn" style="background: var(--accent-gold); color: #0a1128; font-weight: 800; font-size: 0.9rem; padding: 0.45rem 1rem; border-radius: 6px; margin-left: 0.5rem; text-decoration: none; border: 2px solid #f59e0b; box-shadow: 0 0 10px rgba(251, 191, 36, 0.4); display: inline-block;">
+          🔒 Login
+        </a>
+      </nav>
+      <button class="mobile-toggle" id="mobile-toggle" aria-label="Toggle navigation">
+        ☰
+      </button>
+    </div>
+  </header>
+
+  <!-- Login Modal Overlay -->
+  <div id="login-modal-overlay" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.85); z-index: 9999; justify-content: center; align-items: center; padding: 1rem;">
+    <div style="background: #0a1128; border: 2px solid var(--accent-gold); border-radius: 10px; max-width: 480px; width: 100%; padding: 2rem; position: relative; box-shadow: 0 10px 30px rgba(0,0,0,0.8);">
+      <button onclick="closeNavLoginModal()" style="position: absolute; top: 1rem; right: 1rem; background: none; border: none; color: var(--text-muted); font-size: 1.5rem; cursor: pointer;">✕</button>
+      <h2 style="color: var(--accent-gold); margin-top: 0; font-size: 1.4rem;">🔒 Login to Record Quiz Scores</h2>
+      <p style="color: var(--text-main); font-size: 0.95rem; margin-bottom: 1.25rem;">
+        Anyone taking the assessment can log in with their email address to receive a secure <strong>magic link email from login@lex.clinic</strong> to record their quiz scores.
+      </p>
+      
+      <form onsubmit="event.preventDefault(); triggerModalMagicLink();">
+        <label style="display: block; font-weight: 600; color: #ffffff; margin-bottom: 0.5rem; font-size: 0.9rem;">
+          📧 Your Email Address:
+        </label>
+        <input type="email" id="modal-email-input" required placeholder="student@lex.clinic" style="width: 100%; padding: 0.75rem 1rem; border-radius: 6px; border: 1px solid var(--border-color); background: rgba(10, 17, 40, 0.9); color: #fff; font-family: var(--font-sans); margin-bottom: 1.25rem;">
+        
+        <button type="submit" id="modal-send-btn" class="btn btn-primary" style="width: 100%; font-size: 1rem; padding: 0.75rem 1.25rem; background: var(--accent-gold); color: #0a1128; font-weight: 800;">
+          ✨ Send Magic Link to Email Inbox 📧
+        </button>
+      </form>
+
+      <!-- Sent Notice inside Modal -->
+      <div id="modal-sent-notice" style="display: none; margin-top: 1rem; background: rgba(52, 211, 153, 0.15); border: 1px solid var(--accent-green); padding: 1rem; border-radius: 6px; color: #fff; font-size: 0.9rem;">
+        <strong style="color: var(--accent-green);">✉️ Magic Link Sent to <span id="modal-target-email">...</span>!</strong><br>
+        Please check your email inbox to click the link and complete your login.<br>
+        <p style="margin: 0.6rem 0 0 0; font-size: 0.82rem; color: var(--text-muted);">
+          Didn't receive it? <a href="#" onclick="resendMagicLinkModal(event)" style="color: var(--accent-cyan); text-decoration: underline;">Click here to send magic link again</a>.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Event Header -->
+  <section class="hero event-hero">
+    <div class="container hero-content">
+      <div class="hero-badge">✍️ Media Assessment</div>
+      <h1 class="hero-title">20-Question Quiz <span class="gradient-text">(Aug 28, 2026)</span></h1>
+      <p class="hero-subtitle">
+        Test your knowledge on the 5 Google NotebookLM video and audio explainers. Log in via magic link email to unlock and submit your assessment.
+      </p>
+      <div class="hero-actions">
+        <a href="media.html" class="btn btn-primary">Watch 5 Media Explainers 🎥</a>
+        <a href="../lexclinic-session" class="btn btn-outline">Back to Session Hub ➔</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Educational Content Container -->
+  <section class="section event-detail-section">
+    <div class="container">
+
+      <!-- Interactive Quiz Card -->
+      <div class="card event-module-card" id="quiz-module" style="border: 2px solid var(--accent-gold); background: rgba(15, 23, 42, 0.95);">
+        <div class="module-header">
+          <span class="badge-tag" style="background: var(--accent-gold); color: var(--bg-dark);">20-Question Media Assessment</span>
+          <h2 style="color: var(--accent-gold);">Media Assessment (Login Required)</h2>
+        </div>
+
+        <!-- Logged-in State Bar -->
+        <div id="logged-in-bar" style="display: none; background: rgba(52, 211, 153, 0.15); border: 1px solid var(--accent-green); padding: 0.85rem 1.2rem; border-radius: 6px; margin-bottom: 1.5rem; justify-content: space-between; align-items: center; flex-wrap: wrap;">
+          <span style="color: #fff; font-weight: 600;">
+            🔓 Logged in as <span id="user-email-display" style="color: var(--accent-green);">member@lex.clinic</span>
+          </span>
+          <button onclick="handleLogout()" class="btn btn-outline" style="font-size: 0.8rem; padding: 0.3rem 0.8rem; border-color: rgba(255,255,255,0.3); color: #fff;">
+            Logout 🚪
+          </button>
+        </div>
+
+        <!-- Logged-Out Quiz Locked Card -->
+        <div id="logged-out-prompt-banner" style="text-align: center; padding: 2.5rem 1.5rem; background: rgba(10, 17, 40, 0.8); border: 2px dashed var(--accent-gold); border-radius: 8px; margin-bottom: 1.5rem;">
+          <span style="font-size: 3rem; display: block; margin-bottom: 0.5rem;">🔒</span>
+          <h2 style="color: var(--accent-gold); margin-bottom: 0.75rem;">Quiz Questions Locked</h2>
+          <p style="color: var(--text-main); max-width: 520px; margin: 0 auto 1.5rem auto; font-size: 0.98rem; line-height: 1.6;">
+            The 20-question media assessment is restricted to logged-in users. Please log in with your email address to receive a magic link email from <strong>login@lex.clinic</strong> to unlock the quiz questions and record your score.
+          </p>
+          <button onclick="openNavLoginModal(event)" class="btn btn-primary" style="background: var(--accent-gold); color: #0a1128; font-weight: 800; font-size: 1.05rem; padding: 0.75rem 1.5rem; border: 2px solid #f59e0b; box-shadow: 0 0 15px rgba(251, 191, 36, 0.4);">
+            ✨ Click Here to Log In & Unlock Quiz 🔒
+          </button>
+        </div>
+
+        <!-- Quiz Form (STRICTLY HIDDEN WHEN LOGGED OUT) -->
+        <form id="quiz-form" style="display: none;" onsubmit="event.preventDefault(); handleFormSubmit();">
+          
+          <!-- SECTION 1: Computational Law (4 Questions) -->
+          <div style="border-left: 4px solid var(--accent-cyan); padding-left: 1rem; margin-bottom: 2rem;">
+            <h3 style="color: var(--accent-gold); font-size: 1.25rem; margin-bottom: 1rem;">🎥 Section 1: Computational Law</h3>
+            
+            <div style="background: rgba(10, 17, 40, 0.6); border: 1px solid var(--border-color); border-radius: 8px; padding: 1.25rem; margin-bottom: 1rem;" id="card-q1">
+              <p style="color: var(--accent-cyan); font-weight: 600; margin-bottom: 0.5rem;">1.1 What is the overarching metaphor used in Computational Law to describe legal systems?</p>
+              <label style="display: block; margin-bottom: 0.4rem; cursor: pointer;"><input type="radio" name="q1" value="A"> A) A Playbill for a Grand Musical Symphony.</label>
+              <label style="display: block; margin-bottom: 0.4rem; cursor: pointer;"><input type="radio" name="q1" value="B"> B) A dusty filing cabinet in a courthouse basement.</label>
+              <label style="display: block; margin-bottom: 0.4rem; cursor: pointer;"><input type="radio" name="q1" value="C"> C) A paper-based real estate deed.</label>
+            </div>
+
+            <div style="background: rgba(10, 17, 40, 0.6); border: 1px solid var(--border-color); border-radius: 8px; padding: 1.25rem; margin-bottom: 1rem;" id="card-q2">
+              <p style="color: var(--accent-cyan); font-weight: 600; margin-bottom: 0.5rem;">1.2 What is Movement 2 of the Legal Symphony framework?</p>
+              <label style="display: block; margin-bottom: 0.4rem; cursor: pointer;"><input type="radio" name="q2" value="A"> A) Instructions vs. Data (Separating logic rules from party state).</label>
+              <label style="display: block; margin-bottom: 0.4rem; cursor: pointer;"><input type="radio" name="q2" value="B"> B) Manual signature collection.</label>
+              <label style="display: block; margin-bottom: 0.4rem; cursor: pointer;"><input type="radio" name="q2" value="C"> C) Paper archiving.</label>
+            </div>
+
+            <div style="background: rgba(10, 17, 40, 0.6); border: 1px solid var(--border-color); border-radius: 8px; padding: 1.25rem; margin-bottom: 1rem;" id="card-q3">
+              <p style="color: var(--accent-cyan); font-weight: 600; margin-bottom: 0.5rem;">1.3 What is Movement 4 of the Legal Symphony framework?</p>
+              <label style="display: block; margin-bottom: 0.4rem; cursor: pointer;"><input type="radio" name="q3" value="A"> A) Verses, Choruses, and Loops (Contractual iteration & recurring condition checks).</label>
+              <label style="display: block; margin-bottom: 0.4rem; cursor: pointer;"><input type="radio" name="q3" value="B"> B) Physical stamp impressions.</label>
+              <label style="display: block; margin-bottom: 0.4rem; cursor: pointer;"><input type="radio" name="q3" value="C"> C) Statutory filing delays.</label>
+            </div>
+
+            <div style="background: rgba(10, 17, 40, 0.6); border: 1px solid var(--border-color); border-radius: 8px; padding: 1.25rem; margin-bottom: 1rem;" id="card-q4">
+              <p style="color: var(--accent-cyan); font-weight: 600; margin-bottom: 0.5rem;">1.4 What is Movement 6 of the Legal Symphony framework?</p>
+              <label style="display: block; margin-bottom: 0.4rem; cursor: pointer;"><input type="radio" name="q4" value="A"> A) Sublinear Scaling (Scaling legal operations without linear administrative overhead).</label>
+              <label style="display: block; margin-bottom: 0.4rem; cursor: pointer;"><input type="radio" name="q4" value="B"> B) Exponential fee inflation.</label>
+              <label style="display: block; margin-bottom: 0.4rem; cursor: pointer;"><input type="radio" name="q4" value="C"> C) Manual notary checks.</label>
+            </div>
+          </div>
+
+          <!-- SECTION 2: Computational Legal Ease (4 Questions) -->
+          <div style="border-left: 4px solid var(--accent-cyan); padding-left: 1rem; margin-bottom: 2rem;">
+            <h3 style="color: var(--accent-gold); font-size: 1.25rem; margin-bottom: 1rem;">🎥 Section 2: Computational Legal Ease</h3>
+
+            <div style="background: rgba(10, 17, 40, 0.6); border: 1px solid var(--border-color); border-radius: 8px; padding: 1.25rem; margin-bottom: 1rem;" id="card-q5">
+              <p style="color: var(--accent-cyan); font-weight: 600; margin-bottom: 0.5rem;">2.1 How does Computational Legal Ease describe the traditional perception of law vs. its actual digital reality?</p>
+              <label style="display: block; margin-bottom: 0.4rem; cursor: pointer;"><input type="radio" name="q5" value="A"> A) Law is perceived as static dead text, but functions as the invisible scaffolding of modern digital architecture.</label>
+              <label style="display: block; margin-bottom: 0.4rem; cursor: pointer;"><input type="radio" name="q5" value="B"> B) Law has no connection to modern computer science or software.</label>
+              <label style="display: block; margin-bottom: 0.4rem; cursor: pointer;"><input type="radio" name="q5" value="C"> C) Law is exclusively an oral tradition.</label>
+            </div>
+
+            <div style="background: rgba(10, 17, 40, 0.6); border: 1px solid var(--border-color); border-radius: 8px; padding: 1.25rem; margin-bottom: 1rem;" id="card-q6">
+              <p style="color: var(--accent-cyan); font-weight: 600; margin-bottom: 0.5rem;">2.2 What mindset shift is advocated in Computational Legal Ease?</p>
+              <label style="display: block; margin-bottom: 0.4rem; cursor: pointer;"><input type="radio" name="q6" value="A"> A) Shifting into a "Calculus Mindset" — viewing law as dynamic computational systems.</label>
+              <label style="display: block; margin-bottom: 0.4rem; cursor: pointer;"><input type="radio" name="q6" value="B"> B) Reverting to 19th-century paper filing systems.</label>
+              <label style="display: block; margin-bottom: 0.4rem; cursor: pointer;"><input type="radio" name="q6" value="C"> C) Eliminating all legal structures entirely.</label>
+            </div>
+
+            <div style="background: rgba(10, 17, 40, 0.6); border: 1px solid var(--border-color); border-radius: 8px; padding: 1.25rem; margin-bottom: 1rem;" id="card-q7">
+              <p style="color: var(--accent-cyan); font-weight: 600; margin-bottom: 0.5rem;">2.3 What does the video state about legal terms and conditions signed by everyday users?</p>
+              <label style="display: block; margin-bottom: 0.4rem; cursor: pointer;"><input type="radio" name="q7" value="A"> A) Most people sign without understanding because of the sheer exhaustion of static legalese.</label>
+              <label style="display: block; margin-bottom: 0.4rem; cursor: pointer;"><input type="radio" name="q7" value="B"> B) Everyone reads every single line in detail.</label>
+              <label style="display: block; margin-bottom: 0.4rem; cursor: pointer;"><input type="radio" name="q7" value="C"> C) Terms and conditions are written in binary code.</label>
+            </div>
+
+            <div style="background: rgba(10, 17, 40, 0.6); border: 1px solid var(--border-color); border-radius: 8px; padding: 1.25rem; margin-bottom: 1rem;" id="card-q8">
+              <p style="color: var(--accent-cyan); font-weight: 600; margin-bottom: 0.5rem;">2.4 How do computational legal runtimes lower transaction friction?</p>
+              <label style="display: block; margin-bottom: 0.4rem; cursor: pointer;"><input type="radio" name="q8" value="A"> A) By converting static clauses into executable logic that validates performance automatically.</label>
+              <label style="display: block; margin-bottom: 0.4rem; cursor: pointer;"><input type="radio" name="q8" value="B"> B) By requiring 5 additional notary approvals.</label>
+              <label style="display: block; margin-bottom: 0.4rem; cursor: pointer;"><input type="radio" name="q8" value="C"> C) By printing contracts on thicker paper.</label>
+            </div>
+          </div>
+
+          <!-- SECTION 3: Symphony of Law (4 Questions) -->
+          <div style="border-left: 4px solid var(--accent-cyan); padding-left: 1rem; margin-bottom: 2rem;">
+            <h3 style="color: var(--accent-gold); font-size: 1.25rem; margin-bottom: 1rem;">🎥 Section 3: Symphony of Law</h3>
+
+            <div style="background: rgba(10, 17, 40, 0.6); border: 1px solid var(--border-color); border-radius: 8px; padding: 1.25rem; margin-bottom: 1rem;" id="card-q9">
+              <p style="color: var(--accent-cyan); font-weight: 600; margin-bottom: 0.5rem;">3.1 What paradigm shift did Daniel Rivera present to LexClinic in Symphony of Law?</p>
+              <label style="display: block; margin-bottom: 0.4rem; cursor: pointer;"><input type="radio" name="q9" value="A"> A) Replacing passive, historical paper records with active, running contract code.</label>
+              <label style="display: block; margin-bottom: 0.4rem; cursor: pointer;"><input type="radio" name="q9" value="B"> B) Increasing physical filing cabinet production.</label>
+              <label style="display: block; margin-bottom: 0.4rem; cursor: pointer;"><input type="radio" name="q9" value="C"> C) Banning computer software from legal practice.</label>
+            </div>
+
+            <div style="background: rgba(10, 17, 40, 0.6); border: 1px solid var(--border-color); border-radius: 8px; padding: 1.25rem; margin-bottom: 1rem;" id="card-q10">
+              <p style="color: var(--accent-cyan); font-weight: 600; margin-bottom: 0.5rem;">3.2 How does Symphony of Law treat contractual conditions?</p>
+              <label style="display: block; margin-bottom: 0.4rem; cursor: pointer;"><input type="radio" name="q10" value="A"> A) As dynamic triggers that execute code when performance milestones are met.</label>
+              <label style="display: block; margin-bottom: 0.4rem; cursor: pointer;"><input type="radio" name="q10" value="B"> B) As passive text stored in a drawer.</label>
+              <label style="display: block; margin-bottom: 0.4rem; cursor: pointer;"><input type="radio" name="q10" value="C"> C) As optional suggestions that are never enforced.</label>
+            </div>
+
+            <div style="background: rgba(10, 17, 40, 0.6); border: 1px solid var(--border-color); border-radius: 8px; padding: 1.25rem; margin-bottom: 1rem;" id="card-q11">
+              <p style="color: var(--accent-cyan); font-weight: 600; margin-bottom: 0.5rem;">3.3 Why is sublinear scaling important for legal clinics?</p>
+              <label style="display: block; margin-bottom: 0.4rem; cursor: pointer;"><input type="radio" name="q11" value="A"> A) It allows handling 100x more legal cases without increasing administrative cost linearly.</label>
+              <label style="display: block; margin-bottom: 0.4rem; cursor: pointer;"><input type="radio" name="q11" value="B"> B) It doubles the cost of every legal consultation.</label>
+              <label style="display: block; margin-bottom: 0.4rem; cursor: pointer;"><input type="radio" name="q11" value="C"> C) It slows down contract execution speed.</label>
+            </div>
+
+            <div style="background: rgba(10, 17, 40, 0.6); border: 1px solid var(--border-color); border-radius: 8px; padding: 1.25rem; margin-bottom: 1rem;" id="card-q12">
+              <p style="color: var(--accent-cyan); font-weight: 600; margin-bottom: 0.5rem;">3.4 What happens when a contract is structured as an active software runtime?</p>
+              <label style="display: block; margin-bottom: 0.4rem; cursor: pointer;"><input type="radio" name="q12" value="A"> A) Contract performance is verified deterministically upon state change.</label>
+              <label style="display: block; margin-bottom: 0.4rem; cursor: pointer;"><input type="radio" name="q12" value="B"> B) Parties must meet in person every 24 hours.</label>
+              <label style="display: block; margin-bottom: 0.4rem; cursor: pointer;"><input type="radio" name="q12" value="C"> C) All data is deleted immediately.</label>
+            </div>
+          </div>
+
+          <!-- SECTION 4: The Legal Symphony (4 Questions) -->
+          <div style="border-left: 4px solid var(--accent-cyan); padding-left: 1rem; margin-bottom: 2rem;">
+            <h3 style="color: var(--accent-gold); font-size: 1.25rem; margin-bottom: 1rem;">🎥 Section 4: The Legal Symphony</h3>
+
+            <div style="background: rgba(10, 17, 40, 0.6); border: 1px solid var(--border-color); border-radius: 8px; padding: 1.25rem; margin-bottom: 1rem;" id="card-q13">
+              <p style="color: var(--accent-cyan); font-weight: 600; margin-bottom: 0.5rem;">4.1 According to The Legal Symphony, what major risk is present when relying solely on unconstrained agentic AI for legal tasks?</p>
+              <label style="display: block; margin-bottom: 0.4rem; cursor: pointer;"><input type="radio" name="q13" value="A"> A) Up to a 70% verification gap / hallucination risk.</label>
+              <label style="display: block; margin-bottom: 0.4rem; cursor: pointer;"><input type="radio" name="q13" value="B"> B) 0% risk.</label>
+              <label style="display: block; margin-bottom: 0.4rem; cursor: pointer;"><input type="radio" name="q13" value="C"> C) 100% hardware failure.</label>
+            </div>
+
+            <div style="background: rgba(10, 17, 40, 0.6); border: 1px solid var(--border-color); border-radius: 8px; padding: 1.25rem; margin-bottom: 1rem;" id="card-q14">
+              <p style="color: var(--accent-cyan); font-weight: 600; margin-bottom: 0.5rem;">4.2 How is the 70% agentic AI verification gap solved in legal engineering?</p>
+              <label style="display: block; margin-bottom: 0.4rem; cursor: pointer;"><input type="radio" name="q14" value="A"> A) By enforcing deterministic verification gates and Web3 contract constraints (e.g. ERC-7827).</label>
+              <label style="display: block; margin-bottom: 0.4rem; cursor: pointer;"><input type="radio" name="q14" value="B"> B) By asking the AI to try again without constraints.</label>
+              <label style="display: block; margin-bottom: 0.4rem; cursor: pointer;"><input type="radio" name="q14" value="C"> C) By deleting the AI model.</label>
+            </div>
+
+            <div style="background: rgba(10, 17, 40, 0.6); border: 1px solid var(--border-color); border-radius: 8px; padding: 1.25rem; margin-bottom: 1rem;" id="card-q15">
+              <p style="color: var(--accent-cyan); font-weight: 600; margin-bottom: 0.5rem;">4.3 What role does Web3 state versioning play in legal task execution?</p>
+              <label style="display: block; margin-bottom: 0.4rem; cursor: pointer;"><input type="radio" name="q15" value="A"> A) It provides non-repudiable state verification over executed contract actions.</label>
+              <label style="display: block; margin-bottom: 0.4rem; cursor: pointer;"><input type="radio" name="q15" value="B"> B) It prints physical paper certificates.</label>
+              <label style="display: block; margin-bottom: 0.4rem; cursor: pointer;"><input type="radio" name="q15" value="C"> C) It increases transaction fees by 10,000%.</label>
+            </div>
+
+            <div style="background: rgba(10, 17, 40, 0.6); border: 1px solid var(--border-color); border-radius: 8px; padding: 1.25rem; margin-bottom: 1rem;" id="card-q16">
+              <p style="color: var(--accent-cyan); font-weight: 600; margin-bottom: 0.5rem;">4.4 How does invisible legal architecture protect autonomous agent operations?</p>
+              <label style="display: block; margin-bottom: 0.4rem; cursor: pointer;"><input type="radio" name="q16" value="A"> A) By setting hard boundaries and verification checks before actions are finalized.</label>
+              <label style="display: block; margin-bottom: 0.4rem; cursor: pointer;"><input type="radio" name="q16" value="B"> B) By allowing agents to operate with zero rules or logs.</label>
+              <label style="display: block; margin-bottom: 0.4rem; cursor: pointer;"><input type="radio" name="q16" value="C"> C) By hiding all source code from auditors.</label>
+            </div>
+          </div>
+
+          <!-- SECTION 5: Why Legal Contracts Are Becoming Code (4 Questions) -->
+          <div style="border-left: 4px solid var(--accent-cyan); padding-left: 1rem; margin-bottom: 2rem;">
+            <h3 style="color: var(--accent-gold); font-size: 1.25rem; margin-bottom: 1rem;">🎧 Section 5: Why Legal Contracts Are Becoming Code</h3>
+
+            <div style="background: rgba(10, 17, 40, 0.6); border: 1px solid var(--border-color); border-radius: 8px; padding: 1.25rem; margin-bottom: 1rem;" id="card-q17">
+              <p style="color: var(--accent-cyan); font-weight: 600; margin-bottom: 0.5rem;">5.1 What term does the audio overview use to describe traditional paper filing systems?</p>
+              <label style="display: block; margin-bottom: 0.4rem; cursor: pointer;"><input type="radio" name="q17" value="A"> A) "Fossil records" stuffed into dead-text filing cabinets.</label>
+              <label style="display: block; margin-bottom: 0.4rem; cursor: pointer;"><input type="radio" name="q17" value="B"> B) "Modern quantum supercomputers".</label>
+              <label style="display: block; margin-bottom: 0.4rem; cursor: pointer;"><input type="radio" name="q17" value="C"> C) "Instantaneous messaging protocols".</label>
+            </div>
+
+            <div style="background: rgba(10, 17, 40, 0.6); border: 1px solid var(--border-color); border-radius: 8px; padding: 1.25rem; margin-bottom: 1rem;" id="card-q18">
+              <p style="color: var(--accent-cyan); font-weight: 600; margin-bottom: 0.5rem;">5.2 What is described as "a very specific kind of modern exhaustion"?</p>
+              <label style="display: block; margin-bottom: 0.4rem; cursor: pointer;"><input type="radio" name="q18" value="A"> A) Staring at a labyrinth of static legal paperwork hoping a clause won't ruin a project.</label>
+              <label style="display: block; margin-bottom: 0.4rem; cursor: pointer;"><input type="radio" name="q18" value="B"> B) Running a 10k marathon.</label>
+              <label style="display: block; margin-bottom: 0.4rem; cursor: pointer;"><input type="radio" name="q18" value="C"> C) Coding in C++.</label>
+            </div>
+
+            <div style="background: rgba(10, 17, 40, 0.6); border: 1px solid var(--border-color); border-radius: 8px; padding: 1.25rem; margin-bottom: 1rem;" id="card-q19">
+              <p style="color: var(--accent-cyan); font-weight: 600; margin-bottom: 0.5rem;">5.3 What is the core solution proposed for contract ambiguity?</p>
+              <label style="display: block; margin-bottom: 0.4rem; cursor: pointer;"><input type="radio" name="q19" value="A"> A) Transitioning paper contract terms into self-executing software runtimes.</label>
+              <label style="display: block; margin-bottom: 0.4rem; cursor: pointer;"><input type="radio" name="q19" value="B"> B) Hiring 50 additional paralegals to manually review papers.</label>
+              <label style="display: block; margin-bottom: 0.4rem; cursor: pointer;"><input type="radio" name="q19" value="C"> C) Ignoring contract terms entirely.</label>
+            </div>
+
+            <div style="background: rgba(10, 17, 40, 0.6); border: 1px solid var(--border-color); border-radius: 8px; padding: 1.25rem; margin-bottom: 1rem;" id="card-q20">
+              <p style="color: var(--accent-cyan); font-weight: 600; margin-bottom: 0.5rem;">5.4 How do software runtimes alter contractual performance?</p>
+              <label style="display: block; margin-bottom: 0.4rem; cursor: pointer;"><input type="radio" name="q20" value="A"> A) They execute performance milestones automatically upon condition triggers.</label>
+              <label style="display: block; margin-bottom: 0.4rem; cursor: pointer;"><input type="radio" name="q20" value="B"> B) They require physical mail delivery for every update.</label>
+              <label style="display: block; margin-bottom: 0.4rem; cursor: pointer;"><input type="radio" name="q20" value="C"> C) They prevent any performance from ever completing.</label>
+            </div>
+          </div>
+
+          <!-- Dynamic Action Button -->
+          <button type="submit" id="main-action-btn" class="btn btn-primary" style="font-size: 1rem; padding: 0.75rem 1.5rem; background: var(--accent-gold); color: #0a1128; font-weight: 800;">
+            ⚡ Calculate Score & Submit Quiz Response (20 Questions)
+          </button>
+        </form>
+
+        <!-- Step 2: Unanswered Questions Notice & Confirmation Card -->
+        <div id="confirmation-notice-card" style="display: none; margin-top: 1.5rem; background: rgba(30, 27, 75, 0.95); border: 2px solid var(--accent-gold); padding: 1.5rem; border-radius: 8px;">
+          <h3 style="color: var(--accent-gold); margin-bottom: 0.75rem;">⚠️ Notice: Unanswered Questions Detected</h3>
+          <p style="color: var(--text-main); margin-bottom: 1rem; font-size: 0.98rem;">
+            You have not answered all 20 questions yet. Here are the questions currently skipped:
+          </p>
+
+          <ul id="unanswered-items-list" style="color: #f87171; font-family: var(--font-mono); font-size: 0.9rem; margin-bottom: 1.25rem; padding-left: 1.5rem;">
+            <!-- Dynamic missing question list -->
+          </ul>
+
+          <p style="color: #ffffff; font-size: 0.95rem; margin-bottom: 1.25rem;">
+            Please choose how you would like to proceed:
+          </p>
+
+          <div style="display: flex; gap: 0.75rem; flex-wrap: wrap;">
+            <button onclick="goBackToFinish()" class="btn btn-outline" style="border-color: var(--accent-cyan); color: var(--accent-cyan);">
+              ✏️ Go Back & Finish Questions
+            </button>
+            <button onclick="finalizeQuizSubmission()" class="btn btn-primary">
+              ✅ Yes, Confirm & Submit Partial Answers
+            </button>
+          </div>
+        </div>
+
+        <!-- Final Quiz Output Box -->
+        <div id="quiz-results-box" style="display: none; margin-top: 1.5rem; background: rgba(10, 17, 40, 0.8); border: 1px solid var(--accent-cyan); border-radius: 8px; padding: 1.5rem;">
+          <h3 style="color: var(--accent-gold); margin-bottom: 0.5rem;" id="score-header">Score: 0 / 20</h3>
+          <p id="score-summary" style="color: var(--text-main); margin-bottom: 1rem;">
+            Assessment completed.
+          </p>
+
+          <div style="background: rgba(0,0,0,0.4); border-radius: 6px; padding: 1rem; font-family: var(--font-mono); font-size: 0.85rem; color: var(--accent-cyan); margin-bottom: 1.25rem; word-break: break-all;">
+            <strong>Computed Payload Hash (Keccak-256):</strong><br>
+            <span id="payload-hash-display">0x...</span>
+          </div>
+
+          <!-- Submission Status Notice -->
+          <div id="submission-notice" style="background: rgba(52, 211, 153, 0.15); border: 1px solid var(--accent-green); padding: 1rem; border-radius: 6px; color: #fff; margin-bottom: 1rem;">
+            <strong style="color: var(--accent-green);">🎉 Quiz Submission Recorded in LexClinic Student Store!</strong><br>
+            <span style="font-size: 0.9rem; color: var(--text-main);" id="store-status-text">
+              Your response and Keccak-256 payload hash have been saved.
+            </span>
+          </div>
+
+          <!-- Roadmap Notice for ERC-7827 -->
+          <div style="background: rgba(56, 189, 248, 0.1); border: 1px solid rgba(56, 189, 248, 0.4); padding: 1rem; border-radius: 6px; font-size: 0.88rem;">
+            <span class="status-badge notebook-available">🚀 Future Feature Roadmap</span><br>
+            <strong style="color: var(--accent-cyan); display: inline-block; margin-top: 0.4rem;">ERC-7827 On-Chain Validation:</strong><br>
+            <span style="color: var(--text-muted);">
+              Third-party cryptographic signature verification via ERC-7827 Personal Ledgers on Q Mainnet (Chain ID 35441) is scheduled for the upcoming LexClinic software release.
+            </span>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Contact Footer -->
+  <footer class="footer">
+    <div class="container footer-content">
+      <div class="footer-col">
+        <div class="brand-logo footer-logo">
+          <span class="logo-icon">⚖️</span>
+          <span class="logo-text">Lex<span class="highlight">Clinic</span></span>
+        </div>
+        <p class="footer-tagline">LexClinic Education</p>
+        <p class="footer-address">
+          Authors of ERC-7827 | Open-Source Computational Law & Legal Engineering
+        </p>
+      </div>
+      <div class="footer-col">
+        <h4>Navigation</h4>
+        <ul>
+          <li><a href="../../../index.html">About</a></li>
+          <li><a href="../../../event.html">Events & Sessions</a></li>
+          <li><a href="../../../media.html">101 Media</a></li>
+          <li><a href="../../../curriculum.html">Interactive 101</a></li>
+          <li><a href="../../../erc7827.html">ERC-7827 Standard</a></li>
+          <li><a href="../../../architecture.html">Architecture</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Connect & Media</h4>
+        <p>YouTube: <a href="https://www.youtube.com/watch?v=ONwiUkc_tt4&list=PLbPukKwpmk5E" target="_blank" rel="noopener">Legal Engineering 101 Playlist</a></p>
+        <p>Spotify: <a href="https://open.spotify.com/show/0348ivoLaNfKBq1HeIYC9b" target="_blank" rel="noopener">LexClinic Spotify Show</a></p>
+        <p class="disclaimer">
+          © 2026 LexClinic Education. Open public goods published under AGPL-3.0 & Creative Commons Attribution-ShareAlike.
+        </p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Quiz & Magic Link Authentication JavaScript with Strict Form Lock & Cross-Tab Sync -->
+  <script>
+    let currentPayloadHash = "";
+    let loggedInEmail = localStorage.getItem("lexclinic_user_email") || "";
+    let quizScoreVal = 0;
+    let cachedAnsSummary = [];
+    let cachedAnsweredCount = 0;
+    let firstMissingCardId = "";
+    let isMagicLinkDispatching = false;
+
+    // Cross-Tab Broadcast Channel for Instant Magic Link Sync across tabs
+    const authChannel = window.BroadcastChannel ? new BroadcastChannel("lexclinic_auth_channel") : null;
+
+    const questionLabels = {
+      q1: "Q1.1 (Playbill Metaphor)", q2: "Q1.2 (Movement 2)", q3: "Q1.3 (Movement 4)", q4: "Q1.4 (Movement 6)",
+      q5: "Q2.1 (Perception)", q6: "Q2.2 (Calculus Mindset)", q7: "Q2.3 (Legalese)", q8: "Q2.4 (Friction)",
+      q9: "Q3.1 (Paradigm Shift)", q10: "Q3.2 (Condition Triggers)", q11: "Q3.3 (Sublinear)", q12: "Q3.4 (Verification)",
+      q13: "Q4.1 (70% AI Risk)", q14: "Q4.2 (Verification Gates)", q15: "Q4.3 (Version Control)", q16: "Q4.4 (Architecture)",
+      q17: "Q5.1 (Fossil Record)", q18: "Q5.2 (Exhaustion)", q19: "Q5.3 (Runtimes)", q20: "Q5.4 (Milestones)"
+    };
+
+    const correctAnswers = {
+      q1: "A", q2: "A", q3: "A", q4: "A",
+      q5: "A", q6: "A", q7: "A", q8: "A",
+      q9: "A", q10: "A", q11: "A", q12: "A",
+      q13: "A", q14: "A", q15: "A", q16: "A",
+      q17: "A", q18: "A", q19: "A", q20: "A"
+    };
+
+    // On Page Load: Check URL Magic Link Params, update Auth UI, and broadcast to other tabs
+    window.addEventListener("DOMContentLoaded", () => {
+      const urlParams = new URLSearchParams(window.location.search);
+      const token = urlParams.get("token");
+      const emailParam = urlParams.get("email");
+
+      if (token && emailParam) {
+        loggedInEmail = decodeURIComponent(emailParam);
+        localStorage.setItem("lexclinic_user_email", loggedInEmail);
+        
+        // Broadcast login success to original browser tab
+        if (authChannel) {
+          authChannel.postMessage({ type: "LOGIN_SUCCESS", email: loggedInEmail });
+        }
+
+        // Clean URL params
+        window.history.replaceState({}, document.title, window.location.pathname);
+      }
+
+      updateAuthUI();
+    });
+
+    // Cross-tab broadcast listener
+    if (authChannel) {
+      authChannel.onmessage = (event) => {
+        if (event.data && event.data.type === "LOGIN_SUCCESS") {
+          loggedInEmail = event.data.email;
+          updateAuthUI();
+          closeNavLoginModal();
+        }
+      };
+    }
+
+    // Storage event listener for cross-tab sync fallback
+    window.addEventListener("storage", (e) => {
+      if (e.key === "lexclinic_user_email") {
+        loggedInEmail = e.newValue || "";
+        updateAuthUI();
+        closeNavLoginModal();
+      }
+    });
+
+
+    function closeNavLoginModal() {
+      document.getElementById("login-modal-overlay").style.display = "none";
+    }
+
+    function updateAuthUI() {
+      const loggedInBar = document.getElementById("logged-in-bar");
+      const userDisplay = document.getElementById("user-email-display");
+      const quizForm = document.getElementById("quiz-form");
+      const navBtn = document.getElementById("nav-login-btn");
+      const promptBanner = document.getElementById("logged-out-prompt-banner");
+
+      if (loggedInEmail) {
+        loggedInBar.style.display = "flex";
+        userDisplay.innerText = loggedInEmail;
+        promptBanner.style.display = "none";
+        quizForm.style.display = "block"; // STRICTLY UNLOCK QUIZ FORM WHEN LOGGED IN
+
+        navBtn.innerText = `🔓 ${loggedInEmail.split('@')[0]} (Logout)`;
+        navBtn.style.background = "rgba(52, 211, 153, 0.2)";
+        navBtn.style.color = "var(--accent-green)";
+        navBtn.style.borderColor = "var(--accent-green)";
+        navBtn.style.boxShadow = "none";
+        navBtn.onclick = handleLogout;
+      } else {
+        loggedInBar.style.display = "none";
+        promptBanner.style.display = "block";
+        quizForm.style.display = "none"; // STRICTLY HIDE QUIZ FORM WHEN LOGGED OUT
+
+        navBtn.innerText = "🔒 Login";
+        navBtn.style.background = "var(--accent-gold)";
+        navBtn.style.color = "#0a1128";
+        navBtn.style.borderColor = "#f59e0b";
+        navBtn.style.boxShadow = "0 0 10px rgba(251, 191, 36, 0.4)";
+        navBtn.onclick = openNavLoginModal;
+      }
+    }
+
+    function handleLogout(e) {
+      if (e) e.preventDefault();
+      localStorage.removeItem("lexclinic_user_email");
+      loggedInEmail = "";
+      updateAuthUI();
+      document.getElementById("quiz-results-box").style.display = "none";
+      document.getElementById("confirmation-notice-card").style.display = "none";
+    }
+
+    async function handleFormSubmit() {
+      if (!loggedInEmail) {
+        openNavLoginModal();
+      } else {
+        initialQuizCheck();
+      }
+    }
+
+    async function triggerModalMagicLink() {
+      if (isMagicLinkDispatching) return;
+
+      const emailInput = document.getElementById("modal-email-input").value.trim();
+      if (!emailInput) {
+        alert("Please enter a valid email address.");
+        return;
+      }
+
+      const modalBtn = document.getElementById("modal-send-btn");
+      modalBtn.innerText = "⏳ Dispatching Real Email...";
+      modalBtn.disabled = true;
+      isMagicLinkDispatching = true;
+
+      try {
+        const res = await fetch("/api/magic-link", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            email: emailInput,
+            redirectUrl: window.location.href.split("?")[0]
+          })
+        });
+
+        const result = await res.json();
+        document.getElementById("modal-target-email").innerText = emailInput;
+        document.getElementById("modal-sent-notice").style.display = "block";
+        modalBtn.innerText = "✨ Send Magic Link Again 📧";
+      } catch (err) {
+        alert("Error sending magic link email: " + err.message);
+        modalBtn.innerText = "✨ Send Magic Link to Email Inbox 📧";
+      } finally {
+        modalBtn.disabled = false;
+        isMagicLinkDispatching = false;
+      }
+    }
+
+    function resendMagicLinkModal(e) {
+      if (e) e.preventDefault();
+      triggerModalMagicLink();
+    }
+
+    function initialQuizCheck() {
+      let score = 0;
+      let answeredCount = 0;
+      let unansweredList = [];
+      cachedAnsSummary = [];
+      firstMissingCardId = "";
+
+      for (let i = 1; i <= 20; i++) {
+        const key = `q${i}`;
+        const val = document.querySelector(`input[name="${key}"]:checked`)?.value;
+        if (val) {
+          answeredCount++;
+          if (val === correctAnswers[key]) {
+            score++;
+          }
+          cachedAnsSummary.push(`${key}:${val}`);
+        } else {
+          unansweredList.push(questionLabels[key] || `Question ${i}`);
+          cachedAnsSummary.push(`${key}:unanswered`);
+          if (!firstMissingCardId) {
+            firstMissingCardId = `card-q${i}`;
+          }
+        }
+      }
+
+      quizScoreVal = score;
+      cachedAnsweredCount = answeredCount;
+
+      const confirmCard = document.getElementById("confirmation-notice-card");
+      const listElem = document.getElementById("unanswered-items-list");
+
+      if (unansweredList.length > 0) {
+        listElem.innerHTML = unansweredList.map(item => `<li>${item}</li>`).join("");
+        confirmCard.style.display = "block";
+        document.getElementById("quiz-results-box").style.display = "none";
+        confirmCard.scrollIntoView({ behavior: 'smooth' });
+      } else {
+        confirmCard.style.display = "none";
+        finalizeQuizSubmission();
+      }
+    }
+
+    function goBackToFinish() {
+      document.getElementById("confirmation-notice-card").style.display = "none";
+      if (firstMissingCardId) {
+        document.getElementById(firstMissingCardId).scrollIntoView({ behavior: 'smooth' });
+      } else {
+        document.getElementById("quiz-form").scrollIntoView({ behavior: 'smooth' });
+      }
+    }
+
+    async function finalizeQuizSubmission() {
+      document.getElementById("confirmation-notice-card").style.display = "none";
+
+      const timestamp = new Date().toISOString();
+      const rawString = `${loggedInEmail}|${cachedAnsSummary.join('|')}|score:${quizScoreVal}/20|answered:${cachedAnsweredCount}/20|ts:${timestamp}`;
+
+      // Compute Keccak-256 hash using ethers.js
+      if (window.ethers) {
+        currentPayloadHash = ethers.utils.keccak256(ethers.utils.toUtf8Bytes(rawString));
+      } else {
+        currentPayloadHash = "0x" + Array.from(new TextEncoder().encode(rawString)).map(b => b.toString(16).padStart(2, '0')).join('');
+      }
+
+      document.getElementById("score-header").innerText = `Score: ${quizScoreVal} / 20 (${(quizScoreVal/20)*100}%) — [${cachedAnsweredCount}/20 Answered]`;
+      document.getElementById("payload-hash-display").innerText = currentPayloadHash;
+      document.getElementById("quiz-results-box").style.display = "block";
+      document.getElementById("quiz-results-box").scrollIntoView({ behavior: 'smooth' });
+
+      // Post submission payload to Cloudflare Pages API endpoint /api/submit-quiz
+      try {
+        const payload = {
+          email: loggedInEmail,
+          score: quizScoreVal,
+          answered: cachedAnsweredCount,
+          total: 20,
+          payload_hash: currentPayloadHash,
+          timestamp: timestamp,
+          summary: cachedAnsSummary
+        };
+
+        const res = await fetch("/api/submit-quiz", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(payload)
+        });
+
+        if (res.ok) {
+          document.getElementById("store-status-text").innerText = `Submission recorded for ${loggedInEmail} in LexClinic Student Store! Payload Hash: ${currentPayloadHash.substring(0, 16)}...`;
+        }
+      } catch (err) {
+        console.log("Local submission hashed and logged in client store:", err);
+      }
+    }
+  </script>
+
+  <script src="/script.js"></script>
+</body>
+</html>
