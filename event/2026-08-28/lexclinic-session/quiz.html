@@ -5,13 +5,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>20-Question Media Quiz (Aug 28, 2026) | LexClinic Education</title>
   <meta name="description" content="LexClinic Session Media Quiz (August 28, 2026). 20-question media assessment with Magic Link authentication.">
-  <link rel="stylesheet" href="/styles.css?v=20260829_1840">
+  <link rel="stylesheet" href="/styles.css?v=20260829_1850">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <!-- Ethers.js for client-side Keccak256 payload hashing -->
   <script src="https://cdn.jsdelivr.net/npm/ethers@5.7.2/dist/ethers.umd.min.js"></script>
-  <script src="/script.js?v=20260829_1840" defer></script>
+  <script src="/script.js?v=20260829_1850" defer></script>
 </head>
 <body>
 
@@ -499,7 +499,8 @@
       document.getElementById("confirmation-notice-card").style.display = "none";
 
       const timestamp = new Date().toISOString();
-      const rawString = `${loggedInEmail}|${cachedAnsSummary.join('|')}|score:${quizScoreVal}/20|answered:${cachedAnsweredCount}/20|ts:${timestamp}`;
+      const activeEmail = window.getSanitizedEmail ? window.getSanitizedEmail() : (localStorage.getItem("lexclinic_user_email") || "").trim();
+      const rawString = `${activeEmail}|${cachedAnsSummary.join('|')}|score:${quizScoreVal}/20|answered:${cachedAnsweredCount}/20|ts:${timestamp}`;
 
       // Compute Keccak-256 hash using ethers.js
       if (window.ethers) {
@@ -516,7 +517,7 @@
       // Post submission payload to Cloudflare Pages API endpoint /api/submit-quiz
       try {
         const payload = {
-          email: loggedInEmail,
+          email: activeEmail,
           score: quizScoreVal,
           answered: cachedAnsweredCount,
           total: 20,
@@ -532,7 +533,7 @@
         });
 
         if (res.ok) {
-          document.getElementById("store-status-text").innerText = `Submission recorded for ${loggedInEmail} in LexClinic Student Store! Payload Hash: ${currentPayloadHash.substring(0, 16)}...`;
+          document.getElementById("store-status-text").innerText = `Submission recorded for ${activeEmail} in LexClinic Student Store! Payload Hash: ${currentPayloadHash.substring(0, 16)}...`;
         }
       } catch (err) {
         console.log("Local submission hashed and logged in client store:", err);

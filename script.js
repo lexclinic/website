@@ -1,5 +1,5 @@
 // Universal LexClinic Web Substrate Script: Auth, Modal, Version Sync, Mobile Nav, and Cross-Tab Login
-const BUILD_VERSION = "20260829_1840";
+const BUILD_VERSION = "20260829_1850";
 
 function getSanitizedEmail() {
   const raw = localStorage.getItem("lexclinic_user_email");
@@ -11,15 +11,17 @@ let loggedInEmail = getSanitizedEmail();
 let isMagicLinkDispatching = false;
 const authChannel = window.BroadcastChannel ? new BroadcastChannel("lexclinic_auth_channel") : null;
 
-// Build Version Cookie & Cache Synchronization
-checkBuildVersion();
-
 // Attach global functions to window immediately
+window.getSanitizedEmail = getSanitizedEmail;
 window.openNavLoginModal = openNavLoginModal;
 window.closeNavLoginModal = closeNavLoginModal;
 window.triggerModalMagicLink = triggerModalMagicLink;
 window.resendMagicLinkModal = resendMagicLinkModal;
 window.handleLogout = handleLogout;
+window.updateAuthUI = updateAuthUI;
+
+// Build Version Cookie & Cache Synchronization
+checkBuildVersion();
 
 // Universal Login Modal Injection (Execute immediately so it is available even before DOMContentLoaded)
 injectUniversalLoginModal();

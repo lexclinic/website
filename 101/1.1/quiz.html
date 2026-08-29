@@ -5,12 +5,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Class 1.1 Quiz | LexClinic Education</title>
   <meta name="description" content="Class 1.1 Quiz: 4-question assessment for Class 1.1: What is a "Performance" in Law? with Magic Link authentication.">
-  <link rel="stylesheet" href="/styles.css?v=20260829_1840">
+  <link rel="stylesheet" href="/styles.css?v=20260829_1850">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/npm/ethers@5.7.2/dist/ethers.umd.min.js"></script>
-  <script src="/script.js?v=20260829_1840" defer></script>
+  <script src="/script.js?v=20260829_1850" defer></script>
 </head>
 <body>
 
@@ -225,8 +225,9 @@
     
 
     async function handleFormSubmit() {
-      if (!loggedInEmail) {
-        openNavLoginModal();
+      const activeEmail = window.getSanitizedEmail ? window.getSanitizedEmail() : (localStorage.getItem("lexclinic_user_email") || "").trim();
+      if (!activeEmail) {
+        window.openNavLoginModal();
       } else {
         finalizeQuizSubmission();
       }
@@ -249,7 +250,8 @@
 
       quizScoreVal = score;
       const timestamp = new Date().toISOString();
-      const rawString = `${loggedInEmail}|class_1.1|${cachedAnsSummary.join('|')}|score:${quizScoreVal}/4|ts:${timestamp}`;
+      const activeEmail = window.getSanitizedEmail ? window.getSanitizedEmail() : (localStorage.getItem("lexclinic_user_email") || "").trim();
+      const rawString = `${activeEmail}|class_1.1|${cachedAnsSummary.join('|')}|score:${quizScoreVal}/4|ts:${timestamp}`;
 
       if (window.ethers) {
         currentPayloadHash = ethers.utils.keccak256(ethers.utils.toUtf8Bytes(rawString));
@@ -264,7 +266,7 @@
 
       try {
         const payload = {
-          email: loggedInEmail,
+          email: activeEmail,
           class_id: "1.1",
           score: quizScoreVal,
           total: 4,
