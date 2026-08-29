@@ -11,6 +11,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <!-- Ethers.js for client-side Keccak256 payload hashing -->
   <script src="https://cdn.jsdelivr.net/npm/ethers@5.7.2/dist/ethers.umd.min.js"></script>
+  <script src="/script.js?v=20260829_1745" defer></script>
 </head>
 <body>
 
@@ -32,7 +33,7 @@
         <a href="https://www.youtube.com/watch?v=ONwiUkc_tt4&list=PLbPukKwpmk5E" target="_blank" rel="noopener" class="btn-nav">YouTube 101 Playlist ➔</a>
         
         <!-- High-Contrast Member Login Button -->
-        <a href="#" onclick="openNavLoginModal(event)" id="nav-login-btn" style="background: var(--accent-gold); color: #0a1128; font-weight: 800; font-size: 0.9rem; padding: 0.45rem 1rem; border-radius: 6px; margin-left: 0.5rem; text-decoration: none; border: 2px solid #f59e0b; box-shadow: 0 0 10px rgba(251, 191, 36, 0.4); display: inline-block;">
+        <a href="#" onclick="window.openNavLoginModal(event)" id="nav-login-btn" style="background: var(--accent-gold); color: #0a1128; font-weight: 800; font-size: 0.9rem; padding: 0.45rem 1rem; border-radius: 6px; margin-left: 0.5rem; text-decoration: none; border: 2px solid #f59e0b; box-shadow: 0 0 10px rgba(251, 191, 36, 0.4); display: inline-block;">
           🔒 Login
         </a>
       </nav>
@@ -48,7 +49,7 @@
       <button onclick="closeNavLoginModal()" style="position: absolute; top: 1rem; right: 1rem; background: none; border: none; color: var(--text-muted); font-size: 1.5rem; cursor: pointer;">✕</button>
       <h2 style="color: var(--accent-gold); margin-top: 0; font-size: 1.4rem;">🔒 Login to Record Quiz Scores</h2>
       <p style="color: var(--text-main); font-size: 0.95rem; margin-bottom: 1.25rem;">
-        Anyone taking the assessment can log in with their email address to receive a secure <strong>magic link email from login@lex.clinic</strong> to record their quiz scores.
+        Anyone taking the assessment can log in with their email address to receive a secure <strong>magic link email from kyle@lex.clinic</strong> to record their quiz scores.
       </p>
       
       <form onsubmit="event.preventDefault(); triggerModalMagicLink();">
@@ -114,9 +115,9 @@
           <span style="font-size: 3rem; display: block; margin-bottom: 0.5rem;">🔒</span>
           <h2 style="color: var(--accent-gold); margin-bottom: 0.75rem;">Quiz Questions Locked</h2>
           <p style="color: var(--text-main); max-width: 520px; margin: 0 auto 1.5rem auto; font-size: 0.98rem; line-height: 1.6;">
-            The 20-question media assessment is restricted to logged-in users. Please log in with your email address to receive a magic link email from <strong>login@lex.clinic</strong> to unlock the quiz questions and record your score.
+            The 20-question media assessment is restricted to logged-in users. Please log in with your email address to receive a magic link email from <strong>kyle@lex.clinic</strong> to unlock the quiz questions and record your score.
           </p>
-          <button onclick="openNavLoginModal(event)" class="btn btn-primary" style="background: var(--accent-gold); color: #0a1128; font-weight: 800; font-size: 1.05rem; padding: 0.75rem 1.5rem; border: 2px solid #f59e0b; box-shadow: 0 0 15px rgba(251, 191, 36, 0.4);">
+          <button onclick="window.openNavLoginModal(event)" class="btn btn-primary" style="background: var(--accent-gold); color: #0a1128; font-weight: 800; font-size: 1.05rem; padding: 0.75rem 1.5rem; border: 2px solid #f59e0b; box-shadow: 0 0 15px rgba(251, 191, 36, 0.4);">
             ✨ Click Here to Log In & Unlock Quiz 🔒
           </button>
         </div>
@@ -654,6 +655,6 @@
     }
   </script>
 
-  <script src="/script.js?v=20260829_1742"></script>
+  
 </body>
 </html>

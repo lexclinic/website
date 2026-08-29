@@ -10,6 +10,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/npm/ethers@5.7.2/dist/ethers.umd.min.js"></script>
+  <script src="/script.js?v=20260829_1745" defer></script>
 </head>
 <body>
 
@@ -29,7 +30,7 @@
         <a href="https://www.youtube.com/watch?v=ONwiUkc_tt4&list=PLbPukKwpmk5E" target="_blank" rel="noopener" class="btn-nav">YouTube 101 Playlist ➔</a>
         
         <!-- High-Contrast Top-Right Login Button -->
-        <a href="#" onclick="openNavLoginModal(event)" id="nav-login-btn" style="background: #fbbf24; color: #0a1128; font-weight: 800; font-size: 0.9rem; padding: 0.45rem 1rem; border-radius: 6px; margin-left: 0.5rem; text-decoration: none; border: 2px solid #f59e0b; box-shadow: 0 0 10px rgba(251, 191, 36, 0.4); display: inline-block;">
+        <a href="#" onclick="window.openNavLoginModal(event)" id="nav-login-btn" style="background: #fbbf24; color: #0a1128; font-weight: 800; font-size: 0.9rem; padding: 0.45rem 1rem; border-radius: 6px; margin-left: 0.5rem; text-decoration: none; border: 2px solid #f59e0b; box-shadow: 0 0 10px rgba(251, 191, 36, 0.4); display: inline-block;">
           🔒 Login
         </a>
       </nav>
@@ -80,9 +81,9 @@
           <span style="font-size: 3rem; display: block; margin-bottom: 0.5rem;">🔒</span>
           <h2 style="color: var(--accent-gold); margin-bottom: 0.75rem;">Quiz Questions Locked</h2>
           <p style="color: var(--text-main); max-width: 520px; margin: 0 auto 1.5rem auto; font-size: 0.98rem; line-height: 1.6;">
-            The Class 1.2 assessment is restricted to logged-in users. Please log in with your email address to receive a magic link email from <strong>login@lex.clinic</strong> to unlock the quiz questions and record your score.
+            The Class 1.2 assessment is restricted to logged-in users. Please log in with your email address to receive a magic link email from <strong>kyle@lex.clinic</strong> to unlock the quiz questions and record your score.
           </p>
-          <button onclick="openNavLoginModal(event)" class="btn btn-primary" style="background: var(--accent-gold); color: #0a1128; font-weight: 800; font-size: 1.05rem; padding: 0.75rem 1.5rem; border: 2px solid #f59e0b; box-shadow: 0 0 15px rgba(251, 191, 36, 0.4);">
+          <button onclick="window.openNavLoginModal(event)" class="btn btn-primary" style="background: var(--accent-gold); color: #0a1128; font-weight: 800; font-size: 1.05rem; padding: 0.75rem 1.5rem; border: 2px solid #f59e0b; box-shadow: 0 0 15px rgba(251, 191, 36, 0.4);">
             ✨ Click Here to Log In & Unlock Quiz 🔒
           </button>
         </div>
@@ -303,6 +304,6 @@
     }
   </script>
 
-  <script src="/script.js?v=20260829_1742"></script>
+  
 </body>
 </html>
