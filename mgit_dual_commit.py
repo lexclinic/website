@@ -97,7 +97,11 @@ def commit_github_context(commit_msg):
 
 def deploy_cloudflare_production():
     print("\n🌐 [Cloudflare Pages Production Deployment]: Deploying to production branch 'main' on project 'lex-clinic'...")
-    cmd = "npx wrangler pages deploy . --project-name=lex-clinic --branch=main"
+    cf_account = "00f333bbbcab399bf690494e2ce98ed9"
+    cf_token = "cfat_S4yV649EaYewb3b0TffLfMznFnkA9ufSrXDyWxKq28a7e700"
+    env_deploy = {**os.environ, "CLOUDFLARE_ACCOUNT_ID": cf_account, "CLOUDFLARE_API_TOKEN": cf_token}
+    cmd = "npx --yes wrangler pages deploy . --project-name=lex-clinic --branch=main"
+    res = subprocess.run(cmd, shell=True, cwd=KAIROS_DIR, env=env_deploy, text=True, capture_output=True).stdout
     res = run_cmd(cmd, cwd=KAIROS_DIR)
     print(res)
 
