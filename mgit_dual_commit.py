@@ -3,11 +3,6 @@
 Sovereign Tri-Git Orchestrator & Secret Linter (mgit_dual_commit.py / mgit_tri_commit.py)
 
 Located in: lex_clinic_website_mgit/repo_mgit/kairos_mgit/mgit_dual_commit.py
-
-Tri-Git Metadata Routing:
-- .git_mgit: Local Agent Memory & Workspace Management (work-tree = repo_mgit)
-- .git_github: Public Production Release Axis (work-tree = kairos_mgit)
-- .git_github_context: Chronos Private Audit Vault (work-tree = chronos_mgit -> website_context.git)
 """
 
 import os, sys, subprocess, json, datetime
@@ -20,8 +15,8 @@ GIT_GITHUB = os.path.join(REPO_ROOT, ".git_github")
 GIT_CONTEXT = os.path.join(REPO_ROOT, ".git_github_context")
 CHRONOS_DIR = os.path.join(REPO_ROOT, "chronos_mgit")
 
-def run_cmd(cmd, cwd=None):
-    res = subprocess.run(cmd, shell=True, cwd=cwd, text=True, capture_output=True)
+def run_cmd(cmd, cwd=None, env=None):
+    res = subprocess.run(cmd, shell=True, cwd=cwd, env=env, text=True, capture_output=True)
     if res.returncode != 0 and "grep" not in cmd:
         print(f"⚠️ Error ({res.returncode}): {res.stderr.strip()}")
     return res.stdout.strip()
@@ -101,8 +96,7 @@ def deploy_cloudflare_production():
     cf_token = "cfat_S4yV649EaYewb3b0TffLfMznFnkA9ufSrXDyWxKq28a7e700"
     env_deploy = {**os.environ, "CLOUDFLARE_ACCOUNT_ID": cf_account, "CLOUDFLARE_API_TOKEN": cf_token}
     cmd = "npx --yes wrangler pages deploy . --project-name=lex-clinic --branch=main"
-    res = subprocess.run(cmd, shell=True, cwd=KAIROS_DIR, env=env_deploy, text=True, capture_output=True).stdout
-    res = run_cmd(cmd, cwd=KAIROS_DIR)
+    res = run_cmd(cmd, cwd=KAIROS_DIR, env=env_deploy)
     print(res)
 
 def main():
