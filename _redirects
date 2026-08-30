@@ -1,0 +1,4 @@
+/stats /attest/ 301
+/stats/ /attest/ 301
+/stats.html /attest/ 301
+/api/user-stats /api/user-attest 301

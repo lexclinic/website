@@ -251,13 +251,21 @@ function updateAuthUI() {
     }
 
     navBtns.forEach(navBtn => {
-      navBtn.innerText = `🔓 ${loggedInEmail.split('@')[0]} (Logout)`;
+      navBtn.innerText = `👤 ${loggedInEmail.split('@')[0]}`;
+      navBtn.title = `Logged in as ${loggedInEmail} — Click to View Attestations`;
       navBtn.style.background = "rgba(52, 211, 153, 0.2)";
       navBtn.style.color = "#34d399";
       navBtn.style.borderColor = "#34d399";
       navBtn.style.boxShadow = "none";
-      navBtn.onclick = handleLogout;
-      navBtn.ontouchend = handleLogout;
+      navBtn.onclick = function(e) {
+        if (e) {
+          if (e.preventDefault) e.preventDefault();
+          if (e.stopPropagation) e.stopPropagation();
+        }
+        window.location.href = "/attest/";
+        return false;
+      };
+      navBtn.ontouchend = navBtn.onclick;
     });
   } else {
     if (loggedInBar) loggedInBar.style.display = "none";
@@ -323,6 +331,9 @@ async function triggerModalMagicLink() {
     });
 
     const result = await res.json();
+    if (!res.ok) {
+      throw new Error(result.error || "Failed to dispatch email");
+    }
     document.getElementById("modal-target-email").innerText = emailInput;
     
     modalForm.style.display = "none";

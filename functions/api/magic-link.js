@@ -11,14 +11,15 @@ export async function onRequestPost(context) {
     }
 
     const token = "tok_" + Date.now().toString(36) + Math.random().toString(36).substring(2, 10);
-    const baseUrl = redirectUrl || "https://lex.clinic/event/2026-08-28/lexclinic-session";
+    const requestOrigin = new URL(context.request.url).origin;
+    const baseUrl = redirectUrl || `${requestOrigin}/fiduciary/`;
     const magicLinkUrl = `${baseUrl}?token=${token}&email=${encodeURIComponent(email)}`;
 
     const htmlBody = `
       <div style="font-family: Arial, sans-serif; max-width: 500px; padding: 20px; border: 1px solid #38bdf8; border-radius: 8px; background: #0a1128; color: #ffffff;">
         <h2 style="color: #fbbf24; margin-top: 0;">LexClinic Education Magic Link Login</h2>
         <p style="color: #e2e8f0; font-size: 1rem;">
-          Click the button below to complete your login and record your quiz scores:
+          Click the button below to complete your login and access member resources:
         </p>
         <div style="margin: 25px 0;">
           <a href="${magicLinkUrl}" style="background: #38bdf8; color: #000000; padding: 12px 24px; border-radius: 6px; text-decoration: none; font-weight: bold; display: inline-block;">
@@ -31,12 +32,12 @@ export async function onRequestPost(context) {
         </p>
         <hr style="border-color: #1e293b; margin-top: 20px;">
         <p style="font-size: 0.75rem; color: #64748b;">
-          Sent from <strong>kyle@lex.clinic</strong> for LexClinic Education quiz participants. If you did not request this email, you can safely ignore it.
+          Sent from <strong>kyle@lex.clinic</strong> for LexClinic Education members. If you did not request this email, you can safely ignore it.
         </p>
       </div>
     `;
 
-    // Dispatch email payload directly
+    // Dispatch email payload via internal send-email API
     const emailPayload = {
       from: "kyle@lex.clinic",
       fromName: "LexClinic Education (Kyle)",
@@ -46,21 +47,23 @@ export async function onRequestPost(context) {
       text: `Click here to log in to LexClinic Education: ${magicLinkUrl}`
     };
 
-    // Forward to internal /api/send-email dispatch
     const emailRes = await fetch(new URL("/api/send-email", context.request.url).toString(), {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(emailPayload)
     });
 
-    const emailData = await emailRes.json();
+    if (!emailRes.ok) {
+      const emailErr = await emailRes.json();
+      return new Response(JSON.stringify({ error: emailErr.error || "Failed to dispatch email" }), {
+        status: 500,
+        headers: { "Content-Type": "application/json", "Access-Control-Allow-Origin": "*" }
+      });
+    }
 
     return new Response(JSON.stringify({
       success: true,
-      message: `Magic link dispatched from kyle@lex.clinic to ${email}`,
-      token,
-      magicLinkUrl,
-      emailDispatch: emailData
+      message: `Magic link dispatched from kyle@lex.clinic to ${email}`
     }), {
       status: 200,
       headers: { "Content-Type": "application/json", "Access-Control-Allow-Origin": "*" }

@@ -1190,3 +1190,47 @@ button, .btn, a, input[type="submit"], input[type="radio"], label, #mobile-toggl
   cursor: pointer !important;
   -webkit-tap-highlight-color: rgba(56, 189, 248, 0.2) !important;
 }
+
+
+/* Optimized Compact Navbar Styles */
+.nav-container {
+  max-width: 1320px !important;
+  padding: 0 1rem !important;
+}
+
+.nav-links {
+  gap: 0.4rem !important;
+  flex-wrap: nowrap !important;
+}
+
+.nav-links a {
+  font-size: 0.85rem !important;
+  padding: 0.3rem 0.5rem !important;
+  white-space: nowrap !important;
+}
+
+.nav-links .btn-spotify, .nav-links .btn-nav {
+  display: none !important; /* Move spotify and youtube playlist buttons to footer to unclutter top navbar */
+}
+
+
+/* Support Links in Navbar Styles */
+.nav-container {
+  max-width: 1440px !important;
+  padding: 0 1rem !important;
+}
+
+.nav-links {
+  gap: 0.25rem !important;
+  flex-wrap: nowrap !important;
+}
+
+.nav-links a {
+  font-size: 0.82rem !important;
+  padding: 0.25rem 0.42rem !important;
+  white-space: nowrap !important;
+}
+
+.nav-links .btn-spotify, .nav-links .btn-nav, .nav-links .btn-social {
+  display: inline-block !important;
+}
