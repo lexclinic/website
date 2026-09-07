@@ -1,168 +1,100 @@
 [
   {
-    "id": "event-lexclinic-2026-08-28",
-    "title": "LexClinic 2026 Session (Aug 28, 2026)",
-    "date": "2026-08-28",
-    "time": "14:30 PDT",
-    "type": "today",
-    "category": "Legal Engineering & Runtimes",
-    "summary": "LexClinic session covering web substrate sharding, multi-page routing, Cloudflare edge deployment, QGov EVM wallet creation, and Google Calendar service account integration.",
-    "googleCalendarUrl": "https://www.google.com/calendar/event?eid=Nmg1aGh1MjFkNzc4NThuNzVrZjVucWMxbDJfMjAyNjA4MjdUMjEzMDAwWiBreWxlQGxleC5jbGluaWM",
-    "notebookUrl": "https://notebook.google.com/notebook/a674b42e-e594-4fee-8d9a-647c9f7e7f32",
-    "notebookNote": "LexClinic members are welcome to enter the notebook and generate their own videos.",
-    "hasNotebook": true,
-    "hasNotebookMedia": true,
-    "hasMedia": true,
-    "notebookRecordings": [
-      {
-        "title": "Computational Law (NotebookLM Video)",
-        "watchUrl": "https://drive.google.com/file/d/1UgC1kJleMAZpfX2G3F5zwDJeDiglqSQ8/view?usp=sharing",
-        "embedUrl": "https://drive.google.com/file/d/1UgC1kJleMAZpfX2G3F5zwDJeDiglqSQ8/preview"
-      },
-      {
-        "title": "Computational Legal Ease (NotebookLM Video)",
-        "watchUrl": "https://drive.google.com/file/d/1kVnzCNNmh0Rg3l-RS20zbjtFoktAWvDD/view?usp=sharing",
-        "embedUrl": "https://drive.google.com/file/d/1kVnzCNNmh0Rg3l-RS20zbjtFoktAWvDD/preview"
-      },
-      {
-        "title": "Symphony of Law (NotebookLM Video)",
-        "watchUrl": "https://drive.google.com/file/d/1ycz93GNIW29x0BayUw2pLCGD3FAHBalX/view?usp=sharing",
-        "embedUrl": "https://drive.google.com/file/d/1ycz93GNIW29x0BayUw2pLCGD3FAHBalX/preview"
-      },
-      {
-        "title": "The Legal Symphony (NotebookLM Video)",
-        "watchUrl": "https://drive.google.com/file/d/1EQUkSounN3sKrHXiqY2buW9lZq_IxaqR/view?usp=sharing",
-        "embedUrl": "https://drive.google.com/file/d/1EQUkSounN3sKrHXiqY2buW9lZq_IxaqR/preview"
-      },
-      {
-        "title": "Why Legal Contracts Are Becoming Code (NotebookLM Audio Overview)",
-        "watchUrl": "https://drive.google.com/file/d/11UFpR_avfxYIVxSxFdokudB2ZFylKdp3/view?usp=sharing",
-        "embedUrl": "https://drive.google.com/file/d/11UFpR_avfxYIVxSxFdokudB2ZFylKdp3/preview"
-      }
-    ],
-    "transcript": "Key Socratic Takeaways:\n1. Multi-page web substrate sharding across dedicated HTML modules.\n2. Cloudflare Pages edge DNS routing and SSL/TLS configuration for lex.clinic.\n3. ERC-7827 computational contract integration and Google Drive recording links."
+    "id": "event-lexclinic-2026-09-10",
+    "title": "LexClinic Session (September 10, 2026)",
+    "date": "2026-09-10",
+    "url": "/event/2026-09-03/lexclinic-session.html",
+    "is_upcoming": true,
+    "description": "Socratic review session on ERC-7827 state version control, AI verification gates, and software runtimes."
   },
   {
-    "id": "event-clinic-misc-2026-08-24",
-    "title": "Clinic Misc. Session (6 Media Clips)",
-    "date": "2026-08-24",
-    "time": "13:00 CDT (11:00 PDT)",
-    "type": "past",
-    "category": "Legal Engineering & Runtimes",
-    "summary": "Socratic session covering replacing paper contracts with software runtimes, Chopsticks legal engineering, secure legal VM setup, Cloudflare Pages infrastructure, and Git task workflows.",
-    "googleCalendarUrl": "https://www.google.com/calendar/event?eid=MGtmdHJlMW9hMjFpdmVkNGU5aHZnbWM3dmkga3lsZUBsZXguY2xpbmlj",
-    "googleMeetUrl": "https://meet.google.com/miy-vsmf-qhv",
-    "hasNotebook": false,
-    "hasNotebookMedia": false,
-    "hasMedia": true,
-    "recordings": [
-      {
-        "title": "Replacing Paper Contracts with Software Runtimes (Audio Lecture)",
-        "watchUrl": "https://drive.google.com/file/d/1MM5ixZeh6eDLOdMTwfX0BDdXjyc4bekZ/view?usp=sharing",
-        "embedUrl": "https://drive.google.com/file/d/1MM5ixZeh6eDLOdMTwfX0BDdXjyc4bekZ/preview"
-      },
-      {
-        "title": "Chopsticks Legal Engineering Primitives (Video)",
-        "watchUrl": "https://drive.google.com/file/d/1bCrvZbtdyXi2EtczDHTTFIuvvRxkdIhg/view?usp=sharing",
-        "embedUrl": "https://drive.google.com/file/d/1bCrvZbtdyXi2EtczDHTTFIuvvRxkdIhg/preview"
-      },
-      {
-        "title": "Secure Legal VM Setup & Environment (Video)",
-        "watchUrl": "https://drive.google.com/file/d/1Yc2ZkI-2B9aKIn41oErve3niSjSUAHkv/view?usp=sharing",
-        "embedUrl": "https://drive.google.com/file/d/1Yc2ZkI-2B9aKIn41oErve3niSjSUAHkv/preview"
-      },
-      {
-        "title": "Legal Cloud Infrastructure & Edge Routing (Video)",
-        "watchUrl": "https://drive.google.com/file/d/1U8sEUAeZHNVE9mMpjPHcG5NFF26HyTdD/view?usp=sharing",
-        "embedUrl": "https://drive.google.com/file/d/1U8sEUAeZHNVE9mMpjPHcG5NFF26HyTdD/preview"
-      },
-      {
-        "title": "Emacs & Git Legal Task Management (Video)",
-        "watchUrl": "https://drive.google.com/file/d/1oOrGXTZuJDH7HBFsLz0lt0lPDBj7-tt0/view?usp=sharing",
-        "embedUrl": "https://drive.google.com/file/d/1oOrGXTZuJDH7HBFsLz0lt0lPDBj7-tt0/preview"
-      },
-      {
-        "title": "OAuth Authentication & invalid_rapt Resolution (Video)",
-        "watchUrl": "https://drive.google.com/file/d/1v6FtiUmqxQ5XscZxPDTFsZv-v_son-Lj/view?usp=sharing",
-        "embedUrl": "https://drive.google.com/file/d/1v6FtiUmqxQ5XscZxPDTFsZv-v_son-Lj/preview"
-      }
-    ],
-    "transcript": "Key Socratic Takeaways:\n1. Transitioning paper contract performance into deterministic software execution.\n2. Cloudflare Pages edge DNS routing and SSL/TLS configuration for lex.clinic.\n3. WeDo-JSON task manifest protocols and persistent Google Workspace credentials."
-  },
-  {
-    "id": "event-clinic-exp-wit-2026-08-22",
-    "title": "Clinic + Exp. Wit Session",
-    "date": "2026-08-22",
-    "time": "13:00 CDT (11:00 PDT)",
-    "type": "past",
-    "category": "Legal Engineering",
-    "summary": "Socratic session on documentation strategy, research policies, SEC time-delayed publishing, and Web3 VC scaling models.",
-    "driveRecordingUrl": "https://drive.google.com/file/d/1uoTKx2V5wTFC6tugHlzwJrJ-3aQ4xdoo/view",
-    "driveNotesUrl": "https://docs.google.com/document/d/15Pms0zEo15gjmWu_fsg3hIDSiBqy9raYgNWIOt5jZmk/edit",
-    "googleCalendarUrl": "https://www.google.com/calendar/event?eid=MmUzN3FkdHU1bzB1dGM2OWhxdG40bTNhMGoga3lsZUBsZXguY2xpbmlj",
-    "hasNotebook": false,
-    "hasNotebookMedia": false,
-    "hasMedia": true,
-    "transcript": "Key Socratic Takeaways:\n1. Documentation strategy & white paper drafting pipeline.\n2. Time-delayed public research publishing policy for SEC regulatory compliance.\n3. Protocol-based non-custodial operations."
-  },
-  {
-    "id": "event-lexclinic-directors-2026-08-21",
-    "title": "LexClinic Directors Session",
-    "date": "2026-08-21",
-    "time": "16:30 CDT (14:22 PDT)",
-    "type": "past",
-    "category": "Governance",
-    "summary": "Reviewing open-source educational courseware publishing, faculty models, and computational law curriculum development.",
-    "driveNotesUrl": "https://docs.google.com/document/d/11NVWQasTwYlQGPcXUTbGr6ylHjmOa7JgOKzXgx_M9ho/edit",
-    "googleCalendarUrl": "https://www.google.com/calendar/event?eid=MWNkdWo5bmxmbDhqMjc4ZTNkNnBzdXV0N3Aga3lsZUBsZXguY2xpbmlj",
-    "hasNotebook": false,
-    "hasNotebookMedia": false,
-    "hasMedia": false,
-    "transcript": "Key Takeaways:\n- Continuous educational courseware publishing derived from weekly legal engineering sessions.\n- Faculty compensation models for open-source software contributions."
-  },
-  {
-    "id": "event-lexclinic-2026-08-20",
-    "title": "LexClinic 2026 Socratic Session",
-    "date": "2026-08-20",
-    "time": "16:00 CDT (14:02 PDT)",
-    "type": "past",
-    "category": "Computational Law",
-    "summary": "Evaluating legal engineering decision trees, statutory AST decomposition, and computational contract execution.",
-    "driveRecordingUrl": "https://drive.google.com/file/d/19E0FKxLFBqsmQAufqI0_5apNfEKCe-PD/view",
-    "driveNotesUrl": "https://docs.google.com/document/d/1wCj1El1YB5vpLMqpd86cvOLj-CNzZfY_rrMetTWmZBA/edit",
-    "googleCalendarUrl": "https://www.google.com/calendar/event?eid=Nmg1aGh1MjFkNzc4NThuNzVrZjVucWMxbDJfMjAyNjA8MjBUMjEzMDAwWiBreWxlQGxleC5jbGluaWM",
-    "hasNotebook": false,
-    "hasNotebookMedia": false,
-    "hasMedia": true,
-    "transcript": "Key Takeaways:\n- Decision tree logic for statutory condition checking.\n- Converting contract performance into state machine execution."
-  },
-  {
-    "id": "event-lexclinic-2026-08-13",
-    "title": "LexClinic 2026 Courseware & Syllabus Session",
-    "date": "2026-08-13",
-    "time": "16:30 CDT (14:30 PDT)",
-    "type": "past",
-    "category": "Courseware",
-    "summary": "Developing open-source legal software syllabus, self-help decision trees, and ERC-7827 state versioning.",
-    "driveRecordingUrl": "https://drive.google.com/file/d/14IOjLEnOGzkbGe_sQxxT2cYfg2rqWDq-/view",
-    "driveNotesUrl": "https://docs.google.com/document/d/1HZoM_IumnHSZ4HYBCcEXTwL4_whHh4LYPLv-zsgmXSc/edit",
-    "googleCalendarUrl": "https://www.google.com/calendar/event?eid=Nmg1aGh1MjFkNzc4NThuNzVrZjVucWMxbDJfMjAyNjA4MTNUMjEzMDAwWiBreWxlQGxleC5jbGluaWM",
-    "hasNotebook": false,
-    "hasNotebookMedia": false,
-    "hasMedia": true,
-    "transcript": "Key Takeaways:\n- Syllabus design for computational legal engineering.\n- ERC-7827 JSON state version control integration."
+    "id": "event-lexclinic-2026-09-17",
+    "title": "LexClinic Session (September 17, 2026)",
+    "date": "2026-09-17",
+    "url": "/event/2026-09-03/lexclinic-session.html",
+    "is_upcoming": true,
+    "description": "Socratic session covering computational legal AST decomposition, on-chain state versioning, and Web3 VC scaling."
   },
   {
     "id": "event-lexclinic-2026-09-03",
-    "title": "LexClinic 2026 Session",
+    "title": "LexClinic 2026 Socratic Session (Sept 3, 2026)",
     "date": "2026-09-03",
-    "time": "16:30 CDT (14:30 PDT)",
-    "type": "upcoming",
-    "category": "Scheduled Session",
-    "summary": "Upcoming LexClinic 2026 session scheduled on Google Calendar.",
-    "googleCalendarUrl": "https://www.google.com/calendar/event?eid=Nmg1aGh1MjFkNzc4NThuNzVrZjVucWMxbDJfMjAyNjA5MDNUMjEzMDAwWiBreWxlQGxleC5jbGluaWM",
-    "hasNotebook": false,
-    "hasNotebookMedia": false,
-    "hasMedia": false
+    "url": "/event/2026-09-03/lexclinic-session.html",
+    "media_count": 1,
+    "has_notebook": true,
+    "has_quiz": false,
+    "description": "Socratic review session on AST decomposition, computational law, and sovereign state machine specs."
+  },
+  {
+    "id": "event-lexclinic-2026-08-28",
+    "title": "LexClinic 2026 Socratic Session (Aug 28, 2026)",
+    "date": "2026-08-28",
+    "url": "/event/2026-08-28/lexclinic-session/",
+    "media_count": 5,
+    "has_notebook": true,
+    "has_quiz": true,
+    "quiz_questions": 20,
+    "description": "Socratic session on computational legal AST decomposition, on-chain state versioning, and Web3 VC scaling."
+  },
+  {
+    "id": "event-clinic-misc-2026-08-24",
+    "title": "Clinic Misc. Socratic Session (Aug 24, 2026)",
+    "date": "2026-08-24",
+    "url": "/event/2026-08-24/clinic-misc.html",
+    "media_count": 6,
+    "has_notebook": true,
+    "has_quiz": false,
+    "description": "Legal engineering discussion covering multi-signature governance, smart contract wrappers, and LESA data schemas."
+  },
+  {
+    "id": "event-clinic-exp-wit-2026-08-22",
+    "title": "Clinic + Expert Witness Session (Aug 22, 2026)",
+    "date": "2026-08-22",
+    "url": "/event/2026-08-22/clinic-exp-wit.html",
+    "media_count": 1,
+    "has_notebook": true,
+    "has_quiz": false,
+    "description": "Expert witness legal technology protocol review, evidentiary cryptographic proofs, and court admissibility models."
+  },
+  {
+    "id": "event-lexclinic-directors-2026-08-21",
+    "title": "LexClinic Governance & Fiduciary Session (Aug 21, 2026)",
+    "date": "2026-08-21",
+    "url": "/event/2026-08-21/directors-session.html",
+    "media_count": 1,
+    "has_notebook": true,
+    "has_quiz": false,
+    "description": "Fiduciary governance structure review covering LexClinic Education, Inc. and LexClinic Community LLC."
+  },
+  {
+    "id": "event-lexclinic-2026-08-20",
+    "title": "LexClinic 2026 Socratic Session (Aug 20, 2026)",
+    "date": "2026-08-20",
+    "url": "/event/2026-08-20/socratic-session.html",
+    "media_count": 1,
+    "has_notebook": true,
+    "has_quiz": false,
+    "description": "Initial 2026 Socratic kick-off session on computational law standards, smart contract state verification, and ERC-7827."
+  },
+  {
+    "id": "event-lexclinic-2026-08-13",
+    "title": "Courseware & Syllabus Overview Session (Aug 13, 2026)",
+    "date": "2026-08-13",
+    "url": "/event/2026-08-13/courseware-syllabus.html",
+    "media_count": 1,
+    "has_notebook": true,
+    "has_quiz": false,
+    "description": "Comprehensive review of the 2026 Legal Engineering 101 curriculum, Socratic grading rubrics, and repository structure."
+  },
+  {
+    "id": "event-lexclinic-2025-09-04",
+    "title": "Law as a Software Runtime (Sept 4, 2025)",
+    "date": "2025-09-04",
+    "url": "/event/2025-09-04/law-as-a-runtime/",
+    "media_count": 5,
+    "has_notebook": true,
+    "has_quiz": true,
+    "quiz_questions": 20,
+    "description": "Socratic session on legal AST decomposition, contract state machines, software runtime mechanics, and EVM personal ledgers."
   }
 ]
