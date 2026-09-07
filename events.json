@@ -16,16 +16,6 @@
     "description": "Socratic session covering computational legal AST decomposition, on-chain state versioning, and Web3 VC scaling."
   },
   {
-    "id": "event-lexclinic-2026-09-03",
-    "title": "LexClinic 2026 Socratic Session (Sept 3, 2026)",
-    "date": "2026-09-03",
-    "url": "/event/2026-09-03/lexclinic-session.html",
-    "media_count": 1,
-    "has_notebook": true,
-    "has_quiz": false,
-    "description": "Socratic review session on AST decomposition, computational law, and sovereign state machine specs."
-  },
-  {
     "id": "event-lexclinic-2026-08-28",
     "title": "LexClinic 2026 Socratic Session (Aug 28, 2026)",
     "date": "2026-08-28",
