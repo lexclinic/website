@@ -1,19 +1,30 @@
 [
   {
-    "id": "event-lexclinic-2026-09-10",
-    "title": "LexClinic Session (September 10, 2026)",
-    "date": "2026-09-10",
-    "url": "/event/2026-09-03/lexclinic-session.html",
+    "id": "event-lexclinic-2026-09-17",
+    "title": "LexClinic Session (September 17, 2026)",
+    "date": "2026-09-17",
+    "url": "/event/2026-08-28/lexclinic-session/",
     "is_upcoming": true,
     "description": "Socratic review session on ERC-7827 state version control, AI verification gates, and software runtimes."
   },
   {
-    "id": "event-lexclinic-2026-09-17",
-    "title": "LexClinic Session (September 17, 2026)",
-    "date": "2026-09-17",
-    "url": "/event/2026-09-03/lexclinic-session.html",
+    "id": "event-lexclinic-2026-09-24",
+    "title": "LexClinic Session (September 24, 2026)",
+    "date": "2026-09-24",
+    "url": "/event/2026-08-28/lexclinic-session/",
     "is_upcoming": true,
     "description": "Socratic session covering computational legal AST decomposition, on-chain state versioning, and Web3 VC scaling."
+  },
+  {
+    "id": "event-lexclinic-2026-09-04",
+    "title": "Law as a Software Runtime (Sept 4, 2026)",
+    "date": "2026-09-04",
+    "url": "/event/2026-09-04/law-as-a-runtime/",
+    "media_count": 5,
+    "has_notebook": true,
+    "has_quiz": true,
+    "quiz_questions": 20,
+    "description": "Socratic session on legal AST decomposition, contract state machines, software runtime mechanics, and EVM personal ledgers."
   },
   {
     "id": "event-lexclinic-2026-08-28",
@@ -75,16 +86,5 @@
     "has_notebook": true,
     "has_quiz": false,
     "description": "Comprehensive review of the 2026 Legal Engineering 101 curriculum, Socratic grading rubrics, and repository structure."
-  },
-  {
-    "id": "event-lexclinic-2025-09-04",
-    "title": "Law as a Software Runtime (Sept 4, 2025)",
-    "date": "2025-09-04",
-    "url": "/event/2025-09-04/law-as-a-runtime/",
-    "media_count": 5,
-    "has_notebook": true,
-    "has_quiz": true,
-    "quiz_questions": 20,
-    "description": "Socratic session on legal AST decomposition, contract state machines, software runtime mechanics, and EVM personal ledgers."
   }
 ]

@@ -5,12 +5,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Assessment Quiz — Law as a Software Runtime | LexClinic Education</title>
   <meta name="description" content="Interactive 20-question Socratic assessment quiz generated directly from the Whisper speech-to-text audio transcripts of the Sept 4 media clips.">
-  <link rel="stylesheet" href="/styles.css?v=20260829_2135">
+  <link rel="stylesheet" href="/styles.css?v=20260829_2210">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/ethers/5.7.2/ethers.umd.min.js" integrity="sha512-FD3R0fL3335F3547844080183" crossorigin="anonymous"></script>
-  <script src="/script.js?v=20260829_2135" defer></script>
+  <script src="/script.js?v=20260829_2210" defer></script>
 </head>
 <body>
 
@@ -65,7 +65,7 @@
       <div class="card event-module-card" style="border: 2px solid var(--accent-gold);">
         <div class="module-header" style="margin-bottom: 1.5rem;">
           <span class="badge-tag" style="background: rgba(251, 191, 36, 0.2); color: var(--accent-gold);">20 Transcript Questions</span>
-          <h2>20-Question Socratic Assessment: Sept 4, 2025 Class</h2>
+          <h2>20-Question Socratic Assessment: Sept 4, 2026 Class</h2>
         </div>
 
         <form id="sept4-20q-quiz-form" onsubmit="submitSept4Quiz(event)">
@@ -310,7 +310,7 @@
       });
 
       const timestamp = new Date().toISOString();
-      const rawPayload = JSON.stringify({ email: activeEmail, class_id: "2025-09-04", score: score, total: 20, answers, timestamp });
+      const rawPayload = JSON.stringify({ email: activeEmail, class_id: "2026-09-04", score: score, total: 20, answers, timestamp });
       
       let payloadHash = "0x-client-generated";
       try {
@@ -328,7 +328,7 @@
         let localSubs = JSON.parse(localStorage.getItem("lexclinic_quiz_submissions") || "[]");
         localSubs.push({
           email: activeEmail,
-          class_id: "2025-09-04",
+          class_id: "2026-09-04",
           score: `${score}/20`,
           payload_hash: payloadHash,
           timestamp: timestamp
@@ -343,7 +343,7 @@
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
             email: activeEmail,
-            class_id: "2025-09-04",
+            class_id: "2026-09-04",
             score: score,
             total: 20,
             payload_hash: payloadHash,

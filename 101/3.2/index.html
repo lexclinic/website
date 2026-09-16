@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Class 3.2: Nick Szabo & Smart Contracts — Legal Engineering 101 | LexClinic</title>
+  <meta name="description" content="Legal Engineering 101 Class 3.2: Nick Szabo & Smart Contracts — Hardcoding Consideration. Video lesson, curriculum summary, and interactive quiz.">
+  <link rel="stylesheet" href="/styles.css?v=20260829_2210">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <script src="/script.js?v=20260829_2210" defer></script>
+</head>
+<body>
+
+  <!-- Navigation Bar -->
+  <header class="navbar">
+    <div class="nav-container">
+      <a href="/index.html" class="brand-logo">
+        <span class="logo-icon">⚖️</span>
+        <span class="logo-text">Lex<span class="highlight">Clinic</span></span>
+      </a>
+      <nav class="nav-links" id="nav-links">
+        <a href="/event.html">Event</a>
+        <a href="/101" class="active-link">101</a>
+        <a href="/interview/">Interview</a>
+        <a href="/partner/">Partner</a>
+        <a href="/fiduciary/">Fiduciary</a>
+        <a href="/attest/">Attest</a>
+        <a href="/help/">Help</a>
+        <a href="/repo/">Repo</a>
+        <a href="/erc7827.html">ERC-7827</a>
+        <a href="https://www.youtube.com/watch?v=ONwiUkc_tt4&list=PLbPukKwpmk5E" target="_blank" rel="noopener" class="btn-social" title="Subscribe on YouTube">▶️ YouTube</a>
+        <a href="https://open.spotify.com/show/0348ivoLaNfKBq1HeIYC9b" target="_blank" rel="noopener" class="btn-spotify" title="Follow on Spotify">🎧 Spotify</a>
+        <a href="https://www.linkedin.com/company/lexclinic" target="_blank" rel="noopener" class="btn-social" title="Follow on LinkedIn">💼 LinkedIn</a>
+        <a href="javascript:void(0)" onclick="event.preventDefault(); window.openNavLoginModal(event); return false;" id="nav-login-btn" style="background: #fbbf24; color: #0a1128; font-weight: 800; font-size: 0.88rem; padding: 0.35rem 0.85rem; border-radius: 6px; margin-left: 0.35rem; text-decoration: none; border: 2px solid #f59e0b; box-shadow: 0 0 10px rgba(251, 191, 36, 0.4); display: inline-block;">🔒 Login</a>
+      </nav>
+      <button class="mobile-toggle" id="mobile-toggle" aria-label="Toggle navigation">
+        ☰
+      </button>
+    </div>
+  </header>
+
+  <!-- Hero Header -->
+  <section class="hero page-hero">
+    <div class="container hero-content">
+      <div style="display: flex; gap: 0.5rem; justify-content: center; flex-wrap: wrap; margin-bottom: 0.85rem;">
+        <span class="status-badge today-badge">📚 Legal Engineering 101 Module 3</span>
+        <span class="status-badge media-available">🎥 Official Video Lesson</span>
+      </div>
+      <h1 class="hero-title">Class 3.2: <span class="gradient-text">Nick Szabo &amp; Smart Contracts</span></h1>
+      <p class="hero-subtitle">
+        C-Lead Video 3.2: Hardcoding Consideration. Exploring Nick Szabo's 1996 foundational smart contract paper, cryptographic vending machines, and algorithmic enforcement.
+      </p>
+      <div class="hero-actions">
+        <a href="quiz.html" class="btn btn-primary" style="background: var(--accent-gold); color: #0a1128; font-weight: 800;">Take Class 3.2 Quiz ✍️</a>
+        <a href="/101" class="btn btn-outline">Back to 101 Curriculum ➔</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Main Lesson & Video Container -->
+  <section class="section event-detail-section">
+    <div class="container">
+
+      <!-- Embedded YouTube Video Lesson -->
+      <div class="card event-module-card" style="border: 2px solid var(--accent-gold); margin-bottom: 2.5rem;">
+        <div class="module-header">
+          <span class="badge-tag">🎥 Official Video Lesson</span>
+          <h2>Class 3.2: Nick Szabo &amp; Smart Contracts: Hardcoding Consideration</h2>
+        </div>
+        <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 8px; border: 1px solid var(--border-color); background: #000; margin-bottom: 1.25rem;">
+          <iframe src="https://www.youtube.com/embed/zbgJ5Y_mM3k" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;" allowfullscreen></iframe>
+        </div>
+        <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;">
+          <a href="https://www.youtube.com/watch?v=zbgJ5Y_mM3k" target="_blank" rel="noopener" class="btn btn-outline" style="font-size: 0.88rem; padding: 0.4rem 0.9rem;">
+            Watch on YouTube ➔
+          </a>
+          <a href="quiz.html" class="btn btn-primary" style="background: var(--accent-gold); color: #0a1128; font-weight: 800; font-size: 0.88rem;">
+            Take Class 3.2 Quiz ✍️
+          </a>
+        </div>
+      </div>
+
+            <!-- Embedded Spotify Episode Audio Lesson -->
+      <div class="card event-module-card" style="border: 2px solid #1db954; background: rgba(10, 17, 40, 0.95); margin-bottom: 2.5rem; padding: 1.5rem;">
+        <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; margin-bottom: 1rem;">
+          <div>
+            <span class="status-badge today-badge" style="background: #1db954; color: #0a1128; font-weight: 800;">🎧 Official Spotify Audio Lesson</span>
+            <h2 style="color: #1ed760; font-size: 1.35rem; margin: 0.5rem 0 0.25rem 0;">Class 3.2 Deep Dive: Nick Szabo & Smart Contracts: Hardcoding Consideration</h2>
+            <p style="color: #cbd5e1; font-size: 0.92rem; margin: 0;">
+              Listen to the deep-dive audio podcast version for Class 3.2 directly on Spotify.
+            </p>
+          </div>
+          <a href="https://open.spotify.com/episode/38NFwpp5ljMwUcBELQ4qOm" target="_blank" rel="noopener" class="btn btn-primary" style="background: #1db954; border-color: #1db954; color: #0a1128; font-weight: 800; font-size: 0.88rem;">
+            Listen on Spotify 🎧
+          </a>
+        </div>
+        <div style="border-radius: 12px; overflow: hidden;">
+          <iframe style="border-radius:12px" src="https://open.spotify.com/embed/episode/38NFwpp5ljMwUcBELQ4qOm?utm_source=generator&theme=0" width="100%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+        </div>
+      </div>
+
+      <!-- Curriculum Takeaways -->
+      <div class="card pillar-card" style="border: 1px solid var(--border-color); background: rgba(10, 17, 40, 0.85); padding: 2rem;">
+        <h3 style="color: var(--accent-gold); font-size: 1.3rem; margin-bottom: 1rem;">📖 Class 3.2 Key Concepts &amp; Takeaways</h3>
+        <div class="grid grid-2" style="gap: 1.25rem;">
+          <div style="background: rgba(16, 31, 66, 0.8); padding: 1.25rem; border-radius: 8px; border-left: 3px solid var(--accent-gold);">
+            <h4 style="color: var(--accent-gold); margin-top: 0;">🤖 1. Szabo's Vending Machine Primitive</h4>
+            <p style="font-size: 0.92rem; color: #cbd5e1; margin: 0; line-height: 1.6;">
+              Nick Szabo defined the vending machine as the primitive prototype of smart contracts: coins (consideration) are inserted, terms are verified algorithmically, and product is released without judicial intervention.
+            </p>
+          </div>
+          <div style="background: rgba(16, 31, 66, 0.8); padding: 1.25rem; border-radius: 8px; border-left: 3px solid var(--accent-cyan);">
+            <h4 style="color: var(--accent-cyan); margin-top: 0;">⚡ 2. Hardcoding Legal Consideration into Code</h4>
+            <p style="font-size: 0.92rem; color: #cbd5e1; margin: 0; line-height: 1.6;">
+              By embedding contractual performance conditions directly into software protocols, breach is rendered computationally impossible rather than merely actionable in court.
+            </p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Contact Footer -->
+  <footer class="footer">
+    <div class="container footer-content">
+      <div class="footer-col">
+        <div class="brand-logo footer-logo">
+          <span class="logo-icon">⚖️</span>
+          <span class="logo-text">Lex<span class="highlight">Clinic</span></span>
+        </div>
+        <p class="footer-tagline">LexClinic Education</p>
+        <p class="footer-address">
+          Authors of ERC-7827 | Open-Source Computational Law & Legal Engineering
+        </p>
+      </div>
+      <div class="footer-col">
+        <h4>Navigation</h4>
+        <ul>
+          <li><a href="/event.html">Event</a></li>
+          <li><a href="/101">Legal Engineering 101</a></li>
+          <li><a href="/interview/">Interview</a></li>
+          <li><a href="/partner/">Partner</a></li>
+          <li><a href="/fiduciary/">Fiduciary</a></li>
+          <li><a href="/attest/">Attest</a></li>
+          <li><a href="/help/">Help</a></li>
+          <li><a href="/repo/">Repository</a></li>
+          <li><a href="/erc7827.html">ERC-7827 Standard</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Connect & Media</h4>
+        <p>YouTube: <a href="https://www.youtube.com/watch?v=ONwiUkc_tt4&list=PLbPukKwpmk5E" target="_blank" rel="noopener">Legal Engineering 101 Playlist</a></p>
+        <p>Spotify: <a href="https://open.spotify.com/show/0348ivoLaNfKBq1HeIYC9b" target="_blank" rel="noopener">LexClinic Spotify Show</a></p>
+        <p>LinkedIn: <a href="https://www.linkedin.com/company/lexclinic" target="_blank" rel="noopener">LexClinic Company Page</a></p>
+        <p class="disclaimer">
+          © 2026 LexClinic Education. Open public goods published under AGPL-3.0 & Creative Commons Attribution-ShareAlike.
+        </p>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>

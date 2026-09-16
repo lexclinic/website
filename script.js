@@ -252,7 +252,7 @@ function updateAuthUI() {
 
     navBtns.forEach(navBtn => {
       navBtn.innerText = `👤 ${loggedInEmail.split('@')[0]}`;
-      navBtn.title = `Logged in as ${loggedInEmail} — Click to View Attestations`;
+      navBtn.title = `Logged in as ${loggedInEmail} — Click to View Member Profile`;
       navBtn.style.background = "rgba(52, 211, 153, 0.2)";
       navBtn.style.color = "#34d399";
       navBtn.style.borderColor = "#34d399";
@@ -262,7 +262,7 @@ function updateAuthUI() {
           if (e.preventDefault) e.preventDefault();
           if (e.stopPropagation) e.stopPropagation();
         }
-        window.location.href = "/attest/";
+        window.location.href = "/profile/";
         return false;
       };
       navBtn.ontouchend = navBtn.onclick;

@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Student Profile & Identity | LexClinic Education</title>
+  <meta name="description" content="LexClinic Student Profile: Manage your identity, official @lex.clinic email privileges, courseware progress, and attestation ledger links.">
+  <link rel="stylesheet" href="/styles.css?v=20260829_2210">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <script>
+    if (window.location.pathname.endsWith(".html")) {
+      window.history.replaceState({}, document.title, "/profile/");
+    }
+  </script>
+  <script src="/script.js?v=20260829_2210" defer></script>
+</head>
+<body>
+
+  <!-- Navigation Bar -->
+  <header class="navbar">
+    <div class="nav-container">
+      <a href="/index.html" class="brand-logo">
+        <span class="logo-icon">⚖️</span>
+        <span class="logo-text">Lex<span class="highlight">Clinic</span></span>
+      </a>
+      <nav class="nav-links" id="nav-links">
+        <a href="/event.html">Event</a>
+        <a href="/101">101</a>
+        <a href="/interview/">Interview</a>
+        <a href="/partner/">Partner</a>
+        <a href="/fiduciary/">Fiduciary</a>
+        <a href="/attest/">Attest</a>
+        <a href="/help/">Help</a>
+        <a href="/repo/">Repo</a>
+        <a href="/erc7827.html">ERC-7827</a>
+        <a href="https://www.youtube.com/watch?v=ONwiUkc_tt4&list=PLbPukKwpmk5E" target="_blank" rel="noopener" class="btn-social" title="Subscribe on YouTube">▶️ YouTube</a>
+        <a href="https://open.spotify.com/show/0348ivoLaNfKBq1HeIYC9b" target="_blank" rel="noopener" class="btn-spotify" title="Follow on Spotify">🎧 Spotify</a>
+        <a href="https://www.linkedin.com/company/lexclinic" target="_blank" rel="noopener" class="btn-social" title="Follow on LinkedIn">💼 LinkedIn</a>
+        <a href="javascript:void(0)" onclick="event.preventDefault(); window.openNavLoginModal(event); return false;" id="nav-login-btn" style="background: #fbbf24; color: #0a1128; font-weight: 800; font-size: 0.88rem; padding: 0.35rem 0.85rem; border-radius: 6px; margin-left: 0.35rem; text-decoration: none; border: 2px solid #f59e0b; box-shadow: 0 0 10px rgba(251, 191, 36, 0.4); display: inline-block;">🔒 Login</a>
+      </nav>
+      <button class="mobile-toggle" id="mobile-toggle" aria-label="Toggle navigation">
+        ☰
+      </button>
+    </div>
+  </header>
+
+  <!-- Hero Header -->
+  <section class="hero page-hero">
+    <div class="container hero-content">
+      <div class="hero-badge">👤 Student Profile &amp; Member Identity</div>
+      <h1 class="hero-title">Member <span class="gradient-text">Profile</span></h1>
+      <p class="hero-subtitle">
+        Manage your authenticated email identity, official @lex.clinic member privileges, courseware progress, and verifiable attestation ledger entries.
+      </p>
+    </div>
+  </section>
+
+  <!-- Main Profile Dashboard Area -->
+  <section class="section event-detail-section">
+    <div class="container">
+
+      <!-- Logged Out State Banner -->
+      <div id="profile-logged-out-card" class="card pillar-card" style="border: 2px solid var(--accent-gold); background: rgba(10, 17, 40, 0.95); text-align: center; padding: 3rem 1.5rem; display: none;">
+        <div style="font-size: 3rem; margin-bottom: 1rem;">🔒</div>
+        <h2 style="color: var(--accent-gold); font-size: 1.6rem; margin-bottom: 0.75rem;">Authentication Required</h2>
+        <p style="color: #e2e8f0; font-size: 1.05rem; max-width: 600px; margin: 0 auto 1.75rem auto; line-height: 1.6;">
+          Please log in with your email address to access your student profile, view member privileges, and manage your account.
+        </p>
+        <button onclick="window.openNavLoginModal(event)" class="btn btn-primary" style="background: var(--accent-gold); color: #0a1128; font-weight: 800; font-size: 1.05rem; padding: 0.75rem 1.75rem; border: none; border-radius: 6px; cursor: pointer;">
+          🔒 Log In with Email
+        </button>
+      </div>
+
+      <!-- Logged In Profile Content -->
+      <div id="profile-dashboard-content" style="display: none;">
+
+        <!-- Identity Header Banner -->
+        <div class="card pillar-card" style="border: 2px solid var(--accent-cyan); background: rgba(16, 31, 66, 0.85); padding: 2rem; margin-bottom: 2.5rem;">
+          <div style="display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 1.5rem;">
+            <div>
+              <div style="display: flex; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 0.75rem;">
+                <span class="status-badge today-badge">👤 Active Student Session</span>
+                <span id="profile-member-badge" class="status-badge notebook-available" style="display: none;">📧 @lex.clinic LLC Member</span>
+              </div>
+              <h2 style="color: #ffffff; font-size: 1.6rem; margin-bottom: 0.5rem;">
+                <span id="profile-user-email" style="color: var(--accent-cyan); font-family: 'Fira Code', monospace;">...</span>
+              </h2>
+              <p style="color: #cbd5e1; font-size: 0.95rem; margin: 0;">
+                Authenticated via LexClinic Magic Link Email Auth.
+              </p>
+            </div>
+
+            <div style="display: flex; gap: 0.75rem; flex-wrap: wrap;">
+              <button onclick="window.openNavLoginModal(event)" class="btn btn-outline" style="font-size: 0.88rem; padding: 0.45rem 1rem;">
+                ✉️ Resend Magic Link
+              </button>
+              <button onclick="localStorage.removeItem('lexclinic_user_email'); window.location.href='/index.html';" class="btn btn-outline" style="border-color: #ef4444; color: #f87171; font-size: 0.88rem; padding: 0.45rem 1rem;">
+                🚪 Log Out
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- 3 Feature Columns -->
+        <div class="grid grid-3" style="gap: 1.5rem; margin-bottom: 2.5rem;">
+
+          <!-- Card 1: Fiduciary Access Privileges -->
+          <div class="card pillar-card" style="border: 2px solid var(--accent-gold); background: rgba(10, 17, 40, 0.9); padding: 1.75rem; display: flex; flex-direction: column; justify-content: space-between;">
+            <div>
+              <div style="font-size: 2.2rem; margin-bottom: 0.5rem;">⚖️</div>
+              <h3 style="color: var(--accent-gold); font-size: 1.25rem; margin-bottom: 0.5rem;">Fiduciary Vault Access</h3>
+              <p id="profile-fiduciary-desc" style="color: #cbd5e1; font-size: 0.92rem; line-height: 1.6; margin-bottom: 1.25rem;">
+                Evaluating member permissions...
+              </p>
+            </div>
+            <a href="/fiduciary/" class="btn btn-primary" style="background: var(--accent-gold); color: #0a1128; font-weight: 800; text-align: center; font-size: 0.88rem;">
+              Open Fiduciary Vault ➔
+            </a>
+          </div>
+
+          <!-- Card 2: Student Attestation Ledger -->
+          <div class="card pillar-card" style="border: 2px solid var(--accent-cyan); background: rgba(10, 17, 40, 0.9); padding: 1.75rem; display: flex; flex-direction: column; justify-content: space-between;">
+            <div>
+              <div style="font-size: 2.2rem; margin-bottom: 0.5rem;">📜</div>
+              <h3 style="color: var(--accent-cyan); font-size: 1.25rem; margin-bottom: 0.5rem;">Attestation Ledger</h3>
+              <p style="color: #cbd5e1; font-size: 0.92rem; line-height: 1.6; margin-bottom: 1.25rem;">
+                Review your completed quiz scores, Keccak-256 payload hashes, and ERC-7827 counter-party attestation records.
+              </p>
+            </div>
+            <a href="/attest/" class="btn btn-primary" style="background: var(--accent-cyan); color: #0a1128; font-weight: 800; text-align: center; font-size: 0.88rem;">
+              View Attestation Ledger ➔
+            </a>
+          </div>
+
+          <!-- Card 3: 101 Courseware Progress -->
+          <div class="card pillar-card" style="border: 1px solid var(--border-color); background: rgba(10, 17, 40, 0.9); padding: 1.75rem; display: flex; flex-direction: column; justify-content: space-between;">
+            <div>
+              <div style="font-size: 2.2rem; margin-bottom: 0.5rem;">🎓</div>
+              <h3 style="color: #ffffff; font-size: 1.25rem; margin-bottom: 0.5rem;">101 Courseware</h3>
+              <p style="color: #cbd5e1; font-size: 0.92rem; line-height: 1.6; margin-bottom: 1.25rem;">
+                Explore foundational video lessons, Spotify audio deep dives, and Socratic assessments (Classes 1.1 through 3.2).
+              </p>
+            </div>
+            <a href="/101" class="btn btn-outline" style="text-align: center; font-size: 0.88rem;">
+              Explore 101 Curriculum ➔
+            </a>
+          </div>
+
+        </div>
+
+        <!-- Membership & Governance Rules Card -->
+        <div class="card pillar-card" style="border: 1px solid var(--border-color); background: rgba(10, 17, 40, 0.85); padding: 2rem;">
+          <h3 style="color: var(--accent-cyan); font-size: 1.3rem; margin-bottom: 1rem;">ℹ️ LexClinic Membership &amp; Governance Rules</h3>
+          <p style="color: #cbd5e1; font-size: 0.95rem; line-height: 1.7; margin-bottom: 1rem;">
+            LexClinic operates under a dual-entity fiduciary structure:
+          </p>
+          <ul style="color: #e2e8f0; font-size: 0.92rem; line-height: 1.8; margin-left: 1.25rem; margin-bottom: 0;">
+            <li><strong>LexClinic Education, Inc. (Charity)</strong>: Delaware non-profit public benefit corporation on its way to formal 501(c)(3) status. Operates open courseware and receives charitable contributions.</li>
+            <li><strong>LexClinic Community LLC (Working Entity)</strong>: The working member entity where contributors, researchers, and legal engineers do active work.</li>
+            <li><strong>Official Identity</strong>: Becoming a working LLC member includes receiving an official <strong>@lex.clinic</strong> email address, unlocking private governance bylaws and LLCA records.</li>
+          </ul>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Contact Footer -->
+  <footer class="footer">
+    <div class="container footer-content">
+      <div class="footer-col">
+        <div class="brand-logo footer-logo">
+          <span class="logo-icon">⚖️</span>
+          <span class="logo-text">Lex<span class="highlight">Clinic</span></span>
+        </div>
+        <p class="footer-tagline">LexClinic Education</p>
+        <p class="footer-address">
+          Authors of ERC-7827 | Open-Source Computational Law & Legal Engineering
+        </p>
+      </div>
+      <div class="footer-col">
+        <h4>Navigation</h4>
+        <ul>
+          <li><a href="/event.html">Event</a></li>
+          <li><a href="/101">Legal Engineering 101</a></li>
+          <li><a href="/interview/">Interview</a></li>
+          <li><a href="/partner/">Partner</a></li>
+          <li><a href="/fiduciary/">Fiduciary</a></li>
+          <li><a href="/attest/">Attest</a></li>
+          <li><a href="/help/">Help</a></li>
+          <li><a href="/repo/">Repository</a></li>
+          <li><a href="/erc7827.html">ERC-7827 Standard</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Connect & Media</h4>
+        <p>YouTube: <a href="https://www.youtube.com/watch?v=ONwiUkc_tt4&list=PLbPukKwpmk5E" target="_blank" rel="noopener">Legal Engineering 101 Playlist</a></p>
+        <p>Spotify: <a href="https://open.spotify.com/show/0348ivoLaNfKBq1HeIYC9b" target="_blank" rel="noopener">LexClinic Spotify Show</a></p>
+        <p>LinkedIn: <a href="https://www.linkedin.com/company/lexclinic" target="_blank" rel="noopener">LexClinic Company Page</a></p>
+        <p class="disclaimer">
+          © 2026 LexClinic Education. Open public goods published under AGPL-3.0 & Creative Commons Attribution-ShareAlike.
+        </p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Profile Logic Script -->
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const activeEmail = (localStorage.getItem("lexclinic_user_email") || "").trim();
+      const loggedOutCard = document.getElementById("profile-logged-out-card");
+      const dashboardContent = document.getElementById("profile-dashboard-content");
+
+      if (!activeEmail) {
+        if (loggedOutCard) loggedOutCard.style.display = "block";
+        if (dashboardContent) dashboardContent.style.display = "none";
+        return;
+      }
+
+      if (loggedOutCard) loggedOutCard.style.display = "none";
+      if (dashboardContent) dashboardContent.style.display = "block";
+
+      document.getElementById("profile-user-email").innerText = activeEmail;
+
+      const isMember = activeEmail.toLowerCase().endsWith("@lex.clinic");
+      const memberBadge = document.getElementById("profile-member-badge");
+      const fiduciaryDesc = document.getElementById("profile-fiduciary-desc");
+
+      if (isMember) {
+        if (memberBadge) memberBadge.style.display = "inline-block";
+        if (fiduciaryDesc) {
+          fiduciaryDesc.innerHTML = "✅ <strong>Authorized @lex.clinic Member</strong>. Your account holds full access permissions to view internal bylaws, LLCA, and governance procedures in the Fiduciary Vault.";
+        }
+      } else {
+        if (fiduciaryDesc) {
+          fiduciaryDesc.innerHTML = "🔒 <strong>Guest/Student Account</strong>. Access to private governance bylaws requires an official <strong>@lex.clinic</strong> working member email address.";
+        }
+      }
+    });
+  </script>
+
+</body>
+</html>
