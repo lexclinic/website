@@ -4,8 +4,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Student Profile & Identity | LexClinic Education</title>
-  <meta name="description" content="LexClinic Student Profile: Manage your identity, official @lex.clinic email privileges, courseware progress, and attestation ledger links.">
-  <link rel="stylesheet" href="/styles.css?v=20260829_2215">
+  <meta name="description" content="LexClinic Student Profile: Manage your identity, official @lex.clinic email privileges, video watch progress, courseware, and attestation ledger links.">
+  <link rel="stylesheet" href="/styles.css?v=20260829_2265">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -14,7 +14,13 @@
       window.history.replaceState({}, document.title, "/profile/");
     }
   </script>
-  <script src="/script.js?v=20260829_2215" defer></script>
+  <script src="/js/audio-player.js?v=20260829_2430"></script>
+  <script src="/js/auth.js?v=20260829_2430"></script>
+  <script src="/js/media-tracker-miniapp.js?v=20260829_2430"></script>
+  <script src="/js/watch-tracker.js?v=20260829_2430"></script>
+  <script src="/script.js?v=20260829_2430" defer></script>
+  <link rel="icon" type="image/png" href="/favicon.png?v=20260829_2430">
+  <link rel="shortcut icon" href="/favicon.ico?v=20260829_2430">
 </head>
 <body>
 
@@ -52,7 +58,7 @@
       <div class="hero-badge">👤 Student Profile &amp; Member Identity</div>
       <h1 class="hero-title">Member <span class="gradient-text">Profile</span></h1>
       <p class="hero-subtitle">
-        Manage your authenticated email identity, official @lex.clinic member privileges, courseware progress, and verifiable attestation ledger entries.
+        Manage your authenticated email identity, official @lex.clinic member privileges, video watch history, courseware progress, and verifiable attestation ledger entries.
       </p>
     </div>
   </section>
@@ -66,7 +72,7 @@
         <div style="font-size: 3rem; margin-bottom: 1rem;">🔒</div>
         <h2 style="color: var(--accent-gold); font-size: 1.6rem; margin-bottom: 0.75rem;">Authentication Required</h2>
         <p style="color: #e2e8f0; font-size: 1.05rem; max-width: 600px; margin: 0 auto 1.75rem auto; line-height: 1.6;">
-          Please log in with your email address to access your student profile, view member privileges, and manage your account.
+          Please log in with your email address to access your student profile, track video watch progress, view member privileges, and manage your account.
         </p>
         <button onclick="window.openNavLoginModal(event)" class="btn btn-primary" style="background: var(--accent-gold); color: #0a1128; font-weight: 800; font-size: 1.05rem; padding: 0.75rem 1.75rem; border: none; border-radius: 6px; cursor: pointer;">
           🔒 Log In with Email
@@ -82,7 +88,7 @@
             <div>
               <div style="display: flex; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 0.75rem;">
                 <span class="status-badge today-badge">👤 Active Student Session</span>
-                <span id="profile-member-badge" class="status-badge notebook-available" style="display: none;">📧 @lex.clinic LLC Member</span>
+                <span id="profile-member-badge" class="status-badge notebook-available" style="display: none;">📧 @lex.clinic Working Member</span>
               </div>
               <h2 style="color: #ffffff; font-size: 1.6rem; margin-bottom: 0.5rem;">
                 <span id="profile-user-email" style="color: var(--accent-cyan); font-family: 'Fira Code', monospace;">...</span>
@@ -100,6 +106,21 @@
                 🚪 Log Out
               </button>
             </div>
+          </div>
+        </div>
+
+        <!-- Video Watch History Card -->
+        <div class="card pillar-card" style="border: 2px solid var(--accent-cyan); background: rgba(10, 17, 40, 0.9); padding: 2rem; margin-bottom: 2.5rem;">
+          <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; margin-bottom: 1.25rem;">
+            <div>
+              <h3 style="color: var(--accent-cyan); font-size: 1.35rem; margin: 0 0 0.25rem 0;">🎬 Media Watch History &amp; Progress</h3>
+              <p style="color: #cbd5e1; font-size: 0.92rem; margin: 0;">Automated video and audio watch tracking across 101 lessons, Socratic sessions, and interviews.</p>
+            </div>
+            <span id="profile-watch-count-badge" class="status-badge today-badge" style="background: var(--accent-cyan); color: #0a1128; font-weight: 800;">0 Items Tracked</span>
+          </div>
+
+          <div id="profile-watch-history-list" style="display: flex; flex-direction: column; gap: 1rem;">
+            <p style="color: #cbd5e1; font-size: 0.95rem; margin: 0;">No media progress recorded yet. Explore <a href="/101/" style="color: var(--accent-cyan); text-decoration: underline;">Legal Engineering 101</a>, <a href="/interview/" style="color: var(--accent-gold); text-decoration: underline;">Interviews</a>, or <a href="/event.html" style="color: var(--accent-gold); text-decoration: underline;">Socratic Sessions</a> to begin streaming!</p>
           </div>
         </div>
 
@@ -158,8 +179,8 @@
           </p>
           <ul style="color: #e2e8f0; font-size: 0.92rem; line-height: 1.8; margin-left: 1.25rem; margin-bottom: 0;">
             <li><strong>LexClinic Education, Inc. (Charity)</strong>: Delaware non-profit public benefit corporation on its way to formal 501(c)(3) status. Operates open courseware and receives charitable contributions.</li>
-            <li><strong>LexClinic Community LLC (Working Entity)</strong>: The working member entity where contributors, researchers, and legal engineers do active work.</li>
-            <li><strong>Official Identity</strong>: Becoming a working LLC member includes receiving an official <strong>@lex.clinic</strong> email address, unlocking private governance bylaws and LLCA records.</li>
+            <li><strong>LexClinic Community LLC (Planned Working Entity)</strong>: The planned working member entity where contributors, researchers, and legal engineers will do active work upon formation.</li>
+            <li><strong>Official Identity</strong>: Joining the planned working LLC includes receiving an official <strong>@lex.clinic</strong> email address, unlocking private governance bylaws and LLCA records.</li>
           </ul>
         </div>
 
@@ -237,6 +258,40 @@
       } else {
         if (fiduciaryDesc) {
           fiduciaryDesc.innerHTML = "🔒 <strong>Guest/Student Account</strong>. Access to private governance bylaws requires an official <strong>@lex.clinic</strong> working member email address.";
+        }
+      }
+
+      // Render Video & Audio Watch History
+      let history = {};
+      try { history = JSON.parse(localStorage.getItem("lexclinic_video_watch_history") || "{}"); } catch(e) {}
+      const items = Object.values(history);
+
+      const countBadge = document.getElementById("profile-watch-count-badge");
+      const listContainer = document.getElementById("profile-watch-history-list");
+
+      if (items.length > 0) {
+        if (countBadge) countBadge.innerText = `${items.length} Item${items.length === 1 ? '' : 's'} Tracked`;
+        if (listContainer) {
+          listContainer.innerHTML = items.map(item => {
+            const isAudio = item.media_type === 'audio';
+            const icon = isAudio ? '🎧' : '🎥';
+            const typeLabel = isAudio ? 'Audio Track' : 'Video Clip';
+            const targetUrl = item.page_url + (item.current_time > 0 ? `?t=${item.current_time}` : '') + `#${item.video_id}`;
+            const actionText = item.progress >= 90 ? `Rewatch ${typeLabel} ↺` : `Resume ${typeLabel} ➔`;
+
+            return `
+              <div style="background: rgba(16, 31, 66, 0.85); border: 1px solid var(--border-color); border-left: 4px solid ${item.progress >= 90 ? '#34d399' : '#38bdf8'}; border-radius: 8px; padding: 1.25rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;">
+                <div>
+                  <span class="status-badge" style="background: ${item.progress >= 90 ? 'rgba(52, 211, 153, 0.2)' : 'rgba(56, 189, 248, 0.2)'}; color: ${item.progress >= 90 ? '#34d399' : '#38bdf8'}; font-weight: 700; margin-bottom: 0.35rem; display: inline-block;">
+                    ${item.progress >= 90 ? `✅ 100% Watched (${typeLabel})` : `▶️ ${item.progress}% Watched (${typeLabel})`}
+                  </span>
+                  <h4 style="color: #ffffff; font-size: 1.1rem; margin: 0.25rem 0 0.25rem 0;">${icon} ${item.video_title}</h4>
+                  <p style="color: #cbd5e1; font-size: 0.85rem; margin: 0;">Last Activity: ${new Date(item.timestamp).toLocaleString()}</p>
+                </div>
+                <a href="${targetUrl}" class="btn btn-outline" style="font-size: 0.85rem; padding: 0.4rem 0.85rem;">${actionText}</a>
+              </div>
+            `;
+          }).join('');
         }
       }
     });

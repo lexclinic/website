@@ -1,143 +1,77 @@
+/*
+  LexClinic Education Platform — Live Google Calendar Events & Privacy Renderer
+  Build Version: 20260829_2430
+*/
+
 document.addEventListener('DOMContentLoaded', async () => {
-  const urlParams = new URLSearchParams(window.location.search);
-  const eventId = urlParams.get('id');
+  const upcomingContainer = document.getElementById('upcoming-sessions-grid');
+  if (!upcomingContainer) return;
 
   try {
-    const response = await fetch('events.json');
+    const response = await fetch('/events.json?v=20260829_2430');
     if (!response.ok) return;
     const events = await response.json();
 
-    const selectedEvent = events.find(e => e.id === eventId) || events[0];
+    const upcomingEvents = events.filter(e => e.is_upcoming);
+    if (!upcomingEvents || upcomingEvents.length === 0) return;
 
-    if (!selectedEvent) return;
+    const userEmail = window.getSanitizedEmail ? window.getSanitizedEmail() : "";
+    const isLexClinicMember = userEmail.toLowerCase().endsWith("@lex.clinic");
 
-    const titleEl = document.getElementById('event-title');
-    const subtitleEl = document.getElementById('event-subtitle');
-    const dateBadgeEl = document.getElementById('event-date-badge');
-    const heroActionsEl = document.getElementById('event-hero-actions');
-    const contentBodyEl = document.getElementById('event-content-body');
+    let html = '';
 
-    if (titleEl) titleEl.textContent = selectedEvent.title;
-    if (subtitleEl) subtitleEl.textContent = selectedEvent.summary;
-    if (dateBadgeEl) {
-      const typeLabel = selectedEvent.type === 'upcoming' ? '🔔 Upcoming Event' : (selectedEvent.type === 'today' ? '🔥 Today\'s Session' : '📜 Past Session');
-      dateBadgeEl.textContent = `${typeLabel} • ${selectedEvent.date} (${selectedEvent.time})`;
-    }
+    upcomingEvents.forEach((item, index) => {
+      const isNextUp = index === 0;
+      const isDirectorCall = item.is_private;
+      const meetUrl = item.meet_url;
+      const calUrl = item.url;
 
-    // Hero Actions Buttons
-    if (heroActionsEl) {
-      let heroButtonsHTML = '';
-      if (selectedEvent.googleCalendarUrl) {
-        heroButtonsHTML += `<a href="${selectedEvent.googleCalendarUrl}" target="_blank" rel="noopener" class="btn btn-primary">Google Calendar Event 📅</a>`;
+      const cardStyle = isNextUp 
+        ? 'border: 2px solid var(--accent-gold); background: rgba(10, 17, 40, 0.9);'
+        : 'border: 1px solid var(--border-color); background: rgba(10, 17, 40, 0.6);';
+
+      const titleColor = isNextUp ? 'var(--accent-gold)' : 'var(--accent-cyan)';
+
+      let meetButtonHtml = '';
+
+      if (!isDirectorCall) {
+        // Public 101 Session -> Open Google Meet Link for Everyone
+        if (meetUrl) {
+          meetButtonHtml = `<a href="${meetUrl}" target="_blank" rel="noopener" class="btn btn-primary" style="background: var(--accent-gold); color: #0a1128; font-weight: 800; font-size: 0.92rem; padding: 0.55rem 1rem;">🎥 Join Live Google Meet ➔</a>`;
+        }
+      } else {
+        // Restricted Governance / Director Call -> Only visible to @lex.clinic domain users
+        if (isLexClinicMember) {
+          if (meetUrl) {
+            meetButtonHtml = `<a href="${meetUrl}" target="_blank" rel="noopener" class="btn btn-primary" style="background: #34d399; color: #0a1128; font-weight: 800; font-size: 0.92rem; padding: 0.55rem 1rem;">🔒 Join Director Google Meet (${userEmail.split('@')[0]}) ➔</a>`;
+          }
+        } else {
+          meetButtonHtml = `<a href="javascript:void(0)" onclick="openNavLoginModal(event)" class="btn btn-outline" style="border-color: #fbbf24; color: #fbbf24; font-size: 0.85rem; padding: 0.5rem 0.85rem;">🔒 Google Meet Link Reserved for @lex.clinic Directors</a>`;
+        }
       }
-      if (selectedEvent.driveRecordingUrl) {
-        heroButtonsHTML += `<a href="${selectedEvent.driveRecordingUrl}" target="_blank" rel="noopener" class="btn btn-primary">Watch Recording on Google Drive 🎥</a>`;
-      }
-      if (selectedEvent.driveNotesUrl) {
-        heroButtonsHTML += `<a href="${selectedEvent.driveNotesUrl}" target="_blank" rel="noopener" class="btn btn-outline">Read Notes on Google Docs 📄</a>`;
-      }
-      if (selectedEvent.youtubeUrl) {
-        heroButtonsHTML += `<a href="${selectedEvent.youtubeUrl}" target="_blank" rel="noopener" class="btn btn-outline">Watch 101 Playlist 🎥</a>`;
-      }
-      if (selectedEvent.spotifyUrl) {
-        heroButtonsHTML += `<a href="${selectedEvent.spotifyUrl}" target="_blank" rel="noopener" class="btn btn-spotify-hero">Listen on Spotify 🎧</a>`;
-      }
-      heroActionsEl.innerHTML = heroButtonsHTML;
-    }
 
-    // Render Event Content Body
-    if (contentBodyEl) {
-      let bodyHTML = '';
-
-      if (selectedEvent.type === 'upcoming') {
-        bodyHTML += `
-          <div class="card event-module-card">
-            <div class="module-header">
-              <span class="badge-tag">Calendar Event</span>
-              <h2>Upcoming Meeting Details</h2>
-            </div>
-            <p style="font-size: 1.1rem; color: var(--text-main); margin-bottom: 1.5rem;">
-              This session is scheduled on Google Calendar for <strong>${selectedEvent.date} at ${selectedEvent.time}</strong>.
-            </p>
-            <div class="card-actions">
-              <a href="${selectedEvent.googleCalendarUrl}" target="_blank" rel="noopener" class="btn btn-primary">Open Google Calendar Invitation 📅</a>
-            </div>
+      html += `
+        <div class="card pillar-card event-list-card" style="${cardStyle}">
+          <div style="display: flex; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 0.75rem;">
+            ${isNextUp ? '<span class="status-badge today-badge">🔥 NEXT UPCOMING SESSION</span>' : '<span class="status-badge notebook-available">📅 Scheduled</span>'}
+            ${isDirectorCall ? '<span class="status-badge" style="background: rgba(251, 191, 36, 0.2); color: #fbbf24; border: 1px solid #f59e0b;">🔒 Director Call</span>' : '<span class="status-badge media-available">🌐 Public 101 Class</span>'}
           </div>
-        `;
-      }
-
-      // Multiple Watchable Session Recordings
-      if (selectedEvent.recordings && selectedEvent.recordings.length > 0) {
-        bodyHTML += `
-          <div class="card event-module-card">
-            <div class="module-header">
-              <span class="badge-tag">Watchable Media</span>
-              <h2>Session Recordings & Media Clips (${selectedEvent.recordings.length} Clips)</h2>
-            </div>
-            <div style="display: flex; flex-direction: column; gap: 2rem;">
-              ${selectedEvent.recordings.map((rec, index) => `
-                <div style="background: rgba(10, 17, 40, 0.6); border: 1px solid var(--border-color); border-radius: 8px; padding: 1.25rem;">
-                  <h3 style="color: var(--accent-cyan); font-size: 1.1rem; margin-bottom: 0.75rem;">${index + 1}. ${rec.title}</h3>
-                  <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 6px; border: 1px solid var(--border-color); background: #000; margin-bottom: 0.85rem;">
-                    <iframe src="${rec.embedUrl}" allow="autoplay" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;" allowfullscreen></iframe>
-                  </div>
-                  <a href="${rec.watchUrl}" target="_blank" rel="noopener" class="btn btn-outline" style="font-size: 0.85rem; padding: 0.4rem 0.9rem;">Open Video in Google Drive 🎥</a>
-                </div>
-              `).join('')}
-            </div>
-          </div>
-        `;
-      }
-
-      // Single Watchable Media Player Embed
-      if (selectedEvent.mediaEmbedUrl && (!selectedEvent.recordings || selectedEvent.recordings.length === 0)) {
-        bodyHTML += `
-          <div class="card event-module-card">
-            <div class="module-header">
-              <span class="badge-tag">Watchable Media</span>
-              <h2>Session Recording & Media Player</h2>
-            </div>
-            <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 8px; border: 1px solid var(--border-color); background: #000; margin-bottom: 1rem;">
-              <iframe src="${selectedEvent.mediaEmbedUrl}" allow="autoplay" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;" allowfullscreen></iframe>
-            </div>
-          </div>
-        `;
-      }
-
-      if (selectedEvent.transcript) {
-        bodyHTML += `
-          <div class="card event-module-card">
-            <div class="module-header">
-              <span class="badge-tag">Socratic Notes</span>
-              <h2>Meeting Notes & Takeaways</h2>
-            </div>
-            <div class="transcript-content">
-              <p style="white-space: pre-line; color: var(--text-main); font-size: 1.05rem; line-height: 1.7;">${selectedEvent.transcript}</p>
-            </div>
-          </div>
-        `;
-      }
-
-      bodyHTML += `
-        <div class="card event-module-card">
-          <div class="module-header">
-            <span class="badge-tag">Media & Drive Links</span>
-            <h2>LexClinic Drive & Courseware Resources</h2>
-          </div>
-          <div class="resource-links">
-            ${selectedEvent.driveRecordingUrl ? `<a href="${selectedEvent.driveRecordingUrl}" target="_blank" rel="noopener" class="info-tag">🎥 Google Drive Recording</a>` : ''}
-            ${selectedEvent.driveNotesUrl ? `<a href="${selectedEvent.driveNotesUrl}" target="_blank" rel="noopener" class="info-tag">📄 Google Docs Notes</a>` : ''}
-            <a href="https://www.youtube.com/watch?v=ONwiUkc_tt4&list=PLbPukKwpmk5E" target="_blank" rel="noopener" class="info-tag">🎥 Legal Engineering 101 Playlist</a>
-            <a href="https://open.spotify.com/show/0348ivoLaNfKBq1HeIYC9b" target="_blank" rel="noopener" class="info-tag">🎧 LexClinic Spotify Show</a>
-            <a href="erc7827.html" class="info-tag">📄 ERC-7827 Standard Specification</a>
+          <div class="event-date-tag" style="color: ${titleColor}; font-weight: 700; margin-bottom: 0.5rem;">📅 ${item.date}</div>
+          <h3 style="color: ${titleColor}; font-size: 1.25rem; margin-bottom: 0.75rem;">${item.title}</h3>
+          <p style="margin-bottom: 1.25rem; font-size: 0.95rem; color: var(--text-main); line-height: 1.5;">
+            ${item.description}
+          </p>
+          <div class="card-actions" style="display: flex; gap: 0.75rem; flex-wrap: wrap;">
+            ${meetButtonHtml}
+            ${calUrl ? `<a href="${calUrl}" target="_blank" rel="noopener" class="btn btn-outline" style="font-size: 0.88rem;">Add to Google Calendar 📅</a>` : ''}
           </div>
         </div>
       `;
+    });
 
-      contentBodyEl.innerHTML = bodyHTML;
-    }
+    upcomingContainer.innerHTML = html;
 
   } catch (err) {
-    console.log('Events detail running in static mode:', err);
+    console.log('Error rendering live upcoming events:', err);
   }
 });

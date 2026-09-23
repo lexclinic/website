@@ -5,11 +5,17 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Explainer Media Clips — Law as a Software Runtime | LexClinic Education</title>
   <meta name="description" content="Watch and listen to the 5 Google NotebookLM video and audio explainers for Law as a Software Runtime.">
-  <link rel="stylesheet" href="/styles.css?v=20260829_2215">
+  <link rel="stylesheet" href="/styles.css?v=20260829_2265">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-  <script src="/script.js?v=20260829_2215" defer></script>
+  <script src="/js/audio-player.js?v=20260829_2430"></script>
+  <script src="/js/auth.js?v=20260829_2430"></script>
+  <script src="/js/media-tracker-miniapp.js?v=20260829_2430"></script>
+  <script src="/js/watch-tracker.js?v=20260829_2430"></script>
+  <script src="/script.js?v=20260829_2430" defer></script>
+  <link rel="icon" type="image/png" href="/favicon.png?v=20260829_2430">
+  <link rel="shortcut icon" href="/favicon.ico?v=20260829_2430">
 </head>
 <body>
 
@@ -71,46 +77,121 @@
           <!-- Clip 1 -->
           <div style="background: rgba(10, 17, 40, 0.6); border: 1px solid var(--border-color); border-radius: 8px; padding: 1.25rem;">
             <h3 style="color: var(--accent-cyan); font-size: 1.15rem; margin-bottom: 0.75rem;">1. Law as a Software Runtime (NotebookLM Audio Overview)</h3>
-            <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 6px; border: 1px solid var(--border-color); background: #000; margin-bottom: 0.85rem;">
-              <iframe src="https://drive.google.com/file/d/1j0XC3jsXz4_Up-oHAv1QbYxSOZ3J-1gn/preview" allow="autoplay" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;" allowfullscreen></iframe>
+                        <!-- Static Playback Meter Bar -->
+            <div class="media-playback-meter-container" style="margin-top: 0.5rem; margin-bottom: 0.85rem; background: rgba(15, 23, 42, 0.9); border: 1px solid #334155; border-radius: 8px; padding: 0.85rem; box-shadow: 0 4px 12px rgba(0,0,0,0.5);">
+              <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 0.4rem;">
+                <span class="meter-status-text" style="font-size: 0.88rem; font-weight: 700; color: #cbd5e1;">
+                  🎥 Unwatched Video Clip
+                </span>
+                <span class="meter-auth-hint" style="font-size: 0.8rem; color: #94a3b8;">
+                  🔒 Log in to save watch tracker
+                </span>
+              </div>
+              <div style="width: 100%; height: 8px; background: rgba(30, 41, 59, 0.8); border-radius: 4px; overflow: hidden; border: 1px solid #475569;">
+                <div class="meter-fill-bar" style="width: 0%; height: 100%; background: linear-gradient(90deg, #38bdf8, #34d399); transition: width 0.4s ease;"></div>
+              </div>
             </div>
-            <a href="https://drive.google.com/file/d/1j0XC3jsXz4_Up-oHAv1QbYxSOZ3J-1gn/view?usp=sharing" target="_blank" rel="noopener" class="btn btn-outline" style="font-size: 0.85rem; padding: 0.4rem 0.9rem;">Open Audio in Google Drive 🎧</a>
+
+            <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 6px; border: 1px solid var(--border-color); background: #000; margin-bottom: 0.85rem;">
+              <iframe sandbox="allow-scripts allow-same-origin allow-popups allow-forms allow-presentation" loading="lazy" src="https://www.youtube.com/embed/-d7FdFPKyFk?enablejsapi=1" allow="autoplay" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;" allowfullscreen></iframe>
+            </div>
+            
           </div>
 
           <!-- Clip 2 -->
           <div style="background: rgba(10, 17, 40, 0.6); border: 1px solid var(--border-color); border-radius: 8px; padding: 1.25rem;">
             <h3 style="color: var(--accent-cyan); font-size: 1.15rem; margin-bottom: 0.75rem;">2. Theory vs. Mechanics (NotebookLM Video Explainer)</h3>
-            <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 6px; border: 1px solid var(--border-color); background: #000; margin-bottom: 0.85rem;">
-              <iframe src="https://drive.google.com/file/d/1osWq4oTDDyrcpnNoUiSW9o0CGJ-XaHSV/preview" allow="autoplay" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;" allowfullscreen></iframe>
+                        <!-- Static Playback Meter Bar -->
+            <div class="media-playback-meter-container" style="margin-top: 0.5rem; margin-bottom: 0.85rem; background: rgba(15, 23, 42, 0.9); border: 1px solid #334155; border-radius: 8px; padding: 0.85rem; box-shadow: 0 4px 12px rgba(0,0,0,0.5);">
+              <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 0.4rem;">
+                <span class="meter-status-text" style="font-size: 0.88rem; font-weight: 700; color: #cbd5e1;">
+                  🎥 Unwatched Video Clip
+                </span>
+                <span class="meter-auth-hint" style="font-size: 0.8rem; color: #94a3b8;">
+                  🔒 Log in to save watch tracker
+                </span>
+              </div>
+              <div style="width: 100%; height: 8px; background: rgba(30, 41, 59, 0.8); border-radius: 4px; overflow: hidden; border: 1px solid #475569;">
+                <div class="meter-fill-bar" style="width: 0%; height: 100%; background: linear-gradient(90deg, #38bdf8, #34d399); transition: width 0.4s ease;"></div>
+              </div>
             </div>
-            <a href="https://drive.google.com/file/d/1osWq4oTDDyrcpnNoUiSW9o0CGJ-XaHSV/view?usp=sharing" target="_blank" rel="noopener" class="btn btn-outline" style="font-size: 0.85rem; padding: 0.4rem 0.9rem;">Open Video in Google Drive 🎥</a>
+
+            <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 6px; border: 1px solid var(--border-color); background: #000; margin-bottom: 0.85rem;">
+              <iframe sandbox="allow-scripts allow-same-origin allow-popups allow-forms allow-presentation" loading="lazy" src="https://www.youtube.com/embed/13BveDsBKiE?enablejsapi=1" allow="autoplay" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;" allowfullscreen></iframe>
+            </div>
+            
           </div>
 
           <!-- Clip 3 -->
           <div style="background: rgba(10, 17, 40, 0.6); border: 1px solid var(--border-color); border-radius: 8px; padding: 1.25rem;">
             <h3 style="color: var(--accent-cyan); font-size: 1.15rem; margin-bottom: 0.75rem;">3. The Future of Law (NotebookLM Video Explainer)</h3>
-            <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 6px; border: 1px solid var(--border-color); background: #000; margin-bottom: 0.85rem;">
-              <iframe src="https://drive.google.com/file/d/1eGSAYmTaDXwHdd0GfzKwgWu7fg0bDbb0/preview" allow="autoplay" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;" allowfullscreen></iframe>
+                        <!-- Static Playback Meter Bar -->
+            <div class="media-playback-meter-container" style="margin-top: 0.5rem; margin-bottom: 0.85rem; background: rgba(15, 23, 42, 0.9); border: 1px solid #334155; border-radius: 8px; padding: 0.85rem; box-shadow: 0 4px 12px rgba(0,0,0,0.5);">
+              <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 0.4rem;">
+                <span class="meter-status-text" style="font-size: 0.88rem; font-weight: 700; color: #cbd5e1;">
+                  🎥 Unwatched Video Clip
+                </span>
+                <span class="meter-auth-hint" style="font-size: 0.8rem; color: #94a3b8;">
+                  🔒 Log in to save watch tracker
+                </span>
+              </div>
+              <div style="width: 100%; height: 8px; background: rgba(30, 41, 59, 0.8); border-radius: 4px; overflow: hidden; border: 1px solid #475569;">
+                <div class="meter-fill-bar" style="width: 0%; height: 100%; background: linear-gradient(90deg, #38bdf8, #34d399); transition: width 0.4s ease;"></div>
+              </div>
             </div>
-            <a href="https://drive.google.com/file/d/1eGSAYmTaDXwHdd0GfzKwgWu7fg0bDbb0/view?usp=sharing" target="_blank" rel="noopener" class="btn btn-outline" style="font-size: 0.85rem; padding: 0.4rem 0.9rem;">Open Video in Google Drive 🎥</a>
+
+            <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 6px; border: 1px solid var(--border-color); background: #000; margin-bottom: 0.85rem;">
+              <iframe sandbox="allow-scripts allow-same-origin allow-popups allow-forms allow-presentation" loading="lazy" src="https://www.youtube.com/embed/oXGMxpqvF6E?enablejsapi=1" allow="autoplay" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;" allowfullscreen></iframe>
+            </div>
+            
           </div>
 
           <!-- Clip 4 -->
           <div style="background: rgba(10, 17, 40, 0.6); border: 1px solid var(--border-color); border-radius: 8px; padding: 1.25rem;">
             <h3 style="color: var(--accent-cyan); font-size: 1.15rem; margin-bottom: 0.75rem;">4. Magic to Mechanics (NotebookLM Video Explainer)</h3>
-            <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 6px; border: 1px solid var(--border-color); background: #000; margin-bottom: 0.85rem;">
-              <iframe src="https://drive.google.com/file/d/15CsEdBW8H-0WNHFmLv0ROYJMd52I3jGk/preview" allow="autoplay" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;" allowfullscreen></iframe>
+                        <!-- Static Playback Meter Bar -->
+            <div class="media-playback-meter-container" style="margin-top: 0.5rem; margin-bottom: 0.85rem; background: rgba(15, 23, 42, 0.9); border: 1px solid #334155; border-radius: 8px; padding: 0.85rem; box-shadow: 0 4px 12px rgba(0,0,0,0.5);">
+              <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 0.4rem;">
+                <span class="meter-status-text" style="font-size: 0.88rem; font-weight: 700; color: #cbd5e1;">
+                  🎥 Unwatched Video Clip
+                </span>
+                <span class="meter-auth-hint" style="font-size: 0.8rem; color: #94a3b8;">
+                  🔒 Log in to save watch tracker
+                </span>
+              </div>
+              <div style="width: 100%; height: 8px; background: rgba(30, 41, 59, 0.8); border-radius: 4px; overflow: hidden; border: 1px solid #475569;">
+                <div class="meter-fill-bar" style="width: 0%; height: 100%; background: linear-gradient(90deg, #38bdf8, #34d399); transition: width 0.4s ease;"></div>
+              </div>
             </div>
-            <a href="https://drive.google.com/file/d/15CsEdBW8H-0WNHFmLv0ROYJMd52I3jGk/view?usp=sharing" target="_blank" rel="noopener" class="btn btn-outline" style="font-size: 0.85rem; padding: 0.4rem 0.9rem;">Open Video in Google Drive 🎥</a>
+
+            <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 6px; border: 1px solid var(--border-color); background: #000; margin-bottom: 0.85rem;">
+              <iframe sandbox="allow-scripts allow-same-origin allow-popups allow-forms allow-presentation" loading="lazy" src="https://www.youtube.com/embed/d9Fy0SeS3qg?enablejsapi=1" allow="autoplay" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;" allowfullscreen></iframe>
+            </div>
+            
           </div>
 
           <!-- Clip 5 -->
           <div style="background: rgba(10, 17, 40, 0.6); border: 1px solid var(--border-color); border-radius: 8px; padding: 1.25rem;">
             <h3 style="color: var(--accent-cyan); font-size: 1.15rem; margin-bottom: 0.75rem;">5. The Engineering Reality vs. Jurisprudence (NotebookLM Video Explainer)</h3>
-            <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 6px; border: 1px solid var(--border-color); background: #000; margin-bottom: 0.85rem;">
-              <iframe src="https://drive.google.com/file/d/1PXv0jHkjvac7RVVON24-p6C7jFs_mEav/preview" allow="autoplay" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;" allowfullscreen></iframe>
+                        <!-- Static Playback Meter Bar -->
+            <div class="media-playback-meter-container" style="margin-top: 0.5rem; margin-bottom: 0.85rem; background: rgba(15, 23, 42, 0.9); border: 1px solid #334155; border-radius: 8px; padding: 0.85rem; box-shadow: 0 4px 12px rgba(0,0,0,0.5);">
+              <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 0.4rem;">
+                <span class="meter-status-text" style="font-size: 0.88rem; font-weight: 700; color: #cbd5e1;">
+                  🎥 Unwatched Video Clip
+                </span>
+                <span class="meter-auth-hint" style="font-size: 0.8rem; color: #94a3b8;">
+                  🔒 Log in to save watch tracker
+                </span>
+              </div>
+              <div style="width: 100%; height: 8px; background: rgba(30, 41, 59, 0.8); border-radius: 4px; overflow: hidden; border: 1px solid #475569;">
+                <div class="meter-fill-bar" style="width: 0%; height: 100%; background: linear-gradient(90deg, #38bdf8, #34d399); transition: width 0.4s ease;"></div>
+              </div>
             </div>
-            <a href="https://drive.google.com/file/d/1PXv0jHkjvac7RVVON24-p6C7jFs_mEav/view?usp=sharing" target="_blank" rel="noopener" class="btn btn-outline" style="font-size: 0.85rem; padding: 0.4rem 0.9rem;">Open Video in Google Drive 🎥</a>
+
+            <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 6px; border: 1px solid var(--border-color); background: #000; margin-bottom: 0.85rem;">
+              <iframe sandbox="allow-scripts allow-same-origin allow-popups allow-forms allow-presentation" loading="lazy" src="https://www.youtube.com/embed/bMrCqKp-KPI?enablejsapi=1" allow="autoplay" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;" allowfullscreen></iframe>
+            </div>
+            
           </div>
 
         </div>
