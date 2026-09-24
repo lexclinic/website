@@ -1,0 +1,38 @@
+{
+  "agentic_repository_design": {
+    "version": "4.0.0",
+    "architecture": "Sovereign Tri-Repository Metagit Architecture",
+    "target_operator": "Autonomous AI Agent & Human Peer Programmers",
+    "philosophy": "Agentic Repository Design: Strict Inclusion Hierarchy where .git_github ⊂ .git_github_context ⊂ .git_mgit, governing public code releases, private cloud audit backups, and local workspace memory.",
+    "inclusion_hierarchy": {
+      "formula": ".git_github ⊂ .git_github_context ⊂ .git_mgit",
+      "level_1_github_public": {
+        "metadata_dir": ".git_github",
+        "scope": "Public Sub-Set",
+        "remote": "git@github.com:lexclinic/website.git",
+        "contents": "Clean production web substrate (kairos_mgit/), 101 courseware, Edge Functions, public event routes, and elevated Chronos public goods.",
+        "security": "100% secret-free. Excludes .localonly files and private Chronos snapshots."
+      },
+      "level_2_github_context": {
+        "metadata_dir": ".git_github_context",
+        "scope": "Private Super-Set of .git_github",
+        "remote": "git@github.com:lexclinic/website_context.git",
+        "contents": "Includes EVERYTHING in .git_github PLUS chronos_mgit/ time-sharded memory snapshots, execution audit logs, WeDo manifests, and raw transcripts."
+      },
+      "level_3_local_mgit": {
+        "metadata_dir": ".git_mgit",
+        "scope": "Complete Super-Set of All Workspace Files",
+        "remote": "None (Strictly local to workstation)",
+        "contents": "Includes EVERYTHING in .git_github_context PLUS local .localonly configuration files, local EVM wallets, staging logs, and internal workspace state."
+      }
+    },
+    "airgap_specifications": {
+      "localonly_pattern": {
+        "suffix": ".localonly",
+        "description": "Any file containing local configs, secrets, private keys, or staging logs must append .localonly before its extension (e.g. config.localonly.js, wallet.localonly.json).",
+        "gitignore_enforcement": "*.localonly, *.localonly.*",
+        "linter_rule": "Pre-commit secret scanner blocks public .git_github commits if keys are found in non-.localonly files."
+      }
+    }
+  }
+}

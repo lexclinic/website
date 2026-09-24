@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ERC-7827 Standard | LexClinic Education</title>
+  <meta name="description" content="ERC-7827: JSON Contract with Value Version Control. Authored by LexClinic (lex.clinic) & Kyle Smith (@Bestape). Specification and IERC7827 interface.">
+  <link rel="stylesheet" href="/styles.css?v=20260829_2265">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <script src="/js/audio-player.js?v=20260829_2640"></script>
+  <script src="/js/auth.js?v=20260829_2640"></script>
+  <script src="/js/media-tracker-miniapp.js?v=20260829_2640"></script>
+  <script src="/js/watch-tracker.js?v=20260829_2640"></script>
+  <script src="/script.js?v=20260829_2640" defer></script>
+  <link rel="icon" type="image/png" href="/favicon.png?v=20260829_2640">
+  <link rel="shortcut icon" href="/favicon.ico?v=20260829_2640">
+</head>
+<body>
+
+  <!-- Navigation -->
+                              <header class="navbar">
+    <div class="nav-container">
+      <a href="/index.html" class="brand-logo">
+        <span class="logo-icon">⚖️</span>
+        <span class="logo-text">Lex<span class="highlight">Clinic</span></span>
+      </a>
+      <nav class="nav-links" id="nav-links">
+        <a href="/event.html">Event</a>
+        <a href="/101">101</a>
+        <a href="/interview/">Interview</a>
+        <a href="/partner/">Partner</a>
+        <a href="/fiduciary/">Fiduciary</a>
+        <a href="/attest/">Attest</a>
+        <a href="/help/">Help</a>
+        <a href="/repo/">Repo</a>
+        <a href="/erc7827.html" class="active-link">ERC-7827</a>
+        <a href="https://www.youtube.com/watch?v=ONwiUkc_tt4&list=PLbPukKwpmk5E" target="_blank" rel="noopener" class="btn-social" title="Subscribe on YouTube">YouTube</a>
+        <a href="https://open.spotify.com/show/0348ivoLaNfKBq1HeIYC9b" target="_blank" rel="noopener" class="btn-spotify" title="Follow on Spotify">Spotify</a>
+        <a href="https://www.linkedin.com/company/lexclinic" target="_blank" rel="noopener" class="btn-social" title="Follow on LinkedIn">LinkedIn</a>
+        <a href="javascript:void(0)" onclick="event.preventDefault(); window.openNavLoginModal(event); return false;" id="nav-login-btn" style="background: #fbbf24; color: #0a1128; font-weight: 800; font-size: 0.88rem; padding: 0.35rem 0.85rem; border-radius: 6px; margin-left: 0.35rem; text-decoration: none; border: 2px solid #f59e0b; box-shadow: 0 0 10px rgba(251, 191, 36, 0.4); display: inline-block;">Login</a>
+      </nav>
+      <button class="mobile-toggle" id="mobile-toggle" aria-label="Toggle navigation">
+        ☰
+      </button>
+    </div>
+  </header>
+
+  <!-- Hero Banner -->
+  <section class="hero page-hero">
+    <div class="container hero-content">
+      <div class="hero-badge">💎 Ethereum Improvement Proposal</div>
+      <h1 class="hero-title">ERC-7827: <span class="gradient-text">JSON Contract</span> with Value Version Control</h1>
+      <p class="hero-subtitle">
+        Standardized smart contract interface for on-chain JSON state output and key-value version control history. Authored by <strong>LexClinic (lex.clinic)</strong> & Kyle Smith (@Bestape).
+      </p>
+    </div>
+  </section>
+
+  <!-- ERC-7827 Standard Spotlight Section -->
+  <section class="section standard-section" id="erc7827">
+    <div class="container">
+      <div class="section-header text-center">
+        <div class="badge-tag">Ethereum Standard Specification</div>
+        <h2 class="section-title">ERC-7827 Technical Overview & Interface</h2>
+        <p class="section-description">Defining human-readable, RESTful Web3 smart contract state for legal engineering runtimes.</p>
+      </div>
+
+      <div class="grid grid-2">
+        <div class="standard-desc">
+          <h3>Standard Overview & Specification</h3>
+          <p>
+            <strong>ERC-7827</strong> defines a standardized interface for smart contracts to maintain an on-chain JSON object with full historical version control for every key-value pair.
+          </p>
+          <ul class="standard-features">
+            <li><strong>`json()`</strong>: Real-time on-chain JSON string output representing current contract state.</li>
+            <li><strong>`version(key)`</strong>: Returns a chronologically ordered array of all historical values for a key.</li>
+            <li><strong>`write(keys, values, replace)`</strong>: Atomic key-value write operations with overwrite protection.</li>
+          </ul>
+          <div class="key-point">
+            <span>Enables RESTful Web3 integration, human-readable auditability, and sublinear state tracking for computational contracts.</span>
+          </div>
+        </div>
+
+        <div class="code-editor-box">
+          <div class="editor-header">
+            <span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span>
+            <span class="editor-title">IERC7827.sol</span>
+          </div>
+          <pre class="code-block"><code><span class="comment">// SPDX-License-Identifier: CC0-1.0</span>
+<span class="keyword">pragma solidity</span> ^0.8.0;
+
+<span class="keyword">interface</span> <span class="function">IERC7827</span> {
+    <span class="comment">/// @notice Returns the current state of the JSON object as a string</span>
+    <span class="keyword">function</span> <span class="function">json</span>() <span class="keyword">external view returns</span> (string <span class="keyword">memory</span>);
+
+    <span class="comment">/// @notice Returns chronologically ordered version history for a key</span>
+    <span class="keyword">function</span> <span class="function">version</span>(string <span class="keyword">calldata</span> key) <span class="keyword">external view returns</span> (string <span class="keyword">memory</span>);
+
+    <span class="comment">/// @notice Writes new values to the on-chain JSON object</span>
+    <span class="keyword">function</span> <span class="function">write</span>(
+        string[] <span class="keyword">calldata</span> keys,
+        string[] <span class="keyword">calldata</span> values,
+        bool replace
+    ) <span class="keyword">external</span>;
+}</code></pre>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Footer -->
+                          <footer class="footer">
+    <div class="container footer-content">
+      <div class="footer-col">
+        <div class="brand-logo footer-logo">
+          <span class="logo-icon">⚖️</span>
+          <span class="logo-text">Lex<span class="highlight">Clinic</span></span>
+        </div>
+        <p class="footer-tagline">LexClinic Education</p>
+        <p class="footer-address">
+          Authors of ERC-7827 | Open-Source Computational Law & Legal Engineering
+        </p>
+      </div>
+      <div class="footer-col">
+        <h4>Navigation</h4>
+        <ul>
+          <li><a href="/event.html">Event</a></li>
+          <li><a href="/101">Legal Engineering 101</a></li>
+          <li><a href="/interview/">Interview</a></li>
+          <li><a href="/partner/">Partner</a></li>
+          <li><a href="/fiduciary/">Fiduciary</a></li>
+          <li><a href="/attest/">Attest</a></li>
+          <li><a href="/help/">Help</a></li>
+          <li><a href="/repo/">Repository</a></li>
+          <li><a href="/erc7827.html">ERC-7827 Standard</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Connect & Media</h4>
+        <p>YouTube: <a href="https://www.youtube.com/watch?v=ONwiUkc_tt4&list=PLbPukKwpmk5E" target="_blank" rel="noopener">Legal Engineering 101 Playlist</a></p>
+        <p>Spotify: <a href="https://open.spotify.com/show/0348ivoLaNfKBq1HeIYC9b" target="_blank" rel="noopener">LexClinic Spotify Show</a></p>
+        <p>LinkedIn: <a href="https://www.linkedin.com/company/lexclinic" target="_blank" rel="noopener">LexClinic Company Page</a></p>
+        <p class="disclaimer">
+          © 2026 LexClinic Education. Open public goods published under AGPL-3.0 & Creative Commons Attribution-ShareAlike.
+        </p>
+      </div>
+    </div>
+  </footer>
+
+  
+</body>
+</html>

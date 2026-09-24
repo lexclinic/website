@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Class 2.1: Smart Contracts vs. Ricardian Contracts | Legal Engineering 101</title>
+  <meta name="description" content="Compares on-chain state execution against dual-binding Ricardian legal contracts and cryptographic signets.">
+  <link rel="stylesheet" href="/styles.css?v=20260829_2640">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <script src="/js/audio-player.js?v=20260829_2640"></script>
+  <script src="/js/auth.js?v=20260829_2640"></script>
+  <script src="/js/media-tracker-miniapp.js?v=20260829_2640"></script>
+  <script src="/js/watch-tracker.js?v=20260829_2640"></script>
+  <script src="/script.js?v=20260829_2640" defer></script>
+  <link rel="icon" type="image/png" href="/favicon.png?v=20260829_2640">
+  <link rel="shortcut icon" href="/favicon.ico?v=20260829_2640">
+</head>
+<body>
+
+  <!-- Navigation Bar -->
+      <header class="navbar">
+    <div class="nav-container">
+      <a href="/index.html" class="brand-logo">
+        <span class="logo-icon">⚖️</span>
+        <span class="logo-text">Lex<span class="highlight">Clinic</span></span>
+      </a>
+      <nav class="nav-links" id="nav-links">
+        <a href="/event.html">Event</a>
+        <a href="/101" class="active-link">101</a>
+        <a href="/interview/">Interview</a>
+        <a href="/partner/">Partner</a>
+        <a href="/fiduciary/">Fiduciary</a>
+        <a href="/attest/">Attest</a>
+        <a href="/help/">Help</a>
+        <a href="/repo/">Repo</a>
+        <a href="/erc7827.html">ERC-7827</a>
+        <a href="https://www.youtube.com/watch?v=ONwiUkc_tt4&list=PLbPukKwpmk5E" target="_blank" rel="noopener" class="btn-social" title="Subscribe on YouTube">YouTube</a>
+        <a href="https://open.spotify.com/show/0348ivoLaNfKBq1HeIYC9b" target="_blank" rel="noopener" class="btn-spotify" title="Follow on Spotify">Spotify</a>
+        <a href="https://www.linkedin.com/company/lexclinic" target="_blank" rel="noopener" class="btn-social" title="Follow on LinkedIn">LinkedIn</a>
+        <a href="javascript:void(0)" onclick="event.preventDefault(); window.openNavLoginModal(event); return false;" id="nav-login-btn" style="background: #fbbf24; color: #0a1128; font-weight: 800; font-size: 0.88rem; padding: 0.35rem 0.85rem; border-radius: 6px; margin-left: 0.35rem; text-decoration: none; border: 2px solid #f59e0b; box-shadow: 0 0 10px rgba(251, 191, 36, 0.4); display: inline-block;">Login</a>
+      </nav>
+      <button class="mobile-toggle" id="mobile-toggle" aria-label="Toggle navigation">
+        ☰
+      </button>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero page-hero">
+    <div class="container hero-content">
+      <div class="hero-badge">Module 2.1</div>
+      <h1 class="hero-title">Class 2.1: Smart Contracts vs. Ricardian Contracts</h1>
+      <p class="hero-subtitle">Compares on-chain state execution against dual-binding Ricardian legal contracts and cryptographic signets.</p>
+      <div class="hero-actions">
+        <a href="quiz.html" class="btn btn-primary" style="background: var(--accent-gold); color: #0a1128; font-weight: 800;">Take Class 2.1 Quiz (20 Qs) </a>
+        <a href="/101" class="btn btn-outline">⬅ Back to 101 Hub</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Main Content -->
+  <section class="section">
+    <div class="container">
+      
+      <!-- 1. Lesson Overview Tile at TOP -->
+      <div class="card pillar-card" style="margin-bottom: 2rem;">
+        <h2 style="color: var(--accent-gold); font-size: 1.4rem; margin-bottom: 0.75rem;">
+          Lesson Overview: Class 2.1
+        </h2>
+        <p style="line-height: 1.7; color: var(--text-main); font-size: 1.05rem; margin: 0;">
+          Compares on-chain state execution against dual-binding Ricardian legal contracts and cryptographic signets.
+        </p>
+      </div>
+
+      <!-- 2. Video Card (No Quiz Button directly under video) -->
+      <div class="card pillar-card" id="card_101_21_vid">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.75rem;">
+          <span class="status-badge today-badge" style="background: var(--accent-cyan); color: #0a1128; font-weight: 800;">🎥 Class 2.1 Video Lecture</span>
+          <span class="status-badge notebook-available">YouTube 101 Series</span>
+        </div>
+
+        <h3 style="color: var(--accent-cyan); font-size: 1.25rem; margin-bottom: 0.75rem;">
+          Class 2.1: Smart Contracts vs. Ricardian Contracts
+        </h3>
+
+        <!-- Static Playback Meter Bar -->
+        <div class="media-playback-meter-container" style="margin-top: 0.5rem; margin-bottom: 0.85rem; background: rgba(15, 23, 42, 0.9); border: 1px solid #334155; border-radius: 8px; padding: 0.85rem; box-shadow: 0 4px 12px rgba(0,0,0,0.5);">
+          <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 0.4rem;">
+            <span class="meter-status-text" style="font-size: 0.88rem; font-weight: 700; color: #cbd5e1;">
+              🎥 Unwatched Video Clip
+            </span>
+            <span class="meter-auth-hint" style="font-size: 0.8rem; color: #94a3b8;">
+              🔒 Log in to save watch tracker
+            </span>
+          </div>
+          <div style="width: 100%; height: 8px; background: rgba(30, 41, 59, 0.8); border-radius: 4px; overflow: hidden; border: 1px solid #475569;">
+            <div class="meter-fill-bar" style="width: 0%; height: 100%; background: linear-gradient(90deg, #38bdf8, #34d399); transition: width 0.4s ease;"></div>
+          </div>
+        </div>
+
+        <!-- YouTube Embed Player -->
+        <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 8px; border: 1px solid var(--border-color); background: #000; margin-bottom: 0.75rem;">
+          <iframe id="yt_frame_card_101_21_vid" loading="lazy" src="https://www.youtube.com/embed/jViIb6xpdBU?enablejsapi=1" allow="autoplay; fullscreen" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;" allowfullscreen></iframe>
+        </div>
+
+        <!-- Speed & Fullscreen Controls Bar -->
+        <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem; background: rgba(15, 23, 42, 0.8); padding: 0.65rem 0.85rem; border-radius: 6px; border: 1px solid #334155;">
+          <div style="display: flex; align-items: center; gap: 0.35rem;">
+            <span style="font-size: 0.82rem; font-weight: 700; color: var(--accent-cyan); margin-right: 0.25rem;">Speed:</span>
+            <button type="button" onclick="window.setVideoSpeed('card_101_21_vid', 1.0, this)" class="btn-speed" style="padding: 0.25rem 0.55rem; font-size: 0.78rem; background: var(--accent-cyan); color: #0a1128; font-weight: 800; border: 1px solid var(--accent-cyan); border-radius: 4px; cursor: pointer;">1.0x</button>
+            <button type="button" onclick="window.setVideoSpeed('card_101_21_vid', 1.25, this)" class="btn-speed" style="padding: 0.25rem 0.55rem; font-size: 0.78rem; background: rgba(30, 41, 59, 0.8); color: #e2e8f0; font-weight: 600; border: 1px solid #334155; border-radius: 4px; cursor: pointer;">1.25x</button>
+            <button type="button" onclick="window.setVideoSpeed('card_101_21_vid', 1.5, this)" class="btn-speed" style="padding: 0.25rem 0.55rem; font-size: 0.78rem; background: rgba(30, 41, 59, 0.8); color: #e2e8f0; font-weight: 600; border: 1px solid #334155; border-radius: 4px; cursor: pointer;">1.5x</button>
+            <button type="button" onclick="window.setVideoSpeed('card_101_21_vid', 1.75, this)" class="btn-speed" style="padding: 0.25rem 0.55rem; font-size: 0.78rem; background: rgba(30, 41, 59, 0.8); color: #e2e8f0; font-weight: 600; border: 1px solid #334155; border-radius: 4px; cursor: pointer;">1.75x</button>
+            <button type="button" onclick="window.setVideoSpeed('card_101_21_vid', 2.0, this)" class="btn-speed" style="padding: 0.25rem 0.55rem; font-size: 0.78rem; background: rgba(30, 41, 59, 0.8); color: #e2e8f0; font-weight: 600; border: 1px solid #334155; border-radius: 4px; cursor: pointer;">2.0x</button>
+          </div>
+
+          <button type="button" onclick="const iframe = document.getElementById('yt_frame_card_101_21_vid'); if (iframe) { if (iframe.requestFullscreen) iframe.requestFullscreen(); else if (iframe.webkitRequestFullscreen) iframe.webkitRequestFullscreen(); }" class="btn" style="padding: 0.25rem 0.65rem; font-size: 0.78rem; background: rgba(56, 189, 248, 0.15); color: var(--accent-cyan); border: 1px solid var(--accent-cyan); border-radius: 4px; cursor: pointer; font-weight: 700;">
+            ⤢ Expand Fullscreen
+          </button>
+        </div>
+      </div>
+
+      <!-- 3. Exact Spotify Episode Embed Card -->
+      <div class="card pillar-card" id="card_101_21_spotify" style="margin-top: 2rem;">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.75rem;">
+          <span class="status-badge today-badge" style="background: #1db954; color: #0a1128; font-weight: 800;">🎧 Official Spotify Podcast Episode</span>
+          <span class="status-badge notebook-available">Spotify Episode</span>
+        </div>
+
+        <h3 style="color: #1ed760; font-size: 1.25rem; margin-bottom: 0.75rem;">
+          Class 2.1 Podcast Audio — Spotify
+        </h3>
+
+        <!-- Exact Spotify Episode Embed Player -->
+        <div style="border-radius: 12px; overflow: hidden;">
+          <iframe style="border-radius:12px" src="https://open.spotify.com/embed/episode/1ZlvbMXup0ra60KoualrmK?utm_source=generator&theme=0" width="100%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+        </div>
+      </div>
+
+      <!-- 4. Bottom Action Navigation & Quiz Link Section -->
+      <div style="margin-top: 2.5rem; display: flex; gap: 1rem; flex-wrap: wrap; align-items: center; justify-content: center;">
+        <a href="quiz.html" class="btn btn-primary" style="background: var(--accent-gold); color: #0a1128; font-weight: 800; font-size: 1.05rem; padding: 0.75rem 1.75rem;">Take Class 2.1 Quiz (20 Qs) </a>
+        <a href="/101" class="btn btn-outline" style="font-size: 1.05rem; padding: 0.75rem 1.75rem;">⬅ Back to 101 Hub</a>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container footer-content">
+      <p>© 2026 LexClinic Education Inc. Open public goods published under AGPL-3.0.</p>
+    </div>
+  </footer>
+
+</body>
+</html>

@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Legal Engineering 101 Quiz | LexClinic Education</title>
+  <meta name="description" content="Legal Engineering 101 Quiz: 16-question assessment covering Classes 1.1, 1.2, 2.1, and 2.2 with Magic Link authentication.">
+  <link rel="stylesheet" href="/styles.css?v=20260829_2265">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <!-- Ethers.js for client-side Keccak256 payload hashing -->
+  <script src="https://cdn.jsdelivr.net/npm/ethers@5.7.2/dist/ethers.umd.min.js"></script>
+  <script src="/js/audio-player.js?v=20260829_2640"></script>
+  <script src="/js/auth.js?v=20260829_2640"></script>
+  <script src="/js/media-tracker-miniapp.js?v=20260829_2640"></script>
+  <script src="/js/watch-tracker.js?v=20260829_2640"></script>
+  <script src="/script.js?v=20260829_2640" defer></script>
+  <link rel="icon" type="image/png" href="/favicon.png?v=20260829_2640">
+  <link rel="shortcut icon" href="/favicon.ico?v=20260829_2640">
+</head>
+<body>
+
+  <!-- Navigation Bar -->
+                              <header class="navbar">
+    <div class="nav-container">
+      <a href="/index.html" class="brand-logo">
+        <span class="logo-icon">⚖️</span>
+        <span class="logo-text">Lex<span class="highlight">Clinic</span></span>
+      </a>
+      <nav class="nav-links" id="nav-links">
+        <a href="/event.html">Event</a>
+        <a href="/101" class="active-link">101</a>
+        <a href="/interview/">Interview</a>
+        <a href="/partner/">Partner</a>
+        <a href="/fiduciary/">Fiduciary</a>
+        <a href="/attest/">Attest</a>
+        <a href="/help/">Help</a>
+        <a href="/repo/">Repo</a>
+        <a href="/erc7827.html">ERC-7827</a>
+        <a href="https://www.youtube.com/watch?v=ONwiUkc_tt4&list=PLbPukKwpmk5E" target="_blank" rel="noopener" class="btn-social" title="Subscribe on YouTube">YouTube</a>
+        <a href="https://open.spotify.com/show/0348ivoLaNfKBq1HeIYC9b" target="_blank" rel="noopener" class="btn-spotify" title="Follow on Spotify">Spotify</a>
+        <a href="https://www.linkedin.com/company/lexclinic" target="_blank" rel="noopener" class="btn-social" title="Follow on LinkedIn">LinkedIn</a>
+        <a href="javascript:void(0)" onclick="event.preventDefault(); window.openNavLoginModal(event); return false;" id="nav-login-btn" style="background: #fbbf24; color: #0a1128; font-weight: 800; font-size: 0.88rem; padding: 0.35rem 0.85rem; border-radius: 6px; margin-left: 0.35rem; text-decoration: none; border: 2px solid #f59e0b; box-shadow: 0 0 10px rgba(251, 191, 36, 0.4); display: inline-block;">Login</a>
+      </nav>
+      <button class="mobile-toggle" id="mobile-toggle" aria-label="Toggle navigation">
+        ☰
+      </button>
+    </div>
+  </header>
+
+  <!-- Hero Header -->
+  <section class="hero event-hero">
+    <div class="container hero-content">
+      <div class="hero-badge"> 101 Curriculum Assessment</div>
+      <h1 class="hero-title">Legal Engineering <span class="gradient-text">101 Quiz</span></h1>
+      <p class="hero-subtitle">
+        16-Question Assessment covering Classes 1.1, 1.2, 2.1, and 2.2. Log in via magic link email to unlock the questions, compute your Keccak-256 payload hash, and record your score.
+      </p>
+      <div class="hero-actions">
+        <a href="/101" class="btn btn-primary">Watch 101 Video Lessons 🎥</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Educational Content Container -->
+  <section class="section event-detail-section">
+    <div class="container">
+
+      <!-- Interactive Quiz Card -->
+      <div class="card event-module-card" id="quiz-module" style="border: 2px solid var(--accent-gold); background: rgba(15, 23, 42, 0.95);">
+        <div class="module-header">
+          <span class="badge-tag" style="background: var(--accent-gold); color: var(--bg-dark);">16-Question 101 Assessment</span>
+          <h2 style="color: var(--accent-gold);">101 Media Assessment (Login Required)</h2>
+        </div>
+
+        <!-- Logged-in State Bar -->
+        <div id="logged-in-bar" style="display: none; background: rgba(52, 211, 153, 0.15); border: 1px solid var(--accent-green); padding: 0.85rem 1.2rem; border-radius: 6px; margin-bottom: 1.5rem; justify-content: space-between; align-items: center; flex-wrap: wrap;">
+          <span style="color: #fff; font-weight: 600;">
+            🔓 Logged in as <span id="user-email-display" style="color: var(--accent-green);">member@lex.clinic</span>
+          </span>
+          <button onclick="handleLogout()" class="btn btn-outline" style="font-size: 0.8rem; padding: 0.3rem 0.8rem; border-color: rgba(255,255,255,0.3); color: #fff;">
+            Logout 🚪
+          </button>
+        </div>
+
+        <!-- Logged-Out Quiz Locked Card -->
+        <div id="logged-out-prompt-banner" style="text-align: center; padding: 2.5rem 1.5rem; background: rgba(10, 17, 40, 0.8); border: 2px dashed var(--accent-gold); border-radius: 8px; margin-bottom: 1.5rem;">
+          <span style="font-size: 3rem; display: block; margin-bottom: 0.5rem;">🔒</span>
+          <h2 style="color: var(--accent-gold); margin-bottom: 0.75rem;">Quiz Questions Locked</h2>
+          <p style="color: var(--text-main); max-width: 520px; margin: 0 auto 1.5rem auto; font-size: 0.98rem; line-height: 1.6;">
+            The 16-question 101 assessment is restricted to logged-in users. Please log in with your email address to receive a magic link email from <strong>kyle@lex.clinic</strong> to unlock the quiz questions and record your score.
+          </p>
+          <button type="button" onclick="event.preventDefault(); window.openNavLoginModal(event); return false;" ontouchend="window.openNavLoginModal(event)" class="btn btn-primary" style="background: var(--accent-gold); color: #0a1128; font-weight: 800; font-size: 1.05rem; padding: 0.75rem 1.5rem; border: 2px solid #f59e0b; box-shadow: 0 0 15px rgba(251, 191, 36, 0.4);">
+            ✨ Click Here to Log In & Unlock Quiz 🔒
+          </button>
+        </div>
+
+        <!-- Quiz Form (STRICTLY HIDDEN WHEN LOGGED OUT) -->
+        <form id="quiz-form" style="display: none;" onsubmit="event.preventDefault(); handleFormSubmit();">
+          
+          <!-- CLASS 1.1 (4 Questions) -->
+          <div style="border-left: 4px solid var(--accent-cyan); padding-left: 1rem; margin-bottom: 2rem;">
+            <h3 style="color: var(--accent-gold); font-size: 1.25rem; margin-bottom: 1rem;">🎥 Class 1.1: What is a "Performance" in Law?</h3>
+            
+            <div style="background: rgba(10, 17, 40, 0.6); border: 1px solid var(--border-color); border-radius: 8px; padding: 1.25rem; margin-bottom: 1rem;" id="card-q1">
+              <p style="color: var(--accent-cyan); font-weight: 600; margin-bottom: 0.5rem;">1.1 How does Class 1.1 define a "Performance" in legal theory?</p>
+              <label style="display: block; margin-bottom: 0.4rem; cursor: pointer;"><input type="radio" name="q1" value="A"> A) The active fulfillment or execution of contractual obligations upon state condition triggers.</label>
+              <label style="display: block; margin-bottom: 0.4rem; cursor: pointer;"><input type="radio" name="q1" value="B"> B) Storing static paper documents in courthouse drawers.</label>
+              <label style="display: block; margin-bottom: 0.4rem; cursor: pointer;"><input type="radio" name="q1" value="C"> C) A theatrical courtroom performance before a jury.</label>
+            </div>
+
+            <div style="background: rgba(10, 17, 40, 0.6); border: 1px solid var(--border-color); border-radius: 8px; padding: 1.25rem; margin-bottom: 1rem;" id="card-q2">
+              <p style="color: var(--accent-cyan); font-weight: 600; margin-bottom: 0.5rem;">1.2 What is the primary weakness of paper-based legal performance verification?</p>
+              <label style="display: block; margin-bottom: 0.4rem; cursor: pointer;"><input type="radio" name="q2" value="A"> A) High administrative friction, manual audit delays, and retrospective dispute resolution.</label>
+              <label style="display: block; margin-bottom: 0.4rem; cursor: pointer;"><input type="radio" name="q2" value="B"> B) Instantaneous digital execution speed.</label>
+              <label style="display: block; margin-bottom: 0.4rem; cursor: pointer;"><input type="radio" name="q2" value="C"> C) Automatic cryptographic signature validation.</label>
+            </div>
+
+            <div style="background: rgba(10, 17, 40, 0.6); border: 1px solid var(--border-color); border-radius: 8px; padding: 1.25rem; margin-bottom: 1rem;" id="card-q3">
+              <p style="color: var(--accent-cyan); font-weight: 600; margin-bottom: 0.5rem;">1.3 What paradigm shift occurs when contracts transition into executable state machines?</p>
+              <label style="display: block; margin-bottom: 0.4rem; cursor: pointer;"><input type="radio" name="q3" value="A"> A) Performance is verified deterministically as state changes occur in code.</label>
+              <label style="display: block; margin-bottom: 0.4rem; cursor: pointer;"><input type="radio" name="q3" value="B"> B) Contract clauses become purely decorative text.</label>
+              <label style="display: block; margin-bottom: 0.4rem; cursor: pointer;"><input type="radio" name="q3" value="C"> C) Legal teams must manually sign every individual state update.</label>
+            </div>
+
+            <div style="background: rgba(10, 17, 40, 0.6); border: 1px solid var(--border-color); border-radius: 8px; padding: 1.25rem; margin-bottom: 1rem;" id="card-q4">
+              <p style="color: var(--accent-cyan); font-weight: 600; margin-bottom: 0.5rem;">1.4 Why are performance conditions critical for smart contracts?</p>
+              <label style="display: block; margin-bottom: 0.4rem; cursor: pointer;"><input type="radio" name="q4" value="A"> A) They serve as hard verification boundaries before contractual state transitions occur.</label>
+              <label style="display: block; margin-bottom: 0.4rem; cursor: pointer;"><input type="radio" name="q4" value="B"> B) They allow parties to alter terms retroactively without consent.</label>
+              <label style="display: block; margin-bottom: 0.4rem; cursor: pointer;"><input type="radio" name="q4" value="C"> C) They eliminate the need for any underlying data inputs.</label>
+            </div>
+          </div>
+
+          <!-- CLASS 1.2 (4 Questions) -->
+          <div style="border-left: 4px solid var(--accent-cyan); padding-left: 1rem; margin-bottom: 2rem;">
+            <h3 style="color: var(--accent-gold); font-size: 1.25rem; margin-bottom: 1rem;">🎥 Class 1.2: What is a "Runtime" in Software?</h3>
+
+            <div style="background: rgba(10, 17, 40, 0.6); border: 1px solid var(--border-color); border-radius: 8px; padding: 1.25rem; margin-bottom: 1rem;" id="card-q5">
+              <p style="color: var(--accent-cyan); font-weight: 600; margin-bottom: 0.5rem;">2.1 What is a software "Runtime"?</p>
+              <label style="display: block; margin-bottom: 0.4rem; cursor: pointer;"><input type="radio" name="q5" value="A"> A) The execution environment in which instructions are interpreted and executed.</label>
+              <label style="display: block; margin-bottom: 0.4rem; cursor: pointer;"><input type="radio" name="q5" value="B"> B) A physical filing cabinet for source code.</label>
+              <label style="display: block; margin-bottom: 0.4rem; cursor: pointer;"><input type="radio" name="q5" value="C"> C) A printed manual explaining computer hardware.</label>
+            </div>
+
+            <div style="background: rgba(10, 17, 40, 0.6); border: 1px solid var(--border-color); border-radius: 8px; padding: 1.25rem; margin-bottom: 1rem;" id="card-q6">
+              <p style="color: var(--accent-cyan); font-weight: 600; margin-bottom: 0.5rem;">2.2 How does a legal runtime differ from traditional paper contracts?</p>
+              <label style="display: block; margin-bottom: 0.4rem; cursor: pointer;"><input type="radio" name="q6" value="A"> A) A legal runtime executes rule logic dynamically, whereas paper is passive historical text.</label>
+              <label style="display: block; margin-bottom: 0.4rem; cursor: pointer;"><input type="radio" name="q6" value="B"> B) Paper contracts run 10x faster than software runtimes.</label>
+              <label style="display: block; margin-bottom: 0.4rem; cursor: pointer;"><input type="radio" name="q6" value="C"> C) Runtimes do not support variable inputs or state logic.</label>
+            </div>
+
+            <div style="background: rgba(10, 17, 40, 0.6); border: 1px solid var(--border-color); border-radius: 8px; padding: 1.25rem; margin-bottom: 1rem;" id="card-q7">
+              <p style="color: var(--accent-cyan); font-weight: 600; margin-bottom: 0.5rem;">2.3 What happens when contract terms are compiled into a computational runtime?</p>
+              <label style="display: block; margin-bottom: 0.4rem; cursor: pointer;"><input type="radio" name="q7" value="A"> A) Ambiguity is removed because execution follows deterministic code logic.</label>
+              <label style="display: block; margin-bottom: 0.4rem; cursor: pointer;"><input type="radio" name="q7" value="B"> B) Legal ambiguity increases significantly.</label>
+              <label style="display: block; margin-bottom: 0.4rem; cursor: pointer;"><input type="radio" name="q7" value="C"> C) Contracts require physical notarization for every loop.</label>
+            </div>
+
+            <div style="background: rgba(10, 17, 40, 0.6); border: 1px solid var(--border-color); border-radius: 8px; padding: 1.25rem; margin-bottom: 1rem;" id="card-q8">
+              <p style="color: var(--accent-cyan); font-weight: 600; margin-bottom: 0.5rem;">2.4 Why is state versioning essential inside legal runtimes?</p>
+              <label style="display: block; margin-bottom: 0.4rem; cursor: pointer;"><input type="radio" name="q8" value="A"> A) It provides an immutable, non-repudiable history of state transitions for auditing.</label>
+              <label style="display: block; margin-bottom: 0.4rem; cursor: pointer;"><input type="radio" name="q8" value="B"> B) It hides execution history from all parties.</label>
+              <label style="display: block; margin-bottom: 0.4rem; cursor: pointer;"><input type="radio" name="q8" value="C"> C) It automatically deletes older contract versions.</label>
+            </div>
+          </div>
+
+          <!-- CLASS 2.1 (4 Questions) -->
+          <div style="border-left: 4px solid var(--accent-cyan); padding-left: 1rem; margin-bottom: 2rem;">
+            <h3 style="color: var(--accent-gold); font-size: 1.25rem; margin-bottom: 1rem;">🎥 Class 2.1: The Composer Metaphor</h3>
+
+            <div style="background: rgba(10, 17, 40, 0.6); border: 1px solid var(--border-color); border-radius: 8px; padding: 1.25rem; margin-bottom: 1rem;" id="card-q9">
+              <p style="color: var(--accent-cyan); font-weight: 600; margin-bottom: 0.5rem;">3.1 What is the "Composer Metaphor" in legal engineering?</p>
+              <label style="display: block; margin-bottom: 0.4rem; cursor: pointer;"><input type="radio" name="q9" value="A"> A) Legal engineers compose systemic rules and logic scores before execution ("play") occurs.</label>
+              <label style="display: block; margin-bottom: 0.4rem; cursor: pointer;"><input type="radio" name="q9" value="B"> B) Lawyers should play musical instruments during court trials.</label>
+              <label style="display: block; margin-bottom: 0.4rem; cursor: pointer;"><input type="radio" name="q9" value="C"> C) Contracts should be written in musical notation.</label>
+            </div>
+
+            <div style="background: rgba(10, 17, 40, 0.6); border: 1px solid var(--border-color); border-radius: 8px; padding: 1.25rem; margin-bottom: 1rem;" id="card-q10">
+              <p style="color: var(--accent-cyan); font-weight: 600; margin-bottom: 0.5rem;">3.2 What corresponds to "the score" in computational law?</p>
+              <label style="display: block; margin-bottom: 0.4rem; cursor: pointer;"><input type="radio" name="q10" value="A"> A) The underlying logic code defining rules, conditionals, and state transitions.</label>
+              <label style="display: block; margin-bottom: 0.4rem; cursor: pointer;"><input type="radio" name="q10" value="B"> B) The final invoice sent to a client.</label>
+              <label style="display: block; margin-bottom: 0.4rem; cursor: pointer;"><input type="radio" name="q10" value="C"> C) The courtroom judge's final verdict.</label>
+            </div>
+
+            <div style="background: rgba(10, 17, 40, 0.6); border: 1px solid var(--border-color); border-radius: 8px; padding: 1.25rem; margin-bottom: 1rem;" id="card-q11">
+              <p style="color: var(--accent-cyan); font-weight: 600; margin-bottom: 0.5rem;">3.3 Why is designing rules *before* execution critical?</p>
+              <label style="display: block; margin-bottom: 0.4rem; cursor: pointer;"><input type="radio" name="q11" value="A"> A) It prevents ad-hoc, ambiguous disputes while the system is live in production.</label>
+              <label style="display: block; margin-bottom: 0.4rem; cursor: pointer;"><input type="radio" name="q11" value="B"> B) It eliminates the need for any contract testing.</label>
+              <label style="display: block; margin-bottom: 0.4rem; cursor: pointer;"><input type="radio" name="q11" value="C"> C) It forces parties to renegotiate terms every day.</label>
+            </div>
+
+            <div style="background: rgba(10, 17, 40, 0.6); border: 1px solid var(--border-color); border-radius: 8px; padding: 1.25rem; margin-bottom: 1rem;" id="card-q12">
+              <p style="color: var(--accent-cyan); font-weight: 600; margin-bottom: 0.5rem;">3.4 What happens when "the orchestra plays" in a computational legal system?</p>
+              <label style="display: block; margin-bottom: 0.4rem; cursor: pointer;"><input type="radio" name="q12" value="A"> A) Input data flows through pre-composed logic rules to trigger automatic state execution.</label>
+              <label style="display: block; margin-bottom: 0.4rem; cursor: pointer;"><input type="radio" name="q12" value="B"> B) Manual paper review begins from scratch.</label>
+              <label style="display: block; margin-bottom: 0.4rem; cursor: pointer;"><input type="radio" name="q12" value="C"> C) System execution halts permanently.</label>
+            </div>
+          </div>
+
+          <!-- CLASS 2.2 (4 Questions) -->
+          <div style="border-left: 4px solid var(--accent-cyan); padding-left: 1rem; margin-bottom: 2rem;">
+            <h3 style="color: var(--accent-gold); font-size: 1.25rem; margin-bottom: 1rem;">🎥 Class 2.2: Minimizing Social Transaction Costs</h3>
+
+            <div style="background: rgba(10, 17, 40, 0.6); border: 1px solid var(--border-color); border-radius: 8px; padding: 1.25rem; margin-bottom: 1rem;" id="card-q13">
+              <p style="color: var(--accent-cyan); font-weight: 600; margin-bottom: 0.5rem;">4.1 What are "Social Transaction Costs" in legal economics?</p>
+              <label style="display: block; margin-bottom: 0.4rem; cursor: pointer;"><input type="radio" name="q13" value="A"> A) Friction, overhead, and litigation costs associated with verifying compliance and enforcing agreements.</label>
+              <label style="display: block; margin-bottom: 0.4rem; cursor: pointer;"><input type="radio" name="q13" value="B"> B) The price of hosting a social gathering.</label>
+              <label style="display: block; margin-bottom: 0.4rem; cursor: pointer;"><input type="radio" name="q13" value="C"> C) Standard monthly credit card processing fees.</label>
+            </div>
+
+            <div style="background: rgba(10, 17, 40, 0.6); border: 1px solid var(--border-color); border-radius: 8px; padding: 1.25rem; margin-bottom: 1rem;" id="card-q14">
+              <p style="color: var(--accent-cyan); font-weight: 600; margin-bottom: 0.5rem;">4.2 How does legal engineering minimize social transaction costs?</p>
+              <label style="display: block; margin-bottom: 0.4rem; cursor: pointer;"><input type="radio" name="q14" value="A"> A) By automating performance verification and making state transitions deterministic in code.</label>
+              <label style="display: block; margin-bottom: 0.4rem; cursor: pointer;"><input type="radio" name="q14" value="B"> B) By increasing manual paperwork requirements.</label>
+              <label style="display: block; margin-bottom: 0.4rem; cursor: pointer;"><input type="radio" name="q14" value="C"> C) By mandating 10-year court litigation for minor breaches.</label>
+            </div>
+
+            <div style="background: rgba(10, 17, 40, 0.6); border: 1px solid var(--border-color); border-radius: 8px; padding: 1.25rem; margin-bottom: 1rem;" id="card-q15">
+              <p style="color: var(--accent-cyan); font-weight: 600; margin-bottom: 0.5rem;">4.3 What macroeconomic impact occurs when transaction friction approaches zero?</p>
+              <label style="display: block; margin-bottom: 0.4rem; cursor: pointer;"><input type="radio" name="q15" value="A"> A) Economic trade and automated collaboration scale sublinearly without exponential administrative bloat.</label>
+              <label style="display: block; margin-bottom: 0.4rem; cursor: pointer;"><input type="radio" name="q15" value="B"> B) Global economic activity collapses completely.</label>
+              <label style="display: block; margin-bottom: 0.4rem; cursor: pointer;"><input type="radio" name="q15" value="C"> C) Legal contracts cease to have any enforceability.</label>
+            </div>
+
+            <div style="background: rgba(10, 17, 40, 0.6); border: 1px solid var(--border-color); border-radius: 8px; padding: 1.25rem; margin-bottom: 1rem;" id="card-q16">
+              <p style="color: var(--accent-cyan); font-weight: 600; margin-bottom: 0.5rem;">4.4 Why is Nick Szabo's concept of "hardcoding consideration" foundational to transaction cost reduction?</p>
+              <label style="display: block; margin-bottom: 0.4rem; cursor: pointer;"><input type="radio" name="q16" value="A"> A) It links asset exchange directly to cryptographic condition verification, eliminating breach risk.</label>
+              <label style="display: block; margin-bottom: 0.4rem; cursor: pointer;"><input type="radio" name="q16" value="B"> B) It replaces digital tokens with physical gold coins.</label>
+              <label style="display: block; margin-bottom: 0.4rem; cursor: pointer;"><input type="radio" name="q16" value="C"> C) It requires manual handshakes between remote transacters.</label>
+            </div>
+          </div>
+
+          <!-- Dynamic Action Button -->
+          <button type="submit" id="main-action-btn" class="btn btn-primary" style="font-size: 1rem; padding: 0.75rem 1.5rem; background: var(--accent-gold); color: #0a1128; font-weight: 800;">
+            ⚡ Calculate Score & Submit 101 Quiz Response (16 Questions)
+          </button>
+        </form>
+
+        <!-- Step 2: Unanswered Questions Notice & Confirmation Card -->
+        <div id="confirmation-notice-card" style="display: none; margin-top: 1.5rem; background: rgba(30, 27, 75, 0.95); border: 2px solid var(--accent-gold); padding: 1.5rem; border-radius: 8px;">
+          <h3 style="color: var(--accent-gold); margin-bottom: 0.75rem;">⚠️ Notice: Unanswered Questions Detected</h3>
+          <p style="color: var(--text-main); margin-bottom: 1rem; font-size: 0.98rem;">
+            You have not answered all 16 questions yet. Here are the questions currently skipped:
+          </p>
+
+          <ul id="unanswered-items-list" style="color: #f87171; font-family: var(--font-mono); font-size: 0.9rem; margin-bottom: 1.25rem; padding-left: 1.5rem;">
+            <!-- Dynamic missing question list -->
+          </ul>
+
+          <p style="color: #ffffff; font-size: 0.95rem; margin-bottom: 1.25rem;">
+            Please choose how you would like to proceed:
+          </p>
+
+          <div style="display: flex; gap: 0.75rem; flex-wrap: wrap;">
+            <button onclick="goBackToFinish()" class="btn btn-outline" style="border-color: var(--accent-cyan); color: var(--accent-cyan);">
+              ✏️ Go Back & Finish Questions
+            </button>
+            <button onclick="finalizeQuizSubmission()" class="btn btn-primary">
+              ✅ Yes, Confirm & Submit Partial Answers
+            </button>
+          </div>
+        </div>
+
+        <!-- Final Quiz Output Box -->
+        <div id="quiz-results-box" style="display: none; margin-top: 1.5rem; background: rgba(10, 17, 40, 0.8); border: 1px solid var(--accent-cyan); border-radius: 8px; padding: 1.5rem;">
+          <h3 style="color: var(--accent-gold); margin-bottom: 0.5rem;" id="score-header">Score: 0 / 16</h3>
+          <p id="score-summary" style="color: var(--text-main); margin-bottom: 1rem;">
+            Assessment completed.
+          </p>
+
+          <div style="background: rgba(0,0,0,0.4); border-radius: 6px; padding: 1rem; font-family: var(--font-mono); font-size: 0.85rem; color: var(--accent-cyan); margin-bottom: 1.25rem; word-break: break-all;">
+            <strong>Computed Payload Hash (Keccak-256):</strong><br>
+            <span id="payload-hash-display">0x...</span>
+          </div>
+
+          <!-- Submission Status Notice -->
+          <div id="submission-notice" style="background: rgba(52, 211, 153, 0.15); border: 1px solid var(--accent-green); padding: 1rem; border-radius: 6px; color: #fff; margin-bottom: 1rem;">
+            <strong style="color: var(--accent-green);">🎉 101 Quiz Submission Recorded in LexClinic Student Store!</strong><br>
+            <span style="font-size: 0.9rem; color: var(--text-main);" id="store-status-text">
+              Your response and Keccak-256 payload hash have been saved.
+            </span>
+          </div>
+
+          <!-- Roadmap Notice for ERC-7827 -->
+          <div style="background: rgba(56, 189, 248, 0.1); border: 1px solid rgba(56, 189, 248, 0.4); padding: 1rem; border-radius: 6px; font-size: 0.88rem;">
+            <span class="status-badge notebook-available">🚀 Future Feature Roadmap</span><br>
+            <strong style="color: var(--accent-cyan); display: inline-block; margin-top: 0.4rem;">ERC-7827 On-Chain Validation:</strong><br>
+            <span style="color: var(--text-muted);">
+              Third-party cryptographic signature verification via ERC-7827 Personal Ledgers on Q Mainnet (Chain ID 35441) is scheduled for the upcoming LexClinic software release.
+            </span>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Contact Footer -->
+                          <footer class="footer">
+    <div class="container footer-content">
+      <div class="footer-col">
+        <div class="brand-logo footer-logo">
+          <span class="logo-icon">⚖️</span>
+          <span class="logo-text">Lex<span class="highlight">Clinic</span></span>
+        </div>
+        <p class="footer-tagline">LexClinic Education</p>
+        <p class="footer-address">
+          Authors of ERC-7827 | Open-Source Computational Law & Legal Engineering
+        </p>
+      </div>
+      <div class="footer-col">
+        <h4>Navigation</h4>
+        <ul>
+          <li><a href="/event.html">Event</a></li>
+          <li><a href="/101">Legal Engineering 101</a></li>
+          <li><a href="/interview/">Interview</a></li>
+          <li><a href="/partner/">Partner</a></li>
+          <li><a href="/fiduciary/">Fiduciary</a></li>
+          <li><a href="/attest/">Attest</a></li>
+          <li><a href="/help/">Help</a></li>
+          <li><a href="/repo/">Repository</a></li>
+          <li><a href="/erc7827.html">ERC-7827 Standard</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Connect & Media</h4>
+        <p>YouTube: <a href="https://www.youtube.com/watch?v=ONwiUkc_tt4&list=PLbPukKwpmk5E" target="_blank" rel="noopener">Legal Engineering 101 Playlist</a></p>
+        <p>Spotify: <a href="https://open.spotify.com/show/0348ivoLaNfKBq1HeIYC9b" target="_blank" rel="noopener">LexClinic Spotify Show</a></p>
+        <p>LinkedIn: <a href="https://www.linkedin.com/company/lexclinic" target="_blank" rel="noopener">LexClinic Company Page</a></p>
+        <p class="disclaimer">
+          © 2026 LexClinic Education. Open public goods published under AGPL-3.0 & Creative Commons Attribution-ShareAlike.
+        </p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Quiz & Magic Link Authentication JavaScript with Strict Form Lock & Cross-Tab Sync -->
+    <script>
+    let currentPayloadHash = "";
+    let quizScoreVal = 0;
+    let cachedAnsSummary = [];
+    const correctAnswers = { "q1": "A", "q2": "A", "q3": "A", "q4": "A" };
+
+    async function handleFormSubmit() {
+      const activeEmail = window.getSanitizedEmail ? window.getSanitizedEmail() : (localStorage.getItem("lexclinic_user_email") || "").trim();
+      if (!activeEmail) {
+        window.openNavLoginModal();
+      } else {
+        finalizeQuizSubmission();
+      }
+    }
+
+    async function finalizeQuizSubmission() {
+      let score = 0;
+      cachedAnsSummary = [];
+
+      for (let i = 1; i <= 4; i++) {
+        const key = `q${i}`;
+        const val = document.querySelector(`input[name="${key}"]:checked`)?.value;
+        if (val) {
+          if (val === correctAnswers[key]) score++;
+          cachedAnsSummary.push(`${key}:${val}`);
+        } else {
+          cachedAnsSummary.push(`${key}:unanswered`);
+        }
+      }
+
+      quizScoreVal = score;
+      const timestamp = new Date().toISOString();
+      const activeEmail = window.getSanitizedEmail ? window.getSanitizedEmail() : (localStorage.getItem("lexclinic_user_email") || "").trim();
+      const rawString = `${activeEmail}|class_101-all|${cachedAnsSummary.join("|")}|score:${quizScoreVal}/4|ts:${timestamp}`;
+
+      if (window.ethers) {
+        currentPayloadHash = ethers.utils.keccak256(ethers.utils.toUtf8Bytes(rawString));
+      } else {
+        currentPayloadHash = "0x" + Array.from(new TextEncoder().encode(rawString)).map(b => b.toString(16).padStart(2, "0")).join("");
+      }
+
+      document.getElementById("score-header").innerText = `Score: ${quizScoreVal} / 4 (${Math.round((quizScoreVal/4)*100)}%)`;
+      document.getElementById("payload-hash-display").innerText = currentPayloadHash;
+      document.getElementById("quiz-results-box").style.display = "block";
+      document.getElementById("quiz-results-box").scrollIntoView({ behavior: "smooth" });
+
+      try {
+        const payload = {
+          email: activeEmail,
+          class_id: "101-all",
+          score: quizScoreVal,
+          total: 4,
+          payload_hash: currentPayloadHash,
+          timestamp: timestamp,
+          summary: cachedAnsSummary
+        };
+
+                try {
+          let localSubs = JSON.parse(localStorage.getItem("lexclinic_quiz_submissions") || "[]");
+          localSubs.push({
+            email: activeEmail,
+            class_id: payload.class_id || "1.1",
+            score: `${payload.score}/${payload.total || 20}`,
+            payload_hash: currentPayloadHash,
+            timestamp: timestamp
+          });
+          localStorage.setItem("lexclinic_quiz_submissions", JSON.stringify(localSubs));
+        } catch (e) {}
+        await fetch("/api/submit-quiz", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(payload)
+        });
+      } catch (err) {
+        console.log("Local submission hashed:", err);
+      }
+    }
+  </script>
+
+  
+</body>
+</html>

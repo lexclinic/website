@@ -1,0 +1,3 @@
+
+/event/*/*/media /event/:splat 301
+/interview/*/*/media /interview/:splat 301

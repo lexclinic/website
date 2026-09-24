@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Assessment Quiz — How Corporate Lawyers Invented the Internet | LexClinic Education</title>
+  <meta name="description" content="Interactive 20-question Socratic assessment quiz generated directly from Whisper speech-to-text transcripts of the Sept 17, 2026 Socratic Session.">
+  <link rel="stylesheet" href="/styles.css?v=20260829_2265">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/ethers/5.7.2/ethers.umd.min.js" integrity="sha512-FD3R0fL3335F3547844080183" crossorigin="anonymous"></script>
+  <script src="/js/audio-player.js?v=20260829_2640"></script>
+  <script src="/js/auth.js?v=20260829_2640"></script>
+  <script src="/js/media-tracker-miniapp.js?v=20260829_2640"></script>
+  <script src="/js/watch-tracker.js?v=20260829_2640"></script>
+  <script src="/script.js?v=20260829_2640" defer></script>
+  <link rel="icon" type="image/png" href="/favicon.png?v=20260829_2640">
+  <link rel="shortcut icon" href="/favicon.ico?v=20260829_2640">
+</head>
+<body>
+
+  <!-- Navigation Bar -->
+      <header class="navbar">
+    <div class="nav-container">
+      <a href="/index.html" class="brand-logo">
+        <span class="logo-icon">⚖️</span>
+        <span class="logo-text">Lex<span class="highlight">Clinic</span></span>
+      </a>
+      <nav class="nav-links" id="nav-links">
+        <a href="/event.html" class="active-link">Event</a>
+        <a href="/101">101</a>
+        <a href="/interview/">Interview</a>
+        <a href="/partner/">Partner</a>
+        <a href="/fiduciary/">Fiduciary</a>
+        <a href="/attest/">Attest</a>
+        <a href="/help/">Help</a>
+        <a href="/repo/">Repo</a>
+        <a href="/erc7827.html">ERC-7827</a>
+        <a href="https://www.youtube.com/watch?v=ONwiUkc_tt4&list=PLbPukKwpmk5E" target="_blank" rel="noopener" class="btn-social" title="Subscribe on YouTube">YouTube</a>
+        <a href="https://open.spotify.com/show/0348ivoLaNfKBq1HeIYC9b" target="_blank" rel="noopener" class="btn-spotify" title="Follow on Spotify">Spotify</a>
+        <a href="https://www.linkedin.com/company/lexclinic" target="_blank" rel="noopener" class="btn-social" title="Follow on LinkedIn">LinkedIn</a>
+        <a href="javascript:void(0)" onclick="event.preventDefault(); window.openNavLoginModal(event); return false;" id="nav-login-btn" style="background: #fbbf24; color: #0a1128; font-weight: 800; font-size: 0.88rem; padding: 0.35rem 0.85rem; border-radius: 6px; margin-left: 0.35rem; text-decoration: none; border: 2px solid #f59e0b; box-shadow: 0 0 10px rgba(251, 191, 36, 0.4); display: inline-block;">Login</a>
+      </nav>
+      <button class="mobile-toggle" id="mobile-toggle" aria-label="Toggle navigation">
+        ☰
+      </button>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero page-hero">
+    <div class="container hero-content">
+      <div class="hero-badge">🎙️ 20-Question Transcript-Derived Assessment</div>
+      <h1 class="hero-title">Assessment Quiz — <span class="gradient-text">How Corporate Lawyers Invented the Internet</span></h1>
+      <p class="hero-subtitle">
+        Thursday, September 17, 2026 • Complete this 20-question Socratic assessment generated directly from Whisper speech-to-text transcripts analyzing the $20T digital economy, legal origins of web protocols, and compute constraints.
+      </p>
+      <div class="hero-actions">
+        <a href="media.html" class="btn btn-primary" style="background: var(--accent-cyan); color: #0a1128; font-weight: 800;">Review 6 Explainer Clips 🎥</a>
+        <a href="index.html" class="btn btn-outline">Back to Session Hub ➔</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Main Quiz Area -->
+  <section class="section event-detail-section">
+    <div class="container">
+
+      <div class="card event-module-card" style="border: 2px solid var(--accent-gold);">
+        <div class="module-header" style="margin-bottom: 1.5rem;">
+          <span class="badge-tag" style="background: rgba(251, 191, 36, 0.2); color: var(--accent-gold);">20 Transcript Questions</span>
+          <h2>20-Question Assessment: How Corporate Lawyers Invented the Internet (Sept 17, 2026)</h2>
+        </div>
+
+        <form id="sept22-quiz-form" onsubmit="submitSept22Quiz(event)">
+
+          <!-- Section 1: The $20 Trillion Hidden Blueprint -->
+          <h3 style="color: var(--accent-gold); border-bottom: 1px solid var(--accent-gold); padding-bottom: 0.4rem; margin-bottom: 1.25rem;">Module 1: The $20 Trillion Hidden Blueprint</h3>
+
+          <div style="background: rgba(10, 17, 40, 0.6); border: 1px solid var(--border-color); border-radius: 8px; padding: 1.25rem; margin-bottom: 1.25rem;">
+            <h4 style="color: var(--accent-cyan); font-size: 1.05rem; margin-bottom: 0.75rem;">1. According to the transcript, what real-world economic value is represented by the internet's foundational legal and technological blueprint?</h4>
+            <label style="display: block; margin-bottom: 0.5rem; color: #e2e8f0; cursor: pointer;"><input type="radio" name="q1" value="A" required> A) Staggering $20 Trillion in real-world economic value.</label>
+            <label style="display: block; margin-bottom: 0.5rem; color: #e2e8f0; cursor: pointer;"><input type="radio" name="q1" value="B"> B) $50 Billion in hardware sales.</label>
+            <label style="display: block; margin-bottom: 0.5rem; color: #e2e8f0; cursor: pointer;"><input type="radio" name="q1" value="C"> C) $1 Trillion in paper stock certificates.</label>
+          </div>
+
+          <div style="background: rgba(10, 17, 40, 0.6); border: 1px solid var(--border-color); border-radius: 8px; padding: 1.25rem; margin-bottom: 1.25rem;">
+            <h4 style="color: var(--accent-cyan); font-size: 1.05rem; margin-bottom: 0.75rem;">2. What provocative claim is made regarding who actually created the architecture of the modern web?</h4>
+            <label style="display: block; margin-bottom: 0.5rem; color: #e2e8f0; cursor: pointer;"><input type="radio" name="q2" value="A" required> A) Corporate lawyers writing entity covenants and contractual protocols invented the foundational blueprint for digital runtimes.</label>
+            <label style="display: block; margin-bottom: 0.5rem; color: #e2e8f0; cursor: pointer;"><input type="radio" name="q2" value="B"> B) Video game designers in the late 1990s.</label>
+            <label style="display: block; margin-bottom: 0.5rem; color: #e2e8f0; cursor: pointer;"><input type="radio" name="q2" value="C"> C) Hardware assembly line workers in Silicon Valley.</label>
+          </div>
+
+          <div style="background: rgba(10, 17, 40, 0.6); border: 1px solid var(--border-color); border-radius: 8px; padding: 1.25rem; margin-bottom: 1.25rem;">
+            <h4 style="color: var(--accent-cyan); font-size: 1.05rem; margin-bottom: 0.75rem;">3. Why are analog legal covenants described as early state machines?</h4>
+            <label style="display: block; margin-bottom: 0.5rem; color: #e2e8f0; cursor: pointer;"><input type="radio" name="q3" value="A" required> A) They define explicit state variables, execution conditions, and deterministic penalties upon contract breach.</label>
+            <label style="display: block; margin-bottom: 0.5rem; color: #e2e8f0; cursor: pointer;"><input type="radio" name="q3" value="B"> B) They were executed on mechanical steam-powered engines.</label>
+            <label style="display: block; margin-bottom: 0.5rem; color: #e2e8f0; cursor: pointer;"><input type="radio" name="q3" value="C"> C) They required electric voltage meters to read signatures.</label>
+          </div>
+
+          <div style="background: rgba(10, 17, 40, 0.6); border: 1px solid var(--border-color); border-radius: 8px; padding: 1.25rem; margin-bottom: 1.25rem;">
+            <h4 style="color: var(--accent-cyan); font-size: 1.05rem; margin-bottom: 0.75rem;">4. How does computational law bridge natural-language corporate law with software engineering?</h4>
+            <label style="display: block; margin-bottom: 0.5rem; color: #e2e8f0; cursor: pointer;"><input type="radio" name="q4" value="A" required> A) By compiling statutory provisions directly into verifiable EVM bytecode and smart legal wrappers.</label>
+            <label style="display: block; margin-bottom: 0.5rem; color: #e2e8f0; cursor: pointer;"><input type="radio" name="q4" value="B"> B) By replacing all judges with random number generators.</label>
+            <label style="display: block; margin-bottom: 0.5rem; color: #e2e8f0; cursor: pointer;"><input type="radio" name="q4" value="C"> C) By translating legal briefs into spoken English audio files.</label>
+          </div>
+
+          <!-- Section 2: Analog Legal Origins of Web Protocols -->
+          <h3 style="color: var(--accent-gold); border-bottom: 1px solid var(--accent-gold); padding-bottom: 0.4rem; margin-top: 2rem; margin-bottom: 1.25rem;">Module 2: Analog Legal Origins of Web Protocols</h3>
+
+          <div style="background: rgba(10, 17, 40, 0.6); border: 1px solid var(--border-color); border-radius: 8px; padding: 1.25rem; margin-bottom: 1.25rem;">
+            <h4 style="color: var(--accent-cyan); font-size: 1.05rem; margin-bottom: 0.75rem;">5. What historical parallel is drawn between modern packet-switched routing and ancient legal jurisdiction?</h4>
+            <label style="display: block; margin-bottom: 0.5rem; color: #e2e8f0; cursor: pointer;"><input type="radio" name="q5" value="A" required> A) Jurisdictional boundaries and choice-of-law clauses created the original rules for packet routing and protocol gateways.</label>
+            <label style="display: block; margin-bottom: 0.5rem; color: #e2e8f0; cursor: pointer;"><input type="radio" name="q5" value="B"> B) Ancient Rome used fiber optic cables along aqueducts.</label>
+            <label style="display: block; margin-bottom: 0.5rem; color: #e2e8f0; cursor: pointer;"><input type="radio" name="q5" value="C"> C) Packet routing was invented by 18th-century postal workers.</label>
+          </div>
+
+          <div style="background: rgba(10, 17, 40, 0.6); border: 1px solid var(--border-color); border-radius: 8px; padding: 1.25rem; margin-bottom: 1.25rem;">
+            <h4 style="color: var(--accent-cyan); font-size: 1.05rem; margin-bottom: 0.75rem;">6. Why are corporate entity charters considered the earliest "decentralized autonomous organizations"?</h4>
+            <label style="display: block; margin-bottom: 0.5rem; color: #e2e8f0; cursor: pointer;"><input type="radio" name="q6" value="A" required> A) They granted perpetual corporate personhood and algorithmic governance rules independent of any single living individual.</label>
+            <label style="display: block; margin-bottom: 0.5rem; color: #e2e8f0; cursor: pointer;"><input type="radio" name="q6" value="B"> B) They required mining rig graphics cards to register shares.</label>
+            <label style="display: block; margin-bottom: 0.5rem; color: #e2e8f0; cursor: pointer;"><input type="radio" name="q6" value="C"> C) They were written entirely in C++ software code.</label>
+          </div>
+
+          <div style="background: rgba(10, 17, 40, 0.6); border: 1px solid var(--border-color); border-radius: 8px; padding: 1.25rem; margin-bottom: 1.25rem;">
+            <h4 style="color: var(--accent-cyan); font-size: 1.05rem; margin-bottom: 0.75rem;">7. How did commercial banking ledgers inspire blockchain consensus state machines?</h4>
+            <label style="display: block; margin-bottom: 0.5rem; color: #e2e8f0; cursor: pointer;"><input type="radio" name="q7" value="A" required> A) Double-entry bookkeeping established immutable debit-credit state transition invariants centuries before Bitcoin.</label>
+            <label style="display: block; margin-bottom: 0.5rem; color: #e2e8f0; cursor: pointer;"><input type="radio" name="q7" value="B"> B) Bankers used peer-to-peer Wi-Fi networks in 1920.</label>
+            <label style="display: block; margin-bottom: 0.5rem; color: #e2e8f0; cursor: pointer;"><input type="radio" name="q7" value="C"> C) Paper checks contained encrypted RSA public keys.</label>
+          </div>
+
+          <div style="background: rgba(10, 17, 40, 0.6); border: 1px solid var(--border-color); border-radius: 8px; padding: 1.25rem; margin-bottom: 1.25rem;">
+            <h4 style="color: var(--accent-cyan); font-size: 1.05rem; margin-bottom: 0.75rem;">8. What role does ERC-7827 play in modern computational legal evolution?</h4>
+            <label style="display: block; margin-bottom: 0.5rem; color: #e2e8f0; cursor: pointer;"><input type="radio" name="q8" value="A" required> A) Standardizing personal verifiable state ledgers so individuals hold sovereign control over their legal credentials.</label>
+            <label style="display: block; margin-bottom: 0.5rem; color: #e2e8f0; cursor: pointer;"><input type="radio" name="q8" value="B"> B) Replacing state tax departments with automated email bots.</label>
+            <label style="display: block; margin-bottom: 0.5rem; color: #e2e8f0; cursor: pointer;"><input type="radio" name="q8" value="C"> C) Standardizing high-speed video gaming graphics drivers.</label>
+          </div>
+
+          <!-- Section 3: Compute & Hardware Resource Constraints -->
+          <h3 style="color: var(--accent-gold); border-bottom: 1px solid var(--accent-gold); padding-bottom: 0.4rem; margin-top: 2rem; margin-bottom: 1.25rem;">Module 3: Compute &amp; Hardware Resource Constraints</h3>
+
+          <div style="background: rgba(10, 17, 40, 0.6); border: 1px solid var(--border-color); border-radius: 8px; padding: 1.25rem; margin-bottom: 1.25rem;">
+            <h4 style="color: var(--accent-cyan); font-size: 1.05rem; margin-bottom: 0.75rem;">9. What comparison does the transcript make regarding AI context window token limits?</h4>
+            <label style="display: block; margin-bottom: 0.5rem; color: #e2e8f0; cursor: pointer;"><input type="radio" name="q9" value="A" required> A) AI token limits mirror historical physical constraints like telegraph character limits and paper document size caps.</label>
+            <label style="display: block; margin-bottom: 0.5rem; color: #e2e8f0; cursor: pointer;"><input type="radio" name="q9" value="B"> B) AI token limits are artificial restrictions created by smartphone manufacturers.</label>
+            <label style="display: block; margin-bottom: 0.5rem; color: #e2e8f0; cursor: pointer;"><input type="radio" name="q9" value="C"> C) AI token limits are caused by solar power fluctuations.</label>
+          </div>
+
+          <div style="background: rgba(10, 17, 40, 0.6); border: 1px solid var(--border-color); border-radius: 8px; padding: 1.25rem; margin-bottom: 1.25rem;">
+            <h4 style="color: var(--accent-cyan); font-size: 1.05rem; margin-bottom: 0.75rem;">10. Why is gas optimization on EVM blockchains described as a legal engineering problem?</h4>
+            <label style="display: block; margin-bottom: 0.5rem; color: #e2e8f0; cursor: pointer;"><input type="radio" name="q10" value="A" required> A) Minimizing gas consumption requires drafting tight, non-redundant state transition clauses that fit within block compute caps.</label>
+            <label style="display: block; margin-bottom: 0.5rem; color: #e2e8f0; cursor: pointer;"><input type="radio" name="q10" value="B"> B) Gas optimization requires buying petroleum fuel for server generators.</label>
+            <label style="display: block; margin-bottom: 0.5rem; color: #e2e8f0; cursor: pointer;"><input type="radio" name="q10" value="C"> C) EVM gas fees are regulated by state utility commissions.</label>
+          </div>
+
+          <div style="background: rgba(10, 17, 40, 0.6); border: 1px solid var(--border-color); border-radius: 8px; padding: 1.25rem; margin-bottom: 1.25rem;">
+            <h4 style="color: var(--accent-cyan); font-size: 1.05rem; margin-bottom: 0.75rem;">11. How do hardware memory bottlenecks shape the design of smart contract state storage?</h4>
+            <label style="display: block; margin-bottom: 0.5rem; color: #e2e8f0; cursor: pointer;"><input type="radio" name="q11" value="A" required> A) Developers must utilize cryptographic state hashes (e.g. Keccak-256) rather than storing full uncompressed text on-chain.</label>
+            <label style="display: block; margin-bottom: 0.5rem; color: #e2e8f0; cursor: pointer;"><input type="radio" name="q11" value="B"> B) Developers must install external hard drives on validator nodes manually.</label>
+            <label style="display: block; margin-bottom: 0.5rem; color: #e2e8f0; cursor: pointer;"><input type="radio" name="q11" value="C"> C) Developers are forced to print smart contract code on paper tape.</label>
+          </div>
+
+          <div style="background: rgba(10, 17, 40, 0.6); border: 1px solid var(--border-color); border-radius: 8px; padding: 1.25rem; margin-bottom: 1.25rem;">
+            <h4 style="color: var(--accent-cyan); font-size: 1.05rem; margin-bottom: 0.75rem;">12. What solution is proposed for handling large legal agreement payloads in Web3 protocols?</h4>
+            <label style="display: block; margin-bottom: 0.5rem; color: #e2e8f0; cursor: pointer;"><input type="radio" name="q12" value="A" required> A) Storing payload JSON off-chain while anchoring verifiable Keccak-256 state hashes on the EVM personal ledger.</label>
+            <label style="display: block; margin-bottom: 0.5rem; color: #e2e8f0; cursor: pointer;"><input type="radio" name="q12" value="B"> B) Deleting all legal definitions to save memory.</label>
+            <label style="display: block; margin-bottom: 0.5rem; color: #e2e8f0; cursor: pointer;"><input type="radio" name="q12" value="C"> C) Sending legal payloads over SMS text messages.</label>
+          </div>
+
+          <!-- Section 4: Computational Legal Code & Runtimes -->
+          <h3 style="color: var(--accent-gold); border-bottom: 1px solid var(--accent-gold); padding-bottom: 0.4rem; margin-top: 2rem; margin-bottom: 1.25rem;">Module 4: Computational Legal Code &amp; Runtimes</h3>
+
+          <div style="background: rgba(10, 17, 40, 0.6); border: 1px solid var(--border-color); border-radius: 8px; padding: 1.25rem; margin-bottom: 1.25rem;">
+            <h4 style="color: var(--accent-cyan); font-size: 1.05rem; margin-bottom: 0.75rem;">13. How does the transcript define "Law as a Software Runtime"?</h4>
+            <label style="display: block; margin-bottom: 0.5rem; color: #e2e8f0; cursor: pointer;"><input type="radio" name="q13" value="A" required> A) Viewing legal agreements not as passive static text, but as active computational state machines executing on distributed networks.</label>
+            <label style="display: block; margin-bottom: 0.5rem; color: #e2e8f0; cursor: pointer;"><input type="radio" name="q13" value="B"> B) Running Microsoft Windows operating systems in courthouse basements.</label>
+            <label style="display: block; margin-bottom: 0.5rem; color: #e2e8f0; cursor: pointer;"><input type="radio" name="q13" value="C"> C) Asking attorneys to write software code in assembly language.</label>
+          </div>
+
+          <div style="background: rgba(10, 17, 40, 0.6); border: 1px solid var(--border-color); border-radius: 8px; padding: 1.25rem; margin-bottom: 1.25rem;">
+            <h4 style="color: var(--accent-cyan); font-size: 1.05rem; margin-bottom: 0.75rem;">14. What advantage do Ricardian legal wrappers provide over un-wrapped smart contracts?</h4>
+            <label style="display: block; margin-bottom: 0.5rem; color: #e2e8f0; cursor: pointer;"><input type="radio" name="q14" value="A" required> A) They link court-admissible natural-language agreements directly to deterministic smart contract bytecode execution.</label>
+            <label style="display: block; margin-bottom: 0.5rem; color: #e2e8f0; cursor: pointer;"><input type="radio" name="q14" value="B"> B) They guarantee 100% immune status from all state and federal courts.</label>
+            <label style="display: block; margin-bottom: 0.5rem; color: #e2e8f0; cursor: pointer;"><input type="radio" name="q14" value="C"> C) They double the transaction processing speed of Ethereum validators.</label>
+          </div>
+
+          <div style="background: rgba(10, 17, 40, 0.6); border: 1px solid var(--border-color); border-radius: 8px; padding: 1.25rem; margin-bottom: 1.25rem;">
+            <h4 style="color: var(--accent-cyan); font-size: 1.05rem; margin-bottom: 0.75rem;">15. What role do "verifiable AI verification gates" serve in automated legal execution?</h4>
+            <label style="display: block; margin-bottom: 0.5rem; color: #e2e8f0; cursor: pointer;"><input type="radio" name="q15" value="A" required> A) Validating AI model decisions against strict cryptographic state rules before releasing escrow funds or executing transfers.</label>
+            <label style="display: block; margin-bottom: 0.5rem; color: #e2e8f0; cursor: pointer;"><input type="radio" name="q15" value="B"> B) Blocking human users from accessing social media applications.</label>
+            <label style="display: block; margin-bottom: 0.5rem; color: #e2e8f0; cursor: pointer;"><input type="radio" name="q15" value="C"> C) Automatically filing patent lawsuits against competitor startups.</label>
+          </div>
+
+          <div style="background: rgba(10, 17, 40, 0.6); border: 1px solid var(--border-color); border-radius: 8px; padding: 1.25rem; margin-bottom: 1.25rem;">
+            <h4 style="color: var(--accent-cyan); font-size: 1.05rem; margin-bottom: 0.75rem;">16. Why is Keccak-256 state hashing required for LexClinic student quiz attestations?</h4>
+            <label style="display: block; margin-bottom: 0.5rem; color: #e2e8f0; cursor: pointer;"><input type="radio" name="q16" value="A" required> A) To create a deterministic, tamper-evident 256-bit fingerprint of the submission for on-chain counter-party attestation.</label>
+            <label style="display: block; margin-bottom: 0.5rem; color: #e2e8f0; cursor: pointer;"><input type="radio" name="q16" value="B"> B) To compress text files before printing them out.</label>
+            <label style="display: block; margin-bottom: 0.5rem; color: #e2e8f0; cursor: pointer;"><input type="radio" name="q16" value="C"> C) To hide student test scores from university professors.</label>
+          </div>
+
+          <!-- Section 5: Math That Breaks the Web & State Machines -->
+          <h3 style="color: var(--accent-gold); border-bottom: 1px solid var(--accent-gold); padding-bottom: 0.4rem; margin-top: 2rem; margin-bottom: 1.25rem;">Module 5: Math That Breaks the Web &amp; State Machines</h3>
+
+          <div style="background: rgba(10, 17, 40, 0.6); border: 1px solid var(--border-color); border-radius: 8px; padding: 1.25rem; margin-bottom: 1.25rem;">
+            <h4 style="color: var(--accent-cyan); font-size: 1.05rem; margin-bottom: 0.75rem;">17. What mathematical phenomenon is described as "breaking the web" if unconstrained?</h4>
+            <label style="display: block; margin-bottom: 0.5rem; color: #e2e8f0; cursor: pointer;"><input type="radio" name="q17" value="A" required> A) Hyper-exponential state growth and uncontrolled data inflation crushing hardware memory limits.</label>
+            <label style="display: block; margin-bottom: 0.5rem; color: #e2e8f0; cursor: pointer;"><input type="radio" name="q17" value="B"> B) Basic division by zero in HTML web forms.</label>
+            <label style="display: block; margin-bottom: 0.5rem; color: #e2e8f0; cursor: pointer;"><input type="radio" name="q17" value="C"> C) Calculating prime numbers on mobile phone browsers.</label>
+          </div>
+
+          <div style="background: rgba(10, 17, 40, 0.6); border: 1px solid var(--border-color); border-radius: 8px; padding: 1.25rem; margin-bottom: 1.25rem;">
+            <h4 style="color: var(--accent-cyan); font-size: 1.05rem; margin-bottom: 0.75rem;">18. How does sublinear invariance restore mathematical stability to decentralized networks?</h4>
+            <label style="display: block; margin-bottom: 0.5rem; color: #e2e8f0; cursor: pointer;"><input type="radio" name="q18" value="A" required> A) By bounding resource distribution along sublinear logarithmic curves so state growth remains strictly manageable.</label>
+            <label style="display: block; margin-bottom: 0.5rem; color: #e2e8f0; cursor: pointer;"><input type="radio" name="q18" value="B"> B) By shutting down server nodes whenever traffic increases.</label>
+            <label style="display: block; margin-bottom: 0.5rem; color: #e2e8f0; cursor: pointer;"><input type="radio" name="q18" value="C"> C) By forcing all web users to pay $100 monthly access fees.</label>
+          </div>
+
+          <div style="background: rgba(10, 17, 40, 0.6); border: 1px solid var(--border-color); border-radius: 8px; padding: 1.25rem; margin-bottom: 1.25rem;">
+            <h4 style="color: var(--accent-cyan); font-size: 1.05rem; margin-bottom: 0.75rem;">19. Why is the @lex.clinic email identity required for Fiduciary Private Vault access?</h4>
+            <label style="display: block; margin-bottom: 0.5rem; color: #e2e8f0; cursor: pointer;"><input type="radio" name="q19" value="A" required> A) To verify official LLC membership permissions before granting access to internal bylaws and LLCA records.</label>
+            <label style="display: block; margin-bottom: 0.5rem; color: #e2e8f0; cursor: pointer;"><input type="radio" name="q19" value="B"> B) To prevent students from watching public video lessons.</label>
+            <label style="display: block; margin-bottom: 0.5rem; color: #e2e8f0; cursor: pointer;"><input type="radio" name="q19" value="C"> C) To automatically charge tuition fees to member bank accounts.</label>
+          </div>
+
+          <div style="background: rgba(10, 17, 40, 0.6); border: 1px solid var(--border-color); border-radius: 8px; padding: 1.25rem; margin-bottom: 1.5rem;">
+            <h4 style="color: var(--accent-cyan); font-size: 1.05rem; margin-bottom: 0.75rem;">20. What is the ultimate vision of LexClinic Education's open public goods initiative?</h4>
+            <label style="display: block; margin-bottom: 0.5rem; color: #e2e8f0; cursor: pointer;"><input type="radio" name="q20" value="A" required> A) Empowering legal engineers with open-source courseware, AGPL-3.0 toolkits, and verifiable EVM state machines under Article I, Sec 8, Clause 8.</label>
+            <label style="display: block; margin-bottom: 0.5rem; color: #e2e8f0; cursor: pointer;"><input type="radio" name="q20" value="B"> B) Selling proprietary software subscriptions to Wall Street law firms.</label>
+            <label style="display: block; margin-bottom: 0.5rem; color: #e2e8f0; cursor: pointer;"><input type="radio" name="q20" value="C"> C) Monopolizing computational law education worldwide.</label>
+          </div>
+
+          <button type="submit" id="quiz-submit-btn" class="btn btn-primary" style="background: var(--accent-gold); color: #0a1128; font-weight: 800; font-size: 1.05rem; padding: 0.85rem 1.5rem; width: 100%;">
+            Submit 20-Question Assessment &amp; Compute Keccak-256 Hash 🚀
+          </button>
+        </form>
+
+        <!-- Quiz Result Box -->
+        <div id="quiz-results-box" style="display: none; background: rgba(16, 31, 66, 0.9); border: 2px solid var(--accent-cyan); border-radius: 8px; padding: 1.5rem; margin-top: 1.5rem;">
+          <h3 style="color: var(--accent-cyan); font-size: 1.3rem; margin-bottom: 0.5rem;">✅ Assessment Complete!</h3>
+          <p id="quiz-score-text" style="color: #ffffff; font-size: 1.1rem; font-weight: 700; margin-bottom: 0.75rem;">Score: -- / 20</p>
+          <div style="background: rgba(10, 17, 40, 0.85); padding: 1rem; border-radius: 6px; font-family: 'Fira Code', monospace; font-size: 0.85rem; color: var(--accent-gold); word-break: break-all; margin-bottom: 1rem;">
+            <strong>Computed Payload Hash (Keccak-256):</strong><br><span id="quiz-hash-display">...</span>
+          </div>
+          <a href="/attest/" class="btn btn-primary" style="background: var(--accent-cyan); color: #0a1128; font-weight: 800;">View Recorded Attestations Dashboard ➔</a>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Contact Footer -->
+  <footer class="footer">
+    <div class="container footer-content">
+      <div class="footer-col">
+        <div class="brand-logo footer-logo">
+          <span class="logo-icon">⚖️</span>
+          <span class="logo-text">Lex<span class="highlight">Clinic</span></span>
+        </div>
+        <p class="footer-tagline">LexClinic Education</p>
+        <p class="footer-address">
+          Authors of ERC-7827 | Open-Source Computational Law & Legal Engineering
+        </p>
+      </div>
+      <div class="footer-col">
+        <h4>Navigation</h4>
+        <ul>
+          <li><a href="/event.html">Event</a></li>
+          <li><a href="/101">Legal Engineering 101</a></li>
+          <li><a href="/interview/">Interview</a></li>
+          <li><a href="/partner/">Partner</a></li>
+          <li><a href="/fiduciary/">Fiduciary</a></li>
+          <li><a href="/attest/">Attest</a></li>
+          <li><a href="/help/">Help</a></li>
+          <li><a href="/repo/">Repository</a></li>
+          <li><a href="/erc7827.html">ERC-7827 Standard</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Connect & Media</h4>
+        <p>YouTube: <a href="https://www.youtube.com/watch?v=ONwiUkc_tt4&list=PLbPukKwpmk5E" target="_blank" rel="noopener">Legal Engineering 101 Playlist</a></p>
+        <p>Spotify: <a href="https://open.spotify.com/show/0348ivoLaNfKBq1HeIYC9b" target="_blank" rel="noopener">LexClinic Spotify Show</a></p>
+        <p>LinkedIn: <a href="https://www.linkedin.com/company/lexclinic" target="_blank" rel="noopener">LexClinic Company Page</a></p>
+        <p class="disclaimer">
+          © 2026 LexClinic Education. Open public goods published under AGPL-3.0 & Creative Commons Attribution-ShareAlike.
+        </p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Quiz Handler Script -->
+  <script>
+    async function submitSept22Quiz(e) {
+      e.preventDefault();
+      const form = e.target;
+      const activeEmail = (localStorage.getItem("lexclinic_user_email") || "").trim() || "student@lex.clinic";
+
+      const answers = {};
+      for (let i = 1; i <= 20; i++) {
+        answers[`q${i}`] = form[`q${i}`].value;
+      }
+
+      const correct = {
+        q1: "A", q2: "A", q3: "A", q4: "A",
+        q5: "A", q6: "A", q7: "A", q8: "A",
+        q9: "A", q10: "A", q11: "A", q12: "A",
+        q13: "A", q14: "A", q15: "A", q16: "A",
+        q17: "A", q18: "A", q19: "A", q20: "A"
+      };
+
+      let score = 0;
+      Object.keys(correct).forEach(k => {
+        if (answers[k] === correct[k]) score++;
+      });
+
+      const timestamp = new Date().toISOString();
+      const rawPayload = JSON.stringify({ email: activeEmail, class_id: "2026-09-17", score: score, total: 20, answers, timestamp });
+      
+      let payloadHash = "0x-client-generated";
+      try {
+        if (window.ethers && window.ethers.utils) {
+          payloadHash = window.ethers.utils.keccak256(window.ethers.utils.toUtf8Bytes(rawPayload));
+        }
+      } catch (err) {}
+
+      document.getElementById("quiz-score-text").innerText = `Score: ${score} / 20 (${Math.round((score/20)*100)}%)`;
+      document.getElementById("quiz-hash-display").innerText = payloadHash;
+      document.getElementById("quiz-results-box").style.display = "block";
+
+      try {
+        let localSubs = JSON.parse(localStorage.getItem("lexclinic_quiz_submissions") || "[]");
+        localSubs.push({
+          email: activeEmail,
+          class_id: "2026-09-17",
+          score: `${score}/20`,
+          payload_hash: payloadHash,
+          timestamp: timestamp
+        });
+        localStorage.setItem("lexclinic_quiz_submissions", JSON.stringify(localSubs));
+      } catch (err) {}
+
+      try {
+        await fetch("/api/submit-quiz", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            email: activeEmail,
+            class_id: "2026-09-17",
+            score: score,
+            total: 20,
+            payload_hash: payloadHash,
+            timestamp: timestamp
+          })
+        });
+      } catch (err) {}
+    }
+  </script>
+
+</body>
+</html>

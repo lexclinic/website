@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Assessment Quiz — James Wigginton Interview | LexClinic Education</title>
+  <meta name="description" content="Interactive 20-question Socratic assessment quiz generated directly from Whisper speech-to-text transcripts of Attorney James Wigginton's interview.">
+  <link rel="stylesheet" href="/styles.css?v=20260829_2265">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/ethers/5.7.2/ethers.umd.min.js" integrity="sha512-FD3R0fL3335F3547844080183" crossorigin="anonymous"></script>
+  <script src="/js/audio-player.js?v=20260829_2640"></script>
+  <script src="/js/auth.js?v=20260829_2640"></script>
+  <script src="/js/media-tracker-miniapp.js?v=20260829_2640"></script>
+  <script src="/js/watch-tracker.js?v=20260829_2640"></script>
+  <script src="/script.js?v=20260829_2640" defer></script>
+  <link rel="icon" type="image/png" href="/favicon.png?v=20260829_2640">
+  <link rel="shortcut icon" href="/favicon.ico?v=20260829_2640">
+</head>
+<body>
+
+  <!-- Navigation Bar -->
+      <header class="navbar">
+    <div class="nav-container">
+      <a href="/index.html" class="brand-logo">
+        <span class="logo-icon">⚖️</span>
+        <span class="logo-text">Lex<span class="highlight">Clinic</span></span>
+      </a>
+      <nav class="nav-links" id="nav-links">
+        <a href="/event.html">Event</a>
+        <a href="/101">101</a>
+        <a href="/interview/" class="active-link">Interview</a>
+        <a href="/partner/">Partner</a>
+        <a href="/fiduciary/">Fiduciary</a>
+        <a href="/attest/">Attest</a>
+        <a href="/help/">Help</a>
+        <a href="/repo/">Repo</a>
+        <a href="/erc7827.html">ERC-7827</a>
+        <a href="https://www.youtube.com/watch?v=ONwiUkc_tt4&list=PLbPukKwpmk5E" target="_blank" rel="noopener" class="btn-social" title="Subscribe on YouTube">YouTube</a>
+        <a href="https://open.spotify.com/show/0348ivoLaNfKBq1HeIYC9b" target="_blank" rel="noopener" class="btn-spotify" title="Follow on Spotify">Spotify</a>
+        <a href="https://www.linkedin.com/company/lexclinic" target="_blank" rel="noopener" class="btn-social" title="Follow on LinkedIn">LinkedIn</a>
+        <a href="javascript:void(0)" onclick="event.preventDefault(); window.openNavLoginModal(event); return false;" id="nav-login-btn" style="background: #fbbf24; color: #0a1128; font-weight: 800; font-size: 0.88rem; padding: 0.35rem 0.85rem; border-radius: 6px; margin-left: 0.35rem; text-decoration: none; border: 2px solid #f59e0b; box-shadow: 0 0 10px rgba(251, 191, 36, 0.4); display: inline-block;">Login</a>
+      </nav>
+      <button class="mobile-toggle" id="mobile-toggle" aria-label="Toggle navigation">
+        ☰
+      </button>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero page-hero">
+    <div class="container hero-content">
+      <div class="hero-badge">🎙️ 20-Question Transcript-Derived Assessment</div>
+      <h1 class="hero-title">Assessment Quiz — <span class="gradient-text">James Wigginton Interview</span></h1>
+      <p class="hero-subtitle">
+        Complete this 20-question Socratic assessment generated directly from Whisper speech-to-text transcripts of Attorney James Wigginton's interview on Replacing Digital Landlords with Cooperative Math.
+      </p>
+      <div class="hero-actions">
+        <a href="media.html" class="btn btn-primary" style="background: var(--accent-cyan); color: #0a1128; font-weight: 800;">Review 4 Explainer Clips 🎥</a>
+        <a href="index.html" class="btn btn-outline">Back to Interview Hub ➔</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Main Quiz Area -->
+  <section class="section event-detail-section">
+    <div class="container">
+
+      <div class="card event-module-card" style="border: 2px solid var(--accent-gold);">
+        <div class="module-header" style="margin-bottom: 1.5rem;">
+          <span class="badge-tag" style="background: rgba(251, 191, 36, 0.2); color: var(--accent-gold);">20 Transcript Questions</span>
+          <h2>20-Question Assessment: James Wigginton Interview (Sept 8, 2026)</h2>
+        </div>
+
+        <form id="jw-quiz-form" onsubmit="submitJWQuiz(event)">
+
+          <!-- Section 1: Replacing Digital Landlords -->
+          <h3 style="color: var(--accent-gold); border-bottom: 1px solid var(--accent-gold); padding-bottom: 0.4rem; margin-bottom: 1.25rem;">Module 1: Replacing Digital Landlords with Cooperative Math</h3>
+
+          <div style="background: rgba(10, 17, 40, 0.6); border: 1px solid var(--border-color); border-radius: 8px; padding: 1.25rem; margin-bottom: 1.25rem;">
+            <h4 style="color: var(--accent-cyan); font-size: 1.05rem; margin-bottom: 0.75rem;">1. How does the transcript describe the relationship between big tech platforms and user data?</h4>
+            <label style="display: block; margin-bottom: 0.5rem; color: #e2e8f0; cursor: pointer;"><input type="radio" name="q1" value="A" required> A) Centralized platform landlords harvest user location, browsing habits, and exact screen dwell times into private server farms.</label>
+            <label style="display: block; margin-bottom: 0.5rem; color: #e2e8f0; cursor: pointer;"><input type="radio" name="q1" value="B"> B) Platforms pay users cash dividends for browsing social media.</label>
+            <label style="display: block; margin-bottom: 0.5rem; color: #e2e8f0; cursor: pointer;"><input type="radio" name="q1" value="C"> C) User data is stored in unreadable paper filing cabinets.</label>
+          </div>
+
+          <div style="background: rgba(10, 17, 40, 0.6); border: 1px solid var(--border-color); border-radius: 8px; padding: 1.25rem; margin-bottom: 1.25rem;">
+            <h4 style="color: var(--accent-cyan); font-size: 1.05rem; margin-bottom: 0.75rem;">2. What is the fundamental alternative proposed to replace "digital landlords"?</h4>
+            <label style="display: block; margin-bottom: 0.5rem; color: #e2e8f0; cursor: pointer;"><input type="radio" name="q2" value="A" required> A) Cooperative math and decentralized state machines where users hold sovereign property rights over their data.</label>
+            <label style="display: block; margin-bottom: 0.5rem; color: #e2e8f0; cursor: pointer;"><input type="radio" name="q2" value="B"> B) Government nationalization of all internet service providers.</label>
+            <label style="display: block; margin-bottom: 0.5rem; color: #e2e8f0; cursor: pointer;"><input type="radio" name="q2" value="C"> C) Deleting the internet and returning to paper mail.</label>
+          </div>
+
+          <div style="background: rgba(10, 17, 40, 0.6); border: 1px solid var(--border-color); border-radius: 8px; padding: 1.25rem; margin-bottom: 1.25rem;">
+            <h4 style="color: var(--accent-cyan); font-size: 1.05rem; margin-bottom: 0.75rem;">3. Why are "rent-extracting" digital platforms structurally fragile?</h4>
+            <label style="display: block; margin-bottom: 0.5rem; color: #e2e8f0; cursor: pointer;"><input type="radio" name="q3" value="A" required> A) They extract maximum value from users without granting equity or state verification rights, causing platform migration.</label>
+            <label style="display: block; margin-bottom: 0.5rem; color: #e2e8f0; cursor: pointer;"><input type="radio" name="q3" value="B"> B) They are illegal under maritime law.</label>
+            <label style="display: block; margin-bottom: 0.5rem; color: #e2e8f0; cursor: pointer;"><input type="radio" name="q3" value="C"> C) They run out of physical hard drive space every month.</label>
+          </div>
+
+          <div style="background: rgba(10, 17, 40, 0.6); border: 1px solid var(--border-color); border-radius: 8px; padding: 1.25rem; margin-bottom: 1.25rem;">
+            <h4 style="color: var(--accent-cyan); font-size: 1.05rem; margin-bottom: 0.75rem;">4. How does ERC-7827 empower individuals in a cooperative data model?</h4>
+            <label style="display: block; margin-bottom: 0.5rem; color: #e2e8f0; cursor: pointer;"><input type="radio" name="q4" value="A" required> A) By allowing users to hold an immutable, EVM-verifiable personal state ledger of their own credentials and attestations.</label>
+            <label style="display: block; margin-bottom: 0.5rem; color: #e2e8f0; cursor: pointer;"><input type="radio" name="q4" value="B"> B) By selling user browsing histories to advertising brokers automatically.</label>
+            <label style="display: block; margin-bottom: 0.5rem; color: #e2e8f0; cursor: pointer;"><input type="radio" name="q4" value="C"> C) By forcing users to pay subscription fees to central servers.</label>
+          </div>
+
+          <!-- Section 2: Owning Our Digital Lives -->
+          <h3 style="color: var(--accent-gold); border-bottom: 1px solid var(--accent-gold); padding-bottom: 0.4rem; margin-top: 2rem; margin-bottom: 1.25rem;">Module 2: Owning Our Digital Lives vs. Renting Them</h3>
+
+          <div style="background: rgba(10, 17, 40, 0.6); border: 1px solid var(--border-color); border-radius: 8px; padding: 1.25rem; margin-bottom: 1.25rem;">
+            <h4 style="color: var(--accent-cyan); font-size: 1.05rem; margin-bottom: 0.75rem;">5. What is the core difference between "owning" vs "renting" digital assets?</h4>
+            <label style="display: block; margin-bottom: 0.5rem; color: #e2e8f0; cursor: pointer;"><input type="radio" name="q5" value="A" required> A) Renting means holding platform-revocable licenses, while owning means holding cryptographically verifiable, sovereign control.</label>
+            <label style="display: block; margin-bottom: 0.5rem; color: #e2e8f0; cursor: pointer;"><input type="radio" name="q5" value="B"> B) Owning is only possible for physical land.</label>
+            <label style="display: block; margin-bottom: 0.5rem; color: #e2e8f0; cursor: pointer;"><input type="radio" name="q5" value="C"> C) Renting requires paying in Bitcoin, while owning requires credit cards.</label>
+          </div>
+
+          <div style="background: rgba(10, 17, 40, 0.6); border: 1px solid var(--border-color); border-radius: 8px; padding: 1.25rem; margin-bottom: 1.25rem;">
+            <h4 style="color: var(--accent-cyan); font-size: 1.05rem; margin-bottom: 0.75rem;">6. How do Web3 cooperative structures protect early protocol contributors?</h4>
+            <label style="display: block; margin-bottom: 0.5rem; color: #e2e8f0; cursor: pointer;"><input type="radio" name="q6" value="A" required> A) By binding equity and governance rights to sublinear mathematical growth curves rather than dilution-heavy corporate caps.</label>
+            <label style="display: block; margin-bottom: 0.5rem; color: #e2e8f0; cursor: pointer;"><input type="radio" name="q6" value="B"> B) By firing early contributors when new venture capitalists invest.</label>
+            <label style="display: block; margin-bottom: 0.5rem; color: #e2e8f0; cursor: pointer;"><input type="radio" name="q6" value="C"> C) By granting voting rights exclusively to late-stage institutional investors.</label>
+          </div>
+
+          <div style="background: rgba(10, 17, 40, 0.6); border: 1px solid var(--border-color); border-radius: 8px; padding: 1.25rem; margin-bottom: 1.25rem;">
+            <h4 style="color: var(--accent-cyan); font-size: 1.05rem; margin-bottom: 0.75rem;">7. In attorney James Wigginton's analysis, what role does legal engineering play in venture capital?</h4>
+            <label style="display: block; margin-bottom: 0.5rem; color: #e2e8f0; cursor: pointer;"><input type="radio" name="q7" value="A" required> A) Designing smart legal wrappers that harmonize statutory securities laws with decentralized smart contract execution.</label>
+            <label style="display: block; margin-bottom: 0.5rem; color: #e2e8f0; cursor: pointer;"><input type="radio" name="q7" value="B"> B) Eliminating all legal contracts from venture investments.</label>
+            <label style="display: block; margin-bottom: 0.5rem; color: #e2e8f0; cursor: pointer;"><input type="radio" name="q7" value="C"> C) Writing pitch decks for traditional venture capital firms.</label>
+          </div>
+
+          <div style="background: rgba(10, 17, 40, 0.6); border: 1px solid var(--border-color); border-radius: 8px; padding: 1.25rem; margin-bottom: 1.25rem;">
+            <h4 style="color: var(--accent-cyan); font-size: 1.05rem; margin-bottom: 0.75rem;">8. How does sublinear invariance prevent speculative protocol collapse?</h4>
+            <label style="display: block; margin-bottom: 0.5rem; color: #e2e8f0; cursor: pointer;"><input type="radio" name="q8" value="A" required> A) It dampens hyper-exponential token inflation and bounds value distribution within mathematical stability limits.</label>
+            <label style="display: block; margin-bottom: 0.5rem; color: #e2e8f0; cursor: pointer;"><input type="radio" name="q8" value="B"> B) It forces token prices to remain completely fixed at $1 forever.</label>
+            <label style="display: block; margin-bottom: 0.5rem; color: #e2e8f0; cursor: pointer;"><input type="radio" name="q8" value="C"> C) It requires manual intervention by state regulators.</label>
+          </div>
+
+          <!-- Section 3: Web3 Venture Capital & Geometry -->
+          <h3 style="color: var(--accent-gold); border-bottom: 1px solid var(--accent-gold); padding-bottom: 0.4rem; margin-top: 2rem; margin-bottom: 1.25rem;">Module 3: Web3 Venture Capital &amp; Abstract Geometry</h3>
+
+          <div style="background: rgba(10, 17, 40, 0.6); border: 1px solid var(--border-color); border-radius: 8px; padding: 1.25rem; margin-bottom: 1.25rem;">
+            <h4 style="color: var(--accent-cyan); font-size: 1.05rem; margin-bottom: 0.75rem;">9. What is "bounded 2D ratio optimization" in legal engineering mathematics?</h4>
+            <label style="display: block; margin-bottom: 0.5rem; color: #e2e8f0; cursor: pointer;"><input type="radio" name="q9" value="A" required> A) A geometric framework balancing capital allocation and contributor equity along bounded coordinate curves.</label>
+            <label style="display: block; margin-bottom: 0.5rem; color: #e2e8f0; cursor: pointer;"><input type="radio" name="q9" value="B"> B) Drawing 2D square boxes around corporate logo designs.</label>
+            <label style="display: block; margin-bottom: 0.5rem; color: #e2e8f0; cursor: pointer;"><input type="radio" name="q9" value="C"> C) Calculating land property taxes using 2D maps.</label>
+          </div>
+
+          <div style="background: rgba(10, 17, 40, 0.6); border: 1px solid var(--border-color); border-radius: 8px; padding: 1.25rem; margin-bottom: 1.25rem;">
+            <h4 style="color: var(--accent-cyan); font-size: 1.05rem; margin-bottom: 0.75rem;">10. How do legal engineers bridge traditional legal precedent with abstract mathematical models?</h4>
+            <label style="display: block; margin-bottom: 0.5rem; color: #e2e8f0; cursor: pointer;"><input type="radio" name="q10" value="A" required> A) By converting statutory obligations and corporate bylaws into formal, machine-verifiable state transition functions.</label>
+            <label style="display: block; margin-bottom: 0.5rem; color: #e2e8f0; cursor: pointer;"><input type="radio" name="q10" value="B"> B) By printing legal casebooks in mathematical notation.</label>
+            <label style="display: block; margin-bottom: 0.5rem; color: #e2e8f0; cursor: pointer;"><input type="radio" name="q10" value="C"> C) By asking judges to solve calculus problems during trial.</label>
+          </div>
+
+          <div style="background: rgba(10, 17, 40, 0.6); border: 1px solid var(--border-color); border-radius: 8px; padding: 1.25rem; margin-bottom: 1.25rem;">
+            <h4 style="color: var(--accent-cyan); font-size: 1.05rem; margin-bottom: 0.75rem;">11. What distinction is made between "exponential VC growth" vs. "cooperative sublinear scaling"?</h4>
+            <label style="display: block; margin-bottom: 0.5rem; color: #e2e8f0; cursor: pointer;"><input type="radio" name="q11" value="A" required> A) Exponential VC growth incentivizes rapid boom-bust cycles, whereas cooperative scaling preserves long-term protocol equilibrium.</label>
+            <label style="display: block; margin-bottom: 0.5rem; color: #e2e8f0; cursor: pointer;"><input type="radio" name="q11" value="B"> B) Exponential VC growth is illegal under federal tax codes.</label>
+            <label style="display: block; margin-bottom: 0.5rem; color: #e2e8f0; cursor: pointer;"><input type="radio" name="q11" value="C"> C) Sublinear scaling requires no initial capital investment.</label>
+          </div>
+
+          <div style="background: rgba(10, 17, 40, 0.6); border: 1px solid var(--border-color); border-radius: 8px; padding: 1.25rem; margin-bottom: 1.25rem;">
+            <h4 style="color: var(--accent-cyan); font-size: 1.05rem; margin-bottom: 0.75rem;">12. Why is "data property rights" essential for AI model training ecosystems?</h4>
+            <label style="display: block; margin-bottom: 0.5rem; color: #e2e8f0; cursor: pointer;"><input type="radio" name="q12" value="A" required> A) To ensure data creators receive fair attribution and programmatic compensation when AI models ingest their work.</label>
+            <label style="display: block; margin-bottom: 0.5rem; color: #e2e8f0; cursor: pointer;"><input type="radio" name="q12" value="B"> B) To prevent AI models from learning human languages.</label>
+            <label style="display: block; margin-bottom: 0.5rem; color: #e2e8f0; cursor: pointer;"><input type="radio" name="q12" value="C"> C) To force AI developers to pay real estate property taxes.</label>
+          </div>
+
+          <!-- Section 4: Law, AI & Digital Property Rights -->
+          <h3 style="color: var(--accent-gold); border-bottom: 1px solid var(--accent-gold); padding-bottom: 0.4rem; margin-top: 2rem; margin-bottom: 1.25rem;">Module 4: Law, AI &amp; Digital Property Rights</h3>
+
+          <div style="background: rgba(10, 17, 40, 0.6); border: 1px solid var(--border-color); border-radius: 8px; padding: 1.25rem; margin-bottom: 1.25rem;">
+            <h4 style="color: var(--accent-cyan); font-size: 1.05rem; margin-bottom: 0.75rem;">13. How does the transcript define the role of "verifiable AI verification gates"?</h4>
+            <label style="display: block; margin-bottom: 0.5rem; color: #e2e8f0; cursor: pointer;"><input type="radio" name="q13" value="A" required> A) Programmatic checkpoints that validate AI outputs against cryptographic state constraints before executing legal transitions.</label>
+            <label style="display: block; margin-bottom: 0.5rem; color: #e2e8f0; cursor: pointer;"><input type="radio" name="q13" value="B"> B) Physical security gates at data center entrances.</label>
+            <label style="display: block; margin-bottom: 0.5rem; color: #e2e8f0; cursor: pointer;"><input type="radio" name="q13" value="C"> C) Firewalls that block all incoming internet traffic.</label>
+          </div>
+
+          <div style="background: rgba(10, 17, 40, 0.6); border: 1px solid var(--border-color); border-radius: 8px; padding: 1.25rem; margin-bottom: 1.25rem;">
+            <h4 style="color: var(--accent-cyan); font-size: 1.05rem; margin-bottom: 0.75rem;">14. What advantage do Ricardian smart contract wrappers provide to Web3 founders?</h4>
+            <label style="display: block; margin-bottom: 0.5rem; color: #e2e8f0; cursor: pointer;"><input type="radio" name="q14" value="A" required> A) They link natural-language court-admissible legal agreements directly to on-chain smart contract bytecode.</label>
+            <label style="display: block; margin-bottom: 0.5rem; color: #e2e8f0; cursor: pointer;"><input type="radio" name="q14" value="B"> B) They eliminate all state and federal tax obligations.</label>
+            <label style="display: block; margin-bottom: 0.5rem; color: #e2e8f0; cursor: pointer;"><input type="radio" name="q14" value="C"> C) They allow companies to operate without registering corporate officers.</label>
+          </div>
+
+          <div style="background: rgba(10, 17, 40, 0.6); border: 1px solid var(--border-color); border-radius: 8px; padding: 1.25rem; margin-bottom: 1.25rem;">
+            <h4 style="color: var(--accent-cyan); font-size: 1.05rem; margin-bottom: 0.75rem;">15. Why is "Keccak-256 state hashing" used in LexClinic student assessments?</h4>
+            <label style="display: block; margin-bottom: 0.5rem; color: #e2e8f0; cursor: pointer;"><input type="radio" name="q15" value="A" required> A) To produce a unique, deterministic, tamper-evident cryptographic fingerprint of student quiz responses for on-chain attestation.</label>
+            <label style="display: block; margin-bottom: 0.5rem; color: #e2e8f0; cursor: pointer;"><input type="radio" name="q15" value="B"> B) To compress file sizes for faster email downloads.</label>
+            <label style="display: block; margin-bottom: 0.5rem; color: #e2e8f0; cursor: pointer;"><input type="radio" name="q15" value="C"> C) To encrypt student passwords in local browser cookies.</label>
+          </div>
+
+          <div style="background: rgba(10, 17, 40, 0.6); border: 1px solid var(--border-color); border-radius: 8px; padding: 1.25rem; margin-bottom: 1.25rem;">
+            <h4 style="color: var(--accent-cyan); font-size: 1.05rem; margin-bottom: 0.75rem;">16. What is "counter-party attestation" under the ERC-7827 personal ledger standard?</h4>
+            <label style="display: block; margin-bottom: 0.5rem; color: #e2e8f0; cursor: pointer;"><input type="radio" name="q16" value="A" required> A) Institutional issuers counter-signing student state payload hashes on-chain as a verifiable credential.</label>
+            <label style="display: block; margin-bottom: 0.5rem; color: #e2e8f0; cursor: pointer;"><input type="radio" name="q16" value="B"> B) Sending paper diplomas through registered mail.</label>
+            <label style="display: block; margin-bottom: 0.5rem; color: #e2e8f0; cursor: pointer;"><input type="radio" name="q16" value="C"> C) Paying tuition fees using credit card transactions.</label>
+          </div>
+
+          <!-- Section 5: The Future of Legal Engineering -->
+          <h3 style="color: var(--accent-gold); border-bottom: 1px solid var(--accent-gold); padding-bottom: 0.4rem; margin-top: 2rem; margin-bottom: 1.25rem;">Module 5: The Future of Legal Engineering &amp; Cooperatives</h3>
+
+          <div style="background: rgba(10, 17, 40, 0.6); border: 1px solid var(--border-color); border-radius: 8px; padding: 1.25rem; margin-bottom: 1.25rem;">
+            <h4 style="color: var(--accent-cyan); font-size: 1.05rem; margin-bottom: 0.75rem;">17. How does LexClinic Education support the public good ecosystem?</h4>
+            <label style="display: block; margin-bottom: 0.5rem; color: #e2e8f0; cursor: pointer;"><input type="radio" name="q17" value="A" required> A) By publishing open-source courseware, AGPL-3.0 toolkits, and free educational media under Creative Commons.</label>
+            <label style="display: block; margin-bottom: 0.5rem; color: #e2e8f0; cursor: pointer;"><input type="radio" name="q17" value="B"> B) By selling expensive private law firm software licenses.</label>
+            <label style="display: block; margin-bottom: 0.5rem; color: #e2e8f0; cursor: pointer;"><input type="radio" name="q17" value="C"> C) By charging students per minute of video watch time.</label>
+          </div>
+
+          <div style="background: rgba(10, 17, 40, 0.6); border: 1px solid var(--border-color); border-radius: 8px; padding: 1.25rem; margin-bottom: 1.25rem;">
+            <h4 style="color: var(--accent-cyan); font-size: 1.05rem; margin-bottom: 0.75rem;">18. What role does the @lex.clinic member identity play in fiduciary governance?</h4>
+            <label style="display: block; margin-bottom: 0.5rem; color: #e2e8f0; cursor: pointer;"><input type="radio" name="q18" value="A" required> A) Granting working LLC members authenticated access to internal bylaws, LLCA, and governance procedures in the Fiduciary Vault.</label>
+            <label style="display: block; margin-bottom: 0.5rem; color: #e2e8f0; cursor: pointer;"><input type="radio" name="q18" value="B"> B) Allowing members to bypass state bar exams.</label>
+            <label style="display: block; margin-bottom: 0.5rem; color: #e2e8f0; cursor: pointer;"><input type="radio" name="q18" value="C"> C) Automatically filing corporate tax returns with the IRS.</label>
+          </div>
+
+          <div style="background: rgba(10, 17, 40, 0.6); border: 1px solid var(--border-color); border-radius: 8px; padding: 1.25rem; margin-bottom: 1.25rem;">
+            <h4 style="color: var(--accent-cyan); font-size: 1.05rem; margin-bottom: 0.75rem;">19. How does the "attestation dashboard" (/attest/) benefit students?</h4>
+            <label style="display: block; margin-bottom: 0.5rem; color: #e2e8f0; cursor: pointer;"><input type="radio" name="q19" value="A" required> A) It provides a central, verifiable ledger showing completed quiz scores, Keccak-256 state hashes, and pending ERC-7827 status.</label>
+            <label style="display: block; margin-bottom: 0.5rem; color: #e2e8f0; cursor: pointer;"><input type="radio" name="q19" value="B"> B) It displays advertisements for third-party law firms.</label>
+            <label style="display: block; margin-bottom: 0.5rem; color: #e2e8f0; cursor: pointer;"><input type="radio" name="q19" value="C"> C) It automatically deletes quiz scores after 24 hours.</label>
+          </div>
+
+          <div style="background: rgba(10, 17, 40, 0.6); border: 1px solid var(--border-color); border-radius: 8px; padding: 1.25rem; margin-bottom: 1.5rem;">
+            <h4 style="color: var(--accent-cyan); font-size: 1.05rem; margin-bottom: 0.75rem;">20. What is the ultimate goal of combining legal engineering, AI verification, and cooperative math?</h4>
+            <label style="display: block; margin-bottom: 0.5rem; color: #e2e8f0; cursor: pointer;"><input type="radio" name="q20" value="A" required> A) Building a friction-free, equitable, and transparent global substrate for human cooperation and legal agreements.</label>
+            <label style="display: block; margin-bottom: 0.5rem; color: #e2e8f0; cursor: pointer;"><input type="radio" name="q20" value="B"> B) Replacing all human lawyers with automated phone bots.</label>
+            <label style="display: block; margin-bottom: 0.5rem; color: #e2e8f0; cursor: pointer;"><input type="radio" name="q20" value="C"> C) Creating a proprietary monopoly over legal software tools.</label>
+          </div>
+
+          <button type="submit" id="quiz-submit-btn" class="btn btn-primary" style="background: var(--accent-gold); color: #0a1128; font-weight: 800; font-size: 1.05rem; padding: 0.85rem 1.5rem; width: 100%;">
+            Submit 20-Question Assessment &amp; Compute Keccak-256 Hash 🚀
+          </button>
+        </form>
+
+        <!-- Quiz Result Box -->
+        <div id="quiz-results-box" style="display: none; background: rgba(16, 31, 66, 0.9); border: 2px solid var(--accent-cyan); border-radius: 8px; padding: 1.5rem; margin-top: 1.5rem;">
+          <h3 style="color: var(--accent-cyan); font-size: 1.3rem; margin-bottom: 0.5rem;">✅ Assessment Complete!</h3>
+          <p id="quiz-score-text" style="color: #ffffff; font-size: 1.1rem; font-weight: 700; margin-bottom: 0.75rem;">Score: -- / 20</p>
+          <div style="background: rgba(10, 17, 40, 0.85); padding: 1rem; border-radius: 6px; font-family: 'Fira Code', monospace; font-size: 0.85rem; color: var(--accent-gold); word-break: break-all; margin-bottom: 1rem;">
+            <strong>Computed Payload Hash (Keccak-256):</strong><br><span id="quiz-hash-display">...</span>
+          </div>
+          <a href="/attest/" class="btn btn-primary" style="background: var(--accent-cyan); color: #0a1128; font-weight: 800;">View Recorded Attestations Dashboard ➔</a>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Contact Footer -->
+  <footer class="footer">
+    <div class="container footer-content">
+      <div class="footer-col">
+        <div class="brand-logo footer-logo">
+          <span class="logo-icon">⚖️</span>
+          <span class="logo-text">Lex<span class="highlight">Clinic</span></span>
+        </div>
+        <p class="footer-tagline">LexClinic Education</p>
+        <p class="footer-address">
+          Authors of ERC-7827 | Open-Source Computational Law & Legal Engineering
+        </p>
+      </div>
+      <div class="footer-col">
+        <h4>Navigation</h4>
+        <ul>
+          <li><a href="/event.html">Event</a></li>
+          <li><a href="/101">Legal Engineering 101</a></li>
+          <li><a href="/interview/">Interview</a></li>
+          <li><a href="/partner/">Partner</a></li>
+          <li><a href="/fiduciary/">Fiduciary</a></li>
+          <li><a href="/attest/">Attest</a></li>
+          <li><a href="/help/">Help</a></li>
+          <li><a href="/repo/">Repository</a></li>
+          <li><a href="/erc7827.html">ERC-7827 Standard</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Connect & Media</h4>
+        <p>YouTube: <a href="https://www.youtube.com/watch?v=ONwiUkc_tt4&list=PLbPukKwpmk5E" target="_blank" rel="noopener">Legal Engineering 101 Playlist</a></p>
+        <p>Spotify: <a href="https://open.spotify.com/show/0348ivoLaNfKBq1HeIYC9b" target="_blank" rel="noopener">LexClinic Spotify Show</a></p>
+        <p>LinkedIn: <a href="https://www.linkedin.com/company/lexclinic" target="_blank" rel="noopener">LexClinic Company Page</a></p>
+        <p class="disclaimer">
+          © 2026 LexClinic Education. Open public goods published under AGPL-3.0 & Creative Commons Attribution-ShareAlike.
+        </p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Quiz Handler Script -->
+  <script>
+    async function submitJWQuiz(e) {
+      e.preventDefault();
+      const form = e.target;
+      const activeEmail = (localStorage.getItem("lexclinic_user_email") || "").trim() || "student@lex.clinic";
+
+      const answers = {};
+      for (let i = 1; i <= 20; i++) {
+        answers[`q${i}`] = form[`q${i}`].value;
+      }
+
+      const correct = {
+        q1: "A", q2: "A", q3: "A", q4: "A",
+        q5: "A", q6: "A", q7: "A", q8: "A",
+        q9: "A", q10: "A", q11: "A", q12: "A",
+        q13: "A", q14: "A", q15: "A", q16: "A",
+        q17: "A", q18: "A", q19: "A", q20: "A"
+      };
+
+      let score = 0;
+      Object.keys(correct).forEach(k => {
+        if (answers[k] === correct[k]) score++;
+      });
+
+      const timestamp = new Date().toISOString();
+      const rawPayload = JSON.stringify({ email: activeEmail, class_id: "2026-09-08", score: score, total: 20, answers, timestamp });
+      
+      let payloadHash = "0x-client-generated";
+      try {
+        if (window.ethers && window.ethers.utils) {
+          payloadHash = window.ethers.utils.keccak256(window.ethers.utils.toUtf8Bytes(rawPayload));
+        }
+      } catch (err) {}
+
+      document.getElementById("quiz-score-text").innerText = `Score: ${score} / 20 (${Math.round((score/20)*100)}%)`;
+      document.getElementById("quiz-hash-display").innerText = payloadHash;
+      document.getElementById("quiz-results-box").style.display = "block";
+
+      try {
+        let localSubs = JSON.parse(localStorage.getItem("lexclinic_quiz_submissions") || "[]");
+        localSubs.push({
+          email: activeEmail,
+          class_id: "2026-09-08",
+          score: `${score}/20`,
+          payload_hash: payloadHash,
+          timestamp: timestamp
+        });
+        localStorage.setItem("lexclinic_quiz_submissions", JSON.stringify(localSubs));
+      } catch (err) {}
+
+      try {
+        await fetch("/api/submit-quiz", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            email: activeEmail,
+            class_id: "2026-09-08",
+            score: score,
+            total: 20,
+            payload_hash: payloadHash,
+            timestamp: timestamp
+          })
+        });
+      } catch (err) {}
+    }
+  </script>
+
+</body>
+</html>

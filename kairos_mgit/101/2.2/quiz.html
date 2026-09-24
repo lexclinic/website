@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Class 2.2: ERC-7827 & On-Chain State Machines Quiz | LexClinic Education</title>
+  <meta name="description" content="20-Question Socratic Assessment on ERC-7827 Specification, EVM State Version Control, and Personal Ledger Proofs.">
+  <link rel="stylesheet" href="/styles.css?v=20260829_2640">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <script src="/js/audio-player.js?v=20260829_2640"></script>
+  <script src="/js/auth.js?v=20260829_2640"></script>
+  <script src="/js/media-tracker-miniapp.js?v=20260829_2640"></script>
+  <script src="/js/watch-tracker.js?v=20260829_2640"></script>
+  <script src="/script.js?v=20260829_2640" defer></script>
+  <link rel="icon" type="image/png" href="/favicon.png?v=20260829_2640">
+  <link rel="shortcut icon" href="/favicon.ico?v=20260829_2640">
+</head>
+<body>
+
+  <!-- Navigation Bar -->
+      <header class="navbar">
+    <div class="nav-container">
+      <a href="/index.html" class="brand-logo">
+        <span class="logo-icon">⚖️</span>
+        <span class="logo-text">Lex<span class="highlight">Clinic</span></span>
+      </a>
+      <nav class="nav-links" id="nav-links">
+        <a href="/event.html">Event</a>
+        <a href="/101" class="active-link">101</a>
+        <a href="/interview/">Interview</a>
+        <a href="/partner/">Partner</a>
+        <a href="/fiduciary/">Fiduciary</a>
+        <a href="/attest/">Attest</a>
+        <a href="/help/">Help</a>
+        <a href="/repo/">Repo</a>
+        <a href="/erc7827.html">ERC-7827</a>
+        <a href="https://www.youtube.com/watch?v=ONwiUkc_tt4&list=PLbPukKwpmk5E" target="_blank" rel="noopener" class="btn-social" title="Subscribe on YouTube">YouTube</a>
+        <a href="https://open.spotify.com/show/0348ivoLaNfKBq1HeIYC9b" target="_blank" rel="noopener" class="btn-spotify" title="Follow on Spotify">Spotify</a>
+        <a href="https://www.linkedin.com/company/lexclinic" target="_blank" rel="noopener" class="btn-social" title="Follow on LinkedIn">LinkedIn</a>
+        <a href="javascript:void(0)" onclick="event.preventDefault(); window.openNavLoginModal(event); return false;" id="nav-login-btn" style="background: #fbbf24; color: #0a1128; font-weight: 800; font-size: 0.88rem; padding: 0.35rem 0.85rem; border-radius: 6px; margin-left: 0.35rem; text-decoration: none; border: 2px solid #f59e0b; box-shadow: 0 0 10px rgba(251, 191, 36, 0.4); display: inline-block;">Login</a>
+      </nav>
+      <button class="mobile-toggle" id="mobile-toggle" aria-label="Toggle navigation">
+        ☰
+      </button>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero page-hero">
+    <div class="container hero-content">
+      <div class="hero-badge"> Socratic Quiz • Module 2.2</div>
+      <h1 class="hero-title">Class 2.2: ERC-7827 & On-Chain State Machines <span class="gradient-text">Quiz</span></h1>
+      <p class="hero-subtitle">20-Question Socratic Assessment on ERC-7827 Specification, EVM State Version Control, and Personal Ledger Proofs.</p>
+      <div class="hero-actions">
+        <a href="index.html" class="btn btn-outline">⬅ Back to Module 2.2 Lesson</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Quiz Form Section -->
+  <section class="section">
+    <div class="container">
+      <div class="card pillar-card">
+        <h2 style="color: var(--accent-gold); margin-bottom: 1.5rem;">20 Socratic Questions: Module 2.2</h2>
+        
+        <form id="quiz-form" onsubmit="event.preventDefault(); submitQuiz();">
+          
+          <div class="question-block" style="margin-bottom: 1.5rem;">
+            <p style="font-weight: 700; color: var(--accent-cyan);">Q1: What is the primary purpose of the ERC-7827 standard?</p>
+            <label><input type="radio" name="q1" value="a" required> EVM state version control and personal ledger state hashing</label><br>
+            <label><input type="radio" name="q1" value="b"> Creating fungible ERC-20 tokens</label><br>
+            <label><input type="radio" name="q1" value="c"> Generating NFT art metadata</label>
+          </div>
+          <div class="question-block" style="margin-bottom: 1.5rem;">
+            <p style="font-weight: 700; color: var(--accent-cyan);">Q2: How does ERC-7827 maintain verifiable state version history?</p>
+            <label><input type="radio" name="q2" value="a" required> Computes Keccak-256 state hashes on every valid transition function execution</label><br>
+            <label><input type="radio" name="q2" value="b"> Stores state history in text files</label><br>
+            <label><input type="radio" name="q2" value="c"> Erases old state data automatically</label>
+          </div>
+          <div class="question-block" style="margin-bottom: 1.5rem;">
+            <p style="font-weight: 700; color: var(--accent-cyan);">Q3: What is a 'state transition function' in an ERC-7827 contract?</p>
+            <label><input type="radio" name="q3" value="a" required> A deterministic function that accepts valid condition inputs and updates state variables</label><br>
+            <label><input type="radio" name="q3" value="b"> A function that deletes user accounts</label><br>
+            <label><input type="radio" name="q3" value="c"> A gas refund mechanism</label>
+          </div>
+          <div class="question-block" style="margin-bottom: 1.5rem;">
+            <p style="font-weight: 700; color: var(--accent-cyan);">Q4: How does ERC-7827 prevent unauthorized state tampering?</p>
+            <label><input type="radio" name="q4" value="a" required> Validates cryptographic caller authorization and state hash continuity</label><br>
+            <label><input type="radio" name="q4" value="b"> Hides contract code from public view</label><br>
+            <label><input type="radio" name="q4" value="c"> Requires physical paper signatures</label>
+          </div>
+          <div class="question-block" style="margin-bottom: 1.5rem;">
+            <p style="font-weight: 700; color: var(--accent-cyan);">Q5: What constitutes a 'personal ledger proof' in ERC-7827?</p>
+            <label><input type="radio" name="q5" value="a" required> A cryptographically verifiable record of individual member state transitions and attestations</label><br>
+            <label><input type="radio" name="q5" value="b"> A paper bank statement</label><br>
+            <label><input type="radio" name="q5" value="c"> A verbal promise by a director</label>
+          </div>
+          <div class="question-block" style="margin-bottom: 1.5rem;">
+            <p style="font-weight: 700; color: var(--accent-cyan);">Q6: How does ERC-7827 interact with statutory AST condition tokens?</p>
+            <label><input type="radio" name="q6" value="a" required> Executes AST condition gates inside EVM require() assertions before updating state hashes</label><br>
+            <label><input type="radio" name="q6" value="b"> Translates AST code into French</label><br>
+            <label><input type="radio" name="q6" value="c"> Bypasses EVM execution logic</label>
+          </div>
+          <div class="question-block" style="margin-bottom: 1.5rem;">
+            <p style="font-weight: 700; color: var(--accent-cyan);">Q7: What is 'Keccak-256 state hashing' in ERC-7827?</p>
+            <label><input type="radio" name="q7" value="a" required> Hashing current contract storage variables to generate an immutable state version fingerprint</label><br>
+            <label><input type="radio" name="q7" value="b"> Compressing contract bytecode</label><br>
+            <label><input type="radio" name="q7" value="c"> Encrypting user passwords</label>
+          </div>
+          <div class="question-block" style="margin-bottom: 1.5rem;">
+            <p style="font-weight: 700; color: var(--accent-cyan);">Q8: How does ERC-7827 support bilateral attestation records?</p>
+            <label><input type="radio" name="q8" value="a" required> Stores dual-signed cryptographic state hashes on-chain or in verifiable off-chain registries</label><br>
+            <label><input type="radio" name="q8" value="b"> Requires central bank approval</label><br>
+            <label><input type="radio" name="q8" value="c"> Erases signatures after 30 days</label>
+          </div>
+          <div class="question-block" style="margin-bottom: 1.5rem;">
+            <p style="font-weight: 700; color: var(--accent-cyan);">Q9: What is 'state versioning' in smart contract engineering?</p>
+            <label><input type="radio" name="q9" value="a" required> Tracking incremental, immutable state revisions across contract execution history</label><br>
+            <label><input type="radio" name="q9" value="b"> Updating software version numbers in comments</label><br>
+            <label><input type="radio" name="q9" value="c"> Redeploying new contracts on every transaction</label>
+          </div>
+          <div class="question-block" style="margin-bottom: 1.5rem;">
+            <p style="font-weight: 700; color: var(--accent-cyan);">Q10: How does ERC-7827 minimize EVM gas execution overhead?</p>
+            <label><input type="radio" name="q10" value="a" required> Optimizes storage packing and utilizes efficient Keccak-256 state root commitments</label><br>
+            <label><input type="radio" name="q10" value="b"> Increases gas fees for all users</label><br>
+            <label><input type="radio" name="q10" value="c"> Stores all data in EVM memory arrays</label>
+          </div>
+          <div class="question-block" style="margin-bottom: 1.5rem;">
+            <p style="font-weight: 700; color: var(--accent-cyan);">Q11: What occurs when an ERC-7827 transition function receives an invalid caller signature?</p>
+            <label><input type="radio" name="q11" value="a" required> Reverts execution immediately, preserving current state hash integrity</label><br>
+            <label><input type="radio" name="q11" value="b"> Updates state to zero</label><br>
+            <label><input type="radio" name="q11" value="c"> Deletes contract funds</label>
+          </div>
+          <div class="question-block" style="margin-bottom: 1.5rem;">
+            <p style="font-weight: 700; color: var(--accent-cyan);">Q12: How does ERC-7827 interface with Delaware corporate LLC bylaws?</p>
+            <label><input type="radio" name="q12" value="a" required> Maps corporate membership ledger states to verifiable on-chain state version hashes</label><br>
+            <label><input type="radio" name="q12" value="b"> Replaces Delaware incorporation requirements</label><br>
+            <label><input type="radio" name="q12" value="c"> Bans corporate officer votes</label>
+          </div>
+          <div class="question-block" style="margin-bottom: 1.5rem;">
+            <p style="font-weight: 700; color: var(--accent-cyan);">Q13: What is 'deterministic execution' in EVM state machines?</p>
+            <label><input type="radio" name="q13" value="a" required> Ensuring identical input states always produce identical output state hashes across all nodes</label><br>
+            <label><input type="radio" name="q13" value="b"> Executing transactions at random intervals</label><br>
+            <label><input type="radio" name="q13" value="c"> Allowing miners to change state results</label>
+          </div>
+          <div class="question-block" style="margin-bottom: 1.5rem;">
+            <p style="font-weight: 700; color: var(--accent-cyan);">Q14: How does ERC-7827 prevent state transition replay attacks?</p>
+            <label><input type="radio" name="q14" value="a" required> Includes unique nonces and state version counters in every hash digest computation</label><br>
+            <label><input type="radio" name="q14" value="b"> Changes contract address on every call</label><br>
+            <label><input type="radio" name="q14" value="c"> Requires manual admin approval</label>
+          </div>
+          <div class="question-block" style="margin-bottom: 1.5rem;">
+            <p style="font-weight: 700; color: var(--accent-cyan);">Q15: What is 'off-chain state attestation' in ERC-7827 architecture?</p>
+            <label><input type="radio" name="q15" value="a" required> Cryptographic EIP-712 signatures generated off-chain and verified against ERC-7827 state roots</label><br>
+            <label><input type="radio" name="q15" value="b"> Sending paper letters through mail</label><br>
+            <label><input type="radio" name="q15" value="c"> Storing data in unencrypted spreadsheets</label>
+          </div>
+          <div class="question-block" style="margin-bottom: 1.5rem;">
+            <p style="font-weight: 700; color: var(--accent-cyan);">Q16: How does ERC-7827 support automated fiduciary verification gates?</p>
+            <label><input type="radio" name="q16" value="a" required> Enforces state checks that prevent asset transfers unless fiduciary condition gates pass</label><br>
+            <label><input type="radio" name="q16" value="b"> Allows officers to withdraw funds without checks</label><br>
+            <label><input type="radio" name="q16" value="c"> Requires annual paper audits</label>
+          </div>
+          <div class="question-block" style="margin-bottom: 1.5rem;">
+            <p style="font-weight: 700; color: var(--accent-cyan);">Q17: What is the 'current state hash' getter in ERC-7827?</p>
+            <label><input type="radio" name="q17" value="a" required> A view function returning the latest Keccak-256 state version fingerprint</label><br>
+            <label><input type="radio" name="q17" value="b"> A function that changes contract state</label><br>
+            <label><input type="radio" name="q17" value="c"> A function that mints new tokens</label>
+          </div>
+          <div class="question-block" style="margin-bottom: 1.5rem;">
+            <p style="font-weight: 700; color: var(--accent-cyan);">Q18: How do Socratic assessments verify student understanding of ERC-7827?</p>
+            <label><input type="radio" name="q18" value="a" required> Test deep technical knowledge of state hashing, transition functions, and EVM state proofs</label><br>
+            <label><input type="radio" name="q18" value="b"> Grade students based on attendance</label><br>
+            <label><input type="radio" name="q18" value="c"> Require paper essay submissions</label>
+          </div>
+          <div class="question-block" style="margin-bottom: 1.5rem;">
+            <p style="font-weight: 700; color: var(--accent-cyan);">Q19: What is the relationship between ERC-7827 and Ricardian legal prose?</p>
+            <label><input type="radio" name="q19" value="a" required> ERC-7827 provides the verifiable machine execution ledger referenced in Ricardian legal prose</label><br>
+            <label><input type="radio" name="q19" value="b"> ERC-7827 replaces human legal prose entirely</label><br>
+            <label><input type="radio" name="q19" value="c"> ERC-7827 has no connection to law</label>
+          </div>
+          <div class="question-block" style="margin-bottom: 1.5rem;">
+            <p style="font-weight: 700; color: var(--accent-cyan);">Q20: Why is ERC-7827 considered foundational for open-source legal engineering?</p>
+            <label><input type="radio" name="q20" value="a" required> Establishes a standardized, interoperable standard for verifiable legal runtimes across blockchains</label><br>
+            <label><input type="radio" name="q20" value="b"> Standardizes legal fee billing</label><br>
+            <label><input type="radio" name="q20" value="c"> Prevents contracts from being deployed on public networks</label>
+          </div>
+
+          <button type="submit" class="btn btn-primary" style="background: var(--accent-gold); color: #0a1128; font-weight: 800; font-size: 1.05rem; padding: 0.75rem 2rem; margin-top: 1rem;">
+            Submit Module 2.2 Quiz &amp; Save Attestation 
+          </button>
+        </form>
+
+        <div id="quiz-results" style="display: none; margin-top: 2rem; background: rgba(52, 211, 153, 0.15); border: 2px solid #34d399; padding: 1.5rem; border-radius: 8px;">
+          <h3 style="color: #34d399; margin-top: 0;">🎉 Module 2.2 Quiz Completed!</h3>
+          <p id="score-text" style="font-size: 1.1rem; color: #fff;"></p>
+          <a href="/profile/" class="btn btn-primary">View Attestation on Profile ➔</a>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <script>
+    function submitQuiz() {
+      const form = document.getElementById('quiz-form');
+      let score = 0;
+      const totalQs = 20;
+
+      for (let i = 1; i <= totalQs; i++) {
+        const val = form['q' + i] ? form['q' + i].value : '';
+        if (val === 'a') {
+          score += (100 / totalQs);
+        }
+      }
+
+      score = Math.round(score);
+
+      document.getElementById('quiz-form').style.display = 'none';
+      const res = document.getElementById('quiz-results');
+      res.style.display = 'block';
+      document.getElementById('score-text').innerText = `You scored ${score}% on Module 2.2 Socratic Assessment! Your score has been linked to your profile.`;
+
+      const email = window.getSanitizedEmail ? window.getSanitizedEmail() : "";
+      if (email) {
+        fetch("/api/submit-quiz", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ email, quiz_id: "class_2_2", score: score, timestamp: new Date().toISOString() })
+        }).catch(() => {});
+      }
+    }
+  </script>
+
+</body>
+</html>

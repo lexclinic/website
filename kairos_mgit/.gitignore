@@ -1,0 +1,10 @@
+# Agentic Localonly Air-Gap Rules
+*.localonly
+*.localonly.*
+.localonly
+.localonly.*
+
+# Temporary Build Caches
+.wrangler/
+node_modules/
+*.log
