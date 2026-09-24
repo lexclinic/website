@@ -102,6 +102,14 @@ print("✅ Pushed Chronos audit snapshot to website_context.git (branch: stage)!
 
 # STEP 5: Deploy to Cloudflare Pages (project: stage-lex-clinic, branch: stage)
 print("🌐 [Cloudflare Pages Deployment]: Deploying to production branch 'stage' on project 'stage-lex-clinic'...")
+secrets_path = os.path.expanduser("~/.config/lexclinic_secrets.env")
+if os.path.exists(secrets_path):
+    with open(secrets_path) as sf:
+        for line in sf:
+            if line.startswith("export "):
+                k, v = line.replace("export ", "").strip().split("=", 1)
+                os.environ[k] = v.strip('"\'')
+
 cf_account = os.environ.get("CLOUDFLARE_ACCOUNT_ID", "00f333bbbcab399bf690494e2ce98ed9")
 cf_token = os.environ.get("CLOUDFLARE_API_TOKEN", "")
 
