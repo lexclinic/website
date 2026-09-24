@@ -158,7 +158,8 @@
     "has_notebook": true,
     "has_quiz": true,
     "quiz_questions": 20,
-    "description": "Socratic session on the $20 Trillion legal blueprint behind modern software runtimes, compute constraints, and computational legal code."
+    "description": "Socratic session on the $20 Trillion legal blueprint behind modern software runtimes, compute constraints, and computational legal code.",
+    "media_summary": "\ud83c\udfa5 5 Video Clips \u2022 \ud83c\udfa7 Audio Stream"
   },
   {
     "id": "event-lexclinic-2026-09-04",
@@ -169,7 +170,8 @@
     "has_notebook": true,
     "has_quiz": true,
     "quiz_questions": 20,
-    "description": "Socratic session on legal AST decomposition, contract state machines, software runtime mechanics, and EVM personal ledgers."
+    "description": "Socratic session on legal AST decomposition, contract state machines, software runtime mechanics, and EVM personal ledgers.",
+    "media_summary": "\ud83c\udfa5 5 Video Clips \u2022 \ud83c\udfa7 Audio Stream"
   },
   {
     "id": "event-lexclinic-2026-08-28",
@@ -180,7 +182,8 @@
     "has_notebook": true,
     "has_quiz": true,
     "quiz_questions": 20,
-    "description": "Socratic session on computational legal AST decomposition, on-chain state versioning, and Web3 VC scaling."
+    "description": "Socratic session on computational legal AST decomposition, on-chain state versioning, and Web3 VC scaling.",
+    "media_summary": "\ud83c\udfa5 5 Video Clips \u2022 \ud83c\udfa7 Audio Stream"
   },
   {
     "id": "event-clinic-misc-2026-08-24",
@@ -190,7 +193,8 @@
     "media_count": 6,
     "has_notebook": true,
     "has_quiz": false,
-    "description": "Legal engineering discussion covering multi-signature governance, smart contract wrappers, and LESA data schemas."
+    "description": "Legal engineering discussion covering multi-signature governance, smart contract wrappers, and LESA data schemas.",
+    "media_summary": "\ud83c\udfa5 6 Video Clips \u2022 \ud83c\udfa7 4 Audio Tracks"
   },
   {
     "id": "event-clinic-exp-wit-2026-08-22",
@@ -200,7 +204,8 @@
     "media_count": 1,
     "has_notebook": true,
     "has_quiz": false,
-    "description": "Expert witness legal technology protocol review, evidentiary cryptographic proofs, and court admissibility models."
+    "description": "Expert witness legal technology protocol review, evidentiary cryptographic proofs, and court admissibility models.",
+    "media_summary": "\ud83c\udfa5 1 Video Clip"
   },
   {
     "id": "event-lexclinic-directors-2026-08-21",
@@ -210,7 +215,8 @@
     "media_count": 1,
     "has_notebook": true,
     "has_quiz": false,
-    "description": "Fiduciary governance structure review covering LexClinic Education, Inc. and LexClinic Community LLC."
+    "description": "Fiduciary governance structure review covering LexClinic Education, Inc. and LexClinic Community LLC.",
+    "media_summary": "\ud83d\udcc4 Gemini Governance Notes"
   },
   {
     "id": "event-lexclinic-2026-08-20",
@@ -220,7 +226,8 @@
     "media_count": 1,
     "has_notebook": true,
     "has_quiz": false,
-    "description": "Initial 2026 Socratic kick-off session on computational law standards, smart contract state verification, and ERC-7827."
+    "description": "Initial 2026 Socratic kick-off session on computational law standards, smart contract state verification, and ERC-7827.",
+    "media_summary": "\ud83c\udfa5 2 Video Clips"
   },
   {
     "id": "event-lexclinic-2026-08-13",
@@ -230,6 +237,7 @@
     "media_count": 1,
     "has_notebook": true,
     "has_quiz": false,
-    "description": "Comprehensive review of the 2026 Legal Engineering 101 curriculum, Socratic grading rubrics, and repository structure."
+    "description": "Comprehensive review of the 2026 Legal Engineering 101 curriculum, Socratic grading rubrics, and repository structure.",
+    "media_summary": "\ud83c\udfa5 1 Video Clip"
   }
 ]

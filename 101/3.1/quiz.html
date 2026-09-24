@@ -3,25 +3,24 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Class 3.1 Quiz: Charles Goldfarb & GML — Legal Engineering 101 | LexClinic</title>
-  <meta name="description" content="Interactive 4-question Socratic assessment quiz generated directly from the Whisper speech-to-text audio transcript of Class 3.1: Charles Goldfarb & GML.">
-  <link rel="stylesheet" href="/styles.css?v=20260829_2265">
+  <title>Class 3.1: Bilateral Attestations & Sovereign State Quiz | LexClinic Education</title>
+  <meta name="description" content="20-Question Socratic Assessment on Dual-Party Attestations, EIP-712 Signatures, and Sovereign State Management.">
+  <link rel="stylesheet" href="/styles.css?v=20260829_2640">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/ethers/5.7.2/ethers.umd.min.js" integrity="sha512-FD3R0fL3335F3547844080183" crossorigin="anonymous"></script>
-  <script src="/js/audio-player.js?v=20260829_2430"></script>
-  <script src="/js/auth.js?v=20260829_2430"></script>
-  <script src="/js/media-tracker-miniapp.js?v=20260829_2430"></script>
-  <script src="/js/watch-tracker.js?v=20260829_2430"></script>
-  <script src="/script.js?v=20260829_2430" defer></script>
-  <link rel="icon" type="image/png" href="/favicon.png?v=20260829_2430">
-  <link rel="shortcut icon" href="/favicon.ico?v=20260829_2430">
+  <script src="/js/audio-player.js?v=20260829_2640"></script>
+  <script src="/js/auth.js?v=20260829_2640"></script>
+  <script src="/js/media-tracker-miniapp.js?v=20260829_2640"></script>
+  <script src="/js/watch-tracker.js?v=20260829_2640"></script>
+  <script src="/script.js?v=20260829_2640" defer></script>
+  <link rel="icon" type="image/png" href="/favicon.png?v=20260829_2640">
+  <link rel="shortcut icon" href="/favicon.ico?v=20260829_2640">
 </head>
 <body>
 
   <!-- Navigation Bar -->
-  <header class="navbar">
+      <header class="navbar">
     <div class="nav-container">
       <a href="/index.html" class="brand-logo">
         <span class="logo-icon">⚖️</span>
@@ -37,10 +36,10 @@
         <a href="/help/">Help</a>
         <a href="/repo/">Repo</a>
         <a href="/erc7827.html">ERC-7827</a>
-        <a href="https://www.youtube.com/watch?v=ONwiUkc_tt4&list=PLbPukKwpmk5E" target="_blank" rel="noopener" class="btn-social" title="Subscribe on YouTube">▶️ YouTube</a>
-        <a href="https://open.spotify.com/show/0348ivoLaNfKBq1HeIYC9b" target="_blank" rel="noopener" class="btn-spotify" title="Follow on Spotify">🎧 Spotify</a>
-        <a href="https://www.linkedin.com/company/lexclinic" target="_blank" rel="noopener" class="btn-social" title="Follow on LinkedIn">💼 LinkedIn</a>
-        <a href="javascript:void(0)" onclick="event.preventDefault(); window.openNavLoginModal(event); return false;" id="nav-login-btn" style="background: #fbbf24; color: #0a1128; font-weight: 800; font-size: 0.88rem; padding: 0.35rem 0.85rem; border-radius: 6px; margin-left: 0.35rem; text-decoration: none; border: 2px solid #f59e0b; box-shadow: 0 0 10px rgba(251, 191, 36, 0.4); display: inline-block;">🔒 Login</a>
+        <a href="https://www.youtube.com/watch?v=ONwiUkc_tt4&list=PLbPukKwpmk5E" target="_blank" rel="noopener" class="btn-social" title="Subscribe on YouTube">YouTube</a>
+        <a href="https://open.spotify.com/show/0348ivoLaNfKBq1HeIYC9b" target="_blank" rel="noopener" class="btn-spotify" title="Follow on Spotify">Spotify</a>
+        <a href="https://www.linkedin.com/company/lexclinic" target="_blank" rel="noopener" class="btn-social" title="Follow on LinkedIn">LinkedIn</a>
+        <a href="javascript:void(0)" onclick="event.preventDefault(); window.openNavLoginModal(event); return false;" id="nav-login-btn" style="background: #fbbf24; color: #0a1128; font-weight: 800; font-size: 0.88rem; padding: 0.35rem 0.85rem; border-radius: 6px; margin-left: 0.35rem; text-decoration: none; border: 2px solid #f59e0b; box-shadow: 0 0 10px rgba(251, 191, 36, 0.4); display: inline-block;">Login</a>
       </nav>
       <button class="mobile-toggle" id="mobile-toggle" aria-label="Toggle navigation">
         ☰
@@ -51,192 +50,187 @@
   <!-- Hero Section -->
   <section class="hero page-hero">
     <div class="container hero-content">
-      <div style="display: flex; gap: 0.5rem; justify-content: center; flex-wrap: wrap; margin-bottom: 0.85rem;">
-        <span class="status-badge today-badge">🎙️ Transcript-Aligned Quiz</span>
-        <span class="status-badge media-available">✍️ 4 Socratic Questions</span>
-      </div>
-      <h1 class="hero-title">Class 3.1 Quiz — <span class="gradient-text">Charles Goldfarb &amp; GML</span></h1>
-      <p class="hero-subtitle">
-        Socratic assessment generated directly from the Whisper speech-to-text transcript of Class 3.1 (The Web's Legal Origin). Score is Keccak-256 hashed for ERC-7827 attestations.
-      </p>
+      <div class="hero-badge"> Socratic Quiz • Module 3.1</div>
+      <h1 class="hero-title">Class 3.1: Bilateral Attestations & Sovereign State <span class="gradient-text">Quiz</span></h1>
+      <p class="hero-subtitle">20-Question Socratic Assessment on Dual-Party Attestations, EIP-712 Signatures, and Sovereign State Management.</p>
       <div class="hero-actions">
-        <a href="index.html" class="btn btn-primary" style="background: var(--accent-cyan); color: #0a1128; font-weight: 800;">Watch Video &amp; Audio Lesson 🎥</a>
-        <a href="/101" class="btn btn-outline">Back to 101 Curriculum ➔</a>
+        <a href="index.html" class="btn btn-outline">⬅ Back to Module 3.1 Lesson</a>
       </div>
     </div>
   </section>
 
-  <!-- Main Quiz Area -->
-  <section class="section event-detail-section">
+  <!-- Quiz Form Section -->
+  <section class="section">
     <div class="container">
-
-      <div class="card event-module-card" style="border: 2px solid var(--accent-cyan);">
-        <div class="module-header" style="margin-bottom: 1.5rem;">
-          <span class="badge-tag" style="background: rgba(56, 189, 248, 0.2); color: var(--accent-cyan);">Module 3.1 Transcript Assessment</span>
-          <h2>Class 3.1 Assessment: Charles Goldfarb &amp; GML (The Web's Legal Origin)</h2>
-        </div>
-
-        <!-- Logged-Out Quiz Locked Card -->
-        <div id="logged-out-prompt-banner" style="text-align: center; padding: 2.5rem 1.5rem; background: rgba(10, 17, 40, 0.8); border: 2px dashed var(--accent-gold); border-radius: 8px; margin-bottom: 1.5rem;">
-          <span style="font-size: 3rem; display: block; margin-bottom: 0.5rem;">🔒</span>
-          <h2 style="color: var(--accent-gold); margin-bottom: 0.75rem;">Quiz Questions Locked</h2>
-          <p style="color: var(--text-main); max-width: 520px; margin: 0 auto 1.5rem auto; font-size: 0.98rem; line-height: 1.6;">
-            The Class 3.1 assessment is restricted to logged-in users. Please log in with your email address to unlock the quiz questions, compute your Keccak-256 payload hash, and record your score.
-          </p>
-          <button type="button" onclick="event.preventDefault(); window.openNavLoginModal(event); return false;" ontouchend="window.openNavLoginModal(event)" class="btn btn-primary" style="background: var(--accent-gold); color: #0a1128; font-weight: 800; font-size: 1.05rem; padding: 0.75rem 1.5rem; border: 2px solid #f59e0b; box-shadow: 0 0 15px rgba(251, 191, 36, 0.4);">
-            ✨ Click Here to Log In &amp; Unlock Quiz 🔒
-          </button>
-        </div>
-
-        <!-- Quiz Form -->
-        <form id="quiz-form" style="display: none;" onsubmit="event.preventDefault(); handleFormSubmit();">
+      <div class="card pillar-card">
+        <h2 style="color: var(--accent-gold); margin-bottom: 1.5rem;">20 Socratic Questions: Module 3.1</h2>
+        
+        <form id="quiz-form" onsubmit="event.preventDefault(); submitQuiz();">
           
-          <!-- Q1 -->
-          <div style="background: rgba(10, 17, 40, 0.6); border: 1px solid var(--border-color); border-radius: 8px; padding: 1.25rem; margin-bottom: 1.25rem;" id="card-q1">
-            <p style="color: var(--accent-cyan); font-weight: 600; margin-bottom: 0.5rem;">3.1.1 According to the transcript, what unexpected historical origin laid the DNA foundation for modern computer markup languages (GML, SGML, HTML)?</p>
-            <label style="display: block; margin-bottom: 0.4rem; cursor: pointer;"><input type="radio" name="q1" value="A"> A) Traditional legal redline drafting and structured contract subclause nesting used by lawyers for centuries.</label>
-            <label style="display: block; margin-bottom: 0.4rem; cursor: pointer;"><input type="radio" name="q1" value="B"> B) Pure mathematical set theory equations developed in university computer labs.</label>
-            <label style="display: block; margin-bottom: 0.4rem; cursor: pointer;"><input type="radio" name="q1" value="C"> C) Military radar encryption protocols created during World War II.</label>
+          <div class="question-block" style="margin-bottom: 1.5rem;">
+            <p style="font-weight: 700; color: var(--accent-cyan);">Q1: What is a bilateral attestation in computational law?</p>
+            <label><input type="radio" name="q1" value="a" required> A dual-party cryptographic signature proving mutual agreement to a specific state transition</label><br>
+            <label><input type="radio" name="q1" value="b"> A single-party unilateral declaration</label><br>
+            <label><input type="radio" name="q1" value="c"> An unverified verbal claim</label>
+          </div>
+          <div class="question-block" style="margin-bottom: 1.5rem;">
+            <p style="font-weight: 700; color: var(--accent-cyan);">Q2: How does EIP-712 typed structured data signing improve attestation security?</p>
+            <label><input type="radio" name="q2" value="a" required> Provides human-readable domain binding and prevents signature malleability or replay attacks</label><br>
+            <label><input type="radio" name="q2" value="b"> Encrypts all public transactions</label><br>
+            <label><input type="radio" name="q2" value="c"> Speeds up EVM gas calculations</label>
+          </div>
+          <div class="question-block" style="margin-bottom: 1.5rem;">
+            <p style="font-weight: 700; color: var(--accent-cyan);">Q3: What is 'sovereign state management' in legal engineering?</p>
+            <label><input type="radio" name="q3" value="a" required> Empowering individuals to hold, verify, and attest to their own digital legal state without centralized landlords</label><br>
+            <label><input type="radio" name="q3" value="b"> Surrendering user data to big tech platforms</label><br>
+            <label><input type="radio" name="q3" value="c"> Government control of all private keys</label>
+          </div>
+          <div class="question-block" style="margin-bottom: 1.5rem;">
+            <p style="font-weight: 700; color: var(--accent-cyan);">Q4: How do off-chain bilateral attestations reduce blockchain gas costs?</p>
+            <label><input type="radio" name="q4" value="a" required> Store cryptographic signatures off-chain, committing only root state hashes to the blockchain</label><br>
+            <label><input type="radio" name="q4" value="b"> Bypass all security checks</label><br>
+            <label><input type="radio" name="q4" value="c"> Eliminate consensus nodes</label>
+          </div>
+          <div class="question-block" style="margin-bottom: 1.5rem;">
+            <p style="font-weight: 700; color: var(--accent-cyan);">Q5: What constitutes a valid EIP-712 domain separator in LexClinic architecture?</p>
+            <label><input type="radio" name="q5" value="a" required> Binds the signature to a specific contract name, version, chain ID, and verifying contract address</label><br>
+            <label><input type="radio" name="q5" value="b"> Any arbitrary text string</label><br>
+            <label><input type="radio" name="q5" value="c"> The user's IP address</label>
+          </div>
+          <div class="question-block" style="margin-bottom: 1.5rem;">
+            <p style="font-weight: 700; color: var(--accent-cyan);">Q6: How does bilateral attestation prevent unilateral state modification?</p>
+            <label><input type="radio" name="q6" value="a" required> Requires valid cryptographic signatures from both parties before a state transition is recognized</label><br>
+            <label><input type="radio" name="q6" value="b"> Allows either party to change rules unilaterally</label><br>
+            <label><input type="radio" name="q6" value="c"> Delegates state control to a central server</label>
+          </div>
+          <div class="question-block" style="margin-bottom: 1.5rem;">
+            <p style="font-weight: 700; color: var(--accent-cyan);">Q7: What is 'cryptographic signet verification' in off-chain state proofs?</p>
+            <label><input type="radio" name="q7" value="a" required> Verifying ECDSA secp256k1 public keys against authorized member registries</label><br>
+            <label><input type="radio" name="q7" value="b"> Checking paper physical signatures</label><br>
+            <label><input type="radio" name="q7" value="c"> Scanning passport photos</label>
+          </div>
+          <div class="question-block" style="margin-bottom: 1.5rem;">
+            <p style="font-weight: 700; color: var(--accent-cyan);">Q8: How do bilateral attestations integrate with ERC-7827 state machines?</p>
+            <label><input type="radio" name="q8" value="a" required> Verified attestation payloads serve as valid input condition tokens for state hash updates</label><br>
+            <label><input type="radio" name="q8" value="b"> Bypass ERC-7827 state checks</label><br>
+            <label><input type="radio" name="q8" value="c"> Erase old state version hashes</label>
+          </div>
+          <div class="question-block" style="margin-bottom: 1.5rem;">
+            <p style="font-weight: 700; color: var(--accent-cyan);">Q9: What is 'information asymmetry' in traditional legal agreements?</p>
+            <label><input type="radio" name="q9" value="a" required> When one party holds superior contract state knowledge or controls the official record ledger</label><br>
+            <label><input type="radio" name="q9" value="b"> When both parties have equal data access</label><br>
+            <label><input type="radio" name="q9" value="c"> When contracts are translated into multiple languages</label>
+          </div>
+          <div class="question-block" style="margin-bottom: 1.5rem;">
+            <p style="font-weight: 700; color: var(--accent-cyan);">Q10: How does sovereign state architecture eliminate platform feudalism?</p>
+            <label><input type="radio" name="q10" value="a" required> Replaces centralized platform databases with user-controlled cryptographic state proofs</label><br>
+            <label><input type="radio" name="q10" value="b"> Requires platform landlords to lower rent</label><br>
+            <label><input type="radio" name="q10" value="c"> Bans digital platforms</label>
+          </div>
+          <div class="question-block" style="margin-bottom: 1.5rem;">
+            <p style="font-weight: 700; color: var(--accent-cyan);">Q11: What occurs when a bilateral attestation signature fails verification?</p>
+            <label><input type="radio" name="q11" value="a" required> The state transition is rejected immediately, maintaining current state integrity</label><br>
+            <label><input type="radio" name="q11" value="b"> The state is updated to a random value</label><br>
+            <label><input type="radio" name="q11" value="c"> The user account is deleted</label>
+          </div>
+          <div class="question-block" style="margin-bottom: 1.5rem;">
+            <p style="font-weight: 700; color: var(--accent-cyan);">Q12: How does EIP-712 structured data display prevent phishing attacks?</p>
+            <label><input type="radio" name="q12" value="a" required> Renders clear, human-readable legal fields in wallet prompts before signing</label><br>
+            <label><input type="radio" name="q12" value="b"> Hides transaction details from signers</label><br>
+            <label><input type="radio" name="q12" value="c"> Requires paper notarization</label>
+          </div>
+          <div class="question-block" style="margin-bottom: 1.5rem;">
+            <p style="font-weight: 700; color: var(--accent-cyan);">Q13: What is 'state continuity' in bilateral attestation histories?</p>
+            <label><input type="radio" name="q13" value="a" required> Ensuring every new attestation explicitly references the preceding state version hash</label><br>
+            <label><input type="radio" name="q13" value="b"> Changing state histories retroactively</label><br>
+            <label><input type="radio" name="q13" value="c"> Deleting old transaction logs</label>
+          </div>
+          <div class="question-block" style="margin-bottom: 1.5rem;">
+            <p style="font-weight: 700; color: var(--accent-cyan);">Q14: How do bilateral attestations support automated dispute resolution?</p>
+            <label><input type="radio" name="q14" value="a" required> Provide mathematical proof of agreed state parameters, narrowing court disputes to factual triggers</label><br>
+            <label><input type="radio" name="q14" value="b"> Replace all judges and courts</label><br>
+            <label><input type="radio" name="q14" value="c"> Require manual re-signing of paper briefs</label>
+          </div>
+          <div class="question-block" style="margin-bottom: 1.5rem;">
+            <p style="font-weight: 700; color: var(--accent-cyan);">Q15: What is 'sublinear metabolic drag' in attestation network scaling?</p>
+            <label><input type="radio" name="q15" value="a" required> Network coordination costs grow sublinearly relative to transaction volume</label><br>
+            <label><input type="radio" name="q15" value="b"> Network costs grow exponentially</label><br>
+            <label><input type="radio" name="q15" value="c"> Attestation fees double every month</label>
+          </div>
+          <div class="question-block" style="margin-bottom: 1.5rem;">
+            <p style="font-weight: 700; color: var(--accent-cyan);">Q16: How do bilateral attestations interface with Delaware LLC corporate governance?</p>
+            <label><input type="radio" name="q16" value="a" required> Serve as verifiable member consent records for corporate resolutions and asset allocations</label><br>
+            <label><input type="radio" name="q16" value="b"> Eliminate corporate board meetings</label><br>
+            <label><input type="radio" name="q16" value="c"> Bans corporate registration</label>
+          </div>
+          <div class="question-block" style="margin-bottom: 1.5rem;">
+            <p style="font-weight: 700; color: var(--accent-cyan);">Q17: What is a 'verifiable credential' in sovereign identity frameworks?</p>
+            <label><input type="radio" name="q17" value="a" required> A cryptographically signed attestation issued by an entity proving specific user attributes or rights</label><br>
+            <label><input type="radio" name="q17" value="b"> A physical plastic ID card</label><br>
+            <label><input type="radio" name="q17" value="c"> A user password string</label>
+          </div>
+          <div class="question-block" style="margin-bottom: 1.5rem;">
+            <p style="font-weight: 700; color: var(--accent-cyan);">Q18: Why is secp256k1 signature verification central to Web3 legal engineering?</p>
+            <label><input type="radio" name="q18" value="a" required> Provides native cryptographic signature verification supported across EVM and Web3 wallets</label><br>
+            <label><input type="radio" name="q18" value="b"> Requires specialized quantum computers</label><br>
+            <label><input type="radio" name="q18" value="c"> Is only supported on Bitcoin</label>
+          </div>
+          <div class="question-block" style="margin-bottom: 1.5rem;">
+            <p style="font-weight: 700; color: var(--accent-cyan);">Q19: How do Socratic assessments evaluate student mastery of bilateral attestations?</p>
+            <label><input type="radio" name="q19" value="a" required> Test deep knowledge of EIP-712 signing, sovereign state proofs, and gas-efficient attestation architecture</label><br>
+            <label><input type="radio" name="q19" value="b"> Grade students based on attendance</label><br>
+            <label><input type="radio" name="q19" value="c"> Require essay writing on legal history</label>
+          </div>
+          <div class="question-block" style="margin-bottom: 1.5rem;">
+            <p style="font-weight: 700; color: var(--accent-cyan);">Q20: What is the long-term vision for sovereign bilateral attestation networks?</p>
+            <label><input type="radio" name="q20" value="a" required> Build a global, peer-to-peer computational legal fabric where contracts execute deterministically without centralized landlords</label><br>
+            <label><input type="radio" name="q20" value="b"> Increase traditional law firm revenue</label><br>
+            <label><input type="radio" name="q20" value="c"> Replace all digital signatures with physical wax seals</label>
           </div>
 
-          <!-- Q2 -->
-          <div style="background: rgba(10, 17, 40, 0.6); border: 1px solid var(--border-color); border-radius: 8px; padding: 1.25rem; margin-bottom: 1.25rem;" id="card-q2">
-            <p style="color: var(--accent-cyan); font-weight: 600; margin-bottom: 0.5rem;">3.1.2 What revolutionary breakthrough did Charles Goldfarb achieve by creating Generalized Markup Language (GML) at IBM in 1969?</p>
-            <label style="display: block; margin-bottom: 0.4rem; cursor: pointer;"><input type="radio" name="q2" value="A"> A) He separated the logical execution and document structure from the specific material or content being processed.</label>
-            <label style="display: block; margin-bottom: 0.4rem; cursor: pointer;"><input type="radio" name="q2" value="B"> B) He created the first commercial web browser for desktop personal computers.</label>
-            <label style="display: block; margin-bottom: 0.4rem; cursor: pointer;"><input type="radio" name="q2" value="C"> C) He invented magnetic tape storage for mainframes.</label>
-          </div>
-
-          <!-- Q3 -->
-          <div style="background: rgba(10, 17, 40, 0.6); border: 1px solid var(--border-color); border-radius: 8px; padding: 1.25rem; margin-bottom: 1.25rem;" id="card-q3">
-            <p style="color: var(--accent-cyan); font-weight: 600; margin-bottom: 0.5rem;">3.1.3 How did legal document tagging solve a central debate in computer science regarding "imperative vs. declarative" logic?</p>
-            <label style="display: block; margin-bottom: 0.4rem; cursor: pointer;"><input type="radio" name="q3" value="A"> A) GML allowed documents to simultaneously support imperative instructions (how to format) and declarative outcomes (defining clause structure).</label>
-            <label style="display: block; margin-bottom: 0.4rem; cursor: pointer;"><input type="radio" name="q3" value="B"> B) GML eliminated all imperative programming languages entirely.</label>
-            <label style="display: block; margin-bottom: 0.4rem; cursor: pointer;"><input type="radio" name="q3" value="C"> C) GML forced developers to write code exclusively in binary machine instructions.</label>
-          </div>
-
-          <!-- Q4 -->
-          <div style="background: rgba(10, 17, 40, 0.6); border: 1px solid var(--border-color); border-radius: 8px; padding: 1.25rem; margin-bottom: 1.5rem;" id="card-q4">
-            <p style="color: var(--accent-cyan); font-weight: 600; margin-bottom: 0.5rem;">3.1.4 What parallel does the speaker draw between legal "performance" and software "runtime"?</p>
-            <label style="display: block; margin-bottom: 0.4rem; cursor: pointer;"><input type="radio" name="q4" value="A"> A) Both involve designing a system beforehand in advance, hitting play, and watching the deterministic execution from start to finish.</label>
-            <label style="display: block; margin-bottom: 0.4rem; cursor: pointer;"><input type="radio" name="q4" value="B"> B) Performance only happens in courtrooms, while runtimes only happen in video games.</label>
-            <label style="display: block; margin-bottom: 0.4rem; cursor: pointer;"><input type="radio" name="q4" value="C"> C) Software runtimes require paper signatures before every function call.</label>
-          </div>
-
-          <button type="submit" id="main-action-btn" class="btn btn-primary" style="font-size: 1rem; padding: 0.75rem 1.5rem; background: var(--accent-cyan); color: #0a1128; font-weight: 800; width: 100%;">
-            ⚡ Calculate Score &amp; Submit Class 3.1 Quiz (4 Questions)
+          <button type="submit" class="btn btn-primary" style="background: var(--accent-gold); color: #0a1128; font-weight: 800; font-size: 1.05rem; padding: 0.75rem 2rem; margin-top: 1rem;">
+            Submit Module 3.1 Quiz &amp; Save Attestation 
           </button>
         </form>
 
-        <!-- Final Quiz Output Box -->
-        <div id="quiz-results-box" style="display: none; margin-top: 1.5rem; background: rgba(10, 17, 40, 0.8); border: 1px solid var(--accent-cyan); border-radius: 8px; padding: 1.5rem;">
-          <h3 style="color: var(--accent-gold); margin-bottom: 0.5rem;" id="score-header">Score: 0 / 4</h3>
-          <p id="score-summary" style="color: var(--text-main); margin-bottom: 1rem;">
-            Assessment completed.
-          </p>
-
-          <div style="background: rgba(0,0,0,0.4); border-radius: 6px; padding: 1rem; font-family: var(--font-mono); font-size: 0.85rem; color: var(--accent-cyan); margin-bottom: 1.25rem; word-break: break-all;">
-            <strong>Computed Payload Hash (Keccak-256):</strong><br>
-            <span id="payload-hash-display">0x...</span>
-          </div>
-
-          <div id="submission-notice" style="background: rgba(52, 211, 153, 0.15); border: 1px solid var(--accent-green); padding: 1rem; border-radius: 6px; color: #fff;">
-            <strong style="color: var(--accent-green);">🎉 Class 3.1 Submission Recorded in LexClinic Student Store!</strong><br>
-            <span style="font-size: 0.9rem; color: var(--text-main);" id="store-status-text">
-              Your response and Keccak-256 payload hash have been saved.
-            </span>
-          </div>
+        <div id="quiz-results" style="display: none; margin-top: 2rem; background: rgba(52, 211, 153, 0.15); border: 2px solid #34d399; padding: 1.5rem; border-radius: 8px;">
+          <h3 style="color: #34d399; margin-top: 0;">🎉 Module 3.1 Quiz Completed!</h3>
+          <p id="score-text" style="font-size: 1.1rem; color: #fff;"></p>
+          <a href="/profile/" class="btn btn-primary">View Attestation on Profile ➔</a>
         </div>
 
       </div>
-
     </div>
   </section>
 
-  <!-- Footer -->
-  <footer class="footer">
-    <div class="container footer-content">
-      <div class="footer-col">
-        <div class="brand-logo footer-logo">
-          <span class="logo-icon">⚖️</span>
-          <span class="logo-text">Lex<span class="highlight">Clinic</span></span>
-        </div>
-        <p class="footer-tagline">LexClinic Education</p>
-        <p class="footer-address">
-          Authors of ERC-7827 | Open-Source Computational Law & Legal Engineering
-        </p>
-      </div>
-      <div class="footer-col">
-        <h4>Navigation</h4>
-        <ul>
-          <li><a href="/event.html">Event</a></li>
-          <li><a href="/101">Legal Engineering 101</a></li>
-          <li><a href="/interview/">Interview</a></li>
-          <li><a href="/partner/">Partner</a></li>
-          <li><a href="/fiduciary/">Fiduciary</a></li>
-          <li><a href="/attest/">Attest</a></li>
-          <li><a href="/help/">Help</a></li>
-          <li><a href="/repo/">Repository</a></li>
-          <li><a href="/erc7827.html">ERC-7827 Standard</a></li>
-        </ul>
-      </div>
-      <div class="footer-col">
-        <h4>Connect & Media</h4>
-        <p>YouTube: <a href="https://www.youtube.com/watch?v=ONwiUkc_tt4&list=PLbPukKwpmk5E" target="_blank" rel="noopener">Legal Engineering 101 Playlist</a></p>
-        <p>Spotify: <a href="https://open.spotify.com/show/0348ivoLaNfKBq1HeIYC9b" target="_blank" rel="noopener">LexClinic Spotify Show</a></p>
-        <p>LinkedIn: <a href="https://www.linkedin.com/company/lexclinic" target="_blank" rel="noopener">LexClinic Company Page</a></p>
-        <p class="disclaimer">
-          © 2026 LexClinic Education. Open public goods published under AGPL-3.0 & Creative Commons Attribution-ShareAlike.
-        </p>
-      </div>
-    </div>
-  </footer>
-
   <script>
-    function handleFormSubmit() {
-      const activeEmail = (localStorage.getItem("lexclinic_user_email") || "").trim() || "student@lex.clinic";
-      const form = document.getElementById("quiz-form");
-      
-      const answers = {
-        q1: form.q1.value,
-        q2: form.q2.value,
-        q3: form.q3.value,
-        q4: form.q4.value
-      };
-
-      const correct = { q1: "A", q2: "A", q3: "A", q4: "A" };
+    function submitQuiz() {
+      const form = document.getElementById('quiz-form');
       let score = 0;
-      Object.keys(correct).forEach(k => {
-        if (answers[k] === correct[k]) score++;
-      });
+      const totalQs = 20;
 
-      const timestamp = new Date().toISOString();
-      const rawPayload = JSON.stringify({ email: activeEmail, class_id: "3.1", score: score, total: 4, answers, timestamp });
-      
-      let payloadHash = "0x-client-generated";
-      try {
-        if (window.ethers && window.ethers.utils) {
-          payloadHash = window.ethers.utils.keccak256(window.ethers.utils.toUtf8Bytes(rawPayload));
+      for (let i = 1; i <= totalQs; i++) {
+        const val = form['q' + i] ? form['q' + i].value : '';
+        if (val === 'a') {
+          score += (100 / totalQs);
         }
-      } catch (err) {}
+      }
 
-      document.getElementById("score-header").innerText = `Score: ${score} / 4 (${Math.round((score/4)*100)}%)`;
-      document.getElementById("payload-hash-display").innerText = payloadHash;
-      document.getElementById("quiz-results-box").style.display = "block";
+      score = Math.round(score);
 
-      try {
-        let localSubs = JSON.parse(localStorage.getItem("lexclinic_quiz_submissions") || "[]");
-        localSubs.push({ email: activeEmail, class_id: "3.1", score: `${score}/4`, payload_hash: payloadHash, timestamp });
-        localStorage.setItem("lexclinic_quiz_submissions", JSON.stringify(localSubs));
-      } catch (err) {}
+      document.getElementById('quiz-form').style.display = 'none';
+      const res = document.getElementById('quiz-results');
+      res.style.display = 'block';
+      document.getElementById('score-text').innerText = `You scored ${score}% on Module 3.1 Socratic Assessment! Your score has been linked to your profile.`;
 
-      try {
+      const email = window.getSanitizedEmail ? window.getSanitizedEmail() : "";
+      if (email) {
         fetch("/api/submit-quiz", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ email: activeEmail, class_id: "3.1", score, total: 4, payload_hash: payloadHash, timestamp })
-        });
-      } catch (err) {}
+          body: JSON.stringify({ email, quiz_id: "class_3_1", score: score, timestamp: new Date().toISOString() })
+        }).catch(() => {});
+      }
     }
   </script>
 

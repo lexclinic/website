@@ -1,4 +1,3 @@
-/stats /attest/ 301
-/stats/ /attest/ 301
-/stats.html /attest/ 301
-/api/user-stats /api/user-attest 301
+
+/event/*/*/media /event/:splat 301
+/interview/*/*/media /interview/:splat 301

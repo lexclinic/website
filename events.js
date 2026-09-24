@@ -1,6 +1,6 @@
 /*
   LexClinic Education Platform — Live Google Calendar Events & Privacy Renderer
-  Build Version: 20260829_2430
+  Build Version: 20260829_2440
 */
 
 document.addEventListener('DOMContentLoaded', async () => {
@@ -8,11 +8,12 @@ document.addEventListener('DOMContentLoaded', async () => {
   if (!upcomingContainer) return;
 
   try {
-    const response = await fetch('/events.json?v=20260829_2430');
+    const response = await fetch('/events.json?v=20260829_2440');
     if (!response.ok) return;
     const events = await response.json();
 
-    const upcomingEvents = events.filter(e => e.is_upcoming);
+    // Limit display to the NEXT THREE upcoming events only
+    const upcomingEvents = events.filter(e => e.is_upcoming).slice(0, 3);
     if (!upcomingEvents || upcomingEvents.length === 0) return;
 
     const userEmail = window.getSanitizedEmail ? window.getSanitizedEmail() : "";

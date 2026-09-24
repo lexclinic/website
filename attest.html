@@ -14,18 +14,18 @@
       window.history.replaceState({}, document.title, "/attest/");
     }
   </script>
-  <script src="/js/audio-player.js?v=20260829_2430"></script>
-  <script src="/js/auth.js?v=20260829_2430"></script>
-  <script src="/js/media-tracker-miniapp.js?v=20260829_2430"></script>
-  <script src="/js/watch-tracker.js?v=20260829_2430"></script>
-  <script src="/script.js?v=20260829_2430" defer></script>
-  <link rel="icon" type="image/png" href="/favicon.png?v=20260829_2430">
-  <link rel="shortcut icon" href="/favicon.ico?v=20260829_2430">
+  <script src="/js/audio-player.js?v=20260829_2640"></script>
+  <script src="/js/auth.js?v=20260829_2640"></script>
+  <script src="/js/media-tracker-miniapp.js?v=20260829_2640"></script>
+  <script src="/js/watch-tracker.js?v=20260829_2640"></script>
+  <script src="/script.js?v=20260829_2640" defer></script>
+  <link rel="icon" type="image/png" href="/favicon.png?v=20260829_2640">
+  <link rel="shortcut icon" href="/favicon.ico?v=20260829_2640">
 </head>
 <body>
 
   <!-- Navigation Bar -->
-    <header class="navbar">
+        <header class="navbar">
     <div class="nav-container">
       <a href="/index.html" class="brand-logo">
         <span class="logo-icon">⚖️</span>
@@ -41,10 +41,10 @@
         <a href="/help/">Help</a>
         <a href="/repo/">Repo</a>
         <a href="/erc7827.html">ERC-7827</a>
-        <a href="https://www.youtube.com/watch?v=ONwiUkc_tt4&list=PLbPukKwpmk5E" target="_blank" rel="noopener" class="btn-social" title="Subscribe on YouTube">▶️ YouTube</a>
-        <a href="https://open.spotify.com/show/0348ivoLaNfKBq1HeIYC9b" target="_blank" rel="noopener" class="btn-spotify" title="Follow on Spotify">🎧 Spotify</a>
-        <a href="https://www.linkedin.com/company/lexclinic" target="_blank" rel="noopener" class="btn-social" title="Follow on LinkedIn">💼 LinkedIn</a>
-        <a href="javascript:void(0)" onclick="event.preventDefault(); window.openNavLoginModal(event); return false;" id="nav-login-btn" style="background: #fbbf24; color: #0a1128; font-weight: 800; font-size: 0.88rem; padding: 0.35rem 0.85rem; border-radius: 6px; margin-left: 0.35rem; text-decoration: none; border: 2px solid #f59e0b; box-shadow: 0 0 10px rgba(251, 191, 36, 0.4); display: inline-block;">🔒 Login</a>
+        <a href="https://www.youtube.com/watch?v=ONwiUkc_tt4&list=PLbPukKwpmk5E" target="_blank" rel="noopener" class="btn-social" title="Subscribe on YouTube">YouTube</a>
+        <a href="https://open.spotify.com/show/0348ivoLaNfKBq1HeIYC9b" target="_blank" rel="noopener" class="btn-spotify" title="Follow on Spotify">Spotify</a>
+        <a href="https://www.linkedin.com/company/lexclinic" target="_blank" rel="noopener" class="btn-social" title="Follow on LinkedIn">LinkedIn</a>
+        <a href="javascript:void(0)" onclick="event.preventDefault(); window.openNavLoginModal(event); return false;" id="nav-login-btn" style="background: #fbbf24; color: #0a1128; font-weight: 800; font-size: 0.88rem; padding: 0.35rem 0.85rem; border-radius: 6px; margin-left: 0.35rem; text-decoration: none; border: 2px solid #f59e0b; box-shadow: 0 0 10px rgba(251, 191, 36, 0.4); display: inline-block;">Login</a>
       </nav>
       <button class="mobile-toggle" id="mobile-toggle" aria-label="Toggle navigation">
         ☰
@@ -226,12 +226,20 @@
       }
 
       // Quiz Definitions
-      const quizzes = [
-        { id: "1.1", name: "Class 1.1: Legal Engineering Overview & Foundations", url: "/101/1.1/quiz.html" },
-        { id: "1.2", name: "Class 1.2: Computational Law, Bilateral State & Smart Contracts", url: "/101/1.2/quiz.html" },
-        { id: "2.1", name: "Class 2.1: State Machine Verification & Keccak Proofs", url: "/101/2.1/quiz.html" },
-        { id: "2.2", name: "Class 2.2: Advanced ERC-7827 Personal Ledgers", url: "/101/2.2/quiz.html" },
-        { id: "2026-08-28", name: "Socratic Legal Engineering Session (Aug 28, 2026)", url: "/event/2026-08-28/lexclinic-session/quiz.html" }
+                  const quizzes = [
+        { id: "1.1", name: "Class 1.1: What is a 'Performance' in Law?", url: "/101/1.1/quiz.html" },
+        { id: "1.2", name: "Class 1.2: Statutory ASTs & Legal Grammars", url: "/101/1.2/quiz.html" },
+        { id: "2.1", name: "Class 2.1: Smart Contracts vs. Ricardian Contracts", url: "/101/2.1/quiz.html" },
+        { id: "2.2", name: "Class 2.2: ERC-7827 & On-Chain State Machines", url: "/101/2.2/quiz.html" },
+        { id: "3.1", name: "Class 3.1: Bilateral Attestations & Sovereign State", url: "/101/3.1/quiz.html" },
+        { id: "3.2", name: "Class 3.2: Automated Fiduciary Verification & Runtime Laws", url: "/101/3.2/quiz.html" },
+        { id: "4.1", name: "Class 4.1: Decoupling Logic from Assets: Instructions vs. Data", url: "/101/4.1/quiz.html" },
+        { id: "2026-09-17", name: "How Corporate Lawyers Invented the Internet Socratic Quiz (Sept 17, 2026)", url: "/event/2026-09-17/how-corporate-lawyers-invented-the-internet/quiz.html" },
+        { id: "2026-09-04", name: "Law as a Runtime & Computational Fiduciary Law Socratic Quiz (Sept 4, 2026)", url: "/event/2026-09-04/law-as-a-runtime/quiz.html" },
+        { id: "2026-08-28", name: "Delaware LLC Governance & ERC-7827 Socratic Quiz (Aug 28, 2026)", url: "/event/2026-08-28/lexclinic-session/quiz.html" },
+        { id: "2026-08-24", name: "Clinic Misc. Technical Socratic Quiz (Aug 24, 2026)", url: "/event/2026-08-24/clinic-misc/quiz.html" },
+        { id: "2026-08-20", name: "Ricardian Contracts & Signet Proofs Socratic Quiz (Aug 20, 2026)", url: "/event/2026-08-20/socratic-session/quiz.html" },
+        { id: "2026-08-13", name: "Legal Performance States Socratic Quiz (Aug 13, 2026)", url: "/event/2026-08-13/socratic-session/quiz.html" }
       ];
 
       // Fetch user attestations from API endpoint
