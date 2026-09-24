@@ -1,10 +1,5 @@
-# Agentic Localonly Air-Gap Rules
-*.localonly
-*.localonly.*
-.localonly
-.localonly.*
-
-# Temporary Build Caches
-.wrangler/
-node_modules/
+# Ignore local metagit directories
+.git_*
+.venv
+node_modules
 *.log

@@ -102,8 +102,8 @@ print("✅ Pushed Chronos audit snapshot to website_context.git (branch: stage)!
 
 # STEP 5: Deploy to Cloudflare Pages (project: stage-lex-clinic, branch: stage)
 print("🌐 [Cloudflare Pages Deployment]: Deploying to production branch 'stage' on project 'stage-lex-clinic'...")
-cf_account = "00f333bbbcab399bf690494e2ce98ed9"
-cf_token = "cfat_S4yV649EaYewb3b0TffLfMznFnkA9ufSrXDyWxKq28a7e700"
+cf_account = os.environ.get("CLOUDFLARE_ACCOUNT_ID", "00f333bbbcab399bf690494e2ce98ed9")
+cf_token = os.environ.get("CLOUDFLARE_API_TOKEN", "")
 
 env_deploy = {**os.environ, "CLOUDFLARE_ACCOUNT_ID": cf_account, "CLOUDFLARE_API_TOKEN": cf_token}
 subprocess.run(["npx", "--yes", "wrangler", "pages", "deploy", ".", "--project-name=stage-lex-clinic", "--branch=stage"], cwd=kairos_dir, env=env_deploy, check=True)

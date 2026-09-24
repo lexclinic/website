@@ -4,8 +4,6 @@ const DRIVE_SCOPE = "https://www.googleapis.com/auth/drive";
 const DRIVE_FILE_ID = "1GidiMBXRYmcDMnAPrgndS35-MsjY1WT7";
 
 const FALLBACK_CLIENT_ID = "288664971084-dt9rnn61mj4ej185qcr7chr5du63cao1.apps.googleusercontent.com";
-const FALLBACK_CLIENT_SECRET = "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";
-const FALLBACK_REFRESH_TOKEN = "1//06owsSactvT2qCgYIARAAGAYSNwF-L9IrGw8a2BNUsfUAbyfIMgWmf5GHdm9s-e3iZfhgUmhyAPToK6HBrHik5QPfvBApxjmto2A";
 
 function pemToBinary(pem) {
   const cleanPem = pem
@@ -84,12 +82,21 @@ async function getServiceAccountAccessToken(privateKeyPem) {
   return tokenData.access_token;
 }
 
-async function getFallbackAccessToken() {
+async function getFallbackAccessToken(env = {}) {
+  const clientId = (env && env.GOOGLE_CLIENT_ID) || FALLBACK_CLIENT_ID;
+  const clientSecret = (env && env.GOOGLE_CLIENT_SECRET) || "";
+  const refreshToken = (env && env.GOOGLE_REFRESH_TOKEN) || "";
+
+  if (!clientSecret || !refreshToken) {
+    console.log("Fallback OAuth credentials missing in environment variables.");
+    return null;
+  }
+
   const tokenUrl = "https://oauth2.googleapis.com/token";
   const params = new URLSearchParams({
-    client_id: FALLBACK_CLIENT_ID,
-    client_secret: FALLBACK_CLIENT_SECRET,
-    refresh_token: FALLBACK_REFRESH_TOKEN,
+    client_id: clientId,
+    client_secret: clientSecret,
+    refresh_token: refreshToken,
     grant_type: "refresh_token"
   });
 
@@ -139,7 +146,7 @@ export async function onRequestPost(context) {
     }
 
     if (!accessToken) {
-      accessToken = await getFallbackAccessToken();
+      accessToken = await getFallbackAccessToken(context.env);
     }
 
     if (!accessToken) {
