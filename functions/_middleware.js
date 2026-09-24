@@ -1,7 +1,17 @@
 export async function onRequest(context) {
   const request = context.request;
   const url = new URL(request.url);
+  const hostname = url.hostname.toLowerCase();
 
+  // ONLY enforce Basic Authentication if on STAGING domain
+  const isStagingDomain = hostname.includes("stage.lex.clinic") || hostname.includes("stage-lex-clinic");
+
+  if (!isStagingDomain) {
+    // Public Production (lex.clinic) — Allow all traffic
+    return await context.next();
+  }
+
+  // STAGING ONLY: Enforce Basic Auth
   const cookies = request.headers.get("Cookie") || "";
   const authHeader = request.headers.get("Authorization");
 
@@ -21,10 +31,8 @@ export async function onRequest(context) {
       const credentials = atob(base64Credentials);
       const [username, password] = credentials.split(":");
 
-      // Require exact username "bestape" and password "lexclinicstage"
       if (username === REQUIRED_USER && password === STAGE_PASS) {
         const response = await context.next();
-        // Set persistent 30-day authorization cookie
         const newHeaders = new Headers(response.headers);
         newHeaders.append("Set-Cookie", `${AUTH_COOKIE_NAME}=authorized; Path=/; Max-Age=2592000; SameSite=Lax; Secure`);
         return new Response(response.body, {
@@ -36,7 +44,7 @@ export async function onRequest(context) {
     } catch (e) {}
   }
 
-  // Prompt for HTTP Basic Authentication if unauthorized
+  // Prompt for HTTP Basic Authentication if unauthorized on staging
   return new Response("🔒 Staging Access Restricted — Authorized LexClinic Personnel Only.", {
     status: 401,
     headers: {
