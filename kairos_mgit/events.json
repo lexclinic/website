@@ -1,27 +1,7 @@
 [
   {
-    "id": "event-google-cal-2026-09-24",
-    "title": "LexClinic 2026 (2026-09-24)",
-    "date": "2026-09-24",
-    "url": "https://www.google.com/calendar/event?eid=Nmg1aGh1MjFkNzc4NThuNzVrZjVucWMxbDJfMjAyNjA5MjRUMjEzMDAwWiBreWxlQGxleC5jbGluaWM",
-    "meet_url": "https://meet.google.com/xpy-vzuu-nmf",
-    "is_upcoming": true,
-    "is_private": false,
-    "description": "Socratic session covering computational legal engineering, contract runtimes, and AI verification gates."
-  },
-  {
-    "id": "event-google-cal-2026-09-25",
-    "title": "LexClinic Director Call (2026-09-25)",
-    "date": "2026-09-25",
-    "url": "https://www.google.com/calendar/event?eid=MnJmZmM0aGc5djAzMnEza3VnMGFob2hpbWkga3lsZUBsZXguY2xpbmlj",
-    "meet_url": "https://meet.google.com/wqd-wzzd-kwh",
-    "is_upcoming": true,
-    "is_private": true,
-    "description": "Socratic session covering computational legal engineering, contract runtimes, and AI verification gates."
-  },
-  {
     "id": "event-google-cal-2026-10-01",
-    "title": "LexClinic 2026 (2026-10-01)",
+    "title": "LexClinic 2026 \u2014 Lesson 4.2",
     "date": "2026-10-01",
     "url": "https://www.google.com/calendar/event?eid=Nmg1aGh1MjFkNzc4NThuNzVrZjVucWMxbDJfMjAyNjEwMDFUMjEzMDAwWiBreWxlQGxleC5jbGluaWM",
     "meet_url": "https://meet.google.com/xpy-vzuu-nmf",
@@ -31,7 +11,7 @@
   },
   {
     "id": "event-google-cal-2026-10-07",
-    "title": "Bi-Weekly Root Node Meeting series (2026-10-07)",
+    "title": "Bi-Weekly Root Node Meeting series",
     "date": "2026-10-07",
     "url": "https://www.google.com/calendar/event?eid=NDlkaHMzdm9rbHFvOGxqNmQ4bzFzc2xsbDBfMjAyNjEwMDdUMTIwMDAwWiBreWxlQGxleC5jbGluaWM",
     "meet_url": "https://meet.google.com/aij-bftf-ekg",
@@ -41,7 +21,7 @@
   },
   {
     "id": "event-google-cal-2026-10-08",
-    "title": "LexClinic 2026 (2026-10-08)",
+    "title": "LexClinic 2026 \u2014 Lesson 5.1",
     "date": "2026-10-08",
     "url": "https://www.google.com/calendar/event?eid=Nmg1aGh1MjFkNzc4NThuNzVrZjVucWMxbDJfMjAyNjEwMDhUMjEzMDAwWiBreWxlQGxleC5jbGluaWM",
     "meet_url": "https://meet.google.com/xpy-vzuu-nmf",
@@ -51,7 +31,7 @@
   },
   {
     "id": "event-google-cal-2026-10-15",
-    "title": "LexClinic 2026 (2026-10-15)",
+    "title": "LexClinic 2026 \u2014 Lesson 5.2",
     "date": "2026-10-15",
     "url": "https://www.google.com/calendar/event?eid=Nmg1aGh1MjFkNzc4NThuNzVrZjVucWMxbDJfMjAyNjEwMTVUMjEzMDAwWiBreWxlQGxleC5jbGluaWM",
     "meet_url": "https://meet.google.com/xpy-vzuu-nmf",
@@ -61,7 +41,7 @@
   },
   {
     "id": "event-google-cal-2026-10-21",
-    "title": "Bi-Weekly Root Node Meeting series (2026-10-21)",
+    "title": "Bi-Weekly Root Node Meeting series",
     "date": "2026-10-21",
     "url": "https://www.google.com/calendar/event?eid=NDlkaHMzdm9rbHFvOGxqNmQ4bzFzc2xsbDBfMjAyNjEwMjFUMTIwMDAwWiBreWxlQGxleC5jbGluaWM",
     "meet_url": "https://meet.google.com/aij-bftf-ekg",
@@ -71,7 +51,7 @@
   },
   {
     "id": "event-google-cal-2026-10-22",
-    "title": "LexClinic 2026 (2026-10-22)",
+    "title": "LexClinic 2026 \u2014 Lesson 6.1",
     "date": "2026-10-22",
     "url": "https://www.google.com/calendar/event?eid=Nmg1aGh1MjFkNzc4NThuNzVrZjVucWMxbDJfMjAyNjEwMjJUMjEzMDAwWiBreWxlQGxleC5jbGluaWM",
     "meet_url": "https://meet.google.com/xpy-vzuu-nmf",
@@ -81,7 +61,7 @@
   },
   {
     "id": "event-google-cal-2026-10-29",
-    "title": "LexClinic 2026 (2026-10-29)",
+    "title": "LexClinic 2026 \u2014 Lesson 6.2",
     "date": "2026-10-29",
     "url": "https://www.google.com/calendar/event?eid=Nmg1aGh1MjFkNzc4NThuNzVrZjVucWMxbDJfMjAyNjEwMjlUMjEzMDAwWiBreWxlQGxleC5jbGluaWM",
     "meet_url": "https://meet.google.com/xpy-vzuu-nmf",
@@ -91,7 +71,7 @@
   },
   {
     "id": "event-google-cal-2026-11-04",
-    "title": "Bi-Weekly Root Node Meeting series (2026-11-04)",
+    "title": "Bi-Weekly Root Node Meeting series",
     "date": "2026-11-04",
     "url": "https://www.google.com/calendar/event?eid=NDlkaHMzdm9rbHFvOGxqNmQ4bzFzc2xsbDBfMjAyNjExMDRUMTMwMDAwWiBreWxlQGxleC5jbGluaWM",
     "meet_url": "https://meet.google.com/aij-bftf-ekg",
@@ -101,7 +81,7 @@
   },
   {
     "id": "event-google-cal-2026-11-05",
-    "title": "LexClinic 2026 (2026-11-05)",
+    "title": "LexClinic 2026 \u2014 Lesson 7.1",
     "date": "2026-11-05",
     "url": "https://www.google.com/calendar/event?eid=Nmg1aGh1MjFkNzc4NThuNzVrZjVucWMxbDJfMjAyNjExMDVUMjIzMDAwWiBreWxlQGxleC5jbGluaWM",
     "meet_url": "https://meet.google.com/xpy-vzuu-nmf",
@@ -111,7 +91,7 @@
   },
   {
     "id": "event-google-cal-2026-11-12",
-    "title": "LexClinic 2026 (2026-11-12)",
+    "title": "LexClinic 2026 \u2014 Lesson 7.2",
     "date": "2026-11-12",
     "url": "https://www.google.com/calendar/event?eid=Nmg1aGh1MjFkNzc4NThuNzVrZjVucWMxbDJfMjAyNjExMTJUMjIzMDAwWiBreWxlQGxleC5jbGluaWM",
     "meet_url": "https://meet.google.com/xpy-vzuu-nmf",
@@ -121,7 +101,7 @@
   },
   {
     "id": "event-google-cal-2026-11-18",
-    "title": "Bi-Weekly Root Node Meeting series (2026-11-18)",
+    "title": "Bi-Weekly Root Node Meeting series",
     "date": "2026-11-18",
     "url": "https://www.google.com/calendar/event?eid=NDlkaHMzdm9rbHFvOGxqNmQ4bzFzc2xsbDBfMjAyNjExMThUMTMwMDAwWiBreWxlQGxleC5jbGluaWM",
     "meet_url": "https://meet.google.com/aij-bftf-ekg",
@@ -131,7 +111,7 @@
   },
   {
     "id": "event-google-cal-2026-11-19",
-    "title": "LexClinic 2026 (2026-11-19)",
+    "title": "LexClinic 2026 \u2014 Lesson 8.1",
     "date": "2026-11-19",
     "url": "https://www.google.com/calendar/event?eid=Nmg1aGh1MjFkNzc4NThuNzVrZjVucWMxbDJfMjAyNjExMTlUMjIzMDAwWiBreWxlQGxleC5jbGluaWM",
     "meet_url": "https://meet.google.com/xpy-vzuu-nmf",
@@ -141,13 +121,83 @@
   },
   {
     "id": "event-google-cal-2026-11-26",
-    "title": "LexClinic 2026 (2026-11-26)",
+    "title": "LexClinic 2026 \u2014 Lesson 8.2",
     "date": "2026-11-26",
     "url": "https://www.google.com/calendar/event?eid=Nmg1aGh1MjFkNzc4NThuNzVrZjVucWMxbDJfMjAyNjExMjZUMjIzMDAwWiBreWxlQGxleC5jbGluaWM",
     "meet_url": "https://meet.google.com/xpy-vzuu-nmf",
     "is_upcoming": true,
     "is_private": false,
     "description": "Socratic session covering computational legal engineering, contract runtimes, and AI verification gates."
+  },
+  {
+    "id": "event-google-cal-2026-12-02",
+    "title": "Bi-Weekly Root Node Meeting series",
+    "date": "2026-12-02",
+    "url": "https://www.google.com/calendar/event?eid=NDlkaHMzdm9rbHFvOGxqNmQ4bzFzc2xsbDBfMjAyNjEyMDJUMTMwMDAwWiBreWxlQGxleC5jbGluaWM",
+    "meet_url": "https://meet.google.com/aij-bftf-ekg",
+    "is_upcoming": true,
+    "is_private": true,
+    "description": "Hey Root Nodes,\u00a0\n\nthis is a new link that allows us to have longer calls and the ability to record the session within google meet. Sorry for the hassle. The old invitation will be cancelled by Alice shortly.\u00a0\n\nCheers\nDaniel"
+  },
+  {
+    "id": "event-google-cal-2026-12-03",
+    "title": "LexClinic 2026 \u2014 Lesson 9.1",
+    "date": "2026-12-03",
+    "url": "https://www.google.com/calendar/event?eid=Nmg1aGh1MjFkNzc4NThuNzVrZjVucWMxbDJfMjAyNjEyMDNUMjIzMDAwWiBreWxlQGxleC5jbGluaWM",
+    "meet_url": "https://meet.google.com/xpy-vzuu-nmf",
+    "is_upcoming": true,
+    "is_private": false,
+    "description": "Socratic session covering computational legal engineering, contract runtimes, and AI verification gates."
+  },
+  {
+    "id": "event-google-cal-2026-12-10",
+    "title": "LexClinic 2026 \u2014 Lesson 9.2",
+    "date": "2026-12-10",
+    "url": "https://www.google.com/calendar/event?eid=Nmg1aGh1MjFkNzc4NThuNzVrZjVucWMxbDJfMjAyNjEyMTBUMjIzMDAwWiBreWxlQGxleC5jbGluaWM",
+    "meet_url": "https://meet.google.com/xpy-vzuu-nmf",
+    "is_upcoming": true,
+    "is_private": false,
+    "description": "Socratic session covering computational legal engineering, contract runtimes, and AI verification gates."
+  },
+  {
+    "id": "event-google-cal-2026-12-16",
+    "title": "Bi-Weekly Root Node Meeting series",
+    "date": "2026-12-16",
+    "url": "https://www.google.com/calendar/event?eid=NDlkaHMzdm9rbHFvOGxqNmQ4bzFzc2xsbDBfMjAyNjEyMTZUMTMwMDAwWiBreWxlQGxleC5jbGluaWM",
+    "meet_url": "https://meet.google.com/aij-bftf-ekg",
+    "is_upcoming": true,
+    "is_private": true,
+    "description": "Hey Root Nodes,\u00a0\n\nthis is a new link that allows us to have longer calls and the ability to record the session within google meet. Sorry for the hassle. The old invitation will be cancelled by Alice shortly.\u00a0\n\nCheers\nDaniel"
+  },
+  {
+    "id": "event-google-cal-2026-12-17",
+    "title": "LexClinic 2026 \u2014 Lesson 10.1",
+    "date": "2026-12-17",
+    "url": "https://www.google.com/calendar/event?eid=Nmg1aGh1MjFkNzc4NThuNzVrZjVucWMxbDJfMjAyNjEyMTdUMjIzMDAwWiBreWxlQGxleC5jbGluaWM",
+    "meet_url": "https://meet.google.com/xpy-vzuu-nmf",
+    "is_upcoming": true,
+    "is_private": false,
+    "description": "Socratic session covering computational legal engineering, contract runtimes, and AI verification gates."
+  },
+  {
+    "id": "event-google-cal-2026-12-24",
+    "title": "LexClinic 2026 \u2014 Lesson 10.2",
+    "date": "2026-12-24",
+    "url": "https://www.google.com/calendar/event?eid=Nmg1aGh1MjFkNzc4NThuNzVrZjVucWMxbDJfMjAyNjEyMjRUMjIzMDAwWiBreWxlQGxleC5jbGluaWM",
+    "meet_url": "https://meet.google.com/xpy-vzuu-nmf",
+    "is_upcoming": true,
+    "is_private": false,
+    "description": "Socratic session covering computational legal engineering, contract runtimes, and AI verification gates."
+  },
+  {
+    "id": "event-google-cal-2026-12-30",
+    "title": "Bi-Weekly Root Node Meeting series",
+    "date": "2026-12-30",
+    "url": "https://www.google.com/calendar/event?eid=NDlkaHMzdm9rbHFvOGxqNmQ4bzFzc2xsbDBfMjAyNjEyMzBUMTMwMDAwWiBreWxlQGxleC5jbGluaWM",
+    "meet_url": "https://meet.google.com/aij-bftf-ekg",
+    "is_upcoming": true,
+    "is_private": true,
+    "description": "Hey Root Nodes,\u00a0\n\nthis is a new link that allows us to have longer calls and the ability to record the session within google meet. Sorry for the hassle. The old invitation will be cancelled by Alice shortly.\u00a0\n\nCheers\nDaniel"
   },
   {
     "id": "event-lexclinic-2026-09-17",
