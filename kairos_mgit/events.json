@@ -10,6 +10,16 @@
     "description": "Socratic session covering computational legal engineering, contract runtimes, and AI verification gates."
   },
   {
+    "id": "event-google-cal-2026-10-02",
+    "title": "LexClinic Director Call",
+    "date": "2026-10-02",
+    "url": "https://www.google.com/calendar/event?eid=cHBscWU3N2wxcDZiZjJna21xYzR2bG11MHMga3lsZUBsZXguY2xpbmlj",
+    "meet_url": "https://meet.google.com/xdw-trzj-azj",
+    "is_upcoming": true,
+    "is_private": true,
+    "description": "In this call, we'll tweak the bylaws and financials."
+  },
+  {
     "id": "event-google-cal-2026-10-07",
     "title": "Bi-Weekly Root Node Meeting series",
     "date": "2026-10-07",
@@ -188,16 +198,6 @@
     "is_upcoming": true,
     "is_private": false,
     "description": "Socratic session covering computational legal engineering, contract runtimes, and AI verification gates."
-  },
-  {
-    "id": "event-google-cal-2026-12-30",
-    "title": "Bi-Weekly Root Node Meeting series",
-    "date": "2026-12-30",
-    "url": "https://www.google.com/calendar/event?eid=NDlkaHMzdm9rbHFvOGxqNmQ4bzFzc2xsbDBfMjAyNjEyMzBUMTMwMDAwWiBreWxlQGxleC5jbGluaWM",
-    "meet_url": "https://meet.google.com/aij-bftf-ekg",
-    "is_upcoming": true,
-    "is_private": true,
-    "description": "Hey Root Nodes,\u00a0\n\nthis is a new link that allows us to have longer calls and the ability to record the session within google meet. Sorry for the hassle. The old invitation will be cancelled by Alice shortly.\u00a0\n\nCheers\nDaniel"
   },
   {
     "id": "event-lexclinic-2026-09-17",
