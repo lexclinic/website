@@ -200,6 +200,16 @@
     "description": "Socratic session covering computational legal engineering, contract runtimes, and AI verification gates."
   },
   {
+    "id": "event-lexclinic-2026-09-24",
+    "title": "How Contract Law Built the Blockchain (Sept 24, 2026)",
+    "date": "2026-09-24",
+    "url": "/event/2026-09-24/how-contract-law-built-the-blockchain/",
+    "quiz_url": "/event/2026-09-24/how-contract-law-built-the-blockchain/quiz.html",
+    "is_upcoming": false,
+    "is_private": false,
+    "description": "Socratic Session for Class 3.2: Contract Runtimes & State Machines. Nick Szabo's gas fee incentive solution, Ricardian text-code contracts, Alonzo Church lambda calculus vs. Turing state machines, and stablecoin legal execution."
+  },
+  {
     "id": "event-lexclinic-2026-09-17",
     "title": "How Corporate Lawyers Invented the Internet (Sept 17, 2026)",
     "date": "2026-09-17",

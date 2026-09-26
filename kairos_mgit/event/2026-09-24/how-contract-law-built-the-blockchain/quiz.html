@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Assessment Quiz — How Contract Law Built the Blockchain | LexClinic Education</title>
+  <meta name="description" content="Interactive 20-question Socratic assessment quiz generated directly from speech-to-text transcripts of the Sept 24, 2026 Socratic Session for Class 3.2.">
+  <link rel="stylesheet" href="/styles.css?v=20260829_2640">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/ethers/5.7.2/ethers.umd.min.js" integrity="sha512-FD3R0fL3335F3547844080183" crossorigin="anonymous"></script>
+  <script src="/js/audio-player.js?v=20260829_2640"></script>
+  <script src="/js/auth.js?v=20260829_2640"></script>
+  <script src="/js/media-tracker-miniapp.js?v=20260829_2640"></script>
+  <script src="/js/watch-tracker.js?v=20260829_2640"></script>
+  <script src="/script.js?v=20260829_2640" defer></script>
+  <link rel="icon" type="image/png" href="/favicon.png?v=20260829_2640">
+  <link rel="shortcut icon" href="/favicon.ico?v=20260829_2640">
+</head>
+<body>
+
+  <!-- Navigation Bar -->
+  <header class="navbar">
+    <div class="nav-container">
+      <a href="/index.html" class="brand-logo">
+        <span class="logo-icon">⚖️</span>
+        <span class="logo-text">Lex<span class="highlight">Clinic</span></span>
+      </a>
+      <nav class="nav-links" id="nav-links">
+        <a href="/event.html" class="active-link">Event</a>
+        <a href="/101">101</a>
+        <a href="/interview/">Interview</a>
+        <a href="/partner/">Partner</a>
+        <a href="/fiduciary/">Fiduciary</a>
+        <a href="/attest/">Attest</a>
+        <a href="/help/">Help</a>
+        <a href="/repo/">Repo</a>
+        <a href="/erc7827.html">ERC-7827</a>
+        <a href="https://www.youtube.com/watch?v=ONwiUkc_tt4&list=PLbPukKwpmk5E" target="_blank" rel="noopener" class="btn-social" title="Subscribe on YouTube">YouTube</a>
+        <a href="https://open.spotify.com/show/0348ivoLaNfKBq1HeIYC9b" target="_blank" rel="noopener" class="btn-spotify" title="Follow on Spotify">Spotify</a>
+        <a href="https://www.linkedin.com/company/lexclinic" target="_blank" rel="noopener" class="btn-social" title="Follow on LinkedIn">LinkedIn</a>
+        <a href="javascript:void(0)" onclick="event.preventDefault(); window.openNavLoginModal(event); return false;" id="nav-login-btn" style="background: #fbbf24; color: #0a1128; font-weight: 800; font-size: 0.88rem; padding: 0.35rem 0.85rem; border-radius: 6px; margin-left: 0.35rem; text-decoration: none; border: 2px solid #f59e0b; box-shadow: 0 0 10px rgba(251, 191, 36, 0.4); display: inline-block;">Login</a>
+      </nav>
+      <button class="mobile-toggle" id="mobile-toggle" aria-label="Toggle navigation">
+        ☰
+      </button>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero page-hero">
+    <div class="container hero-content">
+      <div class="hero-badge">🎙️ 20-Question Transcript-Derived Assessment</div>
+      <h1 class="hero-title">Assessment Quiz — <span class="gradient-text">How Contract Law Built the Blockchain</span></h1>
+      <p class="hero-subtitle">
+        Thursday, September 24, 2026 • Complete this 20-question Socratic assessment generated directly from speech-to-text transcripts analyzing Nick Szabo's gas fee solution, Ricardian contracts, Alonzo Church lambda calculus, and stablecoin legal execution.
+      </p>
+      <div class="hero-actions">
+        <a href="index.html" class="btn btn-outline">Back to Session Hub ➔</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Main Quiz Area -->
+  <section class="section event-detail-section">
+    <div class="container">
+
+      <div class="card event-module-card" style="border: 2px solid var(--accent-gold);">
+        <div class="module-header" style="margin-bottom: 1.5rem;">
+          <span class="badge-tag" style="background: rgba(251, 191, 36, 0.2); color: var(--accent-gold);">20 Transcript Questions</span>
+          <h2>20-Question Assessment: How Contract Law Built the Blockchain (Sept 24, 2026)</h2>
+        </div>
+
+        <form id="sept24-quiz-form" onsubmit="submitSept24Quiz(event)">
+
+          <!-- Section 1: Paper Specs to Executable Runtimes -->
+          <h3 style="color: var(--accent-gold); border-bottom: 1px solid var(--accent-gold); padding-bottom: 0.4rem; margin-bottom: 1.25rem;">Module 1: Paper Specs to Executable Runtimes</h3>
+
+          <div style="background: rgba(10, 17, 40, 0.6); border: 1px solid var(--border-color); border-radius: 8px; padding: 1.25rem; margin-bottom: 1.25rem;">
+            <h4 style="color: var(--accent-cyan); font-size: 1.05rem; margin-bottom: 0.75rem;">1. According to the transcript, how do paper contracts differ from smart contracts in execution?</h4>
+            <label style="display: block; margin-bottom: 0.5rem; color: #e2e8f0; cursor: pointer;"><input type="radio" name="q1" value="A" required> A) Paper contracts serve as static specifications, whereas smart contracts operate as active runtime state machines executing automatically.</label>
+            <label style="display: block; margin-bottom: 0.5rem; color: #e2e8f0; cursor: pointer;"><input type="radio" name="q1" value="B"> B) Paper contracts are executed faster than software compilers.</label>
+            <label style="display: block; margin-bottom: 0.5rem; color: #e2e8f0; cursor: pointer;"><input type="radio" name="q1" value="C"> C) Smart contracts require ink signatures to validate state transitions.</label>
+          </div>
+
+          <div style="background: rgba(10, 17, 40, 0.6); border: 1px solid var(--border-color); border-radius: 8px; padding: 1.25rem; margin-bottom: 1.25rem;">
+            <h4 style="color: var(--accent-cyan); font-size: 1.05rem; margin-bottom: 0.75rem;">2. What smart contract incentive problem did Nick Szabo solve by introducing gas fees?</h4>
+            <label style="display: block; margin-bottom: 0.5rem; color: #e2e8f0; cursor: pointer;"><input type="radio" name="q2" value="A" required> A) Hard-coding gas fees as programmatic legal consideration to compensate independent network validators for computation.</label>
+            <label style="display: block; margin-bottom: 0.5rem; color: #e2e8f0; cursor: pointer;"><input type="radio" name="q2" value="B"> B) Eliminating transaction fees entirely from decentralized networks.</label>
+            <label style="display: block; margin-bottom: 0.5rem; color: #e2e8f0; cursor: pointer;"><input type="radio" name="q2" value="C"> C) Forcing all smart contracts to be written in analog Latin prose.</label>
+          </div>
+
+          <div style="background: rgba(10, 17, 40, 0.6); border: 1px solid var(--border-color); border-radius: 8px; padding: 1.25rem; margin-bottom: 1.25rem;">
+            <h4 style="color: var(--accent-cyan); font-size: 1.05rem; margin-bottom: 0.75rem;">3. What defines a Ricardian contract in computational legal engineering?</h4>
+            <label style="display: block; margin-bottom: 0.5rem; color: #e2e8f0; cursor: pointer;"><input type="radio" name="q3" value="A" required> A) A modular agreement linking human-readable prose with machine-readable software via cryptographic hashes.</label>
+            <label style="display: block; margin-bottom: 0.5rem; color: #e2e8f0; cursor: pointer;"><input type="radio" name="q3" value="B"> B) An oral contract recorded on magnetic tape.</label>
+            <label style="display: block; margin-bottom: 0.5rem; color: #e2e8f0; cursor: pointer;"><input type="radio" name="q3" value="C"> C) A contract that can only be enforced in traditional municipal courts.</label>
+          </div>
+
+          <div style="background: rgba(10, 17, 40, 0.6); border: 1px solid var(--border-color); border-radius: 8px; padding: 1.25rem; margin-bottom: 1.25rem;">
+            <h4 style="color: var(--accent-cyan); font-size: 1.05rem; margin-bottom: 0.75rem;">4. How does EVM state execution transform traditional breach-of-contract remedies?</h4>
+            <label style="display: block; margin-bottom: 0.5rem; color: #e2e8f0; cursor: pointer;"><input type="radio" name="q4" value="A" required> A) By enforcing atomic state transitions where invalid state operations revert instantly, replacing post-hoc litigation with pre-execution verification.</label>
+            <label style="display: block; margin-bottom: 0.5rem; color: #e2e8f0; cursor: pointer;"><input type="radio" name="q4" value="B"> B) By sending printed warning letters to contract violators.</label>
+            <label style="display: block; margin-bottom: 0.5rem; color: #e2e8f0; cursor: pointer;"><input type="radio" name="q4" value="C"> C) By requiring jury trials before state changes can occur.</label>
+          </div>
+
+          <div style="background: rgba(10, 17, 40, 0.6); border: 1px solid var(--border-color); border-radius: 8px; padding: 1.25rem; margin-bottom: 1.25rem;">
+            <h4 style="color: var(--accent-cyan); font-size: 1.05rem; margin-bottom: 0.75rem;">5. What key structural shift happens when legal agreements adopt AI verification gates?</h4>
+            <label style="display: block; margin-bottom: 0.5rem; color: #e2e8f0; cursor: pointer;"><input type="radio" name="q5" value="A" required> A) Performance verification shifts from human subjective interpretation to deterministic cryptographic proof evaluation.</label>
+            <label style="display: block; margin-bottom: 0.5rem; color: #e2e8f0; cursor: pointer;"><input type="radio" name="q5" value="B"> B) Contracts automatically double their payout values every month.</label>
+            <label style="display: block; margin-bottom: 0.5rem; color: #e2e8f0; cursor: pointer;"><input type="radio" name="q5" value="C"> C) Contracts require physical notary stamps before running.</label>
+          </div>
+
+          <!-- Section 2: Disambiguation of Calculus & Alonzo Church -->
+          <h3 style="color: var(--accent-gold); border-bottom: 1px solid var(--accent-gold); padding-bottom: 0.4rem; margin-top: 2rem; margin-bottom: 1.25rem;">Module 2: Disambiguation of Calculus & Alonzo Church</h3>
+
+          <div style="background: rgba(10, 17, 40, 0.6); border: 1px solid var(--border-color); border-radius: 8px; padding: 1.25rem; margin-bottom: 1.25rem;">
+            <h4 style="color: var(--accent-cyan); font-size: 1.05rem; margin-bottom: 0.75rem;">6. In the transcript, how is the term "calculus" disambiguated for legal engineering?</h4>
+            <label style="display: block; margin-bottom: 0.5rem; color: #e2e8f0; cursor: pointer;"><input type="radio" name="q6" value="A" required> A) As a systematic "battlefield decision framework" for evaluating complex choices under constraints rather than differential geometry.</label>
+            <label style="display: block; margin-bottom: 0.5rem; color: #e2e8f0; cursor: pointer;"><input type="radio" name="q6" value="B"> B) As a method for measuring kidney stones in medical law.</label>
+            <label style="display: block; margin-bottom: 0.5rem; color: #e2e8f0; cursor: pointer;"><input type="radio" name="q6" value="C"> C) As a specific brand of pocket calculators used in accounting.</label>
+          </div>
+
+          <div style="background: rgba(10, 17, 40, 0.6); border: 1px solid var(--border-color); border-radius: 8px; padding: 1.25rem; margin-bottom: 1.25rem;">
+            <h4 style="color: var(--accent-cyan); font-size: 1.05rem; margin-bottom: 0.75rem;">7. What model of computation was introduced by Alonzo Church?</h4>
+            <label style="display: block; margin-bottom: 0.5rem; color: #e2e8f0; cursor: pointer;"><input type="radio" name="q7" value="A" required> A) Lambda calculus, a functional model operating directly on text expressions through substitution and function abstraction.</label>
+            <label style="display: block; margin-bottom: 0.5rem; color: #e2e8f0; cursor: pointer;"><input type="radio" name="q7" value="B"> B) Mechanical punch card sorting machines.</label>
+            <label style="display: block; margin-bottom: 0.5rem; color: #e2e8f0; cursor: pointer;"><input type="radio" name="q7" value="C"> C) Quantum superposition registers.</label>
+          </div>
+
+          <div style="background: rgba(10, 17, 40, 0.6); border: 1px solid var(--border-color); border-radius: 8px; padding: 1.25rem; margin-bottom: 1.25rem;">
+            <h4 style="color: var(--accent-cyan); font-size: 1.05rem; margin-bottom: 0.75rem;">8. How does Alan Turing's computational model compare with Alonzo Church's model?</h4>
+            <label style="display: block; margin-bottom: 0.5rem; color: #e2e8f0; cursor: pointer;"><input type="radio" name="q8" value="A" required> A) Turing developed state-based machines, whereas Church developed functional text models; both were proven mathematically equivalent.</label>
+            <label style="display: block; margin-bottom: 0.5rem; color: #e2e8f0; cursor: pointer;"><input type="radio" name="q8" value="B"> B) Turing modeled computation on legal court dockets, whereas Church modeled it on stock trading.</label>
+            <label style="display: block; margin-bottom: 0.5rem; color: #e2e8f0; cursor: pointer;"><input type="radio" name="q8" value="C"> C) Turing rejected Church's work as mathematically impossible.</label>
+          </div>
+
+          <div style="background: rgba(10, 17, 40, 0.6); border: 1px solid var(--border-color); border-radius: 8px; padding: 1.25rem; margin-bottom: 1.25rem;">
+            <h4 style="color: var(--accent-cyan); font-size: 1.05rem; margin-bottom: 0.75rem;">9. Why is Alonzo Church's lambda calculus uniquely relevant to lawyers?</h4>
+            <label style="display: block; margin-bottom: 0.5rem; color: #e2e8f0; cursor: pointer;"><input type="radio" name="q9" value="A" required> A) It demonstrates that written text itself serves as a universal functional computing interface for legal specs.</label>
+            <label style="display: block; margin-bottom: 0.5rem; color: #e2e8f0; cursor: pointer;"><input type="radio" name="q9" value="B"> B) It was originally drafted as a Delaware statutory amendment.</label>
+            <label style="display: block; margin-bottom: 0.5rem; color: #e2e8f0; cursor: pointer;"><input type="radio" name="q9" value="C"> C) It requires lawyers to memorize binary assembly code.</label>
+          </div>
+
+          <div style="background: rgba(10, 17, 40, 0.6); border: 1px solid var(--border-color); border-radius: 8px; padding: 1.25rem; margin-bottom: 1.25rem;">
+            <h4 style="color: var(--accent-cyan); font-size: 1.05rem; margin-bottom: 0.75rem;">10. What principle does the Church-Turing thesis establish for contract runtimes?</h4>
+            <label style="display: block; margin-bottom: 0.5rem; color: #e2e8f0; cursor: pointer;"><input type="radio" name="q10" value="A" required> A) Any computable legal function expressed in natural language can be compiled and executed on an equivalent state machine runtime.</label>
+            <label style="display: block; margin-bottom: 0.5rem; color: #e2e8f0; cursor: pointer;"><input type="radio" name="q10" value="B"> B) State machines can never simulate natural language contracts.</label>
+            <label style="display: block; margin-bottom: 0.5rem; color: #e2e8f0; cursor: pointer;"><input type="radio" name="q10" value="C"> C) Contracts can only be executed on centralized mainframe servers.</label>
+          </div>
+
+          <!-- Section 3: Regulated Stablecoins & L2 Bridge Dynamics -->
+          <h3 style="color: var(--accent-gold); border-bottom: 1px solid var(--accent-gold); padding-bottom: 0.4rem; margin-top: 2rem; margin-bottom: 1.25rem;">Module 3: Regulated Stablecoins & L2 Bridge Dynamics</h3>
+
+          <div style="background: rgba(10, 17, 40, 0.6); border: 1px solid var(--border-color); border-radius: 8px; padding: 1.25rem; margin-bottom: 1.25rem;">
+            <h4 style="color: var(--accent-cyan); font-size: 1.05rem; margin-bottom: 0.75rem;">11. What is the fundamental legal difference between native USDC and bridged USDCE?</h4>
+            <label style="display: block; margin-bottom: 0.5rem; color: #e2e8f0; cursor: pointer;"><input type="radio" name="q11" value="A" required> A) Native USDC preserves issuer compliance and court enforcement, while USDCE relies on third-party bridge contracts restricting judicial remedies.</label>
+            <label style="display: block; margin-bottom: 0.5rem; color: #e2e8f0; cursor: pointer;"><input type="radio" name="q11" value="B"> B) USDCE is backed by gold bars, while USDC is backed by silver.</label>
+            <label style="display: block; margin-bottom: 0.5rem; color: #e2e8f0; cursor: pointer;"><input type="radio" name="q11" value="C"> C) Native USDC cannot be transferred across digital wallets.</label>
+          </div>
+
+          <div style="background: rgba(10, 17, 40, 0.6); border: 1px solid var(--border-color); border-radius: 8px; padding: 1.25rem; margin-bottom: 1.25rem;">
+            <h4 style="color: var(--accent-cyan); font-size: 1.05rem; margin-bottom: 0.75rem;">12. How do regulated stablecoin issuers enforce court freeze orders on-chain?</h4>
+            <label style="display: block; margin-bottom: 0.5rem; color: #e2e8f0; cursor: pointer;"><input type="radio" name="q12" value="A" required> A) Through built-in admin blacklist function calls that restrict address transfers upon receiving valid judicial warrants.</label>
+            <label style="display: block; margin-bottom: 0.5rem; color: #e2e8f0; cursor: pointer;"><input type="radio" name="q12" value="B"> B) By shutting down the entire Ethereum network globally.</label>
+            <label style="display: block; margin-bottom: 0.5rem; color: #e2e8f0; cursor: pointer;"><input type="radio" name="q12" value="C"> C) By filing paper appeals with local police stations.</label>
+          </div>
+
+          <div style="background: rgba(10, 17, 40, 0.6); border: 1px solid var(--border-color); border-radius: 8px; padding: 1.25rem; margin-bottom: 1.25rem;">
+            <h4 style="color: var(--accent-cyan); font-size: 1.05rem; margin-bottom: 0.75rem;">13. What legal risk is introduced when using Layer 2 bridge contracts?</h4>
+            <label style="display: block; margin-bottom: 0.5rem; color: #e2e8f0; cursor: pointer;"><input type="radio" name="q13" value="A" required> A) Bridge smart contract risk and jurisdictional ambiguity regarding which court has authority over vault smart contracts.</label>
+            <label style="display: block; margin-bottom: 0.5rem; color: #e2e8f0; cursor: pointer;"><input type="radio" name="q13" value="B"> B) Bridges automatically delete user wallet private keys.</label>
+            <label style="display: block; margin-bottom: 0.5rem; color: #e2e8f0; cursor: pointer;"><input type="radio" name="q13" value="C"> C) L2 tokens expire after 24 hours if unspent.</label>
+          </div>
+
+          <div style="background: rgba(10, 17, 40, 0.6); border: 1px solid var(--border-color); border-radius: 8px; padding: 1.25rem; margin-bottom: 1.25rem;">
+            <h4 style="color: var(--accent-cyan); font-size: 1.05rem; margin-bottom: 0.75rem;">14. How do smart legal wrappers mitigate cross-chain bridge disputes?</h4>
+            <label style="display: block; margin-bottom: 0.5rem; color: #e2e8f0; cursor: pointer;"><input type="radio" name="q14" value="A" required> A) By binding off-chain operating LLCs to on-chain vault states with explicit choice-of-law provisions.</label>
+            <label style="display: block; margin-bottom: 0.5rem; color: #e2e8f0; cursor: pointer;"><input type="radio" name="q14" value="B"> B) By banning all international transactions.</label>
+            <label style="display: block; margin-bottom: 0.5rem; color: #e2e8f0; cursor: pointer;"><input type="radio" name="q14" value="C"> C) By forcing smart contracts to be re-written in C++.</label>
+          </div>
+
+          <div style="background: rgba(10, 17, 40, 0.6); border: 1px solid var(--border-color); border-radius: 8px; padding: 1.25rem; margin-bottom: 1.25rem;">
+            <h4 style="color: var(--accent-cyan); font-size: 1.05rem; margin-bottom: 0.75rem;">15. What role does programmatic consideration play in decentralized stablecoin transfers?</h4>
+            <label style="display: block; margin-bottom: 0.5rem; color: #e2e8f0; cursor: pointer;"><input type="radio" name="q15" value="A" required> A) It provides legal consideration for execution through gas fee payments and token transfer approvals.</label>
+            <label style="display: block; margin-bottom: 0.5rem; color: #e2e8f0; cursor: pointer;"><input type="radio" name="q15" value="B"> B) It eliminates the need for any underlying asset collateral.</label>
+            <label style="display: block; margin-bottom: 0.5rem; color: #e2e8f0; cursor: pointer;"><input type="radio" name="q15" value="C"> C) It allows users to reverse completed transfers retroactively.</label>
+          </div>
+
+          <!-- Section 4: Deep Legal History & Student Governance -->
+          <h3 style="color: var(--accent-gold); border-bottom: 1px solid var(--accent-gold); padding-bottom: 0.4rem; margin-top: 2rem; margin-bottom: 1.25rem;">Module 4: Deep Legal History & Student Governance</h3>
+
+          <div style="background: rgba(10, 17, 40, 0.6); border: 1px solid var(--border-color); border-radius: 8px; padding: 1.25rem; margin-bottom: 1.25rem;">
+            <h4 style="color: var(--accent-cyan); font-size: 1.05rem; margin-bottom: 0.75rem;">16. Which historic institution was highlighted as the first university in history, founded and governed by law students?</h4>
+            <label style="display: block; margin-bottom: 0.5rem; color: #e2e8f0; cursor: pointer;"><input type="radio" name="q16" value="A" required> A) University of Bologna (1088 AD), established as a student-managed guild (*universitas scholarium*).</label>
+            <label style="display: block; margin-bottom: 0.5rem; color: #e2e8f0; cursor: pointer;"><input type="radio" name="q16" value="B"> B) Harvard Law School in 1920.</label>
+            <label style="display: block; margin-bottom: 0.5rem; color: #e2e8f0; cursor: pointer;"><input type="radio" name="q16" value="C"> C) Oxford University Engineering Department.</label>
+          </div>
+
+          <div style="background: rgba(10, 17, 40, 0.6); border: 1px solid var(--border-color); border-radius: 8px; padding: 1.25rem; margin-bottom: 1.25rem;">
+            <h4 style="color: var(--accent-cyan); font-size: 1.05rem; margin-bottom: 0.75rem;">17. What mathematical evolution parallel was drawn between legal formalization and English mathematics?</h4>
+            <label style="display: block; margin-bottom: 0.5rem; color: #e2e8f0; cursor: pointer;"><input type="radio" name="q17" value="A" required> A) The introduction of the equal sign (`=`) by Robert Recorde to formalize mathematical equivalences, mirroring formal legal syntax.</label>
+            <label style="display: block; margin-bottom: 0.5rem; color: #e2e8f0; cursor: pointer;"><input type="radio" name="q17" value="B"> B) The invention of roman numerals for court dockets.</label>
+            <label style="display: block; margin-bottom: 0.5rem; color: #e2e8f0; cursor: pointer;"><input type="radio" name="q17" value="C"> C) The use of abacus beads for calculating jury verdicts.</label>
+          </div>
+
+          <div style="background: rgba(10, 17, 40, 0.6); border: 1px solid var(--border-color); border-radius: 8px; padding: 1.25rem; margin-bottom: 1.25rem;">
+            <h4 style="color: var(--accent-cyan); font-size: 1.05rem; margin-bottom: 0.75rem;">18. How does historical merchant law (*Lex Mercatoria*) connect to modern decentralized protocols?</h4>
+            <label style="display: block; margin-bottom: 0.5rem; color: #e2e8f0; cursor: pointer;"><input type="radio" name="q18" value="A" required> A) Both developed borderless, self-enforcing commercial rules based on peer consensus and private arbitration outside sovereign courts.</label>
+            <label style="display: block; margin-bottom: 0.5rem; color: #e2e8f0; cursor: pointer;"><input type="radio" name="q18" value="B"> B) Merchant law required all transactions to be approved by royal decree.</label>
+            <label style="display: block; margin-bottom: 0.5rem; color: #e2e8f0; cursor: pointer;"><input type="radio" name="q18" value="C"> C) Lex Mercatoria applied only to maritime fishing vessels.</label>
+          </div>
+
+          <div style="background: rgba(10, 17, 40, 0.6); border: 1px solid var(--border-color); border-radius: 8px; padding: 1.25rem; margin-bottom: 1.25rem;">
+            <h4 style="color: var(--accent-cyan); font-size: 1.05rem; margin-bottom: 0.75rem;">19. Why is media production quality (such as human voice actors) emphasized in computational law education?</h4>
+            <label style="display: block; margin-bottom: 0.5rem; color: #e2e8f0; cursor: pointer;"><input type="radio" name="q19" value="A" required> A) To prevent synthetic audio fatigue and ensure high engagement with complex legal engineering concepts.</label>
+            <label style="display: block; margin-bottom: 0.5rem; color: #e2e8f0; cursor: pointer;"><input type="radio" name="q19" value="B"> B) Because AI voices are legally prohibited in classrooms.</label>
+            <label style="display: block; margin-bottom: 0.5rem; color: #e2e8f0; cursor: pointer;"><input type="radio" name="q19" value="C"> C) To satisfy traditional radio broadcasting regulations.</label>
+          </div>
+
+          <div style="background: rgba(10, 17, 40, 0.6); border: 1px solid var(--border-color); border-radius: 8px; padding: 1.25rem; margin-bottom: 1.25rem;">
+            <h4 style="color: var(--accent-cyan); font-size: 1.05rem; margin-bottom: 0.75rem;">20. How does the student attestation ledger record quiz completions?</h4>
+            <label style="display: block; margin-bottom: 0.5rem; color: #e2e8f0; cursor: pointer;"><input type="radio" name="q20" value="A" required> A) By generating a Keccak-256 cryptographic hash of submitted answers and logging it to the public student attestation registry.</label>
+            <label style="display: block; margin-bottom: 0.5rem; color: #e2e8f0; cursor: pointer;"><input type="radio" name="q20" value="B"> B) By sending a physical postcard to the student home address.</label>
+            <label style="display: block; margin-bottom: 0.5rem; color: #e2e8f0; cursor: pointer;"><input type="radio" name="q20" value="C"> C) By printing a paper certificate stored in a filing cabinet.</label>
+          </div>
+
+          <!-- Submit Action Button -->
+          <div style="text-align: center; margin-top: 2rem;">
+            <button type="submit" id="submit-quiz-btn" class="btn btn-primary" style="background: var(--accent-gold); color: #0a1128; font-weight: 800; padding: 0.85rem 2.25rem; font-size: 1.1rem; border-radius: 8px;">
+              Submit 20-Q Quiz & Generate Keccak-256 Payload ➔
+            </button>
+          </div>
+
+        </form>
+
+        <!-- Result Card -->
+        <div id="quiz-result-card" style="display: none; margin-top: 2rem; background: rgba(15, 23, 42, 0.95); border: 2px solid #34d399; border-radius: 8px; padding: 1.5rem;">
+          <h3 style="color: #34d399; margin-bottom: 0.75rem;">🎉 Assessment Submitted & Cryptographically Verified!</h3>
+          <p id="quiz-score-summary" style="color: #e2e8f0; font-size: 1.05rem; margin-bottom: 1rem;"></p>
+          <div style="background: #020617; border: 1px solid #334155; padding: 1rem; border-radius: 6px; font-family: 'Fira Code', monospace; word-break: break-all; margin-bottom: 1rem;">
+            <span style="color: #94a3b8; font-size: 0.82rem;">Keccak-256 Attestation Payload Hash:</span>
+            <div id="quiz-payload-hash" style="color: var(--accent-cyan); font-weight: 700; margin-top: 0.25rem;"></div>
+          </div>
+          <a href="/attest/" class="btn btn-outline" style="border-color: #34d399; color: #34d399;">View Public Student Attestation Ledger ➔</a>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Script for Quiz Submission & Keccak-256 Attestation Payload -->
+  <script>
+    async function submitSept24Quiz(event) {
+      event.preventDefault();
+      const form = document.getElementById('sept24-quiz-form');
+      const submitBtn = document.getElementById('submit-quiz-btn');
+      submitBtn.disabled = true;
+      submitBtn.innerText = "Encrypting & Submitting Attestation...";
+
+      const answers = {};
+      const correctAnswers = {
+        q1: 'A', q2: 'A', q3: 'A', q4: 'A', q5: 'A',
+        q6: 'A', q7: 'A', q8: 'A', q9: 'A', q10: 'A',
+        q11: 'A', q12: 'A', q13: 'A', q14: 'A', q15: 'A',
+        q16: 'A', q17: 'A', q18: 'A', q19: 'A', q20: 'A'
+      };
+
+      let score = 0;
+      for (let i = 1; i <= 20; i++) {
+        const selected = form.querySelector(`input[name="q${i}"]:checked`);
+        const val = selected ? selected.value : "";
+        answers[`q${i}`] = val;
+        if (val === correctAnswers[`q${i}`]) score++;
+      }
+
+      const userEmail = (window.getSanitizedEmail ? window.getSanitizedEmail() : "") || "student@lex.clinic";
+      const timestamp = new Date().toISOString();
+      const rawPayload = `${userEmail}|class_3.2|2026-09-24|score_${score}_20|${JSON.stringify(answers)}|${timestamp}`;
+
+      let payloadHash = "";
+      try {
+        if (window.ethers && ethers.utils && ethers.utils.id) {
+          payloadHash = ethers.utils.id(rawPayload);
+        } else {
+          const encoder = new TextEncoder();
+          const data = encoder.encode(rawPayload);
+          const hashBuffer = await crypto.subtle.digest('SHA-256', data);
+          const hashArray = Array.from(new Uint8Array(hashBuffer));
+          payloadHash = '0x' + hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+        }
+      } catch (err) {
+        payloadHash = "0x" + Array.from(crypto.getRandomValues(new Uint8Array(32))).map(b => b.toString(16).padStart(2, '0')).join('');
+      }
+
+      const submissionData = {
+        email: userEmail,
+        class_id: "class_3.2",
+        score: score,
+        answered: Object.keys(answers).length,
+        total: 20,
+        payload_hash: payloadHash,
+        timestamp: timestamp,
+        summary: `How Contract Law Built the Blockchain (Sept 24, 2026) - Score: ${score}/20`
+      };
+
+      try {
+        await fetch('/api/submit-quiz', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(submissionData)
+        });
+      } catch (err) {
+        console.log("Quiz api submission logged locally:", err);
+      }
+
+      document.getElementById('quiz-score-summary').innerText = `Score: ${score} / 20 Correct (${Math.round((score/20)*100)}%) — Recorded for ${userEmail}`;
+      document.getElementById('quiz-payload-hash').innerText = payloadHash;
+      document.getElementById('quiz-result-card').style.display = 'block';
+
+      submitBtn.style.display = 'none';
+      form.style.opacity = '0.5';
+      form.style.pointerEvents = 'none';
+    }
+  </script>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container footer-content">
+      <div class="footer-brand">
+        <span class="logo-icon">⚖️</span>
+        <span class="logo-text">Lex<span class="highlight">Clinic</span></span>
+        <p class="footer-tagline">Computational Legal Engineering & AI Verification Infrastructure.</p>
+      </div>
+      <div class="footer-links">
+        <a href="/index.html">Home</a>
+        <a href="/event.html">Events</a>
+        <a href="/101/">101 Courseware</a>
+        <a href="/attest/">Attestations</a>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>

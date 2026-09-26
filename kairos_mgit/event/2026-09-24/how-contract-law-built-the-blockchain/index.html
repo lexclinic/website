@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>How Contract Law Built the Blockchain | LexClinic Education</title>
+  <meta name="description" content="Socratic Session for Class 3.2: Contract Runtimes & State Machines. Nick Szabo's gas fee incentive solution, Ricardian text-code contracts, Alonzo Church lambda calculus vs. Turing state machines, and stablecoin legal execution.">
+  <link rel="stylesheet" href="/styles.css?v=20260829_2640">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <script src="/js/audio-player.js?v=20260829_2640"></script>
+  <script src="/js/auth.js?v=20260829_2640"></script>
+  <script src="/js/media-tracker-miniapp.js?v=20260829_2640"></script>
+  <script src="/js/watch-tracker.js?v=20260829_2640"></script>
+  <script src="/script.js?v=20260829_2640" defer></script>
+  <link rel="icon" type="image/png" href="/favicon.png?v=20260829_2640">
+  <link rel="shortcut icon" href="/favicon.ico?v=20260829_2640">
+</head>
+<body>
+
+  <!-- Navigation Bar -->
+  <header class="navbar">
+    <div class="nav-container">
+      <a href="/index.html" class="brand-logo">
+        <span class="logo-icon">⚖️</span>
+        <span class="logo-text">Lex<span class="highlight">Clinic</span></span>
+      </a>
+      <nav class="nav-links" id="nav-links">
+        <a href="/event.html" class="active-link">Event</a>
+        <a href="/101">101</a>
+        <a href="/interview/">Interview</a>
+        <a href="/partner/">Partner</a>
+        <a href="/fiduciary/">Fiduciary</a>
+        <a href="/attest/">Attest</a>
+        <a href="/help/">Help</a>
+        <a href="/repo/">Repo</a>
+        <a href="/erc7827.html">ERC-7827</a>
+        <a href="https://www.youtube.com/watch?v=ONwiUkc_tt4&list=PLbPukKwpmk5E" target="_blank" rel="noopener" class="btn-social" title="Subscribe on YouTube">YouTube</a>
+        <a href="https://open.spotify.com/show/0348ivoLaNfKBq1HeIYC9b" target="_blank" rel="noopener" class="btn-spotify" title="Follow on Spotify">Spotify</a>
+        <a href="https://www.linkedin.com/company/lexclinic" target="_blank" rel="noopener" class="btn-social" title="Follow on LinkedIn">LinkedIn</a>
+        <a href="javascript:void(0)" onclick="event.preventDefault(); window.openNavLoginModal(event); return false;" id="nav-login-btn" style="background: #fbbf24; color: #0a1128; font-weight: 800; font-size: 0.88rem; padding: 0.35rem 0.85rem; border-radius: 6px; margin-left: 0.35rem; text-decoration: none; border: 2px solid #f59e0b; box-shadow: 0 0 10px rgba(251, 191, 36, 0.4); display: inline-block;">Login</a>
+      </nav>
+      <button class="mobile-toggle" id="mobile-toggle" aria-label="Toggle navigation">
+        ☰
+      </button>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero page-hero">
+    <div class="container hero-content">
+      <div style="display: flex; gap: 0.5rem; justify-content: center; flex-wrap: wrap; margin-bottom: 0.85rem;">
+        <span class="status-badge today-badge">Socratic Session for Class 3.2: Contract Runtimes & State Machines</span>
+        <span class="status-badge media-available">🎥 5 Video Clips</span>
+        <span class="status-badge notebook-available">🎧 Native Audio Stream</span>
+      </div>
+      <h1 class="hero-title">How Contract Law Built the Blockchain</h1>
+      <p class="hero-subtitle">Thursday, September 24, 2026 • Socratic Session for Class 3.2: Contract Runtimes & State Machines. Nick Szabo's gas fee incentive solution, Ricardian text-code contracts, Alonzo Church lambda calculus vs. Turing state machines, and stablecoin legal execution.</p>
+      <div class="hero-actions">
+        <a href="quiz.html" class="btn btn-primary" style="background: var(--accent-gold); color: #0a1128; font-weight: 800;">Take 20-Q Session Quiz ➔</a>
+        <a href="/event.html" class="btn btn-outline">← Back to Events Hub</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Main Content -->
+  <section class="section">
+    <div class="container">
+      
+      <!-- 1. Session Overview Card -->
+      <div class="card pillar-card" style="margin-bottom: 2rem;">
+        <h2 style="color: var(--accent-gold); font-size: 1.4rem; margin-bottom: 0.75rem;">
+          Socratic Session Overview & Key Takeaways
+        </h2>
+        <p style="line-height: 1.7; color: var(--text-main); font-size: 1.05rem; margin-bottom: 1.25rem;">
+          Class 3.2 traces the direct evolutionary path from traditional contract law to blockchain execution runtimes. We analyze how Nick Szabo solved the validator incentive problem by hard-coding gas fees as programmatic legal consideration, how Ricardian contracts bind prose and code, and why Alonzo Church's lambda calculus demonstrates text as a universal functional interface for computational legal engineering.
+        </p>
+
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1rem;">
+          <div style="background: rgba(10, 17, 40, 0.7); border: 1px solid var(--border-color); padding: 1rem; border-radius: 8px;">
+            <h4 style="color: var(--accent-cyan); margin-bottom: 0.4rem;">📜 Static Prose to Active Runtimes</h4>
+            <p style="font-size: 0.92rem; color: #cbd5e1; margin: 0;">Paper contracts serve as static specifications. Smart contracts transform these covenants into active state machines executing state transitions automatically.</p>
+          </div>
+
+          <div style="background: rgba(10, 17, 40, 0.7); border: 1px solid var(--border-color); padding: 1rem; border-radius: 8px;">
+            <h4 style="color: var(--accent-gold); margin-bottom: 0.4rem;">⛽ Gas Fees as Legal Consideration</h4>
+            <p style="font-size: 0.92rem; color: #cbd5e1; margin: 0;">Nick Szabo solved the validator incentive problem by embedding gas fees directly into network state transitions, providing programmatic consideration for computational execution.</p>
+          </div>
+
+          <div style="background: rgba(10, 17, 40, 0.7); border: 1px solid var(--border-color); padding: 1rem; border-radius: 8px;">
+            <h4 style="color: var(--accent-cyan); margin-bottom: 0.4rem;">𝛌 Lambda Calculus & Text Interfaces</h4>
+            <p style="font-size: 0.92rem; color: #cbd5e1; margin: 0;">Alonzo Church's lambda calculus proves that functional expressions operate directly on text strings, establishing language as a universal computational interface for legal engineering.</p>
+          </div>
+
+          <div style="background: rgba(10, 17, 40, 0.7); border: 1px solid var(--border-color); padding: 1rem; border-radius: 8px;">
+            <h4 style="color: var(--accent-gold); margin-bottom: 0.4rem;">💵 USDC vs. Bridged USDCE</h4>
+            <p style="font-size: 0.92rem; color: #cbd5e1; margin: 0;">Centralized stablecoins (USDC) preserve judicial enforcement and freeze functions, whereas bridged tokens (USDCE) rely on L2 bridge contracts restricting traditional court remedies.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- 2. Native Audio Player -->
+      <div class="card pillar-card" id="card_audio_2026_09_24_how_contract_law_built_the_blockchain" style="border: 2px solid #1ed760; margin-bottom: 2rem;">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.75rem;">
+          <span class="status-badge today-badge" style="background: #1ed760; color: #0a1128; font-weight: 800;">🎧 Official Native Audio Recording</span>
+          <span class="status-badge notebook-available">40:59 Full Stream</span>
+        </div>
+
+        <h3 style="color: #1ed760; font-size: 1.25rem; margin-bottom: 0.75rem;">
+          How Contract Law Built the Blockchain — Full Session Audio Stream
+        </h3>
+
+        <!-- Playback Meter -->
+        <div class="media-playback-meter-container" style="margin-top: 0.5rem; margin-bottom: 0.85rem; background: rgba(15, 23, 42, 0.9); border: 1px solid #334155; border-radius: 8px; padding: 0.85rem;">
+          <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 0.4rem;">
+            <span class="meter-status-text" style="font-size: 0.88rem; font-weight: 700; color: #cbd5e1;">🎧 Native Audio Player</span>
+            <span class="meter-percentage-badge" style="background: rgba(30, 215, 96, 0.2); color: #1ed760; border: 1px solid #1ed760; padding: 0.15rem 0.5rem; border-radius: 4px; font-weight: 800; font-size: 0.82rem;">0% PLAYED</span>
+          </div>
+          <div style="width: 100%; height: 8px; background: #1e293b; border-radius: 4px; overflow: hidden; margin-top: 0.4rem;">
+            <div class="meter-progress-fill" style="width: 0%; height: 100%; background: #1ed760; transition: width 0.3s ease;"></div>
+          </div>
+        </div>
+
+        <audio controls style="width: 100%; border-radius: 8px;" id="audio_player_sept24">
+          <source src="audio.m4a" type="audio/mp4">
+          Your browser does not support native audio playback.
+        </audio>
+      </div>
+
+      <!-- 3. Video Explainer Clips Section -->
+      <h2 style="color: var(--accent-gold); font-size: 1.5rem; margin-bottom: 1.25rem;">
+        🎥 Session Explainer Video Clips (5 Modules)
+      </h2>
+
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 1.5rem; margin-bottom: 2.5rem;">
+
+        <!-- Clip 1 -->
+        <div class="card pillar-card" style="border: 1px solid var(--border-color);">
+          <span class="status-badge today-badge" style="margin-bottom: 0.5rem; display: inline-block;">Clip 1</span>
+          <h3 style="color: var(--accent-cyan); font-size: 1.15rem; margin-bottom: 0.5rem;">How Contract Law Built the Internet</h3>
+          <p style="font-size: 0.9rem; color: #cbd5e1; margin-bottom: 1rem;">Analyzing how analog entity covenants and legal agreements established early state machine logic for network routing.</p>
+          <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 8px;">
+            <iframe src="https://drive.google.com/file/d/1utBhBVFO-GPSfEPFz0uKzozfP-a1ZCN8/preview" style="position: absolute; top:0; left:0; width:100%; height:100%; border:0;" allow="autoplay" allowfullscreen></iframe>
+          </div>
+        </div>
+
+        <!-- Clip 2 -->
+        <div class="card pillar-card" style="border: 1px solid var(--border-color);">
+          <span class="status-badge today-badge" style="margin-bottom: 0.5rem; display: inline-block;">Clip 2</span>
+          <h3 style="color: var(--accent-cyan); font-size: 1.15rem; margin-bottom: 0.5rem;">USDC vs. Bridged USDCE</h3>
+          <p style="font-size: 0.9rem; color: #cbd5e1; margin-bottom: 1rem;">Comparing regulatory compliance, issuer freeze functions, and court remedies in native vs. bridged stablecoins.</p>
+          <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 8px;">
+            <iframe src="https://drive.google.com/file/d/1LFXjTNCwJGxbl3MI0okCvLeU41MsZmDP/preview" style="position: absolute; top:0; left:0; width:100%; height:100%; border:0;" allow="autoplay" allowfullscreen></iframe>
+          </div>
+        </div>
+
+        <!-- Clip 3 -->
+        <div class="card pillar-card" style="border: 1px solid var(--border-color);">
+          <span class="status-badge today-badge" style="margin-bottom: 0.5rem; display: inline-block;">Clip 3</span>
+          <h3 style="color: var(--accent-cyan); font-size: 1.15rem; margin-bottom: 0.5rem;">Calculus of Code</h3>
+          <p style="font-size: 0.9rem; color: #cbd5e1; margin-bottom: 1rem;">Disambiguating calculus as a decision-making framework under constraints and mapping functional programming to law.</p>
+          <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 8px;">
+            <iframe src="https://drive.google.com/file/d/1w_5qeneAx_z8CbJjgM0kpOPXFCzddmFF/preview" style="position: absolute; top:0; left:0; width:100%; height:100%; border:0;" allow="autoplay" allowfullscreen></iframe>
+          </div>
+        </div>
+
+        <!-- Clip 4 -->
+        <div class="card pillar-card" style="border: 1px solid var(--border-color);">
+          <span class="status-badge today-badge" style="margin-bottom: 0.5rem; display: inline-block;">Clip 4</span>
+          <h3 style="color: var(--accent-cyan); font-size: 1.15rem; margin-bottom: 0.5rem;">The Hidden Bridge</h3>
+          <p style="font-size: 0.9rem; color: #cbd5e1; margin-bottom: 1rem;">Examining Ricardian contract specs and smart legal wrappers connecting natural prose with EVM execution.</p>
+          <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 8px;">
+            <iframe src="https://drive.google.com/file/d/1iWzqPJYqH5uFEbECb5x1pP2rgiQXi-9G/preview" style="position: absolute; top:0; left:0; width:100%; height:100%; border:0;" allow="autoplay" allowfullscreen></iframe>
+          </div>
+        </div>
+
+        <!-- Clip 5 -->
+        <div class="card pillar-card" style="border: 1px solid var(--border-color);">
+          <span class="status-badge today-badge" style="margin-bottom: 0.5rem; display: inline-block;">Clip 5</span>
+          <h3 style="color: var(--accent-cyan); font-size: 1.15rem; margin-bottom: 0.5rem;">Calculus of Law</h3>
+          <p style="font-size: 0.9rem; color: #cbd5e1; margin-bottom: 1rem;">Exploring Alonzo Church's lambda calculus, Turing machines, and the historical legal roots from Bologna to modern smart contracts.</p>
+          <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 8px;">
+            <iframe src="https://drive.google.com/file/d/1i0Syb1PkIkTqN-vn5PUvYp4sHWOFtw0r/preview" style="position: absolute; top:0; left:0; width:100%; height:100%; border:0;" allow="autoplay" allowfullscreen></iframe>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Action Footer -->
+      <div class="card pillar-card" style="text-align: center; background: rgba(10, 17, 40, 0.9); border: 2px solid var(--accent-gold);">
+        <h3 style="color: var(--accent-gold); font-size: 1.35rem; margin-bottom: 0.5rem;">Ready to Verify Your Knowledge?</h3>
+        <p style="color: #cbd5e1; margin-bottom: 1.25rem;">Complete the 20-question transcript assessment and generate a cryptographic Keccak-256 attestation payload for your student record.</p>
+        <a href="quiz.html" class="btn btn-primary" style="background: var(--accent-gold); color: #0a1128; font-weight: 800; padding: 0.75rem 1.75rem; font-size: 1.05rem;">Take 20-Question Quiz Now ➔</a>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container footer-content">
+      <div class="footer-brand">
+        <span class="logo-icon">⚖️</span>
+        <span class="logo-text">Lex<span class="highlight">Clinic</span></span>
+        <p class="footer-tagline">Computational Legal Engineering & AI Verification Infrastructure.</p>
+      </div>
+      <div class="footer-links">
+        <a href="/index.html">Home</a>
+        <a href="/event.html">Events</a>
+        <a href="/101/">101 Courseware</a>
+        <a href="/attest/">Attestations</a>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>
