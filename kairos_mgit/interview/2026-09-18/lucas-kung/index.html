@@ -1,0 +1,696 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lukas Küng & Kyle MacLean Smith: Turning Fragile DAOs into Legal Runtimes | LexClinic Education</title>
+  <meta name="description" content="Socratic interview between Swiss DAO Researcher Lukas Küng (ZHAW / UNIC / DAWO) and Legal Engineer Kyle MacLean Smith on transforming fragile DAOs into enforceable legal runtimes.">
+  <link rel="stylesheet" href="/styles.css?v=20260829_2640">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <script src="/js/audio-player.js?v=20260829_2640"></script>
+  <script src="/js/auth.js?v=20260829_2640"></script>
+  <script src="/js/media-tracker-miniapp.js?v=20260829_2640"></script>
+  <script src="/js/watch-tracker.js?v=20260829_2640"></script>
+  <script src="/script.js?v=20260829_2640" defer></script>
+  <link rel="icon" type="image/png" href="/favicon.png?v=20260829_2640">
+  <link rel="shortcut icon" href="/favicon.ico?v=20260829_2640">
+</head>
+<body>
+
+  <!-- Navigation Bar -->
+  <header class="navbar">
+    <div class="nav-container">
+      <a href="/index.html" class="brand-logo">
+        <span class="logo-icon">⚖️</span>
+        <span class="logo-text">Lex<span class="highlight">Clinic</span></span>
+      </a>
+      <nav class="nav-links" id="nav-links">
+        <a href="/event.html">Event</a>
+        <a href="/101">101</a>
+        <a href="/interview/" class="active-link">Interview</a>
+        <a href="/partner/">Partner</a>
+        <a href="/fiduciary/">Fiduciary</a>
+        <a href="/attest/">Attest</a>
+        <a href="/help/">Help</a>
+        <a href="/repo/">Repo</a>
+        <a href="/erc7827.html">ERC-7827</a>
+        <a href="https://www.youtube.com/watch?v=ONwiUkc_tt4&list=PLbPukKwpmk5E" target="_blank" rel="noopener" class="btn-social" title="Subscribe on YouTube">YouTube</a>
+        <a href="https://open.spotify.com/show/0348ivoLaNfKBq1HeIYC9b" target="_blank" rel="noopener" class="btn-spotify" title="Follow on Spotify">Spotify</a>
+        <a href="https://www.linkedin.com/company/lexclinic" target="_blank" rel="noopener" class="btn-social" title="Follow on LinkedIn">LinkedIn</a>
+        <a href="javascript:void(0)" onclick="event.preventDefault(); window.openNavLoginModal(event); return false;" id="nav-login-btn" style="background: #fbbf24; color: #0a1128; font-weight: 800; font-size: 0.88rem; padding: 0.35rem 0.85rem; border-radius: 6px; margin-left: 0.35rem; text-decoration: none; border: 2px solid #f59e0b; box-shadow: 0 0 10px rgba(251, 191, 36, 0.4); display: inline-block;">Login</a>
+      </nav>
+      <button class="mobile-toggle" id="mobile-toggle" aria-label="Toggle navigation">
+        ☰
+      </button>
+    </div>
+  </header>
+
+  <!-- Hero Header -->
+  <section class="hero page-hero">
+    <div class="container hero-content">
+      <div style="display: flex; gap: 0.5rem; justify-content: center; flex-wrap: wrap; margin-bottom: 0.85rem;">
+        <span class="status-badge today-badge">🎙️ Academic Interview Series</span>
+        <span class="status-badge media-available">🎥 11 YouTube Explainer Modules</span>
+        <span class="status-badge notebook-available">🎧 Native Audio Stream</span>
+      </div>
+      <h1 class="hero-title">Turning Fragile DAOs into Legal Runtimes</h1>
+      <p class="hero-subtitle">
+        Friday, September 18, 2026 • Swiss DAO Researcher Lukas Küng interviews Legal Engineer Kyle MacLean Smith on how decentralized organizations survive corporate liability, replace paper contracts with computational state machines, and code human accountability into execution gates.
+      </p>
+      <div class="hero-actions">
+        <a href="quiz.html" class="btn btn-primary" style="background: var(--accent-gold); color: #0a1128; font-weight: 800;">Take 20-Q Interview Quiz ➔</a>
+        <a href="/interview/" class="btn btn-outline">← Back to Interviews Hub</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Main Content -->
+  <section class="section">
+    <div class="container">
+
+      <!-- Speaker / Interviewer Bio Card -->
+      <div class="card pillar-card" style="border: 2px solid var(--accent-cyan); margin-bottom: 2rem; background: rgba(10, 17, 40, 0.9);">
+        <h2 style="color: var(--accent-cyan); font-size: 1.35rem; margin-bottom: 1rem; border-bottom: 1px solid var(--accent-cyan); padding-bottom: 0.4rem;">
+          👤 Speaker & Interviewer Profile
+        </h2>
+
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(290px, 1fr)); gap: 1.5rem;">
+          
+          <!-- Lukas Küng Bio -->
+          <div style="background: rgba(15, 23, 42, 0.7); border: 1px solid #334155; padding: 1.25rem; border-radius: 8px;">
+            <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.5rem;">
+              <span style="font-size: 1.5rem;">🇨🇭</span>
+              <h3 style="color: var(--accent-gold); font-size: 1.15rem; margin: 0;">Lukas Küng</h3>
+            </div>
+            <p style="font-size: 0.85rem; color: var(--accent-cyan); font-weight: 700; margin-bottom: 0.75rem;">DAO Researcher • ZHAW / UNIC / DAWO Organizing Chair</p>
+            <p style="font-size: 0.92rem; color: #cbd5e1; line-height: 1.6; margin: 0;">
+              Lukas Küng is a prominent Swiss academic researcher specializing in Decentralized Autonomous Organization (DAO) business value and governance at the <strong>ZHAW School of Management and Law</strong> and the <strong>University of Nicosia (IFF)</strong>. He serves as a core organizing committee member and track chair for the <strong>European DAO Workshop (DAWO24, DAWO25 in Zurich, DAWO26 in Winterthur)</strong> and is co-author of <em>Mastering DAOs: A Practical Guidebook</em>.
+            </p>
+          </div>
+
+          <!-- Kyle MacLean Smith Bio -->
+          <div style="background: rgba(15, 23, 42, 0.7); border: 1px solid #334155; padding: 1.25rem; border-radius: 8px;">
+            <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.5rem;">
+              <span style="font-size: 1.5rem;">⚖️</span>
+              <h3 style="color: var(--accent-gold); font-size: 1.15rem; margin: 0;">Kyle MacLean Smith</h3>
+            </div>
+            <p style="font-size: 0.85rem; color: var(--accent-cyan); font-weight: 700; margin-bottom: 0.75rem;">Lead Legal Engineer • LexClinic Education Inc.</p>
+            <p style="font-size: 0.92rem; color: #cbd5e1; line-height: 1.6; margin: 0;">
+              Lead Legal Engineer at LexClinic Education Inc. pioneering smart legal wrappers, computational contract runtimes, and AI verification gates. Architect of time-sharded metagit databases and ERC-7827 non-fungible governance attestations connecting natural language legal specifications with EVM state machines.
+            </p>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Overview Card -->
+      <div class="card pillar-card" style="margin-bottom: 2rem;">
+        <h2 style="color: var(--accent-gold); font-size: 1.4rem; margin-bottom: 0.75rem;">
+          Interview Overview & Core Themes
+        </h2>
+        <p style="line-height: 1.7; color: var(--text-main); font-size: 1.05rem; margin-bottom: 1.25rem;">
+          In this deep-dive academic dialogue, Lukas Küng and Kyle MacLean Smith explore how DAOs can escape general partnership joint-liability traps, why paper contracts are obsolete specification models, and how smart legal wrappers code human accountability directly into smart contract verification gates.
+        </p>
+
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1rem;">
+          <div style="background: rgba(10, 17, 40, 0.7); border: 1px solid var(--border-color); padding: 1rem; border-radius: 8px;">
+            <h4 style="color: var(--accent-cyan); margin-bottom: 0.4rem;">🏛️ Surviving Corporate Law</h4>
+            <p style="font-size: 0.9rem; color: #cbd5e1; margin: 0;">Unwrapped DAOs default to general partnerships with joint and several liability. Legal wrappers establish limited liability boundaries for contributors.</p>
+          </div>
+          <div style="background: rgba(10, 17, 40, 0.7); border: 1px solid var(--border-color); padding: 1rem; border-radius: 8px;">
+            <h4 style="color: var(--accent-gold); margin-bottom: 0.4rem;">💻 Computational Runtimes</h4>
+            <p style="font-size: 0.9rem; color: #cbd5e1; margin: 0;">Replacing static paper specs with executable state machines that enforce covenant terms automatically upon state transitions.</p>
+          </div>
+          <div style="background: rgba(10, 17, 40, 0.7); border: 1px solid var(--border-color); padding: 1rem; border-radius: 8px;">
+            <h4 style="color: var(--accent-cyan); margin-bottom: 0.4rem;">👥 Human Accountability</h4>
+            <p style="font-size: 0.9rem; color: #cbd5e1; margin: 0;">Coding fiduciary duties and off-chain human performance into deterministic AI verification gates prior to token vault unlocks.</p>
+          </div>
+          <div style="background: rgba(10, 17, 40, 0.7); border: 1px solid var(--border-color); padding: 1rem; border-radius: 8px;">
+            <h4 style="color: var(--accent-gold); margin-bottom: 0.4rem;">📐 Constitutional Math</h4>
+            <p style="font-size: 0.9rem; color: #cbd5e1; margin: 0;">Mapping constitutional rights and automated market maker (AMM) bonding curves into mathematical governance invariants.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Native Audio Player Card -->
+      
+      <!-- Native Audio Player Card -->
+      <div class="card pillar-card" id="card_interview_lucas_kung" style="border: 2px solid #1ed760; margin-bottom: 2rem;">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.75rem;">
+          <span class="status-badge today-badge" style="background: #1ed760; color: #0a1128; font-weight: 800;">🎧 Official Native Audio Recording</span>
+          <span class="status-badge notebook-available">45:59 Full Stream</span>
+        </div>
+
+        <h3 style="color: #1ed760; font-size: 1.25rem; margin-bottom: 0.75rem;">
+          Lukas Küng & Kyle MacLean Smith — Full Audio Session
+        </h3>
+
+        <!-- Playback Meter -->
+        <div class="media-playback-meter-container" style="margin-top: 0.5rem; margin-bottom: 0.85rem; background: rgba(15, 23, 42, 0.9); border: 1px solid #334155; border-radius: 8px; padding: 0.85rem; box-shadow: 0 4px 12px rgba(0,0,0,0.5);">
+          <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 0.4rem;">
+            <span class="meter-status-text" style="font-size: 0.88rem; font-weight: 700; color: #cbd5e1;">🎧 Unwatched Audio Track</span>
+            <span class="meter-auth-hint" style="font-size: 0.8rem; color: #94a3b8;">🔒 Log in to save watch tracker</span>
+          </div>
+          <div style="width: 100%; height: 8px; background: rgba(30, 41, 59, 0.8); border-radius: 4px; overflow: hidden; border: 1px solid #475569;">
+            <div class="meter-fill-bar" style="width: 0%; height: 100%; background: linear-gradient(90deg, #38bdf8, #34d399); transition: width 0.4s ease;"></div>
+          </div>
+        </div>
+
+        <!-- Native HTML5 Audio Player -->
+        <audio id="audio-player-card_interview_lucas_kung" controls style="width: 100%; margin-bottom: 0.75rem; accent-color: #1ed760;" preload="metadata">
+          <source src="audio.m4a" type="audio/mp4">
+          Your browser does not support native audio playback.
+        </audio>
+
+        <!-- Speed Controls Bar for Audio -->
+        <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem; background: rgba(15, 23, 42, 0.8); padding: 0.65rem 0.85rem; border-radius: 6px; border: 1px solid #334155;">
+          <div style="display: flex; align-items: center; gap: 0.35rem;">
+            <span style="font-size: 0.82rem; font-weight: 700; color: #1ed760; margin-right: 0.25rem;">Speed:</span>
+            <button type="button" onclick="window.setAudioSpeed('audio-player-card_interview_lucas_kung', 1.0, this)" class="btn-speed" style="padding: 0.25rem 0.55rem; font-size: 0.78rem; background: #1ed760; color: #0a1128; font-weight: 800; border: 1px solid #1ed760; border-radius: 4px; cursor: pointer;">1.0x</button>
+            <button type="button" onclick="window.setAudioSpeed('audio-player-card_interview_lucas_kung', 1.25, this)" class="btn-speed" style="padding: 0.25rem 0.55rem; font-size: 0.78rem; background: rgba(30, 41, 59, 0.8); color: #e2e8f0; font-weight: 600; border: 1px solid #334155; border-radius: 4px; cursor: pointer;">1.25x</button>
+            <button type="button" onclick="window.setAudioSpeed('audio-player-card_interview_lucas_kung', 1.5, this)" class="btn-speed" style="padding: 0.25rem 0.55rem; font-size: 0.78rem; background: rgba(30, 41, 59, 0.8); color: #e2e8f0; font-weight: 600; border: 1px solid #334155; border-radius: 4px; cursor: pointer;">1.5x</button>
+            <button type="button" onclick="window.setAudioSpeed('audio-player-card_interview_lucas_kung', 1.75, this)" class="btn-speed" style="padding: 0.25rem 0.55rem; font-size: 0.78rem; background: rgba(30, 41, 59, 0.8); color: #e2e8f0; font-weight: 600; border: 1px solid #334155; border-radius: 4px; cursor: pointer;">1.75x</button>
+            <button type="button" onclick="window.setAudioSpeed('audio-player-card_interview_lucas_kung', 2.0, this)" class="btn-speed" style="padding: 0.25rem 0.55rem; font-size: 0.78rem; background: rgba(30, 41, 59, 0.8); color: #e2e8f0; font-weight: 600; border: 1px solid #334155; border-radius: 4px; cursor: pointer;">2.0x</button>
+          </div>
+        </div>
+      </div>
+
+
+      <!-- Explainer Video Modules (11 Clips) -->
+      <h2 style="color: var(--accent-gold); font-size: 1.5rem; margin-bottom: 1.25rem;">
+        🎥 Interview Explainer Video Modules (11 Clips)
+      </h2>
+
+      <!-- Module 1 -->
+      <h3 style="color: var(--accent-cyan); font-size: 1.25rem; margin-top: 1.5rem; margin-bottom: 1rem; border-bottom: 1px solid var(--accent-cyan); padding-bottom: 0.3rem;">
+        Module 1: How DAOs Survive Traditional Corporate Law
+      </h3>
+      
+      <!-- Module 1.1: LexDAO Foundations -->
+      <div class="card pillar-card" id="card_interview_lucas_v1_1" style="border: 2px solid var(--accent-cyan); margin-bottom: 2rem;">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.75rem;">
+          <span class="status-badge today-badge" style="background: var(--accent-cyan); color: #0a1128; font-weight: 800;">🎥 Module 1.1: LexDAO Foundations</span>
+          <span class="status-badge notebook-available">YouTube Stream</span>
+        </div>
+
+        <h3 style="color: var(--accent-cyan); font-size: 1.25rem; margin-bottom: 0.75rem;">
+          Module 1.1: LexDAO Foundations
+        </h3>
+
+        <!-- Playback Meter Bar -->
+        <div class="media-playback-meter-container" style="margin-top: 0.5rem; margin-bottom: 0.85rem; background: rgba(15, 23, 42, 0.9); border: 1px solid #334155; border-radius: 8px; padding: 0.85rem; box-shadow: 0 4px 12px rgba(0,0,0,0.5);">
+          <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 0.4rem;">
+            <span class="meter-status-text" style="font-size: 0.88rem; font-weight: 700; color: #cbd5e1;">🎥 Unwatched Video Clip</span>
+            <span class="meter-auth-hint" style="font-size: 0.8rem; color: #94a3b8;">🔒 Log in to save watch tracker</span>
+          </div>
+          <div style="width: 100%; height: 8px; background: rgba(30, 41, 59, 0.8); border-radius: 4px; overflow: hidden; border: 1px solid #475569;">
+            <div class="meter-fill-bar" style="width: 0%; height: 100%; background: linear-gradient(90deg, #38bdf8, #34d399); transition: width 0.4s ease;"></div>
+          </div>
+        </div>
+
+        <!-- YouTube Embed Player -->
+        <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 8px; border: 1px solid var(--border-color); background: #000; margin-bottom: 0.75rem;">
+          <iframe id="yt_frame_card_interview_lucas_v1_1" loading="lazy" src="https://www.youtube.com/embed/BpRTnQ4128Y?enablejsapi=1" allow="autoplay; fullscreen" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;" allowfullscreen></iframe>
+        </div>
+
+        <!-- Speed & Fullscreen Controls Bar -->
+        <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem; background: rgba(15, 23, 42, 0.8); padding: 0.65rem 0.85rem; border-radius: 6px; border: 1px solid #334155;">
+          <div style="display: flex; align-items: center; gap: 0.35rem;">
+            <span style="font-size: 0.82rem; font-weight: 700; color: var(--accent-cyan); margin-right: 0.25rem;">Speed:</span>
+            <button type="button" onclick="window.setVideoSpeed('card_interview_lucas_v1_1', 1.0, this)" class="btn-speed" style="padding: 0.25rem 0.55rem; font-size: 0.78rem; background: var(--accent-cyan); color: #0a1128; font-weight: 800; border: 1px solid var(--accent-cyan); border-radius: 4px; cursor: pointer;">1.0x</button>
+            <button type="button" onclick="window.setVideoSpeed('card_interview_lucas_v1_1', 1.25, this)" class="btn-speed" style="padding: 0.25rem 0.55rem; font-size: 0.78rem; background: rgba(30, 41, 59, 0.8); color: #e2e8f0; font-weight: 600; border: 1px solid #334155; border-radius: 4px; cursor: pointer;">1.25x</button>
+            <button type="button" onclick="window.setVideoSpeed('card_interview_lucas_v1_1', 1.5, this)" class="btn-speed" style="padding: 0.25rem 0.55rem; font-size: 0.78rem; background: rgba(30, 41, 59, 0.8); color: #e2e8f0; font-weight: 600; border: 1px solid #334155; border-radius: 4px; cursor: pointer;">1.5x</button>
+            <button type="button" onclick="window.setVideoSpeed('card_interview_lucas_v1_1', 1.75, this)" class="btn-speed" style="padding: 0.25rem 0.55rem; font-size: 0.78rem; background: rgba(30, 41, 59, 0.8); color: #e2e8f0; font-weight: 600; border: 1px solid #334155; border-radius: 4px; cursor: pointer;">1.75x</button>
+            <button type="button" onclick="window.setVideoSpeed('card_interview_lucas_v1_1', 2.0, this)" class="btn-speed" style="padding: 0.25rem 0.55rem; font-size: 0.78rem; background: rgba(30, 41, 59, 0.8); color: #e2e8f0; font-weight: 600; border: 1px solid #334155; border-radius: 4px; cursor: pointer;">2.0x</button>
+          </div>
+          <button type="button" onclick="const iframe = document.getElementById('yt_frame_card_interview_lucas_v1_1'); if (iframe) { if (iframe.requestFullscreen) iframe.requestFullscreen(); else if (iframe.webkitRequestFullscreen) iframe.webkitRequestFullscreen(); }" class="btn" style="padding: 0.25rem 0.65rem; font-size: 0.78rem; background: rgba(56, 189, 248, 0.15); color: var(--accent-cyan); border: 1px solid var(--accent-cyan); border-radius: 4px; cursor: pointer; font-weight: 700;">⤢ Expand Fullscreen</button>
+        </div>
+      </div>
+
+      
+      <!-- Module 1.2: Evolution of DAO Governance -->
+      <div class="card pillar-card" id="card_interview_lucas_v1_2" style="border: 2px solid var(--accent-cyan); margin-bottom: 2rem;">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.75rem;">
+          <span class="status-badge today-badge" style="background: var(--accent-cyan); color: #0a1128; font-weight: 800;">🎥 Module 1.2: Evolution of DAO Governance</span>
+          <span class="status-badge notebook-available">YouTube Stream</span>
+        </div>
+
+        <h3 style="color: var(--accent-cyan); font-size: 1.25rem; margin-bottom: 0.75rem;">
+          Module 1.2: Evolution of DAO Governance
+        </h3>
+
+        <!-- Playback Meter Bar -->
+        <div class="media-playback-meter-container" style="margin-top: 0.5rem; margin-bottom: 0.85rem; background: rgba(15, 23, 42, 0.9); border: 1px solid #334155; border-radius: 8px; padding: 0.85rem; box-shadow: 0 4px 12px rgba(0,0,0,0.5);">
+          <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 0.4rem;">
+            <span class="meter-status-text" style="font-size: 0.88rem; font-weight: 700; color: #cbd5e1;">🎥 Unwatched Video Clip</span>
+            <span class="meter-auth-hint" style="font-size: 0.8rem; color: #94a3b8;">🔒 Log in to save watch tracker</span>
+          </div>
+          <div style="width: 100%; height: 8px; background: rgba(30, 41, 59, 0.8); border-radius: 4px; overflow: hidden; border: 1px solid #475569;">
+            <div class="meter-fill-bar" style="width: 0%; height: 100%; background: linear-gradient(90deg, #38bdf8, #34d399); transition: width 0.4s ease;"></div>
+          </div>
+        </div>
+
+        <!-- YouTube Embed Player -->
+        <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 8px; border: 1px solid var(--border-color); background: #000; margin-bottom: 0.75rem;">
+          <iframe id="yt_frame_card_interview_lucas_v1_2" loading="lazy" src="https://www.youtube.com/embed/b9zluOY9qpM?enablejsapi=1" allow="autoplay; fullscreen" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;" allowfullscreen></iframe>
+        </div>
+
+        <!-- Speed & Fullscreen Controls Bar -->
+        <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem; background: rgba(15, 23, 42, 0.8); padding: 0.65rem 0.85rem; border-radius: 6px; border: 1px solid #334155;">
+          <div style="display: flex; align-items: center; gap: 0.35rem;">
+            <span style="font-size: 0.82rem; font-weight: 700; color: var(--accent-cyan); margin-right: 0.25rem;">Speed:</span>
+            <button type="button" onclick="window.setVideoSpeed('card_interview_lucas_v1_2', 1.0, this)" class="btn-speed" style="padding: 0.25rem 0.55rem; font-size: 0.78rem; background: var(--accent-cyan); color: #0a1128; font-weight: 800; border: 1px solid var(--accent-cyan); border-radius: 4px; cursor: pointer;">1.0x</button>
+            <button type="button" onclick="window.setVideoSpeed('card_interview_lucas_v1_2', 1.25, this)" class="btn-speed" style="padding: 0.25rem 0.55rem; font-size: 0.78rem; background: rgba(30, 41, 59, 0.8); color: #e2e8f0; font-weight: 600; border: 1px solid #334155; border-radius: 4px; cursor: pointer;">1.25x</button>
+            <button type="button" onclick="window.setVideoSpeed('card_interview_lucas_v1_2', 1.5, this)" class="btn-speed" style="padding: 0.25rem 0.55rem; font-size: 0.78rem; background: rgba(30, 41, 59, 0.8); color: #e2e8f0; font-weight: 600; border: 1px solid #334155; border-radius: 4px; cursor: pointer;">1.5x</button>
+            <button type="button" onclick="window.setVideoSpeed('card_interview_lucas_v1_2', 1.75, this)" class="btn-speed" style="padding: 0.25rem 0.55rem; font-size: 0.78rem; background: rgba(30, 41, 59, 0.8); color: #e2e8f0; font-weight: 600; border: 1px solid #334155; border-radius: 4px; cursor: pointer;">1.75x</button>
+            <button type="button" onclick="window.setVideoSpeed('card_interview_lucas_v1_2', 2.0, this)" class="btn-speed" style="padding: 0.25rem 0.55rem; font-size: 0.78rem; background: rgba(30, 41, 59, 0.8); color: #e2e8f0; font-weight: 600; border: 1px solid #334155; border-radius: 4px; cursor: pointer;">2.0x</button>
+          </div>
+          <button type="button" onclick="const iframe = document.getElementById('yt_frame_card_interview_lucas_v1_2'); if (iframe) { if (iframe.requestFullscreen) iframe.requestFullscreen(); else if (iframe.webkitRequestFullscreen) iframe.webkitRequestFullscreen(); }" class="btn" style="padding: 0.25rem 0.65rem; font-size: 0.78rem; background: rgba(56, 189, 248, 0.15); color: var(--accent-cyan); border: 1px solid var(--accent-cyan); border-radius: 4px; cursor: pointer; font-weight: 700;">⤢ Expand Fullscreen</button>
+        </div>
+      </div>
+
+      
+      <!-- Module 1.3: DAO 2.0 Architectures -->
+      <div class="card pillar-card" id="card_interview_lucas_v1_3" style="border: 2px solid var(--accent-cyan); margin-bottom: 2rem;">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.75rem;">
+          <span class="status-badge today-badge" style="background: var(--accent-cyan); color: #0a1128; font-weight: 800;">🎥 Module 1.3: DAO 2.0 Architectures</span>
+          <span class="status-badge notebook-available">YouTube Stream</span>
+        </div>
+
+        <h3 style="color: var(--accent-cyan); font-size: 1.25rem; margin-bottom: 0.75rem;">
+          Module 1.3: DAO 2.0 Architectures
+        </h3>
+
+        <!-- Playback Meter Bar -->
+        <div class="media-playback-meter-container" style="margin-top: 0.5rem; margin-bottom: 0.85rem; background: rgba(15, 23, 42, 0.9); border: 1px solid #334155; border-radius: 8px; padding: 0.85rem; box-shadow: 0 4px 12px rgba(0,0,0,0.5);">
+          <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 0.4rem;">
+            <span class="meter-status-text" style="font-size: 0.88rem; font-weight: 700; color: #cbd5e1;">🎥 Unwatched Video Clip</span>
+            <span class="meter-auth-hint" style="font-size: 0.8rem; color: #94a3b8;">🔒 Log in to save watch tracker</span>
+          </div>
+          <div style="width: 100%; height: 8px; background: rgba(30, 41, 59, 0.8); border-radius: 4px; overflow: hidden; border: 1px solid #475569;">
+            <div class="meter-fill-bar" style="width: 0%; height: 100%; background: linear-gradient(90deg, #38bdf8, #34d399); transition: width 0.4s ease;"></div>
+          </div>
+        </div>
+
+        <!-- YouTube Embed Player -->
+        <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 8px; border: 1px solid var(--border-color); background: #000; margin-bottom: 0.75rem;">
+          <iframe id="yt_frame_card_interview_lucas_v1_3" loading="lazy" src="https://www.youtube.com/embed/h7P8r_cGvxw?enablejsapi=1" allow="autoplay; fullscreen" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;" allowfullscreen></iframe>
+        </div>
+
+        <!-- Speed & Fullscreen Controls Bar -->
+        <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem; background: rgba(15, 23, 42, 0.8); padding: 0.65rem 0.85rem; border-radius: 6px; border: 1px solid #334155;">
+          <div style="display: flex; align-items: center; gap: 0.35rem;">
+            <span style="font-size: 0.82rem; font-weight: 700; color: var(--accent-cyan); margin-right: 0.25rem;">Speed:</span>
+            <button type="button" onclick="window.setVideoSpeed('card_interview_lucas_v1_3', 1.0, this)" class="btn-speed" style="padding: 0.25rem 0.55rem; font-size: 0.78rem; background: var(--accent-cyan); color: #0a1128; font-weight: 800; border: 1px solid var(--accent-cyan); border-radius: 4px; cursor: pointer;">1.0x</button>
+            <button type="button" onclick="window.setVideoSpeed('card_interview_lucas_v1_3', 1.25, this)" class="btn-speed" style="padding: 0.25rem 0.55rem; font-size: 0.78rem; background: rgba(30, 41, 59, 0.8); color: #e2e8f0; font-weight: 600; border: 1px solid #334155; border-radius: 4px; cursor: pointer;">1.25x</button>
+            <button type="button" onclick="window.setVideoSpeed('card_interview_lucas_v1_3', 1.5, this)" class="btn-speed" style="padding: 0.25rem 0.55rem; font-size: 0.78rem; background: rgba(30, 41, 59, 0.8); color: #e2e8f0; font-weight: 600; border: 1px solid #334155; border-radius: 4px; cursor: pointer;">1.5x</button>
+            <button type="button" onclick="window.setVideoSpeed('card_interview_lucas_v1_3', 1.75, this)" class="btn-speed" style="padding: 0.25rem 0.55rem; font-size: 0.78rem; background: rgba(30, 41, 59, 0.8); color: #e2e8f0; font-weight: 600; border: 1px solid #334155; border-radius: 4px; cursor: pointer;">1.75x</button>
+            <button type="button" onclick="window.setVideoSpeed('card_interview_lucas_v1_3', 2.0, this)" class="btn-speed" style="padding: 0.25rem 0.55rem; font-size: 0.78rem; background: rgba(30, 41, 59, 0.8); color: #e2e8f0; font-weight: 600; border: 1px solid #334155; border-radius: 4px; cursor: pointer;">2.0x</button>
+          </div>
+          <button type="button" onclick="const iframe = document.getElementById('yt_frame_card_interview_lucas_v1_3'); if (iframe) { if (iframe.requestFullscreen) iframe.requestFullscreen(); else if (iframe.webkitRequestFullscreen) iframe.webkitRequestFullscreen(); }" class="btn" style="padding: 0.25rem 0.65rem; font-size: 0.78rem; background: rgba(56, 189, 248, 0.15); color: var(--accent-cyan); border: 1px solid var(--accent-cyan); border-radius: 4px; cursor: pointer; font-weight: 700;">⤢ Expand Fullscreen</button>
+        </div>
+      </div>
+
+
+      <!-- Module 2 -->
+      <h3 style="color: var(--accent-cyan); font-size: 1.25rem; margin-top: 1.5rem; margin-bottom: 1rem; border-bottom: 1px solid var(--accent-cyan); padding-bottom: 0.3rem;">
+        Module 2: Replacing Paper Contracts with Computational Runtimes
+      </h3>
+      
+      <!-- Module 2.1: Computational Runtimes -->
+      <div class="card pillar-card" id="card_interview_lucas_v2_1" style="border: 2px solid var(--accent-cyan); margin-bottom: 2rem;">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.75rem;">
+          <span class="status-badge today-badge" style="background: var(--accent-cyan); color: #0a1128; font-weight: 800;">🎥 Module 2.1: Computational Runtimes</span>
+          <span class="status-badge notebook-available">YouTube Stream</span>
+        </div>
+
+        <h3 style="color: var(--accent-cyan); font-size: 1.25rem; margin-bottom: 0.75rem;">
+          Module 2.1: Computational Runtimes
+        </h3>
+
+        <!-- Playback Meter Bar -->
+        <div class="media-playback-meter-container" style="margin-top: 0.5rem; margin-bottom: 0.85rem; background: rgba(15, 23, 42, 0.9); border: 1px solid #334155; border-radius: 8px; padding: 0.85rem; box-shadow: 0 4px 12px rgba(0,0,0,0.5);">
+          <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 0.4rem;">
+            <span class="meter-status-text" style="font-size: 0.88rem; font-weight: 700; color: #cbd5e1;">🎥 Unwatched Video Clip</span>
+            <span class="meter-auth-hint" style="font-size: 0.8rem; color: #94a3b8;">🔒 Log in to save watch tracker</span>
+          </div>
+          <div style="width: 100%; height: 8px; background: rgba(30, 41, 59, 0.8); border-radius: 4px; overflow: hidden; border: 1px solid #475569;">
+            <div class="meter-fill-bar" style="width: 0%; height: 100%; background: linear-gradient(90deg, #38bdf8, #34d399); transition: width 0.4s ease;"></div>
+          </div>
+        </div>
+
+        <!-- YouTube Embed Player -->
+        <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 8px; border: 1px solid var(--border-color); background: #000; margin-bottom: 0.75rem;">
+          <iframe id="yt_frame_card_interview_lucas_v2_1" loading="lazy" src="https://www.youtube.com/embed/tnLETwm-dMY?enablejsapi=1" allow="autoplay; fullscreen" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;" allowfullscreen></iframe>
+        </div>
+
+        <!-- Speed & Fullscreen Controls Bar -->
+        <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem; background: rgba(15, 23, 42, 0.8); padding: 0.65rem 0.85rem; border-radius: 6px; border: 1px solid #334155;">
+          <div style="display: flex; align-items: center; gap: 0.35rem;">
+            <span style="font-size: 0.82rem; font-weight: 700; color: var(--accent-cyan); margin-right: 0.25rem;">Speed:</span>
+            <button type="button" onclick="window.setVideoSpeed('card_interview_lucas_v2_1', 1.0, this)" class="btn-speed" style="padding: 0.25rem 0.55rem; font-size: 0.78rem; background: var(--accent-cyan); color: #0a1128; font-weight: 800; border: 1px solid var(--accent-cyan); border-radius: 4px; cursor: pointer;">1.0x</button>
+            <button type="button" onclick="window.setVideoSpeed('card_interview_lucas_v2_1', 1.25, this)" class="btn-speed" style="padding: 0.25rem 0.55rem; font-size: 0.78rem; background: rgba(30, 41, 59, 0.8); color: #e2e8f0; font-weight: 600; border: 1px solid #334155; border-radius: 4px; cursor: pointer;">1.25x</button>
+            <button type="button" onclick="window.setVideoSpeed('card_interview_lucas_v2_1', 1.5, this)" class="btn-speed" style="padding: 0.25rem 0.55rem; font-size: 0.78rem; background: rgba(30, 41, 59, 0.8); color: #e2e8f0; font-weight: 600; border: 1px solid #334155; border-radius: 4px; cursor: pointer;">1.5x</button>
+            <button type="button" onclick="window.setVideoSpeed('card_interview_lucas_v2_1', 1.75, this)" class="btn-speed" style="padding: 0.25rem 0.55rem; font-size: 0.78rem; background: rgba(30, 41, 59, 0.8); color: #e2e8f0; font-weight: 600; border: 1px solid #334155; border-radius: 4px; cursor: pointer;">1.75x</button>
+            <button type="button" onclick="window.setVideoSpeed('card_interview_lucas_v2_1', 2.0, this)" class="btn-speed" style="padding: 0.25rem 0.55rem; font-size: 0.78rem; background: rgba(30, 41, 59, 0.8); color: #e2e8f0; font-weight: 600; border: 1px solid #334155; border-radius: 4px; cursor: pointer;">2.0x</button>
+          </div>
+          <button type="button" onclick="const iframe = document.getElementById('yt_frame_card_interview_lucas_v2_1'); if (iframe) { if (iframe.requestFullscreen) iframe.requestFullscreen(); else if (iframe.webkitRequestFullscreen) iframe.webkitRequestFullscreen(); }" class="btn" style="padding: 0.25rem 0.65rem; font-size: 0.78rem; background: rgba(56, 189, 248, 0.15); color: var(--accent-cyan); border: 1px solid var(--accent-cyan); border-radius: 4px; cursor: pointer; font-weight: 700;">⤢ Expand Fullscreen</button>
+        </div>
+      </div>
+
+      
+      <!-- Module 2.2: Upgrading Law for Info Age -->
+      <div class="card pillar-card" id="card_interview_lucas_v2_2" style="border: 2px solid var(--accent-cyan); margin-bottom: 2rem;">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.75rem;">
+          <span class="status-badge today-badge" style="background: var(--accent-cyan); color: #0a1128; font-weight: 800;">🎥 Module 2.2: Upgrading Law for Info Age</span>
+          <span class="status-badge notebook-available">YouTube Stream</span>
+        </div>
+
+        <h3 style="color: var(--accent-cyan); font-size: 1.25rem; margin-bottom: 0.75rem;">
+          Module 2.2: Upgrading Law for Info Age
+        </h3>
+
+        <!-- Playback Meter Bar -->
+        <div class="media-playback-meter-container" style="margin-top: 0.5rem; margin-bottom: 0.85rem; background: rgba(15, 23, 42, 0.9); border: 1px solid #334155; border-radius: 8px; padding: 0.85rem; box-shadow: 0 4px 12px rgba(0,0,0,0.5);">
+          <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 0.4rem;">
+            <span class="meter-status-text" style="font-size: 0.88rem; font-weight: 700; color: #cbd5e1;">🎥 Unwatched Video Clip</span>
+            <span class="meter-auth-hint" style="font-size: 0.8rem; color: #94a3b8;">🔒 Log in to save watch tracker</span>
+          </div>
+          <div style="width: 100%; height: 8px; background: rgba(30, 41, 59, 0.8); border-radius: 4px; overflow: hidden; border: 1px solid #475569;">
+            <div class="meter-fill-bar" style="width: 0%; height: 100%; background: linear-gradient(90deg, #38bdf8, #34d399); transition: width 0.4s ease;"></div>
+          </div>
+        </div>
+
+        <!-- YouTube Embed Player -->
+        <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 8px; border: 1px solid var(--border-color); background: #000; margin-bottom: 0.75rem;">
+          <iframe id="yt_frame_card_interview_lucas_v2_2" loading="lazy" src="https://www.youtube.com/embed/lBToaLiMPIM?enablejsapi=1" allow="autoplay; fullscreen" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;" allowfullscreen></iframe>
+        </div>
+
+        <!-- Speed & Fullscreen Controls Bar -->
+        <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem; background: rgba(15, 23, 42, 0.8); padding: 0.65rem 0.85rem; border-radius: 6px; border: 1px solid #334155;">
+          <div style="display: flex; align-items: center; gap: 0.35rem;">
+            <span style="font-size: 0.82rem; font-weight: 700; color: var(--accent-cyan); margin-right: 0.25rem;">Speed:</span>
+            <button type="button" onclick="window.setVideoSpeed('card_interview_lucas_v2_2', 1.0, this)" class="btn-speed" style="padding: 0.25rem 0.55rem; font-size: 0.78rem; background: var(--accent-cyan); color: #0a1128; font-weight: 800; border: 1px solid var(--accent-cyan); border-radius: 4px; cursor: pointer;">1.0x</button>
+            <button type="button" onclick="window.setVideoSpeed('card_interview_lucas_v2_2', 1.25, this)" class="btn-speed" style="padding: 0.25rem 0.55rem; font-size: 0.78rem; background: rgba(30, 41, 59, 0.8); color: #e2e8f0; font-weight: 600; border: 1px solid #334155; border-radius: 4px; cursor: pointer;">1.25x</button>
+            <button type="button" onclick="window.setVideoSpeed('card_interview_lucas_v2_2', 1.5, this)" class="btn-speed" style="padding: 0.25rem 0.55rem; font-size: 0.78rem; background: rgba(30, 41, 59, 0.8); color: #e2e8f0; font-weight: 600; border: 1px solid #334155; border-radius: 4px; cursor: pointer;">1.5x</button>
+            <button type="button" onclick="window.setVideoSpeed('card_interview_lucas_v2_2', 1.75, this)" class="btn-speed" style="padding: 0.25rem 0.55rem; font-size: 0.78rem; background: rgba(30, 41, 59, 0.8); color: #e2e8f0; font-weight: 600; border: 1px solid #334155; border-radius: 4px; cursor: pointer;">1.75x</button>
+            <button type="button" onclick="window.setVideoSpeed('card_interview_lucas_v2_2', 2.0, this)" class="btn-speed" style="padding: 0.25rem 0.55rem; font-size: 0.78rem; background: rgba(30, 41, 59, 0.8); color: #e2e8f0; font-weight: 600; border: 1px solid #334155; border-radius: 4px; cursor: pointer;">2.0x</button>
+          </div>
+          <button type="button" onclick="const iframe = document.getElementById('yt_frame_card_interview_lucas_v2_2'); if (iframe) { if (iframe.requestFullscreen) iframe.requestFullscreen(); else if (iframe.webkitRequestFullscreen) iframe.webkitRequestFullscreen(); }" class="btn" style="padding: 0.25rem 0.65rem; font-size: 0.78rem; background: rgba(56, 189, 248, 0.15); color: var(--accent-cyan); border: 1px solid var(--accent-cyan); border-radius: 4px; cursor: pointer; font-weight: 700;">⤢ Expand Fullscreen</button>
+        </div>
+      </div>
+
+      
+      <!-- Module 2.3: Evolution of Jurisprudence -->
+      <div class="card pillar-card" id="card_interview_lucas_v2_3" style="border: 2px solid var(--accent-cyan); margin-bottom: 2rem;">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.75rem;">
+          <span class="status-badge today-badge" style="background: var(--accent-cyan); color: #0a1128; font-weight: 800;">🎥 Module 2.3: Evolution of Jurisprudence</span>
+          <span class="status-badge notebook-available">YouTube Stream</span>
+        </div>
+
+        <h3 style="color: var(--accent-cyan); font-size: 1.25rem; margin-bottom: 0.75rem;">
+          Module 2.3: Evolution of Jurisprudence
+        </h3>
+
+        <!-- Playback Meter Bar -->
+        <div class="media-playback-meter-container" style="margin-top: 0.5rem; margin-bottom: 0.85rem; background: rgba(15, 23, 42, 0.9); border: 1px solid #334155; border-radius: 8px; padding: 0.85rem; box-shadow: 0 4px 12px rgba(0,0,0,0.5);">
+          <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 0.4rem;">
+            <span class="meter-status-text" style="font-size: 0.88rem; font-weight: 700; color: #cbd5e1;">🎥 Unwatched Video Clip</span>
+            <span class="meter-auth-hint" style="font-size: 0.8rem; color: #94a3b8;">🔒 Log in to save watch tracker</span>
+          </div>
+          <div style="width: 100%; height: 8px; background: rgba(30, 41, 59, 0.8); border-radius: 4px; overflow: hidden; border: 1px solid #475569;">
+            <div class="meter-fill-bar" style="width: 0%; height: 100%; background: linear-gradient(90deg, #38bdf8, #34d399); transition: width 0.4s ease;"></div>
+          </div>
+        </div>
+
+        <!-- YouTube Embed Player -->
+        <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 8px; border: 1px solid var(--border-color); background: #000; margin-bottom: 0.75rem;">
+          <iframe id="yt_frame_card_interview_lucas_v2_3" loading="lazy" src="https://www.youtube.com/embed/fVNCzWejRqo?enablejsapi=1" allow="autoplay; fullscreen" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;" allowfullscreen></iframe>
+        </div>
+
+        <!-- Speed & Fullscreen Controls Bar -->
+        <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem; background: rgba(15, 23, 42, 0.8); padding: 0.65rem 0.85rem; border-radius: 6px; border: 1px solid #334155;">
+          <div style="display: flex; align-items: center; gap: 0.35rem;">
+            <span style="font-size: 0.82rem; font-weight: 700; color: var(--accent-cyan); margin-right: 0.25rem;">Speed:</span>
+            <button type="button" onclick="window.setVideoSpeed('card_interview_lucas_v2_3', 1.0, this)" class="btn-speed" style="padding: 0.25rem 0.55rem; font-size: 0.78rem; background: var(--accent-cyan); color: #0a1128; font-weight: 800; border: 1px solid var(--accent-cyan); border-radius: 4px; cursor: pointer;">1.0x</button>
+            <button type="button" onclick="window.setVideoSpeed('card_interview_lucas_v2_3', 1.25, this)" class="btn-speed" style="padding: 0.25rem 0.55rem; font-size: 0.78rem; background: rgba(30, 41, 59, 0.8); color: #e2e8f0; font-weight: 600; border: 1px solid #334155; border-radius: 4px; cursor: pointer;">1.25x</button>
+            <button type="button" onclick="window.setVideoSpeed('card_interview_lucas_v2_3', 1.5, this)" class="btn-speed" style="padding: 0.25rem 0.55rem; font-size: 0.78rem; background: rgba(30, 41, 59, 0.8); color: #e2e8f0; font-weight: 600; border: 1px solid #334155; border-radius: 4px; cursor: pointer;">1.5x</button>
+            <button type="button" onclick="window.setVideoSpeed('card_interview_lucas_v2_3', 1.75, this)" class="btn-speed" style="padding: 0.25rem 0.55rem; font-size: 0.78rem; background: rgba(30, 41, 59, 0.8); color: #e2e8f0; font-weight: 600; border: 1px solid #334155; border-radius: 4px; cursor: pointer;">1.75x</button>
+            <button type="button" onclick="window.setVideoSpeed('card_interview_lucas_v2_3', 2.0, this)" class="btn-speed" style="padding: 0.25rem 0.55rem; font-size: 0.78rem; background: rgba(30, 41, 59, 0.8); color: #e2e8f0; font-weight: 600; border: 1px solid #334155; border-radius: 4px; cursor: pointer;">2.0x</button>
+          </div>
+          <button type="button" onclick="const iframe = document.getElementById('yt_frame_card_interview_lucas_v2_3'); if (iframe) { if (iframe.requestFullscreen) iframe.requestFullscreen(); else if (iframe.webkitRequestFullscreen) iframe.webkitRequestFullscreen(); }" class="btn" style="padding: 0.25rem 0.65rem; font-size: 0.78rem; background: rgba(56, 189, 248, 0.15); color: var(--accent-cyan); border: 1px solid var(--accent-cyan); border-radius: 4px; cursor: pointer; font-weight: 700;">⤢ Expand Fullscreen</button>
+        </div>
+      </div>
+
+
+      <!-- Module 3 -->
+      <h3 style="color: var(--accent-cyan); font-size: 1.25rem; margin-top: 1.5rem; margin-bottom: 1rem; border-bottom: 1px solid var(--accent-cyan); padding-bottom: 0.3rem;">
+        Module 3: Coding Human Accountability into DAOs
+      </h3>
+      
+      <!-- Module 3.1: Law at Hyper-Speed -->
+      <div class="card pillar-card" id="card_interview_lucas_v3_1" style="border: 2px solid var(--accent-cyan); margin-bottom: 2rem;">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.75rem;">
+          <span class="status-badge today-badge" style="background: var(--accent-cyan); color: #0a1128; font-weight: 800;">🎥 Module 3.1: Law at Hyper-Speed</span>
+          <span class="status-badge notebook-available">YouTube Stream</span>
+        </div>
+
+        <h3 style="color: var(--accent-cyan); font-size: 1.25rem; margin-bottom: 0.75rem;">
+          Module 3.1: Law at Hyper-Speed
+        </h3>
+
+        <!-- Playback Meter Bar -->
+        <div class="media-playback-meter-container" style="margin-top: 0.5rem; margin-bottom: 0.85rem; background: rgba(15, 23, 42, 0.9); border: 1px solid #334155; border-radius: 8px; padding: 0.85rem; box-shadow: 0 4px 12px rgba(0,0,0,0.5);">
+          <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 0.4rem;">
+            <span class="meter-status-text" style="font-size: 0.88rem; font-weight: 700; color: #cbd5e1;">🎥 Unwatched Video Clip</span>
+            <span class="meter-auth-hint" style="font-size: 0.8rem; color: #94a3b8;">🔒 Log in to save watch tracker</span>
+          </div>
+          <div style="width: 100%; height: 8px; background: rgba(30, 41, 59, 0.8); border-radius: 4px; overflow: hidden; border: 1px solid #475569;">
+            <div class="meter-fill-bar" style="width: 0%; height: 100%; background: linear-gradient(90deg, #38bdf8, #34d399); transition: width 0.4s ease;"></div>
+          </div>
+        </div>
+
+        <!-- YouTube Embed Player -->
+        <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 8px; border: 1px solid var(--border-color); background: #000; margin-bottom: 0.75rem;">
+          <iframe id="yt_frame_card_interview_lucas_v3_1" loading="lazy" src="https://www.youtube.com/embed/S205Glr5eJU?enablejsapi=1" allow="autoplay; fullscreen" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;" allowfullscreen></iframe>
+        </div>
+
+        <!-- Speed & Fullscreen Controls Bar -->
+        <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem; background: rgba(15, 23, 42, 0.8); padding: 0.65rem 0.85rem; border-radius: 6px; border: 1px solid #334155;">
+          <div style="display: flex; align-items: center; gap: 0.35rem;">
+            <span style="font-size: 0.82rem; font-weight: 700; color: var(--accent-cyan); margin-right: 0.25rem;">Speed:</span>
+            <button type="button" onclick="window.setVideoSpeed('card_interview_lucas_v3_1', 1.0, this)" class="btn-speed" style="padding: 0.25rem 0.55rem; font-size: 0.78rem; background: var(--accent-cyan); color: #0a1128; font-weight: 800; border: 1px solid var(--accent-cyan); border-radius: 4px; cursor: pointer;">1.0x</button>
+            <button type="button" onclick="window.setVideoSpeed('card_interview_lucas_v3_1', 1.25, this)" class="btn-speed" style="padding: 0.25rem 0.55rem; font-size: 0.78rem; background: rgba(30, 41, 59, 0.8); color: #e2e8f0; font-weight: 600; border: 1px solid #334155; border-radius: 4px; cursor: pointer;">1.25x</button>
+            <button type="button" onclick="window.setVideoSpeed('card_interview_lucas_v3_1', 1.5, this)" class="btn-speed" style="padding: 0.25rem 0.55rem; font-size: 0.78rem; background: rgba(30, 41, 59, 0.8); color: #e2e8f0; font-weight: 600; border: 1px solid #334155; border-radius: 4px; cursor: pointer;">1.5x</button>
+            <button type="button" onclick="window.setVideoSpeed('card_interview_lucas_v3_1', 1.75, this)" class="btn-speed" style="padding: 0.25rem 0.55rem; font-size: 0.78rem; background: rgba(30, 41, 59, 0.8); color: #e2e8f0; font-weight: 600; border: 1px solid #334155; border-radius: 4px; cursor: pointer;">1.75x</button>
+            <button type="button" onclick="window.setVideoSpeed('card_interview_lucas_v3_1', 2.0, this)" class="btn-speed" style="padding: 0.25rem 0.55rem; font-size: 0.78rem; background: rgba(30, 41, 59, 0.8); color: #e2e8f0; font-weight: 600; border: 1px solid #334155; border-radius: 4px; cursor: pointer;">2.0x</button>
+          </div>
+          <button type="button" onclick="const iframe = document.getElementById('yt_frame_card_interview_lucas_v3_1'); if (iframe) { if (iframe.requestFullscreen) iframe.requestFullscreen(); else if (iframe.webkitRequestFullscreen) iframe.webkitRequestFullscreen(); }" class="btn" style="padding: 0.25rem 0.65rem; font-size: 0.78rem; background: rgba(56, 189, 248, 0.15); color: var(--accent-cyan); border: 1px solid var(--accent-cyan); border-radius: 4px; cursor: pointer; font-weight: 700;">⤢ Expand Fullscreen</button>
+        </div>
+      </div>
+
+      
+      <!-- Module 3.2: Decoding DAOs -->
+      <div class="card pillar-card" id="card_interview_lucas_v3_2" style="border: 2px solid var(--accent-cyan); margin-bottom: 2rem;">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.75rem;">
+          <span class="status-badge today-badge" style="background: var(--accent-cyan); color: #0a1128; font-weight: 800;">🎥 Module 3.2: Decoding DAOs</span>
+          <span class="status-badge notebook-available">YouTube Stream</span>
+        </div>
+
+        <h3 style="color: var(--accent-cyan); font-size: 1.25rem; margin-bottom: 0.75rem;">
+          Module 3.2: Decoding DAOs
+        </h3>
+
+        <!-- Playback Meter Bar -->
+        <div class="media-playback-meter-container" style="margin-top: 0.5rem; margin-bottom: 0.85rem; background: rgba(15, 23, 42, 0.9); border: 1px solid #334155; border-radius: 8px; padding: 0.85rem; box-shadow: 0 4px 12px rgba(0,0,0,0.5);">
+          <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 0.4rem;">
+            <span class="meter-status-text" style="font-size: 0.88rem; font-weight: 700; color: #cbd5e1;">🎥 Unwatched Video Clip</span>
+            <span class="meter-auth-hint" style="font-size: 0.8rem; color: #94a3b8;">🔒 Log in to save watch tracker</span>
+          </div>
+          <div style="width: 100%; height: 8px; background: rgba(30, 41, 59, 0.8); border-radius: 4px; overflow: hidden; border: 1px solid #475569;">
+            <div class="meter-fill-bar" style="width: 0%; height: 100%; background: linear-gradient(90deg, #38bdf8, #34d399); transition: width 0.4s ease;"></div>
+          </div>
+        </div>
+
+        <!-- YouTube Embed Player -->
+        <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 8px; border: 1px solid var(--border-color); background: #000; margin-bottom: 0.75rem;">
+          <iframe id="yt_frame_card_interview_lucas_v3_2" loading="lazy" src="https://www.youtube.com/embed/dvbzF8T506w?enablejsapi=1" allow="autoplay; fullscreen" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;" allowfullscreen></iframe>
+        </div>
+
+        <!-- Speed & Fullscreen Controls Bar -->
+        <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem; background: rgba(15, 23, 42, 0.8); padding: 0.65rem 0.85rem; border-radius: 6px; border: 1px solid #334155;">
+          <div style="display: flex; align-items: center; gap: 0.35rem;">
+            <span style="font-size: 0.82rem; font-weight: 700; color: var(--accent-cyan); margin-right: 0.25rem;">Speed:</span>
+            <button type="button" onclick="window.setVideoSpeed('card_interview_lucas_v3_2', 1.0, this)" class="btn-speed" style="padding: 0.25rem 0.55rem; font-size: 0.78rem; background: var(--accent-cyan); color: #0a1128; font-weight: 800; border: 1px solid var(--accent-cyan); border-radius: 4px; cursor: pointer;">1.0x</button>
+            <button type="button" onclick="window.setVideoSpeed('card_interview_lucas_v3_2', 1.25, this)" class="btn-speed" style="padding: 0.25rem 0.55rem; font-size: 0.78rem; background: rgba(30, 41, 59, 0.8); color: #e2e8f0; font-weight: 600; border: 1px solid #334155; border-radius: 4px; cursor: pointer;">1.25x</button>
+            <button type="button" onclick="window.setVideoSpeed('card_interview_lucas_v3_2', 1.5, this)" class="btn-speed" style="padding: 0.25rem 0.55rem; font-size: 0.78rem; background: rgba(30, 41, 59, 0.8); color: #e2e8f0; font-weight: 600; border: 1px solid #334155; border-radius: 4px; cursor: pointer;">1.5x</button>
+            <button type="button" onclick="window.setVideoSpeed('card_interview_lucas_v3_2', 1.75, this)" class="btn-speed" style="padding: 0.25rem 0.55rem; font-size: 0.78rem; background: rgba(30, 41, 59, 0.8); color: #e2e8f0; font-weight: 600; border: 1px solid #334155; border-radius: 4px; cursor: pointer;">1.75x</button>
+            <button type="button" onclick="window.setVideoSpeed('card_interview_lucas_v3_2', 2.0, this)" class="btn-speed" style="padding: 0.25rem 0.55rem; font-size: 0.78rem; background: rgba(30, 41, 59, 0.8); color: #e2e8f0; font-weight: 600; border: 1px solid #334155; border-radius: 4px; cursor: pointer;">2.0x</button>
+          </div>
+          <button type="button" onclick="const iframe = document.getElementById('yt_frame_card_interview_lucas_v3_2'); if (iframe) { if (iframe.requestFullscreen) iframe.requestFullscreen(); else if (iframe.webkitRequestFullscreen) iframe.webkitRequestFullscreen(); }" class="btn" style="padding: 0.25rem 0.65rem; font-size: 0.78rem; background: rgba(56, 189, 248, 0.15); color: var(--accent-cyan); border: 1px solid var(--accent-cyan); border-radius: 4px; cursor: pointer; font-weight: 700;">⤢ Expand Fullscreen</button>
+        </div>
+      </div>
+
+      
+      <!-- Module 3.3: The DAO Paradigm Shift -->
+      <div class="card pillar-card" id="card_interview_lucas_v3_3" style="border: 2px solid var(--accent-cyan); margin-bottom: 2rem;">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.75rem;">
+          <span class="status-badge today-badge" style="background: var(--accent-cyan); color: #0a1128; font-weight: 800;">🎥 Module 3.3: The DAO Paradigm Shift</span>
+          <span class="status-badge notebook-available">YouTube Stream</span>
+        </div>
+
+        <h3 style="color: var(--accent-cyan); font-size: 1.25rem; margin-bottom: 0.75rem;">
+          Module 3.3: The DAO Paradigm Shift
+        </h3>
+
+        <!-- Playback Meter Bar -->
+        <div class="media-playback-meter-container" style="margin-top: 0.5rem; margin-bottom: 0.85rem; background: rgba(15, 23, 42, 0.9); border: 1px solid #334155; border-radius: 8px; padding: 0.85rem; box-shadow: 0 4px 12px rgba(0,0,0,0.5);">
+          <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 0.4rem;">
+            <span class="meter-status-text" style="font-size: 0.88rem; font-weight: 700; color: #cbd5e1;">🎥 Unwatched Video Clip</span>
+            <span class="meter-auth-hint" style="font-size: 0.8rem; color: #94a3b8;">🔒 Log in to save watch tracker</span>
+          </div>
+          <div style="width: 100%; height: 8px; background: rgba(30, 41, 59, 0.8); border-radius: 4px; overflow: hidden; border: 1px solid #475569;">
+            <div class="meter-fill-bar" style="width: 0%; height: 100%; background: linear-gradient(90deg, #38bdf8, #34d399); transition: width 0.4s ease;"></div>
+          </div>
+        </div>
+
+        <!-- YouTube Embed Player -->
+        <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 8px; border: 1px solid var(--border-color); background: #000; margin-bottom: 0.75rem;">
+          <iframe id="yt_frame_card_interview_lucas_v3_3" loading="lazy" src="https://www.youtube.com/embed/pKJYpUpdmqc?enablejsapi=1" allow="autoplay; fullscreen" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;" allowfullscreen></iframe>
+        </div>
+
+        <!-- Speed & Fullscreen Controls Bar -->
+        <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem; background: rgba(15, 23, 42, 0.8); padding: 0.65rem 0.85rem; border-radius: 6px; border: 1px solid #334155;">
+          <div style="display: flex; align-items: center; gap: 0.35rem;">
+            <span style="font-size: 0.82rem; font-weight: 700; color: var(--accent-cyan); margin-right: 0.25rem;">Speed:</span>
+            <button type="button" onclick="window.setVideoSpeed('card_interview_lucas_v3_3', 1.0, this)" class="btn-speed" style="padding: 0.25rem 0.55rem; font-size: 0.78rem; background: var(--accent-cyan); color: #0a1128; font-weight: 800; border: 1px solid var(--accent-cyan); border-radius: 4px; cursor: pointer;">1.0x</button>
+            <button type="button" onclick="window.setVideoSpeed('card_interview_lucas_v3_3', 1.25, this)" class="btn-speed" style="padding: 0.25rem 0.55rem; font-size: 0.78rem; background: rgba(30, 41, 59, 0.8); color: #e2e8f0; font-weight: 600; border: 1px solid #334155; border-radius: 4px; cursor: pointer;">1.25x</button>
+            <button type="button" onclick="window.setVideoSpeed('card_interview_lucas_v3_3', 1.5, this)" class="btn-speed" style="padding: 0.25rem 0.55rem; font-size: 0.78rem; background: rgba(30, 41, 59, 0.8); color: #e2e8f0; font-weight: 600; border: 1px solid #334155; border-radius: 4px; cursor: pointer;">1.5x</button>
+            <button type="button" onclick="window.setVideoSpeed('card_interview_lucas_v3_3', 1.75, this)" class="btn-speed" style="padding: 0.25rem 0.55rem; font-size: 0.78rem; background: rgba(30, 41, 59, 0.8); color: #e2e8f0; font-weight: 600; border: 1px solid #334155; border-radius: 4px; cursor: pointer;">1.75x</button>
+            <button type="button" onclick="window.setVideoSpeed('card_interview_lucas_v3_3', 2.0, this)" class="btn-speed" style="padding: 0.25rem 0.55rem; font-size: 0.78rem; background: rgba(30, 41, 59, 0.8); color: #e2e8f0; font-weight: 600; border: 1px solid #334155; border-radius: 4px; cursor: pointer;">2.0x</button>
+          </div>
+          <button type="button" onclick="const iframe = document.getElementById('yt_frame_card_interview_lucas_v3_3'); if (iframe) { if (iframe.requestFullscreen) iframe.requestFullscreen(); else if (iframe.webkitRequestFullscreen) iframe.webkitRequestFullscreen(); }" class="btn" style="padding: 0.25rem 0.65rem; font-size: 0.78rem; background: rgba(56, 189, 248, 0.15); color: var(--accent-cyan); border: 1px solid var(--accent-cyan); border-radius: 4px; cursor: pointer; font-weight: 700;">⤢ Expand Fullscreen</button>
+        </div>
+      </div>
+
+
+      <!-- Module 4 -->
+      <h3 style="color: var(--accent-cyan); font-size: 1.25rem; margin-top: 1.5rem; margin-bottom: 1rem; border-bottom: 1px solid var(--accent-cyan); padding-bottom: 0.3rem;">
+        Module 4: The Microchip Math of Constitutional Rights
+      </h3>
+      
+      <!-- Module 4.1: Token Rights & Legal Covenants -->
+      <div class="card pillar-card" id="card_interview_lucas_v4_1" style="border: 2px solid var(--accent-cyan); margin-bottom: 2rem;">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.75rem;">
+          <span class="status-badge today-badge" style="background: var(--accent-cyan); color: #0a1128; font-weight: 800;">🎥 Module 4.1: Token Rights & Legal Covenants</span>
+          <span class="status-badge notebook-available">YouTube Stream</span>
+        </div>
+
+        <h3 style="color: var(--accent-cyan); font-size: 1.25rem; margin-bottom: 0.75rem;">
+          Module 4.1: Token Rights & Legal Covenants
+        </h3>
+
+        <!-- Playback Meter Bar -->
+        <div class="media-playback-meter-container" style="margin-top: 0.5rem; margin-bottom: 0.85rem; background: rgba(15, 23, 42, 0.9); border: 1px solid #334155; border-radius: 8px; padding: 0.85rem; box-shadow: 0 4px 12px rgba(0,0,0,0.5);">
+          <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 0.4rem;">
+            <span class="meter-status-text" style="font-size: 0.88rem; font-weight: 700; color: #cbd5e1;">🎥 Unwatched Video Clip</span>
+            <span class="meter-auth-hint" style="font-size: 0.8rem; color: #94a3b8;">🔒 Log in to save watch tracker</span>
+          </div>
+          <div style="width: 100%; height: 8px; background: rgba(30, 41, 59, 0.8); border-radius: 4px; overflow: hidden; border: 1px solid #475569;">
+            <div class="meter-fill-bar" style="width: 0%; height: 100%; background: linear-gradient(90deg, #38bdf8, #34d399); transition: width 0.4s ease;"></div>
+          </div>
+        </div>
+
+        <!-- YouTube Embed Player -->
+        <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 8px; border: 1px solid var(--border-color); background: #000; margin-bottom: 0.75rem;">
+          <iframe id="yt_frame_card_interview_lucas_v4_1" loading="lazy" src="https://www.youtube.com/embed/5u4cBvkOlo4?enablejsapi=1" allow="autoplay; fullscreen" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;" allowfullscreen></iframe>
+        </div>
+
+        <!-- Speed & Fullscreen Controls Bar -->
+        <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem; background: rgba(15, 23, 42, 0.8); padding: 0.65rem 0.85rem; border-radius: 6px; border: 1px solid #334155;">
+          <div style="display: flex; align-items: center; gap: 0.35rem;">
+            <span style="font-size: 0.82rem; font-weight: 700; color: var(--accent-cyan); margin-right: 0.25rem;">Speed:</span>
+            <button type="button" onclick="window.setVideoSpeed('card_interview_lucas_v4_1', 1.0, this)" class="btn-speed" style="padding: 0.25rem 0.55rem; font-size: 0.78rem; background: var(--accent-cyan); color: #0a1128; font-weight: 800; border: 1px solid var(--accent-cyan); border-radius: 4px; cursor: pointer;">1.0x</button>
+            <button type="button" onclick="window.setVideoSpeed('card_interview_lucas_v4_1', 1.25, this)" class="btn-speed" style="padding: 0.25rem 0.55rem; font-size: 0.78rem; background: rgba(30, 41, 59, 0.8); color: #e2e8f0; font-weight: 600; border: 1px solid #334155; border-radius: 4px; cursor: pointer;">1.25x</button>
+            <button type="button" onclick="window.setVideoSpeed('card_interview_lucas_v4_1', 1.5, this)" class="btn-speed" style="padding: 0.25rem 0.55rem; font-size: 0.78rem; background: rgba(30, 41, 59, 0.8); color: #e2e8f0; font-weight: 600; border: 1px solid #334155; border-radius: 4px; cursor: pointer;">1.5x</button>
+            <button type="button" onclick="window.setVideoSpeed('card_interview_lucas_v4_1', 1.75, this)" class="btn-speed" style="padding: 0.25rem 0.55rem; font-size: 0.78rem; background: rgba(30, 41, 59, 0.8); color: #e2e8f0; font-weight: 600; border: 1px solid #334155; border-radius: 4px; cursor: pointer;">1.75x</button>
+            <button type="button" onclick="window.setVideoSpeed('card_interview_lucas_v4_1', 2.0, this)" class="btn-speed" style="padding: 0.25rem 0.55rem; font-size: 0.78rem; background: rgba(30, 41, 59, 0.8); color: #e2e8f0; font-weight: 600; border: 1px solid #334155; border-radius: 4px; cursor: pointer;">2.0x</button>
+          </div>
+          <button type="button" onclick="const iframe = document.getElementById('yt_frame_card_interview_lucas_v4_1'); if (iframe) { if (iframe.requestFullscreen) iframe.requestFullscreen(); else if (iframe.webkitRequestFullscreen) iframe.webkitRequestFullscreen(); }" class="btn" style="padding: 0.25rem 0.65rem; font-size: 0.78rem; background: rgba(56, 189, 248, 0.15); color: var(--accent-cyan); border: 1px solid var(--accent-cyan); border-radius: 4px; cursor: pointer; font-weight: 700;">⤢ Expand Fullscreen</button>
+        </div>
+      </div>
+
+      
+      <!-- Module 4.2: The Governance Math Paradox -->
+      <div class="card pillar-card" id="card_interview_lucas_v4_2" style="border: 2px solid var(--accent-cyan); margin-bottom: 2rem;">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.75rem;">
+          <span class="status-badge today-badge" style="background: var(--accent-cyan); color: #0a1128; font-weight: 800;">🎥 Module 4.2: The Governance Math Paradox</span>
+          <span class="status-badge notebook-available">YouTube Stream</span>
+        </div>
+
+        <h3 style="color: var(--accent-cyan); font-size: 1.25rem; margin-bottom: 0.75rem;">
+          Module 4.2: The Governance Math Paradox
+        </h3>
+
+        <!-- Playback Meter Bar -->
+        <div class="media-playback-meter-container" style="margin-top: 0.5rem; margin-bottom: 0.85rem; background: rgba(15, 23, 42, 0.9); border: 1px solid #334155; border-radius: 8px; padding: 0.85rem; box-shadow: 0 4px 12px rgba(0,0,0,0.5);">
+          <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 0.4rem;">
+            <span class="meter-status-text" style="font-size: 0.88rem; font-weight: 700; color: #cbd5e1;">🎥 Unwatched Video Clip</span>
+            <span class="meter-auth-hint" style="font-size: 0.8rem; color: #94a3b8;">🔒 Log in to save watch tracker</span>
+          </div>
+          <div style="width: 100%; height: 8px; background: rgba(30, 41, 59, 0.8); border-radius: 4px; overflow: hidden; border: 1px solid #475569;">
+            <div class="meter-fill-bar" style="width: 0%; height: 100%; background: linear-gradient(90deg, #38bdf8, #34d399); transition: width 0.4s ease;"></div>
+          </div>
+        </div>
+
+        <!-- YouTube Embed Player -->
+        <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 8px; border: 1px solid var(--border-color); background: #000; margin-bottom: 0.75rem;">
+          <iframe id="yt_frame_card_interview_lucas_v4_2" loading="lazy" src="https://www.youtube.com/embed/s-TYcAsBv5A?enablejsapi=1" allow="autoplay; fullscreen" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;" allowfullscreen></iframe>
+        </div>
+
+        <!-- Speed & Fullscreen Controls Bar -->
+        <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem; background: rgba(15, 23, 42, 0.8); padding: 0.65rem 0.85rem; border-radius: 6px; border: 1px solid #334155;">
+          <div style="display: flex; align-items: center; gap: 0.35rem;">
+            <span style="font-size: 0.82rem; font-weight: 700; color: var(--accent-cyan); margin-right: 0.25rem;">Speed:</span>
+            <button type="button" onclick="window.setVideoSpeed('card_interview_lucas_v4_2', 1.0, this)" class="btn-speed" style="padding: 0.25rem 0.55rem; font-size: 0.78rem; background: var(--accent-cyan); color: #0a1128; font-weight: 800; border: 1px solid var(--accent-cyan); border-radius: 4px; cursor: pointer;">1.0x</button>
+            <button type="button" onclick="window.setVideoSpeed('card_interview_lucas_v4_2', 1.25, this)" class="btn-speed" style="padding: 0.25rem 0.55rem; font-size: 0.78rem; background: rgba(30, 41, 59, 0.8); color: #e2e8f0; font-weight: 600; border: 1px solid #334155; border-radius: 4px; cursor: pointer;">1.25x</button>
+            <button type="button" onclick="window.setVideoSpeed('card_interview_lucas_v4_2', 1.5, this)" class="btn-speed" style="padding: 0.25rem 0.55rem; font-size: 0.78rem; background: rgba(30, 41, 59, 0.8); color: #e2e8f0; font-weight: 600; border: 1px solid #334155; border-radius: 4px; cursor: pointer;">1.5x</button>
+            <button type="button" onclick="window.setVideoSpeed('card_interview_lucas_v4_2', 1.75, this)" class="btn-speed" style="padding: 0.25rem 0.55rem; font-size: 0.78rem; background: rgba(30, 41, 59, 0.8); color: #e2e8f0; font-weight: 600; border: 1px solid #334155; border-radius: 4px; cursor: pointer;">1.75x</button>
+            <button type="button" onclick="window.setVideoSpeed('card_interview_lucas_v4_2', 2.0, this)" class="btn-speed" style="padding: 0.25rem 0.55rem; font-size: 0.78rem; background: rgba(30, 41, 59, 0.8); color: #e2e8f0; font-weight: 600; border: 1px solid #334155; border-radius: 4px; cursor: pointer;">2.0x</button>
+          </div>
+          <button type="button" onclick="const iframe = document.getElementById('yt_frame_card_interview_lucas_v4_2'); if (iframe) { if (iframe.requestFullscreen) iframe.requestFullscreen(); else if (iframe.webkitRequestFullscreen) iframe.webkitRequestFullscreen(); }" class="btn" style="padding: 0.25rem 0.65rem; font-size: 0.78rem; background: rgba(56, 189, 248, 0.15); color: var(--accent-cyan); border: 1px solid var(--accent-cyan); border-radius: 4px; cursor: pointer; font-weight: 700;">⤢ Expand Fullscreen</button>
+        </div>
+      </div>
+
+
+      <!-- Action Footer -->
+      <div class="card pillar-card" style="text-align: center; background: rgba(10, 17, 40, 0.9); border: 2px solid var(--accent-gold); margin-top: 2rem;">
+        <h3 style="color: var(--accent-gold); font-size: 1.35rem; margin-bottom: 0.5rem;">Test Your Understanding</h3>
+        <p style="color: #cbd5e1; margin-bottom: 1.25rem;">Complete the 20-question transcript assessment and generate a cryptographic Keccak-256 attestation payload for your student record.</p>
+        <a href="quiz.html" class="btn btn-primary" style="background: var(--accent-gold); color: #0a1128; font-weight: 800; padding: 0.75rem 1.75rem; font-size: 1.05rem;">Take 20-Question Quiz Now ➔</a>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container footer-content">
+      <div class="footer-brand">
+        <span class="logo-icon">⚖️</span>
+        <span class="logo-text">Lex<span class="highlight">Clinic</span></span>
+        <p class="footer-tagline">Computational Legal Engineering & AI Verification Infrastructure.</p>
+      </div>
+      <div class="footer-links">
+        <a href="/index.html">Home</a>
+        <a href="/event.html">Events</a>
+        <a href="/101/">101 Courseware</a>
+        <a href="/attest/">Attestations</a>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>

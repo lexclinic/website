@@ -52,7 +52,7 @@
     <div class="container hero-content">
       <div style="display: flex; gap: 0.5rem; justify-content: center; flex-wrap: wrap; margin-bottom: 0.85rem;">
         <span class="status-badge today-badge">Socratic Session for Class 3.2: Contract Runtimes & State Machines</span>
-        <span class="status-badge media-available">🎥 5 Video Clips</span>
+        <span class="status-badge media-available">🎥 5 YouTube Clips</span>
         <span class="status-badge notebook-available">🎧 Native Audio Stream</span>
       </div>
       <h1 class="hero-title">How Contract Law Built the Blockchain</h1>
@@ -101,7 +101,9 @@
       </div>
 
       <!-- 2. Native Audio Player -->
-      <div class="card pillar-card" id="card_audio_2026_09_24_how_contract_law_built_the_blockchain" style="border: 2px solid #1ed760; margin-bottom: 2rem;">
+      
+      <!-- Native Audio Player Card -->
+      <div class="card pillar-card" id="card_audio_sept24" style="border: 2px solid #1ed760; margin-bottom: 2rem;">
         <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.75rem;">
           <span class="status-badge today-badge" style="background: #1ed760; color: #0a1128; font-weight: 800;">🎧 Official Native Audio Recording</span>
           <span class="status-badge notebook-available">40:59 Full Stream</span>
@@ -112,83 +114,254 @@
         </h3>
 
         <!-- Playback Meter -->
-        <div class="media-playback-meter-container" style="margin-top: 0.5rem; margin-bottom: 0.85rem; background: rgba(15, 23, 42, 0.9); border: 1px solid #334155; border-radius: 8px; padding: 0.85rem;">
+        <div class="media-playback-meter-container" style="margin-top: 0.5rem; margin-bottom: 0.85rem; background: rgba(15, 23, 42, 0.9); border: 1px solid #334155; border-radius: 8px; padding: 0.85rem; box-shadow: 0 4px 12px rgba(0,0,0,0.5);">
           <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 0.4rem;">
-            <span class="meter-status-text" style="font-size: 0.88rem; font-weight: 700; color: #cbd5e1;">🎧 Native Audio Player</span>
-            <span class="meter-percentage-badge" style="background: rgba(30, 215, 96, 0.2); color: #1ed760; border: 1px solid #1ed760; padding: 0.15rem 0.5rem; border-radius: 4px; font-weight: 800; font-size: 0.82rem;">0% PLAYED</span>
+            <span class="meter-status-text" style="font-size: 0.88rem; font-weight: 700; color: #cbd5e1;">🎧 Unwatched Audio Track</span>
+            <span class="meter-auth-hint" style="font-size: 0.8rem; color: #94a3b8;">🔒 Log in to save watch tracker</span>
           </div>
-          <div style="width: 100%; height: 8px; background: #1e293b; border-radius: 4px; overflow: hidden; margin-top: 0.4rem;">
-            <div class="meter-progress-fill" style="width: 0%; height: 100%; background: #1ed760; transition: width 0.3s ease;"></div>
+          <div style="width: 100%; height: 8px; background: rgba(30, 41, 59, 0.8); border-radius: 4px; overflow: hidden; border: 1px solid #475569;">
+            <div class="meter-fill-bar" style="width: 0%; height: 100%; background: linear-gradient(90deg, #38bdf8, #34d399); transition: width 0.4s ease;"></div>
           </div>
         </div>
 
-        <audio controls style="width: 100%; border-radius: 8px;" id="audio_player_sept24">
+        <!-- Native HTML5 Audio Player -->
+        <audio id="audio-player-card_audio_sept24" controls style="width: 100%; margin-bottom: 0.75rem; accent-color: #1ed760;" preload="metadata">
           <source src="audio.m4a" type="audio/mp4">
           Your browser does not support native audio playback.
         </audio>
+
+        <!-- Speed Controls Bar for Audio -->
+        <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem; background: rgba(15, 23, 42, 0.8); padding: 0.65rem 0.85rem; border-radius: 6px; border: 1px solid #334155;">
+          <div style="display: flex; align-items: center; gap: 0.35rem;">
+            <span style="font-size: 0.82rem; font-weight: 700; color: #1ed760; margin-right: 0.25rem;">Speed:</span>
+            <button type="button" onclick="window.setAudioSpeed('audio-player-card_audio_sept24', 1.0, this)" class="btn-speed" style="padding: 0.25rem 0.55rem; font-size: 0.78rem; background: #1ed760; color: #0a1128; font-weight: 800; border: 1px solid #1ed760; border-radius: 4px; cursor: pointer;">1.0x</button>
+            <button type="button" onclick="window.setAudioSpeed('audio-player-card_audio_sept24', 1.25, this)" class="btn-speed" style="padding: 0.25rem 0.55rem; font-size: 0.78rem; background: rgba(30, 41, 59, 0.8); color: #e2e8f0; font-weight: 600; border: 1px solid #334155; border-radius: 4px; cursor: pointer;">1.25x</button>
+            <button type="button" onclick="window.setAudioSpeed('audio-player-card_audio_sept24', 1.5, this)" class="btn-speed" style="padding: 0.25rem 0.55rem; font-size: 0.78rem; background: rgba(30, 41, 59, 0.8); color: #e2e8f0; font-weight: 600; border: 1px solid #334155; border-radius: 4px; cursor: pointer;">1.5x</button>
+            <button type="button" onclick="window.setAudioSpeed('audio-player-card_audio_sept24', 1.75, this)" class="btn-speed" style="padding: 0.25rem 0.55rem; font-size: 0.78rem; background: rgba(30, 41, 59, 0.8); color: #e2e8f0; font-weight: 600; border: 1px solid #334155; border-radius: 4px; cursor: pointer;">1.75x</button>
+            <button type="button" onclick="window.setAudioSpeed('audio-player-card_audio_sept24', 2.0, this)" class="btn-speed" style="padding: 0.25rem 0.55rem; font-size: 0.78rem; background: rgba(30, 41, 59, 0.8); color: #e2e8f0; font-weight: 600; border: 1px solid #334155; border-radius: 4px; cursor: pointer;">2.0x</button>
+          </div>
+        </div>
       </div>
+
 
       <!-- 3. Video Explainer Clips Section -->
       <h2 style="color: var(--accent-gold); font-size: 1.5rem; margin-bottom: 1.25rem;">
         🎥 Session Explainer Video Clips (5 Modules)
       </h2>
 
-      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 1.5rem; margin-bottom: 2.5rem;">
+      
+      <!-- Clip 1: How Contract Law Built the Internet -->
+      <div class="card pillar-card" id="card_event_sept24_clip1" style="border: 2px solid var(--accent-cyan); margin-bottom: 2rem;">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.75rem;">
+          <span class="status-badge today-badge" style="background: var(--accent-cyan); color: #0a1128; font-weight: 800;">🎥 Clip 1: How Contract Law Built the Internet</span>
+          <span class="status-badge notebook-available">YouTube Stream</span>
+        </div>
 
-        <!-- Clip 1 -->
-        <div class="card pillar-card" style="border: 1px solid var(--border-color);">
-          <span class="status-badge today-badge" style="margin-bottom: 0.5rem; display: inline-block;">Clip 1</span>
-          <h3 style="color: var(--accent-cyan); font-size: 1.15rem; margin-bottom: 0.5rem;">How Contract Law Built the Internet</h3>
-          <p style="font-size: 0.9rem; color: #cbd5e1; margin-bottom: 1rem;">Analyzing how analog entity covenants and legal agreements established early state machine logic for network routing.</p>
-          <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 8px;">
-            <iframe src="https://drive.google.com/file/d/1utBhBVFO-GPSfEPFz0uKzozfP-a1ZCN8/preview" style="position: absolute; top:0; left:0; width:100%; height:100%; border:0;" allow="autoplay" allowfullscreen></iframe>
+        <h3 style="color: var(--accent-cyan); font-size: 1.25rem; margin-bottom: 0.75rem;">
+          Clip 1: How Contract Law Built the Internet
+        </h3>
+
+        <!-- Playback Meter Bar -->
+        <div class="media-playback-meter-container" style="margin-top: 0.5rem; margin-bottom: 0.85rem; background: rgba(15, 23, 42, 0.9); border: 1px solid #334155; border-radius: 8px; padding: 0.85rem; box-shadow: 0 4px 12px rgba(0,0,0,0.5);">
+          <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 0.4rem;">
+            <span class="meter-status-text" style="font-size: 0.88rem; font-weight: 700; color: #cbd5e1;">🎥 Unwatched Video Clip</span>
+            <span class="meter-auth-hint" style="font-size: 0.8rem; color: #94a3b8;">🔒 Log in to save watch tracker</span>
+          </div>
+          <div style="width: 100%; height: 8px; background: rgba(30, 41, 59, 0.8); border-radius: 4px; overflow: hidden; border: 1px solid #475569;">
+            <div class="meter-fill-bar" style="width: 0%; height: 100%; background: linear-gradient(90deg, #38bdf8, #34d399); transition: width 0.4s ease;"></div>
           </div>
         </div>
 
-        <!-- Clip 2 -->
-        <div class="card pillar-card" style="border: 1px solid var(--border-color);">
-          <span class="status-badge today-badge" style="margin-bottom: 0.5rem; display: inline-block;">Clip 2</span>
-          <h3 style="color: var(--accent-cyan); font-size: 1.15rem; margin-bottom: 0.5rem;">USDC vs. Bridged USDCE</h3>
-          <p style="font-size: 0.9rem; color: #cbd5e1; margin-bottom: 1rem;">Comparing regulatory compliance, issuer freeze functions, and court remedies in native vs. bridged stablecoins.</p>
-          <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 8px;">
-            <iframe src="https://drive.google.com/file/d/1LFXjTNCwJGxbl3MI0okCvLeU41MsZmDP/preview" style="position: absolute; top:0; left:0; width:100%; height:100%; border:0;" allow="autoplay" allowfullscreen></iframe>
-          </div>
+        <!-- YouTube Embed Player -->
+        <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 8px; border: 1px solid var(--border-color); background: #000; margin-bottom: 0.75rem;">
+          <iframe id="yt_frame_card_event_sept24_clip1" loading="lazy" src="https://www.youtube.com/embed/CIzyHeopPcQ?enablejsapi=1" allow="autoplay; fullscreen" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;" allowfullscreen></iframe>
         </div>
 
-        <!-- Clip 3 -->
-        <div class="card pillar-card" style="border: 1px solid var(--border-color);">
-          <span class="status-badge today-badge" style="margin-bottom: 0.5rem; display: inline-block;">Clip 3</span>
-          <h3 style="color: var(--accent-cyan); font-size: 1.15rem; margin-bottom: 0.5rem;">Calculus of Code</h3>
-          <p style="font-size: 0.9rem; color: #cbd5e1; margin-bottom: 1rem;">Disambiguating calculus as a decision-making framework under constraints and mapping functional programming to law.</p>
-          <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 8px;">
-            <iframe src="https://drive.google.com/file/d/1w_5qeneAx_z8CbJjgM0kpOPXFCzddmFF/preview" style="position: absolute; top:0; left:0; width:100%; height:100%; border:0;" allow="autoplay" allowfullscreen></iframe>
+        <!-- Speed & Fullscreen Controls Bar -->
+        <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem; background: rgba(15, 23, 42, 0.8); padding: 0.65rem 0.85rem; border-radius: 6px; border: 1px solid #334155;">
+          <div style="display: flex; align-items: center; gap: 0.35rem;">
+            <span style="font-size: 0.82rem; font-weight: 700; color: var(--accent-cyan); margin-right: 0.25rem;">Speed:</span>
+            <button type="button" onclick="window.setVideoSpeed('card_event_sept24_clip1', 1.0, this)" class="btn-speed" style="padding: 0.25rem 0.55rem; font-size: 0.78rem; background: var(--accent-cyan); color: #0a1128; font-weight: 800; border: 1px solid var(--accent-cyan); border-radius: 4px; cursor: pointer;">1.0x</button>
+            <button type="button" onclick="window.setVideoSpeed('card_event_sept24_clip1', 1.25, this)" class="btn-speed" style="padding: 0.25rem 0.55rem; font-size: 0.78rem; background: rgba(30, 41, 59, 0.8); color: #e2e8f0; font-weight: 600; border: 1px solid #334155; border-radius: 4px; cursor: pointer;">1.25x</button>
+            <button type="button" onclick="window.setVideoSpeed('card_event_sept24_clip1', 1.5, this)" class="btn-speed" style="padding: 0.25rem 0.55rem; font-size: 0.78rem; background: rgba(30, 41, 59, 0.8); color: #e2e8f0; font-weight: 600; border: 1px solid #334155; border-radius: 4px; cursor: pointer;">1.5x</button>
+            <button type="button" onclick="window.setVideoSpeed('card_event_sept24_clip1', 1.75, this)" class="btn-speed" style="padding: 0.25rem 0.55rem; font-size: 0.78rem; background: rgba(30, 41, 59, 0.8); color: #e2e8f0; font-weight: 600; border: 1px solid #334155; border-radius: 4px; cursor: pointer;">1.75x</button>
+            <button type="button" onclick="window.setVideoSpeed('card_event_sept24_clip1', 2.0, this)" class="btn-speed" style="padding: 0.25rem 0.55rem; font-size: 0.78rem; background: rgba(30, 41, 59, 0.8); color: #e2e8f0; font-weight: 600; border: 1px solid #334155; border-radius: 4px; cursor: pointer;">2.0x</button>
           </div>
+          <button type="button" onclick="const iframe = document.getElementById('yt_frame_card_event_sept24_clip1'); if (iframe) { if (iframe.requestFullscreen) iframe.requestFullscreen(); else if (iframe.webkitRequestFullscreen) iframe.webkitRequestFullscreen(); }" class="btn" style="padding: 0.25rem 0.65rem; font-size: 0.78rem; background: rgba(56, 189, 248, 0.15); color: var(--accent-cyan); border: 1px solid var(--accent-cyan); border-radius: 4px; cursor: pointer; font-weight: 700;">⤢ Expand Fullscreen</button>
         </div>
-
-        <!-- Clip 4 -->
-        <div class="card pillar-card" style="border: 1px solid var(--border-color);">
-          <span class="status-badge today-badge" style="margin-bottom: 0.5rem; display: inline-block;">Clip 4</span>
-          <h3 style="color: var(--accent-cyan); font-size: 1.15rem; margin-bottom: 0.5rem;">The Hidden Bridge</h3>
-          <p style="font-size: 0.9rem; color: #cbd5e1; margin-bottom: 1rem;">Examining Ricardian contract specs and smart legal wrappers connecting natural prose with EVM execution.</p>
-          <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 8px;">
-            <iframe src="https://drive.google.com/file/d/1iWzqPJYqH5uFEbECb5x1pP2rgiQXi-9G/preview" style="position: absolute; top:0; left:0; width:100%; height:100%; border:0;" allow="autoplay" allowfullscreen></iframe>
-          </div>
-        </div>
-
-        <!-- Clip 5 -->
-        <div class="card pillar-card" style="border: 1px solid var(--border-color);">
-          <span class="status-badge today-badge" style="margin-bottom: 0.5rem; display: inline-block;">Clip 5</span>
-          <h3 style="color: var(--accent-cyan); font-size: 1.15rem; margin-bottom: 0.5rem;">Calculus of Law</h3>
-          <p style="font-size: 0.9rem; color: #cbd5e1; margin-bottom: 1rem;">Exploring Alonzo Church's lambda calculus, Turing machines, and the historical legal roots from Bologna to modern smart contracts.</p>
-          <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 8px;">
-            <iframe src="https://drive.google.com/file/d/1i0Syb1PkIkTqN-vn5PUvYp4sHWOFtw0r/preview" style="position: absolute; top:0; left:0; width:100%; height:100%; border:0;" allow="autoplay" allowfullscreen></iframe>
-          </div>
-        </div>
-
       </div>
 
+      
+      <!-- Clip 2: USDC vs. Bridged USDCE -->
+      <div class="card pillar-card" id="card_event_sept24_clip2" style="border: 2px solid var(--accent-cyan); margin-bottom: 2rem;">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.75rem;">
+          <span class="status-badge today-badge" style="background: var(--accent-cyan); color: #0a1128; font-weight: 800;">🎥 Clip 2: USDC vs. Bridged USDCE</span>
+          <span class="status-badge notebook-available">YouTube Stream</span>
+        </div>
+
+        <h3 style="color: var(--accent-cyan); font-size: 1.25rem; margin-bottom: 0.75rem;">
+          Clip 2: USDC vs. Bridged USDCE
+        </h3>
+
+        <!-- Playback Meter Bar -->
+        <div class="media-playback-meter-container" style="margin-top: 0.5rem; margin-bottom: 0.85rem; background: rgba(15, 23, 42, 0.9); border: 1px solid #334155; border-radius: 8px; padding: 0.85rem; box-shadow: 0 4px 12px rgba(0,0,0,0.5);">
+          <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 0.4rem;">
+            <span class="meter-status-text" style="font-size: 0.88rem; font-weight: 700; color: #cbd5e1;">🎥 Unwatched Video Clip</span>
+            <span class="meter-auth-hint" style="font-size: 0.8rem; color: #94a3b8;">🔒 Log in to save watch tracker</span>
+          </div>
+          <div style="width: 100%; height: 8px; background: rgba(30, 41, 59, 0.8); border-radius: 4px; overflow: hidden; border: 1px solid #475569;">
+            <div class="meter-fill-bar" style="width: 0%; height: 100%; background: linear-gradient(90deg, #38bdf8, #34d399); transition: width 0.4s ease;"></div>
+          </div>
+        </div>
+
+        <!-- YouTube Embed Player -->
+        <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 8px; border: 1px solid var(--border-color); background: #000; margin-bottom: 0.75rem;">
+          <iframe id="yt_frame_card_event_sept24_clip2" loading="lazy" src="https://www.youtube.com/embed/AP0pYVQKOPQ?enablejsapi=1" allow="autoplay; fullscreen" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;" allowfullscreen></iframe>
+        </div>
+
+        <!-- Speed & Fullscreen Controls Bar -->
+        <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem; background: rgba(15, 23, 42, 0.8); padding: 0.65rem 0.85rem; border-radius: 6px; border: 1px solid #334155;">
+          <div style="display: flex; align-items: center; gap: 0.35rem;">
+            <span style="font-size: 0.82rem; font-weight: 700; color: var(--accent-cyan); margin-right: 0.25rem;">Speed:</span>
+            <button type="button" onclick="window.setVideoSpeed('card_event_sept24_clip2', 1.0, this)" class="btn-speed" style="padding: 0.25rem 0.55rem; font-size: 0.78rem; background: var(--accent-cyan); color: #0a1128; font-weight: 800; border: 1px solid var(--accent-cyan); border-radius: 4px; cursor: pointer;">1.0x</button>
+            <button type="button" onclick="window.setVideoSpeed('card_event_sept24_clip2', 1.25, this)" class="btn-speed" style="padding: 0.25rem 0.55rem; font-size: 0.78rem; background: rgba(30, 41, 59, 0.8); color: #e2e8f0; font-weight: 600; border: 1px solid #334155; border-radius: 4px; cursor: pointer;">1.25x</button>
+            <button type="button" onclick="window.setVideoSpeed('card_event_sept24_clip2', 1.5, this)" class="btn-speed" style="padding: 0.25rem 0.55rem; font-size: 0.78rem; background: rgba(30, 41, 59, 0.8); color: #e2e8f0; font-weight: 600; border: 1px solid #334155; border-radius: 4px; cursor: pointer;">1.5x</button>
+            <button type="button" onclick="window.setVideoSpeed('card_event_sept24_clip2', 1.75, this)" class="btn-speed" style="padding: 0.25rem 0.55rem; font-size: 0.78rem; background: rgba(30, 41, 59, 0.8); color: #e2e8f0; font-weight: 600; border: 1px solid #334155; border-radius: 4px; cursor: pointer;">1.75x</button>
+            <button type="button" onclick="window.setVideoSpeed('card_event_sept24_clip2', 2.0, this)" class="btn-speed" style="padding: 0.25rem 0.55rem; font-size: 0.78rem; background: rgba(30, 41, 59, 0.8); color: #e2e8f0; font-weight: 600; border: 1px solid #334155; border-radius: 4px; cursor: pointer;">2.0x</button>
+          </div>
+          <button type="button" onclick="const iframe = document.getElementById('yt_frame_card_event_sept24_clip2'); if (iframe) { if (iframe.requestFullscreen) iframe.requestFullscreen(); else if (iframe.webkitRequestFullscreen) iframe.webkitRequestFullscreen(); }" class="btn" style="padding: 0.25rem 0.65rem; font-size: 0.78rem; background: rgba(56, 189, 248, 0.15); color: var(--accent-cyan); border: 1px solid var(--accent-cyan); border-radius: 4px; cursor: pointer; font-weight: 700;">⤢ Expand Fullscreen</button>
+        </div>
+      </div>
+
+      
+      <!-- Clip 3: Calculus of Code -->
+      <div class="card pillar-card" id="card_event_sept24_clip3" style="border: 2px solid var(--accent-cyan); margin-bottom: 2rem;">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.75rem;">
+          <span class="status-badge today-badge" style="background: var(--accent-cyan); color: #0a1128; font-weight: 800;">🎥 Clip 3: Calculus of Code</span>
+          <span class="status-badge notebook-available">YouTube Stream</span>
+        </div>
+
+        <h3 style="color: var(--accent-cyan); font-size: 1.25rem; margin-bottom: 0.75rem;">
+          Clip 3: Calculus of Code
+        </h3>
+
+        <!-- Playback Meter Bar -->
+        <div class="media-playback-meter-container" style="margin-top: 0.5rem; margin-bottom: 0.85rem; background: rgba(15, 23, 42, 0.9); border: 1px solid #334155; border-radius: 8px; padding: 0.85rem; box-shadow: 0 4px 12px rgba(0,0,0,0.5);">
+          <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 0.4rem;">
+            <span class="meter-status-text" style="font-size: 0.88rem; font-weight: 700; color: #cbd5e1;">🎥 Unwatched Video Clip</span>
+            <span class="meter-auth-hint" style="font-size: 0.8rem; color: #94a3b8;">🔒 Log in to save watch tracker</span>
+          </div>
+          <div style="width: 100%; height: 8px; background: rgba(30, 41, 59, 0.8); border-radius: 4px; overflow: hidden; border: 1px solid #475569;">
+            <div class="meter-fill-bar" style="width: 0%; height: 100%; background: linear-gradient(90deg, #38bdf8, #34d399); transition: width 0.4s ease;"></div>
+          </div>
+        </div>
+
+        <!-- YouTube Embed Player -->
+        <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 8px; border: 1px solid var(--border-color); background: #000; margin-bottom: 0.75rem;">
+          <iframe id="yt_frame_card_event_sept24_clip3" loading="lazy" src="https://www.youtube.com/embed/vS6aQuBXeE0?enablejsapi=1" allow="autoplay; fullscreen" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;" allowfullscreen></iframe>
+        </div>
+
+        <!-- Speed & Fullscreen Controls Bar -->
+        <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem; background: rgba(15, 23, 42, 0.8); padding: 0.65rem 0.85rem; border-radius: 6px; border: 1px solid #334155;">
+          <div style="display: flex; align-items: center; gap: 0.35rem;">
+            <span style="font-size: 0.82rem; font-weight: 700; color: var(--accent-cyan); margin-right: 0.25rem;">Speed:</span>
+            <button type="button" onclick="window.setVideoSpeed('card_event_sept24_clip3', 1.0, this)" class="btn-speed" style="padding: 0.25rem 0.55rem; font-size: 0.78rem; background: var(--accent-cyan); color: #0a1128; font-weight: 800; border: 1px solid var(--accent-cyan); border-radius: 4px; cursor: pointer;">1.0x</button>
+            <button type="button" onclick="window.setVideoSpeed('card_event_sept24_clip3', 1.25, this)" class="btn-speed" style="padding: 0.25rem 0.55rem; font-size: 0.78rem; background: rgba(30, 41, 59, 0.8); color: #e2e8f0; font-weight: 600; border: 1px solid #334155; border-radius: 4px; cursor: pointer;">1.25x</button>
+            <button type="button" onclick="window.setVideoSpeed('card_event_sept24_clip3', 1.5, this)" class="btn-speed" style="padding: 0.25rem 0.55rem; font-size: 0.78rem; background: rgba(30, 41, 59, 0.8); color: #e2e8f0; font-weight: 600; border: 1px solid #334155; border-radius: 4px; cursor: pointer;">1.5x</button>
+            <button type="button" onclick="window.setVideoSpeed('card_event_sept24_clip3', 1.75, this)" class="btn-speed" style="padding: 0.25rem 0.55rem; font-size: 0.78rem; background: rgba(30, 41, 59, 0.8); color: #e2e8f0; font-weight: 600; border: 1px solid #334155; border-radius: 4px; cursor: pointer;">1.75x</button>
+            <button type="button" onclick="window.setVideoSpeed('card_event_sept24_clip3', 2.0, this)" class="btn-speed" style="padding: 0.25rem 0.55rem; font-size: 0.78rem; background: rgba(30, 41, 59, 0.8); color: #e2e8f0; font-weight: 600; border: 1px solid #334155; border-radius: 4px; cursor: pointer;">2.0x</button>
+          </div>
+          <button type="button" onclick="const iframe = document.getElementById('yt_frame_card_event_sept24_clip3'); if (iframe) { if (iframe.requestFullscreen) iframe.requestFullscreen(); else if (iframe.webkitRequestFullscreen) iframe.webkitRequestFullscreen(); }" class="btn" style="padding: 0.25rem 0.65rem; font-size: 0.78rem; background: rgba(56, 189, 248, 0.15); color: var(--accent-cyan); border: 1px solid var(--accent-cyan); border-radius: 4px; cursor: pointer; font-weight: 700;">⤢ Expand Fullscreen</button>
+        </div>
+      </div>
+
+      
+      <!-- Clip 4: The Hidden Bridge -->
+      <div class="card pillar-card" id="card_event_sept24_clip4" style="border: 2px solid var(--accent-cyan); margin-bottom: 2rem;">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.75rem;">
+          <span class="status-badge today-badge" style="background: var(--accent-cyan); color: #0a1128; font-weight: 800;">🎥 Clip 4: The Hidden Bridge</span>
+          <span class="status-badge notebook-available">YouTube Stream</span>
+        </div>
+
+        <h3 style="color: var(--accent-cyan); font-size: 1.25rem; margin-bottom: 0.75rem;">
+          Clip 4: The Hidden Bridge
+        </h3>
+
+        <!-- Playback Meter Bar -->
+        <div class="media-playback-meter-container" style="margin-top: 0.5rem; margin-bottom: 0.85rem; background: rgba(15, 23, 42, 0.9); border: 1px solid #334155; border-radius: 8px; padding: 0.85rem; box-shadow: 0 4px 12px rgba(0,0,0,0.5);">
+          <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 0.4rem;">
+            <span class="meter-status-text" style="font-size: 0.88rem; font-weight: 700; color: #cbd5e1;">🎥 Unwatched Video Clip</span>
+            <span class="meter-auth-hint" style="font-size: 0.8rem; color: #94a3b8;">🔒 Log in to save watch tracker</span>
+          </div>
+          <div style="width: 100%; height: 8px; background: rgba(30, 41, 59, 0.8); border-radius: 4px; overflow: hidden; border: 1px solid #475569;">
+            <div class="meter-fill-bar" style="width: 0%; height: 100%; background: linear-gradient(90deg, #38bdf8, #34d399); transition: width 0.4s ease;"></div>
+          </div>
+        </div>
+
+        <!-- YouTube Embed Player -->
+        <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 8px; border: 1px solid var(--border-color); background: #000; margin-bottom: 0.75rem;">
+          <iframe id="yt_frame_card_event_sept24_clip4" loading="lazy" src="https://www.youtube.com/embed/ysInF3zbZ5s?enablejsapi=1" allow="autoplay; fullscreen" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;" allowfullscreen></iframe>
+        </div>
+
+        <!-- Speed & Fullscreen Controls Bar -->
+        <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem; background: rgba(15, 23, 42, 0.8); padding: 0.65rem 0.85rem; border-radius: 6px; border: 1px solid #334155;">
+          <div style="display: flex; align-items: center; gap: 0.35rem;">
+            <span style="font-size: 0.82rem; font-weight: 700; color: var(--accent-cyan); margin-right: 0.25rem;">Speed:</span>
+            <button type="button" onclick="window.setVideoSpeed('card_event_sept24_clip4', 1.0, this)" class="btn-speed" style="padding: 0.25rem 0.55rem; font-size: 0.78rem; background: var(--accent-cyan); color: #0a1128; font-weight: 800; border: 1px solid var(--accent-cyan); border-radius: 4px; cursor: pointer;">1.0x</button>
+            <button type="button" onclick="window.setVideoSpeed('card_event_sept24_clip4', 1.25, this)" class="btn-speed" style="padding: 0.25rem 0.55rem; font-size: 0.78rem; background: rgba(30, 41, 59, 0.8); color: #e2e8f0; font-weight: 600; border: 1px solid #334155; border-radius: 4px; cursor: pointer;">1.25x</button>
+            <button type="button" onclick="window.setVideoSpeed('card_event_sept24_clip4', 1.5, this)" class="btn-speed" style="padding: 0.25rem 0.55rem; font-size: 0.78rem; background: rgba(30, 41, 59, 0.8); color: #e2e8f0; font-weight: 600; border: 1px solid #334155; border-radius: 4px; cursor: pointer;">1.5x</button>
+            <button type="button" onclick="window.setVideoSpeed('card_event_sept24_clip4', 1.75, this)" class="btn-speed" style="padding: 0.25rem 0.55rem; font-size: 0.78rem; background: rgba(30, 41, 59, 0.8); color: #e2e8f0; font-weight: 600; border: 1px solid #334155; border-radius: 4px; cursor: pointer;">1.75x</button>
+            <button type="button" onclick="window.setVideoSpeed('card_event_sept24_clip4', 2.0, this)" class="btn-speed" style="padding: 0.25rem 0.55rem; font-size: 0.78rem; background: rgba(30, 41, 59, 0.8); color: #e2e8f0; font-weight: 600; border: 1px solid #334155; border-radius: 4px; cursor: pointer;">2.0x</button>
+          </div>
+          <button type="button" onclick="const iframe = document.getElementById('yt_frame_card_event_sept24_clip4'); if (iframe) { if (iframe.requestFullscreen) iframe.requestFullscreen(); else if (iframe.webkitRequestFullscreen) iframe.webkitRequestFullscreen(); }" class="btn" style="padding: 0.25rem 0.65rem; font-size: 0.78rem; background: rgba(56, 189, 248, 0.15); color: var(--accent-cyan); border: 1px solid var(--accent-cyan); border-radius: 4px; cursor: pointer; font-weight: 700;">⤢ Expand Fullscreen</button>
+        </div>
+      </div>
+
+      
+      <!-- Clip 5: Calculus of Law -->
+      <div class="card pillar-card" id="card_event_sept24_clip5" style="border: 2px solid var(--accent-cyan); margin-bottom: 2rem;">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.75rem;">
+          <span class="status-badge today-badge" style="background: var(--accent-cyan); color: #0a1128; font-weight: 800;">🎥 Clip 5: Calculus of Law</span>
+          <span class="status-badge notebook-available">YouTube Stream</span>
+        </div>
+
+        <h3 style="color: var(--accent-cyan); font-size: 1.25rem; margin-bottom: 0.75rem;">
+          Clip 5: Calculus of Law
+        </h3>
+
+        <!-- Playback Meter Bar -->
+        <div class="media-playback-meter-container" style="margin-top: 0.5rem; margin-bottom: 0.85rem; background: rgba(15, 23, 42, 0.9); border: 1px solid #334155; border-radius: 8px; padding: 0.85rem; box-shadow: 0 4px 12px rgba(0,0,0,0.5);">
+          <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 0.4rem;">
+            <span class="meter-status-text" style="font-size: 0.88rem; font-weight: 700; color: #cbd5e1;">🎥 Unwatched Video Clip</span>
+            <span class="meter-auth-hint" style="font-size: 0.8rem; color: #94a3b8;">🔒 Log in to save watch tracker</span>
+          </div>
+          <div style="width: 100%; height: 8px; background: rgba(30, 41, 59, 0.8); border-radius: 4px; overflow: hidden; border: 1px solid #475569;">
+            <div class="meter-fill-bar" style="width: 0%; height: 100%; background: linear-gradient(90deg, #38bdf8, #34d399); transition: width 0.4s ease;"></div>
+          </div>
+        </div>
+
+        <!-- YouTube Embed Player -->
+        <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 8px; border: 1px solid var(--border-color); background: #000; margin-bottom: 0.75rem;">
+          <iframe id="yt_frame_card_event_sept24_clip5" loading="lazy" src="https://www.youtube.com/embed/lhPfEUh0Gsw?enablejsapi=1" allow="autoplay; fullscreen" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;" allowfullscreen></iframe>
+        </div>
+
+        <!-- Speed & Fullscreen Controls Bar -->
+        <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem; background: rgba(15, 23, 42, 0.8); padding: 0.65rem 0.85rem; border-radius: 6px; border: 1px solid #334155;">
+          <div style="display: flex; align-items: center; gap: 0.35rem;">
+            <span style="font-size: 0.82rem; font-weight: 700; color: var(--accent-cyan); margin-right: 0.25rem;">Speed:</span>
+            <button type="button" onclick="window.setVideoSpeed('card_event_sept24_clip5', 1.0, this)" class="btn-speed" style="padding: 0.25rem 0.55rem; font-size: 0.78rem; background: var(--accent-cyan); color: #0a1128; font-weight: 800; border: 1px solid var(--accent-cyan); border-radius: 4px; cursor: pointer;">1.0x</button>
+            <button type="button" onclick="window.setVideoSpeed('card_event_sept24_clip5', 1.25, this)" class="btn-speed" style="padding: 0.25rem 0.55rem; font-size: 0.78rem; background: rgba(30, 41, 59, 0.8); color: #e2e8f0; font-weight: 600; border: 1px solid #334155; border-radius: 4px; cursor: pointer;">1.25x</button>
+            <button type="button" onclick="window.setVideoSpeed('card_event_sept24_clip5', 1.5, this)" class="btn-speed" style="padding: 0.25rem 0.55rem; font-size: 0.78rem; background: rgba(30, 41, 59, 0.8); color: #e2e8f0; font-weight: 600; border: 1px solid #334155; border-radius: 4px; cursor: pointer;">1.5x</button>
+            <button type="button" onclick="window.setVideoSpeed('card_event_sept24_clip5', 1.75, this)" class="btn-speed" style="padding: 0.25rem 0.55rem; font-size: 0.78rem; background: rgba(30, 41, 59, 0.8); color: #e2e8f0; font-weight: 600; border: 1px solid #334155; border-radius: 4px; cursor: pointer;">1.75x</button>
+            <button type="button" onclick="window.setVideoSpeed('card_event_sept24_clip5', 2.0, this)" class="btn-speed" style="padding: 0.25rem 0.55rem; font-size: 0.78rem; background: rgba(30, 41, 59, 0.8); color: #e2e8f0; font-weight: 600; border: 1px solid #334155; border-radius: 4px; cursor: pointer;">2.0x</button>
+          </div>
+          <button type="button" onclick="const iframe = document.getElementById('yt_frame_card_event_sept24_clip5'); if (iframe) { if (iframe.requestFullscreen) iframe.requestFullscreen(); else if (iframe.webkitRequestFullscreen) iframe.webkitRequestFullscreen(); }" class="btn" style="padding: 0.25rem 0.65rem; font-size: 0.78rem; background: rgba(56, 189, 248, 0.15); color: var(--accent-cyan); border: 1px solid var(--accent-cyan); border-radius: 4px; cursor: pointer; font-weight: 700;">⤢ Expand Fullscreen</button>
+        </div>
+      </div>
+
+
       <!-- Action Footer -->
-      <div class="card pillar-card" style="text-align: center; background: rgba(10, 17, 40, 0.9); border: 2px solid var(--accent-gold);">
+      <div class="card pillar-card" style="text-align: center; background: rgba(10, 17, 40, 0.9); border: 2px solid var(--accent-gold); margin-top: 2rem;">
         <h3 style="color: var(--accent-gold); font-size: 1.35rem; margin-bottom: 0.5rem;">Ready to Verify Your Knowledge?</h3>
         <p style="color: #cbd5e1; margin-bottom: 1.25rem;">Complete the 20-question transcript assessment and generate a cryptographic Keccak-256 attestation payload for your student record.</p>
         <a href="quiz.html" class="btn btn-primary" style="background: var(--accent-gold); color: #0a1128; font-weight: 800; padding: 0.75rem 1.75rem; font-size: 1.05rem;">Take 20-Question Quiz Now ➔</a>

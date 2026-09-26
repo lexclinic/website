@@ -1,7 +1,94 @@
 /*
-  LexClinic Education Platform — Player Adapter & YouTube API Orchestrator
-  Build Version: 20260829_2360
+  LexClinic Education Platform — Player Adapter, YouTube API Orchestrator & Screen Wake Lock
+  Build Version: 20260829_2700
 */
+
+// ============================================================================
+// GLOBAL SCREEN WAKE LOCK MANAGER (Prevents Smartphone Screen Sleep During Media)
+// ============================================================================
+class ScreenWakeLockManager {
+  constructor() {
+    this.wakeLock = null;
+    this.isMediaActive = false;
+    this.initListeners();
+  }
+
+  async requestWakeLock() {
+    try {
+      if ('wakeLock' in navigator && !this.wakeLock) {
+        this.wakeLock = await navigator.wakeLock.request('screen');
+        console.log('🔒 Screen Wake Lock ACTIVE — Smartphone screen kept awake during playback');
+        
+        this.wakeLock.addEventListener('release', () => {
+          this.wakeLock = null;
+          console.log('🔓 Screen Wake Lock RELEASED');
+        });
+      }
+    } catch (err) {
+      console.log('Screen Wake Lock request status:', err.message);
+    }
+  }
+
+  async releaseWakeLock() {
+    if (this.wakeLock) {
+      try {
+        await this.wakeLock.release();
+      } catch (err) {}
+      this.wakeLock = null;
+    }
+  }
+
+  initListeners() {
+    // 1. Listen for Fullscreen Changes (iOS Safari / Android Chrome)
+    const onFullscreenChange = () => {
+      const isFullscreen = !!(document.fullscreenElement || document.webkitFullscreenElement || document.mozFullScreenElement || document.msFullscreenElement);
+      if (isFullscreen) {
+        console.log('📱 Fullscreen active — Requesting Screen Wake Lock');
+        this.requestWakeLock();
+      } else if (!this.isMediaActive) {
+        this.releaseWakeLock();
+      }
+    };
+
+    document.addEventListener('fullscreenchange', onFullscreenChange);
+    document.addEventListener('webkitfullscreenchange', onFullscreenChange);
+    document.addEventListener('mozfullscreenchange', onFullscreenChange);
+    document.addEventListener('MSFullscreenChange', onFullscreenChange);
+
+    // 2. Listen for Native HTML5 Audio/Video Playback
+    document.addEventListener('play', () => {
+      this.isMediaActive = true;
+      this.requestWakeLock();
+    }, true);
+
+    document.addEventListener('pause', () => {
+      this.checkMediaStateAndRelease();
+    }, true);
+
+    document.addEventListener('ended', () => {
+      this.checkMediaStateAndRelease();
+    }, true);
+
+    // 3. Re-acquire Wake Lock on Tab Visibility Change
+    document.addEventListener('visibilitychange', () => {
+      if (document.visibilityState === 'visible' && (this.isMediaActive || document.fullscreenElement || document.webkitFullscreenElement)) {
+        this.requestWakeLock();
+      }
+    });
+  }
+
+  checkMediaStateAndRelease() {
+    const isFullscreen = !!(document.fullscreenElement || document.webkitFullscreenElement || document.mozFullScreenElement || document.msFullscreenElement);
+    const playingMedia = Array.from(document.querySelectorAll('audio, video')).some(el => !el.paused && !el.ended);
+    
+    this.isMediaActive = playingMedia;
+    if (!this.isMediaActive && !isFullscreen) {
+      this.releaseWakeLock();
+    }
+  }
+}
+
+window.screenWakeLockManager = new ScreenWakeLockManager();
 
 let ytPlayersMap = {};
 let trackerMetersMap = {};
@@ -120,6 +207,10 @@ function initVideoWatchTracker() {
                   },
                   'onStateChange': (evt) => {
                     if (evt.data === YT.PlayerState.PLAYING) {
+                      if (window.screenWakeLockManager) {
+                        window.screenWakeLockManager.isMediaActive = true;
+                        window.screenWakeLockManager.requestWakeLock();
+                      }
                       if (!pollInterval) {
                         pollInterval = setInterval(() => {
                           try {
@@ -139,6 +230,9 @@ function initVideoWatchTracker() {
                       }
                       if (evt.data === YT.PlayerState.ENDED) {
                         miniapp.recordProgress(100, ytPlayer.getDuration());
+                      }
+                      if (window.screenWakeLockManager) {
+                        window.screenWakeLockManager.checkMediaStateAndRelease();
                       }
                     }
                   }
