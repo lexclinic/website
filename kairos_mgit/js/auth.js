@@ -12,11 +12,11 @@ function getSanitizedEmail() {
   return email.trim().toLowerCase();
 }
 
-// Check if URL contains ?token= or ?login_email= from magic link email redirect
+// Check if URL contains ?token= or ?email= or ?login_email= from magic link email redirect
 function checkMagicLinkTokenInUrl() {
   const params = new URLSearchParams(window.location.search);
   const token = params.get("token");
-  const loginEmail = params.get("login_email");
+  const loginEmail = params.get("email") || params.get("login_email");
 
   if (loginEmail) {
     const cleanEmail = loginEmail.trim().toLowerCase();
@@ -355,3 +355,18 @@ window.updateAuthUI = updateAuthUI;
 window.bindMobileToggle = bindMobileToggle;
 window.bindNavLoginButtons = bindNavLoginButtons;
 window.checkMagicLinkTokenInUrl = checkMagicLinkTokenInUrl;
+
+// Auto-run auth initialization on page load
+if (document.readyState === "loading") {
+  document.addEventListener("DOMContentLoaded", () => {
+    checkMagicLinkTokenInUrl();
+    bindMobileToggle();
+    bindNavLoginButtons();
+    updateAuthUI();
+  });
+} else {
+  checkMagicLinkTokenInUrl();
+  bindMobileToggle();
+  bindNavLoginButtons();
+  updateAuthUI();
+}
