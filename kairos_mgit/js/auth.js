@@ -100,7 +100,7 @@ function injectUniversalLoginModal() {
         <button type="button" onclick="window.closeNavLoginModal()" ontouchend="window.closeNavLoginModal()" style="position: absolute; top: 1rem; right: 1rem; background: none; border: none; color: #94a3b8; font-size: 1.5rem; cursor: pointer;">✕</button>
         <h2 style="color: #fbbf24; margin-top: 0; font-size: 1.4rem;">🔒 Student &amp; Member Login</h2>
         <p style="color: #e2e8f0; font-size: 0.95rem; margin-bottom: 1.25rem; line-height: 1.5;">
-          Log in with your email address to receive a secure <strong>magic link email from kyle@lex.clinic</strong>. Automatically track watched lesson videos, save Socratic quiz scores, and unlock member privileges.
+          Log in with your email address to receive a secure <strong>magic link email from kyle@lex.clinic</strong>. Automatically track watched lesson videos, save Socratic quiz scores, unlock member privileges, and generate API keys for AI agent integrations (Gemini CLI, ChatGPT, Claude Desktop) and Remote MCP SSE connections.
         </p>
         
         <form id="modal-login-form" onsubmit="event.preventDefault(); triggerModalMagicLink();">

@@ -97,7 +97,6 @@
                 Authenticated via LexClinic Magic Link Email Auth.
               </p>
             </div>
-
             <div style="display: flex; gap: 0.75rem; flex-wrap: wrap;">
               <button onclick="window.openNavLoginModal(event)" class="btn btn-outline" style="font-size: 0.88rem; padding: 0.45rem 1rem;">
                 ✉️ Resend Magic Link
@@ -108,6 +107,189 @@
             </div>
           </div>
         </div>
+
+        <!-- Agent API Key & Remote MCP Card -->
+        <div class="card pillar-card" style="border: 2px solid #34d399; background: rgba(10, 17, 40, 0.95); padding: 2rem; margin-bottom: 2.5rem;">
+          <div style="display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 1rem; margin-bottom: 1.25rem;">
+            <div>
+              <div style="display: flex; gap: 0.5rem; align-items: center; margin-bottom: 0.5rem;">
+                <span style="font-size: 1.5rem;">🤖</span>
+                <h3 style="color: #34d399; font-size: 1.35rem; margin: 0;">AI Agent API Key & Remote MCP Server</h3>
+              </div>
+              <p style="color: #cbd5e1; font-size: 0.92rem; margin: 0; line-height: 1.6;">
+                Programmatic key access for AI agents (Gemini CLI, ChatGPT, Claude Desktop) to query transcripts, Hansard takeaways, and audio streams.
+              </p>
+            </div>
+            <span class="status-badge today-badge" style="background: #34d399; color: #0a1128; font-weight: 800;">OpenAPI 3.0 Ready</span>
+          </div>
+
+          <!-- Key Display & Action Box -->
+          <div style="background: #020617; border: 1px solid #334155; border-radius: 8px; padding: 1.25rem; margin-bottom: 1.25rem;">
+            <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.75rem; margin-bottom: 0.75rem;">
+              <span style="color: #94a3b8; font-size: 0.88rem; font-weight: 700;">Active API Key:</span>
+              <span id="api-key-created-time" style="color: #64748b; font-size: 0.8rem; font-family: 'Fira Code', monospace;"></span>
+            </div>
+            <div style="display: flex; gap: 0.5rem; align-items: center; flex-wrap: wrap;">
+              <input type="text" id="profile-api-key-input" readonly placeholder="Click 'Generate API Key' to issue key..." value="" style="flex: 1; min-width: 280px; background: #0f172a; border: 1px solid #475569; color: var(--accent-cyan); font-family: 'Fira Code', monospace; font-size: 0.95rem; font-weight: 700; padding: 0.65rem 0.85rem; border-radius: 6px;">
+              <button onclick="copyProfileApiKey()" id="copy-api-key-btn" class="btn btn-primary" style="background: var(--accent-cyan); color: #0a1128; font-weight: 800; padding: 0.65rem 1.15rem; font-size: 0.88rem; border: none; border-radius: 6px; cursor: pointer;">📋 Copy Key</button>
+              <button onclick="rotateProfileApiKey()" id="rotate-api-key-btn" class="btn btn-primary" style="background: #f59e0b; color: #0a1128; font-weight: 800; padding: 0.65rem 1.15rem; font-size: 0.88rem; border: none; border-radius: 6px; cursor: pointer;">🔑 Generate / Rotate API Key</button>
+            </div>
+            <div id="key-rotation-status" style="margin-top: 0.75rem; font-size: 0.85rem; color: #34d399; font-weight: 700; display: none;"></div>
+          </div>
+
+          <!-- Documentation & Endpoints Links -->
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 0.85rem;">
+            <div style="background: rgba(15, 23, 42, 0.8); border: 1px solid #334155; padding: 0.85rem; border-radius: 6px;">
+              <div style="color: var(--accent-gold); font-weight: 700; font-size: 0.88rem; margin-bottom: 0.25rem;">📄 OpenAPI 3.0 Spec</div>
+              <a href="/openapi.json" target="_blank" style="color: var(--accent-cyan); font-family: 'Fira Code', monospace; font-size: 0.82rem; text-decoration: underline;">https://stage.lex.clinic/openapi.json</a>
+            </div>
+            <div style="background: rgba(15, 23, 42, 0.8); border: 1px solid #334155; padding: 0.85rem; border-radius: 6px;">
+              <div style="color: var(--accent-gold); font-weight: 700; font-size: 0.88rem; margin-bottom: 0.25rem;">🔌 REST Transcripts API</div>
+              <a href="/api/transcripts" target="_blank" style="color: var(--accent-cyan); font-family: 'Fira Code', monospace; font-size: 0.82rem; text-decoration: underline;">https://stage.lex.clinic/api/transcripts</a>
+            </div>
+            <div style="background: rgba(15, 23, 42, 0.8); border: 1px solid #334155; padding: 0.85rem; border-radius: 6px;">
+              <div style="color: #34d399; font-weight: 700; font-size: 0.88rem; margin-bottom: 0.25rem;">📡 Remote MCP SSE Endpoint</div>
+              <a href="/mcp/sse" target="_blank" style="color: var(--accent-cyan); font-family: 'Fira Code', monospace; font-size: 0.82rem; text-decoration: underline;">https://stage.lex.clinic/mcp/sse</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Agent Activity Log Table -->
+        <div class="card pillar-card" style="border: 2px solid var(--accent-cyan); background: rgba(10, 17, 40, 0.95); padding: 2rem; margin-bottom: 2.5rem;">
+          <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; margin-bottom: 1.25rem;">
+            <div>
+              <h3 style="color: var(--accent-cyan); font-size: 1.35rem; margin: 0 0 0.25rem 0;">📊 Recent Agent API &amp; MCP Activity Log</h3>
+              <p style="color: #cbd5e1; font-size: 0.92rem; margin: 0;">Real-time audit log of AI agent queries executed against REST API &amp; Remote MCP endpoints.</p>
+            </div>
+            <button onclick="fetchAgentLogs()" class="btn btn-outline" style="border-color: var(--accent-cyan); color: var(--accent-cyan); font-size: 0.85rem; padding: 0.35rem 0.85rem; cursor: pointer;">🔄 Refresh Logs</button>
+          </div>
+
+          <div style="overflow-x: auto; background: #020617; border: 1px solid #334155; border-radius: 8px;">
+            <table style="width: 100%; border-collapse: collapse; text-align: left; font-size: 0.88rem;">
+              <thead>
+                <tr style="background: rgba(30, 41, 59, 0.8); border-bottom: 1px solid #475569; color: var(--accent-gold);">
+                  <th style="padding: 0.75rem 1rem;">Timestamp (UTC)</th>
+                  <th style="padding: 0.75rem 1rem;">User-Agent</th>
+                  <th style="padding: 0.75rem 1rem;">Key Prefix</th>
+                  <th style="padding: 0.75rem 1rem;">Endpoint</th>
+                  <th style="padding: 0.75rem 1rem;">Query Detail</th>
+                  <th style="padding: 0.75rem 1rem;">Edge Node</th>
+                </tr>
+              </thead>
+              <tbody id="agent-logs-table-body" style="color: #e2e8f0; font-family: 'Fira Code', monospace;">
+                <tr>
+                  <td colspan="6" style="padding: 1.25rem; text-align: center; color: #94a3b8;">Loading agent activity logs...</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <script>
+          async function fetchAgentLogs() {
+            const tbody = document.getElementById('agent-logs-table-body');
+            if (!tbody) return;
+
+            const activeKey = localStorage.getItem('lexclinic_active_api_key') || "";
+            if (!activeKey) {
+              tbody.innerHTML = `<tr><td colspan="6" style="padding: 1.25rem; text-align: center; color: #94a3b8;">Click 'Generate / Rotate API Key' above to issue an API Key and unlock your Agent Activity Log.</td></tr>`;
+              return;
+            }
+
+            try {
+              const res = await fetch('/api/logs', {
+                headers: { 'X-API-Key': activeKey }
+              });
+              const data = await res.json();
+              const logs = data.agent_activity || [];
+
+              if (logs.length === 0) {
+                tbody.innerHTML = `<tr><td colspan="6" style="padding: 1.25rem; text-align: center; color: #94a3b8;">No agent activity logged for key <code>${data.authenticated_key_prefix || 'lex_...'}</code> yet. Query <code>/api/transcripts</code> or <code>/mcp/sse</code> using your key to see activity logs populate live.</td></tr>`;
+                return;
+              }
+
+              let rowsHtml = "";
+              logs.forEach(l => {
+                const dt = new Date(l.timestamp).toLocaleTimeString();
+                rowsHtml += `
+                  <tr style="border-bottom: 1px solid #1e293b;">
+                    <td style="padding: 0.65rem 1rem; color: #94a3b8; font-size: 0.82rem;">${dt}</td>
+                    <td style="padding: 0.65rem 1rem; color: #34d399; font-weight: 700;">${escapeHtml(l.agent)}</td>
+                    <td style="padding: 0.65rem 1rem; color: var(--accent-gold);">${escapeHtml(l.key_prefix)}</td>
+                    <td style="padding: 0.65rem 1rem; color: var(--accent-cyan);">${escapeHtml(l.endpoint)}</td>
+                    <td style="padding: 0.65rem 1rem; color: #f8fafc; font-size: 0.82rem;">${escapeHtml(l.detail)}</td>
+                    <td style="padding: 0.65rem 1rem; color: #64748b; font-size: 0.8rem;">${escapeHtml(l.location)}</td>
+                  </tr>
+                `;
+              });
+              tbody.innerHTML = rowsHtml;
+            } catch (err) {
+              tbody.innerHTML = `<tr><td colspan="6" style="padding: 1.25rem; text-align: center; color: #ef4444;">Error fetching logs: ${err.message}</td></tr>`;
+            }
+          }
+
+          function escapeHtml(str) {
+            return String(str || "").replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
+          }
+
+          document.addEventListener('DOMContentLoaded', () => {
+            fetchAgentLogs();
+          });
+        </script>
+
+        <script>
+          async function rotateProfileApiKey() {
+            const rotateBtn = document.getElementById('rotate-api-key-btn');
+            const input = document.getElementById('profile-api-key-input');
+            const statusDiv = document.getElementById('key-rotation-status');
+
+            if (!confirm("Are you sure you want to rotate your API Key? Any old keys will be permanently invalidated.")) {
+              return;
+            }
+
+            rotateBtn.disabled = true;
+            rotateBtn.innerText = "Rotating Key...";
+
+            try {
+              const res = await fetch('/api/keys/rotate', { method: 'POST' });
+              const data = await res.json();
+
+              if (data.api_key) {
+                input.value = data.api_key;
+                localStorage.setItem('lexclinic_active_api_key', data.api_key);
+                document.getElementById('api-key-created-time').innerText = "Generated: " + new Date(data.created_at).toLocaleString();
+                statusDiv.innerText = "🎉 Key Rotated! Copy your raw key now. Previous keys have been invalidated.";
+                statusDiv.style.display = 'block';
+              } else {
+                alert("Error generating key: " + (data.error || "Unknown error"));
+              }
+            } catch (err) {
+              alert("Key rotation error: " + err.message);
+            } finally {
+              rotateBtn.disabled = false;
+              rotateBtn.innerText = "🔄 Rotate API Key";
+            }
+          }
+
+          function copyProfileApiKey() {
+            const input = document.getElementById('profile-api-key-input');
+            if (input && input.value) {
+              navigator.clipboard.writeText(input.value);
+              const copyBtn = document.getElementById('copy-api-key-btn');
+              const orig = copyBtn.innerText;
+              copyBtn.innerText = "✅ Copied!";
+              setTimeout(() => { copyBtn.innerText = orig; }, 2000);
+            }
+          }
+
+          document.addEventListener('DOMContentLoaded', () => {
+            const savedKey = localStorage.getItem('lexclinic_active_api_key');
+            if (savedKey) {
+              const input = document.getElementById('profile-api-key-input');
+              if (input) input.value = savedKey;
+            }
+          });
+        </script>
 
         <!-- Video Watch History Card -->
         <div class="card pillar-card" style="border: 2px solid var(--accent-cyan); background: rgba(10, 17, 40, 0.9); padding: 2rem; margin-bottom: 2.5rem;">
