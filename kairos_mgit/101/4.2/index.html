@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Class 1.2: What is a "Runtime" in Software? | Legal Engineering 101</title>
-  <meta name="description" content="Decomposes statutory text and contractual clauses into Abstract Syntax Trees (ASTs) for automated execution.">
+  <title>Class 4.2: Data Primitives 101: Strings, Numbers, and Booleans | Legal Engineering 101</title>
+  <meta name="description" content="Data primitives 101, strings, numbers, booleans, EVM state transition logic, and WASM fixed-point determinism.">
   <link rel="stylesheet" href="/styles.css?v=20260829_2640">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -20,7 +20,7 @@
 <body>
 
   <!-- Navigation Bar -->
-      <header class="navbar">
+  <header class="navbar">
     <div class="nav-container">
       <a href="/index.html" class="brand-logo">
         <span class="logo-icon">⚖️</span>
@@ -50,11 +50,11 @@
   <!-- Hero Section -->
   <section class="hero page-hero">
     <div class="container hero-content">
-      <div class="hero-badge">Module 1.2</div>
-      <h1 class="hero-title">Class 1.2: What is a "Runtime" in Software?</h1>
-      <p class="hero-subtitle">Decomposes statutory text and contractual clauses into Abstract Syntax Trees (ASTs) for automated execution.</p>
+      <div class="hero-badge">Module 4.2</div>
+      <h1 class="hero-title">Class 4.2: Data Primitives 101: Strings, Numbers, and Booleans</h1>
+      <p class="hero-subtitle">Data primitives 101, string encoding, fixed-point integer math, boolean logic gates, EVM state transition logic, and WASM determinism.</p>
       <div class="hero-actions">
-        <a href="quiz.html" class="btn btn-primary" style="background: var(--accent-gold); color: #0a1128; font-weight: 800;">Take Class 1.2 Quiz (20 Qs) </a>
+        <a href="quiz.html" class="btn btn-primary" style="background: var(--accent-gold); color: #0a1128; font-weight: 800;">Take Class 4.2 Quiz (20 Qs) ➔</a>
         <a href="/101" class="btn btn-outline">⬅ Back to 101 Hub</a>
       </div>
     </div>
@@ -67,22 +67,22 @@
       <!-- 1. Lesson Overview Tile at TOP -->
       <div class="card pillar-card" style="margin-bottom: 2rem;">
         <h2 style="color: var(--accent-gold); font-size: 1.4rem; margin-bottom: 0.75rem;">
-          Lesson Overview: Class 1.2: What is a "Runtime" in Software?
+          Lesson Overview: Class 4.2
         </h2>
         <p style="line-height: 1.7; color: var(--text-main); font-size: 1.05rem; margin: 0;">
-          Decomposes statutory text and contractual clauses into Abstract Syntax Trees (ASTs) for automated execution.
+          Class 4.2 analyzes basic data primitives in legal engineering: strings (legal text and identifiers), fixed-point numbers (financial values scaling by wei/satoshi multipliers), and boolean logic gates (true/false condition triggers). We explore how these primitives build deterministic smart legal covenants and why floating-point unit (FPU) math breaks consensus.
         </p>
       </div>
 
-      <!-- 2. Video Card (No Quiz Button directly under video) -->
-      <div class="card pillar-card" id="card_101_12_vid">
+      <!-- 2. Video Card (Following 4.1 Standard with Official YouTube ID PnYBVw9vmzY) -->
+      <div class="card pillar-card" id="card_101_42_vid" style="margin-bottom: 2rem;">
         <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.75rem;">
-          <span class="status-badge today-badge" style="background: var(--accent-cyan); color: #0a1128; font-weight: 800;">🎥 Class 1.2 Video Lecture</span>
+          <span class="status-badge today-badge" style="background: var(--accent-cyan); color: #0a1128; font-weight: 800;">🎥 Class 4.2 Video Lecture</span>
           <span class="status-badge notebook-available">YouTube 101 Series</span>
         </div>
 
         <h3 style="color: var(--accent-cyan); font-size: 1.25rem; margin-bottom: 0.75rem;">
-          Class 1.2: What is a "Runtime" in Software?
+          Class 4.2: Data Primitives 101: Strings, Numbers, and Booleans
         </h3>
 
         <!-- Static Playback Meter Bar -->
@@ -100,48 +100,48 @@
           </div>
         </div>
 
-        <!-- YouTube Embed Player -->
+        <!-- YouTube Embed Player (Official ID PnYBVw9vmzY) -->
         <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 8px; border: 1px solid var(--border-color); background: #000; margin-bottom: 0.75rem;">
-          <iframe id="yt_frame_card_101_12_vid" loading="lazy" src="https://www.youtube.com/embed/BOc6rMo3LBY?enablejsapi=1" allow="autoplay; fullscreen" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;" allowfullscreen></iframe>
+          <iframe id="yt_frame_card_101_42_vid" loading="lazy" src="https://www.youtube.com/embed/PnYBVw9vmzY?enablejsapi=1" allow="autoplay; fullscreen" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;" allowfullscreen></iframe>
         </div>
 
         <!-- Speed & Fullscreen Controls Bar -->
         <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem; background: rgba(15, 23, 42, 0.8); padding: 0.65rem 0.85rem; border-radius: 6px; border: 1px solid #334155;">
           <div style="display: flex; align-items: center; gap: 0.35rem;">
             <span style="font-size: 0.82rem; font-weight: 700; color: var(--accent-cyan); margin-right: 0.25rem;">Speed:</span>
-            <button type="button" onclick="window.setVideoSpeed('card_101_12_vid', 1.0, this)" class="btn-speed" style="padding: 0.25rem 0.55rem; font-size: 0.78rem; background: var(--accent-cyan); color: #0a1128; font-weight: 800; border: 1px solid var(--accent-cyan); border-radius: 4px; cursor: pointer;">1.0x</button>
-            <button type="button" onclick="window.setVideoSpeed('card_101_12_vid', 1.25, this)" class="btn-speed" style="padding: 0.25rem 0.55rem; font-size: 0.78rem; background: rgba(30, 41, 59, 0.8); color: #e2e8f0; font-weight: 600; border: 1px solid #334155; border-radius: 4px; cursor: pointer;">1.25x</button>
-            <button type="button" onclick="window.setVideoSpeed('card_101_12_vid', 1.5, this)" class="btn-speed" style="padding: 0.25rem 0.55rem; font-size: 0.78rem; background: rgba(30, 41, 59, 0.8); color: #e2e8f0; font-weight: 600; border: 1px solid #334155; border-radius: 4px; cursor: pointer;">1.5x</button>
-            <button type="button" onclick="window.setVideoSpeed('card_101_12_vid', 1.75, this)" class="btn-speed" style="padding: 0.25rem 0.55rem; font-size: 0.78rem; background: rgba(30, 41, 59, 0.8); color: #e2e8f0; font-weight: 600; border: 1px solid #334155; border-radius: 4px; cursor: pointer;">1.75x</button>
-            <button type="button" onclick="window.setVideoSpeed('card_101_12_vid', 2.0, this)" class="btn-speed" style="padding: 0.25rem 0.55rem; font-size: 0.78rem; background: rgba(30, 41, 59, 0.8); color: #e2e8f0; font-weight: 600; border: 1px solid #334155; border-radius: 4px; cursor: pointer;">2.0x</button>
+            <button type="button" onclick="window.setVideoSpeed('card_101_42_vid', 1.0, this)" class="btn-speed" style="padding: 0.25rem 0.55rem; font-size: 0.78rem; background: var(--accent-cyan); color: #0a1128; font-weight: 800; border: 1px solid var(--accent-cyan); border-radius: 4px; cursor: pointer;">1.0x</button>
+            <button type="button" onclick="window.setVideoSpeed('card_101_42_vid', 1.25, this)" class="btn-speed" style="padding: 0.25rem 0.55rem; font-size: 0.78rem; background: rgba(30, 41, 59, 0.8); color: #e2e8f0; font-weight: 600; border: 1px solid #334155; border-radius: 4px; cursor: pointer;">1.25x</button>
+            <button type="button" onclick="window.setVideoSpeed('card_101_42_vid', 1.5, this)" class="btn-speed" style="padding: 0.25rem 0.55rem; font-size: 0.78rem; background: rgba(30, 41, 59, 0.8); color: #e2e8f0; font-weight: 600; border: 1px solid #334155; border-radius: 4px; cursor: pointer;">1.5x</button>
+            <button type="button" onclick="window.setVideoSpeed('card_101_42_vid', 1.75, this)" class="btn-speed" style="padding: 0.25rem 0.55rem; font-size: 0.78rem; background: rgba(30, 41, 59, 0.8); color: #e2e8f0; font-weight: 600; border: 1px solid #334155; border-radius: 4px; cursor: pointer;">1.75x</button>
+            <button type="button" onclick="window.setVideoSpeed('card_101_42_vid', 2.0, this)" class="btn-speed" style="padding: 0.25rem 0.55rem; font-size: 0.78rem; background: rgba(30, 41, 59, 0.8); color: #e2e8f0; font-weight: 600; border: 1px solid #334155; border-radius: 4px; cursor: pointer;">2.0x</button>
           </div>
 
-          <button type="button" onclick="const iframe = document.getElementById('yt_frame_card_101_12_vid'); if (iframe) { if (iframe.requestFullscreen) iframe.requestFullscreen(); else if (iframe.webkitRequestFullscreen) iframe.webkitRequestFullscreen(); }" class="btn" style="padding: 0.25rem 0.65rem; font-size: 0.78rem; background: rgba(56, 189, 248, 0.15); color: var(--accent-cyan); border: 1px solid var(--accent-cyan); border-radius: 4px; cursor: pointer; font-weight: 700;">
+          <button type="button" onclick="const iframe = document.getElementById('yt_frame_card_101_42_vid'); if (iframe) { if (iframe.requestFullscreen) iframe.requestFullscreen(); else if (iframe.webkitRequestFullscreen) iframe.webkitRequestFullscreen(); }" class="btn" style="padding: 0.25rem 0.65rem; font-size: 0.78rem; background: rgba(56, 189, 248, 0.15); color: var(--accent-cyan); border: 1px solid var(--accent-cyan); border-radius: 4px; cursor: pointer; font-weight: 700;">
             ⤢ Expand Fullscreen
           </button>
         </div>
       </div>
 
       <!-- 3. Exact Spotify Episode Embed Card -->
-      <div class="card pillar-card" id="card_101_12_spotify" style="margin-top: 2rem;">
+      <div class="card pillar-card" id="card_101_42_spotify" style="margin-top: 2rem;">
         <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.75rem;">
-          <span class="status-badge today-badge" style="background: #1db954; color: #0a1128; font-weight: 800;">🎧 Official Spotify Podcast Episode</span>
+          <span class="status-badge today-badge" style="background: #1ed760; color: #0a1128; font-weight: 800;">🎧 Official Spotify Podcast Episode</span>
           <span class="status-badge notebook-available">Spotify Episode</span>
         </div>
 
         <h3 style="color: #1ed760; font-size: 1.25rem; margin-bottom: 0.75rem;">
-          Class 1.2 Podcast Audio — Spotify
+          Class 4.2 Podcast Audio — Spotify
         </h3>
 
         <!-- Exact Spotify Episode Embed Player -->
         <div style="border-radius: 12px; overflow: hidden;">
-          <iframe style="border-radius:12px" src="https://open.spotify.com/embed/episode/5eQG25T0Ua3oEwkWQ6ZrgG?utm_source=generator&theme=0" width="100%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+          <iframe style="border-radius:12px" src="https://open.spotify.com/embed/episode/7KMIyIR1XajBUQJr5rLaEu?utm_source=generator&theme=0" width="100%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
         </div>
       </div>
 
       <!-- 4. Bottom Action Navigation & Quiz Link Section -->
       <div style="margin-top: 2.5rem; display: flex; gap: 1rem; flex-wrap: wrap; align-items: center; justify-content: center;">
-        <a href="quiz.html" class="btn btn-primary" style="background: var(--accent-gold); color: #0a1128; font-weight: 800; font-size: 1.05rem; padding: 0.75rem 1.75rem;">Take Class 1.2 Quiz (20 Qs) </a>
+        <a href="quiz.html" class="btn btn-primary" style="background: var(--accent-gold); color: #0a1128; font-weight: 800; font-size: 1.05rem; padding: 0.75rem 1.75rem;">Take Class 4.2 Quiz (20 Qs) ➔</a>
         <a href="/101" class="btn btn-outline" style="font-size: 1.05rem; padding: 0.75rem 1.75rem;">⬅ Back to 101 Hub</a>
       </div>
 

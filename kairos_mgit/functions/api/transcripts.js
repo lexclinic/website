@@ -36,9 +36,10 @@ export async function onRequestGet(context) {
   if (queryParam) {
     const q = queryParam.toLowerCase();
     const matches = transcriptsData.filter(t => 
-      t.title.toLowerCase().includes(q) ||
-      t.takeaways.some(tk => tk.toLowerCase().includes(q)) ||
-      t.transcript_text.toLowerCase().includes(q)
+      (t.title && t.title.toLowerCase().includes(q)) ||
+      (t.plain_text && t.plain_text.toLowerCase().includes(q)) ||
+      (t.transcript_text && t.transcript_text.toLowerCase().includes(q)) ||
+      (t.takeaways && t.takeaways.some(tk => tk.toLowerCase().includes(q)))
     );
     return new Response(JSON.stringify({
       query: queryParam,
@@ -51,15 +52,16 @@ export async function onRequestGet(context) {
   const indexList = transcriptsData.map(t => ({
     id: t.id,
     title: t.title,
-    date: t.date,
-    type: t.type,
-    class_id: t.class_id || null,
-    speakers: t.speakers,
-    audio_url: t.audio_url,
-    page_url: t.page_url,
-    quiz_url: t.quiz_url,
-    takeaways_count: t.takeaways.length,
-    transcript_length: t.transcript_text.length
+    date: t.date || null,
+    type: t.type || t.category || "101 Courseware",
+    class_id: t.class_id || t.id,
+    youtube_id: t.youtube_id || null,
+    speakers: t.speakers || [],
+    audio_url: t.audio_url || null,
+    page_url: t.page_url || null,
+    quiz_url: t.quiz_url || null,
+    takeaways_count: (t.takeaways || []).length,
+    transcript_length: (t.transcript_text || "").length
   }));
 
   return new Response(JSON.stringify({
