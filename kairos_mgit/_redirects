@@ -1,3 +1,6 @@
 
 /event/*/*/media /event/:splat 301
 /interview/*/*/media /interview/:splat 301
+
+/partner/*  /collaborate/:splat  308
+/partner  /collaborate/  308
