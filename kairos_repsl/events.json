@@ -5,7 +5,7 @@
     "date": "2026-10-01",
     "url": "https://www.google.com/calendar/event?eid=Nmg1aGh1MjFkNzc4NThuNzVrZjVucWMxbDJfMjAyNjEwMDFUMjEzMDAwWiBreWxlQGxleC5jbGluaWM",
     "meet_url": "https://meet.google.com/xpy-vzuu-nmf",
-    "is_upcoming": true,
+    "is_upcoming": false,
     "is_private": false,
     "description": "Socratic Session for LexClinic 2026. Automatically recorded and transcribed with Gemini Meeting Notes. Recording and transcript link will be emailed to all attendees upon meeting conclusion."
   },
@@ -15,7 +15,7 @@
     "date": "2026-10-02",
     "url": "https://www.google.com/calendar/event?eid=cHBscWU3N2wxcDZiZjJna21xYzR2bG11MHMga3lsZUBsZXguY2xpbmlj",
     "meet_url": "https://meet.google.com/xdw-trzj-azj",
-    "is_upcoming": true,
+    "is_upcoming": false,
     "is_private": true,
     "description": "Socratic Session for LexClinic 2026. Automatically recorded and transcribed with Gemini Meeting Notes. Recording and transcript link will be emailed to all attendees upon meeting conclusion."
   },
@@ -25,7 +25,7 @@
     "date": "2026-10-07",
     "url": "https://www.google.com/calendar/event?eid=NDlkaHMzdm9rbHFvOGxqNmQ4bzFzc2xsbDBfMjAyNjEwMDdUMTIwMDAwWiBreWxlQGxleC5jbGluaWM",
     "meet_url": "https://meet.google.com/aij-bftf-ekg",
-    "is_upcoming": true,
+    "is_upcoming": false,
     "is_private": true,
     "description": "Hey Root Nodes,\u00a0\n\nthis is a new link that allows us to have longer calls and the ability to record the session within google meet. Sorry for the hassle. The old invitation will be cancelled by Alice shortly.\u00a0\n\nCheers\nDaniel"
   },
@@ -35,7 +35,7 @@
     "date": "2026-10-08",
     "url": "https://www.google.com/calendar/event?eid=Nmg1aGh1MjFkNzc4NThuNzVrZjVucWMxbDJfMjAyNjEwMDhUMjEzMDAwWiBreWxlQGxleC5jbGluaWM",
     "meet_url": "https://meet.google.com/xpy-vzuu-nmf",
-    "is_upcoming": true,
+    "is_upcoming": false,
     "is_private": false,
     "description": "Socratic Session for LexClinic 2026. Automatically recorded and transcribed with Gemini Meeting Notes. Recording and transcript link will be emailed to all attendees upon meeting conclusion."
   },
@@ -219,7 +219,8 @@
     "has_quiz": true,
     "quiz_questions": 20,
     "description": "Socratic session on the $20 Trillion legal blueprint behind modern software runtimes, compute constraints, and computational legal code.",
-    "media_summary": "\ud83c\udfa5 5 Video Clips \u2022 \ud83c\udfa7 Audio Stream"
+    "media_summary": "\ud83c\udfa5 5 Video Clips \u2022 \ud83c\udfa7 Audio Stream",
+    "is_upcoming": false
   },
   {
     "id": "event-lexclinic-2026-09-04",
@@ -231,7 +232,8 @@
     "has_quiz": true,
     "quiz_questions": 20,
     "description": "Socratic session on legal AST decomposition, contract state machines, software runtime mechanics, and EVM personal ledgers.",
-    "media_summary": "\ud83c\udfa5 5 Video Clips \u2022 \ud83c\udfa7 Audio Stream"
+    "media_summary": "\ud83c\udfa5 5 Video Clips \u2022 \ud83c\udfa7 Audio Stream",
+    "is_upcoming": false
   },
   {
     "id": "event-lexclinic-2026-08-28",
@@ -243,7 +245,8 @@
     "has_quiz": true,
     "quiz_questions": 20,
     "description": "Socratic session on computational legal AST decomposition, on-chain state versioning, and Web3 VC scaling.",
-    "media_summary": "\ud83c\udfa5 5 Video Clips \u2022 \ud83c\udfa7 Audio Stream"
+    "media_summary": "\ud83c\udfa5 5 Video Clips \u2022 \ud83c\udfa7 Audio Stream",
+    "is_upcoming": false
   },
   {
     "id": "event-clinic-misc-2026-08-24",
@@ -254,7 +257,8 @@
     "has_notebook": true,
     "has_quiz": false,
     "description": "Legal engineering discussion covering multi-signature governance, smart contract wrappers, and LESA data schemas.",
-    "media_summary": "\ud83c\udfa5 6 Video Clips \u2022 \ud83c\udfa7 4 Audio Tracks"
+    "media_summary": "\ud83c\udfa5 6 Video Clips \u2022 \ud83c\udfa7 4 Audio Tracks",
+    "is_upcoming": false
   },
   {
     "id": "event-clinic-exp-wit-2026-08-22",
@@ -265,7 +269,8 @@
     "has_notebook": true,
     "has_quiz": false,
     "description": "Expert witness legal technology protocol review, evidentiary cryptographic proofs, and court admissibility models.",
-    "media_summary": "\ud83c\udfa5 1 Video Clip"
+    "media_summary": "\ud83c\udfa5 1 Video Clip",
+    "is_upcoming": false
   },
   {
     "id": "event-lexclinic-directors-2026-08-21",
@@ -276,7 +281,8 @@
     "has_notebook": true,
     "has_quiz": false,
     "description": "Fiduciary governance structure review covering LexClinic Education, Inc. and LexClinic Community LLC.",
-    "media_summary": "\ud83d\udcc4 Gemini Governance Notes"
+    "media_summary": "\ud83d\udcc4 Gemini Governance Notes",
+    "is_upcoming": false
   },
   {
     "id": "event-lexclinic-2026-08-20",
@@ -287,7 +293,8 @@
     "has_notebook": true,
     "has_quiz": false,
     "description": "Initial 2026 Socratic kick-off session on computational law standards, smart contract state verification, and ERC-7827.",
-    "media_summary": "\ud83c\udfa5 2 Video Clips"
+    "media_summary": "\ud83c\udfa5 2 Video Clips",
+    "is_upcoming": false
   },
   {
     "id": "event-lexclinic-2026-08-13",
@@ -298,6 +305,7 @@
     "has_notebook": true,
     "has_quiz": false,
     "description": "Comprehensive review of the 2026 Legal Engineering 101 curriculum, Socratic grading rubrics, and repository structure.",
-    "media_summary": "\ud83c\udfa5 1 Video Clip"
+    "media_summary": "\ud83c\udfa5 1 Video Clip",
+    "is_upcoming": false
   }
 ]
