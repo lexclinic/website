@@ -1,6 +1,6 @@
 # 📅 LexClinic Calendar Review & Maintenance Protocol
 
-**Scope**: `lex_clinic_website_mgit/repo_mgit/kairos_mgit/calendar/`  
+**Scope**: `lex_clinic_website_repsl/repo_repsl/kairos_repsl/calendar/`  
 **Route Namespace**: `https://lex.clinic/calendar/`  
 
 ---
@@ -45,7 +45,7 @@ All session pages are organized cleanly under the **`/calendar/`** namespace (e.
 ## 3. Route Namespace Organization
 
 ```
-kairos_mgit/
+kairos_repsl/
 ├── calendar.html                                  # Main Calendar Landing Hub
 └── calendar/                                      # Event Pages Route Namespace
     ├── event-clinic-misc-2026-08-24.html          # Aug 24 Clinic Misc (6 Media Clips)

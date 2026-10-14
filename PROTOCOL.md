@@ -1,7 +1,7 @@
 # 🏛️ LexClinic Web Substrate Protocol (PROTOCOL.md)
 
 **Entity**: LexClinic Education, Inc. (501(c)(3) Non-Profit)  
-**Repository**: `lex_clinic_website_mgit`  
+**Repository**: `lex_clinic_website_repsl`  
 **Domain**: `lex.clinic`  
 **Platform**: Cloudflare Pages (`lex-clinic`)  
 
@@ -11,10 +11,10 @@
 
 This repository conforms strictly to the **Sovereign Metagit Interface Specification**:
 
-* **`repo_mgit/kairos_mgit/`**: Active web source code (`index.html`, `styles.css`, `script.js`, `wrangler.json`).
-* **`repo_mgit/chronos_mgit/`**: Time-series git revision history, commit logs, and release snapshots.
-* **`blob_mgit/`**: Binary web assets, media artifacts, and design resources.
-* **`chronos_mgit/`**: Session transcripts and governance audit trails.
+* **`repo_repsl/kairos_repsl/`**: Active web source code (`index.html`, `styles.css`, `script.js`, `wrangler.json`).
+* **`repo_repsl/chronos_repsl/`**: Time-series git revision history, commit logs, and release snapshots.
+* **`blob_repsl/`**: Binary web assets, media artifacts, and design resources.
+* **`chronos_repsl/`**: Session transcripts and governance audit trails.
 
 ---
 
