@@ -8,14 +8,14 @@ print(f"Timestamp: {timestamp}\n")
 # Path definitions
 script_dir = os.path.dirname(os.path.abspath(__file__))
 repo_root = os.path.dirname(script_dir)
-kairos_dir = os.path.join(repo_root, "kairos_mgit")
+kairos_dir = os.path.join(repo_root, "kairos_repsl")
 stage_root = os.path.dirname(repo_root)
-chronos_dir = os.path.join(stage_root, "chronos_mgit")
+chronos_dir = os.path.join(stage_root, "chronos_repsl")
 
 commit_msg = sys.argv[1] if len(sys.argv) > 1 else "feat(stage): synchronize staging web substrate to stage.lex.clinic"
 
 # STEP 1: Secret Scanning & Linter
-print("🔒 [Tri-Git Secret Linter]: Auditing staging kairos_mgit for secrets...")
+print("🔒 [Tri-Git Secret Linter]: Auditing staging kairos_repsl for secrets...")
 
 forbidden_patterns = [
     "AKIA", "ASIA", "xoxb-", "xoxp-", "sq0idp-", "AIzaSy", "cfat_",
@@ -49,11 +49,11 @@ if not clean:
     print("❌ Tri-Git push aborted due to secret linter violations!")
     sys.exit(1)
 
-print("✅ staging kairos_mgit is 100% clean and secret-free!\n")
+print("✅ staging kairos_repsl is 100% clean and secret-free!\n")
 
 # STEP 2: Staging Public GitHub Axis (.git_github) -> branch: stage
 print("🚀 [1/3 .git_github Axis]: Staging public code to branch 'stage'...")
-env_github = {**os.environ, "GIT_DIR": ".git_github", "GIT_WORK_TREE": "kairos_mgit"}
+env_github = {**os.environ, "GIT_DIR": ".git_github", "GIT_WORK_TREE": "kairos_repsl"}
 subprocess.run(["git", "add", "."], cwd=repo_root, env=env_github, check=True)
 
 res = subprocess.run(["git", "status", "--porcelain"], cwd=repo_root, env=env_github, capture_output=True, text=True)
@@ -64,15 +64,15 @@ print("📤 Pushing .git_github to GitHub (branch: stage)...")
 subprocess.run(["git", "push", "--force", "origin", "stage"], cwd=repo_root, env=env_github, check=True)
 print("✅ Pushed to GitHub public 'stage' branch!\n")
 
-# STEP 3: Local Workspace Memory Axis (.git_mgit) -> branch: main
-print("🧠 [2/3 .git_mgit Local Axis]: Committing local workspace memory state...")
-env_mgit = {**os.environ, "GIT_DIR": ".git_mgit", "GIT_WORK_TREE": "kairos_mgit"}
-subprocess.run(["git", "add", "."], cwd=repo_root, env=env_mgit, check=True)
+# STEP 3: Local Workspace Memory Axis (.git_repsl) -> branch: main
+print("🧠 [2/3 .git_repsl Local Axis]: Committing local workspace memory state...")
+env_repsl = {**os.environ, "GIT_DIR": ".git_repsl", "GIT_WORK_TREE": "kairos_repsl"}
+subprocess.run(["git", "add", "."], cwd=repo_root, env=env_repsl, check=True)
 
-res_mgit = subprocess.run(["git", "status", "--porcelain"], cwd=repo_root, env=env_mgit, capture_output=True, text=True)
-if res_mgit.stdout.strip():
-    subprocess.run(["git", "commit", "-m", commit_msg], cwd=repo_root, env=env_mgit, check=True)
-print("✅ Local .git_mgit workspace memory updated!\n")
+res_repsl = subprocess.run(["git", "status", "--porcelain"], cwd=repo_root, env=env_repsl, capture_output=True, text=True)
+if res_repsl.stdout.strip():
+    subprocess.run(["git", "commit", "-m", commit_msg], cwd=repo_root, env=env_repsl, check=True)
+print("✅ Local .git_repsl workspace memory updated!\n")
 
 # STEP 4: Chronos Audit Snapshot (.git_github_context) -> branch: stage
 print("⏳ [3/3 .git_github_context Axis]: Archiving Chronos audit snapshot to stage branch...")
@@ -89,7 +89,7 @@ snapshot_data = {
 with open(snapshot_file, "w") as f:
     json.dump(snapshot_data, f, indent=2)
 
-env_context = {**os.environ, "GIT_DIR": ".git_github_context", "GIT_WORK_TREE": "kairos_mgit"}
+env_context = {**os.environ, "GIT_DIR": ".git_github_context", "GIT_WORK_TREE": "kairos_repsl"}
 subprocess.run(["git", "add", "."], cwd=repo_root, env=env_context, check=True)
 
 res_ctx = subprocess.run(["git", "status", "--porcelain"], cwd=repo_root, env=env_context, capture_output=True, text=True)
