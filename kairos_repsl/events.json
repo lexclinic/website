@@ -224,41 +224,44 @@
   },
   {
     "id": "event-lexclinic-2026-09-04",
-    "title": "Law as a Software Runtime (Sept 4, 2026)",
+    "title": "LexClinic 2026 \u2014 Class 2.2: Minimizing Social Transaction Costs",
     "date": "2026-09-04",
     "url": "/event/2026-09-04/law-as-a-runtime/",
     "media_count": 5,
     "has_notebook": true,
     "has_quiz": true,
     "quiz_questions": 20,
-    "description": "Socratic session on legal AST decomposition, contract state machines, software runtime mechanics, and EVM personal ledgers.",
+    "description": "Socratic session for Class 2.2 examining Nick Szabo's principles on smart contracts and social transaction costs.",
     "media_summary": "\ud83c\udfa5 5 Video Clips \u2022 \ud83c\udfa7 Audio Stream",
-    "is_upcoming": false
+    "is_upcoming": false,
+    "class_id": "class_2.2"
   },
   {
     "id": "event-lexclinic-2026-08-28",
-    "title": "LexClinic 2026 Socratic Session (Aug 28, 2026)",
+    "title": "LexClinic 2026 \u2014 Class 2.1: The Composer Metaphor: Designing Before \"Play\"",
     "date": "2026-08-28",
     "url": "/event/2026-08-28/lexclinic-session/",
     "media_count": 5,
     "has_notebook": true,
     "has_quiz": true,
     "quiz_questions": 20,
-    "description": "Socratic session on computational legal AST decomposition, on-chain state versioning, and Web3 VC scaling.",
+    "description": "Socratic session for Class 2.1 applying the composer/score metaphor to legal engineering.",
     "media_summary": "\ud83c\udfa5 5 Video Clips \u2022 \ud83c\udfa7 Audio Stream",
-    "is_upcoming": false
+    "is_upcoming": false,
+    "class_id": "class_2.1"
   },
   {
     "id": "event-clinic-misc-2026-08-24",
-    "title": "Clinic Misc. Socratic Session (Aug 24, 2026)",
+    "title": "LexClinic 2026 \u2014 Class 1.2: What is a \"Runtime\" in Software?",
     "date": "2026-08-24",
     "url": "/event/2026-08-24/clinic-misc.html",
     "media_count": 6,
     "has_notebook": true,
     "has_quiz": false,
-    "description": "Legal engineering discussion covering multi-signature governance, smart contract wrappers, and LESA data schemas.",
+    "description": "Socratic session for Class 1.2 defining software runtimes, virtual machines, and execution environments.",
     "media_summary": "\ud83c\udfa5 6 Video Clips \u2022 \ud83c\udfa7 4 Audio Tracks",
-    "is_upcoming": false
+    "is_upcoming": false,
+    "class_id": "class_1.2"
   },
   {
     "id": "event-clinic-exp-wit-2026-08-22",
