@@ -271,3 +271,48 @@ window.addEventListener('load', () => {
   initVideoWatchTracker();
   setTimeout(initVideoWatchTracker, 1500);
 });
+
+
+// Picture-in-Picture (PiP) Floating Video Widget & Media Session Lock-Screen Controls
+window.toggleFloatingWidget = async function(elementId, btn) {
+  try {
+    let videoEl = document.querySelector(`#${elementId} video`);
+    if (!videoEl && btn) {
+      const card = btn.closest('.card, .pillar-card, .event-module-card');
+      if (card) videoEl = card.querySelector('video');
+    }
+    
+    if (videoEl && document.pictureInPictureEnabled) {
+      if (document.pictureInPictureElement) {
+        await document.exitPictureInPicture();
+        if (btn) btn.innerHTML = '📌 Float Video Widget';
+      } else {
+        await videoEl.requestPictureInPicture();
+        if (btn) btn.innerHTML = '🛑 Close Floating Widget';
+      }
+    } else {
+      alert("Floating Video Widget is active via YouTube Picture-in-Picture / Browser PiP controls.");
+    }
+  } catch (err) {
+    console.log('PiP Floating Widget status:', err.message);
+  }
+};
+
+// Configure Smartphone Lock-Screen Controls via MediaSession API
+if ('mediaSession' in navigator) {
+  navigator.mediaSession.metadata = new MediaMetadata({
+    title: document.title.replace(' | LexClinic Education', ''),
+    artist: 'LexClinic Legal Engineering',
+    album: 'Legal Engineering 101 Courseware',
+    artwork: [{ src: '/favicon.png', sizes: '512x512', type: 'image/png' }]
+  });
+
+  navigator.mediaSession.setActionHandler('play', () => {
+    document.querySelectorAll('audio, video').forEach(m => m.play().catch(() => {}));
+  });
+  navigator.mediaSession.setActionHandler('pause', () => {
+    document.querySelectorAll('audio, video').forEach(m => m.pause());
+  });
+}
+
+window.toggleFloatingWidget = window.toggleFloatingWidget;
