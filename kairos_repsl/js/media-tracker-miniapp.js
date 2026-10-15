@@ -1,6 +1,6 @@
 /*
   LexClinic Education Platform — Standalone MediaTrackerMeter Component
-  Build Version: 20261014_2900 (Interactive Watch Bar & Fallback Matching)
+  Build Version: 20260829_2380
 */
 
 class MediaTrackerMeter {
@@ -17,7 +17,7 @@ class MediaTrackerMeter {
     if (!this.meter) return;
 
     const heading = this.card.querySelector('h3, h4, h2');
-    this.title = heading ? heading.innerText.replace(/^[0-9]+\.\s*/, '').replace(/^Clip\s*[0-9]+:\s*/i, '').trim() : "Media Clip";
+    this.title = heading ? heading.innerText.replace(/^[0-9]+\.\s*/, '').trim() : "Media Clip";
 
     const hasAudioTag = !!this.card.querySelector('audio') || this.id.includes('audio') || this.title.toLowerCase().includes('audio');
     this.mediaType = hasAudioTag ? 'audio' : 'video';
@@ -27,11 +27,11 @@ class MediaTrackerMeter {
     this.connectedPlayer = null;
     this.pendingSeekTime = null;
 
-    this.initInteractiveMeterClick();
+    this.initResumeOnlyClick();
     this.refreshUI();
   }
 
-  // Key Migration Helper: Find history by static ID or title/URL fallback match
+  // Key Migration Helper: Find history by static ID or legacy title match
   getSavedRecord() {
     try {
       const history = JSON.parse(localStorage.getItem("lexclinic_video_watch_history") || "{}");
@@ -39,7 +39,7 @@ class MediaTrackerMeter {
         return history[this.id];
       }
 
-      // Check title or page_url match
+      // Check legacy hash keys matching this card's title
       const records = Object.values(history);
       for (let rec of records) {
         if (rec.video_title && this.title && rec.video_title.toLowerCase() === this.title.toLowerCase()) {
@@ -50,26 +50,6 @@ class MediaTrackerMeter {
     } catch (e) {
       return { progress: 0, current_time: 0 };
     }
-  }
-
-  initInteractiveMeterClick() {
-    if (!this.meter) return;
-    this.meter.style.cursor = "pointer";
-    this.meter.title = "Click to toggle 100% Watched / Unwatched state";
-
-    this.meter.addEventListener('click', (evt) => {
-      // Don't trigger toggle if clicking a direct link inside meter
-      if (evt.target.tagName === 'A' || evt.target.closest('a')) return;
-
-      const record = this.getSavedRecord();
-      const currentProg = record.progress || 0;
-
-      if (currentProg >= 90) {
-        this.forceProgress(0, 0); // Reset to 0% Unwatched
-      } else {
-        this.forceProgress(100, 0); // Set to 100% Watched
-      }
-    });
   }
 
   refreshUI() {
@@ -91,13 +71,13 @@ class MediaTrackerMeter {
     }
 
     if (cleanProg >= 90) {
-      if (statusText) statusText.innerHTML = `✅ <strong>100% Watched (${this.mediaLabel})</strong> <span style="font-size: 0.75rem; color: #94a3b8; margin-left: 0.35rem;">(Click to reset)</span>`;
+      if (statusText) statusText.innerHTML = `✅ <strong>100% Watched (${this.mediaLabel})</strong>`;
       if (authHint) authHint.innerHTML = isLogged ? `<a href="/profile/" style="color: #34d399; font-weight: 700; text-decoration: underline; font-size: 0.8rem;">👤 ${userEmail.split('@')[0]} (Saved ➔)</a>` : `<a href="javascript:void(0)" onclick="openNavLoginModal(event)" style="color: #fbbf24; font-weight: 800; text-decoration: underline; font-size: 0.8rem;">🔒 Log In to Save</a>`;
     } else if (cleanProg > 0) {
-      if (statusText) statusText.innerHTML = `▶️ <strong>${cleanProg}% Watched (${this.mediaLabel})</strong> <span style="font-size: 0.75rem; color: #94a3b8; margin-left: 0.35rem;">(Click to toggle 100%)</span>`;
+      if (statusText) statusText.innerHTML = `▶️ <strong>${cleanProg}% Watched (${this.mediaLabel})</strong>`;
       if (authHint) authHint.innerHTML = isLogged ? `<a href="/profile/" style="color: #38bdf8; text-decoration: underline; font-size: 0.8rem;">👤 ${userEmail.split('@')[0]} (Profile ➔)</a>` : `<a href="javascript:void(0)" onclick="openNavLoginModal(event)" style="color: #fbbf24; font-weight: 800; text-decoration: underline; font-size: 0.8rem;">🔒 Log In to Save</a>`;
     } else {
-      if (statusText) statusText.innerHTML = `${this.mediaIcon} <strong>Unwatched ${this.mediaLabel}</strong> <span style="font-size: 0.75rem; color: #94a3b8; margin-left: 0.35rem;">(Click to mark watched)</span>`;
+      if (statusText) statusText.innerHTML = `${this.mediaIcon} <strong>Unwatched ${this.mediaLabel}</strong>`;
       if (authHint) authHint.innerHTML = isLogged ? `<span style="color: #34d399; font-size: 0.8rem; font-weight: 600;">👤 Linked as ${userEmail.split('@')[0]}</span>` : `<a href="javascript:void(0)" onclick="openNavLoginModal(event)" style="color: #fbbf24; font-weight: 700; text-decoration: underline; font-size: 0.8rem;">🔒 Log In to Save Watch Tracker</a>`;
     }
   }
@@ -134,39 +114,78 @@ class MediaTrackerMeter {
     } catch(e) {}
   }
 
-  forceProgress(prog, currentTime = 0) {
-    try {
-      let history = {};
-      try { history = JSON.parse(localStorage.getItem("lexclinic_video_watch_history") || "{}"); } catch(e) {}
-
-      const record = {
-        video_id: this.id,
-        video_title: this.title,
-        media_type: this.mediaType,
-        page_url: window.location.pathname,
-        progress: prog,
-        current_time: Math.round(currentTime),
-        timestamp: new Date().toISOString()
-      };
-
-      history[this.id] = record;
-      localStorage.setItem("lexclinic_video_watch_history", JSON.stringify(history));
-      this.refreshUI();
-
-      const email = window.getSanitizedEmail ? window.getSanitizedEmail() : "";
-      if (email) {
-        fetch("/api/track-watch", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ email, ...record })
-        }).catch(() => {});
-      }
-    } catch(e) {}
-  }
-
+  // Late-Stage Player Connection Bridge
   connectPlayer(player) {
     this.connectedPlayer = player;
+    
+    // Execute pending seek if user clicked progress bar before player finished loading
+    if (this.pendingSeekTime !== null) {
+      this.seekPlayerToTime(this.pendingSeekTime);
+      this.pendingSeekTime = null;
+    }
+  }
+
+  seekPlayerToTime(targetSeconds) {
+    try {
+      if (!this.connectedPlayer) return;
+
+      // 1. YouTube Player Instance (`YT.Player`)
+      if (typeof this.connectedPlayer.seekTo === 'function') {
+        let playerState = -1;
+        try { playerState = this.connectedPlayer.getPlayerState(); } catch(e) {}
+
+        if (typeof this.connectedPlayer.playVideo === 'function') {
+          this.connectedPlayer.playVideo();
+        }
+
+        if (targetSeconds > 0) {
+          setTimeout(() => {
+            try { this.connectedPlayer.seekTo(targetSeconds, true); } catch(e) {}
+          }, 300);
+        }
+      } 
+      // 2. HTML5 Native <video> or <audio> Element
+      else if (typeof this.connectedPlayer.currentTime !== 'undefined') {
+        const mediaEl = this.connectedPlayer;
+
+        if (mediaEl.readyState < 1) {
+          mediaEl.addEventListener('loadedmetadata', () => {
+            if (targetSeconds > 0) mediaEl.currentTime = targetSeconds;
+            try { mediaEl.play().catch(() => {}); } catch(e) {}
+          }, { once: true });
+          mediaEl.load();
+        } else {
+          if (targetSeconds > 0) mediaEl.currentTime = targetSeconds;
+          try { mediaEl.play().catch(() => {}); } catch(e) {}
+        }
+      }
+    } catch(err) {}
+  }
+
+  // Resume & Start Playback on Meter Bar Click (Never advance bar without media playback)
+  initResumeOnlyClick() {
+    if (!this.meter || this.meter.dataset.resumeClickBound) return;
+    this.meter.dataset.resumeClickBound = "true";
+    this.meter.style.cursor = "pointer";
+    this.meter.title = "Click meter bar to start or resume playback";
+
+    this.meter.addEventListener("click", () => {
+      const record = this.getSavedRecord();
+      const savedTime = record.current_time || 0;
+
+      if (this.connectedPlayer) {
+        this.seekPlayerToTime(savedTime);
+      } else {
+        this.pendingSeekTime = savedTime;
+        // Attempt starting HTML5 media or iframe play
+        const mediaEl = this.card.querySelector('video, audio');
+        if (mediaEl) {
+          try { mediaEl.play().catch(() => {}); } catch(e) {}
+        }
+      }
+    });
   }
 }
 
+// Global scope exposures
 window.MediaTrackerMeter = MediaTrackerMeter;
