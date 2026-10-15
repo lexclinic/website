@@ -8,3 +8,6 @@
 .wrangler/
 node_modules/
 *.log
+
+*.m4a
+*.mp4
