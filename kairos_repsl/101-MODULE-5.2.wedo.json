@@ -1,0 +1,41 @@
+{
+  "wedo_instance": {
+    "id": "101-MODULE-5.2",
+    "description": "LexClinic 101 Courseware Manifest \u2014 Class 5.2: Typing Domains: How Code Validates Data",
+    "status": "[completed]",
+    "meta": {
+      "protocol": "WeDo-JSON",
+      "version": "1.0.0",
+      "provenance_reference": "/101/4.2/",
+      "type": "Academic-101-Courseware"
+    },
+    "tasks": [
+      {
+        "id": "MODULE-PAGE-SCAFFOLD-01",
+        "description": "Scaffold /101/5.2/ landing page with 2x2 Key Takeaways Grid and fixed header wrapper",
+        "status": "[x]"
+      },
+      {
+        "id": "PRIMARY-LECTURE-EMBED-02",
+        "description": "Embed primary C-Lead Video 5.2 (OtYJCzsxwdE) with 1-2x speed controls, watch progress meter, and Screen Wake Lock",
+        "status": "[x]"
+      },
+      {
+        "id": "TRANSCRIPT-WHISPER-INDEX-03",
+        "description": "Transcribe spoken audio (8,652 chars) with Whisper and index in /api/transcripts for MCP tools",
+        "status": "[x]"
+      },
+      {
+        "id": "SOCRATIC-QUIZ-ATTEST-04",
+        "description": "Build 20-question transcript-grounded quiz.html with Keccak-256 student proof generation for /attest/",
+        "status": "[x]"
+      },
+      {
+        "id": "CURRICULUM-GRID-SEQUENCE-05",
+        "description": "Sequence Class 5.2 card into /101/index.html curriculum grid in strict numerical order (1.1 -> 5.2)",
+        "status": "[x]"
+      }
+    ]
+  },
+  "attribution": "LexClinic Legal Engineering Swarm (20261014)"
+}
