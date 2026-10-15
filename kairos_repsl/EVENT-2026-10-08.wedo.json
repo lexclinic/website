@@ -34,6 +34,11 @@
         "id": "HUB-CARD-PROVENANCE-05",
         "description": "Render recorded event card on /event/ with 2x2 takeaways grid, native audio stream, YouTube cards, and 20-Q quiz link",
         "status": "[x]"
+      },
+      {
+        "id": "GIT-BLOB-FILTER-06",
+        "description": "Exclude large audio/video m4a/mp4 binaries from git tracking via .gitignore while preserving Cloudflare Pages media streaming via Wrangler",
+        "status": "[x]"
       }
     ]
   },

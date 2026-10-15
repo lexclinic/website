@@ -34,6 +34,11 @@
         "id": "CURRICULUM-GRID-SEQUENCE-05",
         "description": "Sequence Class 5.2 card into /101/index.html curriculum grid in strict numerical order (1.1 -> 5.2)",
         "status": "[x]"
+      },
+      {
+        "id": "GIT-BLOB-FILTER-06",
+        "description": "Exclude large audio/video m4a/mp4 binaries from git tracking via .gitignore while preserving Cloudflare Pages media streaming via Wrangler",
+        "status": "[x]"
       }
     ]
   },
