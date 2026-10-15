@@ -13,7 +13,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     const events = await response.json();
 
     // Limit display to the NEXT THREE upcoming events only
-    const upcomingEvents = events.filter(e => e.is_upcoming).slice(0, 3);
+    const upcomingEvents = events.filter(e => e.is_upcoming).slice(0, 4);
     if (!upcomingEvents || upcomingEvents.length === 0) return;
 
     const userEmail = window.getSanitizedEmail ? window.getSanitizedEmail() : "";
