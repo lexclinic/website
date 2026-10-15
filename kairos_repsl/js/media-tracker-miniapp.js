@@ -173,6 +173,11 @@ class MediaTrackerMeter {
       const record = this.getSavedRecord();
       const savedTime = record.current_time || 0;
 
+      // Eagerly connect ytPlayersMap instance if unlogged
+      if (!this.connectedPlayer && window.ytPlayersMap && window.ytPlayersMap[this.card.id]) {
+        this.connectedPlayer = window.ytPlayersMap[this.card.id];
+      }
+
       if (this.connectedPlayer) {
         this.seekPlayerToTime(savedTime);
       } else {
