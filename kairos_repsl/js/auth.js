@@ -34,6 +34,7 @@ function checkMagicLinkTokenInUrl() {
 
     showLoginSuccessBanner(cleanEmail);
     updateAuthUI();
+    checkDisclaimerSplashModal();
   }
 }
 
@@ -276,6 +277,7 @@ function handleLogout(e) {
   localStorage.removeItem("lexclinic_user_email");
   loggedInEmail = "";
   updateAuthUI();
+    checkDisclaimerSplashModal();
   const resBox = document.getElementById("quiz-results-box");
   if (resBox) resBox.style.display = "none";
   const confCard = document.getElementById("confirmation-notice-card");
@@ -363,10 +365,68 @@ if (document.readyState === "loading") {
     bindMobileToggle();
     bindNavLoginButtons();
     updateAuthUI();
+    checkDisclaimerSplashModal();
   });
 } else {
   checkMagicLinkTokenInUrl();
   bindMobileToggle();
   bindNavLoginButtons();
   updateAuthUI();
+    checkDisclaimerSplashModal();
 }
+
+
+
+// Conspicuous Legal Disclaimer Splash Page Modal Handler (Expires Every 24 Hours)
+function checkDisclaimerSplashModal() {
+  const ackTimeStr = localStorage.getItem("lexclinic_disclaimer_acknowledged_time");
+  if (ackTimeStr) {
+    const ackTime = parseInt(ackTimeStr, 10);
+    const now = Date.now();
+    const twentyFourHoursMs = 24 * 60 * 60 * 1000;
+    if (!isNaN(ackTime) && (now - ackTime) < twentyFourHoursMs) {
+      return; // Acknowledged within the last 24 hours -> skip popup
+    }
+  }
+
+  // Create Modal Overlay DOM
+  const modal = document.createElement("div");
+  modal.id = "disclaimer-splash-modal";
+  modal.className = "disclaimer-splash-overlay";
+  modal.innerHTML = `
+    <div class="disclaimer-splash-card">
+      <h2>⚖️ Welcome to LexClinic</h2>
+      <span class="badge">Delaware Non-Profit — Pending 501(c)(3) Status</span>
+      
+      <p>
+        Before proceeding, please review and acknowledge our Educational &amp; Legal Disclaimers:
+      </p>
+
+      <ul>
+        <li><strong>Educational Public Good Scope:</strong> LexClinic Education, Inc. is a Delaware non-profit applying for 501(c)(3) tax-exempt recognition. All courseware, research, smart contracts (ERC-7827), and APIs are open public goods under AGPL-3.0 and CC-BY-SA 4.0.</li>
+        <li><strong>No Legal Advice:</strong> Materials, interactive quizzes, and API queries are for academic and educational research and <strong>do not constitute formal legal advice, representation, or an attorney-client relationship</strong>.</li>
+        <li><strong>Open-Source "AS IS" Warranty:</strong> All software code and specifications are provided "AS IS" without warranties of any kind.</li>
+      </ul>
+
+      <button type="button" onclick="window.acknowledgeDisclaimer()" class="btn btn-primary" style="background: var(--accent-gold); color: #0a1128; font-weight: 800; font-size: 1.05rem; padding: 0.75rem 1.75rem; width: 100%; border-radius: 8px; border: none; cursor: pointer; text-align: center;">
+        I Understand &amp; Agree ➔
+      </button>
+    </div>
+  `;
+
+  document.body.appendChild(modal);
+}
+
+function acknowledgeDisclaimer() {
+  localStorage.setItem("lexclinic_disclaimer_acknowledged_time", Date.now().toString());
+  localStorage.setItem("lexclinic_disclaimer_acknowledged", "true");
+  const modal = document.getElementById("disclaimer-splash-modal");
+  if (modal) {
+    modal.style.opacity = "0";
+    modal.style.transition = "opacity 0.3s ease";
+    setTimeout(() => modal.remove(), 300);
+  }
+}
+
+window.acknowledgeDisclaimer = acknowledgeDisclaimer;
+window.checkDisclaimerSplashModal = checkDisclaimerSplashModal;

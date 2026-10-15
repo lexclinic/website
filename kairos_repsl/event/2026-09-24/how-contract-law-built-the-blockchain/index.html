@@ -20,31 +20,38 @@
 <body>
 
   <!-- Navigation Bar -->
-  <header class="navbar">
-    <div class="nav-container">
-      <a href="/index.html" class="brand-logo">
-        <span class="logo-icon">⚖️</span>
-        <span class="logo-text">Lex<span class="highlight">Clinic</span></span>
-      </a>
-      <nav class="nav-links" id="nav-links">
-        <a href="/event.html" class="active-link">Event</a>
-        <a href="/101">101</a>
-        <a href="/interview/">Interview</a>
-        <a href="/partner/">Partner</a>
-        <a href="/fiduciary/">Fiduciary</a>
-        <a href="/attest/">Attest</a>
-        <a href="/help/">Help</a>
-        <a href="/repo/">Repo</a>
-        <a href="/erc7827.html">ERC-7827</a>
-        <a href="https://www.youtube.com/watch?v=ONwiUkc_tt4&list=PLbPukKwpmk5E" target="_blank" rel="noopener" class="btn-social" title="Subscribe on YouTube">YouTube</a>
-        <a href="https://open.spotify.com/show/0348ivoLaNfKBq1HeIYC9b" target="_blank" rel="noopener" class="btn-spotify" title="Follow on Spotify">Spotify</a>
-        <a href="https://www.linkedin.com/company/lexclinic" target="_blank" rel="noopener" class="btn-social" title="Follow on LinkedIn">LinkedIn</a>
-        <a href="javascript:void(0)" onclick="event.preventDefault(); window.openNavLoginModal(event); return false;" id="nav-login-btn" style="background: #fbbf24; color: #0a1128; font-weight: 800; font-size: 0.88rem; padding: 0.35rem 0.85rem; border-radius: 6px; margin-left: 0.35rem; text-decoration: none; border: 2px solid #f59e0b; box-shadow: 0 0 10px rgba(251, 191, 36, 0.4); display: inline-block;">Login</a>
-      </nav>
-      <button class="mobile-toggle" id="mobile-toggle" aria-label="Toggle navigation">
-        ☰
-      </button>
+      <!-- Unified Fixed Header Wrapper (Navbar + Sub-Navbar Disclaimer) -->
+    <!-- Unified Fixed Header Wrapper (Top Disclaimer + Navbar) -->
+  <header class="fixed-header-wrapper">
+    <div class="top-disclaimer-bar">
+      <span>⚖️ <strong>LEGAL DISCLAIMER:</strong> LexClinic Education, Inc. is applying for 501(c)(3) tax-exempt status. Materials, software runtimes, and APIs are for educational research and do not constitute formal legal advice. <a href="/help/#disclaimer">Read Full Disclaimer ➔</a></span>
     </div>
+    <nav class="navbar">
+      <div class="nav-container">
+        <a href="/index.html" class="brand-logo">
+          <span class="logo-icon">⚖️</span>
+          <span class="logo-text">Lex<span class="highlight">Clinic</span></span>
+        </a>
+        <nav class="nav-links" id="nav-links">
+          <a href="/event/">Event</a>
+          <a href="/101">101</a>
+          <a href="/interview/">Interview</a>
+          <a href="/collaborate/">Collaborate</a>
+          <a href="/fiduciary/">Fiduciary</a>
+          <a href="/attest/">Attest</a>
+          <a href="/help/">Help</a>
+          <a href="/repo/">Repo</a>
+          <a href="/erc7827.html">ERC-7827</a>
+          <a href="https://www.youtube.com/watch?v=ONwiUkc_tt4&list=PLbPukKwpmk5E" target="_blank" rel="noopener" class="btn-social" title="Subscribe on YouTube">YouTube</a>
+          <a href="https://open.spotify.com/show/0348ivoLaNfKBq1HeIYC9b" target="_blank" rel="noopener" class="btn-spotify" title="Follow on Spotify">Spotify</a>
+          <a href="https://www.linkedin.com/company/lexclinic" target="_blank" rel="noopener" class="btn-social" title="Follow on LinkedIn">LinkedIn</a>
+          <a href="javascript:void(0)" onclick="event.preventDefault(); window.openNavLoginModal(event); return false;" id="nav-login-btn" style="background: #fbbf24; color: #0a1128; font-weight: 800; font-size: 0.88rem; padding: 0.35rem 0.85rem; border-radius: 6px; margin-left: 0.35rem; text-decoration: none; border: 2px solid #f59e0b; box-shadow: 0 0 10px rgba(251, 191, 36, 0.4); display: inline-block;">Login</a>
+        </nav>
+        <button class="mobile-toggle" id="mobile-toggle" aria-label="Toggle navigation">
+          ☰
+        </button>
+      </div>
+    </nav>
   </header>
 
   <!-- Hero Section -->
@@ -59,7 +66,7 @@
       <p class="hero-subtitle">Thursday, September 24, 2026 • Socratic Session for Class 3.2: Contract Runtimes & State Machines. Nick Szabo's gas fee incentive solution, Ricardian text-code contracts, Alonzo Church lambda calculus vs. Turing state machines, and stablecoin legal execution.</p>
       <div class="hero-actions">
         <a href="quiz.html" class="btn btn-primary" style="background: var(--accent-gold); color: #0a1128; font-weight: 800;">Take 20-Q Session Quiz ➔</a>
-        <a href="/event.html" class="btn btn-outline">← Back to Events Hub</a>
+        <a href="/event/" class="btn btn-outline">← Back to Events Hub</a>
       </div>
     </div>
   </section>
@@ -380,7 +387,7 @@
       </div>
       <div class="footer-links">
         <a href="/index.html">Home</a>
-        <a href="/event.html">Events</a>
+        <a href="/event/">Events</a>
         <a href="/101/">101 Courseware</a>
         <a href="/attest/">Attestations</a>
       </div>
