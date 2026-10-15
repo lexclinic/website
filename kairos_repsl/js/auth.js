@@ -376,11 +376,17 @@ if (document.readyState === "loading") {
 }
 
 
-// Conspicuous Legal Disclaimer Splash Page Modal Handler
+
+// Conspicuous Legal Disclaimer Splash Page Modal Handler (Expires Every 24 Hours)
 function checkDisclaimerSplashModal() {
-  const acknowledged = localStorage.getItem("lexclinic_disclaimer_acknowledged");
-  if (acknowledged === "true") {
-    return;
+  const ackTimeStr = localStorage.getItem("lexclinic_disclaimer_acknowledged_time");
+  if (ackTimeStr) {
+    const ackTime = parseInt(ackTimeStr, 10);
+    const now = Date.now();
+    const twentyFourHoursMs = 24 * 60 * 60 * 1000;
+    if (!isNaN(ackTime) && (now - ackTime) < twentyFourHoursMs) {
+      return; // Acknowledged within the last 24 hours -> skip popup
+    }
   }
 
   // Create Modal Overlay DOM
@@ -412,6 +418,7 @@ function checkDisclaimerSplashModal() {
 }
 
 function acknowledgeDisclaimer() {
+  localStorage.setItem("lexclinic_disclaimer_acknowledged_time", Date.now().toString());
   localStorage.setItem("lexclinic_disclaimer_acknowledged", "true");
   const modal = document.getElementById("disclaimer-splash-modal");
   if (modal) {
