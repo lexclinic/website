@@ -1232,10 +1232,11 @@ button, .btn, a, input[type="submit"], input[type="radio"], label, #mobile-toggl
 
 
 
-/* Sub-Navbar Disclaimer Bar (Positioned Directly Below Navbar) */
+
+
+/* Top Disclaimer Bar (Positioned Directly Above Navbar) */
 .top-disclaimer-bar {
   background: linear-gradient(90deg, #020617, #1e1b4b, #020617);
-  border-top: 1px solid var(--border-color);
   border-bottom: 2px solid var(--accent-gold);
   color: #f1f5f9;
   font-size: 0.8rem;
@@ -1258,82 +1259,14 @@ button, .btn, a, input[type="submit"], input[type="radio"], label, #mobile-toggl
   display: inline-block;
 }
 
+.top-disclaimer-bar a:hover {
+  color: #ffffff;
+}
+
 .navbar {
   position: relative;
   background: rgba(10, 17, 40, 0.95);
   backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border-color);
   padding: 0.7rem 0;
-}
-
-/* Conspicuous Legal Disclaimer Splash Overlay Modal */
-.disclaimer-splash-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: rgba(2, 6, 23, 0.88);
-  backdrop-filter: blur(10px);
-  z-index: 99999;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 1.5rem;
-  animation: fadeIn 0.3s ease-out;
-}
-
-.disclaimer-splash-card {
-  background: #0a1128;
-  border: 2px solid var(--accent-gold);
-  box-shadow: 0 0 30px rgba(251, 191, 36, 0.3);
-  border-radius: 12px;
-  max-width: 680px;
-  width: 100%;
-  padding: 2rem;
-  color: #e2e8f0;
-  max-height: 90vh;
-  overflow-y: auto;
-}
-
-.disclaimer-splash-card h2 {
-  color: var(--accent-gold);
-  font-size: 1.4rem;
-  margin-bottom: 0.5rem;
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-}
-
-.disclaimer-splash-card .badge {
-  display: inline-block;
-  background: rgba(251, 191, 36, 0.15);
-  color: var(--accent-gold);
-  font-size: 0.78rem;
-  padding: 0.2rem 0.6rem;
-  border-radius: 999px;
-  font-weight: 600;
-  margin-bottom: 1rem;
-}
-
-.disclaimer-splash-card p {
-  font-size: 0.92rem;
-  line-height: 1.6;
-  margin-bottom: 1rem;
-  color: #cbd5e1;
-}
-
-.disclaimer-splash-card ul {
-  margin-bottom: 1.5rem;
-  padding-left: 1.25rem;
-}
-
-.disclaimer-splash-card li {
-  font-size: 0.88rem;
-  line-height: 1.5;
-  margin-bottom: 0.5rem;
-  color: #94a3b8;
-}
-
-.disclaimer-splash-card li strong {
-  color: #f1f5f9;
 }
