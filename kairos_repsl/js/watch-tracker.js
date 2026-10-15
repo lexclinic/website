@@ -1,10 +1,10 @@
 /*
   LexClinic Education Platform — Player Adapter, YouTube API Orchestrator & Screen Wake Lock
-  Build Version: 20260829_2700
+  Build Version: 20261014_2800
 */
 
 // ============================================================================
-// GLOBAL SCREEN WAKE LOCK MANAGER (Prevents Smartphone Screen Sleep During Media)
+// GLOBAL SCREEN WAKE LOCK MANAGER
 // ============================================================================
 class ScreenWakeLockManager {
   constructor() {
@@ -17,33 +17,24 @@ class ScreenWakeLockManager {
     try {
       if ('wakeLock' in navigator && !this.wakeLock) {
         this.wakeLock = await navigator.wakeLock.request('screen');
-        console.log('🔒 Screen Wake Lock ACTIVE — Smartphone screen kept awake during playback');
-        
         this.wakeLock.addEventListener('release', () => {
           this.wakeLock = null;
-          console.log('🔓 Screen Wake Lock RELEASED');
         });
       }
-    } catch (err) {
-      console.log('Screen Wake Lock request status:', err.message);
-    }
+    } catch (err) {}
   }
 
   async releaseWakeLock() {
     if (this.wakeLock) {
-      try {
-        await this.wakeLock.release();
-      } catch (err) {}
+      try { await this.wakeLock.release(); } catch (err) {}
       this.wakeLock = null;
     }
   }
 
   initListeners() {
-    // 1. Listen for Fullscreen Changes (iOS Safari / Android Chrome)
     const onFullscreenChange = () => {
       const isFullscreen = !!(document.fullscreenElement || document.webkitFullscreenElement || document.mozFullScreenElement || document.msFullscreenElement);
       if (isFullscreen) {
-        console.log('📱 Fullscreen active — Requesting Screen Wake Lock');
         this.requestWakeLock();
       } else if (!this.isMediaActive) {
         this.releaseWakeLock();
@@ -55,32 +46,24 @@ class ScreenWakeLockManager {
     document.addEventListener('mozfullscreenchange', onFullscreenChange);
     document.addEventListener('MSFullscreenChange', onFullscreenChange);
 
-    // 2. Listen for Native HTML5 Audio/Video Playback
     document.addEventListener('play', () => {
       this.isMediaActive = true;
       this.requestWakeLock();
     }, true);
 
-    document.addEventListener('pause', () => {
-      this.checkMediaStateAndRelease();
-    }, true);
+    document.addEventListener('pause', () => { this.checkMediaStateAndRelease(); }, true);
+    document.addEventListener('ended', () => { this.checkMediaStateAndRelease(); }, true);
 
-    document.addEventListener('ended', () => {
-      this.checkMediaStateAndRelease();
-    }, true);
-
-    // 3. Re-acquire Wake Lock on Tab Visibility Change
     document.addEventListener('visibilitychange', () => {
-      if (document.visibilityState === 'visible' && (this.isMediaActive || document.fullscreenElement || document.webkitFullscreenElement)) {
+      if (document.visibilityState === 'visible' && (this.isMediaActive || document.fullscreenElement)) {
         this.requestWakeLock();
       }
     });
   }
 
   checkMediaStateAndRelease() {
-    const isFullscreen = !!(document.fullscreenElement || document.webkitFullscreenElement || document.mozFullScreenElement || document.msFullscreenElement);
+    const isFullscreen = !!(document.fullscreenElement || document.webkitFullscreenElement);
     const playingMedia = Array.from(document.querySelectorAll('audio, video')).some(el => !el.paused && !el.ended);
-    
     this.isMediaActive = playingMedia;
     if (!this.isMediaActive && !isFullscreen) {
       this.releaseWakeLock();
@@ -118,14 +101,37 @@ window.onYouTubeIframeAPIReady = function() {
   }
 };
 
-// Global Speed Controller for YouTube and HTML5 Media
+// Global Speed Controller for YouTube and HTML5 Media (Auto-Binding Bridge)
 window.setVideoSpeed = function(elementId, speed, btn) {
   try {
-    if (ytPlayersMap[elementId]) {
-      ytPlayersMap[elementId].setPlaybackRate(speed);
+    let player = ytPlayersMap[elementId];
+    
+    if (!player) {
+      const card = document.getElementById(elementId) || (btn ? btn.closest('.card, .pillar-card, .event-module-card') : null);
+      if (card) {
+        player = ytPlayersMap[card.id];
+        if (!player && window.YT && window.YT.Player) {
+          const ytIframe = card.querySelector('iframe[src*="youtube.com"]');
+          if (ytIframe) {
+            if (!ytIframe.id) ytIframe.id = "yt_frame_" + (card.id || "media");
+            player = new YT.Player(ytIframe.id, {
+              events: {
+                'onReady': (evt) => {
+                  try { evt.target.setPlaybackRate(speed); } catch(e) {}
+                }
+              }
+            });
+            ytPlayersMap[card.id] = player;
+          }
+        }
+      }
+    }
+
+    if (player && player.setPlaybackRate) {
+      player.setPlaybackRate(speed);
     } else {
-      const el = document.getElementById(elementId) || document.querySelector(`#${elementId} video, #${elementId} audio`);
-      if (el) el.playbackRate = speed;
+      const el = document.getElementById(elementId) || (btn ? btn.closest('.card, .pillar-card, .event-module-card').querySelector('video, audio') : null);
+      if (el && el.playbackRate) el.playbackRate = speed;
     }
 
     if (btn && btn.parentNode) {
@@ -160,7 +166,7 @@ function initVideoWatchTracker() {
           card.id = "card_media_" + index;
         }
 
-        // 1. EARLY STAGE: Instantiate MediaTrackerMeter miniapp on card
+        // 1. Instantiate MediaTrackerMeter miniapp on card
         if (!trackerMetersMap[card.id]) {
           trackerMetersMap[card.id] = new MediaTrackerMeter(card);
         } else {
@@ -169,7 +175,7 @@ function initVideoWatchTracker() {
 
         const miniapp = trackerMetersMap[card.id];
 
-        // 2. CONNECT HTML5 NATIVE AUDIO/VIDEO PLAYER
+        // 2. Connect HTML5 Audio/Video
         const html5Media = card.querySelector('video, audio');
         if (html5Media) {
           miniapp.connectPlayer(html5Media);
@@ -188,58 +194,59 @@ function initVideoWatchTracker() {
           }
         }
 
-        // 3. LATE-STAGE: CONNECT YOUTUBE IFRAME PLAYER API
+        // 3. Connect YouTube IFrame Player API
         const ytIframe = card.querySelector('iframe[src*="youtube.com"]');
         if (ytIframe) {
           if (!ytIframe.id) {
             ytIframe.id = "yt_frame_" + card.id;
           }
 
-          if (isYouTubeApiReady && window.YT && window.YT.Player) {
+          if ((window.YT && window.YT.Player) || isYouTubeApiReady) {
             if (!ytPlayersMap[card.id]) {
               let pollInterval = null;
 
-              const ytPlayer = new YT.Player(ytIframe.id, {
-                events: {
-                  'onReady': () => {
-                    // Late-Stage Bridge: Connect player to miniapp upon ready
-                    miniapp.connectPlayer(ytPlayer);
-                  },
-                  'onStateChange': (evt) => {
-                    if (evt.data === YT.PlayerState.PLAYING) {
-                      if (window.screenWakeLockManager) {
-                        window.screenWakeLockManager.isMediaActive = true;
-                        window.screenWakeLockManager.requestWakeLock();
-                      }
-                      if (!pollInterval) {
-                        pollInterval = setInterval(() => {
-                          try {
-                            const dur = ytPlayer.getDuration();
-                            const cur = ytPlayer.getCurrentTime();
-                            if (dur > 0) {
-                              const pct = Math.round((cur / dur) * 100);
-                              miniapp.recordProgress(pct, cur);
-                            }
-                          } catch(err) {}
-                        }, 1000);
-                      }
-                    } else if (evt.data === YT.PlayerState.PAUSED || evt.data === YT.PlayerState.ENDED) {
-                      if (pollInterval) {
-                        clearInterval(pollInterval);
-                        pollInterval = null;
-                      }
-                      if (evt.data === YT.PlayerState.ENDED) {
-                        miniapp.recordProgress(100, ytPlayer.getDuration());
-                      }
-                      if (window.screenWakeLockManager) {
-                        window.screenWakeLockManager.checkMediaStateAndRelease();
+              try {
+                const ytPlayer = new YT.Player(ytIframe.id, {
+                  events: {
+                    'onReady': () => {
+                      miniapp.connectPlayer(ytPlayer);
+                    },
+                    'onStateChange': (evt) => {
+                      if (evt.data === YT.PlayerState.PLAYING) {
+                        if (window.screenWakeLockManager) {
+                          window.screenWakeLockManager.isMediaActive = true;
+                          window.screenWakeLockManager.requestWakeLock();
+                        }
+                        if (!pollInterval) {
+                          pollInterval = setInterval(() => {
+                            try {
+                              const dur = ytPlayer.getDuration();
+                              const cur = ytPlayer.getCurrentTime();
+                              if (dur > 0) {
+                                const pct = Math.round((cur / dur) * 100);
+                                miniapp.recordProgress(pct, cur);
+                              }
+                            } catch(err) {}
+                          }, 1000);
+                        }
+                      } else if (evt.data === YT.PlayerState.PAUSED || evt.data === YT.PlayerState.ENDED) {
+                        if (pollInterval) {
+                          clearInterval(pollInterval);
+                          pollInterval = null;
+                        }
+                        if (evt.data === YT.PlayerState.ENDED) {
+                          miniapp.recordProgress(100, ytPlayer.getDuration());
+                        }
+                        if (window.screenWakeLockManager) {
+                          window.screenWakeLockManager.checkMediaStateAndRelease();
+                        }
                       }
                     }
                   }
-                }
-              });
+                });
 
-              ytPlayersMap[card.id] = ytPlayer;
+                ytPlayersMap[card.id] = ytPlayer;
+              } catch(ytErr) {}
             }
           }
         }
@@ -249,39 +256,18 @@ function initVideoWatchTracker() {
   } catch (err) {}
 }
 
-// Global Refresh Helper for Auth state changes
-window.refreshAllTrackerMiniapps = function() {
-  try {
-    Object.values(trackerMetersMap).forEach(miniapp => {
-      if (miniapp && miniapp.refreshUI) {
-        miniapp.refreshUI();
-      }
-    });
-  } catch(e) {}
-};
-
-// Sync all unsynced local watch history on login
-function syncAllVideoWatchHistory(email) {
-  if (!email) return;
-  try {
-    let history = {};
-    try { history = JSON.parse(localStorage.getItem("lexclinic_video_watch_history") || "{}"); } catch(e) {}
-
-    Object.values(history).forEach(item => {
-      fetch("/api/track-watch", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email, ...item })
-      }).catch(() => {});
-    });
-
-    window.refreshAllTrackerMiniapps();
-  } catch (err) {}
-}
-
 // Global scope exposures
 window.initVideoWatchTracker = initVideoWatchTracker;
-window.syncAllVideoWatchHistory = syncAllVideoWatchHistory;
-window.checkSeekTimeOnPageLoad = checkSeekTimeOnPageLoad;
 window.trackerMetersMap = trackerMetersMap;
 window.ytPlayersMap = ytPlayersMap;
+
+// Auto-run initialization on DOM readiness and load events
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', initVideoWatchTracker);
+} else {
+  initVideoWatchTracker();
+}
+window.addEventListener('load', () => {
+  initVideoWatchTracker();
+  setTimeout(initVideoWatchTracker, 1500);
+});
