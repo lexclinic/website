@@ -263,6 +263,8 @@ function updateAuthUI() {
     });
   }
 
+  if (window.updateAuthButtonVisibility) window.updateAuthButtonVisibility();
+
   // Refresh playback meter auth badges dynamically
   if (window.initVideoWatchTracker) {
     window.initVideoWatchTracker();

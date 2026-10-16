@@ -4,163 +4,13 @@
 */
 
 
-// ============================================================================
-function copyCardDirectLink(cardId, btnEl) {
-  const fullUrl = window.location.origin + window.location.pathname + '#' + cardId;
-  
-  if (navigator.clipboard && navigator.clipboard.writeText) {
-    navigator.clipboard.writeText(fullUrl).then(() => {
-      showCopyFeedback(btnEl);
-    }).catch(() => {
-      fallbackCopyText(fullUrl, btnEl);
-    });
-  } else {
-    fallbackCopyText(fullUrl, btnEl);
-  }
-}
 
-function fallbackCopyText(text, btnEl) {
-  const input = document.createElement('input');
-  input.value = text;
-  document.body.appendChild(input);
-  input.select();
-  document.execCommand('copy');
-  document.body.removeChild(input);
-  showCopyFeedback(btnEl);
-}
-
-function showCopyFeedback(btnEl) {
-  if (!btnEl) return;
-  const originalText = btnEl.innerHTML;
-  btnEl.innerHTML = '✅ Link Copied!';
-  btnEl.style.background = '#34d399';
-  btnEl.style.color = '#0a1128';
-  btnEl.style.borderColor = '#34d399';
-  
-  setTimeout(() => {
-    btnEl.innerHTML = originalText;
-    btnEl.style.background = 'rgba(56, 189, 248, 0.15)';
-    btnEl.style.color = 'var(--accent-cyan)';
-    btnEl.style.borderColor = 'var(--accent-cyan)';
-  }, 2200);
-}
-
-window.copyCardDirectLink = copyCardDirectLink;
-
-// Auto-bind Copy Link buttons on all cards with IDs
-window.addEventListener('DOMContentLoaded', () => {
-  const cards = document.querySelectorAll('.pillar-card[id], .card[id]');
-  cards.forEach(card => {
-    const cardId = card.id;
-    if (!cardId) return;
-
-    // Check if controls bar exists
-    let controlsBar = card.querySelector('div[style*="justify-content: space-between"]');
-    
-    // Inject Copy Link button if not already present
-    if (controlsBar && !card.querySelector('.btn-copy-link')) {
-      const copyBtn = document.createElement('button');
-      copyBtn.type = 'button';
-      copyBtn.className = 'btn btn-copy-link';
-      copyBtn.innerHTML = '🔗 Copy Direct Link';
-      copyBtn.style.cssText = 'padding: 0.25rem 0.65rem; font-size: 0.78rem; background: rgba(56, 189, 248, 0.15); color: var(--accent-cyan); border: 1px solid var(--accent-cyan); border-radius: 4px; cursor: pointer; font-weight: 700; transition: all 0.2s ease; margin-left: auto;';
-      
-      copyBtn.addEventListener('click', (e) => {
-        e.preventDefault();
-        e.stopPropagation();
-        copyCardDirectLink(cardId, copyBtn);
-      });
-      
-      controlsBar.appendChild(copyBtn);
-    }
-  });
-});
 
 
 // ============================================================================
-// INTERACTIVE "COPY DIRECT LINK" BUTTON & ANCHOR HELPER
-// ============================================================================
-function copyCardDirectLink(cardId, btnEl) {
-  const fullUrl = window.location.origin + window.location.pathname + '#' + cardId;
-  
-  if (navigator.clipboard && navigator.clipboard.writeText) {
-    navigator.clipboard.writeText(fullUrl).then(() => {
-      showCopyFeedback(btnEl);
-    }).catch(() => {
-      fallbackCopyText(fullUrl, btnEl);
-    });
-  } else {
-    fallbackCopyText(fullUrl, btnEl);
-  }
-}
-
-function fallbackCopyText(text, btnEl) {
-  const input = document.createElement('input');
-  input.value = text;
-  document.body.appendChild(input);
-  input.select();
-  document.execCommand('copy');
-  document.body.removeChild(input);
-  showCopyFeedback(btnEl);
-}
-
-function showCopyFeedback(btnEl) {
-  if (!btnEl) return;
-  const originalText = btnEl.innerHTML;
-  btnEl.innerHTML = '✅ Link Copied!';
-  btnEl.style.background = '#34d399';
-  btnEl.style.color = '#0a1128';
-  btnEl.style.borderColor = '#34d399';
-  
-  setTimeout(() => {
-    btnEl.innerHTML = originalText;
-    btnEl.style.background = 'rgba(56, 189, 248, 0.15)';
-    btnEl.style.color = 'var(--accent-cyan)';
-    btnEl.style.borderColor = 'var(--accent-cyan)';
-  }, 2200);
-}
-
-window.copyCardDirectLink = copyCardDirectLink;
-
-// Auto-bind Copy Link buttons on all cards with IDs
-document.addEventListener('DOMContentLoaded', () => {
-  const cards = document.querySelectorAll('.pillar-card[id], .card[id]');
-  cards.forEach(card => {
-    const cardId = card.id;
-    if (!cardId) return;
-
-    // Find speed control bar
-    const speedBtn = card.querySelector('.btn-speed');
-    let controlsBar = speedBtn ? speedBtn.closest('div[style*="display: flex"]') : null;
-    if (controlsBar && controlsBar.parentElement) {
-      controlsBar = controlsBar.parentElement;
-    }
-    
-    // Inject Copy Link button if not already present
-    if (controlsBar && !card.querySelector('.btn-copy-link')) {
-      const copyBtn = document.createElement('button');
-      copyBtn.type = 'button';
-      copyBtn.className = 'btn btn-copy-link';
-      copyBtn.innerHTML = '🔗 Copy Direct Link';
-      copyBtn.style.cssText = 'padding: 0.25rem 0.65rem; font-size: 0.78rem; background: rgba(56, 189, 248, 0.15); color: var(--accent-cyan); border: 1px solid var(--accent-cyan); border-radius: 4px; cursor: pointer; font-weight: 700; transition: all 0.2s ease; margin-left: 0.5rem;';
-      
-      copyBtn.addEventListener('click', (e) => {
-        e.preventDefault();
-        e.stopPropagation();
-        copyCardDirectLink(cardId, copyBtn);
-      });
-      
-      controlsBar.appendChild(copyBtn);
-    }
-  });
-});
-
-
-// ============================================================================
-// LOGGED-IN MEDIA COMMENTS & APPROVAL STATE MANAGER
+// LOGGED-IN MEDIA COMMENTS & 2-STEP APPROVAL STATE MANAGER
 // ============================================================================
 
-// Check Login Helper
 function checkLoggedUserOrPrompt(evt) {
   const userEmail = window.getSanitizedEmail ? window.getSanitizedEmail() : "";
   if (!userEmail) {
@@ -215,13 +65,12 @@ function saveMediaComment(cardId) {
   const textarea = document.getElementById('media-comment-textarea');
   if (!textarea) return;
 
-  const noteText = textarea.value.strip ? textarea.value.strip() : textarea.value.trim();
+  const noteText = textarea.value.trim ? textarea.value.trim() : textarea.value;
   const allComments = JSON.parse(localStorage.getItem('lexclinic_media_comments') || '{}');
 
   allComments[cardId] = noteText;
   localStorage.setItem('lexclinic_media_comments', JSON.stringify(allComments));
 
-  // Update button visual state
   const btn = document.querySelector(`.btn-comment-${cardId}`);
   if (btn) {
     if (noteText) {
@@ -243,10 +92,11 @@ function saveMediaComment(cardId) {
 window.openMediaCommentModal = openMediaCommentModal;
 window.saveMediaComment = saveMediaComment;
 
+// ----------------------------------------------------------------------------
+// 2. TWO-STEP APPROVAL MODAL (STEP 1: THOROUGH/CURSORY -> STEP 2: RATING)
+// ----------------------------------------------------------------------------
+let pendingApprovalDepth = {};
 
-// ----------------------------------------------------------------------------
-// 2. APPROVAL STATE (FAIL, FLAG, PASS, STAR) & LOCAL STORAGE SYNC
-// ----------------------------------------------------------------------------
 function openMediaApprovalModal(cardId, evt) {
   const userEmail = checkLoggedUserOrPrompt(evt);
   if (!userEmail) return;
@@ -259,17 +109,60 @@ function openMediaApprovalModal(cardId, evt) {
     document.body.appendChild(modal);
   }
 
-  const allApprovals = JSON.parse(localStorage.getItem('lexclinic_media_approvals') || '{}');
-  const currentApproval = allApprovals[cardId] || 'none';
+  // Render Step 1: Review Depth Selection
+  renderApprovalStep1(modal, cardId, userEmail);
+  modal.style.display = 'flex';
+}
 
+function renderApprovalStep1(modal, cardId, userEmail) {
   modal.innerHTML = `
-    <div style="background: #0f172a; border: 2px solid var(--accent-cyan); border-radius: 12px; width: 100%; max-width: 480px; padding: 1.5rem; box-shadow: 0 10px 30px rgba(0,0,0,0.8); color: #f8fafc;">
+    <div style="background: #0f172a; border: 2px solid var(--accent-cyan); border-radius: 12px; width: 100%; max-width: 500px; padding: 1.5rem; box-shadow: 0 10px 30px rgba(0,0,0,0.8); color: #f8fafc;">
       <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; border-bottom: 1px solid #334155; padding-bottom: 0.5rem;">
-        <h3 style="color: var(--accent-cyan); font-size: 1.2rem; margin: 0;">👍 Clip Approval Rating</h3>
+        <h3 style="color: var(--accent-cyan); font-size: 1.2rem; margin: 0;">👍 Step 1: Human Review Scope</h3>
         <button onclick="document.getElementById('media-approval-modal').style.display='none'" style="background: none; border: none; color: #94a3b8; font-size: 1.5rem; cursor: pointer; padding: 0 0.5rem;">✕</button>
       </div>
       <p style="font-size: 0.85rem; color: #94a3b8; margin-bottom: 1.25rem;">
-        Logged in as: <strong style="color: var(--accent-cyan);">${userEmail}</strong> | Select evaluation rating:
+        Logged in as: <strong style="color: var(--accent-cyan);">${userEmail}</strong> | Was this review thorough or cursory?
+      </p>
+      
+      <div style="display: flex; flex-direction: column; gap: 0.75rem; margin-bottom: 1.25rem;">
+        <button onclick="selectApprovalDepth('${cardId}', 'thorough')" style="padding: 0.85rem; background: rgba(56, 189, 248, 0.15); border: 2px solid var(--accent-cyan); color: var(--accent-cyan); border-radius: 8px; cursor: pointer; font-weight: 800; font-size: 1rem; text-align: left; display: flex; justify-content: space-between; align-items: center;">
+          <span>🔍 Thorough Review (Full Human Audit)</span>
+          <span>➔</span>
+        </button>
+        <button onclick="selectApprovalDepth('${cardId}', 'cursory')" style="padding: 0.85rem; background: rgba(251, 191, 36, 0.15); border: 2px solid #fbbf24; color: #fbbf24; border-radius: 8px; cursor: pointer; font-weight: 800; font-size: 1rem; text-align: left; display: flex; justify-content: space-between; align-items: center;">
+          <span>⚡ Cursory Review (Partial Inspection)</span>
+          <span>➔</span>
+        </button>
+      </div>
+
+      <div style="display: flex; justify-content: flex-end;">
+        <button onclick="document.getElementById('media-approval-modal').style.display='none'" class="btn" style="background: #334155; color: #f8fafc; border: 1px solid #475569; padding: 0.4rem 1rem; border-radius: 6px; cursor: pointer;">Cancel</button>
+      </div>
+    </div>
+  `;
+}
+
+function selectApprovalDepth(cardId, depth) {
+  pendingApprovalDepth[cardId] = depth;
+  const modal = document.getElementById('media-approval-modal');
+  const userEmail = window.getSanitizedEmail ? window.getSanitizedEmail() : "";
+  renderApprovalStep2(modal, cardId, userEmail, depth);
+}
+
+function renderApprovalStep2(modal, cardId, userEmail, depth) {
+  const depthLabel = depth === 'thorough' ? '🔍 Thorough Review' : '⚡ Cursory Review';
+  modal.innerHTML = `
+    <div style="background: #0f172a; border: 2px solid var(--accent-gold); border-radius: 12px; width: 100%; max-width: 500px; padding: 1.5rem; box-shadow: 0 10px 30px rgba(0,0,0,0.8); color: #f8fafc;">
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; border-bottom: 1px solid #334155; padding-bottom: 0.5rem;">
+        <h3 style="color: var(--accent-gold); font-size: 1.2rem; margin: 0;">👍 Step 2: Assign Evaluation Rating</h3>
+        <button onclick="document.getElementById('media-approval-modal').style.display='none'" style="background: none; border: none; color: #94a3b8; font-size: 1.5rem; cursor: pointer; padding: 0 0.5rem;">✕</button>
+      </div>
+      <p style="font-size: 0.85rem; color: #94a3b8; margin-bottom: 0.5rem;">
+        Review Scope: <strong style="color: #fbbf24;">${depthLabel}</strong>
+      </p>
+      <p style="font-size: 0.85rem; color: #94a3b8; margin-bottom: 1.25rem;">
+        Select approval rating for this clip:
       </p>
       
       <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; margin-bottom: 1.25rem;">
@@ -279,46 +172,58 @@ function openMediaApprovalModal(cardId, evt) {
         <button onclick="setMediaApproval('${cardId}', 'fail')" style="padding: 0.75rem; background: rgba(248, 113, 113, 0.15); border: 2px solid #f87171; color: #f87171; border-radius: 8px; cursor: pointer; font-weight: 800; font-size: 0.95rem; text-align: center;">❌ Fail</button>
       </div>
 
-      <div style="display: flex; justify-content: flex-end;">
-        <button onclick="document.getElementById('media-approval-modal').style.display='none'" class="btn" style="background: #334155; color: #f8fafc; border: 1px solid #475569; padding: 0.4rem 1rem; border-radius: 6px; cursor: pointer;">Close</button>
+      <div style="display: flex; justify-content: space-between;">
+        <button onclick="renderApprovalStep1(document.getElementById('media-approval-modal'), '${cardId}', '${userEmail}')" class="btn" style="background: #334155; color: #f8fafc; border: 1px solid #475569; padding: 0.4rem 1rem; border-radius: 6px; cursor: pointer;">← Back to Step 1</button>
+        <button onclick="document.getElementById('media-approval-modal').style.display='none'" class="btn" style="background: #334155; color: #f8fafc; border: 1px solid #475569; padding: 0.4rem 1rem; border-radius: 6px; cursor: pointer;">Cancel</button>
       </div>
     </div>
   `;
-  modal.style.display = 'flex';
 }
 
 function setMediaApproval(cardId, ratingState) {
+  const depth = pendingApprovalDepth[cardId] || 'thorough';
+  const userEmail = window.getSanitizedEmail ? window.getSanitizedEmail() : "";
+
+  const record = {
+    rating: ratingState,
+    depth: depth,
+    reviewer: userEmail,
+    timestamp: new Date().toISOString()
+  };
+
   const allApprovals = JSON.parse(localStorage.getItem('lexclinic_media_approvals') || '{}');
-  allApprovals[cardId] = ratingState;
+  allApprovals[cardId] = record;
   localStorage.setItem('lexclinic_media_approvals', JSON.stringify(allApprovals));
 
-  // Update button visual state
-  updateApprovalButtonUI(cardId, ratingState);
-
+  updateApprovalButtonUI(cardId, record);
   document.getElementById('media-approval-modal').style.display = 'none';
 }
 
-function updateApprovalButtonUI(cardId, ratingState) {
+function updateApprovalButtonUI(cardId, record) {
   const btn = document.querySelector(`.btn-approval-${cardId}`);
   if (!btn) return;
 
+  const ratingState = typeof record === 'object' ? record.rating : record;
+  const depth = (typeof record === 'object' && record.depth) ? record.depth : 'thorough';
+  const depthTag = depth === 'thorough' ? 'Full' : 'Partial';
+
   if (ratingState === 'pass') {
-    btn.innerHTML = '✅ Passed';
+    btn.innerHTML = `✅ Passed (${depthTag})`;
     btn.style.background = 'rgba(52, 211, 153, 0.2)';
     btn.style.borderColor = '#34d399';
     btn.style.color = '#34d399';
   } else if (ratingState === 'star') {
-    btn.innerHTML = '⭐ Starred';
+    btn.innerHTML = `⭐ Starred (${depthTag})`;
     btn.style.background = 'rgba(251, 191, 36, 0.2)';
     btn.style.borderColor = '#fbbf24';
     btn.style.color = '#fbbf24';
   } else if (ratingState === 'flag') {
-    btn.innerHTML = '🚩 Flagged';
+    btn.innerHTML = `🚩 Flagged (${depthTag})`;
     btn.style.background = 'rgba(249, 115, 22, 0.2)';
     btn.style.borderColor = '#f97316';
     btn.style.color = '#f97316';
   } else if (ratingState === 'fail') {
-    btn.innerHTML = '❌ Failed';
+    btn.innerHTML = `❌ Failed (${depthTag})`;
     btn.style.background = 'rgba(248, 113, 113, 0.2)';
     btn.style.borderColor = '#f87171';
     btn.style.color = '#f87171';
@@ -331,10 +236,30 @@ function updateApprovalButtonUI(cardId, ratingState) {
 }
 
 window.openMediaApprovalModal = openMediaApprovalModal;
+window.selectApprovalDepth = selectApprovalDepth;
 window.setMediaApproval = setMediaApproval;
 
-// Auto-restore comments and approval button states on load
+// ----------------------------------------------------------------------------
+// 3. DYNAMIC AUTH-DEPENDENT BUTTON VISIBILITY (HIDE UNTIL LOGGED IN)
+// ----------------------------------------------------------------------------
+function updateAuthButtonVisibility() {
+  const userEmail = window.getSanitizedEmail ? window.getSanitizedEmail() : "";
+  const authButtons = document.querySelectorAll('[class*="btn-comment-"], [class*="btn-approval-"]');
+  
+  authButtons.forEach(btn => {
+    if (userEmail) {
+      btn.style.display = 'inline-block';
+    } else {
+      btn.style.display = 'none';
+    }
+  });
+}
+
+window.updateAuthButtonVisibility = updateAuthButtonVisibility;
+
 document.addEventListener('DOMContentLoaded', () => {
+  updateAuthButtonVisibility();
+
   const allComments = JSON.parse(localStorage.getItem('lexclinic_media_comments') || '{}');
   const allApprovals = JSON.parse(localStorage.getItem('lexclinic_media_approvals') || '{}');
 
@@ -354,3 +279,6 @@ document.addEventListener('DOMContentLoaded', () => {
     updateApprovalButtonUI(cardId, allApprovals[cardId]);
   });
 });
+
+// Re-check visibility when auth modal closes or state changes
+window.addEventListener('storage', updateAuthButtonVisibility);
