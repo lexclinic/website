@@ -3,315 +3,7 @@
   Build Version: 20260829_2700
 */
 
-// ============================================================================
-// GLOBAL SCREEN WAKE LOCK MANAGER (Prevents Smartphone Screen Sleep During Media)
-// ============================================================================
-class ScreenWakeLockManager {
-  constructor() {
-    this.wakeLock = null;
-    this.isMediaActive = false;
-    this.initListeners();
-  }
 
-  async requestWakeLock() {
-    try {
-      if ('wakeLock' in navigator && !this.wakeLock) {
-        this.wakeLock = await navigator.wakeLock.request('screen');
-        console.log('🔒 Screen Wake Lock ACTIVE — Smartphone screen kept awake during playback');
-        
-        this.wakeLock.addEventListener('release', () => {
-          this.wakeLock = null;
-          console.log('🔓 Screen Wake Lock RELEASED');
-        });
-      }
-    } catch (err) {
-      console.log('Screen Wake Lock request status:', err.message);
-    }
-  }
-
-  async releaseWakeLock() {
-    if (this.wakeLock) {
-      try {
-        await this.wakeLock.release();
-      } catch (err) {}
-      this.wakeLock = null;
-    }
-  }
-
-  initListeners() {
-    // 1. Listen for Fullscreen Changes (iOS Safari / Android Chrome)
-    const onFullscreenChange = () => {
-      const isFullscreen = !!(document.fullscreenElement || document.webkitFullscreenElement || document.mozFullScreenElement || document.msFullscreenElement);
-      if (isFullscreen) {
-        console.log('📱 Fullscreen active — Requesting Screen Wake Lock');
-        this.requestWakeLock();
-      } else if (!this.isMediaActive) {
-        this.releaseWakeLock();
-      }
-    };
-
-    document.addEventListener('fullscreenchange', onFullscreenChange);
-    document.addEventListener('webkitfullscreenchange', onFullscreenChange);
-    document.addEventListener('mozfullscreenchange', onFullscreenChange);
-    document.addEventListener('MSFullscreenChange', onFullscreenChange);
-
-    // 2. Listen for Native HTML5 Audio/Video Playback
-    document.addEventListener('play', () => {
-      this.isMediaActive = true;
-      this.requestWakeLock();
-    }, true);
-
-    document.addEventListener('pause', () => {
-      this.checkMediaStateAndRelease();
-    }, true);
-
-    document.addEventListener('ended', () => {
-      this.checkMediaStateAndRelease();
-    }, true);
-
-    // 3. Re-acquire Wake Lock on Tab Visibility Change
-    document.addEventListener('visibilitychange', () => {
-      if (document.visibilityState === 'visible' && (this.isMediaActive || document.fullscreenElement || document.webkitFullscreenElement)) {
-        this.requestWakeLock();
-      }
-    });
-  }
-
-  checkMediaStateAndRelease() {
-    const isFullscreen = !!(document.fullscreenElement || document.webkitFullscreenElement || document.mozFullScreenElement || document.msFullscreenElement);
-    const playingMedia = Array.from(document.querySelectorAll('audio, video')).some(el => !el.paused && !el.ended);
-    
-    this.isMediaActive = playingMedia;
-    if (!this.isMediaActive && !isFullscreen) {
-      this.releaseWakeLock();
-    }
-  }
-}
-
-window.screenWakeLockManager = new ScreenWakeLockManager();
-
-let ytPlayersMap = {};
-let trackerMetersMap = {};
-let isYouTubeApiReady = false;
-
-// Dynamically load YouTube IFrame API
-(function loadYouTubeIframeApi() {
-  if (window.YT && window.YT.Player) {
-    isYouTubeApiReady = true;
-    return;
-  }
-  const tag = document.createElement('script');
-  tag.src = "https://www.youtube.com/iframe_api";
-  const firstScriptTag = document.getElementsByTagName('script')[0];
-  if (firstScriptTag && firstScriptTag.parentNode) {
-    firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
-  } else {
-    document.head.appendChild(tag);
-  }
-})();
-
-// YouTube API ready callback
-window.onYouTubeIframeAPIReady = function() {
-  isYouTubeApiReady = true;
-  if (window.initVideoWatchTracker) {
-    window.initVideoWatchTracker();
-  }
-};
-
-// Global Speed Controller for YouTube and HTML5 Media
-window.setVideoSpeed = function(elementId, speed, btn) {
-  try {
-    if (ytPlayersMap[elementId]) {
-      ytPlayersMap[elementId].setPlaybackRate(speed);
-    } else {
-      const el = document.getElementById(elementId) || document.querySelector(`#${elementId} video, #${elementId} audio`);
-      if (el) el.playbackRate = speed;
-    }
-
-    if (btn && btn.parentNode) {
-      const btns = btn.parentNode.querySelectorAll('.btn-speed');
-      btns.forEach(b => {
-        b.style.background = 'rgba(30, 41, 59, 0.8)';
-        b.style.color = '#e2e8f0';
-        b.style.borderColor = '#334155';
-        b.style.fontWeight = '600';
-      });
-      btn.style.background = 'var(--accent-cyan)';
-      btn.style.color = '#0a1128';
-      btn.style.borderColor = 'var(--accent-cyan)';
-      btn.style.fontWeight = '800';
-    }
-  } catch(e) {}
-};
-
-// Initialize MediaTrackerMeter instances and connect late-stage players
-function initVideoWatchTracker() {
-  try {
-    const cards = document.querySelectorAll('.card, .pillar-card, .event-module-card, div[style*="background"]');
-    if (!cards || cards.length === 0) return;
-
-    cards.forEach((card, index) => {
-      try {
-        const hasMedia = card.querySelector('iframe, video, audio');
-        const hasMeter = card.querySelector('.media-playback-meter-container');
-        if (!hasMedia || !hasMeter) return;
-
-        if (!card.id) {
-          card.id = "card_media_" + index;
-        }
-
-        // 1. EARLY STAGE: Instantiate MediaTrackerMeter miniapp on card
-        if (!trackerMetersMap[card.id]) {
-          trackerMetersMap[card.id] = new MediaTrackerMeter(card);
-        } else {
-          trackerMetersMap[card.id].refreshUI();
-        }
-
-        const miniapp = trackerMetersMap[card.id];
-
-        // 2. CONNECT HTML5 NATIVE AUDIO/VIDEO PLAYER
-        const html5Media = card.querySelector('video, audio');
-        if (html5Media) {
-          miniapp.connectPlayer(html5Media);
-
-          if (!html5Media.dataset.trackerBound) {
-            html5Media.dataset.trackerBound = "true";
-            html5Media.addEventListener('timeupdate', () => {
-              if (html5Media.duration > 0) {
-                const pct = Math.round((html5Media.currentTime / html5Media.duration) * 100);
-                if (pct >= 1) {
-                  miniapp.recordProgress(pct, html5Media.currentTime);
-                }
-              }
-            });
-            html5Media.addEventListener('ended', () => miniapp.recordProgress(100, html5Media.duration));
-          }
-        }
-
-        // 3. LATE-STAGE: CONNECT YOUTUBE IFRAME PLAYER API
-        const ytIframe = card.querySelector('iframe[src*="youtube.com"]');
-        if (ytIframe) {
-          if (!ytIframe.id) {
-            ytIframe.id = "yt_frame_" + card.id;
-          }
-
-          if (isYouTubeApiReady && window.YT && window.YT.Player) {
-            if (!ytPlayersMap[card.id]) {
-              let pollInterval = null;
-
-              const ytPlayer = new YT.Player(ytIframe.id, {
-                events: {
-                  'onReady': () => {
-                    // Late-Stage Bridge: Connect player to miniapp upon ready
-                    miniapp.connectPlayer(ytPlayer);
-                  },
-                  'onStateChange': (evt) => {
-                    if (evt.data === YT.PlayerState.PLAYING) {
-                      if (window.screenWakeLockManager) {
-                        window.screenWakeLockManager.isMediaActive = true;
-                        window.screenWakeLockManager.requestWakeLock();
-                      }
-                      if (!pollInterval) {
-                        pollInterval = setInterval(() => {
-                          try {
-                            const dur = ytPlayer.getDuration();
-                            const cur = ytPlayer.getCurrentTime();
-                            if (dur > 0) {
-                              const pct = Math.round((cur / dur) * 100);
-                              miniapp.recordProgress(pct, cur);
-                            }
-                          } catch(err) {}
-                        }, 1000);
-                      }
-                    } else if (evt.data === YT.PlayerState.PAUSED || evt.data === YT.PlayerState.ENDED) {
-                      if (pollInterval) {
-                        clearInterval(pollInterval);
-                        pollInterval = null;
-                      }
-                      if (evt.data === YT.PlayerState.ENDED) {
-                        miniapp.recordProgress(100, ytPlayer.getDuration());
-                      }
-                      if (window.screenWakeLockManager) {
-                        window.screenWakeLockManager.checkMediaStateAndRelease();
-                      }
-                    }
-                  }
-                }
-              });
-
-              ytPlayersMap[card.id] = ytPlayer;
-            }
-          }
-        }
-
-      } catch (innerErr) {}
-    });
-  } catch (err) {}
-}
-
-// Global Refresh Helper for Auth state changes
-window.refreshAllTrackerMiniapps = function() {
-  try {
-    Object.values(trackerMetersMap).forEach(miniapp => {
-      if (miniapp && miniapp.refreshUI) {
-        miniapp.refreshUI();
-      }
-    });
-  } catch(e) {}
-};
-
-// Sync all unsynced local watch history on login
-function syncAllVideoWatchHistory(email) {
-  if (!email) return;
-  try {
-    let history = {};
-    try { history = JSON.parse(localStorage.getItem("lexclinic_video_watch_history") || "{}"); } catch(e) {}
-
-    Object.values(history).forEach(item => {
-      fetch("/api/track-watch", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email, ...item })
-      }).catch(() => {});
-    });
-
-    window.refreshAllTrackerMiniapps();
-  } catch (err) {}
-}
-
-// Global scope exposures
-window.initVideoWatchTracker = initVideoWatchTracker;
-window.syncAllVideoWatchHistory = syncAllVideoWatchHistory;
-window.checkSeekTimeOnPageLoad = checkSeekTimeOnPageLoad;
-window.trackerMetersMap = trackerMetersMap;
-window.ytPlayersMap = ytPlayersMap;
-
-
-// ============================================================================
-// SEMANTIC ANCHOR DEEP-LINK SMOOTH SCROLL & GOLD HIGHLIGHT
-// ============================================================================
-window.addEventListener('DOMContentLoaded', () => {
-  if (window.location.hash) {
-    const targetId = window.location.hash.substring(1);
-    const targetEl = document.getElementById(targetId);
-    if (targetEl) {
-      setTimeout(() => {
-        targetEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
-        targetEl.style.transition = 'box-shadow 0.6s ease, border-color 0.6s ease';
-        targetEl.style.borderColor = '#fbbf24';
-        targetEl.style.boxShadow = '0 0 30px rgba(251, 191, 36, 0.85)';
-        
-        setTimeout(() => {
-          targetEl.style.boxShadow = '0 4px 16px rgba(0,0,0,0.4)';
-        }, 3500);
-      }, 400);
-    }
-  }
-});
-
-
-// ============================================================================
-// INTERACTIVE "COPY DIRECT LINK" BUTTON & ANCHOR HELPER
 // ============================================================================
 function copyCardDirectLink(cardId, btnEl) {
   const fullUrl = window.location.origin + window.location.pathname + '#' + cardId;
@@ -372,6 +64,85 @@ window.addEventListener('DOMContentLoaded', () => {
       copyBtn.className = 'btn btn-copy-link';
       copyBtn.innerHTML = '🔗 Copy Direct Link';
       copyBtn.style.cssText = 'padding: 0.25rem 0.65rem; font-size: 0.78rem; background: rgba(56, 189, 248, 0.15); color: var(--accent-cyan); border: 1px solid var(--accent-cyan); border-radius: 4px; cursor: pointer; font-weight: 700; transition: all 0.2s ease; margin-left: auto;';
+      
+      copyBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        copyCardDirectLink(cardId, copyBtn);
+      });
+      
+      controlsBar.appendChild(copyBtn);
+    }
+  });
+});
+
+
+// ============================================================================
+// INTERACTIVE "COPY DIRECT LINK" BUTTON & ANCHOR HELPER
+// ============================================================================
+function copyCardDirectLink(cardId, btnEl) {
+  const fullUrl = window.location.origin + window.location.pathname + '#' + cardId;
+  
+  if (navigator.clipboard && navigator.clipboard.writeText) {
+    navigator.clipboard.writeText(fullUrl).then(() => {
+      showCopyFeedback(btnEl);
+    }).catch(() => {
+      fallbackCopyText(fullUrl, btnEl);
+    });
+  } else {
+    fallbackCopyText(fullUrl, btnEl);
+  }
+}
+
+function fallbackCopyText(text, btnEl) {
+  const input = document.createElement('input');
+  input.value = text;
+  document.body.appendChild(input);
+  input.select();
+  document.execCommand('copy');
+  document.body.removeChild(input);
+  showCopyFeedback(btnEl);
+}
+
+function showCopyFeedback(btnEl) {
+  if (!btnEl) return;
+  const originalText = btnEl.innerHTML;
+  btnEl.innerHTML = '✅ Link Copied!';
+  btnEl.style.background = '#34d399';
+  btnEl.style.color = '#0a1128';
+  btnEl.style.borderColor = '#34d399';
+  
+  setTimeout(() => {
+    btnEl.innerHTML = originalText;
+    btnEl.style.background = 'rgba(56, 189, 248, 0.15)';
+    btnEl.style.color = 'var(--accent-cyan)';
+    btnEl.style.borderColor = 'var(--accent-cyan)';
+  }, 2200);
+}
+
+window.copyCardDirectLink = copyCardDirectLink;
+
+// Auto-bind Copy Link buttons on all cards with IDs
+document.addEventListener('DOMContentLoaded', () => {
+  const cards = document.querySelectorAll('.pillar-card[id], .card[id]');
+  cards.forEach(card => {
+    const cardId = card.id;
+    if (!cardId) return;
+
+    // Find speed control bar
+    const speedBtn = card.querySelector('.btn-speed');
+    let controlsBar = speedBtn ? speedBtn.closest('div[style*="display: flex"]') : null;
+    if (controlsBar && controlsBar.parentElement) {
+      controlsBar = controlsBar.parentElement;
+    }
+    
+    // Inject Copy Link button if not already present
+    if (controlsBar && !card.querySelector('.btn-copy-link')) {
+      const copyBtn = document.createElement('button');
+      copyBtn.type = 'button';
+      copyBtn.className = 'btn btn-copy-link';
+      copyBtn.innerHTML = '🔗 Copy Direct Link';
+      copyBtn.style.cssText = 'padding: 0.25rem 0.65rem; font-size: 0.78rem; background: rgba(56, 189, 248, 0.15); color: var(--accent-cyan); border: 1px solid var(--accent-cyan); border-radius: 4px; cursor: pointer; font-weight: 700; transition: all 0.2s ease; margin-left: 0.5rem;';
       
       copyBtn.addEventListener('click', (e) => {
         e.preventDefault();
