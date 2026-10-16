@@ -3,285 +3,282 @@
   Build Version: 20260829_2700
 */
 
+
+
+
+
 // ============================================================================
-// GLOBAL SCREEN WAKE LOCK MANAGER (Prevents Smartphone Screen Sleep During Media)
+// LOGGED-IN MEDIA COMMENTS & 2-STEP APPROVAL STATE MANAGER
 // ============================================================================
-class ScreenWakeLockManager {
-  constructor() {
-    this.wakeLock = null;
-    this.isMediaActive = false;
-    this.initListeners();
-  }
 
-  async requestWakeLock() {
-    try {
-      if ('wakeLock' in navigator && !this.wakeLock) {
-        this.wakeLock = await navigator.wakeLock.request('screen');
-        console.log('🔒 Screen Wake Lock ACTIVE — Smartphone screen kept awake during playback');
-        
-        this.wakeLock.addEventListener('release', () => {
-          this.wakeLock = null;
-          console.log('🔓 Screen Wake Lock RELEASED');
-        });
-      }
-    } catch (err) {
-      console.log('Screen Wake Lock request status:', err.message);
-    }
-  }
-
-  async releaseWakeLock() {
-    if (this.wakeLock) {
-      try {
-        await this.wakeLock.release();
-      } catch (err) {}
-      this.wakeLock = null;
-    }
-  }
-
-  initListeners() {
-    // 1. Listen for Fullscreen Changes (iOS Safari / Android Chrome)
-    const onFullscreenChange = () => {
-      const isFullscreen = !!(document.fullscreenElement || document.webkitFullscreenElement || document.mozFullScreenElement || document.msFullscreenElement);
-      if (isFullscreen) {
-        console.log('📱 Fullscreen active — Requesting Screen Wake Lock');
-        this.requestWakeLock();
-      } else if (!this.isMediaActive) {
-        this.releaseWakeLock();
-      }
-    };
-
-    document.addEventListener('fullscreenchange', onFullscreenChange);
-    document.addEventListener('webkitfullscreenchange', onFullscreenChange);
-    document.addEventListener('mozfullscreenchange', onFullscreenChange);
-    document.addEventListener('MSFullscreenChange', onFullscreenChange);
-
-    // 2. Listen for Native HTML5 Audio/Video Playback
-    document.addEventListener('play', () => {
-      this.isMediaActive = true;
-      this.requestWakeLock();
-    }, true);
-
-    document.addEventListener('pause', () => {
-      this.checkMediaStateAndRelease();
-    }, true);
-
-    document.addEventListener('ended', () => {
-      this.checkMediaStateAndRelease();
-    }, true);
-
-    // 3. Re-acquire Wake Lock on Tab Visibility Change
-    document.addEventListener('visibilitychange', () => {
-      if (document.visibilityState === 'visible' && (this.isMediaActive || document.fullscreenElement || document.webkitFullscreenElement)) {
-        this.requestWakeLock();
-      }
-    });
-  }
-
-  checkMediaStateAndRelease() {
-    const isFullscreen = !!(document.fullscreenElement || document.webkitFullscreenElement || document.mozFullScreenElement || document.msFullscreenElement);
-    const playingMedia = Array.from(document.querySelectorAll('audio, video')).some(el => !el.paused && !el.ended);
-    
-    this.isMediaActive = playingMedia;
-    if (!this.isMediaActive && !isFullscreen) {
-      this.releaseWakeLock();
-    }
-  }
-}
-
-window.screenWakeLockManager = new ScreenWakeLockManager();
-
-let ytPlayersMap = {};
-let trackerMetersMap = {};
-let isYouTubeApiReady = false;
-
-// Dynamically load YouTube IFrame API
-(function loadYouTubeIframeApi() {
-  if (window.YT && window.YT.Player) {
-    isYouTubeApiReady = true;
-    return;
-  }
-  const tag = document.createElement('script');
-  tag.src = "https://www.youtube.com/iframe_api";
-  const firstScriptTag = document.getElementsByTagName('script')[0];
-  if (firstScriptTag && firstScriptTag.parentNode) {
-    firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
-  } else {
-    document.head.appendChild(tag);
-  }
-})();
-
-// YouTube API ready callback
-window.onYouTubeIframeAPIReady = function() {
-  isYouTubeApiReady = true;
-  if (window.initVideoWatchTracker) {
-    window.initVideoWatchTracker();
-  }
-};
-
-// Global Speed Controller for YouTube and HTML5 Media
-window.setVideoSpeed = function(elementId, speed, btn) {
-  try {
-    if (ytPlayersMap[elementId]) {
-      ytPlayersMap[elementId].setPlaybackRate(speed);
+function checkLoggedUserOrPrompt(evt) {
+  const userEmail = window.getSanitizedEmail ? window.getSanitizedEmail() : "";
+  if (!userEmail) {
+    if (window.openNavLoginModal) {
+      window.openNavLoginModal(evt || window.event);
     } else {
-      const el = document.getElementById(elementId) || document.querySelector(`#${elementId} video, #${elementId} audio`);
-      if (el) el.playbackRate = speed;
+      alert("🔒 Please log in to make comments and assign approval ratings.");
     }
+    return null;
+  }
+  return userEmail;
+}
 
-    if (btn && btn.parentNode) {
-      const btns = btn.parentNode.querySelectorAll('.btn-speed');
-      btns.forEach(b => {
-        b.style.background = 'rgba(30, 41, 59, 0.8)';
-        b.style.color = '#e2e8f0';
-        b.style.borderColor = '#334155';
-        b.style.fontWeight = '600';
-      });
-      btn.style.background = 'var(--accent-cyan)';
-      btn.style.color = '#0a1128';
+// ----------------------------------------------------------------------------
+// 1. COMMENTS MODAL & LOCAL STORAGE SYNC
+// ----------------------------------------------------------------------------
+function openMediaCommentModal(cardId, evt) {
+  const userEmail = checkLoggedUserOrPrompt(evt);
+  if (!userEmail) return;
+
+  let modal = document.getElementById('media-comment-modal');
+  if (!modal) {
+    modal = document.createElement('div');
+    modal.id = 'media-comment-modal';
+    modal.style.cssText = 'position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: rgba(10, 17, 40, 0.85); backdrop-filter: blur(8px); display: flex; align-items: center; justify-content: center; z-index: 99999; padding: 1rem;';
+    document.body.appendChild(modal);
+  }
+
+  const allComments = JSON.parse(localStorage.getItem('lexclinic_media_comments') || '{}');
+  const cardComments = allComments[cardId] || '';
+
+  modal.innerHTML = `
+    <div style="background: #0f172a; border: 2px solid var(--accent-gold); border-radius: 12px; width: 100%; max-width: 550px; padding: 1.5rem; box-shadow: 0 10px 30px rgba(0,0,0,0.8); color: #f8fafc;">
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; border-bottom: 1px solid #334155; padding-bottom: 0.5rem;">
+        <h3 style="color: var(--accent-gold); font-size: 1.2rem; margin: 0;">💬 Clip Notes &amp; Comments</h3>
+        <button onclick="document.getElementById('media-comment-modal').style.display='none'" style="background: none; border: none; color: #94a3b8; font-size: 1.5rem; cursor: pointer; padding: 0 0.5rem;">✕</button>
+      </div>
+      <p style="font-size: 0.85rem; color: #94a3b8; margin-bottom: 0.75rem;">
+        Logged in as: <strong style="color: var(--accent-cyan);">${userEmail}</strong> | Clip ID: <code style="color: #fbbf24;">${cardId}</code>
+      </p>
+      <textarea id="media-comment-textarea" placeholder="Write private notes, timestamps, or feedback for this clip..." style="width: 100%; height: 140px; background: #1e293b; border: 1px solid #475569; border-radius: 8px; color: #f8fafc; padding: 0.75rem; font-family: inherit; font-size: 0.95rem; resize: vertical; margin-bottom: 1rem;">${cardComments}</textarea>
+      <div style="display: flex; justify-content: flex-end; gap: 0.75rem;">
+        <button onclick="document.getElementById('media-comment-modal').style.display='none'" class="btn" style="background: #334155; color: #f8fafc; border: 1px solid #475569; padding: 0.4rem 1rem; border-radius: 6px; cursor: pointer;">Cancel</button>
+        <button onclick="saveMediaComment('${cardId}')" class="btn btn-primary" style="background: var(--accent-gold); color: #0a1128; font-weight: 800; border: none; padding: 0.4rem 1.25rem; border-radius: 6px; cursor: pointer;">Save Note 💾</button>
+      </div>
+    </div>
+  `;
+  modal.style.display = 'flex';
+}
+
+function saveMediaComment(cardId) {
+  const textarea = document.getElementById('media-comment-textarea');
+  if (!textarea) return;
+
+  const noteText = textarea.value.trim ? textarea.value.trim() : textarea.value;
+  const allComments = JSON.parse(localStorage.getItem('lexclinic_media_comments') || '{}');
+
+  allComments[cardId] = noteText;
+  localStorage.setItem('lexclinic_media_comments', JSON.stringify(allComments));
+
+  const btn = document.querySelector(`.btn-comment-${cardId}`);
+  if (btn) {
+    if (noteText) {
+      btn.innerHTML = '💬 Notes (1)';
+      btn.style.background = 'rgba(251, 191, 36, 0.25)';
+      btn.style.borderColor = '#fbbf24';
+      btn.style.color = '#fbbf24';
+    } else {
+      btn.innerHTML = '💬 Notes';
+      btn.style.background = 'rgba(56, 189, 248, 0.15)';
       btn.style.borderColor = 'var(--accent-cyan)';
-      btn.style.fontWeight = '800';
+      btn.style.color = 'var(--accent-cyan)';
     }
-  } catch(e) {}
-};
+  }
 
-// Initialize MediaTrackerMeter instances and connect late-stage players
-function initVideoWatchTracker() {
-  try {
-    const cards = document.querySelectorAll('.card, .pillar-card, .event-module-card, div[style*="background"]');
-    if (!cards || cards.length === 0) return;
-
-    cards.forEach((card, index) => {
-      try {
-        const hasMedia = card.querySelector('iframe, video, audio');
-        const hasMeter = card.querySelector('.media-playback-meter-container');
-        if (!hasMedia || !hasMeter) return;
-
-        if (!card.id) {
-          card.id = "card_media_" + index;
-        }
-
-        // 1. EARLY STAGE: Instantiate MediaTrackerMeter miniapp on card
-        if (!trackerMetersMap[card.id]) {
-          trackerMetersMap[card.id] = new MediaTrackerMeter(card);
-        } else {
-          trackerMetersMap[card.id].refreshUI();
-        }
-
-        const miniapp = trackerMetersMap[card.id];
-
-        // 2. CONNECT HTML5 NATIVE AUDIO/VIDEO PLAYER
-        const html5Media = card.querySelector('video, audio');
-        if (html5Media) {
-          miniapp.connectPlayer(html5Media);
-
-          if (!html5Media.dataset.trackerBound) {
-            html5Media.dataset.trackerBound = "true";
-            html5Media.addEventListener('timeupdate', () => {
-              if (html5Media.duration > 0) {
-                const pct = Math.round((html5Media.currentTime / html5Media.duration) * 100);
-                if (pct >= 1) {
-                  miniapp.recordProgress(pct, html5Media.currentTime);
-                }
-              }
-            });
-            html5Media.addEventListener('ended', () => miniapp.recordProgress(100, html5Media.duration));
-          }
-        }
-
-        // 3. LATE-STAGE: CONNECT YOUTUBE IFRAME PLAYER API
-        const ytIframe = card.querySelector('iframe[src*="youtube.com"]');
-        if (ytIframe) {
-          if (!ytIframe.id) {
-            ytIframe.id = "yt_frame_" + card.id;
-          }
-
-          if (isYouTubeApiReady && window.YT && window.YT.Player) {
-            if (!ytPlayersMap[card.id]) {
-              let pollInterval = null;
-
-              const ytPlayer = new YT.Player(ytIframe.id, {
-                events: {
-                  'onReady': () => {
-                    // Late-Stage Bridge: Connect player to miniapp upon ready
-                    miniapp.connectPlayer(ytPlayer);
-                  },
-                  'onStateChange': (evt) => {
-                    if (evt.data === YT.PlayerState.PLAYING) {
-                      if (window.screenWakeLockManager) {
-                        window.screenWakeLockManager.isMediaActive = true;
-                        window.screenWakeLockManager.requestWakeLock();
-                      }
-                      if (!pollInterval) {
-                        pollInterval = setInterval(() => {
-                          try {
-                            const dur = ytPlayer.getDuration();
-                            const cur = ytPlayer.getCurrentTime();
-                            if (dur > 0) {
-                              const pct = Math.round((cur / dur) * 100);
-                              miniapp.recordProgress(pct, cur);
-                            }
-                          } catch(err) {}
-                        }, 1000);
-                      }
-                    } else if (evt.data === YT.PlayerState.PAUSED || evt.data === YT.PlayerState.ENDED) {
-                      if (pollInterval) {
-                        clearInterval(pollInterval);
-                        pollInterval = null;
-                      }
-                      if (evt.data === YT.PlayerState.ENDED) {
-                        miniapp.recordProgress(100, ytPlayer.getDuration());
-                      }
-                      if (window.screenWakeLockManager) {
-                        window.screenWakeLockManager.checkMediaStateAndRelease();
-                      }
-                    }
-                  }
-                }
-              });
-
-              ytPlayersMap[card.id] = ytPlayer;
-            }
-          }
-        }
-
-      } catch (innerErr) {}
-    });
-  } catch (err) {}
+  document.getElementById('media-comment-modal').style.display = 'none';
 }
 
-// Global Refresh Helper for Auth state changes
-window.refreshAllTrackerMiniapps = function() {
-  try {
-    Object.values(trackerMetersMap).forEach(miniapp => {
-      if (miniapp && miniapp.refreshUI) {
-        miniapp.refreshUI();
+window.openMediaCommentModal = openMediaCommentModal;
+window.saveMediaComment = saveMediaComment;
+
+// ----------------------------------------------------------------------------
+// 2. TWO-STEP APPROVAL MODAL (STEP 1: THOROUGH/CURSORY -> STEP 2: RATING)
+// ----------------------------------------------------------------------------
+let pendingApprovalDepth = {};
+
+function openMediaApprovalModal(cardId, evt) {
+  const userEmail = checkLoggedUserOrPrompt(evt);
+  if (!userEmail) return;
+
+  let modal = document.getElementById('media-approval-modal');
+  if (!modal) {
+    modal = document.createElement('div');
+    modal.id = 'media-approval-modal';
+    modal.style.cssText = 'position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: rgba(10, 17, 40, 0.85); backdrop-filter: blur(8px); display: flex; align-items: center; justify-content: center; z-index: 99999; padding: 1rem;';
+    document.body.appendChild(modal);
+  }
+
+  // Render Step 1: Review Depth Selection
+  renderApprovalStep1(modal, cardId, userEmail);
+  modal.style.display = 'flex';
+}
+
+function renderApprovalStep1(modal, cardId, userEmail) {
+  modal.innerHTML = `
+    <div style="background: #0f172a; border: 2px solid var(--accent-cyan); border-radius: 12px; width: 100%; max-width: 500px; padding: 1.5rem; box-shadow: 0 10px 30px rgba(0,0,0,0.8); color: #f8fafc;">
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; border-bottom: 1px solid #334155; padding-bottom: 0.5rem;">
+        <h3 style="color: var(--accent-cyan); font-size: 1.2rem; margin: 0;">👍 Step 1: Human Review Scope</h3>
+        <button onclick="document.getElementById('media-approval-modal').style.display='none'" style="background: none; border: none; color: #94a3b8; font-size: 1.5rem; cursor: pointer; padding: 0 0.5rem;">✕</button>
+      </div>
+      <p style="font-size: 0.85rem; color: #94a3b8; margin-bottom: 1.25rem;">
+        Logged in as: <strong style="color: var(--accent-cyan);">${userEmail}</strong> | Was this review thorough or cursory?
+      </p>
+      
+      <div style="display: flex; flex-direction: column; gap: 0.75rem; margin-bottom: 1.25rem;">
+        <button onclick="selectApprovalDepth('${cardId}', 'thorough')" style="padding: 0.85rem; background: rgba(56, 189, 248, 0.15); border: 2px solid var(--accent-cyan); color: var(--accent-cyan); border-radius: 8px; cursor: pointer; font-weight: 800; font-size: 1rem; text-align: left; display: flex; justify-content: space-between; align-items: center;">
+          <span>🔍 Thorough Review (Full Human Audit)</span>
+          <span>➔</span>
+        </button>
+        <button onclick="selectApprovalDepth('${cardId}', 'cursory')" style="padding: 0.85rem; background: rgba(251, 191, 36, 0.15); border: 2px solid #fbbf24; color: #fbbf24; border-radius: 8px; cursor: pointer; font-weight: 800; font-size: 1rem; text-align: left; display: flex; justify-content: space-between; align-items: center;">
+          <span>⚡ Cursory Review (Partial Inspection)</span>
+          <span>➔</span>
+        </button>
+      </div>
+
+      <div style="display: flex; justify-content: flex-end;">
+        <button onclick="document.getElementById('media-approval-modal').style.display='none'" class="btn" style="background: #334155; color: #f8fafc; border: 1px solid #475569; padding: 0.4rem 1rem; border-radius: 6px; cursor: pointer;">Cancel</button>
+      </div>
+    </div>
+  `;
+}
+
+function selectApprovalDepth(cardId, depth) {
+  pendingApprovalDepth[cardId] = depth;
+  const modal = document.getElementById('media-approval-modal');
+  const userEmail = window.getSanitizedEmail ? window.getSanitizedEmail() : "";
+  renderApprovalStep2(modal, cardId, userEmail, depth);
+}
+
+function renderApprovalStep2(modal, cardId, userEmail, depth) {
+  const depthLabel = depth === 'thorough' ? '🔍 Thorough Review' : '⚡ Cursory Review';
+  modal.innerHTML = `
+    <div style="background: #0f172a; border: 2px solid var(--accent-gold); border-radius: 12px; width: 100%; max-width: 500px; padding: 1.5rem; box-shadow: 0 10px 30px rgba(0,0,0,0.8); color: #f8fafc;">
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; border-bottom: 1px solid #334155; padding-bottom: 0.5rem;">
+        <h3 style="color: var(--accent-gold); font-size: 1.2rem; margin: 0;">👍 Step 2: Assign Evaluation Rating</h3>
+        <button onclick="document.getElementById('media-approval-modal').style.display='none'" style="background: none; border: none; color: #94a3b8; font-size: 1.5rem; cursor: pointer; padding: 0 0.5rem;">✕</button>
+      </div>
+      <p style="font-size: 0.85rem; color: #94a3b8; margin-bottom: 0.5rem;">
+        Review Scope: <strong style="color: #fbbf24;">${depthLabel}</strong>
+      </p>
+      <p style="font-size: 0.85rem; color: #94a3b8; margin-bottom: 1.25rem;">
+        Select approval rating for this clip:
+      </p>
+      
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; margin-bottom: 1.25rem;">
+        <button onclick="setMediaApproval('${cardId}', 'pass')" style="padding: 0.75rem; background: rgba(52, 211, 153, 0.15); border: 2px solid #34d399; color: #34d399; border-radius: 8px; cursor: pointer; font-weight: 800; font-size: 0.95rem; text-align: center;">✅ Pass</button>
+        <button onclick="setMediaApproval('${cardId}', 'star')" style="padding: 0.75rem; background: rgba(251, 191, 36, 0.15); border: 2px solid #fbbf24; color: #fbbf24; border-radius: 8px; cursor: pointer; font-weight: 800; font-size: 0.95rem; text-align: center;">⭐ Star</button>
+        <button onclick="setMediaApproval('${cardId}', 'flag')" style="padding: 0.75rem; background: rgba(249, 115, 22, 0.15); border: 2px solid #f97316; color: #f97316; border-radius: 8px; cursor: pointer; font-weight: 800; font-size: 0.95rem; text-align: center;">🚩 Flag</button>
+        <button onclick="setMediaApproval('${cardId}', 'fail')" style="padding: 0.75rem; background: rgba(248, 113, 113, 0.15); border: 2px solid #f87171; color: #f87171; border-radius: 8px; cursor: pointer; font-weight: 800; font-size: 0.95rem; text-align: center;">❌ Fail</button>
+      </div>
+
+      <div style="display: flex; justify-content: space-between;">
+        <button onclick="renderApprovalStep1(document.getElementById('media-approval-modal'), '${cardId}', '${userEmail}')" class="btn" style="background: #334155; color: #f8fafc; border: 1px solid #475569; padding: 0.4rem 1rem; border-radius: 6px; cursor: pointer;">← Back to Step 1</button>
+        <button onclick="document.getElementById('media-approval-modal').style.display='none'" class="btn" style="background: #334155; color: #f8fafc; border: 1px solid #475569; padding: 0.4rem 1rem; border-radius: 6px; cursor: pointer;">Cancel</button>
+      </div>
+    </div>
+  `;
+}
+
+function setMediaApproval(cardId, ratingState) {
+  const depth = pendingApprovalDepth[cardId] || 'thorough';
+  const userEmail = window.getSanitizedEmail ? window.getSanitizedEmail() : "";
+
+  const record = {
+    rating: ratingState,
+    depth: depth,
+    reviewer: userEmail,
+    timestamp: new Date().toISOString()
+  };
+
+  const allApprovals = JSON.parse(localStorage.getItem('lexclinic_media_approvals') || '{}');
+  allApprovals[cardId] = record;
+  localStorage.setItem('lexclinic_media_approvals', JSON.stringify(allApprovals));
+
+  updateApprovalButtonUI(cardId, record);
+  document.getElementById('media-approval-modal').style.display = 'none';
+}
+
+function updateApprovalButtonUI(cardId, record) {
+  const btn = document.querySelector(`.btn-approval-${cardId}`);
+  if (!btn) return;
+
+  const ratingState = typeof record === 'object' ? record.rating : record;
+  const depth = (typeof record === 'object' && record.depth) ? record.depth : 'thorough';
+  const depthTag = depth === 'thorough' ? 'Full' : 'Partial';
+
+  if (ratingState === 'pass') {
+    btn.innerHTML = `✅ Passed (${depthTag})`;
+    btn.style.background = 'rgba(52, 211, 153, 0.2)';
+    btn.style.borderColor = '#34d399';
+    btn.style.color = '#34d399';
+  } else if (ratingState === 'star') {
+    btn.innerHTML = `⭐ Starred (${depthTag})`;
+    btn.style.background = 'rgba(251, 191, 36, 0.2)';
+    btn.style.borderColor = '#fbbf24';
+    btn.style.color = '#fbbf24';
+  } else if (ratingState === 'flag') {
+    btn.innerHTML = `🚩 Flagged (${depthTag})`;
+    btn.style.background = 'rgba(249, 115, 22, 0.2)';
+    btn.style.borderColor = '#f97316';
+    btn.style.color = '#f97316';
+  } else if (ratingState === 'fail') {
+    btn.innerHTML = `❌ Failed (${depthTag})`;
+    btn.style.background = 'rgba(248, 113, 113, 0.2)';
+    btn.style.borderColor = '#f87171';
+    btn.style.color = '#f87171';
+  } else {
+    btn.innerHTML = '👍 Approval';
+    btn.style.background = 'rgba(56, 189, 248, 0.15)';
+    btn.style.borderColor = 'var(--accent-cyan)';
+    btn.style.color = 'var(--accent-cyan)';
+  }
+}
+
+window.openMediaApprovalModal = openMediaApprovalModal;
+window.selectApprovalDepth = selectApprovalDepth;
+window.setMediaApproval = setMediaApproval;
+
+// ----------------------------------------------------------------------------
+// 3. DYNAMIC AUTH-DEPENDENT BUTTON VISIBILITY (HIDE UNTIL LOGGED IN)
+// ----------------------------------------------------------------------------
+function updateAuthButtonVisibility() {
+  const userEmail = window.getSanitizedEmail ? window.getSanitizedEmail() : "";
+  const authButtons = document.querySelectorAll('[class*="btn-comment-"], [class*="btn-approval-"]');
+  
+  authButtons.forEach(btn => {
+    if (userEmail) {
+      btn.style.display = 'inline-block';
+    } else {
+      btn.style.display = 'none';
+    }
+  });
+}
+
+window.updateAuthButtonVisibility = updateAuthButtonVisibility;
+
+document.addEventListener('DOMContentLoaded', () => {
+  updateAuthButtonVisibility();
+
+  const allComments = JSON.parse(localStorage.getItem('lexclinic_media_comments') || '{}');
+  const allApprovals = JSON.parse(localStorage.getItem('lexclinic_media_approvals') || '{}');
+
+  Object.keys(allComments).forEach(cardId => {
+    if (allComments[cardId]) {
+      const btn = document.querySelector(`.btn-comment-${cardId}`);
+      if (btn) {
+        btn.innerHTML = '💬 Notes (1)';
+        btn.style.background = 'rgba(251, 191, 36, 0.25)';
+        btn.style.borderColor = '#fbbf24';
+        btn.style.color = '#fbbf24';
       }
-    });
-  } catch(e) {}
-};
+    }
+  });
 
-// Sync all unsynced local watch history on login
-function syncAllVideoWatchHistory(email) {
-  if (!email) return;
-  try {
-    let history = {};
-    try { history = JSON.parse(localStorage.getItem("lexclinic_video_watch_history") || "{}"); } catch(e) {}
+  Object.keys(allApprovals).forEach(cardId => {
+    updateApprovalButtonUI(cardId, allApprovals[cardId]);
+  });
+});
 
-    Object.values(history).forEach(item => {
-      fetch("/api/track-watch", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email, ...item })
-      }).catch(() => {});
-    });
-
-    window.refreshAllTrackerMiniapps();
-  } catch (err) {}
-}
-
-// Global scope exposures
-window.initVideoWatchTracker = initVideoWatchTracker;
-window.syncAllVideoWatchHistory = syncAllVideoWatchHistory;
-window.checkSeekTimeOnPageLoad = checkSeekTimeOnPageLoad;
-window.trackerMetersMap = trackerMetersMap;
-window.ytPlayersMap = ytPlayersMap;
+// Re-check visibility when auth modal closes or state changes
+window.addEventListener('storage', updateAuthButtonVisibility);

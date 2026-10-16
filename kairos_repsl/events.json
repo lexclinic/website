@@ -157,7 +157,7 @@
     "date": "2026-10-15",
     "url": "https://www.google.com/calendar/event?eid=Nmg1aGh1MjFkNzc4NThuNzVrZjVucWMxbDJfMjAyNjEwMTVUMjEzMDAwWiBreWxlQGxleC5jbGluaWM",
     "meet_url": "https://meet.google.com/xpy-vzuu-nmf",
-    "is_upcoming": true,
+    "is_upcoming": false,
     "is_private": false,
     "description": "Socratic Session for LexClinic 2026. Automatically recorded and transcribed with Gemini Meeting Notes. Recording and transcript link will be emailed to all attendees upon meeting conclusion."
   },
@@ -165,7 +165,7 @@
     "id": "event-google-cal-2026-10-16",
     "title": "LexClinic Director Call",
     "date": "2026-10-16",
-    "url": "https://stage.lex.clinic/event/",
+    "url": "https://www.google.com/calendar/event?eid=amd2djV1ZG5zbXE2dHQzNjhzbTFjdWprcWMga3lsZUBsZXguY2xpbmlj",
     "meet_url": "https://meet.google.com/xdw-trzj-azj",
     "is_upcoming": true,
     "is_private": true,
