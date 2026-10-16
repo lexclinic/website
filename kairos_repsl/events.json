@@ -157,7 +157,7 @@
     "date": "2026-10-15",
     "url": "https://www.google.com/calendar/event?eid=Nmg1aGh1MjFkNzc4NThuNzVrZjVucWMxbDJfMjAyNjEwMTVUMjEzMDAwWiBreWxlQGxleC5jbGluaWM",
     "meet_url": "https://meet.google.com/xpy-vzuu-nmf",
-    "is_upcoming": true,
+    "is_upcoming": false,
     "is_private": false,
     "description": "Socratic Session for LexClinic 2026. Automatically recorded and transcribed with Gemini Meeting Notes. Recording and transcript link will be emailed to all attendees upon meeting conclusion."
   },
