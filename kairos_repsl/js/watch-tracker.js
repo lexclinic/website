@@ -285,3 +285,26 @@ window.syncAllVideoWatchHistory = syncAllVideoWatchHistory;
 window.checkSeekTimeOnPageLoad = checkSeekTimeOnPageLoad;
 window.trackerMetersMap = trackerMetersMap;
 window.ytPlayersMap = ytPlayersMap;
+
+
+// ============================================================================
+// SEMANTIC ANCHOR DEEP-LINK SMOOTH SCROLL & GOLD HIGHLIGHT
+// ============================================================================
+window.addEventListener('DOMContentLoaded', () => {
+  if (window.location.hash) {
+    const targetId = window.location.hash.substring(1);
+    const targetEl = document.getElementById(targetId);
+    if (targetEl) {
+      setTimeout(() => {
+        targetEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        targetEl.style.transition = 'box-shadow 0.6s ease, border-color 0.6s ease';
+        targetEl.style.borderColor = '#fbbf24';
+        targetEl.style.boxShadow = '0 0 30px rgba(251, 191, 36, 0.85)';
+        
+        setTimeout(() => {
+          targetEl.style.boxShadow = '0 4px 16px rgba(0,0,0,0.4)';
+        }, 3500);
+      }, 400);
+    }
+  }
+});
