@@ -1368,40 +1368,34 @@ body.auth-logged-in .btn-unlogged-prompt {
 }
 
 
-/* Strict Card Container & Tile Formatting Rules */
-.pillar-card,
-.event-list-card,
-.event-module-card,
-.card {
-  box-sizing: border-box;
-  width: 100%;
-  max-width: 100%;
+/* Auth-Only Media Buttons (Hidden by default when logged out) */
+[class*="btn-comment-"],
+[class*="btn-approval-"] {
+  display: none !important;
+}
+
+body.auth-logged-in [class*="btn-comment-"],
+body.auth-logged-in [class*="btn-approval-"] {
+  display: inline-block !important;
+}
+
+body.auth-logged-in .btn-unlogged-prompt {
+  display: none !important;
+}
+
+/* Explicit Card Borders & Container Bounds */
+.card, .pillar-card, .event-module-card, .event-list-card {
+  border: 2px solid var(--border-color);
   border-radius: 12px;
-  overflow: hidden;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+  background: var(--bg-card);
+  padding: 1.5rem;
+  transition: all 0.3s ease;
 }
 
-.events-group-container,
-.upcoming-events-section .container,
-.recent-events-section .container {
-  width: 100%;
-  max-width: var(--container-max);
-  margin: 0 auto;
-  padding: 0 1.5rem;
-}
-
-
-
-
-
-/* Strict 960px Card Width Constraint for All Detail Pages */
 .section .card,
 .section .pillar-card,
-.section .event-module-card,
-.section .event-list-card,
 .event-detail-section .card,
-.event-detail-section .pillar-card,
-.event-detail-section .event-module-card {
+.event-detail-section .pillar-card {
   max-width: 960px !important;
   margin-left: auto !important;
   margin-right: auto !important;
