@@ -306,3 +306,89 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 window.addEventListener('storage', updateAuthButtonVisibility);
+
+
+// ============================================================================
+// ROCK-SOLID PLAYER SPEED CONTROLLERS & DIRECT LINK COPY ENGINE
+// ============================================================================
+
+function setVideoSpeed(cardId, speedRate, btnElement) {
+  try {
+    const card = document.getElementById(cardId) || (btnElement && btnElement.closest('[id]'));
+    let player = null;
+
+    if (window.ytPlayersMap) {
+      player = window.ytPlayersMap[cardId];
+      if (!player && card) {
+        player = window.ytPlayersMap[card.id];
+        if (!player) {
+          const iframe = card.querySelector('iframe');
+          if (iframe) player = window.ytPlayersMap[iframe.id];
+        }
+      }
+    }
+
+    if (player && typeof player.setPlaybackRate === 'function') {
+      player.setPlaybackRate(speedRate);
+    } else if (card) {
+      const videoEl = card.querySelector('video');
+      if (videoEl) videoEl.playbackRate = speedRate;
+    }
+
+    // Update active button state
+    if (btnElement && btnElement.parentElement) {
+      const speedBtns = btnElement.parentElement.querySelectorAll('.btn-speed');
+      speedBtns.forEach(b => {
+        b.style.background = 'rgba(30, 41, 59, 0.8)';
+        b.style.color = '#e2e8f0';
+        b.style.fontWeight = '600';
+      });
+      btnElement.style.background = 'var(--accent-cyan)';
+      btnElement.style.color = '#0a1128';
+      btnElement.style.fontWeight = '800';
+    }
+  } catch(err) {}
+}
+
+function setAudioSpeed(audioId, speedRate, btnElement) {
+  try {
+    const audioEl = document.getElementById(audioId) || (btnElement && btnElement.closest('.card, .pillar-card') && btnElement.closest('.card, .pillar-card').querySelector('audio'));
+    if (audioEl) {
+      audioEl.playbackRate = speedRate;
+    }
+
+    if (btnElement && btnElement.parentElement) {
+      const speedBtns = btnElement.parentElement.querySelectorAll('.btn-speed');
+      speedBtns.forEach(b => {
+        b.style.background = 'rgba(30, 41, 59, 0.8)';
+        b.style.color = '#e2e8f0';
+        b.style.fontWeight = '600';
+      });
+      btnElement.style.background = '#1ed760';
+      btnElement.style.color = '#0a1128';
+      btnElement.style.fontWeight = '800';
+    }
+  } catch(err) {}
+}
+
+function copyCardDirectLink(cardId, btnEl) {
+  try {
+    const card = (btnEl && btnEl.closest) ? btnEl.closest('[id]') : document.getElementById(cardId);
+    const targetId = card ? card.id : cardId;
+    const fullUrl = window.location.origin + window.location.pathname + '#' + targetId;
+    
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(fullUrl).then(() => {
+        showCopyFeedback(btnEl);
+      }).catch(() => {
+        fallbackCopyText(fullUrl, btnEl);
+      });
+    } else {
+      fallbackCopyText(fullUrl, btnEl);
+    }
+  } catch(e) {}
+}
+
+window.setVideoSpeed = setVideoSpeed;
+window.setAudioSpeed = setAudioSpeed;
+window.copyCardDirectLink = copyCardDirectLink;
