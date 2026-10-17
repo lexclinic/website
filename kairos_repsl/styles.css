@@ -1383,13 +1383,16 @@ body.auth-logged-in .btn-unlogged-prompt {
   display: none !important;
 }
 
-/* Explicit Card Borders & Container Bounds */
+
+
+
+/* Vibrant Card Borders & Container Bounds */
 .card, .pillar-card, .event-module-card, .event-list-card {
-  border: 2px solid var(--border-color);
-  border-radius: 12px;
-  background: var(--bg-card);
-  padding: 1.5rem;
-  transition: all 0.3s ease;
+  border: 2px solid rgba(56, 189, 248, 0.4) !important;
+  border-radius: 12px !important;
+  background: var(--bg-card) !important;
+  padding: 1.5rem !important;
+  transition: all 0.3s ease !important;
 }
 
 .section .card,
