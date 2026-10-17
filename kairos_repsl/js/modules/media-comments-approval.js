@@ -1,5 +1,5 @@
 /*
-  LexClinic Education Platform — Shared Team Discussion Feed & 2-Step Approval Manager
+  LexClinic Education Platform — Shared Community Discussion Feed & 2-Step Approval Manager
 */
 function checkLoggedUserOrPrompt(evt) {
   const userEmail = window.getSanitizedEmail ? window.getSanitizedEmail() : "";
@@ -7,7 +7,7 @@ function checkLoggedUserOrPrompt(evt) {
     if (window.openNavLoginModal) {
       window.openNavLoginModal(evt || window.event);
     } else {
-      alert("🔒 Please log in to view and post in the shared discussion feed.");
+      alert("🔒 Please log in to view and post in the shared community discussion feed.");
     }
     return null;
   }
@@ -15,11 +15,13 @@ function checkLoggedUserOrPrompt(evt) {
 }
 
 // ----------------------------------------------------------------------------
-// 1. SHARED TEAM DISCUSSION FEED MODAL
+// 1. SHARED COMMUNITY DISCUSSION FEED MODAL
 // ----------------------------------------------------------------------------
 async function openMediaCommentModal(cardId, evt) {
   const userEmail = checkLoggedUserOrPrompt(evt);
   if (!userEmail) return;
+
+  const canonicalUid = window.location.pathname + '#' + cardId;
 
   let modal = document.getElementById('media-comment-modal');
   if (!modal) {
@@ -29,52 +31,52 @@ async function openMediaCommentModal(cardId, evt) {
     document.body.appendChild(modal);
   }
 
-  // Fetch shared comment feed
+  // Fetch shared community comment feed
   let feedComments = [];
   try {
     const res = await fetch('/media-comments-feed.json?v=' + Date.now());
     if (res.ok) {
       const data = await res.json();
-      feedComments = (data.comments || []).filter(c => c.card_id === cardId);
+      feedComments = (data.comments || []).filter(c => c.uid === canonicalUid || c.card_id === cardId);
     }
   } catch(e) {}
 
-  // Also include local browser saved notes
-  const localHistory = JSON.parse(localStorage.getItem('lexclinic_notes_history') || '{}')[cardId] || [];
+  // Local browser saved notes
+  const localHistory = JSON.parse(localStorage.getItem('lexclinic_notes_history') || '{}')[canonicalUid] || JSON.parse(localStorage.getItem('lexclinic_notes_history') || '{}')[cardId] || [];
   
   let threadHtml = '';
   const combined = [...feedComments];
   
   localHistory.forEach(lh => {
     if (!combined.some(c => c.comment === lh.comment && c.timestamp === lh.timestamp)) {
-      combined.push({ card_id: cardId, reviewer: lh.reviewer, comment: lh.comment, timestamp: lh.timestamp });
+      combined.push({ uid: canonicalUid, card_id: cardId, reviewer: lh.reviewer, comment: lh.comment, timestamp: lh.timestamp });
     }
   });
 
   combined.sort((a,b) => new Date(b.timestamp) - new Date(a.timestamp));
 
   if (combined.length > 0) {
-    threadHtml = '<div style="margin-top: 1rem; border-top: 1px solid #334155; padding-top: 0.75rem;"><h4 style="color: var(--accent-cyan); font-size: 0.95rem; margin-bottom: 0.5rem;">💬 Shared Team Discussion Thread (' + combined.length + '):</h4><div style="max-height: 180px; overflow-y: auto; display: flex; flex-direction: column; gap: 0.6rem; padding-right: 0.25rem;">';
+    threadHtml = '<div style="margin-top: 1rem; border-top: 1px solid #334155; padding-top: 0.75rem;"><h4 style="color: var(--accent-cyan); font-size: 0.95rem; margin-bottom: 0.5rem;">💬 Community Discussion Thread (' + combined.length + '):</h4><div style="max-height: 180px; overflow-y: auto; display: flex; flex-direction: column; gap: 0.6rem; padding-right: 0.25rem;">';
     combined.forEach(c => {
       const dt = new Date(c.timestamp).toLocaleString();
       threadHtml += `<div style="background: #1e293b; padding: 0.65rem 0.85rem; border-radius: 8px; border-left: 3px solid var(--accent-gold); font-size: 0.88rem;"><div style="font-size: 0.75rem; color: #94a3b8; margin-bottom: 0.25rem; display: flex; justify-content: space-between;"><span>👤 <strong style="color: var(--accent-cyan);">${c.reviewer || 'kyle@lex.clinic'}</strong></span><span>🕒 ${dt}</span></div><div style="color: #f8fafc; line-height: 1.5;">${c.comment}</div></div>`;
     });
     threadHtml += '</div></div>';
   } else {
-    threadHtml = '<div style="margin-top: 1rem; border-top: 1px solid #334155; padding-top: 0.75rem; color: #94a3b8; font-size: 0.85rem; italic;">No notes posted yet on this clip. Be the first to start the discussion!</div>';
+    threadHtml = '<div style="margin-top: 1rem; border-top: 1px solid #334155; padding-top: 0.75rem; color: #94a3b8; font-size: 0.85rem; italic;">No notes posted yet on this clip. Be the first to start the community discussion!</div>';
   }
 
   modal.innerHTML = `
-    <div style="background: #0f172a; border: 2px solid var(--accent-gold); border-radius: 12px; width: 100%; max-width: 580px; padding: 1.5rem; box-shadow: 0 10px 30px rgba(0,0,0,0.8); color: #f8fafc;">
+    <div style="background: #0f172a; border: 2px solid var(--accent-gold); border-radius: 12px; width: 100%; max-width: 600px; padding: 1.5rem; box-shadow: 0 10px 30px rgba(0,0,0,0.8); color: #f8fafc;">
       <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; border-bottom: 1px solid #334155; padding-bottom: 0.5rem;">
-        <h3 style="color: var(--accent-gold); font-size: 1.25rem; margin: 0;">💬 Shared Clip Discussion &amp; Notes</h3>
+        <h3 style="color: var(--accent-gold); font-size: 1.25rem; margin: 0;">💬 Shared Community Discussion &amp; Notes</h3>
         <button onclick="document.getElementById('media-comment-modal').style.display='none'" style="background: none; border: none; color: #94a3b8; font-size: 1.5rem; cursor: pointer; padding: 0 0.5rem;">✕</button>
       </div>
       <p style="font-size: 0.85rem; color: #94a3b8; margin-bottom: 0.75rem;">
-        Logged in as: <strong style="color: var(--accent-cyan);">${userEmail}</strong> | Clip ID: <code style="color: #fbbf24;">${cardId}</code>
+        Logged in as: <strong style="color: var(--accent-cyan);">${userEmail}</strong> | UID: <code style="color: #fbbf24; word-break: break-all;">${canonicalUid}</code>
       </p>
       
-      <textarea id="media-comment-textarea" placeholder="Write a note or comment for the team & AI agent..." style="width: 100%; height: 110px; background: #1e293b; border: 1px solid #475569; border-radius: 8px; color: #f8fafc; padding: 0.75rem; font-family: inherit; font-size: 0.95rem; resize: vertical; margin-bottom: 0.75rem;"></textarea>
+      <textarea id="media-comment-textarea" placeholder="Write a note or comment for the community..." style="width: 100%; height: 110px; background: #1e293b; border: 1px solid #475569; border-radius: 8px; color: #f8fafc; padding: 0.75rem; font-family: inherit; font-size: 0.95rem; resize: vertical; margin-bottom: 0.75rem;"></textarea>
       
       ${threadHtml}
 
@@ -96,22 +98,25 @@ function saveMediaComment(cardId) {
 
   const userEmail = window.getSanitizedEmail ? window.getSanitizedEmail() : "";
   const timestamp = new Date().toISOString();
+  const canonicalUid = window.location.pathname + '#' + cardId;
   
   const allHistory = JSON.parse(localStorage.getItem('lexclinic_notes_history') || '{}');
-  if (!allHistory[cardId]) allHistory[cardId] = [];
+  if (!allHistory[canonicalUid]) allHistory[canonicalUid] = [];
 
-  allHistory[cardId].unshift({
+  allHistory[canonicalUid].unshift({
+    uid: canonicalUid,
+    card_id: cardId,
     comment: noteText,
     reviewer: userEmail,
     timestamp: timestamp
   });
   localStorage.setItem('lexclinic_notes_history', JSON.stringify(allHistory));
 
-  syncToAgentLedger(cardId, userEmail, { comment: noteText });
+  syncToAgentLedger(cardId, userEmail, { comment: noteText, uid: canonicalUid });
 
   const btn = document.querySelector(`.btn-comment-${cardId}`);
   if (btn) {
-    btn.innerHTML = `💬 Notes (${allHistory[cardId].length})`;
+    btn.innerHTML = `💬 Notes (${allHistory[canonicalUid].length})`;
     btn.style.background = 'rgba(251, 191, 36, 0.25)';
     btn.style.borderColor = '#fbbf24';
     btn.style.color = '#fbbf24';
@@ -210,8 +215,10 @@ function renderApprovalStep2(modal, cardId, userEmail, depth) {
 function setMediaApproval(cardId, ratingState) {
   const depth = pendingApprovalDepth[cardId] || 'thorough';
   const userEmail = window.getSanitizedEmail ? window.getSanitizedEmail() : "";
+  const canonicalUid = window.location.pathname + '#' + cardId;
 
   const record = {
+    uid: canonicalUid,
     rating: ratingState,
     depth: depth,
     reviewer: userEmail,
@@ -219,6 +226,7 @@ function setMediaApproval(cardId, ratingState) {
   };
 
   const allApprovals = JSON.parse(localStorage.getItem('lexclinic_media_approvals') || '{}');
+  allApprovals[canonicalUid] = record;
   allApprovals[cardId] = record;
   localStorage.setItem('lexclinic_media_approvals', JSON.stringify(allApprovals));
 
@@ -233,6 +241,7 @@ function syncToAgentLedger(cardId, userEmail, payload) {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
+        uid: window.location.pathname + '#' + cardId,
         card_id: cardId,
         reviewer: userEmail,
         page_url: window.location.pathname,
@@ -299,11 +308,12 @@ document.addEventListener('DOMContentLoaded', () => {
   const allHistory = JSON.parse(localStorage.getItem('lexclinic_notes_history') || '{}');
   const allApprovals = JSON.parse(localStorage.getItem('lexclinic_media_approvals') || '{}');
 
-  Object.keys(allHistory).forEach(cardId => {
-    if (allHistory[cardId] && allHistory[cardId].length > 0) {
+  Object.keys(allHistory).forEach(key => {
+    const cardId = key.includes('#') ? key.split('#')[1] : key;
+    if (allHistory[key] && allHistory[key].length > 0) {
       const btn = document.querySelector(`.btn-comment-${cardId}`);
       if (btn) {
-        btn.innerHTML = `💬 Notes (${allHistory[cardId].length})`;
+        btn.innerHTML = `💬 Notes (${allHistory[key].length})`;
         btn.style.background = 'rgba(251, 191, 36, 0.25)';
         btn.style.borderColor = '#fbbf24';
         btn.style.color = '#fbbf24';
@@ -311,8 +321,9 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
-  Object.keys(allApprovals).forEach(cardId => {
-    updateApprovalButtonUI(cardId, allApprovals[cardId]);
+  Object.keys(allApprovals).forEach(key => {
+    const cardId = key.includes('#') ? key.split('#')[1] : key;
+    updateApprovalButtonUI(cardId, allApprovals[key]);
   });
 });
 
