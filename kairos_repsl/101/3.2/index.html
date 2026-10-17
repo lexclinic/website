@@ -81,77 +81,97 @@
         </p>
       </div>
 
-      <!-- 2. Video Card (No Quiz Button directly under video) -->
-      <div class="card pillar-card" id="lesson-overview-class-3-2-nick-szabo-smart-contracts-hardcoding-consideration">
+      <!-- Class 3.2: Contract Runtimes & State Machines -->
+      <div class="card pillar-card" id="class-3-2-contract-runtimes-and-state-machines" style="border: 2px solid var(--accent-gold); margin-bottom: 2rem;">
         <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.75rem;">
-          <span class="status-badge today-badge" style="background: var(--accent-cyan); color: #0a1128; font-weight: 800;">🎥 Media Player Stream</span>
-          <span class="status-badge notebook-available">Interactive Player</span>
+          <span class="status-badge today-badge" style="background: var(--accent-gold); color: #0a1128; font-weight: 800;">🎥 Class 3.2: Contract Runtimes & State Machines</span>
+          <span class="status-badge notebook-available">YouTube Stream</span>
         </div>
 
-        <h3 style="color: var(--accent-cyan); font-size: 1.25rem; margin-bottom: 0.75rem;">
-          Class 3.2: Nick Szabo & Smart Contracts: Hardcoding Consideration
+        <h3 style="color: var(--accent-gold); font-size: 1.25rem; margin-bottom: 0.75rem;">
+          Class 3.2: Contract Runtimes & State Machines
         </h3>
 
-        <!-- Static Playback Meter Bar -->
         <div class="media-playback-meter-container" style="margin-top: 0.5rem; margin-bottom: 0.85rem; background: rgba(15, 23, 42, 0.9); border: 1px solid #334155; border-radius: 8px; padding: 0.85rem; box-shadow: 0 4px 12px rgba(0,0,0,0.5);">
-          
+          <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 0.4rem;">
+            <span class="meter-status-text" style="font-size: 0.88rem; font-weight: 700; color: #cbd5e1;">🎥 Unwatched Video Clip</span>
+            <span class="meter-auth-hint" style="font-size: 0.8rem; color: #94a3b8;">🔒 Log in to save watch tracker</span>
+          </div>
           <div style="width: 100%; height: 8px; background: rgba(30, 41, 59, 0.8); border-radius: 4px; overflow: hidden; border: 1px solid #475569;">
             <div class="meter-fill-bar" style="width: 0%; height: 100%; background: linear-gradient(90deg, #38bdf8, #34d399); transition: width 0.4s ease;"></div>
           </div>
         </div>
 
-        <!-- YouTube Embed Player -->
         <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 8px; border: 1px solid var(--border-color); background: #000; margin-bottom: 0.75rem;">
-          <iframe id="yt_frame_card_101_32_vid" loading="lazy" src="https://www.youtube.com/embed/zbgJ5Y_mM3k?enablejsapi=1" allow="autoplay; fullscreen" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;" allowfullscreen></iframe>
+          <iframe id="yt_frame_class-3-2-contract-runtimes-and-state-machines" loading="lazy" src="https://www.youtube.com/embed/zbgJ5Y_mM3k?enablejsapi=1" allow="autoplay; fullscreen" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;" allowfullscreen></iframe>
         </div>
 
-        <!-- Speed & Fullscreen Controls Bar -->
         <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem; background: rgba(15, 23, 42, 0.8); padding: 0.65rem 0.85rem; border-radius: 6px; border: 1px solid #334155;">
           <div style="display: flex; align-items: center; gap: 0.35rem;">
-            <span style="font-size: 0.82rem; font-weight: 700; color: var(--accent-cyan); margin-right: 0.25rem;">Speed:</span>
-            <button type="button" onclick="window.setVideoSpeed('card_101_32_vid', 1.0, this)" class="btn-speed" style="padding: 0.25rem 0.55rem; font-size: 0.78rem; background: var(--accent-cyan); color: #0a1128; font-weight: 800; border: 1px solid var(--accent-cyan); border-radius: 4px; cursor: pointer;">1.0x</button>
-            <button type="button" onclick="window.setVideoSpeed('card_101_32_vid', 1.25, this)" class="btn-speed" style="padding: 0.25rem 0.55rem; font-size: 0.78rem; background: rgba(30, 41, 59, 0.8); color: #e2e8f0; font-weight: 600; border: 1px solid #334155; border-radius: 4px; cursor: pointer;">1.25x</button>
-            <button type="button" onclick="window.setVideoSpeed('card_101_32_vid', 1.5, this)" class="btn-speed" style="padding: 0.25rem 0.55rem; font-size: 0.78rem; background: rgba(30, 41, 59, 0.8); color: #e2e8f0; font-weight: 600; border: 1px solid #334155; border-radius: 4px; cursor: pointer;">1.5x</button>
-            <button type="button" onclick="window.setVideoSpeed('card_101_32_vid', 1.75, this)" class="btn-speed" style="padding: 0.25rem 0.55rem; font-size: 0.78rem; background: rgba(30, 41, 59, 0.8); color: #e2e8f0; font-weight: 600; border: 1px solid #334155; border-radius: 4px; cursor: pointer;">1.75x</button>
-            <button type="button" onclick="window.setVideoSpeed('card_101_32_vid', 2.0, this)" class="btn-speed" style="padding: 0.25rem 0.55rem; font-size: 0.78rem; background: rgba(30, 41, 59, 0.8); color: #e2e8f0; font-weight: 600; border: 1px solid #334155; border-radius: 4px; cursor: pointer;">2.0x</button>
-          </div>
-
-          <button type="button" onclick="const iframe = this.closest('.card, .pillar-card').querySelector('iframe'); if (iframe) { if (iframe.requestFullscreen) iframe.requestFullscreen(); else if (iframe.webkitRequestFullscreen) iframe.webkitRequestFullscreen(); }" class="btn" style="padding: 0.25rem 0.65rem; font-size: 0.78rem; background: rgba(56, 189, 248, 0.15); color: var(--accent-cyan); border: 1px solid var(--accent-cyan); border-radius: 4px; cursor: pointer; font-weight: 700;">
-            ⤢ Expand Fullscreen
-          </button>
-        </div>
-      </div>
-
-      <!-- 3. Exact Spotify Episode Embed Card -->
-      <div class="card pillar-card" id="class-3-2-podcast-audio-spotify" style="margin-top: 2rem;">
-        <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem; background: rgba(15, 23, 42, 0.8); padding: 0.65rem 0.85rem; border-radius: 6px; border: 1px solid #334155;">
-          <div style="display: flex; align-items: center; gap: 0.35rem;">
-            <span style="font-size: 0.82rem; font-weight: 700; color: var(--accent-cyan); margin-right: 0.25rem;">Speed:</span>
-            <button type="button" onclick="window.setVideoSpeed('class-3-2-podcast-audio-spotify', 1.0, this)" class="btn-speed" style="padding: 0.25rem 0.55rem; font-size: 0.78rem; background: var(--accent-cyan); color: #0a1128; font-weight: 800; border: 1px solid var(--accent-cyan); border-radius: 4px; cursor: pointer;">1.0x</button>
-            <button type="button" onclick="window.setVideoSpeed('class-3-2-podcast-audio-spotify', 1.25, this)" class="btn-speed" style="padding: 0.25rem 0.55rem; font-size: 0.78rem; background: rgba(30, 41, 59, 0.8); color: #e2e8f0; font-weight: 600; border: 1px solid #334155; border-radius: 4px; cursor: pointer;">1.25x</button>
-            <button type="button" onclick="window.setVideoSpeed('class-3-2-podcast-audio-spotify', 1.5, this)" class="btn-speed" style="padding: 0.25rem 0.55rem; font-size: 0.78rem; background: rgba(30, 41, 59, 0.8); color: #e2e8f0; font-weight: 600; border: 1px solid #334155; border-radius: 4px; cursor: pointer;">1.5x</button>
-            <button type="button" onclick="window.setVideoSpeed('class-3-2-podcast-audio-spotify', 1.75, this)" class="btn-speed" style="padding: 0.25rem 0.55rem; font-size: 0.78rem; background: rgba(30, 41, 59, 0.8); color: #e2e8f0; font-weight: 600; border: 1px solid #334155; border-radius: 4px; cursor: pointer;">1.75x</button>
-            <button type="button" onclick="window.setVideoSpeed('class-3-2-podcast-audio-spotify', 2.0, this)" class="btn-speed" style="padding: 0.25rem 0.55rem; font-size: 0.78rem; background: rgba(30, 41, 59, 0.8); color: #e2e8f0; font-weight: 600; border: 1px solid #334155; border-radius: 4px; cursor: pointer;">2.0x</button>
+            <span style="font-size: 0.82rem; font-weight: 700; color: var(--accent-gold); margin-right: 0.25rem;">Speed:</span>
+            <button type="button" onclick="window.setVideoSpeed('class-3-2-contract-runtimes-and-state-machines', 1.0, this)" class="btn-speed" style="padding: 0.25rem 0.55rem; font-size: 0.78rem; background: var(--accent-gold); color: #0a1128; font-weight: 800; border: 1px solid var(--accent-gold); border-radius: 4px; cursor: pointer;">1.0x</button>
+            <button type="button" onclick="window.setVideoSpeed('class-3-2-contract-runtimes-and-state-machines', 1.25, this)" class="btn-speed" style="padding: 0.25rem 0.55rem; font-size: 0.78rem; background: rgba(30, 41, 59, 0.8); color: #e2e8f0; font-weight: 600; border: 1px solid #334155; border-radius: 4px; cursor: pointer;">1.25x</button>
+            <button type="button" onclick="window.setVideoSpeed('class-3-2-contract-runtimes-and-state-machines', 1.5, this)" class="btn-speed" style="padding: 0.25rem 0.55rem; font-size: 0.78rem; background: rgba(30, 41, 59, 0.8); color: #e2e8f0; font-weight: 600; border: 1px solid #334155; border-radius: 4px; cursor: pointer;">1.5x</button>
+            <button type="button" onclick="window.setVideoSpeed('class-3-2-contract-runtimes-and-state-machines', 1.75, this)" class="btn-speed" style="padding: 0.25rem 0.55rem; font-size: 0.78rem; background: rgba(30, 41, 59, 0.8); color: #e2e8f0; font-weight: 600; border: 1px solid #334155; border-radius: 4px; cursor: pointer;">1.75x</button>
+            <button type="button" onclick="window.setVideoSpeed('class-3-2-contract-runtimes-and-state-machines', 2.0, this)" class="btn-speed" style="padding: 0.25rem 0.55rem; font-size: 0.78rem; background: rgba(30, 41, 59, 0.8); color: #e2e8f0; font-weight: 600; border: 1px solid #334155; border-radius: 4px; cursor: pointer;">2.0x</button>
           </div>
           <div style="display: flex; align-items: center; gap: 0.35rem; flex-wrap: wrap;">
             <button type="button" onclick="const iframe = this.closest('.card, .pillar-card').querySelector('iframe'); if (iframe) { if (iframe.requestFullscreen) iframe.requestFullscreen(); else if (iframe.webkitRequestFullscreen) iframe.webkitRequestFullscreen(); }" class="btn" style="padding: 0.25rem 0.65rem; font-size: 0.78rem; background: rgba(56, 189, 248, 0.15); color: var(--accent-cyan); border: 1px solid var(--accent-cyan); border-radius: 4px; cursor: pointer; font-weight: 700;">⤢ Expand Fullscreen</button>
-            <button type="button" onclick="window.openMediaCommentModal('class-3-2-podcast-audio-spotify', event)" class="btn btn-comment-class-3-2-podcast-audio-spotify" style="padding: 0.25rem 0.65rem; font-size: 0.78rem; background: rgba(56, 189, 248, 0.15); color: var(--accent-cyan); border: 1px solid var(--accent-cyan); border-radius: 4px; cursor: pointer; font-weight: 700;">💬 Notes</button>
-            <button type="button" onclick="window.openMediaApprovalModal('class-3-2-podcast-audio-spotify', event)" class="btn btn-approval-class-3-2-podcast-audio-spotify" style="padding: 0.25rem 0.65rem; font-size: 0.78rem; background: rgba(56, 189, 248, 0.15); color: var(--accent-cyan); border: 1px solid var(--accent-cyan); border-radius: 4px; cursor: pointer; font-weight: 700;">👍 Approval</button>
-            <button type="button" onclick="window.openNavLoginModal(event)" class="btn btn-unlogged-prompt" style="padding: 0.25rem 0.65rem; font-size: 0.78rem; background: rgba(251, 191, 36, 0.15); color: #fbbf24; border: 1px solid #f59e0b; border-radius: 4px; cursor: pointer; font-weight: 700; display: inline-block;">🔒 Login for Notes &amp; Approvals</button> <button type="button" onclick="window.copyCardDirectLink('class-3-2-podcast-audio-spotify', this)" class="btn btn-copy-link" style="padding: 0.25rem 0.65rem; font-size: 0.78rem; background: rgba(56, 189, 248, 0.15); color: var(--accent-cyan); border: 1px solid var(--accent-cyan); border-radius: 4px; cursor: pointer; font-weight: 700;">🔗 Copy Direct Link</button>
+            <button type="button" onclick="window.openMediaCommentModal('class-3-2-contract-runtimes-and-state-machines', event)" class="btn btn-comment-class-3-2-contract-runtimes-and-state-machines" style="padding: 0.25rem 0.65rem; font-size: 0.78rem; background: rgba(56, 189, 248, 0.15); color: var(--accent-cyan); border: 1px solid var(--accent-cyan); border-radius: 4px; cursor: pointer; font-weight: 700;">💬 Notes</button>
+            <button type="button" onclick="window.openMediaApprovalModal('class-3-2-contract-runtimes-and-state-machines', event)" class="btn btn-approval-class-3-2-contract-runtimes-and-state-machines" style="padding: 0.25rem 0.65rem; font-size: 0.78rem; background: rgba(56, 189, 248, 0.15); color: var(--accent-cyan); border: 1px solid var(--accent-cyan); border-radius: 4px; cursor: pointer; font-weight: 700;">👍 Approval</button>
+            <button type="button" onclick="window.openNavLoginModal(event)" class="btn btn-unlogged-prompt" style="padding: 0.25rem 0.65rem; font-size: 0.78rem; background: rgba(251, 191, 36, 0.15); color: #fbbf24; border: 1px solid #f59e0b; border-radius: 4px; cursor: pointer; font-weight: 700; display: inline-block;">🔒 Login for Notes &amp; Approvals</button>
+            <button type="button" onclick="window.copyCardDirectLink('class-3-2-contract-runtimes-and-state-machines', this)" class="btn btn-copy-link" style="padding: 0.25rem 0.65rem; font-size: 0.78rem; background: rgba(56, 189, 248, 0.15); color: var(--accent-cyan); border: 1px solid var(--accent-cyan); border-radius: 4px; cursor: pointer; font-weight: 700;">🔗 Copy Direct Link</button>
           </div>
-        </div>
-
-        <h3 style="color: #1ed760; font-size: 1.25rem; margin-bottom: 0.75rem;">
-          Class 3.2 Podcast Audio — Spotify
-        </h3>
-
-        <!-- Exact Spotify Episode Embed Player -->
-        <div style="border-radius: 12px; overflow: hidden;">
-          <iframe style="border-radius:12px" src="https://open.spotify.com/embed/episode/38NFwpp5ljMwUcBELQ4qOm?utm_source=generator&theme=0" width="100%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
         </div>
       </div>
 
-      <!-- 4. Bottom Action Navigation & Quiz Link Section -->
+      <!-- Class 3.2: Contract Runtimes & State Machines — Audio Stream -->
+      <div class="card pillar-card" id="class-3-2-contract-runtimes-and-state-machines-audio-stream" style="border: 2px solid #1ed760; margin-bottom: 2rem;">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.75rem;">
+          <span class="status-badge today-badge" style="background: #1ed760; color: #0a1128; font-weight: 800;">🎧 Native Audio Stream</span>
+          <span class="status-badge notebook-available">Full Session Stream</span>
+        </div>
+
+        <h3 style="color: #1ed760; font-size: 1.25rem; margin-bottom: 0.75rem;">
+          Class 3.2: Contract Runtimes & State Machines — Audio Stream
+        </h3>
+
+        <div class="media-playback-meter-container" style="margin-top: 0.5rem; margin-bottom: 0.85rem; background: rgba(15, 23, 42, 0.9); border: 1px solid #334155; border-radius: 8px; padding: 0.85rem; box-shadow: 0 4px 12px rgba(0,0,0,0.5);">
+          <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 0.4rem;">
+            <span class="meter-status-text" style="font-size: 0.88rem; font-weight: 700; color: #cbd5e1;">🎧 Unwatched Audio Track</span>
+            <span class="meter-auth-hint" style="font-size: 0.8rem; color: #94a3b8;">🔒 Log in to save watch tracker</span>
+          </div>
+          <div style="width: 100%; height: 8px; background: rgba(30, 41, 59, 0.8); border-radius: 4px; overflow: hidden; border: 1px solid #475569;">
+            <div class="meter-fill-bar" style="width: 0%; height: 100%; background: linear-gradient(90deg, #38bdf8, #34d399); transition: width 0.4s ease;"></div>
+          </div>
+        </div>
+
+        <audio id="audio-player-class-3-2-contract-runtimes-and-state-machines" controls style="width: 100%; margin-bottom: 0.75rem; accent-color: #1ed760;" preload="metadata">
+          <source src="audio.m4a" type="audio/mp4">
+          <source src="audio.mp3" type="audio/mp3">
+          Your browser does not support native audio playback.
+        </audio>
+
+        <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem; background: rgba(15, 23, 42, 0.8); padding: 0.65rem 0.85rem; border-radius: 6px; border: 1px solid #334155;">
+          <div style="display: flex; align-items: center; gap: 0.35rem;">
+            <span style="font-size: 0.82rem; font-weight: 700; color: #1ed760; margin-right: 0.25rem;">Speed:</span>
+            <button type="button" onclick="window.setAudioSpeed('audio-player-class-3-2-contract-runtimes-and-state-machines', 1.0, this)" class="btn-speed" style="padding: 0.25rem 0.55rem; font-size: 0.78rem; background: #1ed760; color: #0a1128; font-weight: 800; border: 1px solid #1ed760; border-radius: 4px; cursor: pointer;">1.0x</button>
+            <button type="button" onclick="window.setAudioSpeed('audio-player-class-3-2-contract-runtimes-and-state-machines', 1.25, this)" class="btn-speed" style="padding: 0.25rem 0.55rem; font-size: 0.78rem; background: rgba(30, 41, 59, 0.8); color: #e2e8f0; font-weight: 600; border: 1px solid #334155; border-radius: 4px; cursor: pointer;">1.25x</button>
+            <button type="button" onclick="window.setAudioSpeed('audio-player-class-3-2-contract-runtimes-and-state-machines', 1.5, this)" class="btn-speed" style="padding: 0.25rem 0.55rem; font-size: 0.78rem; background: rgba(30, 41, 59, 0.8); color: #e2e8f0; font-weight: 600; border: 1px solid #334155; border-radius: 4px; cursor: pointer;">1.5x</button>
+            <button type="button" onclick="window.setAudioSpeed('audio-player-class-3-2-contract-runtimes-and-state-machines', 1.75, this)" class="btn-speed" style="padding: 0.25rem 0.55rem; font-size: 0.78rem; background: rgba(30, 41, 59, 0.8); color: #e2e8f0; font-weight: 600; border: 1px solid #334155; border-radius: 4px; cursor: pointer;">1.75x</button>
+            <button type="button" onclick="window.setAudioSpeed('audio-player-class-3-2-contract-runtimes-and-state-machines', 2.0, this)" class="btn-speed" style="padding: 0.25rem 0.55rem; font-size: 0.78rem; background: rgba(30, 41, 59, 0.8); color: #e2e8f0; font-weight: 600; border: 1px solid #334155; border-radius: 4px; cursor: pointer;">2.0x</button>
+          </div>
+          <div style="display: flex; align-items: center; gap: 0.35rem; flex-wrap: wrap;">
+            
+            <button type="button" onclick="window.openMediaCommentModal('class-3-2-contract-runtimes-and-state-machines-audio-stream', event)" class="btn btn-comment-class-3-2-contract-runtimes-and-state-machines-audio-stream" style="padding: 0.25rem 0.65rem; font-size: 0.78rem; background: rgba(56, 189, 248, 0.15); color: var(--accent-cyan); border: 1px solid var(--accent-cyan); border-radius: 4px; cursor: pointer; font-weight: 700;">💬 Notes</button>
+            <button type="button" onclick="window.openMediaApprovalModal('class-3-2-contract-runtimes-and-state-machines-audio-stream', event)" class="btn btn-approval-class-3-2-contract-runtimes-and-state-machines-audio-stream" style="padding: 0.25rem 0.65rem; font-size: 0.78rem; background: rgba(56, 189, 248, 0.15); color: var(--accent-cyan); border: 1px solid var(--accent-cyan); border-radius: 4px; cursor: pointer; font-weight: 700;">👍 Approval</button>
+            <button type="button" onclick="window.openNavLoginModal(event)" class="btn btn-unlogged-prompt" style="padding: 0.25rem 0.65rem; font-size: 0.78rem; background: rgba(251, 191, 36, 0.15); color: #fbbf24; border: 1px solid #f59e0b; border-radius: 4px; cursor: pointer; font-weight: 700; display: inline-block;">🔒 Login for Notes &amp; Approvals</button>
+            <button type="button" onclick="window.copyCardDirectLink('class-3-2-contract-runtimes-and-state-machines-audio-stream', this)" class="btn btn-copy-link" style="padding: 0.25rem 0.65rem; font-size: 0.78rem; background: rgba(56, 189, 248, 0.15); color: var(--accent-cyan); border: 1px solid var(--accent-cyan); border-radius: 4px; cursor: pointer; font-weight: 700;">🔗 Copy Direct Link</button>
+          </div>
+        </div>
+      </div>
+
+<!-- 4. Bottom Action Navigation & Quiz Link Section -->
       <div style="margin-top: 2.5rem; display: flex; gap: 1rem; flex-wrap: wrap; align-items: center; justify-content: center;">
         <a href="quiz.html" class="btn btn-primary" style="background: var(--accent-gold); color: #0a1128; font-weight: 800; font-size: 1.05rem; padding: 0.75rem 1.75rem;">Take Class 3.2 Quiz (20 Qs) </a>
         <a href="/101" class="btn btn-outline" style="font-size: 1.05rem; padding: 0.75rem 1.75rem;">⬅ Back to 101 Hub</a>
