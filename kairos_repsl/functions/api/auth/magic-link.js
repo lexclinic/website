@@ -1,5 +1,6 @@
 /*
   LexClinic Education Platform — Google Cloud Gmail API Magic Link Worker
+  Subject: Your Magic Link Login to LexClinic Education
 */
 const CLIENT_ID = "288664971084-dt9rnn61mj4ej185qcr7chr5du63cao1.apps.googleusercontent.com";
 const CLIENT_SECRET = "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";
@@ -25,19 +26,32 @@ async function getGcpAccessToken() {
   return data.access_token;
 }
 
-function buildBase64MimeEmail(recipient, subject, bodyText) {
+function buildBase64HtmlMimeEmail(recipient, subject, htmlBody, textBody) {
+  const boundary = "----=_Part_" + Date.now();
   const emailLines = [
     `To: ${recipient}`,
+    `From: LexClinic Education <kyle@lex.clinic>`,
     `Subject: ${subject}`,
-    `Content-Type: text/plain; charset=utf-8`,
     `MIME-Version: 1.0`,
+    `Content-Type: multipart/alternative; boundary="${boundary}"`,
     ``,
-    bodyText
+    `--${boundary}`,
+    `Content-Type: text/plain; charset=utf-8`,
+    `Content-Transfer-Encoding: 7bit`,
+    ``,
+    textBody,
+    ``,
+    `--${boundary}`,
+    `Content-Type: text/html; charset=utf-8`,
+    `Content-Transfer-Encoding: 7bit`,
+    ``,
+    htmlBody,
+    ``,
+    `--${boundary}--`
   ];
   
   const mimeString = emailLines.join("\r\n");
   
-  // Base64URL encode string
   const base64 = btoa(unescape(encodeURIComponent(mimeString)))
     .replace(/\+/g, '-')
     .replace(/\//g, '_')
@@ -65,21 +79,34 @@ export async function onRequestPost(context) {
     // 1. Exchange Refresh Token for Google Cloud Access Token
     const accessToken = await getGcpAccessToken();
 
-    // 2. Build Email Subject & Body
-    const subject = "✨ Your LexClinic Login Magic Link (1-Click Sign In)";
-    const bodyText = `Hello,
+    // 2. Build Exact Subject & HTML Email Body
+    const subject = "Your Magic Link Login to LexClinic Education";
+    
+    const htmlBody = `
+      <div style="font-family: 'Inter', sans-serif; background: #0f172a; color: #f8fafc; padding: 30px; border-radius: 12px; border: 2px solid #fbbf24; max-width: 550px; margin: 0 auto;">
+        <h2 style="color: #fbbf24; font-size: 1.4rem; margin-bottom: 10px;">⚖️ LexClinic Education Sign In</h2>
+        <p style="color: #cbd5e1; font-size: 0.95rem; line-height: 1.6; margin-bottom: 20px;">
+          Click the button below to log into your account and access member notes, approval ratings, and watch progress tracking:
+        </p>
+        <div style="text-align: center; margin: 25px 0;">
+          <a href="${magicLinkUrl}" style="background: #fbbf24; color: #0a1128; font-weight: 800; padding: 12px 28px; border-radius: 8px; text-decoration: none; display: inline-block; font-size: 1rem;">
+            ✨ Activate Member Login ➔
+          </a>
+        </div>
+        <p style="font-size: 0.8rem; color: #94a3b8; word-break: break-all;">
+          Or copy this URL into your browser:<br>
+          <a href="${magicLinkUrl}" style="color: #38bdf8;">${magicLinkUrl}</a>
+        </p>
+        <hr style="border-color: #1e293b; margin-top: 20px;">
+        <p style="font-size: 0.75rem; color: #64748b;">
+          Sent from <strong>kyle@lex.clinic</strong> for LexClinic Education members. If you did not request this email, you can safely ignore it.
+        </p>
+      </div>
+    `;
 
-Here is your 1-click magic link to log into the LexClinic Education Platform:
+    const textBody = `Click here to log in to LexClinic Education: ${magicLinkUrl}`;
 
-🔗 ${magicLinkUrl}
-
-Clicking this link will immediately activate your authenticated member session across lex.clinic and stage.lex.clinic, unlocking member notes, approval ratings, and watch progress tracking.
-
-Best regards,
-LexClinic Education, Inc. Governance Swarm
-https://lex.clinic`;
-
-    const rawBase64 = buildBase64MimeEmail(email, subject, bodyText);
+    const rawBase64 = buildBase64HtmlMimeEmail(email, subject, htmlBody, textBody);
 
     // 3. Dispatch Email via Google Cloud Gmail API
     const gmailRes = await fetch("https://gmail.googleapis.com/gmail/v1/users/me/messages/send", {
