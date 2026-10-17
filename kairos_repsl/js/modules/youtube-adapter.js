@@ -2,6 +2,7 @@
   LexClinic Education Platform — YouTube API Orchestrator & Speed Controller
 */
 window.ytPlayersMap = window.ytPlayersMap || {};
+window.ytPollIntervals = window.ytPollIntervals || {};
 
 function onYouTubeIframeAPIReady() {
   const iframes = document.querySelectorAll('iframe[src*="youtube.com"]');
@@ -21,9 +22,34 @@ function onYouTubeIframeAPIReady() {
             }
           },
           'onStateChange': (evt) => {
+            const miniapp = card ? card.trackerMiniapp : null;
+
             if (evt.data === YT.PlayerState.PLAYING) {
               if (window.screenWakeLockManager) window.screenWakeLockManager.requestWakeLock();
+              
+              // 1-Second Polling Loop for YouTube Progress Tracker
+              if (!window.ytPollIntervals[cardId]) {
+                window.ytPollIntervals[cardId] = setInterval(() => {
+                  try {
+                    const dur = evt.target.getDuration();
+                    const cur = evt.target.getCurrentTime();
+                    if (dur > 0 && miniapp) {
+                      const pct = Math.round((cur / dur) * 100);
+                      miniapp.recordProgress(pct, cur);
+                    }
+                  } catch(e) {}
+                }, 1000);
+              }
             } else if (evt.data === YT.PlayerState.PAUSED || evt.data === YT.PlayerState.ENDED) {
+              if (window.ytPollIntervals[cardId]) {
+                clearInterval(window.ytPollIntervals[cardId]);
+                delete window.ytPollIntervals[cardId];
+              }
+
+              if (evt.data === YT.PlayerState.ENDED && miniapp) {
+                try { miniapp.recordProgress(100, evt.target.getDuration()); } catch(e) {}
+              }
+
               if (window.screenWakeLockManager) window.screenWakeLockManager.releaseWakeLock();
             }
           }
@@ -97,7 +123,11 @@ function initYouTubePlayers() {
         tag.id = 'yt_api_script';
         tag.src = "https://www.youtube.com/iframe_api";
         const firstScriptTag = document.getElementsByTagName('script')[0];
-        firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+        if (firstScriptTag && firstScriptTag.parentNode) {
+          firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+        } else {
+          document.head.appendChild(tag);
+        }
       }
     } else if (window.YT && window.YT.Player) {
       onYouTubeIframeAPIReady();
