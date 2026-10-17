@@ -1,5 +1,24 @@
-# Ignore local metagit directories
-.git_*
-.venv
-node_modules
+# Local Secrets & Air-Gapped Vaults
+.env
+*.env
+.localonly
+~/.config/
+
+# Internal Git Repositories
+.git_repsl
+
+# Chronos Time-Series Vaults (Archived to website_context.git)
+chronos_repsl/
+*.wedo.json
+
+# Dependencies & Build Artifacts
+node_modules/
+.wrangler/
+.cache/
+dist/
+build/
+
+# Temp Files
+*.tmp
 *.log
+.DS_Store
