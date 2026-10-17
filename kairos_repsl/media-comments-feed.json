@@ -1,0 +1,15 @@
+{
+  "meta": {
+    "system": "LexClinic Legal Engineering Shared Team Discussion Feed",
+    "updated_at": "2026-10-16T16:00:00Z"
+  },
+  "comments": [
+    {
+      "id": "c-1001",
+      "card_id": "clinical-ops-playbook",
+      "reviewer": "kyle@lex.clinic",
+      "comment": "Verified active legal script decoupling framework.",
+      "timestamp": "2026-10-16T15:45:00Z"
+    }
+  ]
+}
