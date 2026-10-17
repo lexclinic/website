@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Decoupling Logic from Assets: Instructions vs. Data | LexClinic Education</title>
-  <meta name="description" content="Socratic Session for Class 4.1: Decoupling Logic from Assets. Thursday, October 1, 2026 • Socratic Session for Class 4.1: Decoupling Logic from Assets. Hardware/software/wetware co-design, cycloidal logarithmic bridges, D^n terminus, and bit-perfect deterministic halting.">
+  <title>Lesson 4.1: Decoupling Logic from Assets | LexClinic Education</title>
+  <meta name="description" content="Recorded Socratic Session for Class 4.1: Decoupling Logic from Assets. Hardware/software/wetware co-design, cycloidal logarithmic bridges, and bit-perfect deterministic halting.">
   <link rel="stylesheet" href="/styles.css?v=20261016_v5">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -14,13 +14,12 @@
   <script src="/js/media-tracker-miniapp.js?v=20261016_v5"></script>
   <script src="/js/watch-tracker.js?v=20261016_v5"></script>
   <script src="/script.js?v=20261016_v5" defer></script>
-  <link rel="icon" type="image/png" href="/favicon.png?v=20261014">
-  <link rel="shortcut icon" href="/favicon.ico?v=20261014">
+  <link rel="icon" type="image/png" href="/favicon.png?v=20261016_v5">
+  <link rel="shortcut icon" href="/favicon.ico?v=20261016_v5">
 </head>
 <body>
 
   <!-- Unified Fixed Header Wrapper -->
-    <!-- Unified Fixed Header Wrapper (Top Disclaimer + Navbar) -->
   <header class="fixed-header-wrapper">
     <div class="top-disclaimer-bar">
       <span>⚖️ <strong>LEGAL DISCLAIMER:</strong> LexClinic Education, Inc. is applying for 501(c)(3) tax-exempt status. Materials, software runtimes, and APIs are for educational research and do not constitute formal legal advice. <a href="/help/#disclaimer">Read Full Disclaimer ➔</a></span>
@@ -32,7 +31,7 @@
           <span class="logo-text">Lex<span class="highlight">Clinic</span></span>
         </a>
         <nav class="nav-links" id="nav-links">
-          <a href="/event/">Event</a>
+          <a href="/event/" class="active-link">Event</a>
           <a href="/101">101</a>
           <a href="/interview/">Interview</a>
           <a href="/collaborate/">Collaborate</a>
@@ -57,12 +56,14 @@
   <section class="hero page-hero">
     <div class="container hero-content">
       <div style="display: flex; gap: 0.5rem; justify-content: center; flex-wrap: wrap; margin-bottom: 0.85rem;">
-        <span class="status-badge today-badge">Socratic Session for Class 4.1: Decoupling Logic from Assets</span>
-        <span class="status-badge media-available">🎥 5 YouTube Clips</span>
-        <span class="status-badge notebook-available">🎧 Native Audio Stream</span>
+        <span class="status-badge today-badge">Socratic Masterclass</span>
+        <span class="status-badge media-available">🎥 3 YouTube Clips</span>
+        <span class="status-badge notebook-available">🎧 Full Session Audio Stream</span>
       </div>
-      <h1 class="hero-title">Decoupling Logic from Assets: Instructions vs. Data</h1>
-      <p class="hero-subtitle">Thursday, October 1, 2026 • Socratic Session for Class 4.1: Decoupling Logic from Assets. Hardware/software/wetware co-design, cycloidal logarithmic bridges, D^n terminus, and bit-perfect deterministic halting.</p>
+      <h1 class="hero-title">Lesson 4.1: Decoupling Logic from Assets</h1>
+      <p class="hero-subtitle">
+        Thursday, October 1, 2026 • Socratic Session for Class 4.1: Decoupling Logic from Assets. Hardware/software/wetware co-design, cycloidal logarithmic bridges, D^n terminus, and bit-perfect deterministic halting.
+      </p>
       <div class="hero-actions">
         <a href="/101/4.1/quiz" class="btn btn-primary" style="background: var(--accent-gold); color: #0a1128; font-weight: 800;">Take 20-Q Session Quiz ➔</a>
         <a href="/event/" class="btn btn-outline">← Back to Events Hub</a>
@@ -74,7 +75,7 @@
   <section class="section">
     <div class="container">
       
-      <!-- 1. Session Overview Card -->
+      <!-- Lesson Overview Tile -->
       <div class="card pillar-card" style="margin-bottom: 2rem;">
         <h2 style="color: var(--accent-gold); font-size: 1.4rem; margin-bottom: 0.75rem;">
           Socratic Session Overview &amp; Key Takeaways
@@ -88,6 +89,16 @@
             <h4 style="color: var(--accent-cyan); margin-bottom: 0.4rem;">⚡ Executable Logic vs. Asset Data</h4>
             <p style="font-size: 0.92rem; color: #cbd5e1; margin: 0;">Separating state transition instructions from underlying token/asset balances prevents unintended state corruption and enables modular upgrades.</p>
           </div>
+          <div style="background: rgba(10, 17, 40, 0.7); border: 1px solid var(--border-color); padding: 1rem; border-radius: 8px;">
+            <h4 style="color: var(--accent-cyan); margin-bottom: 0.4rem;">⚙️ Cycloidal Logarithmic Bridges</h4>
+            <p style="font-size: 0.92rem; color: #cbd5e1; margin: 0;">Mathematical bridge curves that convert non-linear real-world legal events into linear state transition logic.</p>
+          </div>
+          <div style="background: rgba(10, 17, 40, 0.7); border: 1px solid var(--border-color); padding: 1rem; border-radius: 8px;">
+            <h4 style="color: var(--accent-cyan); margin-bottom: 0.4rem;">🛑 Bit-Perfect Halting</h4>
+            <p style="font-size: 0.92rem; color: #cbd5e1; margin: 0;">Deterministic execution bounds that guarantee contract termination without infinite loop recursion or gas exhaustion.</p>
+          </div>
+        </div>
+      </div>
 
       <!-- LexClinic 2026 — Lesson 4.1: Full Session Audio Stream -->
       <div class="card pillar-card" id="decoupling-logic-from-assets-full-audio" style="border: 2px solid #1ed760; margin-bottom: 2rem;">
@@ -268,9 +279,10 @@
         </div>
       </div>
 
-<div style="margin-top: 2.5rem; display: flex; gap: 1rem; flex-wrap: wrap; align-items: center; justify-content: center;">
+      <!-- Bottom Action Navigation -->
+      <div style="margin-top: 2.5rem; display: flex; gap: 1rem; flex-wrap: wrap; align-items: center; justify-content: center;">
         <a href="/101/4.1/quiz" class="btn btn-primary" style="background: var(--accent-gold); color: #0a1128; font-weight: 800; font-size: 1.05rem; padding: 0.75rem 1.75rem;">Take 20-Q Session Quiz ➔</a>
-        <a href="/event/" class="btn btn-outline" style="font-size: 1.05rem; padding: 0.75rem 1.75rem;">← Back to Events Hub</a>
+        <a href="/event/" class="btn btn-outline" style="font-size: 1.05rem; padding: 0.75rem 1.75rem;">⬅ Back to Events Hub</a>
       </div>
 
     </div>
