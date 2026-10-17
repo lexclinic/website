@@ -20,7 +20,7 @@ function ensureNavLoginModalInDOM() {
 
         <div id="modal-login-form">
           <p style="font-size: 0.9rem; color: #cbd5e1; margin-bottom: 1.25rem; line-height: 1.5;">
-            Enter your email to receive a 1-click magic link or activate instant member access across LexClinic platforms.
+            Enter your email for additional permissions and abilities on this site.
           </p>
           <div style="margin-bottom: 1.25rem;">
             <label style="display: block; font-size: 0.82rem; font-weight: 700; color: var(--accent-cyan); margin-bottom: 0.35rem;">EMAIL ADDRESS:</label>

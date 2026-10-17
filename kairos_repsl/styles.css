@@ -1386,20 +1386,31 @@ body.auth-logged-in .btn-unlogged-prompt {
 
 
 
-/* Vibrant Card Borders & Container Bounds */
-.card, .pillar-card, .event-module-card, .event-list-card {
+
+
+
+/* Universal Media & Pillar Card Sizing & Border Rules */
+.card,
+.pillar-card,
+.event-module-card,
+.event-list-card {
+  box-sizing: border-box !important;
   border: 2px solid rgba(56, 189, 248, 0.4) !important;
   border-radius: 12px !important;
   background: var(--bg-card) !important;
   padding: 1.5rem !important;
   transition: all 0.3s ease !important;
-}
-
-.section .card,
-.section .pillar-card,
-.event-detail-section .card,
-.event-detail-section .pillar-card {
   max-width: 960px !important;
   margin-left: auto !important;
   margin-right: auto !important;
+  width: 100% !important;
+}
+
+.grid .card,
+.grid .pillar-card,
+.grid .event-module-card,
+.grid .event-list-card {
+  max-width: 100% !important;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
 }
