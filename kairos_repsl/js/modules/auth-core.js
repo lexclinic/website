@@ -66,7 +66,11 @@ function updateAuthUI() {
       navBtn.style.color = "#0a1128";
       navBtn.style.borderColor = "#f59e0b";
       navBtn.style.boxShadow = "0 0 10px rgba(251, 191, 36, 0.4)";
-      navBtn.onclick = window.openNavLoginModal || function(){};
+      navBtn.onclick = function(e) {
+        if (window.openNavLoginModal) {
+          return window.openNavLoginModal(e);
+        }
+      };
       navBtn.ontouchend = navBtn.onclick;
     });
   }

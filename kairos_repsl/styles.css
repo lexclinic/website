@@ -1389,3 +1389,12 @@ body.auth-logged-in .btn-unlogged-prompt {
   margin: 0 auto;
   padding: 0 1.5rem;
 }
+
+
+/* Single Media Card Centered Width Constraint */
+.section .pillar-card,
+.event-detail-section .pillar-card {
+  max-width: 960px !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
