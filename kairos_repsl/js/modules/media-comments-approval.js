@@ -1,5 +1,5 @@
 /*
-  LexClinic Education Platform — Logged-In Comments & 2-Step Approval Manager
+  LexClinic Education Platform — Shared Team Discussion Feed & 2-Step Approval Manager
 */
 function checkLoggedUserOrPrompt(evt) {
   const userEmail = window.getSanitizedEmail ? window.getSanitizedEmail() : "";
@@ -7,14 +7,17 @@ function checkLoggedUserOrPrompt(evt) {
     if (window.openNavLoginModal) {
       window.openNavLoginModal(evt || window.event);
     } else {
-      alert("🔒 Please log in to make comments and assign approval ratings.");
+      alert("🔒 Please log in to view and post in the shared discussion feed.");
     }
     return null;
   }
   return userEmail;
 }
 
-function openMediaCommentModal(cardId, evt) {
+// ----------------------------------------------------------------------------
+// 1. SHARED TEAM DISCUSSION FEED MODAL
+// ----------------------------------------------------------------------------
+async function openMediaCommentModal(cardId, evt) {
   const userEmail = checkLoggedUserOrPrompt(evt);
   if (!userEmail) return;
 
@@ -26,22 +29,58 @@ function openMediaCommentModal(cardId, evt) {
     document.body.appendChild(modal);
   }
 
-  const allComments = JSON.parse(localStorage.getItem('lexclinic_media_comments') || '{}');
-  const cardComments = allComments[cardId] || '';
+  // Fetch shared comment feed
+  let feedComments = [];
+  try {
+    const res = await fetch('/media-comments-feed.json?v=' + Date.now());
+    if (res.ok) {
+      const data = await res.json();
+      feedComments = (data.comments || []).filter(c => c.card_id === cardId);
+    }
+  } catch(e) {}
+
+  // Also include local browser saved notes
+  const localHistory = JSON.parse(localStorage.getItem('lexclinic_notes_history') || '{}')[cardId] || [];
+  
+  let threadHtml = '';
+  const combined = [...feedComments];
+  
+  localHistory.forEach(lh => {
+    if (!combined.some(c => c.comment === lh.comment && c.timestamp === lh.timestamp)) {
+      combined.push({ card_id: cardId, reviewer: lh.reviewer, comment: lh.comment, timestamp: lh.timestamp });
+    }
+  });
+
+  combined.sort((a,b) => new Date(b.timestamp) - new Date(a.timestamp));
+
+  if (combined.length > 0) {
+    threadHtml = '<div style="margin-top: 1rem; border-top: 1px solid #334155; padding-top: 0.75rem;"><h4 style="color: var(--accent-cyan); font-size: 0.95rem; margin-bottom: 0.5rem;">💬 Shared Team Discussion Thread (' + combined.length + '):</h4><div style="max-height: 180px; overflow-y: auto; display: flex; flex-direction: column; gap: 0.6rem; padding-right: 0.25rem;">';
+    combined.forEach(c => {
+      const dt = new Date(c.timestamp).toLocaleString();
+      threadHtml += `<div style="background: #1e293b; padding: 0.65rem 0.85rem; border-radius: 8px; border-left: 3px solid var(--accent-gold); font-size: 0.88rem;"><div style="font-size: 0.75rem; color: #94a3b8; margin-bottom: 0.25rem; display: flex; justify-content: space-between;"><span>👤 <strong style="color: var(--accent-cyan);">${c.reviewer || 'kyle@lex.clinic'}</strong></span><span>🕒 ${dt}</span></div><div style="color: #f8fafc; line-height: 1.5;">${c.comment}</div></div>`;
+    });
+    threadHtml += '</div></div>';
+  } else {
+    threadHtml = '<div style="margin-top: 1rem; border-top: 1px solid #334155; padding-top: 0.75rem; color: #94a3b8; font-size: 0.85rem; italic;">No notes posted yet on this clip. Be the first to start the discussion!</div>';
+  }
 
   modal.innerHTML = `
-    <div style="background: #0f172a; border: 2px solid var(--accent-gold); border-radius: 12px; width: 100%; max-width: 550px; padding: 1.5rem; box-shadow: 0 10px 30px rgba(0,0,0,0.8); color: #f8fafc;">
+    <div style="background: #0f172a; border: 2px solid var(--accent-gold); border-radius: 12px; width: 100%; max-width: 580px; padding: 1.5rem; box-shadow: 0 10px 30px rgba(0,0,0,0.8); color: #f8fafc;">
       <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; border-bottom: 1px solid #334155; padding-bottom: 0.5rem;">
-        <h3 style="color: var(--accent-gold); font-size: 1.2rem; margin: 0;">💬 Clip Notes &amp; Comments</h3>
+        <h3 style="color: var(--accent-gold); font-size: 1.25rem; margin: 0;">💬 Shared Clip Discussion &amp; Notes</h3>
         <button onclick="document.getElementById('media-comment-modal').style.display='none'" style="background: none; border: none; color: #94a3b8; font-size: 1.5rem; cursor: pointer; padding: 0 0.5rem;">✕</button>
       </div>
       <p style="font-size: 0.85rem; color: #94a3b8; margin-bottom: 0.75rem;">
         Logged in as: <strong style="color: var(--accent-cyan);">${userEmail}</strong> | Clip ID: <code style="color: #fbbf24;">${cardId}</code>
       </p>
-      <textarea id="media-comment-textarea" placeholder="Write private notes, timestamps, or feedback for this clip..." style="width: 100%; height: 140px; background: #1e293b; border: 1px solid #475569; border-radius: 8px; color: #f8fafc; padding: 0.75rem; font-family: inherit; font-size: 0.95rem; resize: vertical; margin-bottom: 1rem;">${cardComments}</textarea>
-      <div style="display: flex; justify-content: flex-end; gap: 0.75rem;">
-        <button onclick="document.getElementById('media-comment-modal').style.display='none'" class="btn" style="background: #334155; color: #f8fafc; border: 1px solid #475569; padding: 0.4rem 1rem; border-radius: 6px; cursor: pointer;">Cancel</button>
-        <button onclick="copyNotesForAgent('${cardId}', this)" class="btn" style="background: rgba(56, 189, 248, 0.15); color: var(--accent-cyan); border: 1px solid var(--accent-cyan); padding: 0.4rem 1rem; border-radius: 6px; cursor: pointer; font-weight: 700;">🤖 Copy for Agent</button> <button onclick="saveMediaComment('${cardId}')" class="btn btn-primary" style="background: var(--accent-gold); color: #0a1128; font-weight: 800; border: none; padding: 0.4rem 1.25rem; border-radius: 6px; cursor: pointer;">Save Note 💾</button>
+      
+      <textarea id="media-comment-textarea" placeholder="Write a note or comment for the team & AI agent..." style="width: 100%; height: 110px; background: #1e293b; border: 1px solid #475569; border-radius: 8px; color: #f8fafc; padding: 0.75rem; font-family: inherit; font-size: 0.95rem; resize: vertical; margin-bottom: 0.75rem;"></textarea>
+      
+      ${threadHtml}
+
+      <div style="display: flex; justify-content: flex-end; gap: 0.75rem; margin-top: 1.25rem;">
+        <button onclick="document.getElementById('media-comment-modal').style.display='none'" class="btn" style="background: #334155; color: #f8fafc; border: 1px solid #475569; padding: 0.4rem 1rem; border-radius: 6px; cursor: pointer;">Close</button>
+        <button onclick="saveMediaComment('${cardId}')" class="btn btn-primary" style="background: var(--accent-gold); color: #0a1128; font-weight: 800; border: none; padding: 0.45rem 1.35rem; border-radius: 6px; cursor: pointer;">Post Comment 💬</button>
       </div>
     </div>
   `;
@@ -53,32 +92,37 @@ function saveMediaComment(cardId) {
   if (!textarea) return;
 
   const noteText = textarea.value.trim ? textarea.value.trim() : textarea.value;
-  const userEmail = window.getSanitizedEmail ? window.getSanitizedEmail() : "";
-  const allComments = JSON.parse(localStorage.getItem('lexclinic_media_comments') || '{}');
+  if (!noteText) return;
 
-  allComments[cardId] = noteText;
-  localStorage.setItem('lexclinic_media_comments', JSON.stringify(allComments));
+  const userEmail = window.getSanitizedEmail ? window.getSanitizedEmail() : "";
+  const timestamp = new Date().toISOString();
+  
+  const allHistory = JSON.parse(localStorage.getItem('lexclinic_notes_history') || '{}');
+  if (!allHistory[cardId]) allHistory[cardId] = [];
+
+  allHistory[cardId].unshift({
+    comment: noteText,
+    reviewer: userEmail,
+    timestamp: timestamp
+  });
+  localStorage.setItem('lexclinic_notes_history', JSON.stringify(allHistory));
 
   syncToAgentLedger(cardId, userEmail, { comment: noteText });
 
   const btn = document.querySelector(`.btn-comment-${cardId}`);
   if (btn) {
-    if (noteText) {
-      btn.innerHTML = '💬 Notes (1)';
-      btn.style.background = 'rgba(251, 191, 36, 0.25)';
-      btn.style.borderColor = '#fbbf24';
-      btn.style.color = '#fbbf24';
-    } else {
-      btn.innerHTML = '💬 Notes';
-      btn.style.background = 'rgba(56, 189, 248, 0.15)';
-      btn.style.borderColor = 'var(--accent-cyan)';
-      btn.style.color = 'var(--accent-cyan)';
-    }
+    btn.innerHTML = `💬 Notes (${allHistory[cardId].length})`;
+    btn.style.background = 'rgba(251, 191, 36, 0.25)';
+    btn.style.borderColor = '#fbbf24';
+    btn.style.color = '#fbbf24';
   }
 
   document.getElementById('media-comment-modal').style.display = 'none';
 }
 
+// ----------------------------------------------------------------------------
+// 2. TWO-STEP APPROVAL MODAL (THOROUGH/CURSORY -> RATING)
+// ----------------------------------------------------------------------------
 let pendingApprovalDepth = {};
 
 function openMediaApprovalModal(cardId, evt) {
@@ -244,47 +288,6 @@ function updateAuthButtonVisibility() {
   }
 }
 
-
-function copyNotesForAgent(cardId, btnEl) {
-  const allComments = JSON.parse(localStorage.getItem('lexclinic_media_comments') || '{}');
-  const allApprovals = JSON.parse(localStorage.getItem('lexclinic_media_approvals') || '{}');
-  const userEmail = window.getSanitizedEmail ? window.getSanitizedEmail() : "";
-
-  let report = `### 📋 LexClinic Media Review Dispatch\n`;
-  report += `* **Reviewer**: ${userEmail || 'kyle@lex.clinic'}\n`;
-  report += `* **Page**: ${window.location.pathname}\n`;
-  report += `* **Clip ID**: \`${cardId}\`\n\n`;
-
-  if (allApprovals[cardId]) {
-    const app = allApprovals[cardId];
-    report += `* **Approval Rating**: ${app.rating.toUpperCase()} (Scope: ${app.depth})\n`;
-  }
-
-  if (allComments[cardId]) {
-    report += `* **Note / Comment**: "${allComments[cardId]}"\n`;
-  } else {
-    report += `* **Note / Comment**: (No text note entered)\n`;
-  }
-
-  if (navigator.clipboard && navigator.clipboard.writeText) {
-    navigator.clipboard.writeText(report).then(() => {
-      if (btnEl) btnEl.innerHTML = '✅ Copied for Agent!';
-      setTimeout(() => { if (btnEl) btnEl.innerHTML = '🤖 Copy Note for Agent'; }, 2000);
-    });
-  } else {
-    const input = document.createElement('textarea');
-    input.value = report;
-    document.body.appendChild(input);
-    input.select();
-    document.execCommand('copy');
-    document.body.removeChild(input);
-    if (btnEl) btnEl.innerHTML = '✅ Copied for Agent!';
-    setTimeout(() => { if (btnEl) btnEl.innerHTML = '🤖 Copy Note for Agent'; }, 2000);
-  }
-}
-
-window.copyNotesForAgent = copyNotesForAgent;
-
 window.openMediaCommentModal = openMediaCommentModal;
 window.selectApprovalDepth = selectApprovalDepth;
 window.setMediaApproval = setMediaApproval;
@@ -293,14 +296,14 @@ window.updateAuthButtonVisibility = updateAuthButtonVisibility;
 document.addEventListener('DOMContentLoaded', () => {
   updateAuthButtonVisibility();
 
-  const allComments = JSON.parse(localStorage.getItem('lexclinic_media_comments') || '{}');
+  const allHistory = JSON.parse(localStorage.getItem('lexclinic_notes_history') || '{}');
   const allApprovals = JSON.parse(localStorage.getItem('lexclinic_media_approvals') || '{}');
 
-  Object.keys(allComments).forEach(cardId => {
-    if (allComments[cardId]) {
+  Object.keys(allHistory).forEach(cardId => {
+    if (allHistory[cardId] && allHistory[cardId].length > 0) {
       const btn = document.querySelector(`.btn-comment-${cardId}`);
       if (btn) {
-        btn.innerHTML = '💬 Notes (1)';
+        btn.innerHTML = `💬 Notes (${allHistory[cardId].length})`;
         btn.style.background = 'rgba(251, 191, 36, 0.25)';
         btn.style.borderColor = '#fbbf24';
         btn.style.color = '#fbbf24';
