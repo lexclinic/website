@@ -1366,3 +1366,26 @@ body.auth-logged-in [class*="btn-approval-"] {
 body.auth-logged-in .btn-unlogged-prompt {
   display: none !important;
 }
+
+
+/* Strict Card Container & Tile Formatting Rules */
+.pillar-card,
+.event-list-card,
+.event-module-card,
+.card {
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 100%;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+}
+
+.events-group-container,
+.upcoming-events-section .container,
+.recent-events-section .container {
+  width: 100%;
+  max-width: var(--container-max);
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
