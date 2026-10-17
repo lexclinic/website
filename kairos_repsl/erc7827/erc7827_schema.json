@@ -1,0 +1,29 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "ERC-7827 Cryptographic Legal Attestation Standard",
+  "type": "object",
+  "properties": {
+    "attestation_id": {
+      "type": "string"
+    },
+    "issuer": {
+      "type": "string"
+    },
+    "subject": {
+      "type": "string"
+    },
+    "timestamp": {
+      "type": "string"
+    },
+    "signature": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "attestation_id",
+    "issuer",
+    "subject",
+    "timestamp",
+    "signature"
+  ]
+}
