@@ -41,7 +41,7 @@ function openMediaCommentModal(cardId, evt) {
       <textarea id="media-comment-textarea" placeholder="Write private notes, timestamps, or feedback for this clip..." style="width: 100%; height: 140px; background: #1e293b; border: 1px solid #475569; border-radius: 8px; color: #f8fafc; padding: 0.75rem; font-family: inherit; font-size: 0.95rem; resize: vertical; margin-bottom: 1rem;">${cardComments}</textarea>
       <div style="display: flex; justify-content: flex-end; gap: 0.75rem;">
         <button onclick="document.getElementById('media-comment-modal').style.display='none'" class="btn" style="background: #334155; color: #f8fafc; border: 1px solid #475569; padding: 0.4rem 1rem; border-radius: 6px; cursor: pointer;">Cancel</button>
-        <button onclick="saveMediaComment('${cardId}')" class="btn btn-primary" style="background: var(--accent-gold); color: #0a1128; font-weight: 800; border: none; padding: 0.4rem 1.25rem; border-radius: 6px; cursor: pointer;">Save Note 💾</button>
+        <button onclick="copyNotesForAgent('${cardId}', this)" class="btn" style="background: rgba(56, 189, 248, 0.15); color: var(--accent-cyan); border: 1px solid var(--accent-cyan); padding: 0.4rem 1rem; border-radius: 6px; cursor: pointer; font-weight: 700;">🤖 Copy for Agent</button> <button onclick="saveMediaComment('${cardId}')" class="btn btn-primary" style="background: var(--accent-gold); color: #0a1128; font-weight: 800; border: none; padding: 0.4rem 1.25rem; border-radius: 6px; cursor: pointer;">Save Note 💾</button>
       </div>
     </div>
   `;
@@ -243,6 +243,47 @@ function updateAuthButtonVisibility() {
     document.body.classList.remove('auth-logged-in');
   }
 }
+
+
+function copyNotesForAgent(cardId, btnEl) {
+  const allComments = JSON.parse(localStorage.getItem('lexclinic_media_comments') || '{}');
+  const allApprovals = JSON.parse(localStorage.getItem('lexclinic_media_approvals') || '{}');
+  const userEmail = window.getSanitizedEmail ? window.getSanitizedEmail() : "";
+
+  let report = `### 📋 LexClinic Media Review Dispatch\n`;
+  report += `* **Reviewer**: ${userEmail || 'kyle@lex.clinic'}\n`;
+  report += `* **Page**: ${window.location.pathname}\n`;
+  report += `* **Clip ID**: \`${cardId}\`\n\n`;
+
+  if (allApprovals[cardId]) {
+    const app = allApprovals[cardId];
+    report += `* **Approval Rating**: ${app.rating.toUpperCase()} (Scope: ${app.depth})\n`;
+  }
+
+  if (allComments[cardId]) {
+    report += `* **Note / Comment**: "${allComments[cardId]}"\n`;
+  } else {
+    report += `* **Note / Comment**: (No text note entered)\n`;
+  }
+
+  if (navigator.clipboard && navigator.clipboard.writeText) {
+    navigator.clipboard.writeText(report).then(() => {
+      if (btnEl) btnEl.innerHTML = '✅ Copied for Agent!';
+      setTimeout(() => { if (btnEl) btnEl.innerHTML = '🤖 Copy Note for Agent'; }, 2000);
+    });
+  } else {
+    const input = document.createElement('textarea');
+    input.value = report;
+    document.body.appendChild(input);
+    input.select();
+    document.execCommand('copy');
+    document.body.removeChild(input);
+    if (btnEl) btnEl.innerHTML = '✅ Copied for Agent!';
+    setTimeout(() => { if (btnEl) btnEl.innerHTML = '🤖 Copy Note for Agent'; }, 2000);
+  }
+}
+
+window.copyNotesForAgent = copyNotesForAgent;
 
 window.openMediaCommentModal = openMediaCommentModal;
 window.selectApprovalDepth = selectApprovalDepth;
