@@ -1350,3 +1350,19 @@ button, .btn, a, input[type="submit"], input[type="radio"], label, #mobile-toggl
 .disclaimer-splash-card li strong {
   color: #f1f5f9;
 }
+
+
+/* Auth-Only Media Buttons (Hidden by default when logged out) */
+[class*="btn-comment-"],
+[class*="btn-approval-"] {
+  display: none !important;
+}
+
+body.auth-logged-in [class*="btn-comment-"],
+body.auth-logged-in [class*="btn-approval-"] {
+  display: inline-block !important;
+}
+
+body.auth-logged-in .btn-unlogged-prompt {
+  display: none !important;
+}
