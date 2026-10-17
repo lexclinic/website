@@ -1,0 +1,8 @@
+{
+  "mcp_server": "LexClinic Remote MCP Server",
+  "protocol_version": "2024-11-05",
+  "endpoints": {
+    "sse": "https://lex.clinic/functions/mcp/sse",
+    "transcripts_search": "https://lex.clinic/api/transcripts"
+  }
+}

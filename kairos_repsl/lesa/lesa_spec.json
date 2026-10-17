@@ -1,0 +1,10 @@
+{
+  "standard": "LESA (Legal Engineering Data Specification)",
+  "version": "1.0.0",
+  "organization": "LexClinic Education Inc.",
+  "tax_status": "Delaware Non-Profit / Form 1023 501(c)(3)",
+  "jurisdictions": [
+    "Delaware",
+    "Federal Tax Code IRC \u00a7 513 UBIT"
+  ]
+}
