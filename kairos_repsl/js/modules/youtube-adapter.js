@@ -89,19 +89,28 @@ function setAudioSpeed(audioId, speedRate, btnElement) {
   } catch(err) {}
 }
 
-window.onYouTubeIframeAPIReady = onYouTubeIframeAPIReady;
-window.setVideoSpeed = setVideoSpeed;
-window.setAudioSpeed = setAudioSpeed;
-
-document.addEventListener('DOMContentLoaded', () => {
+function initYouTubePlayers() {
   if (document.querySelector('iframe[src*="youtube.com"]')) {
     if (!window.YT) {
-      const tag = document.createElement('script');
-      tag.src = "https://www.youtube.com/iframe_api";
-      const firstScriptTag = document.getElementsByTagName('script')[0];
-      firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+      if (!document.getElementById('yt_api_script')) {
+        const tag = document.createElement('script');
+        tag.id = 'yt_api_script';
+        tag.src = "https://www.youtube.com/iframe_api";
+        const firstScriptTag = document.getElementsByTagName('script')[0];
+        firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+      }
     } else if (window.YT && window.YT.Player) {
       onYouTubeIframeAPIReady();
     }
   }
-});
+}
+
+window.onYouTubeIframeAPIReady = onYouTubeIframeAPIReady;
+window.setVideoSpeed = setVideoSpeed;
+window.setAudioSpeed = setAudioSpeed;
+
+if (document.readyState === 'complete' || document.readyState === 'interactive') {
+  initYouTubePlayers();
+} else {
+  document.addEventListener('DOMContentLoaded', initYouTubePlayers);
+}
