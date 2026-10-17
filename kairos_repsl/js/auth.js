@@ -383,3 +383,24 @@ function acknowledgeDisclaimer() {
 
 window.acknowledgeDisclaimer = acknowledgeDisclaimer;
 window.checkDisclaimerSplashModal = checkDisclaimerSplashModal;
+
+function processInstantLogin(email) {
+  if (!email || !email.includes("@")) return false;
+  localStorage.setItem("lexclinic_user_email", email.toLowerCase().trim());
+  loggedInEmail = email.toLowerCase().trim();
+  
+  try {
+    fetch('/api/auth/magic-link', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email: email })
+    }).catch(() => {});
+  } catch(e) {}
+
+  updateAuthUI();
+  if (window.initAllMediaMeters) window.initAllMediaMeters();
+  if (window.updateAuthButtonVisibility) window.updateAuthButtonVisibility();
+  return true;
+}
+
+window.processInstantLogin = processInstantLogin;
