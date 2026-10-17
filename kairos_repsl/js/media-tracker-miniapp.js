@@ -1,6 +1,6 @@
 /*
   LexClinic Education Platform — Standalone MediaTrackerMeter Component
-  Build Version: 20260829_2380
+  Build Version: 20261016_v4
 */
 
 class MediaTrackerMeter {
@@ -17,7 +17,7 @@ class MediaTrackerMeter {
     if (!this.meter) return;
 
     const heading = this.card.querySelector('h3, h4, h2');
-    this.title = heading ? heading.innerText.replace(/^[0-9]+\.\s*/, '').trim() : "Media Clip";
+    this.title = heading ? heading.innerText.replace(/^[0-9]+\.\s*/, '').replace(/^Clip\s*[0-9]+:\s*/i, '').trim() : "Media Clip";
 
     const hasAudioTag = !!this.card.querySelector('audio') || this.id.includes('audio') || this.title.toLowerCase().includes('audio');
     this.mediaType = hasAudioTag ? 'audio' : 'video';
@@ -25,43 +25,41 @@ class MediaTrackerMeter {
     this.mediaLabel = hasAudioTag ? 'Audio Track' : 'Video Clip';
 
     this.connectedPlayer = null;
-    this.pendingSeekTime = null;
 
     this.initResumeOnlyClick();
     this.refreshUI();
   }
 
-  // Key Migration Helper: Find history by static ID or legacy title match
   getSavedRecord() {
     try {
       const history = JSON.parse(localStorage.getItem("lexclinic_video_watch_history") || "{}");
       if (history[this.id]) {
         return history[this.id];
       }
-
-      // Check legacy hash keys matching this card's title
-      const records = Object.values(history);
-      for (let rec of records) {
-        if (rec.video_title && this.title && rec.video_title.toLowerCase() === this.title.toLowerCase()) {
-          return rec;
+      // Fallback: search by title
+      const cleanTitle = (this.title || "").toLowerCase().trim();
+      for (const key in history) {
+        if (history[key] && history[key].video_title) {
+          if (history[key].video_title.toLowerCase().trim() === cleanTitle) {
+            return history[key];
+          }
         }
       }
-      return { progress: 0, current_time: 0 };
-    } catch (e) {
-      return { progress: 0, current_time: 0 };
+      return null;
+    } catch(err) {
+      return null;
     }
   }
 
   refreshUI() {
     if (!this.meter) return;
     const record = this.getSavedRecord();
-    const prog = record.progress || 0;
-    const userEmail = window.getSanitizedEmail ? window.getSanitizedEmail() : "";
-    const isLogged = !!userEmail;
+    const prog = record ? (record.progress || 0) : 0;
+    const userEmail = (window.getSanitizedEmail ? window.getSanitizedEmail() : "") || localStorage.getItem("lexclinic_user_email") || "";
 
+    const fillBar = this.meter.querySelector('.meter-fill-bar');
     const statusText = this.meter.querySelector('.meter-status-text');
     const authHint = this.meter.querySelector('.meter-auth-hint');
-    const fillBar = this.meter.querySelector('.meter-fill-bar');
 
     const cleanProg = Math.min(100, Math.max(0, prog));
 
@@ -72,97 +70,64 @@ class MediaTrackerMeter {
 
     if (cleanProg >= 90) {
       if (statusText) statusText.innerHTML = `✅ <strong>100% Watched (${this.mediaLabel})</strong>`;
-      if (authHint) authHint.innerHTML = isLogged ? `<a href="/profile/" style="color: #34d399; font-weight: 700; text-decoration: underline; font-size: 0.8rem;">👤 ${userEmail.split('@')[0]} (Saved ➔)</a>` : `<a href="javascript:void(0)" onclick="openNavLoginModal(event)" style="color: #fbbf24; font-weight: 800; text-decoration: underline; font-size: 0.8rem;">🔒 Log In to Save</a>`;
     } else if (cleanProg > 0) {
-      if (statusText) statusText.innerHTML = `▶️ <strong>${cleanProg}% Watched (${this.mediaLabel})</strong>`;
-      if (authHint) authHint.innerHTML = isLogged ? `<a href="/profile/" style="color: #38bdf8; text-decoration: underline; font-size: 0.8rem;">👤 ${userEmail.split('@')[0]} (Profile ➔)</a>` : `<a href="javascript:void(0)" onclick="openNavLoginModal(event)" style="color: #fbbf24; font-weight: 800; text-decoration: underline; font-size: 0.8rem;">🔒 Log In to Save</a>`;
+      if (statusText) statusText.innerHTML = `⏳ <strong>${cleanProg}% Watched (${this.mediaLabel})</strong>`;
     } else {
       if (statusText) statusText.innerHTML = `${this.mediaIcon} <strong>Unwatched ${this.mediaLabel}</strong>`;
-      if (authHint) authHint.innerHTML = isLogged ? `<span style="color: #34d399; font-size: 0.8rem; font-weight: 600;">👤 Linked as ${userEmail.split('@')[0]}</span>` : `<a href="javascript:void(0)" onclick="openNavLoginModal(event)" style="color: #fbbf24; font-weight: 700; text-decoration: underline; font-size: 0.8rem;">🔒 Log In to Save Watch Tracker</a>`;
+    }
+
+    if (authHint) {
+      if (userEmail) {
+        authHint.innerHTML = `👤 Logged in as: <strong style="color: var(--accent-cyan);">${userEmail}</strong>`;
+      } else {
+        authHint.innerHTML = `🔒 Log in to save watch tracker`;
+      }
     }
   }
 
-  recordProgress(prog, currentTime = 0) {
+  recordProgress(prog, currentTime) {
+    const userEmail = (window.getSanitizedEmail ? window.getSanitizedEmail() : "") || localStorage.getItem("lexclinic_user_email") || "";
+    
+    const record = {
+      progress: Math.min(100, Math.max(0, prog)),
+      current_time: currentTime || 0,
+      video_title: this.title,
+      user_email: userEmail,
+      updated_at: new Date().toISOString()
+    };
+
     try {
-      let history = {};
-      try { history = JSON.parse(localStorage.getItem("lexclinic_video_watch_history") || "{}"); } catch(e) {}
-      const existing = history[this.id] || {};
-      const newProg = Math.max(existing.progress || 0, prog);
-
-      const record = {
-        video_id: this.id,
-        video_title: this.title,
-        media_type: this.mediaType,
-        page_url: window.location.pathname,
-        progress: newProg,
-        current_time: Math.round(currentTime),
-        timestamp: new Date().toISOString()
-      };
-
+      const history = JSON.parse(localStorage.getItem("lexclinic_video_watch_history") || "{}");
       history[this.id] = record;
       localStorage.setItem("lexclinic_video_watch_history", JSON.stringify(history));
-      this.refreshUI();
+    } catch(err) {}
 
-      const email = window.getSanitizedEmail ? window.getSanitizedEmail() : "";
-      if (email) {
-        fetch("/api/track-watch", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ email, ...record })
-        }).catch(() => {});
-      }
-    } catch(e) {}
+    this.refreshUI();
   }
 
-  // Late-Stage Player Connection Bridge
   connectPlayer(player) {
     this.connectedPlayer = player;
-    
-    // Execute pending seek if user clicked progress bar before player finished loading
-    if (this.pendingSeekTime !== null) {
-      this.seekPlayerToTime(this.pendingSeekTime);
-      this.pendingSeekTime = null;
-    }
+    this.refreshUI();
   }
 
   seekPlayerToTime(targetSeconds) {
     try {
       if (!this.connectedPlayer) return;
 
-      // 1. YouTube Player Instance (`YT.Player`)
       if (typeof this.connectedPlayer.seekTo === 'function') {
-        let playerState = -1;
-        try { playerState = this.connectedPlayer.getPlayerState(); } catch(e) {}
-
         if (typeof this.connectedPlayer.playVideo === 'function') {
           this.connectedPlayer.playVideo();
         }
-
-        if (targetSeconds > 0) {
-          setTimeout(() => {
-            try { this.connectedPlayer.seekTo(targetSeconds, true); } catch(e) {}
-          }, 300);
-        }
-      } 
-      // 2. HTML5 Native <video> or <audio> Element
-      else if (typeof this.connectedPlayer.currentTime !== 'undefined') {
-        const mediaEl = this.connectedPlayer;
-
-        if (mediaEl.readyState < 1) {
-          mediaEl.addEventListener('loadedmetadata', () => {
-            if (targetSeconds > 0) mediaEl.currentTime = targetSeconds;
-            try { mediaEl.play().catch(() => {}); } catch(e) {}
-          }, { once: true });
-          mediaEl.load();
-        } else {
-          if (targetSeconds > 0) mediaEl.currentTime = targetSeconds;
-          try { mediaEl.play().catch(() => {}); } catch(e) {}
-        }
+        setTimeout(() => {
+          try { this.connectedPlayer.seekTo(targetSeconds, true); } catch(e) {}
+        }, 350);
+      } else if (typeof this.connectedPlayer.currentTime !== 'undefined') {
+        this.connectedPlayer.currentTime = targetSeconds;
+        this.connectedPlayer.play().catch(() => {});
       }
     } catch(err) {}
   }
 
-  // Resume & Start Playback on Meter Bar Click (Never advance bar without media playback)
   initResumeOnlyClick() {
     if (!this.meter || this.meter.dataset.resumeClickBound) return;
     this.meter.dataset.resumeClickBound = "true";
@@ -171,9 +136,8 @@ class MediaTrackerMeter {
 
     this.meter.addEventListener("click", () => {
       const record = this.getSavedRecord();
-      const savedTime = record.current_time || 0;
+      const savedTime = record ? (record.current_time || 0) : 0;
 
-      // Eagerly connect ytPlayersMap instance if unlogged
       if (!this.connectedPlayer && window.ytPlayersMap && window.ytPlayersMap[this.card.id]) {
         this.connectedPlayer = window.ytPlayersMap[this.card.id];
       }
@@ -181,8 +145,6 @@ class MediaTrackerMeter {
       if (this.connectedPlayer) {
         this.seekPlayerToTime(savedTime);
       } else {
-        this.pendingSeekTime = savedTime;
-        // Attempt starting HTML5 media or iframe play
         const mediaEl = this.card.querySelector('video, audio');
         if (mediaEl) {
           try { mediaEl.play().catch(() => {}); } catch(e) {}
@@ -192,5 +154,31 @@ class MediaTrackerMeter {
   }
 }
 
-// Global scope exposures
 window.MediaTrackerMeter = MediaTrackerMeter;
+
+// Auto-Instantiate MediaTrackerMeter on all cards with meters
+function initAllMediaMeters() {
+  const cards = document.querySelectorAll('.card, .pillar-card');
+  cards.forEach(card => {
+    if (card.querySelector('.media-playback-meter-container')) {
+      if (!card.trackerMiniapp) {
+        new MediaTrackerMeter(card);
+      } else {
+        card.trackerMiniapp.refreshUI();
+      }
+    }
+  });
+}
+
+window.initAllMediaMeters = initAllMediaMeters;
+
+if (document.readyState === 'complete' || document.readyState === 'interactive') {
+  initAllMediaMeters();
+} else {
+  document.addEventListener('DOMContentLoaded', initAllMediaMeters);
+}
+
+// Re-refresh UI on login state changes
+window.addEventListener('storage', () => {
+  if (window.initAllMediaMeters) window.initAllMediaMeters();
+});
