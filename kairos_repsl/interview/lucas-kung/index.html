@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Lukas Küng & Kyle MacLean Smith: Turning Fragile DAOs into Legal Runtimes | LexClinic Education</title>
-  <meta name="description" content="Socratic interview between Swiss DAO Researcher Lukas Küng (ZHAW / UNIC / DAWO) and Legal Engineer Kyle MacLean Smith on transforming fragile DAOs into enforceable legal runtimes.">
+  <title>Lucas Kung Interview: LexDAO &amp; On-Chain Legal Engineering | LexClinic</title>
+  <meta name="description" content="Socratic Interview with Lucas Kung on LexDAO Foundations, On-Chain Legal Wrappers, and Legal Engineering Runtimes.">
   <link rel="stylesheet" href="/styles.css?v=20261016_v5">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -14,14 +14,12 @@
   <script src="/js/media-tracker-miniapp.js?v=20261016_v5"></script>
   <script src="/js/watch-tracker.js?v=20261016_v5"></script>
   <script src="/script.js?v=20261016_v5" defer></script>
-  <link rel="icon" type="image/png" href="/favicon.png?v=20260829_2640">
-  <link rel="shortcut icon" href="/favicon.ico?v=20260829_2640">
+  <link rel="icon" type="image/png" href="/favicon.png?v=20261016_v5">
+  <link rel="shortcut icon" href="/favicon.ico?v=20261016_v5">
 </head>
 <body>
 
-  <!-- Navigation Bar -->
-      <!-- Unified Fixed Header Wrapper (Navbar + Sub-Navbar Disclaimer) -->
-    <!-- Unified Fixed Header Wrapper (Top Disclaimer + Navbar) -->
+  <!-- Unified Fixed Header Wrapper -->
   <header class="fixed-header-wrapper">
     <div class="top-disclaimer-bar">
       <span>⚖️ <strong>LEGAL DISCLAIMER:</strong> LexClinic Education, Inc. is applying for 501(c)(3) tax-exempt status. Materials, software runtimes, and APIs are for educational research and do not constitute formal legal advice. <a href="/help/#disclaimer">Read Full Disclaimer ➔</a></span>
@@ -35,7 +33,7 @@
         <nav class="nav-links" id="nav-links">
           <a href="/event/">Event</a>
           <a href="/101">101</a>
-          <a href="/interview/">Interview</a>
+          <a href="/interview/" class="active-link">Interview</a>
           <a href="/collaborate/">Collaborate</a>
           <a href="/fiduciary/">Fiduciary</a>
           <a href="/attest/">Attest</a>
@@ -54,20 +52,20 @@
     </nav>
   </header>
 
-  <!-- Hero Header -->
+  <!-- Hero Section -->
   <section class="hero page-hero">
     <div class="container hero-content">
       <div style="display: flex; gap: 0.5rem; justify-content: center; flex-wrap: wrap; margin-bottom: 0.85rem;">
-        <span class="status-badge today-badge">🎙️ Academic Interview Series</span>
-        <span class="status-badge media-available">🎥 11 YouTube Explainer Modules</span>
-        <span class="status-badge notebook-available">🎧 Native Audio Stream</span>
+        <span class="status-badge today-badge">Socratic Interview Session</span>
+        <span class="status-badge media-available">🎥 3 Video Clips</span>
+        <span class="status-badge notebook-available">🎧 Full Audio Interview</span>
       </div>
-      <h1 class="hero-title">Turning Fragile DAOs into Legal Runtimes</h1>
+      <h1 class="hero-title">Lucas Kung: LexDAO &amp; On-Chain Legal Engineering</h1>
       <p class="hero-subtitle">
-        Friday, September 18, 2026 • Swiss DAO Researcher Lukas Küng interviews Legal Engineer Kyle MacLean Smith on how decentralized organizations survive corporate liability, replace paper contracts with computational state machines, and code human accountability into execution gates.
+        Friday, September 18, 2026 • Socratic interview with Lucas Kung on LexDAO foundations, on-chain legal wrappers, and personal digital sovereignty.
       </p>
       <div class="hero-actions">
-        <a href="quiz.html" class="btn btn-primary" style="background: var(--accent-gold); color: #0a1128; font-weight: 800;">Take 20-Q Interview Quiz ➔</a>
+        <a href="quiz.html" class="btn btn-primary" style="background: var(--accent-gold); color: #0a1128; font-weight: 800;">Take Interview Quiz (20 Qs) ➔</a>
         <a href="/interview/" class="btn btn-outline">← Back to Interviews Hub</a>
       </div>
     </div>
@@ -76,66 +74,26 @@
   <!-- Main Content -->
   <section class="section">
     <div class="container">
-
-      <!-- Speaker / Interviewer Bio Card -->
-      <div class="card pillar-card" style="border: 2px solid var(--accent-cyan); margin-bottom: 2rem; background: rgba(10, 17, 40, 0.9);">
-        <h2 style="color: var(--accent-cyan); font-size: 1.35rem; margin-bottom: 1rem; border-bottom: 1px solid var(--accent-cyan); padding-bottom: 0.4rem;">
-          👤 Speaker & Interviewer Profile
-        </h2>
-
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(290px, 1fr)); gap: 1.5rem;">
-          
-          <!-- Lukas Küng Bio -->
-          <div style="background: rgba(15, 23, 42, 0.7); border: 1px solid #334155; padding: 1.25rem; border-radius: 8px;">
-            <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.5rem;">
-              <span style="font-size: 1.5rem;">🇨🇭</span>
-              <h3 style="color: var(--accent-gold); font-size: 1.15rem; margin: 0;">Lukas Küng</h3>
-            </div>
-            <p style="font-size: 0.85rem; color: var(--accent-cyan); font-weight: 700; margin-bottom: 0.75rem;">DAO Researcher • ZHAW / UNIC / DAWO Organizing Chair</p>
-            <p style="font-size: 0.92rem; color: #cbd5e1; line-height: 1.6; margin: 0;">
-              Lukas Küng is a prominent Swiss academic researcher specializing in Decentralized Autonomous Organization (DAO) business value and governance at the <strong>ZHAW School of Management and Law</strong> and the <strong>University of Nicosia (IFF)</strong>. He serves as a core organizing committee member and track chair for the <strong>European DAO Workshop (DAWO24, DAWO25 in Zurich, DAWO26 in Winterthur)</strong> and is co-author of <em>Mastering DAOs: A Practical Guidebook</em>.
-            </p>
-          </div>
-
-          <!-- Kyle MacLean Smith Bio -->
-          <div style="background: rgba(15, 23, 42, 0.7); border: 1px solid #334155; padding: 1.25rem; border-radius: 8px;">
-            <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.5rem;">
-              <span style="font-size: 1.5rem;">⚖️</span>
-              <h3 style="color: var(--accent-gold); font-size: 1.15rem; margin: 0;">Kyle MacLean Smith</h3>
-            </div>
-            <p style="font-size: 0.85rem; color: var(--accent-cyan); font-weight: 700; margin-bottom: 0.75rem;">Lead Legal Engineer • LexClinic Education Inc.</p>
-            <p style="font-size: 0.92rem; color: #cbd5e1; line-height: 1.6; margin: 0;">
-              Lead Legal Engineer at LexClinic Education Inc. pioneering smart legal wrappers, computational contract runtimes, and AI verification gates. Architect of time-sharded metagit databases and ERC-7827 non-fungible governance attestations connecting natural language legal specifications with EVM state machines.
-            </p>
-          </div>
-
-        </div>
-      </div>
-
-      <!-- Overview Card -->
+      
+      <!-- Lesson Overview Tile -->
       <div class="card pillar-card" style="margin-bottom: 2rem;">
         <h2 style="color: var(--accent-gold); font-size: 1.4rem; margin-bottom: 0.75rem;">
-          Interview Overview & Core Themes
+          Interview Overview &amp; Key Takeaways
         </h2>
-        <p style="line-height: 1.7; color: var(--text-main); font-size: 1.05rem; margin-bottom: 1.25rem;">
-          In this deep-dive academic dialogue, Lukas Küng and Kyle MacLean Smith explore how DAOs can escape general partnership joint-liability traps, why paper contracts are obsolete specification models, and how smart legal wrappers code human accountability directly into smart contract verification gates.
+        <p style="line-height: 1.7; color: var(--text-main); font-size: 1.05rem; margin: 0;">
+          Examining LexDAO foundations, digital property rights, web3 venture capital, and personal AI sovereignty.
         </p>
+      </div>
 
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1rem;">
-          <div style="background: rgba(10, 17, 40, 0.7); border: 1px solid var(--border-color); padding: 1rem; border-radius: 8px;">
-            <h4 style="color: var(--accent-cyan); margin-bottom: 0.4rem;">🏛️ Surviving Corporate Law</h4>
-            <p style="font-size: 0.9rem; color: #cbd5e1; margin: 0;">Unwrapped DAOs default to general partnerships with joint and several liability. Legal wrappers establish limited liability boundaries for contributors.</p>
-          </div>
-
-      <!-- Lucas Kung Socratic Interview — Full Audio Stream -->
-      <div class="card pillar-card" id="lucas-kung-interview-audio-stream" style="border: 2px solid #1ed760; margin-bottom: 2rem;">
+      <!-- Lucas Kung & Kyle MacLean Smith — Full Audio Interview -->
+      <div class="card pillar-card" id="lucas-kung-interview-full-audio-stream" style="border: 2px solid #1ed760; margin-bottom: 2rem;">
         <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.75rem;">
           <span class="status-badge today-badge" style="background: #1ed760; color: #0a1128; font-weight: 800;">🎧 Native Audio Stream</span>
           <span class="status-badge notebook-available">Full Session Stream</span>
         </div>
 
         <h3 style="color: #1ed760; font-size: 1.25rem; margin-bottom: 0.75rem;">
-          Lucas Kung Socratic Interview — Full Audio Stream
+          Lucas Kung & Kyle MacLean Smith — Full Audio Interview
         </h3>
 
         <div class="media-playback-meter-container" style="margin-top: 0.5rem; margin-bottom: 0.85rem; background: rgba(15, 23, 42, 0.9); border: 1px solid #334155; border-radius: 8px; padding: 0.85rem; box-shadow: 0 4px 12px rgba(0,0,0,0.5);">
@@ -164,25 +122,25 @@
           </div>
           <div style="display: flex; align-items: center; gap: 0.35rem; flex-wrap: wrap;">
             
-            <button type="button" onclick="window.openMediaCommentModal('lucas-kung-interview-audio-stream', event)" class="btn btn-comment-lucas-kung-interview-audio-stream" style="padding: 0.25rem 0.65rem; font-size: 0.78rem; background: rgba(56, 189, 248, 0.15); color: var(--accent-cyan); border: 1px solid var(--accent-cyan); border-radius: 4px; cursor: pointer; font-weight: 700;">💬 Notes</button>
-            <button type="button" onclick="window.openMediaApprovalModal('lucas-kung-interview-audio-stream', event)" class="btn btn-approval-lucas-kung-interview-audio-stream" style="padding: 0.25rem 0.65rem; font-size: 0.78rem; background: rgba(56, 189, 248, 0.15); color: var(--accent-cyan); border: 1px solid var(--accent-cyan); border-radius: 4px; cursor: pointer; font-weight: 700;">👍 Approval</button>
+            <button type="button" onclick="window.openMediaCommentModal('lucas-kung-interview-full-audio-stream', event)" class="btn btn-comment-lucas-kung-interview-full-audio-stream" style="padding: 0.25rem 0.65rem; font-size: 0.78rem; background: rgba(56, 189, 248, 0.15); color: var(--accent-cyan); border: 1px solid var(--accent-cyan); border-radius: 4px; cursor: pointer; font-weight: 700;">💬 Notes</button>
+            <button type="button" onclick="window.openMediaApprovalModal('lucas-kung-interview-full-audio-stream', event)" class="btn btn-approval-lucas-kung-interview-full-audio-stream" style="padding: 0.25rem 0.65rem; font-size: 0.78rem; background: rgba(56, 189, 248, 0.15); color: var(--accent-cyan); border: 1px solid var(--accent-cyan); border-radius: 4px; cursor: pointer; font-weight: 700;">👍 Approval</button>
             <button type="button" onclick="window.openNavLoginModal(event)" class="btn btn-unlogged-prompt" style="padding: 0.25rem 0.65rem; font-size: 0.78rem; background: rgba(251, 191, 36, 0.15); color: #fbbf24; border: 1px solid #f59e0b; border-radius: 4px; cursor: pointer; font-weight: 700; display: inline-block;">🔒 Login for Notes &amp; Approvals</button>
-            <button type="button" onclick="window.copyCardDirectLink('lucas-kung-interview-audio-stream', this)" class="btn btn-copy-link" style="padding: 0.25rem 0.65rem; font-size: 0.78rem; background: rgba(56, 189, 248, 0.15); color: var(--accent-cyan); border: 1px solid var(--accent-cyan); border-radius: 4px; cursor: pointer; font-weight: 700;">🔗 Copy Direct Link</button>
+            <button type="button" onclick="window.copyCardDirectLink('lucas-kung-interview-full-audio-stream', this)" class="btn btn-copy-link" style="padding: 0.25rem 0.65rem; font-size: 0.78rem; background: rgba(56, 189, 248, 0.15); color: var(--accent-cyan); border: 1px solid var(--accent-cyan); border-radius: 4px; cursor: pointer; font-weight: 700;">🔗 Copy Direct Link</button>
           </div>
         </div>
       </div>
 
-      <h2 style="color: var(--accent-gold); font-size: 1.5rem; margin-bottom: 1.25rem;">🎥 Video Clips</h2>
+      <h2 style="color: var(--accent-gold); font-size: 1.5rem; margin-bottom: 1.25rem;">🎥 Interview Video Modules</h2>
 
-      <!-- Clip 1: Lucas Kung Socratic Interview Part 1 -->
+      <!-- 1. Owning Our Digital Lives vs. Renting Them -->
       <div class="card pillar-card" id="lucas-kung-interview-clip-1" style="border: 2px solid var(--accent-cyan); margin-bottom: 2rem;">
         <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.75rem;">
-          <span class="status-badge today-badge" style="background: var(--accent-cyan); color: #0a1128; font-weight: 800;">🎥 Clip 1: Lucas Kung Socratic Interview Part 1</span>
+          <span class="status-badge today-badge" style="background: var(--accent-cyan); color: #0a1128; font-weight: 800;">🎥 1. Owning Our Digital Lives vs. Renting Them</span>
           <span class="status-badge notebook-available">YouTube Stream</span>
         </div>
 
         <h3 style="color: var(--accent-cyan); font-size: 1.25rem; margin-bottom: 0.75rem;">
-          Clip 1: Lucas Kung Socratic Interview Part 1
+          1. Owning Our Digital Lives vs. Renting Them
         </h3>
 
         <div class="media-playback-meter-container" style="margin-top: 0.5rem; margin-bottom: 0.85rem; background: rgba(15, 23, 42, 0.9); border: 1px solid #334155; border-radius: 8px; padding: 0.85rem; box-shadow: 0 4px 12px rgba(0,0,0,0.5);">
@@ -196,7 +154,7 @@
         </div>
 
         <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 8px; border: 1px solid var(--border-color); background: #000; margin-bottom: 0.75rem;">
-          <iframe id="yt_frame_lucas-kung-interview_1" loading="lazy" src="https://www.youtube.com/embed/fxIGwkdpa28?enablejsapi=1" allow="autoplay; fullscreen" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;" allowfullscreen></iframe>
+          <iframe id="yt_frame_card_lk_clip1" loading="lazy" src="https://www.youtube.com/embed/fxIGwkdpa28?enablejsapi=1" allow="autoplay; fullscreen" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;" allowfullscreen></iframe>
         </div>
 
         <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem; background: rgba(15, 23, 42, 0.8); padding: 0.65rem 0.85rem; border-radius: 6px; border: 1px solid #334155;">
@@ -218,15 +176,15 @@
         </div>
       </div>
 
-      <!-- Clip 2: Lucas Kung Socratic Interview Part 2 -->
+      <!-- 2. Web3 Venture Capital & Abstract Geometry -->
       <div class="card pillar-card" id="lucas-kung-interview-clip-2" style="border: 2px solid var(--accent-gold); margin-bottom: 2rem;">
         <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.75rem;">
-          <span class="status-badge today-badge" style="background: var(--accent-gold); color: #0a1128; font-weight: 800;">🎥 Clip 2: Lucas Kung Socratic Interview Part 2</span>
+          <span class="status-badge today-badge" style="background: var(--accent-gold); color: #0a1128; font-weight: 800;">🎥 2. Web3 Venture Capital & Abstract Geometry</span>
           <span class="status-badge notebook-available">YouTube Stream</span>
         </div>
 
         <h3 style="color: var(--accent-gold); font-size: 1.25rem; margin-bottom: 0.75rem;">
-          Clip 2: Lucas Kung Socratic Interview Part 2
+          2. Web3 Venture Capital & Abstract Geometry
         </h3>
 
         <div class="media-playback-meter-container" style="margin-top: 0.5rem; margin-bottom: 0.85rem; background: rgba(15, 23, 42, 0.9); border: 1px solid #334155; border-radius: 8px; padding: 0.85rem; box-shadow: 0 4px 12px rgba(0,0,0,0.5);">
@@ -240,7 +198,7 @@
         </div>
 
         <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 8px; border: 1px solid var(--border-color); background: #000; margin-bottom: 0.75rem;">
-          <iframe id="yt_frame_lucas-kung-interview_2" loading="lazy" src="https://www.youtube.com/embed/arji7tjbIRg?enablejsapi=1" allow="autoplay; fullscreen" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;" allowfullscreen></iframe>
+          <iframe id="yt_frame_card_lk_clip2" loading="lazy" src="https://www.youtube.com/embed/arji7tjbIRg?enablejsapi=1" allow="autoplay; fullscreen" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;" allowfullscreen></iframe>
         </div>
 
         <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem; background: rgba(15, 23, 42, 0.8); padding: 0.65rem 0.85rem; border-radius: 6px; border: 1px solid #334155;">
@@ -262,15 +220,15 @@
         </div>
       </div>
 
-      <!-- Clip 3: Lucas Kung Socratic Interview Part 3 -->
+      <!-- 3. Law, AI & Digital Property Rights -->
       <div class="card pillar-card" id="lucas-kung-interview-clip-3" style="border: 2px solid var(--accent-cyan); margin-bottom: 2rem;">
         <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.75rem;">
-          <span class="status-badge today-badge" style="background: var(--accent-cyan); color: #0a1128; font-weight: 800;">🎥 Clip 3: Lucas Kung Socratic Interview Part 3</span>
+          <span class="status-badge today-badge" style="background: var(--accent-cyan); color: #0a1128; font-weight: 800;">🎥 3. Law, AI & Digital Property Rights</span>
           <span class="status-badge notebook-available">YouTube Stream</span>
         </div>
 
         <h3 style="color: var(--accent-cyan); font-size: 1.25rem; margin-bottom: 0.75rem;">
-          Clip 3: Lucas Kung Socratic Interview Part 3
+          3. Law, AI & Digital Property Rights
         </h3>
 
         <div class="media-playback-meter-container" style="margin-top: 0.5rem; margin-bottom: 0.85rem; background: rgba(15, 23, 42, 0.9); border: 1px solid #334155; border-radius: 8px; padding: 0.85rem; box-shadow: 0 4px 12px rgba(0,0,0,0.5);">
@@ -284,7 +242,7 @@
         </div>
 
         <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 8px; border: 1px solid var(--border-color); background: #000; margin-bottom: 0.75rem;">
-          <iframe id="yt_frame_lucas-kung-interview_3" loading="lazy" src="https://www.youtube.com/embed/uiZaaUqXgz4?enablejsapi=1" allow="autoplay; fullscreen" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;" allowfullscreen></iframe>
+          <iframe id="yt_frame_card_lk_clip3" loading="lazy" src="https://www.youtube.com/embed/uiZaaUqXgz4?enablejsapi=1" allow="autoplay; fullscreen" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;" allowfullscreen></iframe>
         </div>
 
         <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem; background: rgba(15, 23, 42, 0.8); padding: 0.65rem 0.85rem; border-radius: 6px; border: 1px solid #334155;">
@@ -306,22 +264,22 @@
         </div>
       </div>
 
-</section>
+      <!-- Bottom Action Navigation -->
+      <div style="margin-top: 2.5rem; display: flex; gap: 1rem; flex-wrap: wrap; align-items: center; justify-content: center;">
+        <a href="quiz.html" class="btn btn-primary" style="background: var(--accent-gold); color: #0a1128; font-weight: 800; font-size: 1.05rem; padding: 0.75rem 1.75rem;">Take Interview Quiz (20 Qs) ➔</a>
+        <a href="/interview/" class="btn btn-outline" style="font-size: 1.05rem; padding: 0.75rem 1.75rem;">⬅ Back to Interviews Hub</a>
+      </div>
+
+    </div>
+  </section>
 
   <!-- Footer -->
   <footer class="footer">
     <div class="container footer-content">
-      <div class="footer-brand">
-        <span class="logo-icon">⚖️</span>
-        <span class="logo-text">Lex<span class="highlight">Clinic</span></span>
-        <p class="footer-tagline">Computational Legal Engineering & AI Verification Infrastructure.</p>
-      </div>
-      <div class="footer-links">
-        <a href="/index.html">Home</a>
-        <a href="/event/">Events</a>
-        <a href="/101/">101 Courseware</a>
-        <a href="/attest/">Attestations</a>
-      </div>
+      <p>© 2026 LexClinic Education Inc. Delaware non-profit applying for 501(c)(3) tax-exempt status. Open public goods published under AGPL-3.0 &amp; Creative Commons Attribution-ShareAlike 4.0.</p>
+      <p class="disclaimer" style="margin-top: 0.5rem; font-size: 0.78rem; color: #94a3b8; line-height: 1.5;">
+        <strong>Educational &amp; Open-Source Disclaimer:</strong> LexClinic Education, Inc. is a Delaware non-profit corporation applying for 501(c)(3) tax-exempt status. All materials, software runtimes, and APIs are published for educational research under AGPL-3.0 and do not constitute formal legal advice or an attorney-client relationship. <a href="/help/#disclaimer" style="color: var(--accent-cyan); text-decoration: underline;">Read full disclaimer ➔</a>
+      </p>
     </div>
   </footer>
 
