@@ -1391,9 +1391,17 @@ body.auth-logged-in .btn-unlogged-prompt {
 }
 
 
-/* Single Media Card Centered Width Constraint */
+
+
+
+/* Strict 960px Card Width Constraint for All Detail Pages */
+.section .card,
 .section .pillar-card,
-.event-detail-section .pillar-card {
+.section .event-module-card,
+.section .event-list-card,
+.event-detail-section .card,
+.event-detail-section .pillar-card,
+.event-detail-section .event-module-card {
   max-width: 960px !important;
   margin-left: auto !important;
   margin-right: auto !important;
