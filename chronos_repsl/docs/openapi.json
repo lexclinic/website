@@ -1,0 +1,63 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "LexClinic Transcripts & Media API",
+    "description": "Programmatic API for AI agents to query, read, and search full transcripts, Hansard takeaways, and audio streams for LexClinic legal engineering sessions and interviews.",
+    "version": "1.0.0",
+    "contact": {
+      "name": "LexClinic Legal Engineering Team",
+      "url": "https://lex.clinic"
+    }
+  },
+  "servers": [
+    {
+      "url": "https://stage.lex.clinic",
+      "description": "Staging Edge API"
+    },
+    {
+      "url": "https://lex.clinic",
+      "description": "Public Production Edge API"
+    }
+  ],
+  "paths": {
+    "/api/transcripts": {
+      "get": {
+        "summary": "List all session transcripts or search/get by ID",
+        "description": "Returns a list of all available session transcripts, fetches a single transcript by ID, or searches transcript text.",
+        "operationId": "getTranscripts",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "query",
+            "description": "Unique session ID (e.g. '2026-09-24-class-3.2' or '2026-09-18-lucas-kung')",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "q",
+            "in": "query",
+            "description": "Keyword search query across all transcript text and takeaways",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful query response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,35 @@
+{
+  "wedo_instance": {
+    "id": "MISSION-LEXCLINIC-WEBSITE",
+    "description": "LexClinic Education, Inc. Cloudflare Website Development and Deployment Manifest",
+    "status": "[completed]",
+    "meta": {
+      "protocol": "WeDo-JSON",
+      "version": "1.0.0",
+      "philosophy": "LexClinic Web Substrate: Fast, secure, and modern web interface deployed to Cloudflare Pages for lex.clinic."
+    },
+    "tasks": [
+      {
+        "id": "CF-EXPORT-CREDENTIALS-01",
+        "description": "Export Cloudflare Account ID and API Token into local environment",
+        "status": "[x]"
+      },
+      {
+        "id": "CF-VERIFY-TOKEN-02",
+        "description": "Verify Cloudflare API Token authentication and list accounts/zones",
+        "status": "[x]"
+      },
+      {
+        "id": "WEB-BUILD-03",
+        "description": "Build the lex.clinic frontend web application in lex_clinic_website/",
+        "status": "[x]"
+      },
+      {
+        "id": "CF-DEPLOY-PAGES-04",
+        "description": "Deploy website to Cloudflare Pages project 'lex-clinic' and bind lex.clinic domain",
+        "status": "[x]"
+      }
+    ]
+  },
+  "attribution": "LexClinic Swarm (20260828)"
+}
