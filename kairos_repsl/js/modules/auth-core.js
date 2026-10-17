@@ -91,6 +91,10 @@ window.getSanitizedEmail = getSanitizedEmail;
 window.updateAuthUI = updateAuthUI;
 window.processInstantLogin = processInstantLogin;
 
-document.addEventListener('DOMContentLoaded', () => {
+// Immediate evaluation + ReadyState fallback
+updateAuthUI();
+if (document.readyState === "loading") {
+  document.addEventListener('DOMContentLoaded', updateAuthUI);
+} else {
   updateAuthUI();
-});
+}
