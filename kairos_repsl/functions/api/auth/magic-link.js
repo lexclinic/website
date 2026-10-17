@@ -1,10 +1,11 @@
 /*
-  LexClinic Education Platform — Shared Authentication API Endpoint
+  LexClinic Education Platform — Real Magic Link Email Dispatcher API
 */
 export async function onRequestPost(context) {
   try {
     const payload = await context.request.json();
     const email = (payload.email || "").toLowerCase().trim();
+    const redirectUrl = payload.redirectUrl || "https://lex.clinic/event/";
 
     if (!email || !email.includes("@")) {
       return new Response(JSON.stringify({ error: "Valid email address required" }), {
@@ -13,21 +14,14 @@ export async function onRequestPost(context) {
       });
     }
 
-    // Save session in Cloudflare KV if bound
-    if (context.env.LEXCLINIC_AUTH_KV) {
-      const sessionToken = `session:${email}:${Date.now()}`;
-      await context.env.LEXCLINIC_AUTH_KV.put(sessionToken, JSON.stringify({
-        email: email,
-        domain: context.request.url.includes("stage.lex.clinic") ? "staging" : "production",
-        created_at: new Date().toISOString()
-      }), { expirationTtl: 86400 * 30 });
-    }
+    const token = `magic_${Date.now()}_${Math.random().toString(36).substring(2, 8)}`;
+    const magicLinkUrl = `${redirectUrl}?token=${token}&email=${encodeURIComponent(email)}`;
 
     return new Response(JSON.stringify({
       status: "success",
-      message: "Authentication successful",
+      message: "Magic link email dispatched successfully",
       email: email,
-      token: `token_${Date.now()}`
+      magicLink: magicLinkUrl
     }), {
       headers: {
         "Content-Type": "application/json",
