@@ -1,0 +1,46 @@
+{
+  "wedo_instance": {
+    "id": "EVENT-2026-10-01",
+    "description": "LexClinic Socratic Event Manifest \u2014 October 1, 2026 (Lesson 4.1: Decoupling Logic from Assets)",
+    "status": "[completed]",
+    "meta": {
+      "protocol": "WeDo-JSON",
+      "version": "1.0.0",
+      "provenance_reference": "/event/2026-09-24/how-contract-law-built-the-blockchain/",
+      "type": "Recorded-Socratic-Event"
+    },
+    "tasks": [
+      {
+        "id": "AUDIO-STREAM-FASTSTART-01",
+        "description": "Download new replacement audio (Turning_legal_contracts_into_executable_code.m4a) from Google Drive, compress to faststart AAC (<25MB), and host at /event/2026-10-01/audio.m4a",
+        "status": "[x]"
+      },
+      {
+        "id": "SPEECH-WHISPER-TRANSCRIPT-02",
+        "description": "Transcribe replacement audio with Whisper (23,254 chars), scrub all PII anecdotes, and index in /api/transcripts and Remote MCP server",
+        "status": "[x]"
+      },
+      {
+        "id": "YT-EXPLAINER-CLIPS-03",
+        "description": "Upload clean MP4 explainer clips to YouTube (eRshqe8H2oU, 5BAyi_n3lV4, sDK57aW_DrY, W9QBVqPp_Bg) and scrub compromised Clip 5",
+        "status": "[x]"
+      },
+      {
+        "id": "TRACKER-PARITY-COMPLEXITY-04",
+        "description": "Implement MediaTrackerMeter player adapter, click-to-seek, 1-2x speed controls, Screen Wake Lock, and MediaSession lock-screen controls on all cards",
+        "status": "[x]"
+      },
+      {
+        "id": "HUB-CARD-PROVENANCE-05",
+        "description": "Render recorded event card on /event/ with 2x2 takeaways grid, native audio stream, YouTube cards, and 20-Q quiz link",
+        "status": "[x]"
+      },
+      {
+        "id": "GIT-BLOB-FILTER-06",
+        "description": "Exclude large audio/video m4a/mp4 binaries from git tracking via .gitignore while preserving Cloudflare Pages media streaming via Wrangler",
+        "status": "[x]"
+      }
+    ]
+  },
+  "attribution": "LexClinic Legal Engineering Swarm (20261014)"
+}

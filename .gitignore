@@ -9,7 +9,6 @@
 
 # Chronos Time-Series Vaults (Archived to website_context.git)
 chronos_repsl/
-*.wedo.json
 
 # Dependencies & Build Artifacts
 node_modules/
