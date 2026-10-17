@@ -93,7 +93,6 @@ window.onYouTubeIframeAPIReady = onYouTubeIframeAPIReady;
 window.setVideoSpeed = setVideoSpeed;
 window.setAudioSpeed = setAudioSpeed;
 
-// Inject YouTube IFrame API Script if iframe exists
 document.addEventListener('DOMContentLoaded', () => {
   if (document.querySelector('iframe[src*="youtube.com"]')) {
     if (!window.YT) {

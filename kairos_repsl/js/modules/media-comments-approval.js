@@ -236,15 +236,11 @@ function updateApprovalButtonUI(cardId, record) {
 
 function updateAuthButtonVisibility() {
   const userEmail = window.getSanitizedEmail ? window.getSanitizedEmail() : "";
-  const authButtons = document.querySelectorAll('[class*="btn-comment-"], [class*="btn-approval-"]');
-  const promptButtons = document.querySelectorAll('.btn-unlogged-prompt');
   
   if (userEmail) {
-    authButtons.forEach(btn => btn.style.display = 'inline-block');
-    promptButtons.forEach(btn => btn.style.display = 'none');
+    document.body.classList.add('auth-logged-in');
   } else {
-    authButtons.forEach(btn => btn.style.display = 'none');
-    promptButtons.forEach(btn => btn.style.display = 'inline-block');
+    document.body.classList.remove('auth-logged-in');
   }
 }
 
