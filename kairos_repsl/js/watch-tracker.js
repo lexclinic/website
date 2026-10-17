@@ -7,8 +7,11 @@
 
 
 
+
+
+
 // ============================================================================
-// LOGGED-IN MEDIA COMMENTS & 2-STEP APPROVAL STATE MANAGER
+// AGENT-READABLE MEDIA NOTES LEDGER & UNLOGGED LOGIN PROMPT MANAGER
 // ============================================================================
 
 function checkLoggedUserOrPrompt(evt) {
@@ -25,7 +28,7 @@ function checkLoggedUserOrPrompt(evt) {
 }
 
 // ----------------------------------------------------------------------------
-// 1. COMMENTS MODAL & LOCAL STORAGE SYNC
+// 1. COMMENTS MODAL & AGENT LEDGER SYNC
 // ----------------------------------------------------------------------------
 function openMediaCommentModal(cardId, evt) {
   const userEmail = checkLoggedUserOrPrompt(evt);
@@ -66,10 +69,14 @@ function saveMediaComment(cardId) {
   if (!textarea) return;
 
   const noteText = textarea.value.trim ? textarea.value.trim() : textarea.value;
+  const userEmail = window.getSanitizedEmail ? window.getSanitizedEmail() : "";
   const allComments = JSON.parse(localStorage.getItem('lexclinic_media_comments') || '{}');
 
   allComments[cardId] = noteText;
   localStorage.setItem('lexclinic_media_comments', JSON.stringify(allComments));
+
+  // Sync to Agent-Readable Ledger
+  syncToAgentLedger(cardId, userEmail, { comment: noteText });
 
   const btn = document.querySelector(`.btn-comment-${cardId}`);
   if (btn) {
@@ -93,7 +100,7 @@ window.openMediaCommentModal = openMediaCommentModal;
 window.saveMediaComment = saveMediaComment;
 
 // ----------------------------------------------------------------------------
-// 2. TWO-STEP APPROVAL MODAL (STEP 1: THOROUGH/CURSORY -> STEP 2: RATING)
+// 2. TWO-STEP APPROVAL MODAL (THOROUGH/CURSORY -> RATING)
 // ----------------------------------------------------------------------------
 let pendingApprovalDepth = {};
 
@@ -109,7 +116,6 @@ function openMediaApprovalModal(cardId, evt) {
     document.body.appendChild(modal);
   }
 
-  // Render Step 1: Review Depth Selection
   renderApprovalStep1(modal, cardId, userEmail);
   modal.style.display = 'flex';
 }
@@ -195,8 +201,26 @@ function setMediaApproval(cardId, ratingState) {
   allApprovals[cardId] = record;
   localStorage.setItem('lexclinic_media_approvals', JSON.stringify(allApprovals));
 
+  // Sync to Agent Ledger
+  syncToAgentLedger(cardId, userEmail, record);
+
   updateApprovalButtonUI(cardId, record);
   document.getElementById('media-approval-modal').style.display = 'none';
+}
+
+function syncToAgentLedger(cardId, userEmail, payload) {
+  try {
+    fetch('/api/media-notes', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        card_id: cardId,
+        reviewer: userEmail,
+        page_url: window.location.pathname,
+        ...payload
+      })
+    }).catch(() => {});
+  } catch(e) {}
 }
 
 function updateApprovalButtonUI(cardId, record) {
@@ -240,19 +264,20 @@ window.selectApprovalDepth = selectApprovalDepth;
 window.setMediaApproval = setMediaApproval;
 
 // ----------------------------------------------------------------------------
-// 3. DYNAMIC AUTH-DEPENDENT BUTTON VISIBILITY (HIDE UNTIL LOGGED IN)
+// 3. UNLOGGED PROMPT BUTTON & LOGGED-IN BUTTON VISIBILITY
 // ----------------------------------------------------------------------------
 function updateAuthButtonVisibility() {
   const userEmail = window.getSanitizedEmail ? window.getSanitizedEmail() : "";
   const authButtons = document.querySelectorAll('[class*="btn-comment-"], [class*="btn-approval-"]');
+  const promptButtons = document.querySelectorAll('.btn-unlogged-prompt');
   
-  authButtons.forEach(btn => {
-    if (userEmail) {
-      btn.style.display = 'inline-block';
-    } else {
-      btn.style.display = 'none';
-    }
-  });
+  if (userEmail) {
+    authButtons.forEach(btn => btn.style.display = 'inline-block');
+    promptButtons.forEach(btn => btn.style.display = 'none');
+  } else {
+    authButtons.forEach(btn => btn.style.display = 'none');
+    promptButtons.forEach(btn => btn.style.display = 'inline-block');
+  }
 }
 
 window.updateAuthButtonVisibility = updateAuthButtonVisibility;
@@ -280,5 +305,4 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 });
 
-// Re-check visibility when auth modal closes or state changes
 window.addEventListener('storage', updateAuthButtonVisibility);
