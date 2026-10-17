@@ -7,9 +7,6 @@
 # Internal Git Repositories
 .git_repsl
 
-# Chronos Time-Series Vaults (Archived to website_context.git)
-chronos_repsl/
-
 # Dependencies & Build Artifacts
 node_modules/
 .wrangler/
