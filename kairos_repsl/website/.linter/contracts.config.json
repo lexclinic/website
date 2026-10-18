@@ -1,0 +1,47 @@
+{
+  "window_contracts": [
+    "MediaTrackerMeter",
+    "bindMobileToggle",
+    "checkDisclaimerSplash",
+    "checkLoggedUserOrPrompt",
+    "closeNavLoginModal",
+    "copyCardDirectLink",
+    "ensureNavLoginModalInDOM",
+    "getSanitizedEmail",
+    "initAllMediaMeters",
+    "initNativeMediaListeners",
+    "initYouTubePlayers",
+    "openMediaApprovalModal",
+    "openMediaCommentModal",
+    "openNavLoginModal",
+    "processInstantLogin",
+    "renderApprovalStep1",
+    "renderApprovalStep2",
+    "saveMediaComment",
+    "screenWakeLockManager",
+    "selectApprovalDepth",
+    "setAudioSpeed",
+    "setMediaApproval",
+    "setVideoSpeed",
+    "showCopyFeedback",
+    "syncToAgentLedger",
+    "toggleFullscreenIframe",
+    "triggerModalMagicLink",
+    "updateApprovalButtonUI",
+    "updateAuthButtonVisibility",
+    "updateAuthUI"
+  ],
+  "dom_targets": [
+    "mobile-toggle",
+    "nav-links",
+    "nav-login-btn",
+    "disclaimer-splash-modal"
+  ],
+  "localstorage_keys": [
+    "lexclinic_user_email",
+    "lexclinic_magic_token",
+    "lexclinic_disclaimer_ack",
+    "lexclinic_notes_history",
+    "lexclinic_media_approvals"
+  ]
+}

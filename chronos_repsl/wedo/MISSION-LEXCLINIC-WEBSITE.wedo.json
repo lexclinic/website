@@ -28,6 +28,11 @@
         "id": "CF-DEPLOY-PAGES-04",
         "description": "Deploy website to Cloudflare Pages project 'lex-clinic' and bind lex.clinic domain",
         "status": "[x]"
+      },
+      {
+        "id": "LINT-01",
+        "description": "Build Modular DOM & Function Contract Linter System in .linter/ to prevent silent feature loss",
+        "status": "[x]"
       }
     ]
   },
