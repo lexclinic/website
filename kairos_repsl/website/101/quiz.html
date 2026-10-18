@@ -353,6 +353,21 @@
     let cachedAnsSummary = [];
     const correctAnswers = { "q1": "A", "q2": "A", "q3": "A", "q4": "A" };
 
+    
+    function handleLogout() {
+      localStorage.removeItem("lexclinic_user_email");
+      localStorage.removeItem("lexclinic_magic_token");
+      if (window.updateAuthUI) window.updateAuthUI();
+      window.location.reload();
+    }
+
+    function goBackToFinish() {
+      const modal = document.getElementById("unanswered-warning-modal");
+      if (modal) modal.style.display = "none";
+      const firstMissing = document.querySelector("input:not(:checked)");
+      if (firstMissing) firstMissing.scrollIntoView({ behavior: "smooth", block: "center" });
+    }
+
     async function handleFormSubmit() {
       const activeEmail = window.getSanitizedEmail ? window.getSanitizedEmail() : (localStorage.getItem("lexclinic_user_email") || "").trim();
       if (!activeEmail) {
