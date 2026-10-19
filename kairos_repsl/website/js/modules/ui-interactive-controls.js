@@ -38,30 +38,32 @@
     overlay.className = "disclaimer-splash-overlay";
     overlay.innerHTML = `
       <div class="disclaimer-splash-card">
-        <h2>⚖️ Legal Research Disclaimer</h2>
-        <span class="badge">Delaware Non-Profit / Form 1023 Candidate</span>
-        <p>LexClinic Education, Inc. publishes open-source software, legal engineering courseware, and APIs strictly for educational research purposes.</p>
+        <h2>⚖️ Welcome to LexClinic</h2>
+        <span class="badge">Delaware Non-Profit — Pending 501(c)(3) Status</span>
+        <p>Before proceeding, please review and acknowledge our Educational &amp; Legal Disclaimers:</p>
         <ul>
-          <li><strong>No Legal Advice:</strong> Content on lex.clinic does not constitute formal legal counsel or create an attorney-client relationship.</li>
-          <li><strong>Open Public Goods:</strong> All runtimes are distributed under AGPL-3.0 and Creative Commons Attribution-ShareAlike 4.0.</li>
-          <li><strong>Non-Commercial Educational Scope:</strong> Compliant with IRC § 513 UBIT educational activities.</li>
+          <li><strong>Educational Public Good Scope:</strong> LexClinic Education, Inc. is a Delaware non-profit applying for 501(c)(3) tax-exempt recognition. All courseware, research, smart contracts (ERC-7827), and APIs are open public goods under AGPL-3.0 and CC-BY-SA 4.0.</li>
+          <li><strong>No Legal Advice:</strong> Materials, interactive quizzes, and API queries are for academic and educational research and <strong>do not constitute formal legal advice, representation, or an attorney-client relationship</strong>.</li>
+          <li><strong>Open-Source "AS IS" Warranty:</strong> All software code and specifications are provided "AS IS" without warranties of any kind.</li>
         </ul>
-        <div style="display: flex; justify-content: flex-end; margin-top: 1.5rem;">
-          <button id="btn-accept-disclaimer" class="btn btn-primary" style="background: var(--accent-gold); color: #0a1128; font-weight: 800; padding: 0.65rem 1.5rem; border-radius: 8px; border: none; cursor: pointer; font-size: 0.95rem;">
-            I Acknowledge &amp; Accept Terms ➔
-          </button>
-        </div>
+        <button type="button" id="btn-accept-disclaimer" onclick="window.acknowledgeDisclaimer()" class="btn btn-primary" style="background: var(--accent-gold); color: #0a1128; font-weight: 800; font-size: 1.05rem; padding: 0.75rem 1.75rem; width: 100%; border-radius: 8px; border: none; cursor: pointer; text-align: center;">
+          I Understand &amp; Agree ➔
+        </button>
       </div>
     `;
 
     document.body.appendChild(overlay);
+  }
 
-    const acceptBtn = document.getElementById("btn-accept-disclaimer");
-    if (acceptBtn) {
-      acceptBtn.onclick = function() {
-        localStorage.setItem(LAST_ACK_KEY, Date.now().toString());
-        overlay.remove();
-      };
+  function acknowledgeDisclaimer() {
+    localStorage.setItem("lexclinic_disclaimer_ack", Date.now().toString());
+    localStorage.setItem("lexclinic_disclaimer_acknowledged_time", Date.now().toString());
+    localStorage.setItem("lexclinic_disclaimer_acknowledged", "true");
+    const modal = document.getElementById("disclaimer-splash-modal");
+    if (modal) {
+      modal.style.opacity = "0";
+      modal.style.transition = "opacity 0.3s ease";
+      setTimeout(() => modal.remove(), 300);
     }
   }
 
@@ -91,6 +93,8 @@
   // Export Window Functions
   window.bindMobileToggle = bindMobileToggle;
   window.checkDisclaimerSplash = checkDisclaimerSplash;
+  window.checkDisclaimerSplashModal = checkDisclaimerSplash;
+  window.acknowledgeDisclaimer = acknowledgeDisclaimer;
   window.toggleFullscreenIframe = toggleFullscreenIframe;
 
   // Auto-run on DOM load
