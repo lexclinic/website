@@ -33,6 +33,11 @@
         "id": "LINT-01",
         "description": "Build Modular DOM & Function Contract Linter System in .linter/ to prevent silent feature loss",
         "status": "[x]"
+      },
+      {
+        "id": "LINT-02",
+        "description": "Add Rule 03 Route Integrity Linter (03-route-integrity.js), restore exact splash disclaimer copy, and add Lucas Kung route redirect",
+        "status": "[x]"
       }
     ]
   },

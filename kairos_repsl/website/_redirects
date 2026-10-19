@@ -1,3 +1,11 @@
+/erc7827.html /repo/ 308
+/erc7827 /repo/ 308
+/openapi.json /api/transcripts 308
+/mcp/sse /functions/mcp/sse.js 200
+/event/2026-08-21/directors-session.html /event/ 308
+/event/2026-08-21/directors-session /event/ 308
+/interview/2026-09-18/lucas-kung/ /interview/lucas-kung/ 308
+/interview/2026-09-18/lucas-kung /interview/lucas-kung/ 308
 /repsl_dual_commit.py / 404
 
 /event/*/*/media /event/:splat 301
