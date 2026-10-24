@@ -58,7 +58,6 @@
   <!-- Hero Header -->
   <section class="hero page-hero">
     <div class="container hero-content">
-      <div class="hero-badge">📜 Verifiable Student Ledger</div>
       <h1 class="hero-title">Student <span class="gradient-text">Attestations</span></h1>
       <p class="hero-subtitle">
         Review your completed quiz scores, Keccak-256 state hashes, recorded student store entries, and pending ERC-7827 on-chain counter-party attestations.
@@ -88,10 +87,6 @@
         <!-- Identity Banner -->
         <div class="card pillar-card" style="border: 2px solid var(--accent-cyan); background: rgba(16, 31, 66, 0.8); padding: 1.75rem; margin-bottom: 2rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;">
           <div>
-            <div style="display: flex; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 0.5rem;">
-              <span class="status-badge today-badge">👤 Active Student Account</span>
-              <span id="attest-member-badge" class="status-badge notebook-available" style="display: none;">📧 @lex.clinic Member</span>
-            </div>
             <h2 style="color: #ffffff; font-size: 1.4rem; margin: 0;">
               Student: <span id="attest-user-email" style="color: var(--accent-cyan); font-family: 'Fira Code', monospace;">...</span>
             </h2>
@@ -143,10 +138,6 @@
 
         <!-- Explanatory Card: ERC-7827 Counter-Party Attestation Explained -->
         <div class="card pillar-card" style="border: 2px solid var(--accent-cyan); background: rgba(10, 17, 40, 0.9); padding: 2rem;">
-          <div style="display: flex; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 0.75rem;">
-            <span class="status-badge media-available">📜 ERC-7827 EVM Personal Ledger Specification</span>
-            <span class="status-badge notebook-available">⏳ Counter-Party Attestation Model</span>
-          </div>
           <h3 style="color: var(--accent-cyan); font-size: 1.35rem; margin-bottom: 0.75rem;">What is "Yet Attested To"? (ERC-7827 On-Chain Counter-Party Attestation)</h3>
           <p style="color: #e2e8f0; font-size: 0.98rem; line-height: 1.7; margin-bottom: 1rem;">
             When you complete a quiz at LexClinic Education, your answers are hashed on the client side using <strong>Keccak-256</strong> to produce a unique, deterministic state payload hash (e.g. <code style="color: var(--accent-gold); font-family: 'Fira Code', monospace;">0xa3f2...8b9c</code>) which is recorded in the LexClinic Student Store.
@@ -366,10 +357,7 @@
           card.innerHTML = `
             <div style="display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 0.75rem; margin-bottom: 0.75rem;">
               <div>
-                <span class="status-badge today-badge" style="background: #10b981; color: #0a1128; font-weight: 800;">✅ Score: ${sub.score}</span>
-                <span class="status-badge notebook-available" style="margin-left: 0.35rem;">📜 Store Recorded</span>
               </div>
-              <span class="status-badge media-available" style="background: rgba(251, 191, 36, 0.2); color: #fbbf24; border: 1px solid #fbbf24;">⏳ Yet Attested To (ERC-7827 Pending)</span>
             </div>
             <h4 style="color: #ffffff; font-size: 1.15rem; margin-bottom: 0.5rem;">${quiz.name}</h4>
             <div style="background: rgba(16, 31, 66, 0.8); padding: 0.85rem; border-radius: 6px; font-family: 'Fira Code', monospace; font-size: 0.82rem; color: var(--accent-cyan); word-break: break-all; margin-bottom: 0.75rem;">
@@ -382,9 +370,6 @@
           `;
         } else {
           card.innerHTML = `
-            <div style="display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 0.75rem; margin-bottom: 0.75rem;">
-              <span class="status-badge notebook-available" style="background: rgba(100, 116, 139, 0.3); color: #cbd5e1;">⏳ Not Yet Completed</span>
-            </div>
             <h4 style="color: #e2e8f0; font-size: 1.15rem; margin-bottom: 0.5rem;">${quiz.name}</h4>
             <p style="color: #94a3b8; font-size: 0.88rem; margin-bottom: 1rem;">Complete this assessment to compute your Keccak-256 score hash and prepare for ERC-7827 on-chain attestation.</p>
             <a href="${quiz.url}" class="btn btn-primary" style="font-size: 0.85rem; padding: 0.4rem 0.9rem;">Take Quiz Now ➔</a>

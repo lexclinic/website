@@ -53,10 +53,6 @@ document.addEventListener('DOMContentLoaded', async () => {
 
       html += `
         <div class="card pillar-card event-list-card" style="${cardStyle}">
-          <div style="display: flex; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 0.75rem;">
-            ${isNextUp ? '<span class="status-badge today-badge">🔥 NEXT UPCOMING SESSION</span>' : '<span class="status-badge notebook-available">📅 Scheduled</span>'}
-            ${isDirectorCall ? '<span class="status-badge" style="background: rgba(251, 191, 36, 0.2); color: #fbbf24; border: 1px solid #f59e0b;">🔒 Director Call</span>' : '<span class="status-badge media-available">🌐 Public 101 Class</span>'}
-          </div>
           <div class="event-date-tag" style="color: ${titleColor}; font-weight: 700; margin-bottom: 0.5rem;">📅 ${item.date}</div>
           <h3 style="color: ${titleColor}; font-size: 1.25rem; margin-bottom: 0.75rem;">${item.title}</h3>
           <p style="margin-bottom: 1.25rem; font-size: 0.95rem; color: var(--text-main); line-height: 1.5;">
