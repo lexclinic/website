@@ -97,6 +97,11 @@
         "id": "EVENT-ARCHIVES-AND-CATEGORIES-01",
         "description": "Restructure /event/ to show Upcoming Events, the 3 Most Recent Recorded Events (Oct 22, Oct 15, Oct 8), and dedicated Monthly Archive pages (/event/2026-10/, /event/2026-09/, /event/2026-08/) with event subcategory filtering (Classes, Interviews, Director Calls, Partner Calls) and date-stamped interview routes",
         "status": "[x]"
+      },
+      {
+        "id": "EVENT-101-BIDIRECTIONAL-LINKING-01",
+        "description": "Remove unrecorded past Director/Partner calls from past archives, badge Socratic classes explicitly as 101 Live Socratic Sessions, and add bidirectional companion links between all /101/X.Y/ module pages and their corresponding /event/YYYY-MM-DD/ Socratic session pages",
+        "status": "[x]"
       }
     ]
   },

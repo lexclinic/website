@@ -81,6 +81,11 @@ function run(webDir, config) {
       violations.push(`101/index.html is missing link to /101/${item.mod}`);
     }
 
+    // 6b. Companion Socratic Event link on 101 module page
+    if (!html.includes("_socratic_companion") || !html.includes("/event/")) {
+      violations.push(`101/${item.mod}/index.html is missing the Live Socratic Cohort Companion card linking to /event/`);
+    }
+
     // 7. Indexed in transcripts.json
     const hasTranscript = transcripts.some(t => t.id === `class_${item.mod}` && t.transcript_text && t.transcript_text.length > 500);
     if (!hasTranscript) {

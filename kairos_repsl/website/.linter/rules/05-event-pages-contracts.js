@@ -47,6 +47,9 @@ function run(webDir, config) {
       if (!monthHtmlMap[m].includes("filterEventsByCategory")) {
         violations.push(`event/${m}/index.html is missing Event Subcategory Filter bar`);
       }
+      if (monthHtmlMap[m].includes('data-event-category="director_call"') || monthHtmlMap[m].includes('data-event-category="partner_call"')) {
+        violations.push(`event/${m}/index.html contains unrecorded past director_call or partner_call cards`);
+      }
     }
     if (!eventHubHtml.includes(`/event/${m}/`)) {
       violations.push(`event/index.html is missing link to monthly archive /event/${m}/`);
@@ -78,6 +81,10 @@ function run(webDir, config) {
 
     if (!html.includes("<audio ")) {
       violations.push(`event/${ev.date}/index.html is missing native <audio> player`);
+    }
+
+    if (!html.includes("Companion 101 Module")) {
+      violations.push(`event/${ev.date}/index.html is missing 'Companion 101 Module' link back to /101/`);
     }
 
     const ytMatches = html.match(/youtube\.com\/embed\//g) || [];
