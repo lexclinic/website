@@ -1,12 +1,41 @@
 {
   "wedo_instance": {
     "id": "MISSION-LEXCLINIC-WEBSITE",
-    "description": "LexClinic Education, Inc. Cloudflare Website Development and Deployment Manifest",
+    "description": "LexClinic Education, Inc. Cloudflare Website Development, Verification Gates, and Deployment Manifest",
     "status": "[completed]",
     "meta": {
       "protocol": "WeDo-JSON",
-      "version": "1.0.0",
-      "philosophy": "LexClinic Web Substrate: Fast, secure, and modern web interface deployed to Cloudflare Pages for lex.clinic."
+      "version": "1.2.0",
+      "philosophy": "LexClinic Web Substrate: Fast, secure, and modern web interface deployed to Cloudflare Pages (stage.lex.clinic -> lex.clinic) protected by mandatory static-analysis linters and automated runtime tests."
+    },
+    "future_cell_verification_protocol": {
+      "mandate": "Every future agent cell modifying any file in kairos_repsl/website/ MUST run both the 7-rule Contract Linter and the 4-suite Runtime & Integration Test Runner before deploying or committing.",
+      "commands": {
+        "1_static_contract_linter": "node /home/mgit/lex_clinic_stage_repsl/repo_repsl/kairos_repsl/website/.linter/runner.js",
+        "2_runtime_and_e2e_tests": "node /home/mgit/lex_clinic_stage_repsl/repo_repsl/kairos_repsl/website/.tests/runner.js"
+      },
+      "linter_rules_directory": "kairos_repsl/website/.linter/rules/",
+      "linter_rules": [
+        "01-window-contracts.js: Verifies all 31 global window.* functions in contracts.config.json are exported in js/",
+        "02-event-listener-links.js: Verifies 100% of inline HTML onclick/onsubmit handlers map to defined JS functions",
+        "03-route-integrity.js: Verifies 100% of internal href links resolve to existing HTML files or _redirects rules",
+        "04-spotify-101-embeds.js: Verifies all 12 /101/ modules (1.1-6.2) for on-disk audio.m4a (>100KB), YouTube lecture, Spotify episode, watch meters, quiz.html, and transcripts.json parity",
+        "05-event-pages-contracts.js: Verifies all 9 recorded /event/ pages (2026-08-13 to 2026-10-22) for on-disk audio.m4a, YouTube clips, watch meters, and transcripts.json parity",
+        "06-interview-pages-contracts.js: Verifies all /interview/ pages (lucas-kung 11 clips, james-wigginton 3 clips) for on-disk audio.m4a, watch meters, quiz.html, and transcripts.json parity",
+        "07-attest-contracts.js: Verifies /attest/ and /erc7827/ (/ERC-7827/) DOM IDs, Media Approvals Ledger integration, and 100% bidirectional parity across all 19 quiz.html files"
+      ],
+      "test_suites_directory": "kairos_repsl/website/.tests/suites/",
+      "test_suites": [
+        "01-client-js-runtime.test.js: VM unit tests for @lex.clinic auth, 24h disclaimer splash, 2-step media approvals (Thorough/Cursory -> Pass/Star/Flag/Fail), legacy card ID aliases, and localStorage -> /api/media-notes sync",
+        "02-quiz-engine.test.js: VM tests for Two-Tier (5-Q Core -> 20-Q Mastery) quiz progression, pass-threshold gating, and 66-char 0x Keccak-256/SHA-256 attestation payloads",
+        "03-serverless-functions.test.js: Direct handler tests for _middleware.js (Staging Basic Auth isolation), /api/transcripts, /mcp/sse JSON-RPC tools, and /api/media-notes Google Drive ledger persistence",
+        "04-live-staging-e2e.test.js: Live HTTP 200 smoke tests on https://stage.lex.clinic and HTTP 206 byte-range MP4 'ftyp' header verification across all 23 live audio.m4a streams"
+      ],
+      "shared_cloud_storage": {
+        "quiz_submissions_drive_id": "1GidiMBXRYmcDMnAPrgndS35-MsjY1WT7",
+        "media_notes_approvals_ledger_drive_id": "1FcH5BakIJTMoyr5spdIW9WAaxB8mri0b"
+      },
+      "how_to_extend": "When adding a new 101 module, event, interview, or quiz, append its route and expected media IDs to Rules 04/05/06/07 and Suite 04, then run both runners until 0 failures."
     },
     "tasks": [
       {
@@ -46,7 +75,7 @@
       },
       {
         "id": "LINT-04",
-        "description": "Restore /erc7827/ and /ERC-7827/ routes, bind persistent Cloudflare KV + Google Drive ledger for media approvals/notes with auto-sync from browser localStorage, rebuild /attest/ with all 18 quizzes + media approvals ledger, and enforce Rule 07 (/attest/ & /erc7827/ linter)",
+        "description": "Restore /erc7827/ and /ERC-7827/ routes, bind persistent Cloudflare KV + Google Drive ledger for media approvals/notes with auto-sync from browser localStorage, rebuild /attest/ with all 19 quizzes + media approvals ledger, and enforce Rule 07 (/attest/ & /erc7827/ linter)",
         "status": "[x]"
       },
       {
