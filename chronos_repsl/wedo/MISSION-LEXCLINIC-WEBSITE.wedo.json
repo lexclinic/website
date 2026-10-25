@@ -82,6 +82,11 @@
         "id": "TEST-01",
         "description": "Build automated runtime and integration test suite (.tests/runner.js) covering client JS state machines (Test 01), Two-Tier 5->20 quiz engine & Keccak-256 attestations (Test 02), Cloudflare Pages Functions & MCP JSON-RPC (Test 03), and live staging E2E + HTTP 206 audio byte-range verification (Test 04)",
         "status": "[x]"
+      },
+      {
+        "id": "QUIZ-DUAL-ROUTES-01",
+        "description": "Implement canonical dual-route quiz addresses (quiz-learned/ for 5-Q Learned Tier and quiz-expert/ for 20-Q Expert Tier) across all 19 quizzes with smart entry routing on quiz.html, 💬 Notes & 👍 Approval control bars (without Copy Direct Link), and linter/test enforcement",
+        "status": "[x]"
       }
     ]
   },

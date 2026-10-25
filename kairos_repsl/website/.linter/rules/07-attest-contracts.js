@@ -2,7 +2,7 @@ const fs = require('fs');
 const path = require('path');
 
 function run(webDir, config) {
-  console.log(" 🔍 Executing Rule 07: Attestation Ledger (/attest/), ERC-7827 (/erc7827/) & Quiz Submission Parity Verification...");
+  console.log(" 🔍 Executing Rule 07: Attestation Ledger (/attest/), ERC-7827 (/erc7827/) & Dual-Route Quiz (quiz-learned / quiz-expert) Parity...");
 
   const violations = [];
 
@@ -83,7 +83,7 @@ function run(webDir, config) {
     }
   }
 
-  // 6. Walk all quiz.html files across /101/, /event/, and /interview/ and verify bidirectional parity
+  // 6. Walk all quiz.html files across /101/, /event/, and /interview/ and verify bidirectional parity + quiz-learned/ + quiz-expert/
   function findQuizFiles(dir) {
     let results = [];
     if (!fs.existsSync(dir)) return results;
@@ -106,8 +106,47 @@ function run(webDir, config) {
 
   for (const qFile of allQuizFiles) {
     const relUrl = "/" + path.relative(webDir, qFile).split(path.sep).join("/");
+    const parentDir = path.dirname(qFile);
+    const relParent = "/" + path.relative(webDir, parentDir).split(path.sep).join("/");
+
     if (!indexedQuizUrls.has(relUrl)) {
       violations.push(`Quiz file '${relUrl}' exists on disk but is NOT indexed in /attest/index.html`);
+    }
+
+    // Verify quiz-learned/index.html (5 Qs) and quiz-expert/index.html (20 Qs) exist alongside quiz.html
+    const learnedFile = path.join(parentDir, "quiz-learned", "index.html");
+    const expertFile = path.join(parentDir, "quiz-expert", "index.html");
+
+    if (!fs.existsSync(learnedFile)) {
+      violations.push(`${relParent}/quiz-learned/index.html (5-Q Learned Quiz) is missing`);
+    } else {
+      const lHtml = fs.readFileSync(learnedFile, "utf8");
+      const lQs = new Set((lHtml.match(/name=["']q\d+["']/g) || []));
+      if (lQs.size !== 5) {
+        violations.push(`${relParent}/quiz-learned/index.html must have exactly 5 radio question groups (found ${lQs.size})`);
+      }
+      if (!lHtml.includes("openMediaCommentModal") || !lHtml.includes("openMediaApprovalModal")) {
+        violations.push(`${relParent}/quiz-learned/index.html is missing 💬 Notes or 👍 Approval review buttons`);
+      }
+      if (lHtml.includes("copyCardDirectLink")) {
+        violations.push(`${relParent}/quiz-learned/index.html must NOT include Copy Direct Link button (quiz has its own URL)`);
+      }
+    }
+
+    if (!fs.existsSync(expertFile)) {
+      violations.push(`${relParent}/quiz-expert/index.html (20-Q Expert Quiz) is missing`);
+    } else {
+      const eHtml = fs.readFileSync(expertFile, "utf8");
+      const eQs = new Set((eHtml.match(/name=["']q\d+["']/g) || []));
+      if (eQs.size !== 20) {
+        violations.push(`${relParent}/quiz-expert/index.html must have exactly 20 radio question groups (found ${eQs.size})`);
+      }
+      if (!eHtml.includes("openMediaCommentModal") || !eHtml.includes("openMediaApprovalModal")) {
+        violations.push(`${relParent}/quiz-expert/index.html is missing 💬 Notes or 👍 Approval review buttons`);
+      }
+      if (eHtml.includes("copyCardDirectLink")) {
+        violations.push(`${relParent}/quiz-expert/index.html must NOT include Copy Direct Link button (quiz has its own URL)`);
+      }
     }
 
     const qHtml = fs.readFileSync(qFile, "utf8");
@@ -121,9 +160,9 @@ function run(webDir, config) {
       violations.push(`Quiz file '${relUrl}' does not persist submission to localStorage 'lexclinic_quiz_submissions'`);
     }
 
-    const classIdMatch = qHtml.match(/class_id\s*:\s*["']([^"']+)["']/);
+    const classIdMatch = qHtml.match(/CLASS_ID\s*=\s*["']([^"']+)["']/) || qHtml.match(/class_id\s*:\s*["']([^"']+)["']/);
     if (!classIdMatch) {
-      violations.push(`Quiz file '${relUrl}' is missing explicit class_id property in submission payload`);
+      violations.push(`Quiz file '${relUrl}' is missing explicit CLASS_ID / class_id property in submission payload`);
     } else {
       const cid = classIdMatch[1];
       if (!indexedAliases.has(cid)) {
@@ -133,12 +172,12 @@ function run(webDir, config) {
   }
 
   if (violations.length > 0) {
-    console.error(" ❌ RULE 07 FAILED: Attestation & ERC-7827 contract violations detected:");
+    console.error(" ❌ RULE 07 FAILED: Attestation & Dual-Route Quiz contract violations detected:");
     violations.forEach(v => console.error(`    - ${v}`));
     return false;
   }
 
-  console.log(` ✅ RULE 07 PASSED: /attest/ and /erc7827/ verified (${allQuizFiles.length} quizzes 100% bidirectionally matched, DOM IDs valid, Media Approvals Ledger active)!`);
+  console.log(` ✅ RULE 07 PASSED: /attest/, /erc7827/, and all ${allQuizFiles.length} Dual-Route Quizzes (quiz-learned 5-Q + quiz-expert 20-Q + Notes/Approval bars) verified!`);
   return true;
 }
 

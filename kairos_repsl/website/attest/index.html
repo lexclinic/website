@@ -213,29 +213,29 @@
   <script>
     const CANONICAL_QUIZZES = [
       // Legal Engineering 101 Modules (12 Modules + 1 Comprehensive)
-      { id: "1.1", aliases: ["1.1", "class_1.1", "class_1_1"], title: "Class 1.1: What is a 'Performance' in Law?", category: "Legal Engineering 101", totalQuestions: 20, url: "/101/1.1/quiz.html" },
-      { id: "1.2", aliases: ["1.2", "class_1.2", "class_1_2"], title: "Class 1.2: What is a 'Runtime' in Software?", category: "Legal Engineering 101", totalQuestions: 20, url: "/101/1.2/quiz.html" },
-      { id: "2.1", aliases: ["2.1", "class_2.1", "class_2_1"], title: "Class 2.1: The Composer Metaphor", category: "Legal Engineering 101", totalQuestions: 20, url: "/101/2.1/quiz.html" },
-      { id: "2.2", aliases: ["2.2", "class_2.2", "class_2_2"], title: "Class 2.2: Minimizing Social Transaction Costs", category: "Legal Engineering 101", totalQuestions: 20, url: "/101/2.2/quiz.html" },
-      { id: "3.1", aliases: ["3.1", "class_3.1", "class_3_1"], title: "Class 3.1: Charles Goldfarb & GML: The Web's Legal Origin", category: "Legal Engineering 101", totalQuestions: 20, url: "/101/3.1/quiz.html" },
-      { id: "3.2", aliases: ["3.2", "class_3_2"], title: "Class 3.2: Nick Szabo & Smart Contracts", category: "Legal Engineering 101", totalQuestions: 20, url: "/101/3.2/quiz.html" },
-      { id: "4.1", aliases: ["4.1", "class_4.1", "class_4_1"], title: "Class 4.1: Decoupling Logic from Assets: Instructions vs. Data", category: "Legal Engineering 101", totalQuestions: 20, url: "/101/4.1/quiz.html" },
-      { id: "4.2", aliases: ["4.2", "class_4.2", "class_4_2"], title: "Class 4.2: Data Primitives 101: Strings, Numbers, and Booleans", category: "Legal Engineering 101", totalQuestions: 5, url: "/101/4.2/quiz.html" },
-      { id: "5.1", aliases: ["5.1", "class_5.1", "class_5_1"], title: "Class 5.1: Active Scripts vs. Static Sheets", category: "Legal Engineering 101", totalQuestions: 5, url: "/101/5.1/quiz.html" },
-      { id: "5.2", aliases: ["5.2", "class_5.2", "class_5_2"], title: "Class 5.2: Typing Domains: How Code Validates Data", category: "Legal Engineering 101", totalQuestions: 5, url: "/101/5.2/quiz.html" },
-      { id: "6.1", aliases: ["6.1", "class_6.1", "class_6_1"], title: "Class 6.1: Grammatical Hurdles: Assigning vs. Evaluating", category: "Legal Engineering 101 (5➔20 Q Progressive)", totalQuestions: 20, url: "/101/6.1/quiz.html" },
-      { id: "6.2", aliases: ["6.2", "class_6.2", "class_6_2"], title: "Class 6.2: Reading Right-to-Left: Adjusting Your Eyes", category: "Legal Engineering 101 (5➔20 Q Progressive)", totalQuestions: 20, url: "/101/6.2/quiz.html" },
-      { id: "101-all", aliases: ["101-all"], title: "Legal Engineering 101: Comprehensive Curriculum Mastery Assessment", category: "Legal Engineering 101", totalQuestions: 16, url: "/101/quiz.html" },
+      { id: "1.1", aliases: ["1.1", "class_1.1", "class_1_1"], title: "Class 1.1: What is a 'Performance' in Law?", category: "Legal Engineering 101", totalQuestions: 20, url: "/101/1.1/quiz.html", learnedUrl: "/101/1.1/quiz-learned/", expertUrl: "/101/1.1/quiz-expert/" },
+      { id: "1.2", aliases: ["1.2", "class_1.2", "class_1_2"], title: "Class 1.2: What is a 'Runtime' in Software?", category: "Legal Engineering 101", totalQuestions: 20, url: "/101/1.2/quiz.html", learnedUrl: "/101/1.2/quiz-learned/", expertUrl: "/101/1.2/quiz-expert/" },
+      { id: "2.1", aliases: ["2.1", "class_2.1", "class_2_1"], title: "Class 2.1: The Composer Metaphor", category: "Legal Engineering 101", totalQuestions: 20, url: "/101/2.1/quiz.html", learnedUrl: "/101/2.1/quiz-learned/", expertUrl: "/101/2.1/quiz-expert/" },
+      { id: "2.2", aliases: ["2.2", "class_2.2", "class_2_2"], title: "Class 2.2: Minimizing Social Transaction Costs", category: "Legal Engineering 101", totalQuestions: 20, url: "/101/2.2/quiz.html", learnedUrl: "/101/2.2/quiz-learned/", expertUrl: "/101/2.2/quiz-expert/" },
+      { id: "3.1", aliases: ["3.1", "class_3.1", "class_3_1"], title: "Class 3.1: Charles Goldfarb & GML: The Web's Legal Origin", category: "Legal Engineering 101", totalQuestions: 20, url: "/101/3.1/quiz.html", learnedUrl: "/101/3.1/quiz-learned/", expertUrl: "/101/3.1/quiz-expert/" },
+      { id: "3.2", aliases: ["3.2", "class_3_2"], title: "Class 3.2: Nick Szabo & Smart Contracts", category: "Legal Engineering 101", totalQuestions: 20, url: "/101/3.2/quiz.html", learnedUrl: "/101/3.2/quiz-learned/", expertUrl: "/101/3.2/quiz-expert/" },
+      { id: "4.1", aliases: ["4.1", "class_4.1", "class_4_1"], title: "Class 4.1: Decoupling Logic from Assets: Instructions vs. Data", category: "Legal Engineering 101", totalQuestions: 20, url: "/101/4.1/quiz.html", learnedUrl: "/101/4.1/quiz-learned/", expertUrl: "/101/4.1/quiz-expert/" },
+      { id: "4.2", aliases: ["4.2", "class_4.2", "class_4_2"], title: "Class 4.2: Data Primitives 101: Strings, Numbers, and Booleans", category: "Legal Engineering 101", totalQuestions: 20, url: "/101/4.2/quiz.html", learnedUrl: "/101/4.2/quiz-learned/", expertUrl: "/101/4.2/quiz-expert/" },
+      { id: "5.1", aliases: ["5.1", "class_5.1", "class_5_1"], title: "Class 5.1: Active Scripts vs. Static Sheets", category: "Legal Engineering 101", totalQuestions: 20, url: "/101/5.1/quiz.html", learnedUrl: "/101/5.1/quiz-learned/", expertUrl: "/101/5.1/quiz-expert/" },
+      { id: "5.2", aliases: ["5.2", "class_5.2", "class_5_2"], title: "Class 5.2: Typing Domains: How Code Validates Data", category: "Legal Engineering 101", totalQuestions: 20, url: "/101/5.2/quiz.html", learnedUrl: "/101/5.2/quiz-learned/", expertUrl: "/101/5.2/quiz-expert/" },
+      { id: "6.1", aliases: ["6.1", "class_6.1", "class_6_1"], title: "Class 6.1: Grammatical Hurdles: Assigning vs. Evaluating", category: "Legal Engineering 101", totalQuestions: 20, url: "/101/6.1/quiz.html", learnedUrl: "/101/6.1/quiz-learned/", expertUrl: "/101/6.1/quiz-expert/" },
+      { id: "6.2", aliases: ["6.2", "class_6.2", "class_6_2"], title: "Class 6.2: Reading Right-to-Left: Adjusting Your Eyes", category: "Legal Engineering 101", totalQuestions: 20, url: "/101/6.2/quiz.html", learnedUrl: "/101/6.2/quiz-learned/", expertUrl: "/101/6.2/quiz-expert/" },
+      { id: "101", aliases: ["101", "101-all"], title: "Legal Engineering 101: Comprehensive Curriculum Mastery Assessment", category: "Legal Engineering 101", totalQuestions: 20, url: "/101/quiz.html", learnedUrl: "/101/quiz-learned/", expertUrl: "/101/quiz-expert/" },
 
       // Weekly Socratic Event Quizzes (4 Assessments)
-      { id: "2026-09-24", aliases: ["2026-09-24", "class_3.2"], title: "Sept 24, 2026: How Contract Law Built the Blockchain (Session 3.2)", category: "Socratic Session Assessment", totalQuestions: 20, url: "/event/2026-09-24/quiz.html" },
-      { id: "2026-09-17", aliases: ["2026-09-17", "2025-09-22"], title: "Sept 17, 2026: How Corporate Lawyers Invented the Internet (Session 3.1)", category: "Socratic Session Assessment", totalQuestions: 20, url: "/event/2026-09-17/quiz.html" },
-      { id: "2026-09-04", aliases: ["2026-09-04", "2025-09-04"], title: "Sept 4, 2026: Law as a Software Runtime (Session 2.2)", category: "Socratic Session Assessment", totalQuestions: 20, url: "/event/2026-09-04/quiz.html" },
-      { id: "2026-08-24", aliases: ["2026-08-24"], title: "Aug 24, 2026: Clinic Misc. Technical Socratic Session", category: "Socratic Session Assessment", totalQuestions: 20, url: "/event/2026-08-24/quiz.html" },
+      { id: "2026-09-24", aliases: ["2026-09-24", "class_3.2"], title: "Sept 24, 2026: How Contract Law Built the Blockchain (Session 3.2)", category: "Socratic Session Assessment", totalQuestions: 20, url: "/event/2026-09-24/quiz.html", learnedUrl: "/event/2026-09-24/quiz-learned/", expertUrl: "/event/2026-09-24/quiz-expert/" },
+      { id: "2026-09-17", aliases: ["2026-09-17", "2025-09-22"], title: "Sept 17, 2026: How Corporate Lawyers Invented the Internet (Session 3.1)", category: "Socratic Session Assessment", totalQuestions: 20, url: "/event/2026-09-17/quiz.html", learnedUrl: "/event/2026-09-17/quiz-learned/", expertUrl: "/event/2026-09-17/quiz-expert/" },
+      { id: "2026-09-04", aliases: ["2026-09-04", "2025-09-04"], title: "Sept 4, 2026: Law as a Software Runtime (Session 2.2)", category: "Socratic Session Assessment", totalQuestions: 20, url: "/event/2026-09-04/quiz.html", learnedUrl: "/event/2026-09-04/quiz-learned/", expertUrl: "/event/2026-09-04/quiz-expert/" },
+      { id: "2026-08-24", aliases: ["2026-08-24"], title: "Aug 24, 2026: Clinic Misc. Technical Socratic Session", category: "Socratic Session Assessment", totalQuestions: 20, url: "/event/2026-08-24/quiz.html", learnedUrl: "/event/2026-08-24/quiz-learned/", expertUrl: "/event/2026-08-24/quiz-expert/" },
 
       // Academic & Attorney Interview Quizzes (2 Assessments)
-      { id: "interview_lucas_kung", aliases: ["interview_lucas_kung", "2026-09-18"], title: "Sept 18, 2026: Swiss DAO Researcher Lukas Küng — Turning Fragile DAOs into Legal Runtimes", category: "Roadmap Interview Assessment", totalQuestions: 20, url: "/interview/lucas-kung/quiz.html" },
-      { id: "2026-09-08", aliases: ["2026-09-08", "interview_james_wigginton"], title: "Sept 8, 2026: Attorney James Wigginton — Replacing Digital Landlords with Cooperative Math", category: "Roadmap Interview Assessment", totalQuestions: 20, url: "/interview/2026-09-08/james-wigginton/quiz.html" }
+      { id: "interview_lucas_kung", aliases: ["interview_lucas_kung", "2026-09-18"], title: "Sept 18, 2026: Swiss DAO Researcher Lukas Küng — Turning Fragile DAOs into Legal Runtimes", category: "Roadmap Interview Assessment", totalQuestions: 20, url: "/interview/lucas-kung/quiz.html", learnedUrl: "/interview/lucas-kung/quiz-learned/", expertUrl: "/interview/lucas-kung/quiz-expert/" },
+      { id: "2026-09-08", aliases: ["2026-09-08", "2026-09-08-james-wigginton", "interview_james_wigginton"], title: "Sept 8, 2026: Attorney James Wigginton — Replacing Digital Landlords with Cooperative Math", category: "Roadmap Interview Assessment", totalQuestions: 20, url: "/interview/2026-09-08/james-wigginton/quiz.html", learnedUrl: "/interview/2026-09-08/james-wigginton/quiz-learned/", expertUrl: "/interview/2026-09-08/james-wigginton/quiz-expert/" }
     ];
 
     function renderMediaApprovalsAndNotes(approvalsMap, notesArray) {
@@ -447,7 +447,8 @@
                 </div>
               </div>
               <div style="display: flex; flex-direction: column; gap: 0.5rem; justify-content: center;">
-                <a href="${quiz.url}" class="btn btn-outline" style="font-size: 0.85rem; padding: 0.4rem 0.9rem; text-align: center;">Retake Quiz ↺</a>
+                <a href="${quiz.expertUrl || quiz.url}" class="btn btn-primary" style="font-size: 0.82rem; padding: 0.45rem 0.9rem; text-align: center; background: var(--accent-cyan); color: #0a1128; font-weight: 800;">🎓 20-Q Expert Quiz ➔</a>
+                <a href="${quiz.learnedUrl || quiz.url}" class="btn btn-outline" style="font-size: 0.8rem; padding: 0.35rem 0.85rem; text-align: center;">📘 5-Q Learned Quiz ↺</a>
               </div>
             </div>
           `;
@@ -457,11 +458,14 @@
               <div>
                 <div style="display: flex; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 0.4rem;">
                   <span style="background: rgba(148, 163, 184, 0.15); color: #94a3b8; padding: 0.15rem 0.55rem; border-radius: 4px; font-size: 0.78rem;">⚪ Not Completed</span>
-                  <span style="background: rgba(56, 189, 248, 0.15); color: var(--accent-cyan); padding: 0.15rem 0.55rem; border-radius: 4px; font-size: 0.78rem;">${quiz.category} (${quiz.totalQuestions} Qs)</span>
+                  <span style="background: rgba(56, 189, 248, 0.15); color: var(--accent-cyan); padding: 0.15rem 0.55rem; border-radius: 4px; font-size: 0.78rem;">${quiz.category} (5-Q Learned ➔ 20-Q Expert)</span>
                 </div>
                 <h3 style="color: #cbd5e1; font-size: 1.15rem; margin: 0;">${quiz.title}</h3>
               </div>
-              <a href="${quiz.url}" class="btn btn-primary" style="font-size: 0.85rem; padding: 0.4rem 0.9rem;">Take Quiz Now ➔</a>
+              <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
+                <a href="${quiz.learnedUrl || quiz.url}" class="btn btn-primary" style="font-size: 0.83rem; padding: 0.4rem 0.9rem;">📘 5-Q Learned Quiz ➔</a>
+                <a href="${quiz.expertUrl || quiz.url}" class="btn btn-outline" style="font-size: 0.83rem; padding: 0.4rem 0.9rem;">🎓 20-Q Expert Quiz ➔</a>
+              </div>
             </div>
           `;
         }

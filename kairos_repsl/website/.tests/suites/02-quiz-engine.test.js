@@ -4,10 +4,11 @@ const vm = require('vm');
 const crypto = require('crypto');
 const assert = require('assert');
 
-function createQuizSandbox(selectedAnswers = {}, userEmail = 'kyle@lex.clinic') {
-  const store = { lexclinic_user_email: userEmail };
+function createQuizSandbox(selectedAnswers = {}, userEmail = 'kyle@lex.clinic', initialStore = {}) {
+  const store = { lexclinic_user_email: userEmail, ...initialStore };
   const elementsById = {};
   const submittedPayloads = [];
+  let currentPathname = '/101/6.2/quiz.html';
 
   function makeEl(id) {
     const el = {
@@ -27,6 +28,10 @@ function createQuizSandbox(selectedAnswers = {}, userEmail = 'kyle@lex.clinic') 
           const val = selectedAnswers['q' + qNum];
           return val ? { value: val } : null;
         }
+        const mVal = sel.match(/input\[name="q(\d+)"\]\[value="([A-C])"\]/);
+        if (mVal) {
+          return { checked: false };
+        }
         if (sel.includes('quiz-question-card')) {
           return { style: { borderColor: '' } };
         }
@@ -37,7 +42,6 @@ function createQuizSandbox(selectedAnswers = {}, userEmail = 'kyle@lex.clinic') 
     return el;
   }
 
-  // Common quiz DOM IDs across all 19 quiz templates
   const commonIds = [
     'quiz-form', 'quiz-results', 'score-text',
     'quiz-61-form', 'quiz-62-form', 'quiz-42-form', 'quiz-51-form', 'quiz-52-form',
@@ -45,18 +49,9 @@ function createQuizSandbox(selectedAnswers = {}, userEmail = 'kyle@lex.clinic') 
     'mastery-questions-container', 'quiz-stage-heading', 'quiz-stage-subtext',
     'submit-quiz-btn', 'quiz-submit-btn', 'unlock-20q-offer-box',
     'quiz-result-card', 'quiz-result-title', 'quiz-score-summary', 'quiz-hash-box', 'quiz-payload-hash',
-    'quiz-results-box', 'quiz-score-text', 'quiz-hash-display', 'quiz-result', 'quiz-hash-val'
+    'prior-completion-banner', 'prior-completion-title', 'prior-completion-text'
   ];
   commonIds.forEach(id => makeEl(id));
-
-  // Proxy form elements so form['q1'].value works for 101/1.1-4.1 and event quizzes
-  ['quiz-form', 'quiz-61-form', 'quiz-62-form'].forEach(fid => {
-    for (let i = 1; i <= 20; i++) {
-      elementsById[fid]['q' + i] = {
-        get value() { return selectedAnswers['q' + i] || ''; }
-      };
-    }
-  });
 
   const localStorageMock = {
     getItem: (k) => (k in store ? store[k] : null),
@@ -65,6 +60,13 @@ function createQuizSandbox(selectedAnswers = {}, userEmail = 'kyle@lex.clinic') 
 
   const windowObj = {
     localStorage: localStorageMock,
+    location: {
+      get pathname() { return currentPathname; },
+      set pathname(v) { currentPathname = v; }
+    },
+    history: {
+      replaceState: (_state, _title, newUrl) => { currentPathname = newUrl; }
+    },
     getSanitizedEmail: () => userEmail,
     scrollTo: () => {},
     crypto: crypto.webcrypto
@@ -72,7 +74,8 @@ function createQuizSandbox(selectedAnswers = {}, userEmail = 'kyle@lex.clinic') 
 
   const documentObj = {
     getElementById: (id) => elementsById[id] || makeEl(id),
-    querySelector: (sel) => ({ scrollIntoView: () => {}, style: {} })
+    querySelector: () => ({ scrollIntoView: () => {}, style: {} }),
+    addEventListener: () => {}
   };
 
   const sandbox = {
@@ -89,102 +92,109 @@ function createQuizSandbox(selectedAnswers = {}, userEmail = 'kyle@lex.clinic') 
     Math: Math,
     Date: Date,
     JSON: JSON,
+    encodeURIComponent: encodeURIComponent,
     console: { log: () => {}, error: () => {} },
     fetch: async (url, opts = {}) => {
       if (url === '/api/submit-quiz' && opts.body) {
         submittedPayloads.push(JSON.parse(opts.body));
       }
+      if (url.startsWith('/api/user-attest')) {
+        return { ok: true, status: 200, json: async () => ({ success: true, submissions: [] }) };
+      }
       return { ok: true, status: 200, json: async () => ({ success: true }) };
     }
   };
 
+  windowObj.fetch = sandbox.fetch;
   vm.createContext(sandbox);
   return { sandbox, windowObj, elementsById, localStorageMock, submittedPayloads };
 }
 
 async function run(webDir) {
-  console.log(" 🧪 Executing Suite 02: Two-Tier Quiz Engine & Keccak-256 Attestation Tests...");
+  console.log(" 🧪 Executing Suite 02: Dual-Route Quiz Engine (quiz-learned 5-Q / quiz-expert 20-Q) & Attestation Tests...");
   let assertions = 0;
 
   // --------------------------------------------------------------------------
-  // Test 2.1: Progressive Two-Tier (5-Q Core -> 20-Q Mastery) Flow on 101/6.1
+  // Test 2.1: 5-Question Learned Quiz (/101/6.2/quiz-learned/index.html)
   // --------------------------------------------------------------------------
-  const q61Html = fs.readFileSync(path.join(webDir, '101/6.1/quiz.html'), 'utf8');
-  const q61ScriptMatch = q61Html.match(/<script>([\s\S]*?)<\/script>\s*<!-- Footer -->/) || q61Html.match(/<script>([\s\S]*?)<\/script>/g);
-  const inlineScript61 = q61Html.split('<script>').pop().split('</script>')[0];
+  const q62LearnedHtml = fs.readFileSync(path.join(webDir, '101/6.2/quiz-learned/index.html'), 'utf8');
+  const script62Learned = q62LearnedHtml.split('<script>').pop().split('</script>')[0];
 
-  // Case A: Failing Core Check (2/5 correct) -> Should NOT unlock Mastery or emit hash
+  // Case A: Failing Learned Check (2/5 correct) -> Does NOT emit hash or unlock Expert
   const answersFail = { q1: 'A', q2: 'A', q3: 'B', q4: 'C', q5: 'B' };
   const envFail = createQuizSandbox(answersFail, 'kyle@lex.clinic');
-  vm.runInContext(inlineScript61, envFail.sandbox);
-  await envFail.windowObj.submitQuiz61({ preventDefault: () => {} });
+  vm.runInContext(script62Learned, envFail.sandbox);
+  await envFail.windowObj.submitQuiz({ preventDefault: () => {} });
 
-  assert.strictEqual(envFail.submittedPayloads.length, 0, 'Failing Core Check (2/5) must not submit attestation to /api/submit-quiz');
-  assert.strictEqual(envFail.elementsById['unlock-20q-offer-box'].style.display, 'none', 'Failing Core Check must not display 20-Q Mastery unlock offer');
-  assert.ok(envFail.elementsById['quiz-result-title'].innerText.includes('Pass Threshold Not Met'), 'Failing Core Check should show threshold warning');
-  assertions += 3;
+  assert.strictEqual(envFail.submittedPayloads.length, 0, 'Failing Learned Quiz (2/5) must not submit attestation to /api/submit-quiz');
+  assert.strictEqual(envFail.elementsById['unlock-20q-offer-box'].style.display, 'none', 'Failing Learned Quiz must not display 20-Q Expert offer');
+  assertions += 2;
 
-  // Case B: Passing Core Check (5/5 correct) -> Emits Core Attestation + Unlocks 20-Q Mastery
+  // Case B: Passing Learned Check (5/5 correct) -> Emits Learned Attestation + Offers /101/6.2/quiz-expert/
   const answersPass = {};
   for (let i = 1; i <= 20; i++) answersPass['q' + i] = 'A';
-  const envPass = createQuizSandbox(answersPass, 'kyle@lex.clinic');
-  vm.runInContext(inlineScript61, envPass.sandbox);
+  const envLearnedPass = createQuizSandbox(answersPass, 'kyle@lex.clinic');
+  vm.runInContext(script62Learned, envLearnedPass.sandbox);
+  await envLearnedPass.windowObj.submitQuiz({ preventDefault: () => {} });
 
-  await envPass.windowObj.submitQuiz61({ preventDefault: () => {} });
-  assert.strictEqual(envPass.submittedPayloads.length, 1, 'Passing 5-Q Core Check must submit Core Attestation to /api/submit-quiz');
-  assert.strictEqual(envPass.submittedPayloads[0].class_id, '6.1', 'Core Attestation class_id must be 6.1');
-  assert.strictEqual(envPass.submittedPayloads[0].score, '5/5', 'Core Attestation score must be 5/5');
-  assert.ok(envPass.submittedPayloads[0].payload_hash.startsWith('0x') && envPass.submittedPayloads[0].payload_hash.length === 66, 'Core Attestation must generate 32-byte hex payload_hash');
-  assert.strictEqual(envPass.elementsById['unlock-20q-offer-box'].style.display, 'block', 'Passing 5-Q Core Check must display 20-Q Mastery unlock offer');
+  assert.strictEqual(envLearnedPass.submittedPayloads.length, 1, 'Passing 5-Q Learned Quiz must submit Learned Attestation');
+  assert.strictEqual(envLearnedPass.submittedPayloads[0].class_id, '6.2', 'Learned Attestation class_id must be 6.2');
+  assert.strictEqual(envLearnedPass.submittedPayloads[0].tier, 'learned', 'Learned Attestation tier must be learned');
+  assert.strictEqual(envLearnedPass.submittedPayloads[0].score, '5/5', 'Learned Attestation score must be 5/5');
+  assert.strictEqual(envLearnedPass.elementsById['unlock-20q-offer-box'].style.display, 'block', 'Passing 5-Q Learned Quiz must display 20-Q Expert offer box');
   assertions += 5;
 
-  // Case C: Unlocking Stage 2 (20-Question Mastery) & Submitting 20/20 Mastery Attestation
-  envPass.windowObj.unlockMasteryQuiz61();
-  assert.strictEqual(envPass.elementsById['mastery-questions-container'].style.display, 'block', 'unlockMasteryQuiz61 must reveal Q6-Q20 container');
-  assert.strictEqual(envPass.elementsById['unlock-20q-offer-box'].style.display, 'none', 'unlockMasteryQuiz61 must hide offer banner');
+  // --------------------------------------------------------------------------
+  // Test 2.2: Smart Re-Entry (/101/6.2/quiz.html) After Passing 5-Q Learned Quiz
+  // Automatically Unlocks 20-Q Expert Quiz & Updates URL to /101/6.2/quiz-expert/
+  // --------------------------------------------------------------------------
+  const q62SmartHtml = fs.readFileSync(path.join(webDir, '101/6.2/quiz.html'), 'utf8');
+  const script62Smart = q62SmartHtml.split('<script>').pop().split('</script>')[0];
 
-  await envPass.windowObj.submitQuiz61({ preventDefault: () => {} });
-  assert.strictEqual(envPass.submittedPayloads.length, 2, 'Submitting Stage 2 must post upgraded 20-Q Mastery Attestation');
-  assert.strictEqual(envPass.submittedPayloads[1].score, '20/20', 'Mastery Attestation score must be 20/20');
-  assert.strictEqual(envPass.submittedPayloads[1].total, 20, 'Mastery Attestation total must be 20');
+  const savedSubsJson = envLearnedPass.localStorageMock.getItem('lexclinic_quiz_submissions');
+  const savedAnswersJson = envLearnedPass.localStorageMock.getItem('lexclinic_quiz_answers_6.2');
 
-  const localSubs61 = JSON.parse(envPass.localStorageMock.getItem('lexclinic_quiz_submissions') || '[]');
-  assert.strictEqual(localSubs61.length, 1, 'Upgraded Mastery Attestation should replace prior Core entry for same class_id in localStorage');
-  assert.strictEqual(localSubs61[0].score, '20/20', 'localStorage entry should reflect upgraded 20/20 Mastery score');
-  assertions += 7;
+  const envReentry = createQuizSandbox(answersPass, 'kyle@lex.clinic', {
+    lexclinic_quiz_submissions: savedSubsJson,
+    'lexclinic_quiz_answers_6.2': savedAnswersJson
+  });
+  vm.runInContext(script62Smart, envReentry.sandbox);
+
+  assert.strictEqual(envReentry.elementsById['prior-completion-banner'].style.display, 'block', 'Re-entering /101/6.2/quiz after passing 5/5 must show prior completion banner');
+  assert.strictEqual(envReentry.elementsById['mastery-questions-container'].style.display, 'block', 'Re-entering /101/6.2/quiz after passing 5/5 must automatically unlock 20-Question Expert Quiz');
+  assert.strictEqual(envReentry.windowObj.location.pathname, '/101/6.2/quiz-expert/', 'Re-entering /101/6.2/quiz after passing 5/5 must transition address to /101/6.2/quiz-expert/');
+  assertions += 3;
 
   // --------------------------------------------------------------------------
-  // Test 2.2: Execute Early 101 Quiz (101/3.1/quiz.html) & Verify Normalized Contract
+  // Test 2.3: Dedicated 20-Question Expert Quiz (/101/6.2/quiz-expert/index.html)
   // --------------------------------------------------------------------------
-  const q31Html = fs.readFileSync(path.join(webDir, '101/3.1/quiz.html'), 'utf8');
-  const inlineScript31 = q31Html.split('<script>').pop().split('</script>')[0];
-  const answers31 = {};
-  for (let i = 1; i <= 20; i++) answers31['q' + i] = 'a';
-  const env31 = createQuizSandbox(answers31, 'kyle@lex.clinic');
-  vm.runInContext(inlineScript31, env31.sandbox);
+  const q62ExpertHtml = fs.readFileSync(path.join(webDir, '101/6.2/quiz-expert/index.html'), 'utf8');
+  const script62Expert = q62ExpertHtml.split('<script>').pop().split('</script>')[0];
+  const envExpert = createQuizSandbox(answersPass, 'kyle@lex.clinic');
+  vm.runInContext(script62Expert, envExpert.sandbox);
 
-  await env31.windowObj.submitQuiz();
-  assert.strictEqual(env31.submittedPayloads.length, 1, '101/3.1 submitQuiz must post to /api/submit-quiz');
-  assert.strictEqual(env31.submittedPayloads[0].class_id, '3.1', '101/3.1 class_id must be 3.1');
-  assert.strictEqual(env31.submittedPayloads[0].score, 20, '101/3.1 score must be 20');
-  assert.ok(env31.submittedPayloads[0].payload_hash.startsWith('0x') && env31.submittedPayloads[0].payload_hash.length === 66, '101/3.1 must include 66-char 0x SHA-256/Keccak payload_hash');
+  await envExpert.windowObj.submitQuiz({ preventDefault: () => {} });
+  assert.strictEqual(envExpert.submittedPayloads.length, 1, 'Submitting 20-Q Expert Quiz must post to /api/submit-quiz');
+  assert.strictEqual(envExpert.submittedPayloads[0].tier, 'expert', 'Expert Attestation tier must be expert');
+  assert.strictEqual(envExpert.submittedPayloads[0].score, '20/20', 'Expert Attestation score must be 20/20');
+  assert.ok(envExpert.submittedPayloads[0].payload_hash.startsWith('0x') && envExpert.submittedPayloads[0].payload_hash.length === 66, 'Expert Attestation must include 66-char 0x Keccak/SHA-256 hash');
   assertions += 4;
 
   // --------------------------------------------------------------------------
-  // Test 2.3: Execute Interview Quiz (interview/lucas-kung/quiz.html)
+  // Test 2.4: Execute Interview Dual-Route Quiz (interview/lucas-kung/quiz-expert/index.html)
   // --------------------------------------------------------------------------
-  const qLucasHtml = fs.readFileSync(path.join(webDir, 'interview/lucas-kung/quiz.html'), 'utf8');
-  const inlineScriptLucas = qLucasHtml.split('<script>').pop().split('</script>')[0];
+  const qLucasExpertHtml = fs.readFileSync(path.join(webDir, 'interview/lucas-kung/quiz-expert/index.html'), 'utf8');
+  const scriptLucasExpert = qLucasExpertHtml.split('<script>').pop().split('</script>')[0];
   const envLucas = createQuizSandbox(answersPass, 'kyle@lex.clinic');
-  vm.runInContext(inlineScriptLucas + '; window.submitLucasQuiz = submitLucasQuiz;', envLucas.sandbox);
+  vm.runInContext(scriptLucasExpert, envLucas.sandbox);
 
   await envLucas.windowObj.submitLucasQuiz({ preventDefault: () => {} });
-  assert.strictEqual(envLucas.submittedPayloads.length, 1, 'Lucas Kung interview quiz must post to /api/submit-quiz');
+  assert.strictEqual(envLucas.submittedPayloads.length, 1, 'Lucas Kung Expert quiz must post to /api/submit-quiz');
   assert.strictEqual(envLucas.submittedPayloads[0].class_id, 'interview_lucas_kung', 'Lucas Kung quiz class_id must be interview_lucas_kung');
-  assert.strictEqual(envLucas.submittedPayloads[0].score, 20, 'Lucas Kung quiz score must be 20');
+  assert.strictEqual(envLucas.submittedPayloads[0].score, '20/20', 'Lucas Kung Expert quiz score must be 20/20');
   assertions += 3;
 
-  console.log(` ✅ SUITE 02 PASSED: ${assertions} assertions verified (5->20 Progressive Quiz Engine, Pass Gating, & Attestation Payloads)!`);
+  console.log(` ✅ SUITE 02 PASSED: ${assertions} assertions verified (quiz-learned 5-Q, quiz-expert 20-Q, Smart Re-Entry Unlock, & Attestation Payloads)!`);
   return { passed: true, assertions };
 }
 
