@@ -116,7 +116,7 @@ async function run(webDir) {
   assert.strictEqual(singleRes.status, 200, 'GET /api/transcripts?id=class_6.1 should return 200');
   const singleData = await singleRes.json();
   assert.strictEqual(singleData.id, 'class_6.1', 'Returned transcript ID should match class_6.1');
-  assert.strictEqual(singleData.audio_url, '/101/6.1/audio.m4a', 'Class 6.1 audio_url should be /101/6.1/audio.m4a');
+  assert.strictEqual(singleData.audio_url, 'https://open.spotify.com/episode/40sELGiloMWg7k8iI5chpI', 'Class 6.1 audio_url should be its official Spotify episode URL');
   assertions += 3;
 
   // C) Full-text keyword search
