@@ -12,11 +12,12 @@
 
     if (toggleBtn && navLinks) {
       toggleBtn.onclick = function(e) {
-        e.preventDefault();
-        navLinks.classList.toggle("active");
-        toggleBtn.classList.toggle("active");
+        if (e && e.preventDefault) e.preventDefault();
+        if (e && e.stopPropagation) e.stopPropagation();
+        const isActive = navLinks.classList.toggle("active");
+        if (toggleBtn.classList) toggleBtn.classList.toggle("active");
+        toggleBtn.innerHTML = isActive ? "✕" : "☰";
       };
-      toggleBtn.ontouchend = toggleBtn.onclick;
     }
   }
 

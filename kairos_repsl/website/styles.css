@@ -1414,3 +1414,103 @@ body.auth-logged-in .btn-unlogged-prompt {
   margin-left: 0 !important;
   margin-right: 0 !important;
 }
+
+/* ============================================================================
+   MOBILE & TABLET RESPONSIVE LAYOUT OVERRIDES (<= 768px)
+   ============================================================================ */
+@media (max-width: 768px) {
+  .container {
+    padding: 0 0.9rem !important;
+  }
+
+  .page-hero {
+    padding: 6.5rem 0 2.25rem !important;
+  }
+
+  .hero-title {
+    font-size: 1.75rem !important;
+    line-height: 1.25 !important;
+  }
+
+  .hero-subtitle {
+    font-size: 0.95rem !important;
+    line-height: 1.5 !important;
+  }
+
+  .grid,
+  .grid-2,
+  .grid-3 {
+    grid-template-columns: 1fr !important;
+    gap: 1.15rem !important;
+  }
+
+  .card,
+  .pillar-card,
+  .event-module-card,
+  .event-list-card {
+    padding: 1.1rem !important;
+  }
+
+  .mobile-toggle {
+    display: block !important;
+    font-size: 1.75rem !important;
+    padding: 0.25rem 0.5rem !important;
+    color: var(--accent-gold) !important;
+    background: transparent !important;
+    border: none !important;
+    z-index: 10001 !important;
+  }
+
+  .nav-links {
+    display: none !important;
+  }
+
+  .nav-links.active {
+    display: flex !important;
+    flex-direction: column !important;
+    position: absolute !important;
+    top: 100% !important;
+    left: 0 !important;
+    right: 0 !important;
+    background: #0a1128 !important;
+    border-bottom: 2px solid var(--accent-cyan) !important;
+    padding: 1.25rem !important;
+    gap: 0.5rem !important;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.9) !important;
+    z-index: 10000 !important;
+  }
+
+  .nav-links.active a {
+    font-size: 1rem !important;
+    padding: 0.55rem 0.5rem !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
+    width: 100% !important;
+    display: block !important;
+  }
+
+  .top-disclaimer-bar {
+    font-size: 0.72rem !important;
+    padding: 0.3rem 0.5rem !important;
+  }
+
+  .hero-actions,
+  .card-actions {
+    flex-direction: column !important;
+    align-items: stretch !important;
+    width: 100% !important;
+  }
+
+  .hero-actions .btn,
+  .card-actions .btn {
+    width: 100% !important;
+    text-align: center !important;
+    justify-content: center !important;
+  }
+
+  .disclaimer-splash-card {
+    width: 94% !important;
+    padding: 1.35rem !important;
+    max-height: 88vh !important;
+  }
+}
+
