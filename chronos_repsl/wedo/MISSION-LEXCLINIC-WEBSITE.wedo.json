@@ -38,6 +38,11 @@
         "id": "LINT-02",
         "description": "Add Rule 03 Route Integrity Linter (03-route-integrity.js), restore exact splash disclaimer copy, and add Lucas Kung route redirect",
         "status": "[x]"
+      },
+      {
+        "id": "LINT-03",
+        "description": "Restore faststart audio.m4a streams across all 101 modules (1.1-5.2), restore 11 authentic YouTube explainer clips to Lukas Kung interview, and enforce Rule 04 (101), Rule 05 (Event), and Rule 06 (Interview) linters",
+        "status": "[x]"
       }
     ]
   },
