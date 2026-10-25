@@ -2,7 +2,7 @@ const fs = require('fs');
 const path = require('path');
 
 function run(webDir, config) {
-  console.log(" 🔍 Executing Rule 04: 101 Courseware Media, Audio, Spotify, Quiz & Transcript Contract Verification...");
+  console.log(" 🔍 Executing Rule 04: 101 Courseware Media, Spotify, Quiz, Transcript & No-Dud-Audio Contract Verification...");
 
   const requiredModules = [
     { mod: "1.1", yt: "hKyvRECt3i0", spotify: "4OEYWEXFtk7at7cloxWJhg" },
@@ -38,7 +38,6 @@ function run(webDir, config) {
     const modDir = path.join(webDir, "101", item.mod);
     const indexPath = path.join(modDir, "index.html");
     const quizPath = path.join(modDir, "quiz.html");
-    const audioPath = path.join(modDir, "audio.m4a");
 
     if (!fs.existsSync(indexPath)) {
       violations.push(`101/${item.mod}/index.html is missing`);
@@ -49,23 +48,11 @@ function run(webDir, config) {
       violations.push(`101/${item.mod}/quiz.html is missing`);
     }
 
-    if (!fs.existsSync(audioPath) || fs.statSync(audioPath).size < 100000) {
-      violations.push(`101/${item.mod}/audio.m4a faststart audio binary is missing or dud (< 100 KB)`);
-    }
-
     const html = fs.readFileSync(indexPath, "utf8");
 
-    // 1. Verify every <source src="..."> in <audio> resolves on disk
-    const sourceMatches = html.match(/<source[^>]*src=["']([^"']+)["']/g) || [];
-    if (sourceMatches.length === 0) {
-      violations.push(`101/${item.mod}/index.html has no <source> inside <audio>`);
-    }
-    for (const sm of sourceMatches) {
-      const srcVal = sm.match(/src=["']([^"']+)["']/)[1];
-      const resolvedAudio = srcVal.startsWith("/") ? path.join(webDir, srcVal) : path.join(modDir, srcVal);
-      if (!fs.existsSync(resolvedAudio) || fs.statSync(resolvedAudio).size < 100000) {
-        violations.push(`101/${item.mod}/index.html references missing or dud audio source '${srcVal}'`);
-      }
+    // 1. Forbid dud <audio> / Audio Stream cards on 101 pages (Spotify is the official audio player for 101)
+    if (html.includes("<audio") || html.includes("-audio-stream")) {
+      violations.push(`101/${item.mod}/index.html contains a redundant/dud <audio> card (101 modules must use the Official Spotify Podcast Episode embed)`);
     }
 
     // 2. Verify official YouTube lecture embed
@@ -78,10 +65,10 @@ function run(webDir, config) {
       violations.push(`101/${item.mod}/index.html is missing expected Spotify episode embed (${item.spotify})`);
     }
 
-    // 4. Verify watch meters (1 video + 1 audio = 2)
+    // 4. Verify watch meter on the video lecture card
     const meters = html.match(/media-playback-meter-container/g) || [];
-    if (meters.length < 2) {
-      violations.push(`101/${item.mod}/index.html has ${meters.length} watch meters (expected >= 2)`);
+    if (meters.length < 1) {
+      violations.push(`101/${item.mod}/index.html has ${meters.length} watch meters (expected >= 1)`);
     }
 
     // 5. No redundant status-badge or hero-badge pills
@@ -107,7 +94,7 @@ function run(webDir, config) {
     return false;
   }
 
-  console.log(` ✅ RULE 04 PASSED: All ${requiredModules.length} 101 module pages verified (valid audio.m4a, YouTube video, Spotify episode, watch meters, quiz.html, and transcripts)!`);
+  console.log(` ✅ RULE 04 PASSED: All ${requiredModules.length} 101 module pages verified (YouTube lecture, Spotify episode, zero dud <audio> cards, quiz.html, and transcripts)!`);
   return true;
 }
 

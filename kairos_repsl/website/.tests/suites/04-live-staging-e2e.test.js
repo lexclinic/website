@@ -13,9 +13,9 @@ async function run(webDir) {
   const pageRoutes = [
     { path: "/", mustInclude: "LexClinic" },
     { path: "/101/", mustInclude: "Legal Engineering 101" },
-    { path: "/101/3.1/", mustInclude: "Charles Goldfarb" },
-    { path: "/101/6.1/", mustInclude: "Grammatical Hurdles" },
-    { path: "/101/6.2/", mustInclude: "Reading Right-to-Left" },
+    { path: "/101/3.1/", mustInclude: "Charles Goldfarb", mustNotInclude: "<audio" },
+    { path: "/101/6.1/", mustInclude: "Grammatical Hurdles", mustNotInclude: "<audio" },
+    { path: "/101/6.2/", mustInclude: "Reading Right-to-Left", mustNotInclude: "<audio" },
     { path: "/event/", mustInclude: "Events" },
     { path: "/event/2026-10-22/", mustInclude: "Lesson 5.2" },
     { path: "/interview/", mustInclude: "Lukas Küng" },
@@ -36,25 +36,17 @@ async function run(webDir) {
     const text = await res.text();
     assert.ok(text.includes(r.mustInclude), `Live route ${r.path} body must include '${r.mustInclude}'`);
     assertions += 2;
+    if (r.mustNotInclude) {
+      assert.strictEqual(text.includes(r.mustNotInclude), false, `Live route ${r.path} body must NOT include '${r.mustNotInclude}'`);
+      assertions += 1;
+    }
   }));
 
   // --------------------------------------------------------------------------
-  // Test 4.2: Verify All 23 Live Audio Streams (12 101 + 9 Event + 2 Interview)
+  // Test 4.2: Verify All 11 Live Native Audio Streams (9 Event + 2 Interview)
   // Serve Real MP4/AAC Audio Binaries (Content-Type: audio/mp4, Not HTML Fallback)
   // --------------------------------------------------------------------------
   const audioRoutes = [
-    "/101/1.1/audio.m4a",
-    "/101/1.2/audio.m4a",
-    "/101/2.1/audio.m4a",
-    "/101/2.2/audio.m4a",
-    "/101/3.1/audio.m4a",
-    "/101/3.2/audio.m4a",
-    "/101/4.1/audio.m4a",
-    "/101/4.2/audio.m4a",
-    "/101/5.1/audio.m4a",
-    "/101/5.2/audio.m4a",
-    "/101/6.1/audio.m4a",
-    "/101/6.2/audio.m4a",
     "/event/2026-08-13/audio.m4a",
     "/event/2026-08-20/audio.m4a",
     "/event/2026-09-04/audio.m4a",
@@ -113,7 +105,7 @@ async function run(webDir) {
   assert.ok(Array.isArray(attestJson.submissions), "Live /api/user-attest must return submissions array");
   assertions += 3;
 
-  console.log(` ✅ SUITE 04 PASSED: ${assertions} assertions verified (15 Live Staging Routes, 23 M4A 'ftyp' Audio Streams, & Live Serverless APIs)!`);
+  console.log(` ✅ SUITE 04 PASSED: ${assertions} assertions verified (15 Live Staging Routes, 11 Event/Interview M4A 'ftyp' Audio Streams, Zero Dud <audio> on 101, & Live APIs)!`);
   return { passed: true, assertions };
 }
 
