@@ -92,6 +92,11 @@
         "id": "QUIZ-TRANSCRIPT-GROUNDING-01",
         "description": "Rewrite 101/1.1 through 101/4.1 and 101/ comprehensive quizzes (both 5-Q quiz-learned and 20-Q quiz-expert) directly from their verified Whisper media transcripts in transcripts.json, and enforce transcript-keyword grounding in Linter Rule 07",
         "status": "[x]"
+      },
+      {
+        "id": "EVENT-ARCHIVES-AND-CATEGORIES-01",
+        "description": "Restructure /event/ to show Upcoming Events, the 3 Most Recent Recorded Events (Oct 22, Oct 15, Oct 8), and dedicated Monthly Archive pages (/event/2026-10/, /event/2026-09/, /event/2026-08/) with event subcategory filtering (Classes, Interviews, Director Calls, Partner Calls) and date-stamped interview routes",
+        "status": "[x]"
       }
     ]
   },

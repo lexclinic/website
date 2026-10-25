@@ -7,6 +7,7 @@
     "closeNavLoginModal",
     "copyCardDirectLink",
     "ensureNavLoginModalInDOM",
+    "filterEventsByCategory",
     "getSanitizedEmail",
     "initAllMediaMeters",
     "initNativeMediaListeners",
