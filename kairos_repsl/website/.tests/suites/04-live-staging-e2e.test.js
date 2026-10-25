@@ -47,6 +47,35 @@ async function run(webDir) {
   }));
 
   // --------------------------------------------------------------------------
+  // Test 4.1b: Verify All 38 Dual-Route Quiz Pages (19 quiz-learned + 19 quiz-expert) Live on stage.lex.clinic
+  // --------------------------------------------------------------------------
+  const quizBases = [
+    "/101/1.1", "/101/1.2", "/101/2.1", "/101/2.2", "/101/3.1", "/101/3.2",
+    "/101/4.1", "/101/4.2", "/101/5.1", "/101/5.2", "/101/6.1", "/101/6.2",
+    "/101", "/event/2026-08-24", "/event/2026-09-04", "/event/2026-09-17", "/event/2026-09-24",
+    "/interview/lucas-kung", "/interview/2026-09-08/james-wigginton"
+  ];
+
+  await Promise.all(quizBases.map(async (base) => {
+    const lRes = await fetch(STAGE_DOMAIN + base + "/quiz-learned/", {
+      headers: { "User-Agent": "LexClinicTestRunner/1.0", "Authorization": BASIC_AUTH }
+    });
+    assert.strictEqual(lRes.status, 200, `Live ${base}/quiz-learned/ must return HTTP 200`);
+    const lText = await lRes.text();
+    assert.ok(lText.includes("openMediaCommentModal") && lText.includes("openMediaApprovalModal"), `Live ${base}/quiz-learned/ must include Notes & Approval buttons`);
+    assert.strictEqual(lText.includes("copyCardDirectLink"), false, `Live ${base}/quiz-learned/ must NOT include Copy Direct Link button`);
+
+    const eRes = await fetch(STAGE_DOMAIN + base + "/quiz-expert/", {
+      headers: { "User-Agent": "LexClinicTestRunner/1.0", "Authorization": BASIC_AUTH }
+    });
+    assert.strictEqual(eRes.status, 200, `Live ${base}/quiz-expert/ must return HTTP 200`);
+    const eText = await eRes.text();
+    assert.ok(eText.includes("openMediaCommentModal") && eText.includes("openMediaApprovalModal"), `Live ${base}/quiz-expert/ must include Notes & Approval buttons`);
+    assert.strictEqual(eText.includes("copyCardDirectLink"), false, `Live ${base}/quiz-expert/ must NOT include Copy Direct Link button`);
+    assertions += 6;
+  }));
+
+  // --------------------------------------------------------------------------
   // Test 4.2: Verify All 11 Live Native Audio Streams (9 Event + 2 Interview)
   // Serve Real MP4/AAC Audio Binaries (Content-Type: audio/mp4, Not HTML Fallback)
   // --------------------------------------------------------------------------
