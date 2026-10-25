@@ -42,7 +42,7 @@
           <a href="/attest/">Attest</a>
           <a href="/help/">Help</a>
           <a href="/repo/">Repo</a>
-          <a href="/repo/">ERC-7827</a>
+          <a href="/erc7827/">ERC-7827</a>
           <a href="https://www.youtube.com/watch?v=ONwiUkc_tt4&list=PLbPukKwpmk5E" target="_blank" rel="noopener" class="btn-social" title="Subscribe on YouTube">YouTube</a>
           <a href="https://open.spotify.com/show/0348ivoLaNfKBq1HeIYC9b" target="_blank" rel="noopener" class="btn-spotify" title="Follow on Spotify">Spotify</a>
           <a href="https://www.linkedin.com/company/lexclinic" target="_blank" rel="noopener" class="btn-social" title="Follow on LinkedIn">LinkedIn</a>
@@ -139,7 +139,7 @@
       
       const submissionData = {
         email: userEmail,
-        class_id: "class_5.1",
+        class_id: "5.1",
         score: 5,
         answered: 5,
         total: 5,
@@ -148,6 +148,13 @@
         summary: `Class 5.1: Active Scripts vs. Static Sheets - Score: 5/5`
       };
 
+      try {
+        let rawSubs = JSON.parse(localStorage.getItem("lexclinic_quiz_submissions") || "[]");
+        let localSubs = Array.isArray(rawSubs) ? rawSubs : Object.values(rawSubs);
+        localSubs = localSubs.filter(s => !(s && s.email === userEmail && (s.class_id === "5.1" || s.class_id === "class_5.1")));
+        localSubs.push({ ...submissionData, score: `${submissionData.score}/${submissionData.total}` });
+        localStorage.setItem("lexclinic_quiz_submissions", JSON.stringify(localSubs));
+      } catch (e) {}
       try {
         await fetch('/api/submit-quiz', {
           method: 'POST',

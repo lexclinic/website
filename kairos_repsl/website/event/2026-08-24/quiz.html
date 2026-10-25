@@ -39,7 +39,7 @@
           <a href="/attest/">Attest</a>
           <a href="/help/">Help</a>
           <a href="/repo/">Repo</a>
-          <a href="/repo/">ERC-7827</a>
+          <a href="/erc7827/">ERC-7827</a>
           <a href="https://www.youtube.com/watch?v=ONwiUkc_tt4&list=PLbPukKwpmk5E" target="_blank" rel="noopener" class="btn-social" title="Subscribe on YouTube">YouTube</a>
           <a href="https://open.spotify.com/show/0348ivoLaNfKBq1HeIYC9b" target="_blank" rel="noopener" class="btn-spotify" title="Follow on Spotify">Spotify</a>
           <a href="https://www.linkedin.com/company/lexclinic" target="_blank" rel="noopener" class="btn-social" title="Follow on LinkedIn">LinkedIn</a>
@@ -258,16 +258,36 @@
         payloadHash = "0x" + Math.random().toString(16).substring(2) + Math.random().toString(16).substring(2);
       }
 
-      // Store in localStorage
-      const submissions = JSON.parse(localStorage.getItem("lexclinic_quiz_submissions") || "{}");
-      submissions["2026-08-24"] = {
-        quiz_id: "2026-08-24",
-        quiz_name: "Clinic Misc. Technical Socratic Quiz (Aug 24, 2026)",
-        score: `${score} / ${total}`,
-        timestamp: timestamp,
-        payload_hash: payloadHash
+      const submissionData = {
+        email: email,
+        class_id: "2026-08-24",
+        score: `${score}/${total}`,
+        answered: total,
+        total: total,
+        payload_hash: payloadHash,
+        timestamp: timestamp
       };
-      localStorage.setItem("lexclinic_quiz_submissions", JSON.stringify(submissions));
+      try {
+        let rawSubs = JSON.parse(localStorage.getItem("lexclinic_quiz_submissions") || "[]");
+        let localSubs = Array.isArray(rawSubs) ? rawSubs : Object.values(rawSubs);
+        localSubs.push(submissionData);
+        localStorage.setItem("lexclinic_quiz_submissions", JSON.stringify(localSubs));
+      } catch (e) {}
+      try {
+        await fetch("/api/submit-quiz", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            email: email,
+            class_id: "2026-08-24",
+            score: score,
+            answered: total,
+            total: total,
+            payload_hash: payloadHash,
+            timestamp: timestamp
+          })
+        });
+      } catch (e) {}
 
       // Display result
       document.getElementById("quiz-score-text").innerText = `Score: ${score} / ${total} (100% Completion)`;

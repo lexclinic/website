@@ -43,6 +43,11 @@
         "id": "LINT-03",
         "description": "Restore faststart audio.m4a streams across all 101 modules (1.1-5.2), restore 11 authentic YouTube explainer clips to Lukas Kung interview, and enforce Rule 04 (101), Rule 05 (Event), and Rule 06 (Interview) linters",
         "status": "[x]"
+      },
+      {
+        "id": "LINT-04",
+        "description": "Restore /erc7827/ and /ERC-7827/ routes, bind persistent Cloudflare KV + Google Drive ledger for media approvals/notes with auto-sync from browser localStorage, rebuild /attest/ with all 18 quizzes + media approvals ledger, and enforce Rule 07 (/attest/ & /erc7827/ linter)",
+        "status": "[x]"
       }
     ]
   },

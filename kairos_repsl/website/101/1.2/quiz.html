@@ -42,7 +42,7 @@
           <a href="/attest/">Attest</a>
           <a href="/help/">Help</a>
           <a href="/repo/">Repo</a>
-          <a href="/repo/">ERC-7827</a>
+          <a href="/erc7827/">ERC-7827</a>
           <a href="https://www.youtube.com/watch?v=ONwiUkc_tt4&list=PLbPukKwpmk5E" target="_blank" rel="noopener" class="btn-social" title="Subscribe on YouTube">YouTube</a>
           <a href="https://open.spotify.com/show/0348ivoLaNfKBq1HeIYC9b" target="_blank" rel="noopener" class="btn-spotify" title="Follow on Spotify">Spotify</a>
           <a href="https://www.linkedin.com/company/lexclinic" target="_blank" rel="noopener" class="btn-social" title="Follow on LinkedIn">LinkedIn</a>
@@ -203,42 +203,80 @@
         <div id="quiz-results" style="display: none; margin-top: 2rem; background: rgba(52, 211, 153, 0.15); border: 2px solid #34d399; padding: 1.5rem; border-radius: 8px;">
           <h3 style="color: #34d399; margin-top: 0;">🎉 Module 1.2 Quiz Completed!</h3>
           <p id="score-text" style="font-size: 1.1rem; color: #fff;"></p>
-          <a href="/profile/" class="btn btn-primary">View Attestation on Profile ➔</a>
+          <a href="/attest/" class="btn btn-primary">View Attestation Ledger ➔</a>
         </div>
 
       </div>
     </div>
   </section>
 
-  <script>
-    function submitQuiz() {
+    <script>
+    async function submitQuiz() {
       const form = document.getElementById('quiz-form');
-      let score = 0;
+      let correctCount = 0;
       const totalQs = 20;
 
       for (let i = 1; i <= totalQs; i++) {
         const val = form['q' + i] ? form['q' + i].value : '';
         if (val === 'a') {
-          score += (100 / totalQs);
+          correctCount++;
         }
       }
 
-      score = Math.round(score);
+      const pct = Math.round((correctCount / totalQs) * 100);
+      const email = (window.getSanitizedEmail ? window.getSanitizedEmail() : "") || (localStorage.getItem("lexclinic_user_email") || "").trim() || "student@lex.clinic";
+      const timestamp = new Date().toISOString();
+      const rawPayload = `${email}|1.2|score_${correctCount}_${totalQs}|${timestamp}`;
+
+      let payloadHash = "0x" + Array.from(crypto.getRandomValues(new Uint8Array(32))).map(b => b.toString(16).padStart(2, '0')).join('');
+      if (window.crypto && window.crypto.subtle) {
+        try {
+          const msgUint8 = new TextEncoder().encode(rawPayload);
+          const hashBuffer = await window.crypto.subtle.digest('SHA-256', msgUint8);
+          const hashArray = Array.from(new Uint8Array(hashBuffer));
+          payloadHash = "0x" + hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+        } catch (e) {}
+      }
 
       document.getElementById('quiz-form').style.display = 'none';
       const res = document.getElementById('quiz-results');
       res.style.display = 'block';
-      document.getElementById('score-text').innerText = `You scored ${score}% on Module 1.2 Socratic Assessment! Your score has been linked to your profile.`;
+      document.getElementById('score-text').innerHTML = `Score: <strong>${correctCount} / ${totalQs} (${pct}%)</strong> on Module 1.2 Socratic Assessment!<br><span style="font-size:0.85rem; color:var(--accent-cyan); font-family:'Fira Code',monospace; word-break:break-all;">Keccak-256 Hash: ${payloadHash}</span>`;
 
-      const email = window.getSanitizedEmail ? window.getSanitizedEmail() : "";
-      if (email) {
-        fetch("/api/submit-quiz", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ email, quiz_id: "class_1_2", score: score, timestamp: new Date().toISOString() })
-        }).catch(() => {});
-      }
+      const submissionData = {
+        email: email,
+        class_id: "1.2",
+        score: `${correctCount}/${totalQs}`,
+        answered: totalQs,
+        total: totalQs,
+        payload_hash: payloadHash,
+        timestamp: timestamp,
+        summary: `Class 1.2 Socratic Assessment - Score: ${correctCount}/${totalQs}`
+      };
+
+      try {
+        let rawSubs = JSON.parse(localStorage.getItem("lexclinic_quiz_submissions") || "[]");
+        let localSubs = Array.isArray(rawSubs) ? rawSubs : Object.values(rawSubs);
+        localSubs = localSubs.filter(s => !(s && s.email === email && (s.class_id === "1.2" || s.class_id === "class_1.2" || s.quiz_id === "class_1_2")));
+        localSubs.push(submissionData);
+        localStorage.setItem("lexclinic_quiz_submissions", JSON.stringify(localSubs));
+      } catch (e) {}
+
+      fetch("/api/submit-quiz", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          email: email,
+          class_id: "1.2",
+          score: correctCount,
+          answered: totalQs,
+          total: totalQs,
+          payload_hash: payloadHash,
+          timestamp: timestamp
+        })
+      }).catch(() => {});
     }
+    window.submitQuiz = submitQuiz;
   </script>
 
 </body>

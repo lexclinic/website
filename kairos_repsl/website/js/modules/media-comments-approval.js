@@ -1,6 +1,22 @@
 /*
   LexClinic Education Platform — Shared Community Discussion Feed & 2-Step Approval Manager
+  Automatically synchronizes browser localStorage approvals & notes with /api/media-notes
+  (backed by the shared Google Drive Ledger across stage.lex.clinic and lex.clinic).
 */
+const LEGACY_CARD_ID_ALIASES = {
+  "lucas-kung-interview-audio-stream": "lucas-kung-interview-full-audio-stream",
+  "lucas-kung-interview-full-audio-stream": "lucas-kung-interview-audio-stream",
+  "lucas-kung-interview-clip-1": "card_interview_lucas_v1_1",
+  "card_interview_lucas_v1_1": "lucas-kung-interview-clip-1",
+  "lucas-kung-interview-clip-2": "card_interview_lucas_v1_2",
+  "card_interview_lucas_v1_2": "lucas-kung-interview-clip-2",
+  "lucas-kung-interview-clip-3": "card_interview_lucas_v1_3",
+  "card_interview_lucas_v1_3": "lucas-kung-interview-clip-3"
+};
+
+let sharedServerNotes = [];
+let sharedServerApprovals = {};
+
 function checkLoggedUserOrPrompt(evt) {
   const userEmail = window.getSanitizedEmail ? window.getSanitizedEmail() : "";
   if (!userEmail) {
@@ -14,6 +30,14 @@ function checkLoggedUserOrPrompt(evt) {
   return userEmail;
 }
 
+function getAllCandidateIds(cardId) {
+  const set = new Set([cardId]);
+  if (LEGACY_CARD_ID_ALIASES[cardId]) {
+    set.add(LEGACY_CARD_ID_ALIASES[cardId]);
+  }
+  return Array.from(set);
+}
+
 // ----------------------------------------------------------------------------
 // 1. SHARED COMMUNITY DISCUSSION FEED MODAL
 // ----------------------------------------------------------------------------
@@ -22,6 +46,7 @@ async function openMediaCommentModal(cardId, evt) {
   if (!userEmail) return;
 
   const canonicalUid = window.location.pathname + '#' + cardId;
+  const candidateIds = getAllCandidateIds(cardId);
 
   let modal = document.getElementById('media-comment-modal');
   if (!modal) {
@@ -31,30 +56,45 @@ async function openMediaCommentModal(cardId, evt) {
     document.body.appendChild(modal);
   }
 
-  // Fetch shared community comment feed
+  // Fetch shared community comment feed + live /api/media-notes
   let feedComments = [];
   try {
     const res = await fetch('/media-comments-feed.json?v=' + Date.now());
     if (res.ok) {
       const data = await res.json();
-      feedComments = (data.comments || []).filter(c => c.uid === canonicalUid || c.card_id === cardId);
+      feedComments = (data.comments || []).filter(c => c.uid === canonicalUid || candidateIds.includes(c.card_id));
     }
   } catch(e) {}
 
+  const serverCardNotes = sharedServerNotes.filter(
+    c => c.uid === canonicalUid || candidateIds.includes(c.card_id)
+  );
+
   // Local browser saved notes
-  const localHistory = JSON.parse(localStorage.getItem('lexclinic_notes_history') || '{}')[canonicalUid] || JSON.parse(localStorage.getItem('lexclinic_notes_history') || '{}')[cardId] || [];
-  
-  let threadHtml = '';
+  const historyStore = JSON.parse(localStorage.getItem('lexclinic_notes_history') || '{}');
+  let localHistory = [];
+  if (Array.isArray(historyStore[canonicalUid])) localHistory.push(...historyStore[canonicalUid]);
+  candidateIds.forEach(cid => {
+    if (Array.isArray(historyStore[cid])) localHistory.push(...historyStore[cid]);
+  });
+
   const combined = [...feedComments];
-  
-  localHistory.forEach(lh => {
-    if (!combined.some(c => c.comment === lh.comment && c.timestamp === lh.timestamp)) {
-      combined.push({ uid: canonicalUid, card_id: cardId, reviewer: lh.reviewer, comment: lh.comment, timestamp: lh.timestamp });
+
+  [...serverCardNotes, ...localHistory].forEach(lh => {
+    if (lh && lh.comment && !combined.some(c => c.comment === lh.comment && (c.reviewer || '').toLowerCase() === (lh.reviewer || '').toLowerCase())) {
+      combined.push({
+        uid: lh.uid || canonicalUid,
+        card_id: cardId,
+        reviewer: lh.reviewer || 'kyle@lex.clinic',
+        comment: lh.comment,
+        timestamp: lh.timestamp || new Date().toISOString()
+      });
     }
   });
 
   combined.sort((a,b) => new Date(b.timestamp) - new Date(a.timestamp));
 
+  let threadHtml = '';
   if (combined.length > 0) {
     threadHtml = '<div style="margin-top: 1rem; border-top: 1px solid #334155; padding-top: 0.75rem;"><h4 style="color: var(--accent-cyan); font-size: 0.95rem; margin-bottom: 0.5rem;">💬 Community Discussion Thread (' + combined.length + '):</h4><div style="max-height: 180px; overflow-y: auto; display: flex; flex-direction: column; gap: 0.6rem; padding-right: 0.25rem;">';
     combined.forEach(c => {
@@ -63,7 +103,7 @@ async function openMediaCommentModal(cardId, evt) {
     });
     threadHtml += '</div></div>';
   } else {
-    threadHtml = '<div style="margin-top: 1rem; border-top: 1px solid #334155; padding-top: 0.75rem; color: #94a3b8; font-size: 0.85rem; italic;">No notes posted yet on this clip. Be the first to start the community discussion!</div>';
+    threadHtml = '<div style="margin-top: 1rem; border-top: 1px solid #334155; padding-top: 0.75rem; color: #94a3b8; font-size: 0.85rem; font-style: italic;">No notes posted yet on this clip. Be the first to start the community discussion!</div>';
   }
 
   modal.innerHTML = `
@@ -103,26 +143,36 @@ function saveMediaComment(cardId) {
   const allHistory = JSON.parse(localStorage.getItem('lexclinic_notes_history') || '{}');
   if (!allHistory[canonicalUid]) allHistory[canonicalUid] = [];
 
-  allHistory[canonicalUid].unshift({
+  const noteEntry = {
     uid: canonicalUid,
     card_id: cardId,
+    page_url: window.location.pathname,
     comment: noteText,
     reviewer: userEmail,
     timestamp: timestamp
-  });
+  };
+
+  allHistory[canonicalUid].unshift(noteEntry);
   localStorage.setItem('lexclinic_notes_history', JSON.stringify(allHistory));
 
-  syncToAgentLedger(cardId, userEmail, { comment: noteText, uid: canonicalUid });
+  sharedServerNotes.unshift(noteEntry);
+  syncToAgentLedger(cardId, userEmail, { comment: noteText, uid: canonicalUid, timestamp });
 
-  const btn = document.querySelector(`.btn-comment-${cardId}`);
-  if (btn) {
-    btn.innerHTML = `💬 Notes (${allHistory[canonicalUid].length})`;
-    btn.style.background = 'rgba(251, 191, 36, 0.25)';
-    btn.style.borderColor = '#fbbf24';
-    btn.style.color = '#fbbf24';
-  }
-
+  updateCommentButtonUI(cardId, allHistory[canonicalUid].length);
   document.getElementById('media-comment-modal').style.display = 'none';
+}
+
+function updateCommentButtonUI(cardId, count) {
+  const candidateIds = getAllCandidateIds(cardId);
+  candidateIds.forEach(cid => {
+    const btn = document.querySelector(`.btn-comment-${cid}`);
+    if (btn && count > 0) {
+      btn.innerHTML = `💬 Notes (${count})`;
+      btn.style.background = 'rgba(251, 191, 36, 0.25)';
+      btn.style.borderColor = '#fbbf24';
+      btn.style.color = '#fbbf24';
+    }
+  });
 }
 
 // ----------------------------------------------------------------------------
@@ -219,6 +269,8 @@ function setMediaApproval(cardId, ratingState) {
 
   const record = {
     uid: canonicalUid,
+    card_id: cardId,
+    page_url: window.location.pathname,
     rating: ratingState,
     depth: depth,
     reviewer: userEmail,
@@ -230,6 +282,7 @@ function setMediaApproval(cardId, ratingState) {
   allApprovals[cardId] = record;
   localStorage.setItem('lexclinic_media_approvals', JSON.stringify(allApprovals));
 
+  sharedServerApprovals[canonicalUid] = record;
   syncToAgentLedger(cardId, userEmail, record);
   updateApprovalButtonUI(cardId, record);
   document.getElementById('media-approval-modal').style.display = 'none';
@@ -252,44 +305,46 @@ function syncToAgentLedger(cardId, userEmail, payload) {
 }
 
 function updateApprovalButtonUI(cardId, record) {
-  const btn = document.querySelector(`.btn-approval-${cardId}`);
-  if (!btn) return;
+  const candidateIds = getAllCandidateIds(cardId);
+  candidateIds.forEach(cid => {
+    const btn = document.querySelector(`.btn-approval-${cid}`);
+    if (!btn) return;
 
-  const ratingState = typeof record === 'object' ? record.rating : record;
-  const depth = (typeof record === 'object' && record.depth) ? record.depth : 'thorough';
-  const depthTag = depth === 'thorough' ? 'Full' : 'Partial';
+    const ratingState = typeof record === 'object' ? record.rating : record;
+    const depth = (typeof record === 'object' && record.depth) ? record.depth : 'thorough';
+    const depthTag = depth === 'thorough' ? 'Full' : 'Partial';
 
-  if (ratingState === 'pass') {
-    btn.innerHTML = `✅ Passed (${depthTag})`;
-    btn.style.background = 'rgba(52, 211, 153, 0.2)';
-    btn.style.borderColor = '#34d399';
-    btn.style.color = '#34d399';
-  } else if (ratingState === 'star') {
-    btn.innerHTML = `⭐ Starred (${depthTag})`;
-    btn.style.background = 'rgba(251, 191, 36, 0.2)';
-    btn.style.borderColor = '#fbbf24';
-    btn.style.color = '#fbbf24';
-  } else if (ratingState === 'flag') {
-    btn.innerHTML = `🚩 Flagged (${depthTag})`;
-    btn.style.background = 'rgba(249, 115, 22, 0.2)';
-    btn.style.borderColor = '#f97316';
-    btn.style.color = '#f97316';
-  } else if (ratingState === 'fail') {
-    btn.innerHTML = `❌ Failed (${depthTag})`;
-    btn.style.background = 'rgba(248, 113, 113, 0.2)';
-    btn.style.borderColor = '#f87171';
-    btn.style.color = '#f87171';
-  } else {
-    btn.innerHTML = '👍 Approval';
-    btn.style.background = 'rgba(56, 189, 248, 0.15)';
-    btn.style.borderColor = 'var(--accent-cyan)';
-    btn.style.color = 'var(--accent-cyan)';
-  }
+    if (ratingState === 'pass') {
+      btn.innerHTML = `✅ Passed (${depthTag})`;
+      btn.style.background = 'rgba(52, 211, 153, 0.2)';
+      btn.style.borderColor = '#34d399';
+      btn.style.color = '#34d399';
+    } else if (ratingState === 'star') {
+      btn.innerHTML = `⭐ Starred (${depthTag})`;
+      btn.style.background = 'rgba(251, 191, 36, 0.2)';
+      btn.style.borderColor = '#fbbf24';
+      btn.style.color = '#fbbf24';
+    } else if (ratingState === 'flag') {
+      btn.innerHTML = `🚩 Flagged (${depthTag})`;
+      btn.style.background = 'rgba(249, 115, 22, 0.2)';
+      btn.style.borderColor = '#f97316';
+      btn.style.color = '#f97316';
+    } else if (ratingState === 'fail') {
+      btn.innerHTML = `❌ Failed (${depthTag})`;
+      btn.style.background = 'rgba(248, 113, 113, 0.2)';
+      btn.style.borderColor = '#f87171';
+      btn.style.color = '#f87171';
+    } else {
+      btn.innerHTML = '👍 Approval';
+      btn.style.background = 'rgba(56, 189, 248, 0.15)';
+      btn.style.borderColor = 'var(--accent-cyan)';
+      btn.style.color = 'var(--accent-cyan)';
+    }
+  });
 }
 
 function updateAuthButtonVisibility() {
   const userEmail = window.getSanitizedEmail ? window.getSanitizedEmail() : "";
-  
   if (userEmail) {
     document.body.classList.add('auth-logged-in');
   } else {
@@ -297,27 +352,18 @@ function updateAuthButtonVisibility() {
   }
 }
 
-window.openMediaCommentModal = openMediaCommentModal;
-window.selectApprovalDepth = selectApprovalDepth;
-window.setMediaApproval = setMediaApproval;
-window.updateAuthButtonVisibility = updateAuthButtonVisibility;
-
-document.addEventListener('DOMContentLoaded', () => {
-  updateAuthButtonVisibility();
-
+// Gather all localStorage approvals & notes and sync with /api/media-notes
+async function syncAndHydrateMediaLedger() {
   const allHistory = JSON.parse(localStorage.getItem('lexclinic_notes_history') || '{}');
   const allApprovals = JSON.parse(localStorage.getItem('lexclinic_media_approvals') || '{}');
+  const legacyComments = JSON.parse(localStorage.getItem('lexclinic_media_comments') || '{}');
+  const userEmail = (window.getSanitizedEmail ? window.getSanitizedEmail() : "") || "kyle@lex.clinic";
 
+  // 1. Immediately hydrate buttons from localStorage
   Object.keys(allHistory).forEach(key => {
     const cardId = key.includes('#') ? key.split('#')[1] : key;
-    if (allHistory[key] && allHistory[key].length > 0) {
-      const btn = document.querySelector(`.btn-comment-${cardId}`);
-      if (btn) {
-        btn.innerHTML = `💬 Notes (${allHistory[key].length})`;
-        btn.style.background = 'rgba(251, 191, 36, 0.25)';
-        btn.style.borderColor = '#fbbf24';
-        btn.style.color = '#fbbf24';
-      }
+    if (Array.isArray(allHistory[key]) && allHistory[key].length > 0) {
+      updateCommentButtonUI(cardId, allHistory[key].length);
     }
   });
 
@@ -325,6 +371,129 @@ document.addEventListener('DOMContentLoaded', () => {
     const cardId = key.includes('#') ? key.split('#')[1] : key;
     updateApprovalButtonUI(cardId, allApprovals[key]);
   });
+
+  // 2. Collect any localStorage items to push to shared server ledger
+  const localItemsToPush = [];
+  const seenApprovalUids = new Set();
+
+  Object.keys(allApprovals).forEach(key => {
+    const rec = allApprovals[key];
+    if (!rec) return;
+    const uid = (typeof rec === 'object' && rec.uid) ? rec.uid : key;
+    if (seenApprovalUids.has(uid)) return;
+    seenApprovalUids.add(uid);
+
+    const cardId = uid.includes('#') ? uid.split('#')[1] : uid;
+    localItemsToPush.push({
+      uid: uid,
+      card_id: cardId,
+      page_url: (typeof rec === 'object' && rec.page_url) ? rec.page_url : (uid.includes('#') ? uid.split('#')[0] : window.location.pathname),
+      rating: typeof rec === 'object' ? rec.rating : rec,
+      depth: (typeof rec === 'object' && rec.depth) ? rec.depth : 'thorough',
+      reviewer: (typeof rec === 'object' && rec.reviewer) ? rec.reviewer : userEmail,
+      timestamp: (typeof rec === 'object' && rec.timestamp) ? rec.timestamp : new Date().toISOString()
+    });
+  });
+
+  Object.keys(allHistory).forEach(key => {
+    const arr = allHistory[key];
+    if (Array.isArray(arr)) {
+      arr.forEach(item => {
+        if (item && item.comment) {
+          const uid = item.uid || key;
+          const cardId = item.card_id || (uid.includes('#') ? uid.split('#')[1] : uid);
+          localItemsToPush.push({
+            uid: uid,
+            card_id: cardId,
+            page_url: item.page_url || (uid.includes('#') ? uid.split('#')[0] : window.location.pathname),
+            comment: item.comment,
+            reviewer: item.reviewer || userEmail,
+            timestamp: item.timestamp || new Date().toISOString()
+          });
+        }
+      });
+    }
+  });
+
+  Object.keys(legacyComments).forEach(cardId => {
+    const text = legacyComments[cardId];
+    if (text && typeof text === 'string' && text.trim()) {
+      localItemsToPush.push({
+        uid: '#' + cardId,
+        card_id: cardId,
+        comment: text.trim(),
+        reviewer: userEmail,
+        timestamp: new Date().toISOString()
+      });
+    }
+  });
+
+  try {
+    let res;
+    if (localItemsToPush.length > 0) {
+      res = await fetch('/api/media-notes', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ items: localItemsToPush })
+      });
+    } else {
+      res = await fetch('/api/media-notes');
+    }
+
+    if (res && res.ok) {
+      const data = await res.json();
+      sharedServerApprovals = data.approvals || {};
+      sharedServerNotes = Array.isArray(data.notes) ? data.notes : [];
+
+      // Merge server approvals back into localStorage & hydrate DOM buttons
+      let mergedApprovals = { ...allApprovals };
+      Object.keys(sharedServerApprovals).forEach(uid => {
+        const rec = sharedServerApprovals[uid];
+        if (rec && rec.rating) {
+          const cardId = rec.card_id || (uid.includes('#') ? uid.split('#')[1] : uid);
+          mergedApprovals[uid] = rec;
+          mergedApprovals[cardId] = rec;
+          updateApprovalButtonUI(cardId, rec);
+        }
+      });
+      localStorage.setItem('lexclinic_media_approvals', JSON.stringify(mergedApprovals));
+
+      // Hydrate comment counts from server notes
+      const noteCountsByCard = {};
+      sharedServerNotes.forEach(n => {
+        const cid = n.card_id || (n.uid && n.uid.includes('#') ? n.uid.split('#')[1] : '');
+        if (cid) {
+          noteCountsByCard[cid] = (noteCountsByCard[cid] || 0) + 1;
+        }
+      });
+      Object.keys(noteCountsByCard).forEach(cid => {
+        updateCommentButtonUI(cid, noteCountsByCard[cid]);
+      });
+
+      window.dispatchEvent(new CustomEvent('lexclinic:media-ledger-synced', { detail: data }));
+    }
+  } catch (err) {}
+}
+
+window.checkLoggedUserOrPrompt = checkLoggedUserOrPrompt;
+window.openMediaCommentModal = openMediaCommentModal;
+window.saveMediaComment = saveMediaComment;
+window.openMediaApprovalModal = openMediaApprovalModal;
+window.renderApprovalStep1 = renderApprovalStep1;
+window.renderApprovalStep2 = renderApprovalStep2;
+window.selectApprovalDepth = selectApprovalDepth;
+window.setMediaApproval = setMediaApproval;
+window.syncToAgentLedger = syncToAgentLedger;
+window.updateApprovalButtonUI = updateApprovalButtonUI;
+window.updateAuthButtonVisibility = updateAuthButtonVisibility;
+window.syncAndHydrateMediaLedger = syncAndHydrateMediaLedger;
+
+document.addEventListener('DOMContentLoaded', () => {
+  updateAuthButtonVisibility();
+  syncAndHydrateMediaLedger();
 });
 
-window.addEventListener('storage', updateAuthButtonVisibility);
+window.addEventListener('storage', () => {
+  updateAuthButtonVisibility();
+  syncAndHydrateMediaLedger();
+});
