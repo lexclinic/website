@@ -199,6 +199,55 @@ function run(webDir, config) {
     }
   }
 
+  // 8. Verify Transcript-Grounding Parity: every 20-question quiz must have its questions grounded in its media transcript in transcripts.json
+  const transcriptsFile = path.join(webDir, "transcripts.json");
+  if (fs.existsSync(transcriptsFile)) {
+    const transcriptsArr = JSON.parse(fs.readFileSync(transcriptsFile, "utf8"));
+    const transcriptsById = {};
+    transcriptsArr.forEach(t => { transcriptsById[t.id] = (t.transcript_text || "").toLowerCase(); });
+
+    const quizTranscriptMap = [
+      { dir: "101/1.1", tid: "class_1.1" },
+      { dir: "101/1.2", tid: "class_1.2" },
+      { dir: "101/2.1", tid: "class_2.1" },
+      { dir: "101/2.2", tid: "class_2.2" },
+      { dir: "101/3.1", tid: "class_3.1" },
+      { dir: "101/3.2", tid: "class_3.2" },
+      { dir: "101/4.1", tid: "class_4.1" },
+      { dir: "101/4.2", tid: "class_4.2" },
+      { dir: "101/5.1", tid: "class_5.1" },
+      { dir: "101/5.2", tid: "class_5.2" },
+      { dir: "101/6.1", tid: "class_6.1" },
+      { dir: "101/6.2", tid: "class_6.2" },
+      { dir: "event/2026-08-24", tid: "2026-08-24-clinic-misc" },
+      { dir: "event/2026-09-04", tid: "2026-09-04-class-2.2" },
+      { dir: "event/2026-09-17", tid: "2026-09-17-class-3.1" },
+      { dir: "event/2026-09-24", tid: "2026-09-24-class-3.2" },
+      { dir: "interview/lucas-kung", tid: "2026-09-18-lucas-kung" },
+      { dir: "interview/2026-09-08/james-wigginton", tid: "2026-09-08-james-wigginton" }
+    ];
+
+    const stopWords = new Set(["what", "how", "why", "does", "the", "and", "for", "with", "that", "this", "from", "into", "are", "is", "in", "of", "to", "legal", "contract", "contracts", "law", "class", "according", "transcript", "speaker"]);
+
+    for (const item of quizTranscriptMap) {
+      const tText = transcriptsById[item.tid] || "";
+      const expPath = path.join(webDir, item.dir, "quiz-expert", "index.html");
+      if (!fs.existsSync(expPath) || !tText) continue;
+      const expHtml = fs.readFileSync(expPath, "utf8");
+      const qCards = expHtml.match(/<div class="quiz-question-card"[\s\S]*?<\/div>/g) || [];
+      let groundedCount = 0;
+      for (const card of qCards) {
+        const words = (card.toLowerCase().match(/[a-z]{4,}/g) || []).filter(w => !stopWords.has(w));
+        const uniqueWords = Array.from(new Set(words));
+        const hits = uniqueWords.filter(w => tText.includes(w)).length;
+        if (hits >= 2) groundedCount++;
+      }
+      if (groundedCount < 18) {
+        violations.push(`${item.dir}/quiz-expert/index.html has insufficient transcript grounding (${groundedCount}/20 questions grounded in transcript '${item.tid}')`);
+      }
+    }
+  }
+
   if (violations.length > 0) {
     console.error(" ❌ RULE 07 FAILED: Attestation & Dual-Route Quiz contract violations detected:");
     violations.forEach(v => console.error(`    - ${v}`));

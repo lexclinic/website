@@ -87,6 +87,11 @@
         "id": "QUIZ-DUAL-ROUTES-01",
         "description": "Implement canonical dual-route quiz addresses (quiz-learned/ for 5-Q Learned Tier and quiz-expert/ for 20-Q Expert Tier) across all 19 quizzes with smart entry routing on quiz.html, 💬 Notes & 👍 Approval control bars (without Copy Direct Link), and linter/test enforcement",
         "status": "[x]"
+      },
+      {
+        "id": "QUIZ-TRANSCRIPT-GROUNDING-01",
+        "description": "Rewrite 101/1.1 through 101/4.1 and 101/ comprehensive quizzes (both 5-Q quiz-learned and 20-Q quiz-expert) directly from their verified Whisper media transcripts in transcripts.json, and enforce transcript-keyword grounding in Linter Rule 07",
+        "status": "[x]"
       }
     ]
   },
