@@ -62,6 +62,8 @@ async function run(webDir) {
     });
     assert.strictEqual(lRes.status, 200, `Live ${base}/quiz-learned/ must return HTTP 200`);
     const lText = await lRes.text();
+    const lVisible = lText.replace(/<script[\s\S]*?<\/script>/gi, "").replace(/<style[\s\S]*?<\/style>/gi, "");
+    assert.strictEqual(lVisible.includes("\\n"), false, `Live ${base}/quiz-learned/ must NOT contain visible literal \\n artifacts`);
     assert.ok(lText.includes("openMediaCommentModal") && lText.includes("openMediaApprovalModal"), `Live ${base}/quiz-learned/ must include Notes & Approval buttons`);
     assert.strictEqual(lText.includes("copyCardDirectLink"), false, `Live ${base}/quiz-learned/ must NOT include Copy Direct Link button`);
 
@@ -70,9 +72,11 @@ async function run(webDir) {
     });
     assert.strictEqual(eRes.status, 200, `Live ${base}/quiz-expert/ must return HTTP 200`);
     const eText = await eRes.text();
+    const eVisible = eText.replace(/<script[\s\S]*?<\/script>/gi, "").replace(/<style[\s\S]*?<\/style>/gi, "");
+    assert.strictEqual(eVisible.includes("\\n"), false, `Live ${base}/quiz-expert/ must NOT contain visible literal \\n artifacts`);
     assert.ok(eText.includes("openMediaCommentModal") && eText.includes("openMediaApprovalModal"), `Live ${base}/quiz-expert/ must include Notes & Approval buttons`);
     assert.strictEqual(eText.includes("copyCardDirectLink"), false, `Live ${base}/quiz-expert/ must NOT include Copy Direct Link button`);
-    assertions += 6;
+    assertions += 8;
   }));
 
   // --------------------------------------------------------------------------

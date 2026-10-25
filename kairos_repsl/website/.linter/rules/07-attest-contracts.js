@@ -171,6 +171,34 @@ function run(webDir, config) {
     }
   }
 
+  // 7. Scan ALL HTML files across the entire website for visible escaped string artifacts (\n, \t, [object Object]) outside <script>/<style>
+  function findAllHtml(dir) {
+    let res = [];
+    if (!fs.existsSync(dir)) return res;
+    for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
+      if (entry.name.startsWith(".")) continue;
+      const full = path.join(dir, entry.name);
+      if (entry.isDirectory()) {
+        res = res.concat(findAllHtml(full));
+      } else if (entry.name.endsWith(".html")) {
+        res.push(full);
+      }
+    }
+    return res;
+  }
+
+  for (const hFile of findAllHtml(webDir)) {
+    const relH = "/" + path.relative(webDir, hFile).split(path.sep).join("/");
+    const rawHtml = fs.readFileSync(hFile, "utf8");
+    const visibleHtml = rawHtml
+      .replace(/<script[\s\S]*?<\/script>/gi, "")
+      .replace(/<style[\s\S]*?<\/style>/gi, "");
+
+    if (visibleHtml.includes("\\n") || visibleHtml.includes("\\t") || visibleHtml.includes("[object Object]")) {
+      violations.push(`HTML file '${relH}' contains visible escaped string artifacts (literal '\\n', '\\t', or '[object Object]') outside <script>/<style>`);
+    }
+  }
+
   if (violations.length > 0) {
     console.error(" ❌ RULE 07 FAILED: Attestation & Dual-Route Quiz contract violations detected:");
     violations.forEach(v => console.error(`    - ${v}`));
