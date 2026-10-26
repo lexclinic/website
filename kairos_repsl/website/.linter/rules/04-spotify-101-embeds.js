@@ -92,9 +92,12 @@ function run(webDir, config) {
       }
     }
 
-    // 6c. Single Progressive Quiz CTA (data-progressive-quiz-cid)
+    // 6c. Single Progressive Quiz CTA (data-progressive-quiz-cid) & no side-by-side quiz-expert link
     if (!html.includes(`data-progressive-quiz-cid="${item.mod}"`)) {
       violations.push(`101/${item.mod}/index.html is missing single progressive quiz CTA (data-progressive-quiz-cid="${item.mod}")`);
+    }
+    if (html.includes('href="quiz-expert/"')) {
+      violations.push(`101/${item.mod}/index.html still contains a direct href="quiz-expert/" link instead of using the single progressive quiz CTA`);
     }
 
     // 7. Indexed in transcripts.json
