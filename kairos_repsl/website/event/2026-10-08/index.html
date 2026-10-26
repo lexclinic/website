@@ -5,18 +5,18 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Data Primitives 101: Strings, Numbers, and Booleans | LexClinic Education</title>
   <meta name="description" content="Recorded Socratic Session for Class 4.2: Data Primitives 101. Deconstructing strings, fixed-point integers, boolean gates, and WASM determinism.">
-  <link rel="stylesheet" href="/styles.css?v=20261016_v5">
+  <link rel="stylesheet" href="/styles.css?v=20261025_v11">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-  <script src="/js/audio-player.js?v=20261016_v5"></script>
-  <script src="/js/auth.js?v=20261016_v5"></script>
-  <script src="/js/media-tracker-miniapp.js?v=20261016_v5"></script>
-  <script src="/js/watch-tracker.js?v=20261016_v5"></script>
-  <script src="/js/modules/ui-interactive-controls.js?v=20261017_v6"></script>
-  <script src="/script.js?v=20261016_v5" defer></script>
-  <link rel="icon" type="image/png" href="/favicon.png?v=20261016_v5">
-  <link rel="shortcut icon" href="/favicon.ico?v=20261016_v5">
+  <script src="/js/audio-player.js?v=20261025_v11"></script>
+  <script src="/js/auth.js?v=20261025_v11"></script>
+  <script src="/js/media-tracker-miniapp.js?v=20261025_v11"></script>
+  <script src="/js/watch-tracker.js?v=20261025_v11"></script>
+  <script src="/js/modules/ui-interactive-controls.js?v=20261025_v11"></script>
+  <script src="/script.js?v=20261025_v11" defer></script>
+  <link rel="icon" type="image/png" href="/favicon.png?v=20261025_v11">
+  <link rel="shortcut icon" href="/favicon.ico?v=20261025_v11">
 </head>
 <body>
 
@@ -40,8 +40,8 @@
           <a href="/attest/">Attest</a>
           <a href="/help/">Help</a>
           <a href="/repo/">Repo</a>
-          <a href="/repo/">ERC-7827</a>
-          <a href="https://www.youtube.com/watch?v=ONwiUkc_tt4&list=PLbPukKwpmk5E" target="_blank" rel="noopener" class="btn-social" title="Subscribe on YouTube">YouTube</a>
+          <a href="/erc7827/">ERC-7827</a>
+          <a href="https://www.youtube.com/watch?v=20261025_v11&list=PLbPukKwpmk5E" target="_blank" rel="noopener" class="btn-social" title="Subscribe on YouTube">YouTube</a>
           <a href="https://open.spotify.com/show/0348ivoLaNfKBq1HeIYC9b" target="_blank" rel="noopener" class="btn-spotify" title="Follow on Spotify">Spotify</a>
           <a href="https://www.linkedin.com/company/lexclinic" target="_blank" rel="noopener" class="btn-social" title="Follow on LinkedIn">LinkedIn</a>
           <a href="javascript:void(0)" onclick="event.preventDefault(); window.openNavLoginModal(event); return false;" id="nav-login-btn" style="background: #fbbf24; color: #0a1128; font-weight: 800; font-size: 0.88rem; padding: 0.35rem 0.85rem; border-radius: 6px; margin-left: 0.35rem; text-decoration: none; border: 2px solid #f59e0b; box-shadow: 0 0 10px rgba(251, 191, 36, 0.4); display: inline-block;">Login</a>
@@ -56,17 +56,13 @@
   <!-- Hero Section -->
   <section class="hero page-hero">
     <div class="container hero-content">
-      <div style="display: flex; gap: 0.5rem; justify-content: center; flex-wrap: wrap; margin-bottom: 0.85rem;">
-        <span class="status-badge today-badge">Socratic Masterclass</span>
-        <span class="status-badge media-available">🎥 5 YouTube Clips</span>
-        <span class="status-badge notebook-available">🎧 Full Session Audio Stream</span>
-      </div>
       <h1 class="hero-title">Data Primitives 101: Strings, Numbers &amp; Booleans</h1>
       <p class="hero-subtitle">
         Thursday, October 8, 2026 • Socratic Session for Class 4.2: Data Primitives 101. Deconstructing strings, fixed-point integers, boolean gates, and WASM determinism.
       </p>
-      <div class="hero-actions">
-        <a href="/101/4.2/quiz" class="btn btn-primary" style="background: var(--accent-gold); color: #0a1128; font-weight: 800;">Take 20-Q Session Quiz ➔</a>
+      <div class="hero-actions" style="display: flex; gap: 0.75rem; justify-content: center; flex-wrap: wrap;">
+        <a href="/101/4.2/" class="btn btn-primary" style="background: var(--accent-cyan); color: #0a1128; font-weight: 800;">📘 Companion 101 Module (Class 4.2) ➔</a>
+        <a href="/101/4.2/quiz-learned/" data-progressive-quiz-cid="4.2" data-learned-href="/101/4.2/quiz-learned/" data-expert-href="/101/4.2/quiz-expert/" class="btn btn-primary" style="background: var(--accent-gold); color: #0a1128; font-weight: 800;">📘 Take 5-Q Learned Quiz ➔</a>
         <a href="/event/" class="btn btn-outline">← Back to Events Hub</a>
       </div>
     </div>
@@ -107,10 +103,6 @@
 
       <!-- LexClinic 2026 — Lesson 4.2: Full Session Audio Stream -->
       <div class="card pillar-card" id="how-legal-contracts-become-software-runtimes" style="border: 2px solid #1ed760; margin-bottom: 2rem;">
-        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.75rem;">
-          <span class="status-badge today-badge" style="background: #1ed760; color: #0a1128; font-weight: 800;">🎧 Native Audio Stream</span>
-          <span class="status-badge notebook-available">Full Session Stream</span>
-        </div>
 
         <h3 style="color: #1ed760; font-size: 1.25rem; margin-bottom: 0.75rem;">
           LexClinic 2026 — Lesson 4.2: Full Session Audio Stream
@@ -154,10 +146,6 @@
 
       <!-- Clip 1: Contracts as Runtimes -->
       <div class="card pillar-card" id="contracts-as-runtimes" style="border: 2px solid var(--accent-cyan); margin-bottom: 2rem;">
-        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.75rem;">
-          <span class="status-badge today-badge" style="background: var(--accent-cyan); color: #0a1128; font-weight: 800;">🎥 Clip 1: Contracts as Runtimes</span>
-          <span class="status-badge notebook-available">YouTube Stream</span>
-        </div>
 
         <h3 style="color: var(--accent-cyan); font-size: 1.25rem; margin-bottom: 0.75rem;">
           Clip 1: Contracts as Runtimes
@@ -198,10 +186,6 @@
 
       <!-- Clip 2: Hidden Architecture -->
       <div class="card pillar-card" id="hidden-architecture" style="border: 2px solid var(--accent-gold); margin-bottom: 2rem;">
-        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.75rem;">
-          <span class="status-badge today-badge" style="background: var(--accent-gold); color: #0a1128; font-weight: 800;">🎥 Clip 2: Hidden Architecture</span>
-          <span class="status-badge notebook-available">YouTube Stream</span>
-        </div>
 
         <h3 style="color: var(--accent-gold); font-size: 1.25rem; margin-bottom: 0.75rem;">
           Clip 2: Hidden Architecture
@@ -242,10 +226,6 @@
 
       <!-- Clip 3: Hidden Harmonies & WASM -->
       <div class="card pillar-card" id="hidden-harmonies" style="border: 2px solid var(--accent-cyan); margin-bottom: 2rem;">
-        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.75rem;">
-          <span class="status-badge today-badge" style="background: var(--accent-cyan); color: #0a1128; font-weight: 800;">🎥 Clip 3: Hidden Harmonies & WASM</span>
-          <span class="status-badge notebook-available">YouTube Stream</span>
-        </div>
 
         <h3 style="color: var(--accent-cyan); font-size: 1.25rem; margin-bottom: 0.75rem;">
           Clip 3: Hidden Harmonies & WASM
@@ -286,10 +266,6 @@
 
       <!-- Clip 4: Rhythm of the Machine -->
       <div class="card pillar-card" id="rhythm-of-the-machine" style="border: 2px solid var(--accent-gold); margin-bottom: 2rem;">
-        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.75rem;">
-          <span class="status-badge today-badge" style="background: var(--accent-gold); color: #0a1128; font-weight: 800;">🎥 Clip 4: Rhythm of the Machine</span>
-          <span class="status-badge notebook-available">YouTube Stream</span>
-        </div>
 
         <h3 style="color: var(--accent-gold); font-size: 1.25rem; margin-bottom: 0.75rem;">
           Clip 4: Rhythm of the Machine
@@ -330,10 +306,6 @@
 
       <!-- Clip 5: Automated Law Architecture -->
       <div class="card pillar-card" id="automated-law-architecture" style="border: 2px solid var(--accent-cyan); margin-bottom: 2rem;">
-        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.75rem;">
-          <span class="status-badge today-badge" style="background: var(--accent-cyan); color: #0a1128; font-weight: 800;">🎥 Clip 5: Automated Law Architecture</span>
-          <span class="status-badge notebook-available">YouTube Stream</span>
-        </div>
 
         <h3 style="color: var(--accent-cyan); font-size: 1.25rem; margin-bottom: 0.75rem;">
           Clip 5: Automated Law Architecture
@@ -374,7 +346,7 @@
 
       <!-- Bottom Action Navigation -->
       <div style="margin-top: 2.5rem; display: flex; gap: 1rem; flex-wrap: wrap; align-items: center; justify-content: center;">
-        <a href="/101/4.2/quiz" class="btn btn-primary" style="background: var(--accent-gold); color: #0a1128; font-weight: 800; font-size: 1.05rem; padding: 0.75rem 1.75rem;">Take 20-Q Session Quiz ➔</a>
+        <a href="/101/4.2/quiz-learned/" data-progressive-quiz-cid="4.2" data-learned-href="/101/4.2/quiz-learned/" data-expert-href="/101/4.2/quiz-expert/" class="btn btn-primary" style="background: var(--accent-gold); color: #0a1128; font-weight: 800; font-size: 1.02rem; padding: 0.75rem 1.4rem;">📘 Take 5-Q Learned Quiz ➔</a>
         <a href="/event/" class="btn btn-outline" style="font-size: 1.05rem; padding: 0.75rem 1.75rem;">⬅ Back to Events Hub</a>
       </div>
 

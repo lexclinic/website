@@ -122,9 +122,9 @@ export async function onRequestPost(context) {
       if (toolName === "search_transcripts") {
         const q = (args.query || "").toLowerCase();
         const matches = transcriptsData.filter(t => 
-          t.title.toLowerCase().includes(q) ||
-          t.takeaways.some(tk => tk.toLowerCase().includes(q)) ||
-          t.transcript_text.toLowerCase().includes(q)
+          (t.title && t.title.toLowerCase().includes(q)) ||
+          (Array.isArray(t.takeaways) && t.takeaways.some(tk => tk.toLowerCase().includes(q))) ||
+          (t.transcript_text && t.transcript_text.toLowerCase().includes(q))
         );
         return new Response(JSON.stringify({
           jsonrpc: "2.0",

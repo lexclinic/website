@@ -3,26 +3,24 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Student Quiz Attestations | LexClinic Education</title>
-  <meta name="description" content="View your LexClinic student quiz completions, Keccak-256 state hashes, and pending ERC-7827 on-chain counter-party attestation status.">
-  <link rel="stylesheet" href="/styles.css?v=20261016_v5">
+  <title>Attestation &amp; Media Review Ledger | LexClinic Education</title>
+  <meta name="description" content="LexClinic Attestation & Media Review Ledger: View student quiz scores, Keccak-256 payload hashes, human review media approvals, and ERC-7827 counter-party attestation status.">
+  <link rel="stylesheet" href="/styles.css?v=20261025_v11">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-  <script src="/js/audio-player.js?v=20261016_v5"></script>
-  <script src="/js/auth.js?v=20261016_v5"></script>
-  <script src="/js/media-tracker-miniapp.js?v=20261016_v5"></script>
-  <script src="/js/watch-tracker.js?v=20261016_v5"></script>
-  <script src="/js/modules/ui-interactive-controls.js?v=20261017_v6"></script>
-  <script src="/script.js?v=20261016_v5" defer></script>
-  <link rel="icon" type="image/png" href="/favicon.png?v=20260829_2640">
-  <link rel="shortcut icon" href="/favicon.ico?v=20260829_2640">
+  <script src="/js/audio-player.js?v=20261025_v11"></script>
+  <script src="/js/auth.js?v=20261025_v11"></script>
+  <script src="/js/media-tracker-miniapp.js?v=20261025_v11"></script>
+  <script src="/js/watch-tracker.js?v=20261025_v11"></script>
+  <script src="/js/modules/ui-interactive-controls.js?v=20261025_v11"></script>
+  <script src="/script.js?v=20261025_v11" defer></script>
+  <link rel="icon" type="image/png" href="/favicon.png?v=20261025_v11">
+  <link rel="shortcut icon" href="/favicon.ico?v=20261025_v11">
 </head>
 <body>
 
-  <!-- Navigation Bar -->
-            <!-- Unified Fixed Header Wrapper (Navbar + Sub-Navbar Disclaimer) -->
-    <!-- Unified Fixed Header Wrapper (Top Disclaimer + Navbar) -->
+  <!-- Unified Fixed Header Wrapper -->
   <header class="fixed-header-wrapper">
     <div class="top-disclaimer-bar">
       <span>⚖️ <strong>LEGAL DISCLAIMER:</strong> LexClinic Education, Inc. is applying for 501(c)(3) tax-exempt status. Materials, software runtimes, and APIs are for educational research and do not constitute formal legal advice. <a href="/help/#disclaimer">Read Full Disclaimer ➔</a></span>
@@ -39,11 +37,11 @@
           <a href="/interview/">Interview</a>
           <a href="/collaborate/">Collaborate</a>
           <a href="/fiduciary/">Fiduciary</a>
-          <a href="/attest/">Attest</a>
+          <a href="/attest/" class="active-link">Attest</a>
           <a href="/help/">Help</a>
           <a href="/repo/">Repo</a>
-          <a href="/repo/">ERC-7827</a>
-          <a href="https://www.youtube.com/watch?v=ONwiUkc_tt4&list=PLbPukKwpmk5E" target="_blank" rel="noopener" class="btn-social" title="Subscribe on YouTube">YouTube</a>
+          <a href="/erc7827/">ERC-7827</a>
+          <a href="https://www.youtube.com/watch?v=20261025_v11&list=PLbPukKwpmk5E" target="_blank" rel="noopener" class="btn-social" title="Subscribe on YouTube">YouTube</a>
           <a href="https://open.spotify.com/show/0348ivoLaNfKBq1HeIYC9b" target="_blank" rel="noopener" class="btn-spotify" title="Follow on Spotify">Spotify</a>
           <a href="https://www.linkedin.com/company/lexclinic" target="_blank" rel="noopener" class="btn-social" title="Follow on LinkedIn">LinkedIn</a>
           <a href="javascript:void(0)" onclick="event.preventDefault(); window.openNavLoginModal(event); return false;" id="nav-login-btn" style="background: #fbbf24; color: #0a1128; font-weight: 800; font-size: 0.88rem; padding: 0.35rem 0.85rem; border-radius: 6px; margin-left: 0.35rem; text-decoration: none; border: 2px solid #f59e0b; box-shadow: 0 0 10px rgba(251, 191, 36, 0.4); display: inline-block;">Login</a>
@@ -58,118 +56,120 @@
   <!-- Hero Header -->
   <section class="hero page-hero">
     <div class="container hero-content">
-      <div class="hero-badge">📜 Verifiable Student Ledger</div>
-      <h1 class="hero-title">Student <span class="gradient-text">Attestations</span></h1>
+      <h1 class="hero-title">Attestation &amp; <span class="gradient-text">Audit Ledger</span></h1>
       <p class="hero-subtitle">
-        Review your completed quiz scores, Keccak-256 state hashes, recorded student store entries, and pending ERC-7827 on-chain counter-party attestations.
+        Verify your recorded quiz scores, Keccak-256 payload hashes, human review media approvals &amp; notes, and ERC-7827 counter-party attestation status.
       </p>
+      <div class="hero-actions">
+        <a href="/erc7827/" class="btn btn-primary" style="background: var(--accent-cyan); color: #0a1128; font-weight: 800;">ERC-7827 Standard Spec ➔</a>
+        <a href="/101" class="btn btn-outline">Explore 101 Courseware ➔</a>
+      </div>
     </div>
   </section>
 
-  <!-- Main Attest Dashboard Container -->
+  <!-- Main Attest Dashboard Section -->
   <section class="section event-detail-section">
     <div class="container">
 
       <!-- Logged Out State Banner -->
-      <div id="attest-logged-out-card" class="card pillar-card" style="border: 2px solid var(--accent-gold); background: rgba(10, 17, 40, 0.95); text-align: center; padding: 3rem 1.5rem; display: none;">
+      <div id="attest-logged-out-card" class="card pillar-card" style="border: 2px solid var(--accent-gold); background: rgba(10, 17, 40, 0.95); text-align: center; padding: 3rem 1.5rem; display: none; margin-bottom: 2.5rem;">
         <div style="font-size: 3rem; margin-bottom: 1rem;">🔒</div>
-        <h2 style="color: var(--accent-gold); font-size: 1.6rem; margin-bottom: 0.75rem;">Authentication Required</h2>
+        <h2 style="color: var(--accent-gold); font-size: 1.6rem; margin-bottom: 0.75rem;">Student Authentication Required</h2>
         <p style="color: #e2e8f0; font-size: 1.05rem; max-width: 600px; margin: 0 auto 1.75rem auto; line-height: 1.6;">
-          Please log in with your email address to view your quiz completion attest, Keccak-256 score hashes, and ERC-7827 attestation records.
+          Please log in with your email address to inspect your recorded quiz completions, Keccak-256 payload hashes, media review approvals, and ERC-7827 attestation status.
         </p>
-        <button onclick="window.openNavLoginModal(event)" class="btn btn-primary" style="background: var(--accent-gold); color: #0a1128; font-weight: 800; font-size: 1.05rem; padding: 0.75rem 1.75rem; border: none; border-radius: 6px; cursor: pointer;">
-          🔒 Log In with Email
+        <button type="button" onclick="window.openNavLoginModal(event)" class="btn btn-primary" style="background: var(--accent-gold); color: #0a1128; font-weight: 800; font-size: 1.05rem; padding: 0.75rem 1.75rem; border: none; border-radius: 6px; cursor: pointer;">
+          🔒 Log In to View Attestations
         </button>
       </div>
 
-      <!-- Logged In Dashboard -->
+      <!-- Logged In Attestations Dashboard -->
       <div id="attest-dashboard-content" style="display: none;">
 
-        <!-- Identity Banner -->
-        <div class="card pillar-card" style="border: 2px solid var(--accent-cyan); background: rgba(16, 31, 66, 0.8); padding: 1.75rem; margin-bottom: 2rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;">
-          <div>
-            <div style="display: flex; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 0.5rem;">
-              <span class="status-badge today-badge">👤 Active Student Account</span>
-              <span id="attest-member-badge" class="status-badge notebook-available" style="display: none;">📧 @lex.clinic Member</span>
+        <!-- Student Identity & Contract Status Card -->
+        <div class="card pillar-card" style="border: 2px solid var(--accent-cyan); background: rgba(16, 31, 66, 0.85); padding: 2rem; margin-bottom: 2.5rem;">
+          <div style="display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 1.5rem;">
+            <div>
+              <div style="display: flex; gap: 0.5rem; align-items: center; flex-wrap: wrap; margin-bottom: 0.5rem;">
+                <span id="attest-member-badge" style="display: none; background: rgba(52, 211, 153, 0.2); color: #34d399; border: 1px solid #34d399; padding: 0.2rem 0.65rem; border-radius: 4px; font-size: 0.8rem; font-weight: 800;">⚖️ Verified @lex.clinic Fiduciary Reviewer</span>
+                <span id="attest-Completion-summary" style="background: rgba(56, 189, 248, 0.2); color: var(--accent-cyan); border: 1px solid var(--accent-cyan); padding: 0.2rem 0.65rem; border-radius: 4px; font-size: 0.8rem; font-weight: 800;">0 / 19 Quizzes Completed</span>
+              </div>
+              <h2 style="color: #ffffff; font-size: 1.5rem; margin-bottom: 0.5rem;">
+                Account: <span id="attest-user-email" style="color: var(--accent-cyan); font-family: 'Fira Code', monospace;">...</span>
+              </h2>
+              <p style="color: #cbd5e1; font-size: 0.95rem; margin: 0;">
+                Your quiz scores and media review approvals are cryptographically hashed and synchronized with the shared Google Drive Ledger across staging and production.
+              </p>
             </div>
-            <h2 style="color: #ffffff; font-size: 1.4rem; margin: 0;">
-              Student: <span id="attest-user-email" style="color: var(--accent-cyan); font-family: 'Fira Code', monospace;">...</span>
-            </h2>
-          </div>
-          <button onclick="localStorage.removeItem('lexclinic_user_email'); window.location.reload();" class="btn btn-outline" style="border-color: #ef4444; color: #f87171; font-size: 0.85rem; padding: 0.4rem 0.9rem;">
-            🚪 Log Out
-          </button>
-        </div>
-
-        <!-- 3 High-Level Metric Cards -->
-        <div class="grid grid-3" style="gap: 1.5rem; margin-bottom: 2.5rem;">
-          
-          <!-- Card 1: Completed Quizzes -->
-          <div class="card pillar-card text-center" style="border: 2px solid var(--accent-gold); background: rgba(10, 17, 40, 0.9); padding: 1.75rem;">
-            <div style="font-size: 2.2rem; margin-bottom: 0.5rem;">📝</div>
-            <div style="color: #cbd5e1; font-size: 0.9rem; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 0.5rem;">Quizzes Completed</div>
-            <div id="attest-completed-count" style="color: var(--accent-gold); font-size: 2.2rem; font-weight: 800; font-family: 'Fira Code', monospace;">0 / 5</div>
-            <p style="color: #94a3b8; font-size: 0.85rem; margin-top: 0.5rem; margin-bottom: 0;">Recorded in LexClinic Store</p>
-          </div>
-
-          <!-- Card 2: Average Score -->
-          <div class="card pillar-card text-center" style="border: 2px solid var(--accent-cyan); background: rgba(10, 17, 40, 0.9); padding: 1.75rem;">
-            <div style="font-size: 2.2rem; margin-bottom: 0.5rem;">🎯</div>
-            <div style="color: #cbd5e1; font-size: 0.9rem; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 0.5rem;">Average Score</div>
-            <div id="attest-avg-score" style="color: var(--accent-cyan); font-size: 2.2rem; font-weight: 800; font-family: 'Fira Code', monospace;">--%</div>
-            <p style="color: #94a3b8; font-size: 0.85rem; margin-top: 0.5rem; margin-bottom: 0;">Across Completed Modules</p>
-          </div>
-
-          <!-- Card 3: ERC-7827 Attestation Status -->
-          <div class="card pillar-card text-center" style="border: 2px solid #fbbf24; background: rgba(10, 17, 40, 0.9); padding: 1.75rem;">
-            <div style="font-size: 2.2rem; margin-bottom: 0.5rem;">⏳</div>
-            <div style="color: #cbd5e1; font-size: 0.9rem; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 0.5rem;">ERC-7827 Attestations</div>
-            <div style="color: #fbbf24; font-size: 1.15rem; font-weight: 800; margin-top: 0.5rem;">Yet Attested To</div>
-            <p style="color: #94a3b8; font-size: 0.82rem; margin-top: 0.5rem; margin-bottom: 0;">Pending On-Chain Counter-Party Signature</p>
-          </div>
-
-        </div>
-
-        <!-- Comprehensive Quiz Breakdown List -->
-        <div class="events-group-container" style="margin-bottom: 3rem;">
-          <h3 class="group-title" style="color: var(--accent-cyan); font-size: 1.5rem; margin-bottom: 1.25rem; border-bottom: 2px solid var(--accent-cyan); padding-bottom: 0.5rem;">
-            📚 Curriculum Quiz Completion &amp; Attestation Records
-          </h3>
-
-          <div id="quiz-breakdown-list" style="display: flex; flex-direction: column; gap: 1.25rem;">
-            <!-- Rendered dynamically by script -->
+            <div style="background: rgba(10, 17, 40, 0.9); border: 1px solid var(--accent-gold); padding: 1rem 1.25rem; border-radius: 8px; text-align: right;">
+              <div style="color: var(--accent-gold); font-size: 0.8rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.25rem;">ERC-7827 Contract Status</div>
+              <div style="color: #ffffff; font-family: 'Fira Code', monospace; font-size: 0.9rem; font-weight: 600;">⏳ Pending Mainnet Deployment</div>
+              <div style="color: #94a3b8; font-size: 0.78rem; margin-top: 0.2rem;">All completed records queued as "Yet Attested To"</div>
+            </div>
           </div>
         </div>
 
-        <!-- Explanatory Card: ERC-7827 Counter-Party Attestation Explained -->
-        <div class="card pillar-card" style="border: 2px solid var(--accent-cyan); background: rgba(10, 17, 40, 0.9); padding: 2rem;">
-          <div style="display: flex; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 0.75rem;">
-            <span class="status-badge media-available">📜 ERC-7827 EVM Personal Ledger Specification</span>
-            <span class="status-badge notebook-available">⏳ Counter-Party Attestation Model</span>
+        <!-- Section 1: Human Review Media Approvals & Notes Ledger -->
+        <div class="card pillar-card" style="border: 2px solid var(--accent-gold); background: rgba(10, 17, 40, 0.95); padding: 2rem; margin-bottom: 2.5rem;">
+          <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; margin-bottom: 1.25rem;">
+            <div>
+              <h2 style="color: var(--accent-gold); font-size: 1.45rem; margin: 0 0 0.25rem 0;">👍 Human Review Media Approvals &amp; Notes Ledger</h2>
+              <p style="color: #cbd5e1; font-size: 0.92rem; margin: 0;">Shared cross-domain ledger of clip evaluations (Pass / Star / Flag / Fail, Thorough / Cursory) and reviewer notes synced between <code>stage.lex.clinic</code> and <code>lex.clinic</code>.</p>
+            </div>
+            <div style="display: flex; gap: 0.6rem; flex-wrap: wrap;">
+              <button type="button" onclick="window.triggerManualLedgerSync(this)" class="btn btn-primary" style="background: var(--accent-gold); color: #0a1128; font-weight: 800; font-size: 0.85rem; padding: 0.45rem 1rem; border: none; border-radius: 6px; cursor: pointer;">
+                🔄 Sync Browser Approvals &amp; Notes to Shared Ledger
+              </button>
+            </div>
           </div>
-          <h3 style="color: var(--accent-cyan); font-size: 1.35rem; margin-bottom: 0.75rem;">What is "Yet Attested To"? (ERC-7827 On-Chain Counter-Party Attestation)</h3>
-          <p style="color: #e2e8f0; font-size: 0.98rem; line-height: 1.7; margin-bottom: 1rem;">
-            When you complete a quiz at LexClinic Education, your answers are hashed on the client side using <strong>Keccak-256</strong> to produce a unique, deterministic state payload hash (e.g. <code style="color: var(--accent-gold); font-family: 'Fira Code', monospace;">0xa3f2...8b9c</code>) which is recorded in the LexClinic Student Store.
-          </p>
-          <div style="background: rgba(16, 31, 66, 0.8); border-left: 4px solid var(--accent-gold); padding: 1.25rem; border-radius: 6px; margin-bottom: 1.25rem;">
-            <h4 style="color: var(--accent-gold); margin-top: 0; font-size: 1.05rem;">🏛️ Pending On-Chain Counter-Party Attestation</h4>
-            <p style="color: #cbd5e1; font-size: 0.92rem; line-height: 1.6; margin: 0;">
-              Formal <strong>ERC-7827 EVM personal ledger counter-party attestations</strong> allow LexClinic Education, Inc. to counter-sign your Keccak-256 quiz state hashes as an official institutional issuer.
-            </p>
-            <p style="color: #cbd5e1; font-size: 0.92rem; line-height: 1.6; margin-top: 0.5rem; margin-bottom: 0;">
-              Because the <strong>ERC-7827 EVM smart contract specification</strong> is currently in pre-deployment, your scores are securely recorded client-side and in the student store, marked as <strong>"Yet Attested To"</strong>. Once the ERC-7827 protocol goes live on-chain, LexClinic Education, Inc. will issue institutional counter-party attestation signatures directly into your personal ERC-7827 state machine.
+
+          <div id="attest-sync-status-msg" style="display: none; margin-bottom: 1rem; padding: 0.75rem 1rem; background: rgba(52, 211, 153, 0.15); border: 1px solid #34d399; border-radius: 6px; color: #34d399; font-size: 0.88rem; font-weight: 700;"></div>
+
+          <div id="attest-approvals-list" style="display: flex; flex-direction: column; gap: 0.85rem;">
+            <p style="color: #94a3b8; font-size: 0.92rem; margin: 0;">Loading shared media approvals &amp; notes ledger...</p>
+          </div>
+        </div>
+
+        <!-- Section 2: Quiz Attestation Status List -->
+        <h2 style="color: var(--accent-cyan); font-size: 1.5rem; margin-bottom: 0.5rem;">📜 Curriculum &amp; Session Quiz Attestations (19 Assessments)</h2>
+        <p style="color: #cbd5e1; font-size: 0.95rem; margin-bottom: 1.5rem;">Complete the assessments across Legal Engineering 101, Weekly Socratic Events, and Academic Interviews to record your Keccak-256 attestation hashes.</p>
+
+        <div id="attest-quizzes-list" style="display: flex; flex-direction: column; gap: 1.25rem; margin-bottom: 3rem;">
+          <!-- Populated dynamically via JS -->
+        </div>
+
+      </div>
+
+      <!-- How ERC-7827 Attestations Work Info Card (Visible to All) -->
+      <div class="card pillar-card" style="border: 1px solid var(--border-color); background: rgba(10, 17, 40, 0.85); padding: 2rem;">
+        <h3 style="color: var(--accent-cyan); font-size: 1.3rem; margin-bottom: 1rem;">ℹ️ How LexClinic ERC-7827 Attestations Work</h3>
+        <div class="grid grid-3" style="gap: 1.5rem;">
+          <div>
+            <h4 style="color: var(--accent-gold); margin-bottom: 0.5rem;">1. Complete Assessments</h4>
+            <p style="color: #cbd5e1; font-size: 0.9rem; line-height: 1.6;">
+              Take Socratic quizzes across Legal Engineering 101 classes, weekly live sessions, and roadmap interviews while logged in with your email.
             </p>
           </div>
-          <a href="/repo/" class="btn btn-outline">Read ERC-7827 Specification ➔</a>
+          <div>
+            <h4 style="color: var(--accent-gold); margin-bottom: 0.5rem;">2. Keccak-256 State Hashing</h4>
+            <p style="color: #cbd5e1; font-size: 0.9rem; line-height: 1.6;">
+              Each submission generates a deterministic <strong>Keccak-256 payload hash</strong> of your answers, score, email, and timestamp stored in the LexClinic Student Store.
+            </p>
+          </div>
+          <div>
+            <h4 style="color: var(--accent-gold); margin-bottom: 0.5rem;">3. On-Chain Counter-Signing</h4>
+            <p style="color: #cbd5e1; font-size: 0.9rem; line-height: 1.6;">
+              Once the <strong>ERC-7827</strong> attestation contract is deployed, LexClinic will counter-sign your recorded payload hashes on-chain, transitioning your status from <em>"Yet Attested To"</em> to <em>"Attested On-Chain"</em>.
+            </p>
+          </div>
         </div>
-
       </div>
 
     </div>
   </section>
 
   <!-- Contact Footer -->
-    <footer class="footer">
+  <footer class="footer">
     <div class="container footer-content">
       <div class="footer-col">
         <div class="brand-logo footer-logo">
@@ -178,7 +178,7 @@
         </div>
         <p class="footer-tagline">LexClinic Education</p>
         <p class="footer-address">
-          Authors of ERC-7827 | Open-Source Computational Law & Legal Engineering
+          Authors of ERC-7827 | Open-Source Computational Law &amp; Legal Engineering
         </p>
       </div>
       <div class="footer-col">
@@ -189,19 +189,19 @@
           <li><a href="/interview/">Interview</a></li>
           <li><a href="/collaborate/">Collaborate</a></li>
           <li><a href="/fiduciary/">Fiduciary</a></li>
-          <li><a href="/attest/" class="active-link">Attest</a></li>
+          <li><a href="/attest/">Attest</a></li>
           <li><a href="/help/">Help</a></li>
           <li><a href="/repo/">Repository</a></li>
-          <li><a href="/repo/">ERC-7827 Standard</a></li>
+          <li><a href="/erc7827/">ERC-7827 Standard</a></li>
         </ul>
       </div>
       <div class="footer-col">
-        <h4>Connect & Media</h4>
-        <p>YouTube: <a href="https://www.youtube.com/watch?v=ONwiUkc_tt4&list=PLbPukKwpmk5E" target="_blank" rel="noopener">Legal Engineering 101 Playlist</a></p>
+        <h4>Connect &amp; Media</h4>
+        <p>YouTube: <a href="https://www.youtube.com/watch?v=20261025_v11&list=PLbPukKwpmk5E" target="_blank" rel="noopener">Legal Engineering 101 Playlist</a></p>
         <p>Spotify: <a href="https://open.spotify.com/show/0348ivoLaNfKBq1HeIYC9b" target="_blank" rel="noopener">LexClinic Spotify Show</a></p>
         <p>LinkedIn: <a href="https://www.linkedin.com/company/lexclinic" target="_blank" rel="noopener">LexClinic Company Page</a></p>
         <p class="disclaimer">
-          © 2026 LexClinic Education Inc. Delaware non-profit applying for 501(c)(3) tax-exempt status. Open public goods published under AGPL-3.0 & Creative Commons Attribution-ShareAlike 4.0.</p>
+          © 2026 LexClinic Education Inc. Delaware non-profit applying for 501(c)(3) tax-exempt status. Open public goods published under AGPL-3.0 &amp; Creative Commons Attribution-ShareAlike 4.0.</p>
         <p class="disclaimer" style="margin-top: 0.5rem; font-size: 0.78rem; color: #94a3b8; line-height: 1.5;">
           <strong>Educational &amp; Open-Source Disclaimer:</strong> LexClinic Education, Inc. is a Delaware non-profit corporation applying for 501(c)(3) tax-exempt status. All materials, software runtimes, and APIs are published for educational research under AGPL-3.0 and do not constitute formal legal advice or an attorney-client relationship. <a href="/help/#disclaimer" style="color: var(--accent-cyan); text-decoration: underline;">Read full disclaimer ➔</a>
         </p>
@@ -209,8 +209,153 @@
     </div>
   </footer>
 
-  <!-- Attest Render Logic Script -->
+  <!-- Attestation & Media Ledger Dashboard Script -->
   <script>
+    const CANONICAL_QUIZZES = [
+      // Legal Engineering 101 Modules (12 Modules + 1 Comprehensive)
+      { id: "1.1", aliases: ["1.1", "class_1.1", "class_1_1"], title: "Class 1.1: What is a 'Performance' in Law?", category: "Legal Engineering 101", totalQuestions: 20, url: "/101/1.1/quiz.html", learnedUrl: "/101/1.1/quiz-learned/", expertUrl: "/101/1.1/quiz-expert/" },
+      { id: "1.2", aliases: ["1.2", "class_1.2", "class_1_2"], title: "Class 1.2: What is a 'Runtime' in Software?", category: "Legal Engineering 101", totalQuestions: 20, url: "/101/1.2/quiz.html", learnedUrl: "/101/1.2/quiz-learned/", expertUrl: "/101/1.2/quiz-expert/" },
+      { id: "2.1", aliases: ["2.1", "class_2.1", "class_2_1"], title: "Class 2.1: The Composer Metaphor", category: "Legal Engineering 101", totalQuestions: 20, url: "/101/2.1/quiz.html", learnedUrl: "/101/2.1/quiz-learned/", expertUrl: "/101/2.1/quiz-expert/" },
+      { id: "2.2", aliases: ["2.2", "class_2.2", "class_2_2"], title: "Class 2.2: Minimizing Social Transaction Costs", category: "Legal Engineering 101", totalQuestions: 20, url: "/101/2.2/quiz.html", learnedUrl: "/101/2.2/quiz-learned/", expertUrl: "/101/2.2/quiz-expert/" },
+      { id: "3.1", aliases: ["3.1", "class_3.1", "class_3_1"], title: "Class 3.1: Charles Goldfarb & GML: The Web's Legal Origin", category: "Legal Engineering 101", totalQuestions: 20, url: "/101/3.1/quiz.html", learnedUrl: "/101/3.1/quiz-learned/", expertUrl: "/101/3.1/quiz-expert/" },
+      { id: "3.2", aliases: ["3.2", "class_3_2"], title: "Class 3.2: Nick Szabo & Smart Contracts", category: "Legal Engineering 101", totalQuestions: 20, url: "/101/3.2/quiz.html", learnedUrl: "/101/3.2/quiz-learned/", expertUrl: "/101/3.2/quiz-expert/" },
+      { id: "4.1", aliases: ["4.1", "class_4.1", "class_4_1"], title: "Class 4.1: Decoupling Logic from Assets: Instructions vs. Data", category: "Legal Engineering 101", totalQuestions: 20, url: "/101/4.1/quiz.html", learnedUrl: "/101/4.1/quiz-learned/", expertUrl: "/101/4.1/quiz-expert/" },
+      { id: "4.2", aliases: ["4.2", "class_4.2", "class_4_2"], title: "Class 4.2: Data Primitives 101: Strings, Numbers, and Booleans", category: "Legal Engineering 101", totalQuestions: 20, url: "/101/4.2/quiz.html", learnedUrl: "/101/4.2/quiz-learned/", expertUrl: "/101/4.2/quiz-expert/" },
+      { id: "5.1", aliases: ["5.1", "class_5.1", "class_5_1"], title: "Class 5.1: Active Scripts vs. Static Sheets", category: "Legal Engineering 101", totalQuestions: 20, url: "/101/5.1/quiz.html", learnedUrl: "/101/5.1/quiz-learned/", expertUrl: "/101/5.1/quiz-expert/" },
+      { id: "5.2", aliases: ["5.2", "class_5.2", "class_5_2"], title: "Class 5.2: Typing Domains: How Code Validates Data", category: "Legal Engineering 101", totalQuestions: 20, url: "/101/5.2/quiz.html", learnedUrl: "/101/5.2/quiz-learned/", expertUrl: "/101/5.2/quiz-expert/" },
+      { id: "6.1", aliases: ["6.1", "class_6.1", "class_6_1"], title: "Class 6.1: Grammatical Hurdles: Assigning vs. Evaluating", category: "Legal Engineering 101", totalQuestions: 20, url: "/101/6.1/quiz.html", learnedUrl: "/101/6.1/quiz-learned/", expertUrl: "/101/6.1/quiz-expert/" },
+      { id: "6.2", aliases: ["6.2", "class_6.2", "class_6_2"], title: "Class 6.2: Reading Right-to-Left: Adjusting Your Eyes", category: "Legal Engineering 101", totalQuestions: 20, url: "/101/6.2/quiz.html", learnedUrl: "/101/6.2/quiz-learned/", expertUrl: "/101/6.2/quiz-expert/" },
+      { id: "101", aliases: ["101", "101-all"], title: "Legal Engineering 101: Comprehensive Curriculum Mastery Assessment", category: "Legal Engineering 101", totalQuestions: 20, url: "/101/quiz.html", learnedUrl: "/101/quiz-learned/", expertUrl: "/101/quiz-expert/" },
+
+      // Weekly Socratic Event Quizzes (4 Assessments)
+      { id: "2026-09-24", aliases: ["2026-09-24", "class_3.2"], title: "Sept 24, 2026: How Contract Law Built the Blockchain (Session 3.2)", category: "Socratic Session Assessment", totalQuestions: 20, url: "/event/2026-09-24/quiz.html", learnedUrl: "/event/2026-09-24/quiz-learned/", expertUrl: "/event/2026-09-24/quiz-expert/" },
+      { id: "2026-09-17", aliases: ["2026-09-17", "2025-09-22"], title: "Sept 17, 2026: How Corporate Lawyers Invented the Internet (Session 3.1)", category: "Socratic Session Assessment", totalQuestions: 20, url: "/event/2026-09-17/quiz.html", learnedUrl: "/event/2026-09-17/quiz-learned/", expertUrl: "/event/2026-09-17/quiz-expert/" },
+      { id: "2026-09-04", aliases: ["2026-09-04", "2025-09-04"], title: "Sept 4, 2026: Law as a Software Runtime (Session 2.2)", category: "Socratic Session Assessment", totalQuestions: 20, url: "/event/2026-09-04/quiz.html", learnedUrl: "/event/2026-09-04/quiz-learned/", expertUrl: "/event/2026-09-04/quiz-expert/" },
+      { id: "2026-08-24", aliases: ["2026-08-24"], title: "Aug 24, 2026: Clinic Misc. Technical Socratic Session", category: "Socratic Session Assessment", totalQuestions: 20, url: "/event/2026-08-24/quiz.html", learnedUrl: "/event/2026-08-24/quiz-learned/", expertUrl: "/event/2026-08-24/quiz-expert/" },
+
+      // Academic & Attorney Interview Quizzes (2 Assessments)
+      { id: "interview_lucas_kung", aliases: ["interview_lucas_kung", "2026-09-18"], title: "Sept 18, 2026: Swiss DAO Researcher Lukas Küng — Turning Fragile DAOs into Legal Runtimes", category: "Roadmap Interview Assessment", totalQuestions: 20, url: "/interview/lucas-kung/quiz.html", learnedUrl: "/interview/lucas-kung/quiz-learned/", expertUrl: "/interview/lucas-kung/quiz-expert/" },
+      { id: "2026-09-08", aliases: ["2026-09-08", "2026-09-08-james-wigginton", "interview_james_wigginton"], title: "Sept 8, 2026: Attorney James Wigginton — Replacing Digital Landlords with Cooperative Math", category: "Roadmap Interview Assessment", totalQuestions: 20, url: "/interview/2026-09-08/james-wigginton/quiz.html", learnedUrl: "/interview/2026-09-08/james-wigginton/quiz-learned/", expertUrl: "/interview/2026-09-08/james-wigginton/quiz-expert/" }
+    ];
+
+    function renderMediaApprovalsAndNotes(approvalsMap, notesArray) {
+      const container = document.getElementById("attest-approvals-list");
+      if (!container) return;
+
+      const approvalEntries = Object.values(approvalsMap || {}).filter(a => a && a.rating);
+      // Deduplicate by uid
+      const uniqueApprovals = {};
+      approvalEntries.forEach(a => {
+        const uid = a.uid || ((a.page_url || "/") + "#" + (a.card_id || ""));
+        if (!uniqueApprovals[uid] || new Date(a.timestamp || 0) >= new Date(uniqueApprovals[uid].timestamp || 0)) {
+          uniqueApprovals[uid] = a;
+        }
+      });
+
+      const sortedApprovals = Object.values(uniqueApprovals).sort(
+        (a, b) => new Date(b.timestamp || 0) - new Date(a.timestamp || 0)
+      );
+      const sortedNotes = (notesArray || []).slice().sort(
+        (a, b) => new Date(b.timestamp || 0) - new Date(a.timestamp || 0)
+      );
+
+      if (sortedApprovals.length === 0 && sortedNotes.length === 0) {
+        container.innerHTML = `
+          <div style="background: rgba(15, 23, 42, 0.7); border: 1px solid #334155; border-radius: 8px; padding: 1.25rem; color: #cbd5e1; font-size: 0.92rem;">
+            No media clip approvals or notes recorded in the shared ledger yet. Visit any <a href="/101" style="color: var(--accent-cyan); text-decoration: underline;">101 Lesson</a>, <a href="/event/" style="color: var(--accent-gold); text-decoration: underline;">Event Hub</a>, or <a href="/interview/" style="color: var(--accent-cyan); text-decoration: underline;">Interview</a> and click <strong>👍 Approval</strong> or <strong>💬 Notes</strong> (or click <strong>🔄 Sync Browser Approvals &amp; Notes</strong> above if you made approvals in this browser).
+          </div>
+        `;
+        return;
+      }
+
+      let html = "";
+
+      if (sortedApprovals.length > 0) {
+        html += `<h4 style="color: var(--accent-cyan); font-size: 1.05rem; margin: 0.25rem 0 0.5rem 0;">👍 Recorded Clip Approvals (${sortedApprovals.length}):</h4>`;
+        sortedApprovals.forEach(app => {
+          const rating = (app.rating || "pass").toLowerCase();
+          const depth = app.depth === "cursory" ? "⚡ Cursory Review" : "🔍 Thorough Review";
+          const badgeColor = rating === "pass" ? "#34d399" : (rating === "star" ? "#fbbf24" : (rating === "flag" ? "#f97316" : "#f87171"));
+          const badgeIcon = rating === "pass" ? "✅ PASS" : (rating === "star" ? "⭐ STAR" : (rating === "flag" ? "🚩 FLAG" : "❌ FAIL"));
+          const uid = app.uid || ((app.page_url || "/") + "#" + (app.card_id || ""));
+          const href = uid.startsWith("/") ? uid : ("/" + uid);
+          const dt = app.timestamp ? new Date(app.timestamp).toLocaleString() : "Recorded";
+
+          html += `
+            <div style="background: rgba(15, 23, 42, 0.85); border: 1px solid #334155; border-left: 4px solid ${badgeColor}; border-radius: 8px; padding: 1rem 1.25rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;">
+              <div>
+                <div style="display: flex; gap: 0.5rem; align-items: center; flex-wrap: wrap; margin-bottom: 0.35rem;">
+                  <span style="background: rgba(15, 23, 42, 0.9); color: ${badgeColor}; border: 1px solid ${badgeColor}; padding: 0.15rem 0.55rem; border-radius: 4px; font-size: 0.78rem; font-weight: 800;">${badgeIcon}</span>
+                  <span style="color: #fbbf24; font-size: 0.82rem; font-weight: 700;">${depth}</span>
+                  <span style="color: #94a3b8; font-size: 0.8rem;">Reviewer: <strong style="color: var(--accent-cyan);">${app.reviewer || 'kyle@lex.clinic'}</strong> • ${dt}</span>
+                </div>
+                <div style="font-family: 'Fira Code', monospace; font-size: 0.88rem; color: #f8fafc; word-break: break-all;">
+                  UID: <a href="${href}" style="color: var(--accent-cyan); text-decoration: underline;">${uid}</a>
+                </div>
+              </div>
+              <a href="${href}" class="btn btn-outline" style="font-size: 0.82rem; padding: 0.35rem 0.8rem;">Open Media Card ➔</a>
+            </div>
+          `;
+        });
+      }
+
+      if (sortedNotes.length > 0) {
+        html += `<h4 style="color: var(--accent-gold); font-size: 1.05rem; margin: 1rem 0 0.5rem 0;">💬 Recorded Media Review Notes (${sortedNotes.length}):</h4>`;
+        sortedNotes.forEach(note => {
+          const uid = note.uid || ((note.page_url || "/") + "#" + (note.card_id || ""));
+          const href = uid.startsWith("/") ? uid : ("/" + uid);
+          const dt = note.timestamp ? new Date(note.timestamp).toLocaleString() : "Recorded";
+
+          html += `
+            <div style="background: rgba(15, 23, 42, 0.85); border: 1px solid #334155; border-left: 4px solid var(--accent-gold); border-radius: 8px; padding: 1rem 1.25rem; display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 1rem;">
+              <div style="flex: 1; min-width: 260px;">
+                <div style="font-size: 0.8rem; color: #94a3b8; margin-bottom: 0.3rem;">
+                  👤 <strong style="color: var(--accent-cyan);">${note.reviewer || 'kyle@lex.clinic'}</strong> • ${dt} • <a href="${href}" style="color: var(--accent-gold); font-family: 'Fira Code', monospace; text-decoration: underline;">${uid}</a>
+                </div>
+                <div style="color: #f8fafc; font-size: 0.92rem; line-height: 1.5;">${note.comment}</div>
+              </div>
+              <a href="${href}" class="btn btn-outline" style="font-size: 0.82rem; padding: 0.35rem 0.8rem;">Open Clip ➔</a>
+            </div>
+          `;
+        });
+      }
+
+      container.innerHTML = html;
+    }
+
+    async function triggerManualLedgerSync(btnEl) {
+      if (btnEl) {
+        btnEl.disabled = true;
+        btnEl.innerText = "🔄 Syncing with Shared Ledger...";
+      }
+      const statusBox = document.getElementById("attest-sync-status-msg");
+      try {
+        if (window.syncAndHydrateMediaLedger) {
+          await window.syncAndHydrateMediaLedger();
+        }
+        const res = await fetch("/api/media-notes");
+        if (res.ok) {
+          const data = await res.json();
+          renderMediaApprovalsAndNotes(data.approvals || {}, data.notes || []);
+          if (statusBox) {
+            statusBox.style.display = "block";
+            statusBox.innerText = `✅ Shared Ledger Synchronized! (${data.total_approvals || 0} Approvals, ${data.total_notes || 0} Notes persisted across stage.lex.clinic and lex.clinic)`;
+          }
+        }
+      } catch (e) {}
+      if (btnEl) {
+        btnEl.disabled = false;
+        btnEl.innerText = "🔄 Sync Browser Approvals & Notes to Shared Ledger";
+      }
+    }
+    window.triggerManualLedgerSync = triggerManualLedgerSync;
+
+    window.addEventListener("lexclinic:media-ledger-synced", (evt) => {
+      if (evt && evt.detail) {
+        renderMediaApprovalsAndNotes(evt.detail.approvals || {}, evt.detail.notes || []);
+      }
+    });
+
     document.addEventListener("DOMContentLoaded", async () => {
       const activeEmail = (localStorage.getItem("lexclinic_user_email") || "").trim();
       const loggedOutCard = document.getElementById("attest-logged-out-card");
@@ -225,29 +370,26 @@
       if (loggedOutCard) loggedOutCard.style.display = "none";
       if (dashboardContent) dashboardContent.style.display = "block";
 
-      document.getElementById("attest-user-email").innerText = activeEmail;
-      if (activeEmail.toLowerCase().endsWith("@lex.clinic")) {
-        document.getElementById("attest-member-badge").style.display = "inline-block";
+      const emailSpan = document.getElementById("attest-user-email");
+      if (emailSpan) emailSpan.innerText = activeEmail;
+
+      const memberBadge = document.getElementById("attest-member-badge");
+      if (memberBadge && activeEmail.toLowerCase().endsWith("@lex.clinic")) {
+        memberBadge.style.display = "inline-block";
       }
 
-      // Quiz Definitions
-                  const quizzes = [
-        { id: "1.1", name: "Class 1.1: What is a 'Performance' in Law?", url: "/101/1.1/quiz.html" },
-        { id: "1.2", name: "Class 1.2: Statutory ASTs & Legal Grammars", url: "/101/1.2/quiz.html" },
-        { id: "2.1", name: "Class 2.1: Smart Contracts vs. Ricardian Contracts", url: "/101/2.1/quiz.html" },
-        { id: "2.2", name: "Class 2.2: ERC-7827 & On-Chain State Machines", url: "/101/2.2/quiz.html" },
-        { id: "3.1", name: "Class 3.1: Bilateral Attestations & Sovereign State", url: "/101/3.1/quiz.html" },
-        { id: "3.2", name: "Class 3.2: Automated Fiduciary Verification & Runtime Laws", url: "/101/3.2/quiz.html" },
-        { id: "4.1", name: "Class 4.1: Decoupling Logic from Assets: Instructions vs. Data", url: "/101/4.1/quiz.html" },
-        { id: "2026-09-17", name: "How Corporate Lawyers Invented the Internet Socratic Quiz (Sept 17, 2026)", url: "/event/2026-09-17/how-corporate-lawyers-invented-the-internet/quiz.html" },
-        { id: "2026-09-04", name: "Law as a Runtime & Computational Fiduciary Law Socratic Quiz (Sept 4, 2026)", url: "/event/2026-09-04/law-as-a-runtime/quiz.html" },
-        { id: "2026-08-28", name: "Delaware LLC Governance & ERC-7827 Socratic Quiz (Aug 28, 2026)", url: "/event/2026-08-28/lexclinic-session/quiz.html" },
-        { id: "2026-08-24", name: "Clinic Misc. Technical Socratic Quiz (Aug 24, 2026)", url: "/event/2026-08-24/clinic-misc/quiz.html" },
-        { id: "2026-08-20", name: "Ricardian Contracts & Signet Proofs Socratic Quiz (Aug 20, 2026)", url: "/event/2026-08-20/socratic-session/quiz.html" },
-        { id: "2026-08-13", name: "Legal Performance States Socratic Quiz (Aug 13, 2026)", url: "/event/2026-08-13/socratic-session/quiz.html" }
-      ];
+      // 1. Load & Render Shared Media Approvals & Notes
+      try {
+        const localApprovals = JSON.parse(localStorage.getItem("lexclinic_media_approvals") || "{}");
+        renderMediaApprovalsAndNotes(localApprovals, []);
+        const notesRes = await fetch("/api/media-notes");
+        if (notesRes.ok) {
+          const notesData = await notesRes.json();
+          renderMediaApprovalsAndNotes({ ...localApprovals, ...(notesData.approvals || {}) }, notesData.notes || []);
+        }
+      } catch (e) {}
 
-      // Fetch user attestations from API endpoint
+      // 2. Fetch user quiz attestations from API endpoint + localStorage
       let serverSubmissions = [];
       try {
         const res = await fetch(`/api/user-attest?email=${encodeURIComponent(activeEmail)}`);
@@ -257,142 +399,83 @@
             serverSubmissions = data.submissions;
           }
         }
-      } catch (err) {
-        console.log("Error fetching user attest API:", err);
-      }
+      } catch (err) {}
 
-      let completedMap = {};
-      serverSubmissions.forEach(sub => {
-        if (sub.class_id) {
-          completedMap[sub.class_id] = sub;
-        }
-      });
-
-      // Also merge local storage submissions if available
+      let localSubmissions = [];
       try {
-        const localSubs = JSON.parse(localStorage.getItem("lexclinic_quiz_submissions") || "[]");
-        localSubs.forEach(lsub => {
-          if (lsub.email && lsub.email.trim().toLowerCase() === activeEmail.toLowerCase() && lsub.class_id) {
-            if (!completedMap[lsub.class_id]) {
-              completedMap[lsub.class_id] = lsub;
-            }
-          }
-        });
+        const rawLocal = JSON.parse(localStorage.getItem("lexclinic_quiz_submissions") || "[]");
+        const arrLocal = Array.isArray(rawLocal) ? rawLocal : Object.values(rawLocal);
+        localSubmissions = arrLocal.filter(
+          s => s && (!s.email || s.email.trim().toLowerCase() === activeEmail.toLowerCase())
+        );
       } catch (e) {}
 
-                  // Initial seed records for kyle@ixian.tech
-      const initialSeedRecords = [
-        {
-          email: "kyle@ixian.tech",
-          class_id: "1.1",
-          score: "4/4",
-          payload_hash: "0x630ef49e81e56ac89d20ff42fbfcf464a82a80412e8a8fdf7b08cef69b325aa7",
-          timestamp: "2026-08-29T19:10:46.000Z"
-        },
-        {
-          email: "kyle@ixian.tech",
-          class_id: "1.2",
-          score: "4/4",
-          payload_hash: "0x8a9b31d2e4f5a6b7c8d9e0f1a2b3c4d5e6f7a8b9c0d1e2f3a4b5c6d7e8f9a0b1",
-          timestamp: "2026-08-29T19:15:22.000Z"
-        },
-        {
-          email: "kyle@ixian.tech",
-          class_id: "2.1",
-          score: "4/4",
-          payload_hash: "0x1f2e3d4c5b6a7b8c9d0e1f2a3b4c5d6e7f8a9b0c1d2e3f4a5b6c7d8e9f0a1b2",
-          timestamp: "2026-08-29T19:20:10.000Z"
-        },
-        {
-          email: "kyle@ixian.tech",
-          class_id: "2.2",
-          score: "4/4",
-          payload_hash: "0x9e8d7c6b5a4f3e2d1c0b9a8f7e6d5c4b3a2f1e0d9c8b7a6f5e4d3c2b1a0f9e8",
-          timestamp: "2026-08-29T19:25:00.000Z"
-        },
-        {
-          email: "kyle@ixian.tech",
-          class_id: "2026-08-28",
-          score: "20/20",
-          payload_hash: "0x7a6b5c4d3e2f1a0b9c8d7e6f5a4b3c2d1e0f9a8b7c6d5e4f3a2b1c0d9e8f7a6",
-          timestamp: "2026-08-29T19:30:15.000Z"
-        }
-      ];
+      const allUserSubmissions = [...serverSubmissions, ...localSubmissions];
 
-      initialSeedRecords.forEach(s => {
-        if (s.email.toLowerCase() === activeEmail.toLowerCase() && !completedMap[s.class_id]) {
-          completedMap[s.class_id] = s;
-        }
-      });
+      const listContainer = document.getElementById("attest-quizzes-list");
+      let completedCount = 0;
 
-      // Render Metrics
-      const completedCount = Object.keys(completedMap).length;
-      document.getElementById("attest-completed-count").innerText = `${completedCount} / ${quizzes.length}`;
+      CANONICAL_QUIZZES.forEach(quiz => {
+        const matching = allUserSubmissions.filter(s => {
+          const cid = String(s.class_id || s.quiz_id || "");
+          return quiz.aliases.includes(cid);
+        });
 
-      let totalScores = 0;
-      let scoreItems = 0;
-      Object.values(completedMap).forEach(sub => {
-        if (sub.score) {
-          const parts = sub.score.split("/");
-          if (parts.length === 2) {
-            const val = parseFloat(parts[0]);
-            const max = parseFloat(parts[1]);
-            if (!isNaN(val) && !isNaN(max) && max > 0) {
-              totalScores += (val / max) * 100;
-              scoreItems++;
-            }
-          }
-        }
-      });
-
-      const avgPercent = scoreItems > 0 ? Math.round(totalScores / scoreItems) : "--";
-      document.getElementById("attest-avg-score").innerText = avgPercent !== "--" ? `${avgPercent}%` : "--%";
-
-      // Render Quiz List
-      const listContainer = document.getElementById("quiz-breakdown-list");
-      listContainer.innerHTML = "";
-
-      quizzes.forEach(quiz => {
-        const sub = completedMap[quiz.id];
-        const isDone = !!sub;
+        const latest = matching.length > 0 ? matching[matching.length - 1] : null;
+        if (latest) completedCount++;
 
         const card = document.createElement("div");
         card.className = "card pillar-card";
-        card.style.border = isDone ? "2px solid var(--accent-cyan)" : "1px solid rgba(255, 255, 255, 0.1)";
-        card.style.background = isDone ? "rgba(10, 17, 40, 0.9)" : "rgba(10, 17, 40, 0.5)";
+        card.style.border = latest ? "2px solid var(--accent-cyan)" : "1px solid var(--border-color)";
+        card.style.background = latest ? "rgba(16, 31, 66, 0.9)" : "rgba(10, 17, 40, 0.7)";
         card.style.padding = "1.5rem";
 
-        if (isDone) {
+        if (latest) {
+          const dateStr = latest.timestamp ? new Date(latest.timestamp).toLocaleString() : "Recorded";
           card.innerHTML = `
-            <div style="display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 0.75rem; margin-bottom: 0.75rem;">
-              <div>
-                <span class="status-badge today-badge" style="background: #10b981; color: #0a1128; font-weight: 800;">✅ Score: ${sub.score}</span>
-                <span class="status-badge notebook-available" style="margin-left: 0.35rem;">📜 Store Recorded</span>
+            <div style="display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 1rem;">
+              <div style="flex: 1; min-width: 280px;">
+                <div style="display: flex; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 0.5rem;">
+                  <span style="background: rgba(52, 211, 153, 0.2); color: #34d399; border: 1px solid #34d399; font-weight: 800; padding: 0.15rem 0.55rem; border-radius: 4px; font-size: 0.78rem;">✅ Score: ${latest.score}</span>
+                  <span style="background: rgba(251, 191, 36, 0.2); color: var(--accent-gold); border: 1px solid var(--accent-gold); font-weight: 800; padding: 0.15rem 0.55rem; border-radius: 4px; font-size: 0.78rem;">⏳ Yet Attested To (ERC-7827 Queued)</span>
+                  <span style="background: rgba(148, 163, 184, 0.15); color: #cbd5e1; padding: 0.15rem 0.55rem; border-radius: 4px; font-size: 0.78rem;">${quiz.category}</span>
+                </div>
+                <h3 style="color: #ffffff; font-size: 1.2rem; margin-bottom: 0.4rem;">${quiz.title}</h3>
+                <p style="color: #94a3b8; font-size: 0.85rem; margin-bottom: 0.5rem;">Completed: ${dateStr}</p>
+                <div style="background: rgba(10, 17, 40, 0.85); padding: 0.6rem 0.9rem; border-radius: 6px; font-family: 'Fira Code', monospace; font-size: 0.78rem; color: var(--accent-cyan); word-break: break-all;">
+                  <strong>Payload Hash:</strong> ${latest.payload_hash || '0x...'}
+                </div>
               </div>
-              <span class="status-badge media-available" style="background: rgba(251, 191, 36, 0.2); color: #fbbf24; border: 1px solid #fbbf24;">⏳ Yet Attested To (ERC-7827 Pending)</span>
-            </div>
-            <h4 style="color: #ffffff; font-size: 1.15rem; margin-bottom: 0.5rem;">${quiz.name}</h4>
-            <div style="background: rgba(16, 31, 66, 0.8); padding: 0.85rem; border-radius: 6px; font-family: 'Fira Code', monospace; font-size: 0.82rem; color: var(--accent-cyan); word-break: break-all; margin-bottom: 0.75rem;">
-              <strong>Keccak-256 Payload Hash:</strong><br>${sub.payload_hash || "0x-client-generated"}
-            </div>
-            <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem;">
-              <span style="color: #94a3b8; font-size: 0.8rem;">Timestamp: ${sub.timestamp ? new Date(sub.timestamp).toLocaleString() : 'Recorded'}</span>
-              <a href="${quiz.url}" class="btn btn-outline" style="font-size: 0.8rem; padding: 0.3rem 0.75rem;">Retake Quiz ➔</a>
+              <div style="display: flex; flex-direction: column; gap: 0.5rem; justify-content: center;">
+                <a href="${quiz.expertUrl || quiz.url}" class="btn btn-primary" style="font-size: 0.82rem; padding: 0.45rem 0.9rem; text-align: center; background: var(--accent-cyan); color: #0a1128; font-weight: 800;">🎓 20-Q Expert Quiz ➔</a>
+                <a href="${quiz.learnedUrl || quiz.url}" class="btn btn-outline" style="font-size: 0.8rem; padding: 0.35rem 0.85rem; text-align: center;">📘 5-Q Learned Quiz ↺</a>
+              </div>
             </div>
           `;
         } else {
           card.innerHTML = `
-            <div style="display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 0.75rem; margin-bottom: 0.75rem;">
-              <span class="status-badge notebook-available" style="background: rgba(100, 116, 139, 0.3); color: #cbd5e1;">⏳ Not Yet Completed</span>
+            <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;">
+              <div>
+                <div style="display: flex; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 0.4rem;">
+                  <span style="background: rgba(148, 163, 184, 0.15); color: #94a3b8; padding: 0.15rem 0.55rem; border-radius: 4px; font-size: 0.78rem;">⚪ Not Completed</span>
+                  <span style="background: rgba(56, 189, 248, 0.15); color: var(--accent-cyan); padding: 0.15rem 0.55rem; border-radius: 4px; font-size: 0.78rem;">${quiz.category} (Pass 5-Q Learned to Unlock 20-Q Expert)</span>
+                </div>
+                <h3 style="color: #cbd5e1; font-size: 1.15rem; margin: 0;">${quiz.title}</h3>
+              </div>
+              <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
+                <a href="${quiz.learnedUrl || quiz.url}" class="btn btn-primary" style="font-size: 0.85rem; padding: 0.45rem 1rem; background: var(--accent-gold); color: #0a1128; font-weight: 800;">📘 Take 5-Q Learned Quiz ➔</a>
+              </div>
             </div>
-            <h4 style="color: #e2e8f0; font-size: 1.15rem; margin-bottom: 0.5rem;">${quiz.name}</h4>
-            <p style="color: #94a3b8; font-size: 0.88rem; margin-bottom: 1rem;">Complete this assessment to compute your Keccak-256 score hash and prepare for ERC-7827 on-chain attestation.</p>
-            <a href="${quiz.url}" class="btn btn-primary" style="font-size: 0.85rem; padding: 0.4rem 0.9rem;">Take Quiz Now ➔</a>
           `;
         }
 
         listContainer.appendChild(card);
       });
+
+      const summaryBadge = document.getElementById("attest-Completion-summary");
+      if (summaryBadge) {
+        summaryBadge.innerText = `${completedCount} / ${CANONICAL_QUIZZES.length} Quizzes Completed`;
+      }
     });
   </script>
 

@@ -14,7 +14,10 @@ node_modules/
 dist/
 build/
 
-# Temp Files
+# Temp Files & Media Binaries
 *.tmp
 *.log
 .DS_Store
+*.m4a
+*.mp4
+*.wav

@@ -4,20 +4,20 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>LexClinic Events &amp; Socratic Sessions Hub | LexClinic</title>
-  <meta name="description" content="LexClinic Education Socratic Sessions, Recorded Lectures, and Legal Engineering Masterclasses.">
-  <link rel="stylesheet" href="/styles.css?v=20261016_v5">
+  <meta name="description" content="LexClinic Education 101 Live Socratic Classes, Roadmap Interviews, Upcoming Fiduciary Calls, and Monthly Event Archives.">
+  <link rel="stylesheet" href="/styles.css?v=20261025_v11">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-  <script src="/js/audio-player.js?v=20261016_v5"></script>
-  <script src="/js/auth.js?v=20261016_v5"></script>
-  <script src="/js/media-tracker-miniapp.js?v=20261016_v5"></script>
-  <script src="/js/watch-tracker.js?v=20261016_v5"></script>
-  <script src="/events.js?v=20261016_v5"></script>
-  <script src="/js/modules/ui-interactive-controls.js?v=20261017_v6"></script>
-  <script src="/script.js?v=20261016_v5" defer></script>
-  <link rel="icon" type="image/png" href="/favicon.png?v=20261016_v5">
-  <link rel="shortcut icon" href="/favicon.ico?v=20261016_v5">
+  <script src="/js/audio-player.js?v=20261025_v11"></script>
+  <script src="/js/auth.js?v=20261025_v11"></script>
+  <script src="/js/media-tracker-miniapp.js?v=20261025_v11"></script>
+  <script src="/js/watch-tracker.js?v=20261025_v11"></script>
+  <script src="/events.js?v=20261025_v11"></script>
+  <script src="/js/modules/ui-interactive-controls.js?v=20261025_v11"></script>
+  <script src="/script.js?v=20261025_v11" defer></script>
+  <link rel="icon" type="image/png" href="/favicon.png?v=20261025_v11">
+  <link rel="shortcut icon" href="/favicon.ico?v=20261025_v11">
 </head>
 <body>
 
@@ -41,8 +41,8 @@
           <a href="/attest/">Attest</a>
           <a href="/help/">Help</a>
           <a href="/repo/">Repo</a>
-          <a href="/repo/">ERC-7827</a>
-          <a href="https://www.youtube.com/watch?v=ONwiUkc_tt4&list=PLbPukKwpmk5E" target="_blank" rel="noopener" class="btn-social" title="Subscribe on YouTube">YouTube</a>
+          <a href="/erc7827/">ERC-7827</a>
+          <a href="https://www.youtube.com/watch?v=20261025_v11&list=PLbPukKwpmk5E" target="_blank" rel="noopener" class="btn-social" title="Subscribe on YouTube">YouTube</a>
           <a href="https://open.spotify.com/show/0348ivoLaNfKBq1HeIYC9b" target="_blank" rel="noopener" class="btn-spotify" title="Follow on Spotify">Spotify</a>
           <a href="https://www.linkedin.com/company/lexclinic" target="_blank" rel="noopener" class="btn-social" title="Follow on LinkedIn">LinkedIn</a>
           <a href="javascript:void(0)" onclick="event.preventDefault(); window.openNavLoginModal(event); return false;" id="nav-login-btn" style="background: #fbbf24; color: #0a1128; font-weight: 800; font-size: 0.88rem; padding: 0.35rem 0.85rem; border-radius: 6px; margin-left: 0.35rem; text-decoration: none; border: 2px solid #f59e0b; box-shadow: 0 0 10px rgba(251, 191, 36, 0.4); display: inline-block;">Login</a>
@@ -54,59 +54,67 @@
     </nav>
   </header>
 
-  <!-- Hero Section -->
+  <!-- Hero Section + Event Subcategory Filter Bar -->
   <section class="hero page-hero">
     <div class="container hero-content">
-      <div style="display: flex; gap: 0.5rem; justify-content: center; flex-wrap: wrap; margin-bottom: 0.85rem;">
-        <span class="status-badge today-badge">⚖️ Socratic Events Hub</span>
-        <span class="status-badge media-available">🎧 Recorded Audio &amp; Video</span>
-        <span class="status-badge notebook-available">📅 Weekly Progression</span>
-      </div>
-      <h1 class="hero-title">LexClinic <span class="gradient-text">Socratic Events Hub</span></h1>
+      <h1 class="hero-title">LexClinic <span class="gradient-text">Events &amp; 101 Socratic Sessions</span></h1>
       <p class="hero-subtitle">
-        Live weekly Socratic sessions, recorded masterclasses, and legal engineering archives. Today is Saturday, October 17, 2026. Browse upcoming sessions or explore recorded event hubs below.
+        Live weekly Socratic companion classes for <a href="/101/" style="color: var(--accent-gold); text-decoration: underline; font-weight: 700;">Legal Engineering 101</a>, date-stamped guest interviews, upcoming governance calls, and recorded monthly archives.
       </p>
+
+      <!-- Event Subcategory Filter Pills -->
+      <div id="event-category-filter-bar" style="display: flex; gap: 0.6rem; justify-content: center; flex-wrap: wrap; margin-top: 1.25rem;">
+        <button type="button" data-cat="all" class="btn event-cat-filter-btn" onclick="window.filterEventsByCategory('all', this)" style="background: var(--accent-gold); color: #0a1128; font-weight: 800; border: 1px solid var(--accent-gold); padding: 0.45rem 1.05rem; border-radius: 999px; font-size: 0.88rem; cursor: pointer;">
+          📅 All Events
+        </button>
+        <button type="button" data-cat="class" class="btn event-cat-filter-btn" onclick="window.filterEventsByCategory('class', this)" style="background: rgba(30, 41, 59, 0.85); color: #cbd5e1; font-weight: 600; border: 1px solid #475569; padding: 0.45rem 1.05rem; border-radius: 999px; font-size: 0.88rem; cursor: pointer;">
+          🎓 101 Socratic Classes
+        </button>
+        <button type="button" data-cat="interview" class="btn event-cat-filter-btn" onclick="window.filterEventsByCategory('interview', this)" style="background: rgba(30, 41, 59, 0.85); color: #cbd5e1; font-weight: 600; border: 1px solid #475569; padding: 0.45rem 1.05rem; border-radius: 999px; font-size: 0.88rem; cursor: pointer;">
+          🎙️ Guest Interviews
+        </button>
+        <button type="button" data-cat="director_call" class="btn event-cat-filter-btn" onclick="window.filterEventsByCategory('director_call', this)" style="background: rgba(30, 41, 59, 0.85); color: #cbd5e1; font-weight: 600; border: 1px solid #475569; padding: 0.45rem 1.05rem; border-radius: 999px; font-size: 0.88rem; cursor: pointer;">
+          🏛️ Upcoming Director Calls
+        </button>
+        <button type="button" data-cat="partner_call" class="btn event-cat-filter-btn" onclick="window.filterEventsByCategory('partner_call', this)" style="background: rgba(30, 41, 59, 0.85); color: #cbd5e1; font-weight: 600; border: 1px solid #475569; padding: 0.45rem 1.05rem; border-radius: 999px; font-size: 0.88rem; cursor: pointer;">
+          🌐 Upcoming Partner Calls
+        </button>
+      </div>
     </div>
   </section>
 
-  <!-- Section 1: Upcoming Socratic Sessions -->
+  <!-- Section 1: Upcoming Socratic Sessions & Calls -->
   <section class="section upcoming-events-section" id="upcoming-sessions">
     <div class="container">
       <div class="events-group-container">
         <h2 class="group-title" style="color: var(--accent-gold); font-size: 1.6rem; margin-bottom: 1.5rem; border-bottom: 2px solid var(--accent-gold); padding-bottom: 0.5rem;">
-          🔥 Upcoming Socratic Sessions
+          🔥 Upcoming Scheduled Events
         </h2>
 
         <div class="grid grid-2" id="upcoming-sessions-grid" style="gap: 1.5rem;">
 
-          <!-- 1. Thursday, Oct 22, 2026 (Lesson 5.2) -->
-          <div class="card pillar-card event-list-card" style="border: 2px solid #fbbf24; background: rgba(10, 17, 40, 0.95); padding: 1.5rem;">
-            <div style="display: flex; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 0.75rem;">
-              <span class="status-badge today-badge" style="background: rgba(251, 191, 36, 0.2); color: #fbbf24; border: 1px solid #f59e0b;">🔥 NEXT UPCOMING SESSION</span>
-              <span class="status-badge notebook-available">📅 Scheduled</span>
-            </div>
-            <div class="event-date-tag" style="color: #fbbf24; font-weight: 700; margin-bottom: 0.4rem;">Thursday, Oct 22, 2026 • 16:30 CDT (14:30 PDT)</div>
-            <h3 style="color: #fbbf24; font-size: 1.3rem; margin-bottom: 0.75rem;">LexClinic 2026 — Lesson 5.2: Typing Domains: How Code Validates Data</h3>
+          <!-- 1. Thursday, Oct 29, 2026 (Lesson 6.1) -->
+          <div class="card pillar-card event-list-card" data-event-category="class" style="border: 2px solid #fbbf24; background: rgba(10, 17, 40, 0.95); padding: 1.5rem;">
+            <div class="event-date-tag" style="color: #fbbf24; font-weight: 700; margin-bottom: 0.4rem;">Thursday, Oct 29, 2026 • 🎓 101 Live Socratic Session (Class 6.1)</div>
+            <h3 style="color: #fbbf24; font-size: 1.3rem; margin-bottom: 0.75rem;">LexClinic 2026 — Lesson 6.1: The Grammatical Hurdles of Legal Code</h3>
             <p style="margin-bottom: 1.25rem; color: #cbd5e1; line-height: 1.6;">
-              Socratic session analyzing typing domains, data validation bounds, and compiler-level type checking for legal covenants.
+              Weekly live cohort discussion &amp; Q&amp;A companion to <a href="/101/6.1/" style="color: var(--accent-cyan); text-decoration: underline;">Legal Engineering 101 Class 6.1</a>.
             </p>
-            <div class="card-actions">
+            <div class="card-actions" style="display: flex; gap: 0.65rem; flex-wrap: wrap;">
               <a href="https://meet.google.com/xpy-vzuu-nmf" target="_blank" rel="noopener" class="btn btn-primary" style="background: #34d399; color: #0a1128; font-weight: 800; padding: 0.6rem 1.25rem; border-radius: 6px;">Join Live Session (Google Meet) 🎥</a>
+              <a href="/101/6.1/" class="btn btn-outline" style="padding: 0.6rem 1.15rem; border-radius: 6px;">📘 101 Module 6.1 ➔</a>
             </div>
           </div>
 
-          <!-- 2. Friday, Oct 23, 2026 (Director Call) -->
-          <div class="card pillar-card event-list-card" style="border: 1px solid var(--border-color); padding: 1.5rem;">
-            <div style="display: flex; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 0.75rem;">
-              <span class="status-badge" style="background: rgba(56, 189, 248, 0.2); color: var(--accent-cyan); border: 1px solid var(--accent-cyan);">🔒 Director Call</span>
-            </div>
-            <div class="event-date-tag" style="color: var(--accent-cyan); font-weight: 700; margin-bottom: 0.4rem;">Friday, Oct 23, 2026 • 16:00 EDT (13:00 PDT)</div>
-            <h3 style="color: var(--accent-cyan); font-size: 1.3rem; margin-bottom: 0.75rem;">LexClinic Director Call</h3>
+          <!-- 2. Wednesday, Nov 4, 2026 (Root Node Call) -->
+          <div class="card pillar-card event-list-card" data-event-category="partner_call,director_call" style="border: 1px solid var(--border-color); padding: 1.5rem;">
+            <div class="event-date-tag" style="color: var(--accent-cyan); font-weight: 700; margin-bottom: 0.4rem;">Wednesday, Nov 4, 2026 • 🌐 Partner / Fiduciary Call</div>
+            <h3 style="color: var(--accent-cyan); font-size: 1.3rem; margin-bottom: 0.75rem;">Bi-Weekly Root Node &amp; Fiduciary Governance Call</h3>
             <p style="margin-bottom: 1.25rem; color: #cbd5e1; line-height: 1.6;">
-              LexClinic Board of Directors &amp; Officers Call. Form 1023 501(c)(3) filing update, legal engineering curriculum roadmap, and open-source attestations.
+              LexClinic &amp; Root Node governance coordination, Form 1023 501(c)(3) status, and ERC-7827 attestation infrastructure.
             </p>
             <div class="card-actions">
-              <a href="https://meet.google.com/xdw-trzj-azj" target="_blank" rel="noopener" class="btn btn-outline" style="padding: 0.6rem 1.25rem; border-radius: 6px;">🔒 Join Director Google Meet ➔</a>
+              <a href="javascript:void(0)" onclick="window.openNavLoginModal(event)" class="btn btn-outline" style="border-color: #fbbf24; color: #fbbf24; padding: 0.6rem 1.25rem; border-radius: 6px;">🔒 Google Meet Reserved for @lex.clinic Members</a>
             </div>
           </div>
 
@@ -115,138 +123,115 @@
     </div>
   </section>
 
-  <!-- Section 2: Recent Sessions Archive -->
+  <!-- Section 2: 3 Most Recent Recorded Events -->
   <section class="section recent-events-section" id="recent-sessions">
     <div class="container">
       <div class="events-group-container">
-        <h2 class="group-title" style="color: var(--accent-cyan); font-size: 1.6rem; margin-bottom: 1.5rem; border-bottom: 2px solid var(--accent-cyan); padding-bottom: 0.5rem;">
-          📜 Recent Sessions Archive (Reverse Chronological Order)
+        <div style="display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; gap: 1rem; border-bottom: 2px solid var(--accent-cyan); padding-bottom: 0.5rem; margin-bottom: 1.5rem;">
+          <h2 class="group-title" style="color: var(--accent-cyan); font-size: 1.6rem; margin: 0;">
+            📜 3 Most Recent Recorded Events
+          </h2>
+          <span style="color: #94a3b8; font-size: 0.9rem;">Each Socratic Session pairs directly with its self-paced <a href="/101/" style="color: var(--accent-cyan); text-decoration: underline;">Legal Engineering 101</a> module</span>
+        </div>
+
+        <div class="grid grid-3" id="recent-three-events-grid" style="gap: 1.5rem;">
+
+          <!-- Recent 1: Oct 22, 2026 (Class 5.2) -->
+          <div class="card pillar-card event-list-card" data-event-category="class" style="border: 2px solid var(--accent-gold); background: rgba(10, 17, 40, 0.95); padding: 1.5rem;">
+            <div class="event-date-tag" style="color: var(--accent-gold); font-weight: 700; margin-bottom: 0.4rem;">Oct 22, 2026 • 🎓 101 Live Socratic Session (Class 5.2)</div>
+            <h3 style="color: var(--accent-gold); font-size: 1.25rem; margin-bottom: 0.75rem;">Lesson 5.2: Typing Domains: How Code Validates Data</h3>
+            <p style="margin-bottom: 1.25rem; color: #cbd5e1; line-height: 1.6; font-size: 0.95rem;">
+              Live cohort Socratic discussion &amp; 4 explainer clips accompanying <strong>Legal Engineering 101 Class 5.2</strong> on typing domains, black-box AI boundaries, and agent liability.
+            </p>
+            <div class="card-actions" style="display: flex; gap: 0.55rem; flex-wrap: wrap;">
+              <a href="/event/2026-10-22/" class="btn btn-primary" style="background: var(--accent-gold); color: #0a1128; font-weight: 800; padding: 0.5rem 1rem; border-radius: 6px; font-size: 0.88rem;">🗣️ Event Recording ➔</a>
+              <a href="/101/5.2/" class="btn btn-outline" style="padding: 0.5rem 0.95rem; border-radius: 6px; font-size: 0.88rem; border-color: var(--accent-cyan); color: var(--accent-cyan);">📘 101 Module 5.2 ➔</a>
+            </div>
+          </div>
+
+          <!-- Recent 2: Oct 15, 2026 (Class 5.1) -->
+          <div class="card pillar-card event-list-card" data-event-category="class" style="border: 1px solid var(--border-color); background: rgba(10, 17, 40, 0.8); padding: 1.5rem;">
+            <div class="event-date-tag" style="color: var(--accent-cyan); font-weight: 700; margin-bottom: 0.4rem;">Oct 15, 2026 • 🎓 101 Live Socratic Session (Class 5.1)</div>
+            <h3 style="color: var(--accent-cyan); font-size: 1.25rem; margin-bottom: 0.75rem;">Lesson 5.1: Active Scripts vs. Static Sheets</h3>
+            <p style="margin-bottom: 1.25rem; color: #cbd5e1; line-height: 1.6; font-size: 0.95rem;">
+              Live cohort Socratic discussion &amp; 4 explainer clips accompanying <strong>Legal Engineering 101 Class 5.1</strong> on transitioning from static spreadsheets to active scripts.
+            </p>
+            <div class="card-actions" style="display: flex; gap: 0.55rem; flex-wrap: wrap;">
+              <a href="/event/2026-10-15/" class="btn btn-primary" style="background: var(--accent-gold); color: #0a1128; font-weight: 800; padding: 0.5rem 1rem; border-radius: 6px; font-size: 0.88rem;">🗣️ Event Recording ➔</a>
+              <a href="/101/5.1/" class="btn btn-outline" style="padding: 0.5rem 0.95rem; border-radius: 6px; font-size: 0.88rem; border-color: var(--accent-cyan); color: var(--accent-cyan);">📘 101 Module 5.1 ➔</a>
+            </div>
+          </div>
+
+          <!-- Recent 3: Oct 8, 2026 (Class 4.2) -->
+          <div class="card pillar-card event-list-card" data-event-category="class" style="border: 1px solid var(--border-color); background: rgba(10, 17, 40, 0.8); padding: 1.5rem;">
+            <div class="event-date-tag" style="color: var(--accent-cyan); font-weight: 700; margin-bottom: 0.4rem;">Oct 8, 2026 • 🎓 101 Live Socratic Session (Class 4.2)</div>
+            <h3 style="color: var(--accent-cyan); font-size: 1.25rem; margin-bottom: 0.75rem;">Lesson 4.2: Data Primitives 101: Strings, Numbers, Booleans</h3>
+            <p style="margin-bottom: 1.25rem; color: #cbd5e1; line-height: 1.6; font-size: 0.95rem;">
+              Live cohort Socratic discussion &amp; 4 explainer clips accompanying <strong>Legal Engineering 101 Class 4.2</strong> on strings, fixed-point integers, and boolean triggers.
+            </p>
+            <div class="card-actions" style="display: flex; gap: 0.55rem; flex-wrap: wrap;">
+              <a href="/event/2026-10-08/" class="btn btn-primary" style="background: var(--accent-gold); color: #0a1128; font-weight: 800; padding: 0.5rem 1rem; border-radius: 6px; font-size: 0.88rem;">🗣️ Event Recording ➔</a>
+              <a href="/101/4.2/" class="btn btn-outline" style="padding: 0.5rem 0.95rem; border-radius: 6px; font-size: 0.88rem; border-color: var(--accent-cyan); color: var(--accent-cyan);">📘 101 Module 4.2 ➔</a>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 3: Past Monthly Event Archives (Strictly Recorded Socratic Classes & Guest Interviews) -->
+  <section class="section monthly-archives-section" id="monthly-archives">
+    <div class="container">
+      <div class="events-group-container">
+        <h2 class="group-title" style="color: #34d399; font-size: 1.6rem; margin-bottom: 1.5rem; border-bottom: 2px solid #34d399; padding-bottom: 0.5rem;">
+          🗂️ Past Recorded Events by Month (101 Socratic Classes &amp; Interviews)
         </h2>
 
-        <div class="grid grid-2" style="gap: 1.5rem;">
+        <div class="grid grid-3" style="gap: 1.5rem;">
 
-          <!-- 1. Oct 15, 2026 (Class 5.1) -->
-          <div class="card pillar-card event-list-card" style="border: 2px solid var(--accent-gold); background: rgba(10, 17, 40, 0.95); padding: 1.5rem;">
-            <div style="display: flex; gap: 0.4rem; flex-wrap: wrap; margin-bottom: 0.5rem;">
-              <span class="status-badge today-badge">🔥 RECENT RECORDED SESSION</span>
-              <span class="status-badge media-available">🎧 Recorded Audio Track</span>
-              <span class="status-badge notebook-available">📜 Speech Transcript</span>
-            </div>
-            <div class="event-date-tag" style="color: var(--accent-gold); font-weight: 700; margin-bottom: 0.4rem;">Oct 15, 2026 • Socratic Class 5.1</div>
-            <h3 style="color: var(--accent-gold); font-size: 1.35rem; margin-bottom: 0.75rem;">LexClinic 2026 — Lesson 5.1: Active Scripts vs. Static Sheets</h3>
-            <p style="margin-bottom: 1.25rem; color: #cbd5e1; line-height: 1.6;">
-              Socratic session and audio recording examining the transition from passive legal spreadsheets to self-executing active scripts that automatically monitor and enforce performance state transitions.
+          <!-- October 2026 Archive Page -->
+          <div class="card pillar-card event-list-card" data-event-category="class" style="border: 2px solid #34d399; background: rgba(10, 17, 40, 0.9); padding: 1.5rem;">
+            <div class="event-date-tag" style="color: #34d399; font-weight: 700; margin-bottom: 0.4rem;">October 2026 • 4 Recorded Sessions</div>
+            <h3 style="color: #34d399; font-size: 1.3rem; margin-bottom: 0.75rem;">October 2026 Recorded Events</h3>
+            <p style="margin-bottom: 1rem; color: #cbd5e1; line-height: 1.6; font-size: 0.94rem;">
+              Recorded live Socratic companion sessions for Legal Engineering 101 Modules 4 &amp; 5: <strong>Oct 22 (Class 5.2)</strong>, <strong>Oct 15 (Class 5.1)</strong>, <strong>Oct 8 (Class 4.2)</strong>, and <strong>Oct 1 (Class 4.1)</strong>.
             </p>
+            <div style="font-size: 0.82rem; color: #94a3b8; margin-bottom: 1.25rem;">
+              🎓 4 Recorded 101 Socratic Classes
+            </div>
             <div class="card-actions">
-              <a href="/event/2026-10-15/" class="btn btn-primary" style="background: var(--accent-gold); color: #0a1128; font-weight: 800; padding: 0.6rem 1.25rem; border-radius: 6px;">Open Session Hub ➔</a>
+              <a href="/event/2026-10/" class="btn btn-primary" style="background: #34d399; color: #0a1128; font-weight: 800; padding: 0.6rem 1.25rem; border-radius: 6px;">Browse October 2026 Archive ➔</a>
             </div>
           </div>
 
-          <!-- 2. Oct 8, 2026 (Class 4.2) -->
-          <div class="card pillar-card event-list-card" style="border: 1px solid var(--border-color); padding: 1.5rem;">
-            <div style="display: flex; gap: 0.4rem; flex-wrap: wrap; margin-bottom: 0.5rem;">
-              <span class="status-badge media-available">🎧 Recorded Audio Track</span>
-              <span class="status-badge notebook-available">📜 Speech Transcript</span>
-            </div>
-            <div class="event-date-tag" style="color: var(--accent-cyan); font-weight: 700; margin-bottom: 0.4rem;">Oct 8, 2026 • Socratic Class 4.2</div>
-            <h3 style="color: var(--accent-cyan); font-size: 1.35rem; margin-bottom: 0.75rem;">LexClinic 2026 — Lesson 4.2: Data Primitives 101</h3>
-            <p style="margin-bottom: 1.25rem; color: #cbd5e1; line-height: 1.6;">
-              Socratic session and audio recording deconstructing fundamental data primitives—strings, fixed-point numbers, and booleans—that encode legal terms into machine-evaluated conditions.
+          <!-- September 2026 Archive Page -->
+          <div class="card pillar-card event-list-card" data-event-category="class,interview" style="border: 1px solid var(--border-color); background: rgba(10, 17, 40, 0.8); padding: 1.5rem;">
+            <div class="event-date-tag" style="color: var(--accent-cyan); font-weight: 700; margin-bottom: 0.4rem;">September 2026 • 5 Recorded Events</div>
+            <h3 style="color: var(--accent-cyan); font-size: 1.3rem; margin-bottom: 0.75rem;">September 2026 Recorded Events</h3>
+            <p style="margin-bottom: 1rem; color: #cbd5e1; line-height: 1.6; font-size: 0.94rem;">
+              Includes <strong>Sept 24 (101 Class 3.2)</strong>, <strong>Sept 18 (Lukas Küng Interview)</strong>, <strong>Sept 17 (101 Class 3.1)</strong>, <strong>Sept 8 (James Wigginton Interview)</strong>, and <strong>Sept 4 (101 Class 2.2)</strong>.
             </p>
+            <div style="font-size: 0.82rem; color: #94a3b8; margin-bottom: 1.25rem;">
+              🎓 3 Recorded 101 Socratic Classes • 🎙️ 2 Guest Interviews
+            </div>
             <div class="card-actions">
-              <a href="/event/2026-10-08/" class="btn btn-outline" style="padding: 0.6rem 1.25rem; border-radius: 6px;">Open Session Hub ➔</a>
+              <a href="/event/2026-09/" class="btn btn-outline" style="border-color: var(--accent-cyan); color: var(--accent-cyan); font-weight: 700; padding: 0.6rem 1.25rem; border-radius: 6px;">Browse September 2026 Archive ➔</a>
             </div>
           </div>
 
-          <!-- 3. Oct 1, 2026 (Class 4.1) -->
-          <div class="card pillar-card event-list-card" style="border: 1px solid var(--border-color); padding: 1.5rem;">
-            <div style="display: flex; gap: 0.4rem; flex-wrap: wrap; margin-bottom: 0.5rem;">
-              <span class="status-badge media-available">🎧 Recorded Audio Track</span>
-              <span class="status-badge notebook-available">📜 Speech Transcript</span>
-            </div>
-            <div class="event-date-tag" style="color: var(--accent-cyan); font-weight: 700; margin-bottom: 0.4rem;">Oct 1, 2026 • Socratic Class 4.1</div>
-            <h3 style="color: var(--accent-cyan); font-size: 1.35rem; margin-bottom: 0.75rem;">LexClinic 2026 — Lesson 4.1: Decoupling Logic from Assets</h3>
-            <p style="margin-bottom: 1.25rem; color: #cbd5e1; line-height: 1.6;">
-              Socratic session and audio recording examining computational legal ease, active smart legal wrappers, and state machine transitions.
+          <!-- August 2026 Archive Page -->
+          <div class="card pillar-card event-list-card" data-event-category="class" style="border: 1px solid var(--border-color); background: rgba(10, 17, 40, 0.8); padding: 1.5rem;">
+            <div class="event-date-tag" style="color: var(--accent-gold); font-weight: 700; margin-bottom: 0.4rem;">August 2026 • 3 Recorded Sessions</div>
+            <h3 style="color: var(--accent-gold); font-size: 1.3rem; margin-bottom: 0.75rem;">August 2026 Recorded Events</h3>
+            <p style="margin-bottom: 1rem; color: #cbd5e1; line-height: 1.6; font-size: 0.94rem;">
+              Includes <strong>Aug 28 (101 Class 2.1: The Composer Metaphor)</strong>, <strong>Aug 24 (101 Class 1.2: What is a 'Runtime' in Software?)</strong>, and <strong>Aug 22 (Clinic &amp; Expert Witness Session)</strong>.
             </p>
+            <div style="font-size: 0.82rem; color: #94a3b8; margin-bottom: 1.25rem;">
+              🎓 2 Recorded 101 Socratic Classes • ⚖️ 1 Clinic Session
+            </div>
             <div class="card-actions">
-              <a href="/event/2026-10-01/" class="btn btn-outline" style="padding: 0.6rem 1.25rem; border-radius: 6px;">Open Session Hub ➔</a>
-            </div>
-          </div>
-
-          <!-- 4. Sept 24, 2026 -->
-          <div class="card pillar-card event-list-card" style="border: 1px solid var(--border-color); padding: 1.5rem;">
-            <div style="display: flex; gap: 0.4rem; flex-wrap: wrap; margin-bottom: 0.5rem;">
-              <span class="status-badge media-available">🎥 Video Clips</span>
-              <span class="status-badge notebook-available">📜 Speech Transcript</span>
-            </div>
-            <div class="event-date-tag" style="color: var(--accent-cyan); font-weight: 700; margin-bottom: 0.4rem;">Sept 24, 2026 • Socratic Masterclass</div>
-            <h3 style="color: var(--accent-cyan); font-size: 1.35rem; margin-bottom: 0.75rem;">How Contract Law Built the Blockchain</h3>
-            <p style="margin-bottom: 1.25rem; color: #cbd5e1; line-height: 1.6;">
-              Foundational masterclass analyzing how 500 years of legal contract doctrine shaped modern decentralized consensus runtimes.
-            </p>
-            <div class="card-actions">
-              <a href="/event/2026-09-24/" class="btn btn-outline" style="padding: 0.6rem 1.25rem; border-radius: 6px;">Open Session Hub ➔</a>
-            </div>
-          </div>
-
-          <!-- 5. Sept 17, 2026 -->
-          <div class="card pillar-card event-list-card" style="border: 1px solid var(--border-color); padding: 1.5rem;">
-            <div style="display: flex; gap: 0.4rem; flex-wrap: wrap; margin-bottom: 0.5rem;">
-              <span class="status-badge notebook-available">📜 Speech Transcript</span>
-            </div>
-            <div class="event-date-tag" style="color: var(--accent-cyan); font-weight: 700; margin-bottom: 0.4rem;">Sept 17, 2026 • Socratic Session</div>
-            <h3 style="color: var(--accent-cyan); font-size: 1.35rem; margin-bottom: 0.75rem;">How Corporate Lawyers Invented the Internet</h3>
-            <p style="margin-bottom: 1.25rem; color: #cbd5e1; line-height: 1.6;">
-              Socratic review tracing Delaware corporate law innovations, liability limitation protocols, and early digital entity frameworks.
-            </p>
-            <div class="card-actions">
-              <a href="/event/2026-09-17/" class="btn btn-outline" style="padding: 0.6rem 1.25rem; border-radius: 6px;">Open Session Hub ➔</a>
-            </div>
-          </div>
-
-          <!-- 6. Sept 4, 2026 -->
-          <div class="card pillar-card event-list-card" style="border: 1px solid var(--border-color); padding: 1.5rem;">
-            <div style="display: flex; gap: 0.4rem; flex-wrap: wrap; margin-bottom: 0.5rem;">
-              <span class="status-badge notebook-available">📜 Speech Transcript</span>
-            </div>
-            <div class="event-date-tag" style="color: var(--accent-cyan); font-weight: 700; margin-bottom: 0.4rem;">Sept 4, 2026 • Socratic Session</div>
-            <h3 style="color: var(--accent-cyan); font-size: 1.35rem; margin-bottom: 0.75rem;">Law as a Runtime</h3>
-            <p style="margin-bottom: 1.25rem; color: #cbd5e1; line-height: 1.6;">
-              Deconstructing legal systems as computational execution environments, state transitions, and deterministic court runtimes.
-            </p>
-            <div class="card-actions">
-              <a href="/event/2026-09-04/" class="btn btn-outline" style="padding: 0.6rem 1.25rem; border-radius: 6px;">Open Session Hub ➔</a>
-            </div>
-          </div>
-
-          <!-- 7. Aug 20, 2026 -->
-          <div class="card pillar-card event-list-card" style="border: 1px solid var(--border-color); padding: 1.5rem;">
-            <div style="display: flex; gap: 0.4rem; flex-wrap: wrap; margin-bottom: 0.5rem;">
-              <span class="status-badge notebook-available">📜 Speech Transcript</span>
-            </div>
-            <div class="event-date-tag" style="color: var(--accent-cyan); font-weight: 700; margin-bottom: 0.4rem;">Aug 20, 2026 • Socratic Session</div>
-            <h3 style="color: var(--accent-cyan); font-size: 1.35rem; margin-bottom: 0.75rem;">LexClinic August Socratic Session</h3>
-            <p style="margin-bottom: 1.25rem; color: #cbd5e1; line-height: 1.6;">
-              Early Socratic session covering Ricardian legal wrappers, smart contract execution bounds, and legal engineering foundations.
-            </p>
-            <div class="card-actions">
-              <a href="/event/2026-08-20/" class="btn btn-outline" style="padding: 0.6rem 1.25rem; border-radius: 6px;">Open Session Hub ➔</a>
-            </div>
-          </div>
-
-          <!-- 8. Aug 13, 2026 -->
-          <div class="card pillar-card event-list-card" style="border: 1px solid var(--border-color); padding: 1.5rem;">
-            <div style="display: flex; gap: 0.4rem; flex-wrap: wrap; margin-bottom: 0.5rem;">
-              <span class="status-badge notebook-available">📜 Speech Transcript</span>
-            </div>
-            <div class="event-date-tag" style="color: var(--accent-cyan); font-weight: 700; margin-bottom: 0.4rem;">Aug 13, 2026 • Syllabus Launch</div>
-            <h3 style="color: var(--accent-cyan); font-size: 1.35rem; margin-bottom: 0.75rem;">LexClinic Courseware Syllabus Masterclass</h3>
-            <p style="margin-bottom: 1.25rem; color: #cbd5e1; line-height: 1.6;">
-              Inaugural Socratic session introducing the Legal Engineering 101 curriculum, bottom-up educational philosophy, and assessment framework.
-            </p>
-            <div class="card-actions">
-              <a href="/event/2026-08-13/" class="btn btn-outline" style="padding: 0.6rem 1.25rem; border-radius: 6px;">Open Session Hub ➔</a>
+              <a href="/event/2026-08/" class="btn btn-outline" style="border-color: var(--accent-gold); color: var(--accent-gold); font-weight: 700; padding: 0.6rem 1.25rem; border-radius: 6px;">Browse August 2026 Archive ➔</a>
             </div>
           </div>
 

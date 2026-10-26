@@ -2,19 +2,24 @@
   LexClinic Education Platform — Google Cloud Gmail API Magic Link Worker
   Subject: Your Magic Link Login to LexClinic Education
 */
-const CLIENT_ID = "288664971084-dt9rnn61mj4ej185qcr7chr5du63cao1.apps.googleusercontent.com";
-const CLIENT_SECRET = "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";
-const REFRESH_TOKEN = "1//06zrGvfJSS7GKCgYIARAAGAYSNwF-L9IrkkymZVIPMhr4SRkWln86W7_m_eOg9FHbOZXU5rnz4tkN7fG5CgKSHck3kbzy69CN-sA";
 
-async function getGcpAccessToken() {
+async function getGcpAccessToken(env) {
+  const clientId = env && env.GOOGLE_CLIENT_ID;
+  const clientSecret = env && env.GOOGLE_CLIENT_SECRET;
+  const refreshToken = env && env.GOOGLE_REFRESH_TOKEN;
+
+  if (!clientId || !clientSecret || !refreshToken) {
+    throw new Error("Missing GOOGLE_CLIENT_ID / GOOGLE_CLIENT_SECRET / GOOGLE_REFRESH_TOKEN environment variables");
+  }
+
   const res = await fetch("https://oauth2.googleapis.com/token", {
     method: "POST",
     headers: { "Content-Type": "application/x-www-form-urlencoded" },
     body: new URLSearchParams({
       grant_type: "refresh_token",
-      client_id: CLIENT_ID,
-      client_secret: CLIENT_SECRET,
-      refresh_token: REFRESH_TOKEN
+      client_id: clientId,
+      client_secret: clientSecret,
+      refresh_token: refreshToken
     })
   });
 
@@ -77,7 +82,7 @@ export async function onRequestPost(context) {
     const magicLinkUrl = `${redirectUrl}?token=${token}&email=${encodeURIComponent(email)}`;
 
     // 1. Exchange Refresh Token for Google Cloud Access Token
-    const accessToken = await getGcpAccessToken();
+    const accessToken = await getGcpAccessToken(context.env);
 
     // 2. Build Exact Subject & HTML Email Body
     const subject = "Your Magic Link Login to LexClinic Education";
