@@ -2,24 +2,24 @@ const fs = require('fs');
 const path = require('path');
 
 function run(webDir, config) {
-  console.log(" 🔍 Executing Rule 05: Event Pages Media, Audio, Monthly Archives, Category Filters & Transcript Parity...");
+  console.log(" 🔍 Executing Rule 05: Event Pages Media, Authentic YouTube Clips, 101 Bijection & Monthly Archives...");
 
   const requiredEvents = [
-    { date: "2026-08-13", month: "2026-08", minClips: 1, inRecent3: false },
-    { date: "2026-08-20", month: "2026-08", minClips: 2, inRecent3: false },
-    { date: "2026-09-04", month: "2026-09", minClips: 5, inRecent3: false },
-    { date: "2026-09-17", month: "2026-09", minClips: 5, inRecent3: false },
-    { date: "2026-09-24", month: "2026-09", minClips: 5, inRecent3: false },
-    { date: "2026-10-01", month: "2026-10", minClips: 3, inRecent3: false },
-    { date: "2026-10-08", month: "2026-10", minClips: 5, inRecent3: true },
-    { date: "2026-10-15", month: "2026-10", minClips: 5, inRecent3: true },
-    { date: "2026-10-22", month: "2026-10", minClips: 5, inRecent3: true }
+    { date: "2026-08-22", month: "2026-08", mod: null,  minClips: 1, mustHaveYt: "Cq6rKw-WG8E", inRecent3: false },
+    { date: "2026-08-24", month: "2026-08", mod: "1.2", minClips: 5, mustHaveYt: "7ok00LCAW3A", inRecent3: false },
+    { date: "2026-08-28", month: "2026-08", mod: "2.1", minClips: 5, mustHaveYt: "enWrMVg04fQ", inRecent3: false },
+    { date: "2026-09-04", month: "2026-09", mod: "2.2", minClips: 5, mustHaveYt: "-xgqMiyPA2A", inRecent3: false },
+    { date: "2026-09-17", month: "2026-09", mod: "3.1", minClips: 5, mustHaveYt: "nhYRLFgyRq8", inRecent3: false },
+    { date: "2026-09-24", month: "2026-09", mod: "3.2", minClips: 5, mustHaveYt: "CIzyHeopPcQ", inRecent3: false },
+    { date: "2026-10-01", month: "2026-10", mod: "4.1", minClips: 3, mustHaveYt: "5BAyi_n3lV4", inRecent3: false },
+    { date: "2026-10-08", month: "2026-10", mod: "4.2", minClips: 5, mustHaveYt: "PuHUnTEwveg", inRecent3: true },
+    { date: "2026-10-15", month: "2026-10", mod: "5.1", minClips: 5, mustHaveYt: "Bepdpe2WceI", inRecent3: true },
+    { date: "2026-10-22", month: "2026-10", mod: "5.2", minClips: 5, mustHaveYt: "3LvhVut6Jdw", inRecent3: true }
   ];
 
   const requiredMonths = ["2026-10", "2026-09", "2026-08"];
   const violations = [];
 
-  // Load transcripts.json
   const transcriptsFile = path.join(webDir, "transcripts.json");
   let transcripts = [];
   if (fs.existsSync(transcriptsFile)) {
@@ -28,7 +28,6 @@ function run(webDir, config) {
     violations.push("transcripts.json is missing");
   }
 
-  // Load event/index.html
   const eventHubFile = path.join(webDir, "event", "index.html");
   const eventHubHtml = fs.existsSync(eventHubFile) ? fs.readFileSync(eventHubFile, "utf8") : "";
 
@@ -36,7 +35,7 @@ function run(webDir, config) {
     violations.push("event/index.html is missing Event Subcategory Filter bar (filterEventsByCategory)");
   }
 
-  // Verify Monthly Archive Pages exist and are linked from event/index.html
+  // Verify Monthly Archive Pages exist and contain no unrecorded director/partner calls
   const monthHtmlMap = {};
   for (const m of requiredMonths) {
     const mPath = path.join(webDir, "event", m, "index.html");
@@ -56,7 +55,6 @@ function run(webDir, config) {
     }
   }
 
-  // Verify September archive indexes both guest interviews as events
   if (monthHtmlMap["2026-09"]) {
     if (!monthHtmlMap["2026-09"].includes("/interview/lucas-kung/") || !monthHtmlMap["2026-09"].includes("/interview/2026-09-08/james-wigginton/")) {
       violations.push("event/2026-09/index.html must index both September guest interviews (Lukas Küng & James Wigginton)");
@@ -83,8 +81,18 @@ function run(webDir, config) {
       violations.push(`event/${ev.date}/index.html is missing native <audio> player`);
     }
 
-    if (!html.includes("Companion 101 Module")) {
-      violations.push(`event/${ev.date}/index.html is missing 'Companion 101 Module' link back to /101/`);
+    if (!html.includes(ev.mustHaveYt)) {
+      violations.push(`event/${ev.date}/index.html is missing its authentic YouTube clip (${ev.mustHaveYt})`);
+    }
+
+    if (ev.mod) {
+      if (!html.includes(`/101/${ev.mod}/`)) {
+        violations.push(`event/${ev.date}/index.html must link to its exact Companion 101 Module (/101/${ev.mod}/)`);
+      }
+      const modHtml = fs.readFileSync(path.join(webDir, "101", ev.mod, "index.html"), "utf8");
+      if (!modHtml.includes(`/event/${ev.date}/`)) {
+        violations.push(`101/${ev.mod}/index.html must link back to its exact Companion Socratic Event (/event/${ev.date}/)`);
+      }
     }
 
     const ytMatches = html.match(/youtube\.com\/embed\//g) || [];
@@ -101,7 +109,6 @@ function run(webDir, config) {
       violations.push(`event/${ev.date}/index.html contains redundant status-badge or hero-badge pills`);
     }
 
-    // Recent 3 must be on /event/index.html; older events must be on their respective /event/<YYYY-MM>/index.html page (and NOT cluttering /event/index.html)
     if (ev.inRecent3) {
       if (!eventHubHtml.includes(`/event/${ev.date}/`)) {
         violations.push(`event/index.html must display top-3 recent event /event/${ev.date}/`);
@@ -123,12 +130,12 @@ function run(webDir, config) {
   }
 
   if (violations.length > 0) {
-    console.error(" ❌ RULE 05 FAILED: Event page & Monthly Archive contract violations detected:");
+    console.error(" ❌ RULE 05 FAILED: Event page, Bijection & Monthly Archive contract violations detected:");
     violations.forEach(v => console.error(`    - ${v}`));
     return false;
   }
 
-  console.log(` ✅ RULE 05 PASSED: All ${requiredEvents.length} recorded events, 3 Recent Events on /event/, 3 Monthly Archive Pages (/event/2026-10/, /09/, /08/), and Category Filters verified!`);
+  console.log(` ✅ RULE 05 PASSED: All ${requiredEvents.length} recorded events, authentic YouTube clips, 1-to-1 101 Bijection, and 3 Monthly Archives verified!`);
   return true;
 }
 

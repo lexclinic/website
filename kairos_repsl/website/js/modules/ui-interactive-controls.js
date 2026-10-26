@@ -69,8 +69,13 @@
   }
 
   // 3. FULLSCREEN MEDIA EXPANSION
-  function toggleFullscreenIframe(cardId) {
-    const cardEl = document.getElementById(cardId) || document.querySelector(`.media-card[data-card-id="${cardId}"]`);
+  function toggleFullscreenIframe(cardIdOrEl) {
+    let cardEl = null;
+    if (cardIdOrEl && typeof cardIdOrEl === "object" && cardIdOrEl.closest) {
+      cardEl = cardIdOrEl.closest(".card, .pillar-card");
+    } else if (typeof cardIdOrEl === "string") {
+      cardEl = document.getElementById(cardIdOrEl) || document.querySelector(`.media-card[data-card-id="${cardIdOrEl}"]`);
+    }
     if (!cardEl) return;
 
     const mediaTarget = cardEl.querySelector("iframe") || cardEl.querySelector(".video-container") || cardEl;
@@ -91,22 +96,96 @@
     }
   }
 
+  // 4. PROGRESSIVE QUIZ BUTTON HYDRATOR (5-Q Learned ➔ 20-Q Expert Only After Passing 5-Q)
+  function applyQuizButtonStates(submissions) {
+    if (!document.querySelectorAll) return;
+    const btns = document.querySelectorAll("[data-progressive-quiz-cid]");
+    btns.forEach(btn => {
+      const cid = btn.getAttribute("data-progressive-quiz-cid");
+      const learnedHref = btn.getAttribute("data-learned-href");
+      const expertHref = btn.getAttribute("data-expert-href");
+      if (!cid || !learnedHref || !expertHref) return;
+
+      const matches = (submissions || []).filter(s => s && (
+        s.class_id === cid ||
+        s.class_id === "class_" + cid ||
+        s.class_id === cid + "_learned" ||
+        s.class_id === cid + "_expert"
+      ));
+
+      let passedLearned = false;
+      let passedExpert = false;
+      matches.forEach(s => {
+        const sc = String(s.score || "");
+        if (sc.includes("/")) {
+          const [num, den] = sc.split("/").map(Number);
+          if (den === 5 && num >= 4) passedLearned = true;
+          if (den >= 16 && num >= 16) { passedLearned = true; passedExpert = true; }
+        } else if (Number(sc) >= 16) {
+          passedLearned = true;
+          passedExpert = true;
+        } else if (Number(sc) >= 4) {
+          passedLearned = true;
+        }
+      });
+
+      if (passedExpert) {
+        btn.setAttribute("href", expertHref);
+        btn.innerHTML = "🏆 20-Q Expert Quiz Passed ➔";
+        btn.style.background = "#34d399";
+        btn.style.color = "#0a1128";
+        btn.style.borderColor = "#34d399";
+      } else if (passedLearned) {
+        btn.setAttribute("href", expertHref);
+        btn.innerHTML = "🎓 Take 20-Q Expert Quiz (Unlocked!) ➔";
+        btn.style.background = "var(--accent-cyan)";
+        btn.style.color = "#0a1128";
+        btn.style.borderColor = "var(--accent-cyan)";
+      } else {
+        btn.setAttribute("href", learnedHref);
+      }
+    });
+  }
+
+  function hydrateProgressiveQuizButtons() {
+    try {
+      const rawSubs = JSON.parse(localStorage.getItem("lexclinic_quiz_submissions") || "[]");
+      const localSubs = Array.isArray(rawSubs) ? rawSubs : Object.values(rawSubs);
+      applyQuizButtonStates(localSubs);
+
+      const userEmail = (window.getSanitizedEmail ? window.getSanitizedEmail() : "") || (localStorage.getItem("lexclinic_user_email") || "").toLowerCase().trim();
+      if (userEmail && window.fetch) {
+        window.fetch("/api/user-attest?email=" + encodeURIComponent(userEmail))
+          .then(r => r.ok ? r.json() : null)
+          .then(data => {
+            if (data && Array.isArray(data.submissions)) {
+              applyQuizButtonStates(localSubs.concat(data.submissions));
+            }
+          })
+          .catch(() => {});
+      }
+    } catch (e) {}
+  }
+
   // Export Window Functions
   window.bindMobileToggle = bindMobileToggle;
   window.checkDisclaimerSplash = checkDisclaimerSplash;
   window.checkDisclaimerSplashModal = checkDisclaimerSplash;
   window.acknowledgeDisclaimer = acknowledgeDisclaimer;
   window.toggleFullscreenIframe = toggleFullscreenIframe;
+  window.hydrateProgressiveQuizButtons = hydrateProgressiveQuizButtons;
 
   // Auto-run on DOM load
   if (document.readyState === "loading") {
     document.addEventListener("DOMContentLoaded", () => {
       bindMobileToggle();
       checkDisclaimerSplash();
+      hydrateProgressiveQuizButtons();
     });
   } else {
     bindMobileToggle();
     checkDisclaimerSplash();
+    hydrateProgressiveQuizButtons();
   }
 
 })();

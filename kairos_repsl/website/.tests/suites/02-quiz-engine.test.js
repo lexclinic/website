@@ -49,7 +49,7 @@ function createQuizSandbox(selectedAnswers = {}, userEmail = 'kyle@lex.clinic', 
     'mastery-questions-container', 'quiz-stage-heading', 'quiz-stage-subtext',
     'submit-quiz-btn', 'quiz-submit-btn', 'unlock-20q-offer-box',
     'quiz-result-card', 'quiz-result-title', 'quiz-score-summary', 'quiz-hash-box', 'quiz-payload-hash',
-    'prior-completion-banner', 'prior-completion-title', 'prior-completion-text'
+    'prior-completion-banner', 'prior-completion-title', 'prior-completion-text', 'expert-prerequisite-lock-banner'
   ];
   commonIds.forEach(id => makeEl(id));
 
@@ -170,15 +170,27 @@ async function run(webDir) {
   // --------------------------------------------------------------------------
   const q62ExpertHtml = fs.readFileSync(path.join(webDir, '101/6.2/quiz-expert/index.html'), 'utf8');
   const script62Expert = q62ExpertHtml.split('<script>').pop().split('</script>')[0];
-  const envExpert = createQuizSandbox(answersPass, 'kyle@lex.clinic');
+
+  // Case A: Visiting quiz-expert BEFORE passing 5-Q Learned -> Shows lock banner & hides form
+  const envExpertLocked = createQuizSandbox(answersPass, 'kyle@lex.clinic');
+  vm.runInContext(script62Expert, envExpertLocked.sandbox);
+  assert.strictEqual(envExpertLocked.elementsById['expert-prerequisite-lock-banner'].style.display, 'block', 'Visiting quiz-expert before passing 5-Q Learned must display prerequisite lock banner');
+  assert.strictEqual(envExpertLocked.elementsById['quiz-62-form'].style.display, 'none', 'Visiting quiz-expert before passing 5-Q Learned must hide the 20-question form');
+  assertions += 2;
+
+  // Case B: Visiting quiz-expert AFTER passing 5-Q Learned -> Hides lock banner & allows 20/20 submission
+  const envExpert = createQuizSandbox(answersPass, 'kyle@lex.clinic', {
+    lexclinic_quiz_submissions: savedSubsJson
+  });
   vm.runInContext(script62Expert, envExpert.sandbox);
+  assert.strictEqual(envExpert.elementsById['expert-prerequisite-lock-banner'].style.display, 'none', 'Visiting quiz-expert after passing 5-Q Learned must hide prerequisite lock banner');
 
   await envExpert.windowObj.submitQuiz({ preventDefault: () => {} });
   assert.strictEqual(envExpert.submittedPayloads.length, 1, 'Submitting 20-Q Expert Quiz must post to /api/submit-quiz');
   assert.strictEqual(envExpert.submittedPayloads[0].tier, 'expert', 'Expert Attestation tier must be expert');
   assert.strictEqual(envExpert.submittedPayloads[0].score, '20/20', 'Expert Attestation score must be 20/20');
   assert.ok(envExpert.submittedPayloads[0].payload_hash.startsWith('0x') && envExpert.submittedPayloads[0].payload_hash.length === 66, 'Expert Attestation must include 66-char 0x Keccak/SHA-256 hash');
-  assertions += 4;
+  assertions += 5;
 
   // --------------------------------------------------------------------------
   // Test 2.4: Execute Interview Dual-Route Quiz (interview/lucas-kung/quiz-expert/index.html)

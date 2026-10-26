@@ -9,6 +9,7 @@
     "ensureNavLoginModalInDOM",
     "filterEventsByCategory",
     "getSanitizedEmail",
+    "hydrateProgressiveQuizButtons",
     "initAllMediaMeters",
     "initNativeMediaListeners",
     "initYouTubePlayers",

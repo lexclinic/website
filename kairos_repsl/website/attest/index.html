@@ -458,13 +458,12 @@
               <div>
                 <div style="display: flex; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 0.4rem;">
                   <span style="background: rgba(148, 163, 184, 0.15); color: #94a3b8; padding: 0.15rem 0.55rem; border-radius: 4px; font-size: 0.78rem;">⚪ Not Completed</span>
-                  <span style="background: rgba(56, 189, 248, 0.15); color: var(--accent-cyan); padding: 0.15rem 0.55rem; border-radius: 4px; font-size: 0.78rem;">${quiz.category} (5-Q Learned ➔ 20-Q Expert)</span>
+                  <span style="background: rgba(56, 189, 248, 0.15); color: var(--accent-cyan); padding: 0.15rem 0.55rem; border-radius: 4px; font-size: 0.78rem;">${quiz.category} (Pass 5-Q Learned to Unlock 20-Q Expert)</span>
                 </div>
                 <h3 style="color: #cbd5e1; font-size: 1.15rem; margin: 0;">${quiz.title}</h3>
               </div>
               <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
-                <a href="${quiz.learnedUrl || quiz.url}" class="btn btn-primary" style="font-size: 0.83rem; padding: 0.4rem 0.9rem;">📘 5-Q Learned Quiz ➔</a>
-                <a href="${quiz.expertUrl || quiz.url}" class="btn btn-outline" style="font-size: 0.83rem; padding: 0.4rem 0.9rem;">🎓 20-Q Expert Quiz ➔</a>
+                <a href="${quiz.learnedUrl || quiz.url}" class="btn btn-primary" style="font-size: 0.85rem; padding: 0.45rem 1rem; background: var(--accent-gold); color: #0a1128; font-weight: 800;">📘 Take 5-Q Learned Quiz ➔</a>
               </div>
             </div>
           `;

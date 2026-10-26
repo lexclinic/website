@@ -3,26 +3,24 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Law as a Runtime & Computational Fiduciary Law | LexClinic Education</title>
-  <meta name="description" content="Socratic Session for Class 2.2: ERC-7827 & On-Chain State Machines. Examining automated fiduciary duty enforcement, AI verification gates, and computational legal runtimes.">
-  <link rel="stylesheet" href="/styles.css?v=20261016_v5">
+  <title>LexClinic 2026 — Class 2.2 Socratic Session: Law as a Runtime &amp; Minimizing Transaction Costs (2026-09-04) | LexClinic Events</title>
+  <meta name="description" content="Friday, September 4, 2026 • Live Socratic Session for Legal Engineering 101 Class 2.2: Minimizing Social Transaction Costs. Examining automated fiduciary duty enforcement, AI verification gates, and computational legal runtimes.">
+  <link rel="stylesheet" href="/styles.css?v=20261025_v10">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-  <script src="/js/audio-player.js?v=20261016_v5"></script>
-  <script src="/js/auth.js?v=20261016_v5"></script>
-  <script src="/js/media-tracker-miniapp.js?v=20261016_v5"></script>
-  <script src="/js/watch-tracker.js?v=20261016_v5"></script>
-  <script src="/js/modules/ui-interactive-controls.js?v=20261017_v6"></script>
-  <script src="/script.js?v=20261016_v5" defer></script>
-  <link rel="icon" type="image/png" href="/favicon.png?v=20260829_2640">
-  <link rel="shortcut icon" href="/favicon.ico?v=20260829_2640">
+  <script src="/js/audio-player.js?v=20261025_v10"></script>
+  <script src="/js/auth.js?v=20261025_v10"></script>
+  <script src="/js/media-tracker-miniapp.js?v=20261025_v10"></script>
+  <script src="/js/watch-tracker.js?v=20261025_v10"></script>
+  <script src="/js/modules/ui-interactive-controls.js?v=20261025_v10"></script>
+  <script src="/script.js?v=20261025_v10" defer></script>
+  <link rel="icon" type="image/png" href="/favicon.png?v=20261025_v10">
+  <link rel="shortcut icon" href="/favicon.ico?v=20261025_v10">
 </head>
 <body>
 
-  <!-- Navigation Bar -->
-          <!-- Unified Fixed Header Wrapper (Navbar + Sub-Navbar Disclaimer) -->
-    <!-- Unified Fixed Header Wrapper (Top Disclaimer + Navbar) -->
+  <!-- Unified Fixed Header Wrapper -->
   <header class="fixed-header-wrapper">
     <div class="top-disclaimer-bar">
       <span>⚖️ <strong>LEGAL DISCLAIMER:</strong> LexClinic Education, Inc. is applying for 501(c)(3) tax-exempt status. Materials, software runtimes, and APIs are for educational research and do not constitute formal legal advice. <a href="/help/#disclaimer">Read Full Disclaimer ➔</a></span>
@@ -34,7 +32,7 @@
           <span class="logo-text">Lex<span class="highlight">Clinic</span></span>
         </a>
         <nav class="nav-links" id="nav-links">
-          <a href="/event/">Event</a>
+          <a href="/event/" class="active-link">Event</a>
           <a href="/101">101</a>
           <a href="/interview/">Interview</a>
           <a href="/collaborate/">Collaborate</a>
@@ -58,12 +56,11 @@
   <!-- Hero Section -->
   <section class="hero page-hero">
     <div class="container hero-content">
-      <h1 class="hero-title">Law as a Runtime & Computational Fiduciary Law</h1>
-      <p class="hero-subtitle">Friday, September 4, 2026 • Socratic Session for Class 2.2: ERC-7827 & On-Chain State Machines. Examining automated fiduciary duty enforcement, AI verification gates, and computational legal runtimes.</p>
+      <h1 class="hero-title">LexClinic 2026 — Class 2.2 Socratic Session: Law as a Runtime &amp; Minimizing Transaction Costs</h1>
+      <p class="hero-subtitle">Friday, September 4, 2026 • Live Socratic Session for Legal Engineering 101 Class 2.2: Minimizing Social Transaction Costs. Examining automated fiduciary duty enforcement, AI verification gates, and computational legal runtimes.</p>
       <div class="hero-actions" style="display: flex; gap: 0.75rem; justify-content: center; flex-wrap: wrap;">
         <a href="/101/2.2/" class="btn btn-primary" style="background: var(--accent-cyan); color: #0a1128; font-weight: 800;">📘 Companion 101 Module (Class 2.2) ➔</a>
-        <a href="/101/2.2/quiz-learned/" class="btn btn-primary" style="background: var(--accent-gold); color: #0a1128; font-weight: 800;">📘 5-Q Learned Quiz ➔</a>
-        <a href="/101/2.2/quiz-expert/" class="btn btn-outline" style="border-color: var(--accent-cyan); color: var(--accent-cyan); font-weight: 700;">🎓 20-Q Expert Quiz ➔</a>
+        <a href="/event/2026-09-04/quiz-learned/" data-progressive-quiz-cid="2026-09-04" data-learned-href="/event/2026-09-04/quiz-learned/" data-expert-href="/event/2026-09-04/quiz-expert/" class="btn btn-primary" style="background: var(--accent-gold); color: #0a1128; font-weight: 800;">📘 Take 5-Q Learned Quiz ➔</a>
         <a href="/event/" class="btn btn-outline">← Back to Events Hub</a>
       </div>
     </div>
@@ -72,22 +69,21 @@
   <!-- Main Content -->
   <section class="section">
     <div class="container">
-      
-      <!-- 1. Session Overview Card at TOP -->
-      <div class="card pillar-card" style="margin-bottom: 2rem;">
+
+      <!-- 1. Session Overview Card -->
+      <div class="card pillar-card" style="max-width: 960px; margin: 0 auto 2rem auto;">
         <h2 style="color: var(--accent-gold); font-size: 1.4rem; margin-bottom: 0.75rem;">
           Socratic Session Overview
         </h2>
         <p style="line-height: 1.7; color: var(--text-main); font-size: 1.05rem; margin: 0;">
-          Socratic Session for Class 2.2: ERC-7827 & On-Chain State Machines. Examining automated fiduciary duty enforcement, AI verification gates, and computational legal runtimes.
+          Friday, September 4, 2026 • Live Socratic companion session for Legal Engineering 101 Class 2.2. Deconstructs legal systems as computational execution environments, moving from magic to mechanics, and minimizing societal transaction costs.
         </p>
       </div>
 
-      <!-- Law as a Runtime — Full Audio Stream -->
-      <div class="card pillar-card" id="law-as-a-runtime-audio-stream" style="border: 2px solid #1ed760; margin-bottom: 2rem;">
-
+      <!-- Native Audio Stream Card -->
+      <div class="card pillar-card" id="card_event_sept4_audio" style="border: 2px solid #1ed760; max-width: 960px; margin: 0 auto 2rem auto;">
         <h3 style="color: #1ed760; font-size: 1.25rem; margin-bottom: 0.75rem;">
-          Law as a Runtime — Full Audio Stream
+          Law as a Software Runtime (Class 2.2 Socratic Session) — Full Audio Stream
         </h3>
 
         <div class="media-playback-meter-container" style="margin-top: 0.5rem; margin-bottom: 0.85rem; background: rgba(15, 23, 42, 0.9); border: 1px solid #334155; border-radius: 8px; padding: 0.85rem; box-shadow: 0 4px 12px rgba(0,0,0,0.5);">
@@ -100,7 +96,7 @@
           </div>
         </div>
 
-        <audio id="audio-player-law-as-a-runtime" controls style="width: 100%; margin-bottom: 0.75rem; accent-color: #1ed760;" preload="metadata">
+        <audio id="audio-player-event-2026-09-04" controls style="width: 100%; margin-bottom: 0.75rem; accent-color: #1ed760;" preload="metadata">
           <source src="audio.m4a" type="audio/mp4">
           Your browser does not support native audio playback.
         </audio>
@@ -108,69 +104,25 @@
         <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem; background: rgba(15, 23, 42, 0.8); padding: 0.65rem 0.85rem; border-radius: 6px; border: 1px solid #334155;">
           <div style="display: flex; align-items: center; gap: 0.35rem;">
             <span style="font-size: 0.82rem; font-weight: 700; color: #1ed760; margin-right: 0.25rem;">Speed:</span>
-            <button type="button" onclick="window.setAudioSpeed('audio-player-law-as-a-runtime', 1.0, this)" class="btn-speed" style="padding: 0.25rem 0.55rem; font-size: 0.78rem; background: #1ed760; color: #0a1128; font-weight: 800; border: 1px solid #1ed760; border-radius: 4px; cursor: pointer;">1.0x</button>
-            <button type="button" onclick="window.setAudioSpeed('audio-player-law-as-a-runtime', 1.25, this)" class="btn-speed" style="padding: 0.25rem 0.55rem; font-size: 0.78rem; background: rgba(30, 41, 59, 0.8); color: #e2e8f0; font-weight: 600; border: 1px solid #334155; border-radius: 4px; cursor: pointer;">1.25x</button>
-            <button type="button" onclick="window.setAudioSpeed('audio-player-law-as-a-runtime', 1.5, this)" class="btn-speed" style="padding: 0.25rem 0.55rem; font-size: 0.78rem; background: rgba(30, 41, 59, 0.8); color: #e2e8f0; font-weight: 600; border: 1px solid #334155; border-radius: 4px; cursor: pointer;">1.5x</button>
-            <button type="button" onclick="window.setAudioSpeed('audio-player-law-as-a-runtime', 1.75, this)" class="btn-speed" style="padding: 0.25rem 0.55rem; font-size: 0.78rem; background: rgba(30, 41, 59, 0.8); color: #e2e8f0; font-weight: 600; border: 1px solid #334155; border-radius: 4px; cursor: pointer;">1.75x</button>
-            <button type="button" onclick="window.setAudioSpeed('audio-player-law-as-a-runtime', 2.0, this)" class="btn-speed" style="padding: 0.25rem 0.55rem; font-size: 0.78rem; background: rgba(30, 41, 59, 0.8); color: #e2e8f0; font-weight: 600; border: 1px solid #1ed760; border-radius: 4px; cursor: pointer;">2.0x</button>
+            <button type="button" onclick="window.setAudioSpeed('audio-player-event-2026-09-04', 1.0, this)" class="btn-speed" style="padding: 0.25rem 0.55rem; font-size: 0.78rem; background: #1ed760; color: #0a1128; font-weight: 800; border: 1px solid #1ed760; border-radius: 4px; cursor: pointer;">1.0x</button>
+            <button type="button" onclick="window.setAudioSpeed('audio-player-event-2026-09-04', 1.25, this)" class="btn-speed" style="padding: 0.25rem 0.55rem; font-size: 0.78rem; background: rgba(30, 41, 59, 0.8); color: #e2e8f0; font-weight: 600; border: 1px solid #334155; border-radius: 4px; cursor: pointer;">1.25x</button>
+            <button type="button" onclick="window.setAudioSpeed('audio-player-event-2026-09-04', 1.5, this)" class="btn-speed" style="padding: 0.25rem 0.55rem; font-size: 0.78rem; background: rgba(30, 41, 59, 0.8); color: #e2e8f0; font-weight: 600; border: 1px solid #334155; border-radius: 4px; cursor: pointer;">1.5x</button>
+            <button type="button" onclick="window.setAudioSpeed('audio-player-event-2026-09-04', 1.75, this)" class="btn-speed" style="padding: 0.25rem 0.55rem; font-size: 0.78rem; background: rgba(30, 41, 59, 0.8); color: #e2e8f0; font-weight: 600; border: 1px solid #334155; border-radius: 4px; cursor: pointer;">1.75x</button>
+            <button type="button" onclick="window.setAudioSpeed('audio-player-event-2026-09-04', 2.0, this)" class="btn-speed" style="padding: 0.25rem 0.55rem; font-size: 0.78rem; background: rgba(30, 41, 59, 0.8); color: #e2e8f0; font-weight: 600; border: 1px solid #1ed760; border-radius: 4px; cursor: pointer;">2.0x</button>
           </div>
           <div style="display: flex; align-items: center; gap: 0.35rem; flex-wrap: wrap;">
-            
-            <button type="button" onclick="window.openMediaCommentModal('law-as-a-runtime-audio-stream', event)" class="btn btn-comment-law-as-a-runtime-audio-stream" style="padding: 0.25rem 0.65rem; font-size: 0.78rem; background: rgba(56, 189, 248, 0.15); color: var(--accent-cyan); border: 1px solid var(--accent-cyan); border-radius: 4px; cursor: pointer; font-weight: 700;">💬 Notes</button>
-            <button type="button" onclick="window.openMediaApprovalModal('law-as-a-runtime-audio-stream', event)" class="btn btn-approval-law-as-a-runtime-audio-stream" style="padding: 0.25rem 0.65rem; font-size: 0.78rem; background: rgba(56, 189, 248, 0.15); color: var(--accent-cyan); border: 1px solid var(--accent-cyan); border-radius: 4px; cursor: pointer; font-weight: 700;">👍 Approval</button>
+            <button type="button" onclick="window.openMediaCommentModal('card_event_sept4_audio', event)" class="btn btn-comment-card_event_sept4_audio" style="padding: 0.25rem 0.65rem; font-size: 0.78rem; background: rgba(56, 189, 248, 0.15); color: var(--accent-cyan); border: 1px solid var(--accent-cyan); border-radius: 4px; cursor: pointer; font-weight: 700;">💬 Notes</button>
+            <button type="button" onclick="window.openMediaApprovalModal('card_event_sept4_audio', event)" class="btn btn-approval-card_event_sept4_audio" style="padding: 0.25rem 0.65rem; font-size: 0.78rem; background: rgba(56, 189, 248, 0.15); color: var(--accent-cyan); border: 1px solid var(--accent-cyan); border-radius: 4px; cursor: pointer; font-weight: 700;">👍 Approval</button>
             <button type="button" onclick="window.openNavLoginModal(event)" class="btn btn-unlogged-prompt" style="padding: 0.25rem 0.65rem; font-size: 0.78rem; background: rgba(251, 191, 36, 0.15); color: #fbbf24; border: 1px solid #f59e0b; border-radius: 4px; cursor: pointer; font-weight: 700; display: inline-block;">🔒 Login for Notes &amp; Approvals</button>
-            <button type="button" onclick="window.copyCardDirectLink('law-as-a-runtime-audio-stream', this)" class="btn btn-copy-link" style="padding: 0.25rem 0.65rem; font-size: 0.78rem; background: rgba(56, 189, 248, 0.15); color: var(--accent-cyan); border: 1px solid var(--accent-cyan); border-radius: 4px; cursor: pointer; font-weight: 700;">🔗 Copy Direct Link</button>
+            <button type="button" onclick="window.copyCardDirectLink('card_event_sept4_audio', this)" class="btn btn-copy-link" style="padding: 0.25rem 0.65rem; font-size: 0.78rem; background: rgba(56, 189, 248, 0.15); color: var(--accent-cyan); border: 1px solid var(--accent-cyan); border-radius: 4px; cursor: pointer; font-weight: 700;">🔗 Copy Direct Link</button>
           </div>
         </div>
       </div>
 
-      <h2 style="color: var(--accent-gold); font-size: 1.5rem; margin-bottom: 1.25rem;">🎥 Video Clips</h2>
-
-      <!-- Clip 1: Law as a Runtime Part 1 -->
-      <div class="card pillar-card" id="law-as-a-runtime-clip-1" style="border: 2px solid var(--accent-cyan); margin-bottom: 2rem;">
-
-        <h3 style="color: var(--accent-cyan); font-size: 1.25rem; margin-bottom: 0.75rem;">
-          Clip 1: Law as a Runtime Part 1
-        </h3>
-
-        <div class="media-playback-meter-container" style="margin-top: 0.5rem; margin-bottom: 0.85rem; background: rgba(15, 23, 42, 0.9); border: 1px solid #334155; border-radius: 8px; padding: 0.85rem; box-shadow: 0 4px 12px rgba(0,0,0,0.5);">
-          <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 0.4rem;">
-            <span class="meter-status-text" style="font-size: 0.88rem; font-weight: 700; color: #cbd5e1;">🎥 Unwatched Video Clip</span>
-            <span class="meter-auth-hint" style="font-size: 0.8rem; color: #94a3b8;">🔒 Log in to save watch tracker</span>
-          </div>
-          <div style="width: 100%; height: 8px; background: rgba(30, 41, 59, 0.8); border-radius: 4px; overflow: hidden; border: 1px solid #475569;">
-            <div class="meter-fill-bar" style="width: 0%; height: 100%; background: linear-gradient(90deg, #38bdf8, #34d399); transition: width 0.4s ease;"></div>
-          </div>
-        </div>
-
-        <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 8px; border: 1px solid var(--border-color); background: #000; margin-bottom: 0.75rem;">
-          <iframe id="yt_frame_law-as-a-runtime_1" loading="lazy" src="https://www.youtube.com/embed/PuHUnTEwveg?enablejsapi=1" allow="autoplay; fullscreen" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;" allowfullscreen></iframe>
-        </div>
-
-        <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem; background: rgba(15, 23, 42, 0.8); padding: 0.65rem 0.85rem; border-radius: 6px; border: 1px solid #334155;">
-          <div style="display: flex; align-items: center; gap: 0.35rem;">
-            <span style="font-size: 0.82rem; font-weight: 700; color: var(--accent-cyan); margin-right: 0.25rem;">Speed:</span>
-            <button type="button" onclick="window.setVideoSpeed('law-as-a-runtime-clip-1', 1.0, this)" class="btn-speed" style="padding: 0.25rem 0.55rem; font-size: 0.78rem; background: var(--accent-cyan); color: #0a1128; font-weight: 800; border: 1px solid var(--accent-cyan); border-radius: 4px; cursor: pointer;">1.0x</button>
-            <button type="button" onclick="window.setVideoSpeed('law-as-a-runtime-clip-1', 1.25, this)" class="btn-speed" style="padding: 0.25rem 0.55rem; font-size: 0.78rem; background: rgba(30, 41, 59, 0.8); color: #e2e8f0; font-weight: 600; border: 1px solid #334155; border-radius: 4px; cursor: pointer;">1.25x</button>
-            <button type="button" onclick="window.setVideoSpeed('law-as-a-runtime-clip-1', 1.5, this)" class="btn-speed" style="padding: 0.25rem 0.55rem; font-size: 0.78rem; background: rgba(30, 41, 59, 0.8); color: #e2e8f0; font-weight: 600; border: 1px solid #334155; border-radius: 4px; cursor: pointer;">1.5x</button>
-            <button type="button" onclick="window.setVideoSpeed('law-as-a-runtime-clip-1', 1.75, this)" class="btn-speed" style="padding: 0.25rem 0.55rem; font-size: 0.78rem; background: rgba(30, 41, 59, 0.8); color: #e2e8f0; font-weight: 600; border: 1px solid #334155; border-radius: 4px; cursor: pointer;">1.75x</button>
-            <button type="button" onclick="window.setVideoSpeed('law-as-a-runtime-clip-1', 2.0, this)" class="btn-speed" style="padding: 0.25rem 0.55rem; font-size: 0.78rem; background: rgba(30, 41, 59, 0.8); color: #e2e8f0; font-weight: 600; border: 1px solid var(--accent-cyan); border-radius: 4px; cursor: pointer;">2.0x</button>
-          </div>
-          <div style="display: flex; align-items: center; gap: 0.35rem; flex-wrap: wrap;">
-            <button type="button" onclick="const iframe = this.closest('.card, .pillar-card').querySelector('iframe'); if (iframe) { if (iframe.requestFullscreen) iframe.requestFullscreen(); else if (iframe.webkitRequestFullscreen) iframe.webkitRequestFullscreen(); }" class="btn" style="padding: 0.25rem 0.65rem; font-size: 0.78rem; background: rgba(56, 189, 248, 0.15); color: var(--accent-cyan); border: 1px solid var(--accent-cyan); border-radius: 4px; cursor: pointer; font-weight: 700;">⤢ Expand Fullscreen</button>
-            <button type="button" onclick="window.openMediaCommentModal('law-as-a-runtime-clip-1', event)" class="btn btn-comment-law-as-a-runtime-clip-1" style="padding: 0.25rem 0.65rem; font-size: 0.78rem; background: rgba(56, 189, 248, 0.15); color: var(--accent-cyan); border: 1px solid var(--accent-cyan); border-radius: 4px; cursor: pointer; font-weight: 700;">💬 Notes</button>
-            <button type="button" onclick="window.openMediaApprovalModal('law-as-a-runtime-clip-1', event)" class="btn btn-approval-law-as-a-runtime-clip-1" style="padding: 0.25rem 0.65rem; font-size: 0.78rem; background: rgba(56, 189, 248, 0.15); color: var(--accent-cyan); border: 1px solid var(--accent-cyan); border-radius: 4px; cursor: pointer; font-weight: 700;">👍 Approval</button>
-            <button type="button" onclick="window.openNavLoginModal(event)" class="btn btn-unlogged-prompt" style="padding: 0.25rem 0.65rem; font-size: 0.78rem; background: rgba(251, 191, 36, 0.15); color: #fbbf24; border: 1px solid #f59e0b; border-radius: 4px; cursor: pointer; font-weight: 700; display: inline-block;">🔒 Login for Notes &amp; Approvals</button>
-            <button type="button" onclick="window.copyCardDirectLink('law-as-a-runtime-clip-1', this)" class="btn btn-copy-link" style="padding: 0.25rem 0.65rem; font-size: 0.78rem; background: rgba(56, 189, 248, 0.15); color: var(--accent-cyan); border: 1px solid var(--accent-cyan); border-radius: 4px; cursor: pointer; font-weight: 700;">🔗 Copy Direct Link</button>
-          </div>
-        </div>
-      </div>
-
-      <!-- Clip 2: Law as a Runtime Part 2 -->
-      <div class="card pillar-card" id="law-as-a-runtime-clip-2" style="border: 2px solid var(--accent-gold); margin-bottom: 2rem;">
-
+      <!-- Video Card: Clip 1: Law as a Software Runtime &amp; Governance Engine -->
+      <div class="card pillar-card" id="card_event_sept4_1" style="border: 2px solid var(--accent-gold); max-width: 960px; margin: 0 auto 2rem auto;">
         <h3 style="color: var(--accent-gold); font-size: 1.25rem; margin-bottom: 0.75rem;">
-          Clip 2: Law as a Runtime Part 2
+          Clip 1: Law as a Software Runtime &amp; Governance Engine
         </h3>
 
         <div class="media-playback-meter-container" style="margin-top: 0.5rem; margin-bottom: 0.85rem; background: rgba(15, 23, 42, 0.9); border: 1px solid #334155; border-radius: 8px; padding: 0.85rem; box-shadow: 0 4px 12px rgba(0,0,0,0.5);">
@@ -184,33 +136,32 @@
         </div>
 
         <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 8px; border: 1px solid var(--border-color); background: #000; margin-bottom: 0.75rem;">
-          <iframe id="yt_frame_law-as-a-runtime_2" loading="lazy" src="https://www.youtube.com/embed/0jfitBNKZW8?enablejsapi=1" allow="autoplay; fullscreen" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;" allowfullscreen></iframe>
+          <iframe id="yt_frame_card_event_sept4_1" loading="lazy" src="https://www.youtube.com/embed/-xgqMiyPA2A?enablejsapi=1" allow="autoplay; fullscreen" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;" allowfullscreen></iframe>
         </div>
 
         <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem; background: rgba(15, 23, 42, 0.8); padding: 0.65rem 0.85rem; border-radius: 6px; border: 1px solid #334155;">
           <div style="display: flex; align-items: center; gap: 0.35rem;">
             <span style="font-size: 0.82rem; font-weight: 700; color: var(--accent-gold); margin-right: 0.25rem;">Speed:</span>
-            <button type="button" onclick="window.setVideoSpeed('law-as-a-runtime-clip-2', 1.0, this)" class="btn-speed" style="padding: 0.25rem 0.55rem; font-size: 0.78rem; background: var(--accent-gold); color: #0a1128; font-weight: 800; border: 1px solid var(--accent-gold); border-radius: 4px; cursor: pointer;">1.0x</button>
-            <button type="button" onclick="window.setVideoSpeed('law-as-a-runtime-clip-2', 1.25, this)" class="btn-speed" style="padding: 0.25rem 0.55rem; font-size: 0.78rem; background: rgba(30, 41, 59, 0.8); color: #e2e8f0; font-weight: 600; border: 1px solid #334155; border-radius: 4px; cursor: pointer;">1.25x</button>
-            <button type="button" onclick="window.setVideoSpeed('law-as-a-runtime-clip-2', 1.5, this)" class="btn-speed" style="padding: 0.25rem 0.55rem; font-size: 0.78rem; background: rgba(30, 41, 59, 0.8); color: #e2e8f0; font-weight: 600; border: 1px solid #334155; border-radius: 4px; cursor: pointer;">1.5x</button>
-            <button type="button" onclick="window.setVideoSpeed('law-as-a-runtime-clip-2', 1.75, this)" class="btn-speed" style="padding: 0.25rem 0.55rem; font-size: 0.78rem; background: rgba(30, 41, 59, 0.8); color: #e2e8f0; font-weight: 600; border: 1px solid #334155; border-radius: 4px; cursor: pointer;">1.75x</button>
-            <button type="button" onclick="window.setVideoSpeed('law-as-a-runtime-clip-2', 2.0, this)" class="btn-speed" style="padding: 0.25rem 0.55rem; font-size: 0.78rem; background: rgba(30, 41, 59, 0.8); color: #e2e8f0; font-weight: 600; border: 1px solid var(--accent-gold); border-radius: 4px; cursor: pointer;">2.0x</button>
+            <button type="button" onclick="window.setVideoSpeed('card_event_sept4_1', 1.0, this)" class="btn-speed" style="padding: 0.25rem 0.55rem; font-size: 0.78rem; background: var(--accent-gold); color: #0a1128; font-weight: 800; border: 1px solid var(--accent-gold); border-radius: 4px; cursor: pointer;">1.0x</button>
+            <button type="button" onclick="window.setVideoSpeed('card_event_sept4_1', 1.25, this)" class="btn-speed" style="padding: 0.25rem 0.55rem; font-size: 0.78rem; background: rgba(30, 41, 59, 0.8); color: #e2e8f0; font-weight: 600; border: 1px solid #334155; border-radius: 4px; cursor: pointer;">1.25x</button>
+            <button type="button" onclick="window.setVideoSpeed('card_event_sept4_1', 1.5, this)" class="btn-speed" style="padding: 0.25rem 0.55rem; font-size: 0.78rem; background: rgba(30, 41, 59, 0.8); color: #e2e8f0; font-weight: 600; border: 1px solid #334155; border-radius: 4px; cursor: pointer;">1.5x</button>
+            <button type="button" onclick="window.setVideoSpeed('card_event_sept4_1', 1.75, this)" class="btn-speed" style="padding: 0.25rem 0.55rem; font-size: 0.78rem; background: rgba(30, 41, 59, 0.8); color: #e2e8f0; font-weight: 600; border: 1px solid #334155; border-radius: 4px; cursor: pointer;">1.75x</button>
+            <button type="button" onclick="window.setVideoSpeed('card_event_sept4_1', 2.0, this)" class="btn-speed" style="padding: 0.25rem 0.55rem; font-size: 0.78rem; background: rgba(30, 41, 59, 0.8); color: #e2e8f0; font-weight: 600; border: 1px solid #334155; border-radius: 4px; cursor: pointer;">2.0x</button>
           </div>
           <div style="display: flex; align-items: center; gap: 0.35rem; flex-wrap: wrap;">
-            <button type="button" onclick="const iframe = this.closest('.card, .pillar-card').querySelector('iframe'); if (iframe) { if (iframe.requestFullscreen) iframe.requestFullscreen(); else if (iframe.webkitRequestFullscreen) iframe.webkitRequestFullscreen(); }" class="btn" style="padding: 0.25rem 0.65rem; font-size: 0.78rem; background: rgba(56, 189, 248, 0.15); color: var(--accent-cyan); border: 1px solid var(--accent-cyan); border-radius: 4px; cursor: pointer; font-weight: 700;">⤢ Expand Fullscreen</button>
-            <button type="button" onclick="window.openMediaCommentModal('law-as-a-runtime-clip-2', event)" class="btn btn-comment-law-as-a-runtime-clip-2" style="padding: 0.25rem 0.65rem; font-size: 0.78rem; background: rgba(56, 189, 248, 0.15); color: var(--accent-cyan); border: 1px solid var(--accent-cyan); border-radius: 4px; cursor: pointer; font-weight: 700;">💬 Notes</button>
-            <button type="button" onclick="window.openMediaApprovalModal('law-as-a-runtime-clip-2', event)" class="btn btn-approval-law-as-a-runtime-clip-2" style="padding: 0.25rem 0.65rem; font-size: 0.78rem; background: rgba(56, 189, 248, 0.15); color: var(--accent-cyan); border: 1px solid var(--accent-cyan); border-radius: 4px; cursor: pointer; font-weight: 700;">👍 Approval</button>
+            <button type="button" onclick="window.toggleFullscreenIframe(this)" class="btn" style="padding: 0.25rem 0.65rem; font-size: 0.78rem; background: rgba(56, 189, 248, 0.15); color: var(--accent-cyan); border: 1px solid var(--accent-cyan); border-radius: 4px; cursor: pointer; font-weight: 700;">⤢ Fullscreen</button>
+            <button type="button" onclick="window.openMediaCommentModal('card_event_sept4_1', event)" class="btn btn-comment-card_event_sept4_1" style="padding: 0.25rem 0.65rem; font-size: 0.78rem; background: rgba(56, 189, 248, 0.15); color: var(--accent-cyan); border: 1px solid var(--accent-cyan); border-radius: 4px; cursor: pointer; font-weight: 700;">💬 Notes</button>
+            <button type="button" onclick="window.openMediaApprovalModal('card_event_sept4_1', event)" class="btn btn-approval-card_event_sept4_1" style="padding: 0.25rem 0.65rem; font-size: 0.78rem; background: rgba(56, 189, 248, 0.15); color: var(--accent-cyan); border: 1px solid var(--accent-cyan); border-radius: 4px; cursor: pointer; font-weight: 700;">👍 Approval</button>
             <button type="button" onclick="window.openNavLoginModal(event)" class="btn btn-unlogged-prompt" style="padding: 0.25rem 0.65rem; font-size: 0.78rem; background: rgba(251, 191, 36, 0.15); color: #fbbf24; border: 1px solid #f59e0b; border-radius: 4px; cursor: pointer; font-weight: 700; display: inline-block;">🔒 Login for Notes &amp; Approvals</button>
-            <button type="button" onclick="window.copyCardDirectLink('law-as-a-runtime-clip-2', this)" class="btn btn-copy-link" style="padding: 0.25rem 0.65rem; font-size: 0.78rem; background: rgba(56, 189, 248, 0.15); color: var(--accent-cyan); border: 1px solid var(--accent-cyan); border-radius: 4px; cursor: pointer; font-weight: 700;">🔗 Copy Direct Link</button>
+            <button type="button" onclick="window.copyCardDirectLink('card_event_sept4_1', this)" class="btn btn-copy-link" style="padding: 0.25rem 0.65rem; font-size: 0.78rem; background: rgba(56, 189, 248, 0.15); color: var(--accent-cyan); border: 1px solid var(--accent-cyan); border-radius: 4px; cursor: pointer; font-weight: 700;">🔗 Copy Direct Link</button>
           </div>
         </div>
       </div>
 
-      <!-- Clip 3: Law as a Runtime Part 3 -->
-      <div class="card pillar-card" id="law-as-a-runtime-clip-3" style="border: 2px solid var(--accent-cyan); margin-bottom: 2rem;">
-
+      <!-- Video Card: Clip 2: Theory vs. Mechanics -->
+      <div class="card pillar-card" id="card_event_sept4_2" style="border: 2px solid var(--accent-cyan); max-width: 960px; margin: 0 auto 2rem auto;">
         <h3 style="color: var(--accent-cyan); font-size: 1.25rem; margin-bottom: 0.75rem;">
-          Clip 3: Law as a Runtime Part 3
+          Clip 2: Theory vs. Mechanics
         </h3>
 
         <div class="media-playback-meter-container" style="margin-top: 0.5rem; margin-bottom: 0.85rem; background: rgba(15, 23, 42, 0.9); border: 1px solid #334155; border-radius: 8px; padding: 0.85rem; box-shadow: 0 4px 12px rgba(0,0,0,0.5);">
@@ -224,73 +175,32 @@
         </div>
 
         <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 8px; border: 1px solid var(--border-color); background: #000; margin-bottom: 0.75rem;">
-          <iframe id="yt_frame_law-as-a-runtime_3" loading="lazy" src="https://www.youtube.com/embed/tI5GXr7OvPA?enablejsapi=1" allow="autoplay; fullscreen" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;" allowfullscreen></iframe>
+          <iframe id="yt_frame_card_event_sept4_2" loading="lazy" src="https://www.youtube.com/embed/13BveDsBKiE?enablejsapi=1" allow="autoplay; fullscreen" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;" allowfullscreen></iframe>
         </div>
 
         <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem; background: rgba(15, 23, 42, 0.8); padding: 0.65rem 0.85rem; border-radius: 6px; border: 1px solid #334155;">
           <div style="display: flex; align-items: center; gap: 0.35rem;">
             <span style="font-size: 0.82rem; font-weight: 700; color: var(--accent-cyan); margin-right: 0.25rem;">Speed:</span>
-            <button type="button" onclick="window.setVideoSpeed('law-as-a-runtime-clip-3', 1.0, this)" class="btn-speed" style="padding: 0.25rem 0.55rem; font-size: 0.78rem; background: var(--accent-cyan); color: #0a1128; font-weight: 800; border: 1px solid var(--accent-cyan); border-radius: 4px; cursor: pointer;">1.0x</button>
-            <button type="button" onclick="window.setVideoSpeed('law-as-a-runtime-clip-3', 1.25, this)" class="btn-speed" style="padding: 0.25rem 0.55rem; font-size: 0.78rem; background: rgba(30, 41, 59, 0.8); color: #e2e8f0; font-weight: 600; border: 1px solid #334155; border-radius: 4px; cursor: pointer;">1.25x</button>
-            <button type="button" onclick="window.setVideoSpeed('law-as-a-runtime-clip-3', 1.5, this)" class="btn-speed" style="padding: 0.25rem 0.55rem; font-size: 0.78rem; background: rgba(30, 41, 59, 0.8); color: #e2e8f0; font-weight: 600; border: 1px solid #334155; border-radius: 4px; cursor: pointer;">1.5x</button>
-            <button type="button" onclick="window.setVideoSpeed('law-as-a-runtime-clip-3', 1.75, this)" class="btn-speed" style="padding: 0.25rem 0.55rem; font-size: 0.78rem; background: rgba(30, 41, 59, 0.8); color: #e2e8f0; font-weight: 600; border: 1px solid #334155; border-radius: 4px; cursor: pointer;">1.75x</button>
-            <button type="button" onclick="window.setVideoSpeed('law-as-a-runtime-clip-3', 2.0, this)" class="btn-speed" style="padding: 0.25rem 0.55rem; font-size: 0.78rem; background: rgba(30, 41, 59, 0.8); color: #e2e8f0; font-weight: 600; border: 1px solid var(--accent-cyan); border-radius: 4px; cursor: pointer;">2.0x</button>
+            <button type="button" onclick="window.setVideoSpeed('card_event_sept4_2', 1.0, this)" class="btn-speed" style="padding: 0.25rem 0.55rem; font-size: 0.78rem; background: var(--accent-cyan); color: #0a1128; font-weight: 800; border: 1px solid var(--accent-cyan); border-radius: 4px; cursor: pointer;">1.0x</button>
+            <button type="button" onclick="window.setVideoSpeed('card_event_sept4_2', 1.25, this)" class="btn-speed" style="padding: 0.25rem 0.55rem; font-size: 0.78rem; background: rgba(30, 41, 59, 0.8); color: #e2e8f0; font-weight: 600; border: 1px solid #334155; border-radius: 4px; cursor: pointer;">1.25x</button>
+            <button type="button" onclick="window.setVideoSpeed('card_event_sept4_2', 1.5, this)" class="btn-speed" style="padding: 0.25rem 0.55rem; font-size: 0.78rem; background: rgba(30, 41, 59, 0.8); color: #e2e8f0; font-weight: 600; border: 1px solid #334155; border-radius: 4px; cursor: pointer;">1.5x</button>
+            <button type="button" onclick="window.setVideoSpeed('card_event_sept4_2', 1.75, this)" class="btn-speed" style="padding: 0.25rem 0.55rem; font-size: 0.78rem; background: rgba(30, 41, 59, 0.8); color: #e2e8f0; font-weight: 600; border: 1px solid #334155; border-radius: 4px; cursor: pointer;">1.75x</button>
+            <button type="button" onclick="window.setVideoSpeed('card_event_sept4_2', 2.0, this)" class="btn-speed" style="padding: 0.25rem 0.55rem; font-size: 0.78rem; background: rgba(30, 41, 59, 0.8); color: #e2e8f0; font-weight: 600; border: 1px solid #334155; border-radius: 4px; cursor: pointer;">2.0x</button>
           </div>
           <div style="display: flex; align-items: center; gap: 0.35rem; flex-wrap: wrap;">
-            <button type="button" onclick="const iframe = this.closest('.card, .pillar-card').querySelector('iframe'); if (iframe) { if (iframe.requestFullscreen) iframe.requestFullscreen(); else if (iframe.webkitRequestFullscreen) iframe.webkitRequestFullscreen(); }" class="btn" style="padding: 0.25rem 0.65rem; font-size: 0.78rem; background: rgba(56, 189, 248, 0.15); color: var(--accent-cyan); border: 1px solid var(--accent-cyan); border-radius: 4px; cursor: pointer; font-weight: 700;">⤢ Expand Fullscreen</button>
-            <button type="button" onclick="window.openMediaCommentModal('law-as-a-runtime-clip-3', event)" class="btn btn-comment-law-as-a-runtime-clip-3" style="padding: 0.25rem 0.65rem; font-size: 0.78rem; background: rgba(56, 189, 248, 0.15); color: var(--accent-cyan); border: 1px solid var(--accent-cyan); border-radius: 4px; cursor: pointer; font-weight: 700;">💬 Notes</button>
-            <button type="button" onclick="window.openMediaApprovalModal('law-as-a-runtime-clip-3', event)" class="btn btn-approval-law-as-a-runtime-clip-3" style="padding: 0.25rem 0.65rem; font-size: 0.78rem; background: rgba(56, 189, 248, 0.15); color: var(--accent-cyan); border: 1px solid var(--accent-cyan); border-radius: 4px; cursor: pointer; font-weight: 700;">👍 Approval</button>
+            <button type="button" onclick="window.toggleFullscreenIframe(this)" class="btn" style="padding: 0.25rem 0.65rem; font-size: 0.78rem; background: rgba(56, 189, 248, 0.15); color: var(--accent-cyan); border: 1px solid var(--accent-cyan); border-radius: 4px; cursor: pointer; font-weight: 700;">⤢ Fullscreen</button>
+            <button type="button" onclick="window.openMediaCommentModal('card_event_sept4_2', event)" class="btn btn-comment-card_event_sept4_2" style="padding: 0.25rem 0.65rem; font-size: 0.78rem; background: rgba(56, 189, 248, 0.15); color: var(--accent-cyan); border: 1px solid var(--accent-cyan); border-radius: 4px; cursor: pointer; font-weight: 700;">💬 Notes</button>
+            <button type="button" onclick="window.openMediaApprovalModal('card_event_sept4_2', event)" class="btn btn-approval-card_event_sept4_2" style="padding: 0.25rem 0.65rem; font-size: 0.78rem; background: rgba(56, 189, 248, 0.15); color: var(--accent-cyan); border: 1px solid var(--accent-cyan); border-radius: 4px; cursor: pointer; font-weight: 700;">👍 Approval</button>
             <button type="button" onclick="window.openNavLoginModal(event)" class="btn btn-unlogged-prompt" style="padding: 0.25rem 0.65rem; font-size: 0.78rem; background: rgba(251, 191, 36, 0.15); color: #fbbf24; border: 1px solid #f59e0b; border-radius: 4px; cursor: pointer; font-weight: 700; display: inline-block;">🔒 Login for Notes &amp; Approvals</button>
-            <button type="button" onclick="window.copyCardDirectLink('law-as-a-runtime-clip-3', this)" class="btn btn-copy-link" style="padding: 0.25rem 0.65rem; font-size: 0.78rem; background: rgba(56, 189, 248, 0.15); color: var(--accent-cyan); border: 1px solid var(--accent-cyan); border-radius: 4px; cursor: pointer; font-weight: 700;">🔗 Copy Direct Link</button>
+            <button type="button" onclick="window.copyCardDirectLink('card_event_sept4_2', this)" class="btn btn-copy-link" style="padding: 0.25rem 0.65rem; font-size: 0.78rem; background: rgba(56, 189, 248, 0.15); color: var(--accent-cyan); border: 1px solid var(--accent-cyan); border-radius: 4px; cursor: pointer; font-weight: 700;">🔗 Copy Direct Link</button>
           </div>
         </div>
       </div>
 
-      <!-- Clip 4: Law as a Runtime Part 4 -->
-      <div class="card pillar-card" id="law-as-a-runtime-clip-4" style="border: 2px solid var(--accent-gold); margin-bottom: 2rem;">
-
-        <h3 style="color: var(--accent-gold); font-size: 1.25rem; margin-bottom: 0.75rem;">
-          Clip 4: Law as a Runtime Part 4
-        </h3>
-
-        <div class="media-playback-meter-container" style="margin-top: 0.5rem; margin-bottom: 0.85rem; background: rgba(15, 23, 42, 0.9); border: 1px solid #334155; border-radius: 8px; padding: 0.85rem; box-shadow: 0 4px 12px rgba(0,0,0,0.5);">
-          <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 0.4rem;">
-            <span class="meter-status-text" style="font-size: 0.88rem; font-weight: 700; color: #cbd5e1;">🎥 Unwatched Video Clip</span>
-            <span class="meter-auth-hint" style="font-size: 0.8rem; color: #94a3b8;">🔒 Log in to save watch tracker</span>
-          </div>
-          <div style="width: 100%; height: 8px; background: rgba(30, 41, 59, 0.8); border-radius: 4px; overflow: hidden; border: 1px solid #475569;">
-            <div class="meter-fill-bar" style="width: 0%; height: 100%; background: linear-gradient(90deg, #38bdf8, #34d399); transition: width 0.4s ease;"></div>
-          </div>
-        </div>
-
-        <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 8px; border: 1px solid var(--border-color); background: #000; margin-bottom: 0.75rem;">
-          <iframe id="yt_frame_law-as-a-runtime_4" loading="lazy" src="https://www.youtube.com/embed/iWm04NR8KqY?enablejsapi=1" allow="autoplay; fullscreen" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;" allowfullscreen></iframe>
-        </div>
-
-        <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem; background: rgba(15, 23, 42, 0.8); padding: 0.65rem 0.85rem; border-radius: 6px; border: 1px solid #334155;">
-          <div style="display: flex; align-items: center; gap: 0.35rem;">
-            <span style="font-size: 0.82rem; font-weight: 700; color: var(--accent-gold); margin-right: 0.25rem;">Speed:</span>
-            <button type="button" onclick="window.setVideoSpeed('law-as-a-runtime-clip-4', 1.0, this)" class="btn-speed" style="padding: 0.25rem 0.55rem; font-size: 0.78rem; background: var(--accent-gold); color: #0a1128; font-weight: 800; border: 1px solid var(--accent-gold); border-radius: 4px; cursor: pointer;">1.0x</button>
-            <button type="button" onclick="window.setVideoSpeed('law-as-a-runtime-clip-4', 1.25, this)" class="btn-speed" style="padding: 0.25rem 0.55rem; font-size: 0.78rem; background: rgba(30, 41, 59, 0.8); color: #e2e8f0; font-weight: 600; border: 1px solid #334155; border-radius: 4px; cursor: pointer;">1.25x</button>
-            <button type="button" onclick="window.setVideoSpeed('law-as-a-runtime-clip-4', 1.5, this)" class="btn-speed" style="padding: 0.25rem 0.55rem; font-size: 0.78rem; background: rgba(30, 41, 59, 0.8); color: #e2e8f0; font-weight: 600; border: 1px solid #334155; border-radius: 4px; cursor: pointer;">1.5x</button>
-            <button type="button" onclick="window.setVideoSpeed('law-as-a-runtime-clip-4', 1.75, this)" class="btn-speed" style="padding: 0.25rem 0.55rem; font-size: 0.78rem; background: rgba(30, 41, 59, 0.8); color: #e2e8f0; font-weight: 600; border: 1px solid #334155; border-radius: 4px; cursor: pointer;">1.75x</button>
-            <button type="button" onclick="window.setVideoSpeed('law-as-a-runtime-clip-4', 2.0, this)" class="btn-speed" style="padding: 0.25rem 0.55rem; font-size: 0.78rem; background: rgba(30, 41, 59, 0.8); color: #e2e8f0; font-weight: 600; border: 1px solid var(--accent-gold); border-radius: 4px; cursor: pointer;">2.0x</button>
-          </div>
-          <div style="display: flex; align-items: center; gap: 0.35rem; flex-wrap: wrap;">
-            <button type="button" onclick="const iframe = this.closest('.card, .pillar-card').querySelector('iframe'); if (iframe) { if (iframe.requestFullscreen) iframe.requestFullscreen(); else if (iframe.webkitRequestFullscreen) iframe.webkitRequestFullscreen(); }" class="btn" style="padding: 0.25rem 0.65rem; font-size: 0.78rem; background: rgba(56, 189, 248, 0.15); color: var(--accent-cyan); border: 1px solid var(--accent-cyan); border-radius: 4px; cursor: pointer; font-weight: 700;">⤢ Expand Fullscreen</button>
-            <button type="button" onclick="window.openMediaCommentModal('law-as-a-runtime-clip-4', event)" class="btn btn-comment-law-as-a-runtime-clip-4" style="padding: 0.25rem 0.65rem; font-size: 0.78rem; background: rgba(56, 189, 248, 0.15); color: var(--accent-cyan); border: 1px solid var(--accent-cyan); border-radius: 4px; cursor: pointer; font-weight: 700;">💬 Notes</button>
-            <button type="button" onclick="window.openMediaApprovalModal('law-as-a-runtime-clip-4', event)" class="btn btn-approval-law-as-a-runtime-clip-4" style="padding: 0.25rem 0.65rem; font-size: 0.78rem; background: rgba(56, 189, 248, 0.15); color: var(--accent-cyan); border: 1px solid var(--accent-cyan); border-radius: 4px; cursor: pointer; font-weight: 700;">👍 Approval</button>
-            <button type="button" onclick="window.openNavLoginModal(event)" class="btn btn-unlogged-prompt" style="padding: 0.25rem 0.65rem; font-size: 0.78rem; background: rgba(251, 191, 36, 0.15); color: #fbbf24; border: 1px solid #f59e0b; border-radius: 4px; cursor: pointer; font-weight: 700; display: inline-block;">🔒 Login for Notes &amp; Approvals</button>
-            <button type="button" onclick="window.copyCardDirectLink('law-as-a-runtime-clip-4', this)" class="btn btn-copy-link" style="padding: 0.25rem 0.65rem; font-size: 0.78rem; background: rgba(56, 189, 248, 0.15); color: var(--accent-cyan); border: 1px solid var(--accent-cyan); border-radius: 4px; cursor: pointer; font-weight: 700;">🔗 Copy Direct Link</button>
-          </div>
-        </div>
-      </div>
-
-      <!-- Clip 5: Law as a Runtime Part 5 -->
-      <div class="card pillar-card" id="law-as-a-runtime-clip-5" style="border: 2px solid var(--accent-cyan); margin-bottom: 2rem;">
-
+      <!-- Video Card: Clip 3: The Future of Law -->
+      <div class="card pillar-card" id="card_event_sept4_3" style="border: 2px solid var(--accent-cyan); max-width: 960px; margin: 0 auto 2rem auto;">
         <h3 style="color: var(--accent-cyan); font-size: 1.25rem; margin-bottom: 0.75rem;">
-          Clip 5: Law as a Runtime Part 5
+          Clip 3: The Future of Law
         </h3>
 
         <div class="media-playback-meter-container" style="margin-top: 0.5rem; margin-bottom: 0.85rem; background: rgba(15, 23, 42, 0.9); border: 1px solid #334155; border-radius: 8px; padding: 0.85rem; box-shadow: 0 4px 12px rgba(0,0,0,0.5);">
@@ -304,31 +214,111 @@
         </div>
 
         <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 8px; border: 1px solid var(--border-color); background: #000; margin-bottom: 0.75rem;">
-          <iframe id="yt_frame_law-as-a-runtime_5" loading="lazy" src="https://www.youtube.com/embed/-UJE6MzLsY4?enablejsapi=1" allow="autoplay; fullscreen" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;" allowfullscreen></iframe>
+          <iframe id="yt_frame_card_event_sept4_3" loading="lazy" src="https://www.youtube.com/embed/oXGMxpqvF6E?enablejsapi=1" allow="autoplay; fullscreen" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;" allowfullscreen></iframe>
         </div>
 
         <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem; background: rgba(15, 23, 42, 0.8); padding: 0.65rem 0.85rem; border-radius: 6px; border: 1px solid #334155;">
           <div style="display: flex; align-items: center; gap: 0.35rem;">
             <span style="font-size: 0.82rem; font-weight: 700; color: var(--accent-cyan); margin-right: 0.25rem;">Speed:</span>
-            <button type="button" onclick="window.setVideoSpeed('law-as-a-runtime-clip-5', 1.0, this)" class="btn-speed" style="padding: 0.25rem 0.55rem; font-size: 0.78rem; background: var(--accent-cyan); color: #0a1128; font-weight: 800; border: 1px solid var(--accent-cyan); border-radius: 4px; cursor: pointer;">1.0x</button>
-            <button type="button" onclick="window.setVideoSpeed('law-as-a-runtime-clip-5', 1.25, this)" class="btn-speed" style="padding: 0.25rem 0.55rem; font-size: 0.78rem; background: rgba(30, 41, 59, 0.8); color: #e2e8f0; font-weight: 600; border: 1px solid #334155; border-radius: 4px; cursor: pointer;">1.25x</button>
-            <button type="button" onclick="window.setVideoSpeed('law-as-a-runtime-clip-5', 1.5, this)" class="btn-speed" style="padding: 0.25rem 0.55rem; font-size: 0.78rem; background: rgba(30, 41, 59, 0.8); color: #e2e8f0; font-weight: 600; border: 1px solid #334155; border-radius: 4px; cursor: pointer;">1.5x</button>
-            <button type="button" onclick="window.setVideoSpeed('law-as-a-runtime-clip-5', 1.75, this)" class="btn-speed" style="padding: 0.25rem 0.55rem; font-size: 0.78rem; background: rgba(30, 41, 59, 0.8); color: #e2e8f0; font-weight: 600; border: 1px solid #334155; border-radius: 4px; cursor: pointer;">1.75x</button>
-            <button type="button" onclick="window.setVideoSpeed('law-as-a-runtime-clip-5', 2.0, this)" class="btn-speed" style="padding: 0.25rem 0.55rem; font-size: 0.78rem; background: rgba(30, 41, 59, 0.8); color: #e2e8f0; font-weight: 600; border: 1px solid var(--accent-cyan); border-radius: 4px; cursor: pointer;">2.0x</button>
+            <button type="button" onclick="window.setVideoSpeed('card_event_sept4_3', 1.0, this)" class="btn-speed" style="padding: 0.25rem 0.55rem; font-size: 0.78rem; background: var(--accent-cyan); color: #0a1128; font-weight: 800; border: 1px solid var(--accent-cyan); border-radius: 4px; cursor: pointer;">1.0x</button>
+            <button type="button" onclick="window.setVideoSpeed('card_event_sept4_3', 1.25, this)" class="btn-speed" style="padding: 0.25rem 0.55rem; font-size: 0.78rem; background: rgba(30, 41, 59, 0.8); color: #e2e8f0; font-weight: 600; border: 1px solid #334155; border-radius: 4px; cursor: pointer;">1.25x</button>
+            <button type="button" onclick="window.setVideoSpeed('card_event_sept4_3', 1.5, this)" class="btn-speed" style="padding: 0.25rem 0.55rem; font-size: 0.78rem; background: rgba(30, 41, 59, 0.8); color: #e2e8f0; font-weight: 600; border: 1px solid #334155; border-radius: 4px; cursor: pointer;">1.5x</button>
+            <button type="button" onclick="window.setVideoSpeed('card_event_sept4_3', 1.75, this)" class="btn-speed" style="padding: 0.25rem 0.55rem; font-size: 0.78rem; background: rgba(30, 41, 59, 0.8); color: #e2e8f0; font-weight: 600; border: 1px solid #334155; border-radius: 4px; cursor: pointer;">1.75x</button>
+            <button type="button" onclick="window.setVideoSpeed('card_event_sept4_3', 2.0, this)" class="btn-speed" style="padding: 0.25rem 0.55rem; font-size: 0.78rem; background: rgba(30, 41, 59, 0.8); color: #e2e8f0; font-weight: 600; border: 1px solid #334155; border-radius: 4px; cursor: pointer;">2.0x</button>
           </div>
           <div style="display: flex; align-items: center; gap: 0.35rem; flex-wrap: wrap;">
-            <button type="button" onclick="const iframe = this.closest('.card, .pillar-card').querySelector('iframe'); if (iframe) { if (iframe.requestFullscreen) iframe.requestFullscreen(); else if (iframe.webkitRequestFullscreen) iframe.webkitRequestFullscreen(); }" class="btn" style="padding: 0.25rem 0.65rem; font-size: 0.78rem; background: rgba(56, 189, 248, 0.15); color: var(--accent-cyan); border: 1px solid var(--accent-cyan); border-radius: 4px; cursor: pointer; font-weight: 700;">⤢ Expand Fullscreen</button>
-            <button type="button" onclick="window.openMediaCommentModal('law-as-a-runtime-clip-5', event)" class="btn btn-comment-law-as-a-runtime-clip-5" style="padding: 0.25rem 0.65rem; font-size: 0.78rem; background: rgba(56, 189, 248, 0.15); color: var(--accent-cyan); border: 1px solid var(--accent-cyan); border-radius: 4px; cursor: pointer; font-weight: 700;">💬 Notes</button>
-            <button type="button" onclick="window.openMediaApprovalModal('law-as-a-runtime-clip-5', event)" class="btn btn-approval-law-as-a-runtime-clip-5" style="padding: 0.25rem 0.65rem; font-size: 0.78rem; background: rgba(56, 189, 248, 0.15); color: var(--accent-cyan); border: 1px solid var(--accent-cyan); border-radius: 4px; cursor: pointer; font-weight: 700;">👍 Approval</button>
+            <button type="button" onclick="window.toggleFullscreenIframe(this)" class="btn" style="padding: 0.25rem 0.65rem; font-size: 0.78rem; background: rgba(56, 189, 248, 0.15); color: var(--accent-cyan); border: 1px solid var(--accent-cyan); border-radius: 4px; cursor: pointer; font-weight: 700;">⤢ Fullscreen</button>
+            <button type="button" onclick="window.openMediaCommentModal('card_event_sept4_3', event)" class="btn btn-comment-card_event_sept4_3" style="padding: 0.25rem 0.65rem; font-size: 0.78rem; background: rgba(56, 189, 248, 0.15); color: var(--accent-cyan); border: 1px solid var(--accent-cyan); border-radius: 4px; cursor: pointer; font-weight: 700;">💬 Notes</button>
+            <button type="button" onclick="window.openMediaApprovalModal('card_event_sept4_3', event)" class="btn btn-approval-card_event_sept4_3" style="padding: 0.25rem 0.65rem; font-size: 0.78rem; background: rgba(56, 189, 248, 0.15); color: var(--accent-cyan); border: 1px solid var(--accent-cyan); border-radius: 4px; cursor: pointer; font-weight: 700;">👍 Approval</button>
             <button type="button" onclick="window.openNavLoginModal(event)" class="btn btn-unlogged-prompt" style="padding: 0.25rem 0.65rem; font-size: 0.78rem; background: rgba(251, 191, 36, 0.15); color: #fbbf24; border: 1px solid #f59e0b; border-radius: 4px; cursor: pointer; font-weight: 700; display: inline-block;">🔒 Login for Notes &amp; Approvals</button>
-            <button type="button" onclick="window.copyCardDirectLink('law-as-a-runtime-clip-5', this)" class="btn btn-copy-link" style="padding: 0.25rem 0.65rem; font-size: 0.78rem; background: rgba(56, 189, 248, 0.15); color: var(--accent-cyan); border: 1px solid var(--accent-cyan); border-radius: 4px; cursor: pointer; font-weight: 700;">🔗 Copy Direct Link</button>
+            <button type="button" onclick="window.copyCardDirectLink('card_event_sept4_3', this)" class="btn btn-copy-link" style="padding: 0.25rem 0.65rem; font-size: 0.78rem; background: rgba(56, 189, 248, 0.15); color: var(--accent-cyan); border: 1px solid var(--accent-cyan); border-radius: 4px; cursor: pointer; font-weight: 700;">🔗 Copy Direct Link</button>
           </div>
         </div>
       </div>
 
-<div style="margin-top: 2.5rem; display: flex; gap: 1rem; flex-wrap: wrap; align-items: center; justify-content: center;">
-        <a href="quiz.html" class="btn btn-primary" style="background: var(--accent-gold); color: #0a1128; font-weight: 800; font-size: 1.05rem; padding: 0.75rem 1.75rem;">Take 20-Q Session Quiz ➔</a>
-        <a href="/event/" class="btn btn-outline" style="font-size: 1.05rem; padding: 0.75rem 1.75rem;">← Back to Events Hub</a>
+      <!-- Video Card: Clip 4: Magic to Mechanics -->
+      <div class="card pillar-card" id="card_event_sept4_4" style="border: 2px solid var(--accent-cyan); max-width: 960px; margin: 0 auto 2rem auto;">
+        <h3 style="color: var(--accent-cyan); font-size: 1.25rem; margin-bottom: 0.75rem;">
+          Clip 4: Magic to Mechanics
+        </h3>
+
+        <div class="media-playback-meter-container" style="margin-top: 0.5rem; margin-bottom: 0.85rem; background: rgba(15, 23, 42, 0.9); border: 1px solid #334155; border-radius: 8px; padding: 0.85rem; box-shadow: 0 4px 12px rgba(0,0,0,0.5);">
+          <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 0.4rem;">
+            <span class="meter-status-text" style="font-size: 0.88rem; font-weight: 700; color: #cbd5e1;">🎥 Unwatched Video Clip</span>
+            <span class="meter-auth-hint" style="font-size: 0.8rem; color: #94a3b8;">🔒 Log in to save watch tracker</span>
+          </div>
+          <div style="width: 100%; height: 8px; background: rgba(30, 41, 59, 0.8); border-radius: 4px; overflow: hidden; border: 1px solid #475569;">
+            <div class="meter-fill-bar" style="width: 0%; height: 100%; background: linear-gradient(90deg, #38bdf8, #34d399); transition: width 0.4s ease;"></div>
+          </div>
+        </div>
+
+        <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 8px; border: 1px solid var(--border-color); background: #000; margin-bottom: 0.75rem;">
+          <iframe id="yt_frame_card_event_sept4_4" loading="lazy" src="https://www.youtube.com/embed/d9Fy0SeS3qg?enablejsapi=1" allow="autoplay; fullscreen" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;" allowfullscreen></iframe>
+        </div>
+
+        <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem; background: rgba(15, 23, 42, 0.8); padding: 0.65rem 0.85rem; border-radius: 6px; border: 1px solid #334155;">
+          <div style="display: flex; align-items: center; gap: 0.35rem;">
+            <span style="font-size: 0.82rem; font-weight: 700; color: var(--accent-cyan); margin-right: 0.25rem;">Speed:</span>
+            <button type="button" onclick="window.setVideoSpeed('card_event_sept4_4', 1.0, this)" class="btn-speed" style="padding: 0.25rem 0.55rem; font-size: 0.78rem; background: var(--accent-cyan); color: #0a1128; font-weight: 800; border: 1px solid var(--accent-cyan); border-radius: 4px; cursor: pointer;">1.0x</button>
+            <button type="button" onclick="window.setVideoSpeed('card_event_sept4_4', 1.25, this)" class="btn-speed" style="padding: 0.25rem 0.55rem; font-size: 0.78rem; background: rgba(30, 41, 59, 0.8); color: #e2e8f0; font-weight: 600; border: 1px solid #334155; border-radius: 4px; cursor: pointer;">1.25x</button>
+            <button type="button" onclick="window.setVideoSpeed('card_event_sept4_4', 1.5, this)" class="btn-speed" style="padding: 0.25rem 0.55rem; font-size: 0.78rem; background: rgba(30, 41, 59, 0.8); color: #e2e8f0; font-weight: 600; border: 1px solid #334155; border-radius: 4px; cursor: pointer;">1.5x</button>
+            <button type="button" onclick="window.setVideoSpeed('card_event_sept4_4', 1.75, this)" class="btn-speed" style="padding: 0.25rem 0.55rem; font-size: 0.78rem; background: rgba(30, 41, 59, 0.8); color: #e2e8f0; font-weight: 600; border: 1px solid #334155; border-radius: 4px; cursor: pointer;">1.75x</button>
+            <button type="button" onclick="window.setVideoSpeed('card_event_sept4_4', 2.0, this)" class="btn-speed" style="padding: 0.25rem 0.55rem; font-size: 0.78rem; background: rgba(30, 41, 59, 0.8); color: #e2e8f0; font-weight: 600; border: 1px solid #334155; border-radius: 4px; cursor: pointer;">2.0x</button>
+          </div>
+          <div style="display: flex; align-items: center; gap: 0.35rem; flex-wrap: wrap;">
+            <button type="button" onclick="window.toggleFullscreenIframe(this)" class="btn" style="padding: 0.25rem 0.65rem; font-size: 0.78rem; background: rgba(56, 189, 248, 0.15); color: var(--accent-cyan); border: 1px solid var(--accent-cyan); border-radius: 4px; cursor: pointer; font-weight: 700;">⤢ Fullscreen</button>
+            <button type="button" onclick="window.openMediaCommentModal('card_event_sept4_4', event)" class="btn btn-comment-card_event_sept4_4" style="padding: 0.25rem 0.65rem; font-size: 0.78rem; background: rgba(56, 189, 248, 0.15); color: var(--accent-cyan); border: 1px solid var(--accent-cyan); border-radius: 4px; cursor: pointer; font-weight: 700;">💬 Notes</button>
+            <button type="button" onclick="window.openMediaApprovalModal('card_event_sept4_4', event)" class="btn btn-approval-card_event_sept4_4" style="padding: 0.25rem 0.65rem; font-size: 0.78rem; background: rgba(56, 189, 248, 0.15); color: var(--accent-cyan); border: 1px solid var(--accent-cyan); border-radius: 4px; cursor: pointer; font-weight: 700;">👍 Approval</button>
+            <button type="button" onclick="window.openNavLoginModal(event)" class="btn btn-unlogged-prompt" style="padding: 0.25rem 0.65rem; font-size: 0.78rem; background: rgba(251, 191, 36, 0.15); color: #fbbf24; border: 1px solid #f59e0b; border-radius: 4px; cursor: pointer; font-weight: 700; display: inline-block;">🔒 Login for Notes &amp; Approvals</button>
+            <button type="button" onclick="window.copyCardDirectLink('card_event_sept4_4', this)" class="btn btn-copy-link" style="padding: 0.25rem 0.65rem; font-size: 0.78rem; background: rgba(56, 189, 248, 0.15); color: var(--accent-cyan); border: 1px solid var(--accent-cyan); border-radius: 4px; cursor: pointer; font-weight: 700;">🔗 Copy Direct Link</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Video Card: Clip 5: The Engineering Reality vs. Jurisprudence -->
+      <div class="card pillar-card" id="card_event_sept4_5" style="border: 2px solid var(--accent-cyan); max-width: 960px; margin: 0 auto 2rem auto;">
+        <h3 style="color: var(--accent-cyan); font-size: 1.25rem; margin-bottom: 0.75rem;">
+          Clip 5: The Engineering Reality vs. Jurisprudence
+        </h3>
+
+        <div class="media-playback-meter-container" style="margin-top: 0.5rem; margin-bottom: 0.85rem; background: rgba(15, 23, 42, 0.9); border: 1px solid #334155; border-radius: 8px; padding: 0.85rem; box-shadow: 0 4px 12px rgba(0,0,0,0.5);">
+          <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 0.4rem;">
+            <span class="meter-status-text" style="font-size: 0.88rem; font-weight: 700; color: #cbd5e1;">🎥 Unwatched Video Clip</span>
+            <span class="meter-auth-hint" style="font-size: 0.8rem; color: #94a3b8;">🔒 Log in to save watch tracker</span>
+          </div>
+          <div style="width: 100%; height: 8px; background: rgba(30, 41, 59, 0.8); border-radius: 4px; overflow: hidden; border: 1px solid #475569;">
+            <div class="meter-fill-bar" style="width: 0%; height: 100%; background: linear-gradient(90deg, #38bdf8, #34d399); transition: width 0.4s ease;"></div>
+          </div>
+        </div>
+
+        <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 8px; border: 1px solid var(--border-color); background: #000; margin-bottom: 0.75rem;">
+          <iframe id="yt_frame_card_event_sept4_5" loading="lazy" src="https://www.youtube.com/embed/bMrCqKp-KPI?enablejsapi=1" allow="autoplay; fullscreen" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;" allowfullscreen></iframe>
+        </div>
+
+        <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem; background: rgba(15, 23, 42, 0.8); padding: 0.65rem 0.85rem; border-radius: 6px; border: 1px solid #334155;">
+          <div style="display: flex; align-items: center; gap: 0.35rem;">
+            <span style="font-size: 0.82rem; font-weight: 700; color: var(--accent-cyan); margin-right: 0.25rem;">Speed:</span>
+            <button type="button" onclick="window.setVideoSpeed('card_event_sept4_5', 1.0, this)" class="btn-speed" style="padding: 0.25rem 0.55rem; font-size: 0.78rem; background: var(--accent-cyan); color: #0a1128; font-weight: 800; border: 1px solid var(--accent-cyan); border-radius: 4px; cursor: pointer;">1.0x</button>
+            <button type="button" onclick="window.setVideoSpeed('card_event_sept4_5', 1.25, this)" class="btn-speed" style="padding: 0.25rem 0.55rem; font-size: 0.78rem; background: rgba(30, 41, 59, 0.8); color: #e2e8f0; font-weight: 600; border: 1px solid #334155; border-radius: 4px; cursor: pointer;">1.25x</button>
+            <button type="button" onclick="window.setVideoSpeed('card_event_sept4_5', 1.5, this)" class="btn-speed" style="padding: 0.25rem 0.55rem; font-size: 0.78rem; background: rgba(30, 41, 59, 0.8); color: #e2e8f0; font-weight: 600; border: 1px solid #334155; border-radius: 4px; cursor: pointer;">1.5x</button>
+            <button type="button" onclick="window.setVideoSpeed('card_event_sept4_5', 1.75, this)" class="btn-speed" style="padding: 0.25rem 0.55rem; font-size: 0.78rem; background: rgba(30, 41, 59, 0.8); color: #e2e8f0; font-weight: 600; border: 1px solid #334155; border-radius: 4px; cursor: pointer;">1.75x</button>
+            <button type="button" onclick="window.setVideoSpeed('card_event_sept4_5', 2.0, this)" class="btn-speed" style="padding: 0.25rem 0.55rem; font-size: 0.78rem; background: rgba(30, 41, 59, 0.8); color: #e2e8f0; font-weight: 600; border: 1px solid #334155; border-radius: 4px; cursor: pointer;">2.0x</button>
+          </div>
+          <div style="display: flex; align-items: center; gap: 0.35rem; flex-wrap: wrap;">
+            <button type="button" onclick="window.toggleFullscreenIframe(this)" class="btn" style="padding: 0.25rem 0.65rem; font-size: 0.78rem; background: rgba(56, 189, 248, 0.15); color: var(--accent-cyan); border: 1px solid var(--accent-cyan); border-radius: 4px; cursor: pointer; font-weight: 700;">⤢ Fullscreen</button>
+            <button type="button" onclick="window.openMediaCommentModal('card_event_sept4_5', event)" class="btn btn-comment-card_event_sept4_5" style="padding: 0.25rem 0.65rem; font-size: 0.78rem; background: rgba(56, 189, 248, 0.15); color: var(--accent-cyan); border: 1px solid var(--accent-cyan); border-radius: 4px; cursor: pointer; font-weight: 700;">💬 Notes</button>
+            <button type="button" onclick="window.openMediaApprovalModal('card_event_sept4_5', event)" class="btn btn-approval-card_event_sept4_5" style="padding: 0.25rem 0.65rem; font-size: 0.78rem; background: rgba(56, 189, 248, 0.15); color: var(--accent-cyan); border: 1px solid var(--accent-cyan); border-radius: 4px; cursor: pointer; font-weight: 700;">👍 Approval</button>
+            <button type="button" onclick="window.openNavLoginModal(event)" class="btn btn-unlogged-prompt" style="padding: 0.25rem 0.65rem; font-size: 0.78rem; background: rgba(251, 191, 36, 0.15); color: #fbbf24; border: 1px solid #f59e0b; border-radius: 4px; cursor: pointer; font-weight: 700; display: inline-block;">🔒 Login for Notes &amp; Approvals</button>
+            <button type="button" onclick="window.copyCardDirectLink('card_event_sept4_5', this)" class="btn btn-copy-link" style="padding: 0.25rem 0.65rem; font-size: 0.78rem; background: rgba(56, 189, 248, 0.15); color: var(--accent-cyan); border: 1px solid var(--accent-cyan); border-radius: 4px; cursor: pointer; font-weight: 700;">🔗 Copy Direct Link</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Bottom Action Navigation -->
+      <div style="margin-top: 2.5rem; display: flex; gap: 0.85rem; flex-wrap: wrap; align-items: center; justify-content: center;">
+        <a href="/101/2.2/" class="btn btn-primary" style="background: var(--accent-cyan); color: #0a1128; font-weight: 800;">📘 Companion 101 Module (Class 2.2) ➔</a>
+        <a href="/event/2026-09-04/quiz-learned/" data-progressive-quiz-cid="2026-09-04" data-learned-href="/event/2026-09-04/quiz-learned/" data-expert-href="/event/2026-09-04/quiz-expert/" class="btn btn-primary" style="background: var(--accent-gold); color: #0a1128; font-weight: 800;">📘 Take 5-Q Learned Quiz ➔</a>
+        <a href="/event/" class="btn btn-outline">← Back to Events Hub</a>
       </div>
 
     </div>
@@ -337,10 +327,10 @@
   <!-- Footer -->
   <footer class="footer">
     <div class="container footer-content">
-      <p>© 2026 LexClinic Education Inc. Delaware non-profit applying for 501(c)(3) tax-exempt status. Open public goods published under AGPL-3.0 & Creative Commons Attribution-ShareAlike 4.0.</p>
-        <p class="disclaimer" style="margin-top: 0.5rem; font-size: 0.78rem; color: #94a3b8; line-height: 1.5;">
-          <strong>Educational &amp; Open-Source Disclaimer:</strong> LexClinic Education, Inc. is a Delaware non-profit corporation applying for 501(c)(3) tax-exempt status. All materials, software runtimes, and APIs are published for educational research under AGPL-3.0 and do not constitute formal legal advice or an attorney-client relationship. <a href="/help/#disclaimer" style="color: var(--accent-cyan); text-decoration: underline;">Read full disclaimer ➔</a>
-        </p>
+      <p>© 2026 LexClinic Education Inc. Delaware non-profit applying for 501(c)(3) tax-exempt status. Open public goods published under AGPL-3.0 &amp; Creative Commons Attribution-ShareAlike 4.0.</p>
+      <p class="disclaimer" style="margin-top: 0.5rem; font-size: 0.78rem; color: #94a3b8; line-height: 1.5;">
+        <strong>Educational &amp; Open-Source Disclaimer:</strong> LexClinic Education, Inc. is a Delaware non-profit corporation applying for 501(c)(3) tax-exempt status. All materials, software runtimes, and APIs are published for educational research under AGPL-3.0 and do not constitute formal legal advice or an attorney-client relationship. <a href="/help/#disclaimer" style="color: var(--accent-cyan); text-decoration: underline;">Read full disclaimer ➔</a>
+      </p>
     </div>
   </footer>
 

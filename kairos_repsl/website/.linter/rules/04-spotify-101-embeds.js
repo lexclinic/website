@@ -81,9 +81,20 @@ function run(webDir, config) {
       violations.push(`101/index.html is missing link to /101/${item.mod}`);
     }
 
-    // 6b. Companion Socratic Event link on 101 module page
-    if (!html.includes("_socratic_companion") || !html.includes("/event/")) {
-      violations.push(`101/${item.mod}/index.html is missing the Live Socratic Cohort Companion card linking to /event/`);
+    // 6b. Exact 1-to-1 Socratic Event bijection (1.1 has no separate recorded event; 1.2 through 6.2 must link to their exact Socratic event)
+    if (item.mod === "1.1") {
+      if (html.includes("_socratic_companion")) {
+        violations.push("101/1.1/index.html must NOT have a fake Socratic Event companion card (1.1 is the foundational self-paced module)");
+      }
+    } else {
+      if (!html.includes("_socratic_companion") || !html.includes("/event/")) {
+        violations.push(`101/${item.mod}/index.html is missing the Live Socratic Cohort Companion card linking to /event/`);
+      }
+    }
+
+    // 6c. Single Progressive Quiz CTA (data-progressive-quiz-cid)
+    if (!html.includes(`data-progressive-quiz-cid="${item.mod}"`)) {
+      violations.push(`101/${item.mod}/index.html is missing single progressive quiz CTA (data-progressive-quiz-cid="${item.mod}")`);
     }
 
     // 7. Indexed in transcripts.json

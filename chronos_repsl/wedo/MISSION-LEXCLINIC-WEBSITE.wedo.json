@@ -109,6 +109,11 @@
         "id": "MOBILE-RESPONSIVE-01",
         "description": "Fix mobile touch double-fire bug on #mobile-toggle, add comprehensive @media (max-width: 768px) single-column and button-stacking overrides at the bottom of styles.css, and enforce mobile responsiveness in Linter Rule 08 and Test Suite 05",
         "status": "[x]"
+      },
+      {
+        "id": "EVENT-BIJECTION-AND-QUIZ-GATING-01",
+        "description": "Restore exact Socratic Event <-> 101 Class bijection (Aug 22 Clinic+ExpWit, Aug 24 <-> 1.2, Aug 28 <-> 2.1, Sept 4 <-> 2.2, Sept 17 <-> 3.1, Sept 24 <-> 3.2, Oct 1 <-> 4.1, Oct 8 <-> 4.2, Oct 15 <-> 5.1, Oct 22 <-> 5.2) with authentic YouTube clip IDs, remove duplicate Aug 13/20 pages, and tighten quiz CTAs to a single progressive button with prerequisite gating on /quiz-expert/",
+        "status": "[x]"
       }
     ]
   },

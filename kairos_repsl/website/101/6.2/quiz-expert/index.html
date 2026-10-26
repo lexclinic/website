@@ -59,8 +59,7 @@
       <h1 class="hero-title">20-Question Expert Quiz — Class 6.2: Reading Right-to-Left: Adjusting Your Eyes</h1>
       <p class="hero-subtitle">Complete all 20 Socratic questions below (16/20+ to pass). Any answers from your 5-Question Learned Quiz are automatically pre-filled.</p>
       <div class="hero-actions" style="display: flex; gap: 0.75rem; justify-content: center; flex-wrap: wrap;">
-        <a href="/101/6.2/quiz-learned/" class="btn" style="padding: 0.6rem 1.25rem; border-radius: 8px; text-decoration: none; background: rgba(30, 41, 59, 0.8); color: #cbd5e1; font-weight: 700; border: 1px solid #475569;">📘 5-Q Learned Quiz (/101/6.2/quiz-learned/)</a>
-        <a href="/101/6.2/quiz-expert/" class="btn" style="padding: 0.6rem 1.25rem; border-radius: 8px; text-decoration: none; background: var(--accent-cyan); color: #0a1128; font-weight: 800; border: 2px solid var(--accent-cyan);">🎓 20-Q Expert Quiz (/101/6.2/quiz-expert/)</a>
+        <a href="/101/6.2/quiz-learned/" data-progressive-quiz-cid="6.2" data-learned-href="/101/6.2/quiz-learned/" data-expert-href="/101/6.2/quiz-expert/" class="btn btn-primary" style="padding: 0.6rem 1.25rem; border-radius: 8px; text-decoration: none; background: var(--accent-gold); color: #0a1128; font-weight: 800;">📘 5-Q Learned Quiz ➔</a>
         <a href="/101/6.2/" class="btn btn-outline">⬅ Back to Class 6.2 Lesson</a>
       </div>
     </div>
@@ -83,6 +82,17 @@
             <button type="button" onclick="window.openMediaApprovalModal('quiz-6-2-expert', event)" class="btn btn-approval-quiz-6-2-expert" style="padding: 0.3rem 0.75rem; font-size: 0.8rem; background: rgba(56, 189, 248, 0.15); color: var(--accent-cyan); border: 1px solid var(--accent-cyan); border-radius: 4px; cursor: pointer; font-weight: 700;">👍 Approval</button>
             <button type="button" onclick="window.openNavLoginModal(event)" class="btn btn-unlogged-prompt" style="padding: 0.3rem 0.75rem; font-size: 0.8rem; background: rgba(251, 191, 36, 0.15); color: #fbbf24; border: 1px solid #f59e0b; border-radius: 4px; cursor: pointer; font-weight: 700; display: inline-block;">🔒 Login for Notes &amp; Approvals</button>
           </div>
+        </div>
+
+        <!-- Prerequisite Gate Banner (Shown on quiz-expert if 5-Q Learned Quiz is not yet passed) -->
+        <div id="expert-prerequisite-lock-banner" style="display: none; margin-bottom: 1.5rem; padding: 1.35rem; background: rgba(245, 158, 11, 0.12); border: 2px solid #f59e0b; border-radius: 8px; text-align: center;">
+          <h3 style="color: #fbbf24; margin: 0 0 0.5rem 0; font-size: 1.2rem;">🔒 Prerequisite Required: Pass the 5-Question Learned Quiz First</h3>
+          <p style="color: #e2e8f0; margin: 0 0 1.15rem 0; font-size: 0.95rem;">
+            The 20-Question Expert Quiz is unlocked by scoring at least 4 / 5 (80%) on the 5-Question Learned Quiz.
+          </p>
+          <a href="/101/6.2/quiz-learned/" class="btn btn-primary" style="background: var(--accent-gold); color: #0a1128; font-weight: 800; padding: 0.7rem 1.5rem; border-radius: 6px; text-decoration: none;">
+            📘 Take 5-Question Learned Quiz (/101/6.2/quiz-learned/) ➔
+          </a>
         </div>
 
         <!-- Prior Completion / Unlocked Banner -->
@@ -328,6 +338,9 @@
           });
 
           if (hasPassedLearned) {
+            const lockBanner = document.getElementById('expert-prerequisite-lock-banner');
+            if (lockBanner) lockBanner.style.display = 'none';
+            if (form && form.style) form.style.display = 'block';
             const banner = document.getElementById('prior-completion-banner');
             if (banner) banner.style.display = 'block';
             // If user navigated to generic /quiz or /quiz.html (smart mode) after already passing 5-Q Learned, automatically redirect/unlock 20-Q Expert!
@@ -339,6 +352,10 @@
                 }
               }
             }
+          } else if (TIER_MODE === 'expert') {
+            const lockBanner = document.getElementById('expert-prerequisite-lock-banner');
+            if (lockBanner) lockBanner.style.display = 'block';
+            if (form && form.style) form.style.display = 'none';
           }
 
           // Also check remote /api/user-attest for logged-in user so cross-device / cleared-cache state restores automatically
@@ -349,6 +366,9 @@
                 if (!data || !Array.isArray(data.submissions)) return;
                 const remoteMatch = data.submissions.filter(s => s && (s.class_id === CLASS_ID || s.class_id === 'class_' + CLASS_ID));
                 if (remoteMatch.length > 0) {
+                  const lockBanner = document.getElementById('expert-prerequisite-lock-banner');
+                  if (lockBanner) lockBanner.style.display = 'none';
+                  if (form && form.style) form.style.display = 'block';
                   const banner = document.getElementById('prior-completion-banner');
                   if (banner) banner.style.display = 'block';
                   if (TIER_MODE === 'smart') {
