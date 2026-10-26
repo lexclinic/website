@@ -224,6 +224,15 @@ async function run(webDir) {
             comment: 'Audio and video verified.',
             reviewer: 'kyle@lex.clinic',
             timestamp: '2026-10-25T16:50:05Z'
+          },
+          {
+            uid: '/event/2026-10-22/#code-calculus-ai-law',
+            card_id: 'code-calculus-ai-law',
+            page_url: '/event/2026-10-22/',
+            video_title: 'Clip 2: Code, Calculus, & AI Law',
+            progress: 100,
+            reviewer: 'kyle@lex.clinic',
+            timestamp: '2026-10-25T16:50:10Z'
           }
         ]
       })
@@ -234,6 +243,7 @@ async function run(webDir) {
   assert.strictEqual(postNotesData.persisted, true, 'POST /api/media-notes should persist new items');
   assert.strictEqual(postNotesData.total_approvals, 1, 'Ledger should contain 1 approval');
   assert.strictEqual(postNotesData.total_notes, 1, 'Ledger should contain 1 note');
+  assert.ok(postNotesData.watch_history && postNotesData.watch_history['kyle@lex.clinic|code-calculus-ai-law'].progress === 100, 'Ledger should persist 100% watch progress for code-calculus-ai-law');
 
   // Re-posting identical items should deduplicate (persisted: false)
   const dupRes = await mediaNotesApi.onRequestPost({
