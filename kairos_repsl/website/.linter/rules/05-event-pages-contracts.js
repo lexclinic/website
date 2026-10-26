@@ -35,7 +35,12 @@ function run(webDir, config) {
     violations.push("event/index.html is missing Event Subcategory Filter bar (filterEventsByCategory)");
   }
 
-  // Verify Monthly Archive Pages exist and contain no unrecorded director/partner calls
+  // Enforce 501(c)(3) terminology compliance: LexClinic has Collaborators' Calls, never Partner Calls
+  if (eventHubHtml.includes("partner_call") || /Partner\s+Calls?/i.test(eventHubHtml)) {
+    violations.push("event/index.html contains forbidden 'partner_call' or 'Partner Call' terminology (use Collaborators' Calls)");
+  }
+
+  // Verify Monthly Archive Pages exist and contain no unrecorded director/collaborator calls
   const monthHtmlMap = {};
   for (const m of requiredMonths) {
     const mPath = path.join(webDir, "event", m, "index.html");
@@ -46,8 +51,8 @@ function run(webDir, config) {
       if (!monthHtmlMap[m].includes("filterEventsByCategory")) {
         violations.push(`event/${m}/index.html is missing Event Subcategory Filter bar`);
       }
-      if (monthHtmlMap[m].includes('data-event-category="director_call"') || monthHtmlMap[m].includes('data-event-category="partner_call"')) {
-        violations.push(`event/${m}/index.html contains unrecorded past director_call or partner_call cards`);
+      if (monthHtmlMap[m].includes('data-event-category="director_call"') || monthHtmlMap[m].includes('data-event-category="collaborator_call"') || monthHtmlMap[m].includes('data-event-category="partner_call"')) {
+        violations.push(`event/${m}/index.html contains unrecorded past director_call or collaborator_call cards`);
       }
     }
     if (!eventHubHtml.includes(`/event/${m}/`)) {

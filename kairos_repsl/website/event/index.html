@@ -4,20 +4,20 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>LexClinic Events &amp; Socratic Sessions Hub | LexClinic</title>
-  <meta name="description" content="LexClinic Education 101 Live Socratic Classes, Roadmap Interviews, Upcoming Fiduciary Calls, and Monthly Event Archives.">
-  <link rel="stylesheet" href="/styles.css?v=20261025_v12">
+  <meta name="description" content="LexClinic Education 101 Live Socratic Classes, Roadmap Interviews, Upcoming Collaborators' &amp; Fiduciary Calls, and Monthly Event Archives.">
+  <link rel="stylesheet" href="/styles.css?v=20261025_v13">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-  <script src="/js/audio-player.js?v=20261025_v12"></script>
-  <script src="/js/auth.js?v=20261025_v12"></script>
-  <script src="/js/media-tracker-miniapp.js?v=20261025_v12"></script>
-  <script src="/js/watch-tracker.js?v=20261025_v12"></script>
-  <script src="/events.js?v=20261025_v12"></script>
-  <script src="/js/modules/ui-interactive-controls.js?v=20261025_v12"></script>
-  <script src="/script.js?v=20261025_v12" defer></script>
-  <link rel="icon" type="image/png" href="/favicon.png?v=20261025_v12">
-  <link rel="shortcut icon" href="/favicon.ico?v=20261025_v12">
+  <script src="/js/audio-player.js?v=20261025_v13"></script>
+  <script src="/js/auth.js?v=20261025_v13"></script>
+  <script src="/js/media-tracker-miniapp.js?v=20261025_v13"></script>
+  <script src="/js/watch-tracker.js?v=20261025_v13"></script>
+  <script src="/events.js?v=20261025_v13"></script>
+  <script src="/js/modules/ui-interactive-controls.js?v=20261025_v13"></script>
+  <script src="/script.js?v=20261025_v13" defer></script>
+  <link rel="icon" type="image/png" href="/favicon.png?v=20261025_v13">
+  <link rel="shortcut icon" href="/favicon.ico?v=20261025_v13">
 </head>
 <body>
 
@@ -42,7 +42,7 @@
           <a href="/help/">Help</a>
           <a href="/repo/">Repo</a>
           <a href="/erc7827/">ERC-7827</a>
-          <a href="https://www.youtube.com/watch?v=20261025_v12&list=PLbPukKwpmk5E" target="_blank" rel="noopener" class="btn-social" title="Subscribe on YouTube">YouTube</a>
+          <a href="https://www.youtube.com/watch?v=20261025_v13&list=PLbPukKwpmk5E" target="_blank" rel="noopener" class="btn-social" title="Subscribe on YouTube">YouTube</a>
           <a href="https://open.spotify.com/show/0348ivoLaNfKBq1HeIYC9b" target="_blank" rel="noopener" class="btn-spotify" title="Follow on Spotify">Spotify</a>
           <a href="https://www.linkedin.com/company/lexclinic" target="_blank" rel="noopener" class="btn-social" title="Follow on LinkedIn">LinkedIn</a>
           <a href="javascript:void(0)" onclick="event.preventDefault(); window.openNavLoginModal(event); return false;" id="nav-login-btn" style="background: #fbbf24; color: #0a1128; font-weight: 800; font-size: 0.88rem; padding: 0.35rem 0.85rem; border-radius: 6px; margin-left: 0.35rem; text-decoration: none; border: 2px solid #f59e0b; box-shadow: 0 0 10px rgba(251, 191, 36, 0.4); display: inline-block;">Login</a>
@@ -59,7 +59,7 @@
     <div class="container hero-content">
       <h1 class="hero-title">LexClinic <span class="gradient-text">Events &amp; 101 Socratic Sessions</span></h1>
       <p class="hero-subtitle">
-        Live weekly Socratic companion classes for <a href="/101/" style="color: var(--accent-gold); text-decoration: underline; font-weight: 700;">Legal Engineering 101</a>, date-stamped guest interviews, upcoming governance calls, and recorded monthly archives.
+        Live weekly Socratic companion classes for <a href="/101/" style="color: var(--accent-gold); text-decoration: underline; font-weight: 700;">Legal Engineering 101</a>, date-stamped guest interviews, upcoming governance &amp; collaborators' calls, and recorded monthly archives.
       </p>
 
       <!-- Event Subcategory Filter Pills -->
@@ -76,8 +76,8 @@
         <button type="button" data-cat="director_call" class="btn event-cat-filter-btn" onclick="window.filterEventsByCategory('director_call', this)" style="background: rgba(30, 41, 59, 0.85); color: #cbd5e1; font-weight: 600; border: 1px solid #475569; padding: 0.45rem 1.05rem; border-radius: 999px; font-size: 0.88rem; cursor: pointer;">
           🏛️ Upcoming Director Calls
         </button>
-        <button type="button" data-cat="partner_call" class="btn event-cat-filter-btn" onclick="window.filterEventsByCategory('partner_call', this)" style="background: rgba(30, 41, 59, 0.85); color: #cbd5e1; font-weight: 600; border: 1px solid #475569; padding: 0.45rem 1.05rem; border-radius: 999px; font-size: 0.88rem; cursor: pointer;">
-          🌐 Upcoming Partner Calls
+        <button type="button" data-cat="collaborator_call" class="btn event-cat-filter-btn" onclick="window.filterEventsByCategory('collaborator_call', this)" style="background: rgba(30, 41, 59, 0.85); color: #cbd5e1; font-weight: 600; border: 1px solid #475569; padding: 0.45rem 1.05rem; border-radius: 999px; font-size: 0.88rem; cursor: pointer;">
+          🌐 Upcoming Collaborators' Calls
         </button>
       </div>
     </div>
@@ -106,10 +106,10 @@
             </div>
           </div>
 
-          <!-- 2. Wednesday, Nov 4, 2026 (Root Node Call) -->
-          <div class="card pillar-card event-list-card" data-event-category="partner_call,director_call" style="border: 1px solid var(--border-color); padding: 1.5rem;">
-            <div class="event-date-tag" style="color: var(--accent-cyan); font-weight: 700; margin-bottom: 0.4rem;">Wednesday, Nov 4, 2026 • 🌐 Partner / Fiduciary Call</div>
-            <h3 style="color: var(--accent-cyan); font-size: 1.3rem; margin-bottom: 0.75rem;">Bi-Weekly Root Node &amp; Fiduciary Governance Call</h3>
+          <!-- 2. Wednesday, Nov 4, 2026 (Collaborators' / Root Node Call) -->
+          <div class="card pillar-card event-list-card" data-event-category="collaborator_call,director_call" style="border: 1px solid var(--border-color); padding: 1.5rem;">
+            <div class="event-date-tag" style="color: var(--accent-cyan); font-weight: 700; margin-bottom: 0.4rem;">Wednesday, Nov 4, 2026 • 🌐 Collaborators' &amp; Fiduciary Call</div>
+            <h3 style="color: var(--accent-cyan); font-size: 1.3rem; margin-bottom: 0.75rem;">Bi-Weekly Collaborators' &amp; Root Node Governance Call</h3>
             <p style="margin-bottom: 1.25rem; color: #cbd5e1; line-height: 1.6;">
               LexClinic &amp; Root Node governance coordination, Form 1023 501(c)(3) status, and ERC-7827 attestation infrastructure.
             </p>
@@ -127,21 +127,18 @@
   <section class="section recent-events-section" id="recent-sessions">
     <div class="container">
       <div class="events-group-container">
-        <div style="display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; gap: 1rem; border-bottom: 2px solid var(--accent-cyan); padding-bottom: 0.5rem; margin-bottom: 1.5rem;">
-          <h2 class="group-title" style="color: var(--accent-cyan); font-size: 1.6rem; margin: 0;">
-            📜 3 Most Recent Recorded Events
-          </h2>
-          <span style="color: #94a3b8; font-size: 0.9rem;">Each Socratic Session pairs directly with its self-paced <a href="/101/" style="color: var(--accent-cyan); text-decoration: underline;">Legal Engineering 101</a> module</span>
-        </div>
+        <h2 class="group-title" style="color: var(--accent-cyan); font-size: 1.6rem; border-bottom: 2px solid var(--accent-cyan); padding-bottom: 0.5rem; margin-bottom: 1.5rem;">
+          📜 3 Most Recent Recorded Events
+        </h2>
 
         <div class="grid grid-3" id="recent-three-events-grid" style="gap: 1.5rem;">
 
-          <!-- Recent 1: Oct 22, 2026 (Class 5.2) -->
-          <div class="card pillar-card event-list-card" data-event-category="class" style="border: 2px solid var(--accent-gold); background: rgba(10, 17, 40, 0.95); padding: 1.5rem;">
+          <!-- Recent Class 1: Oct 22, 2026 (Class 5.2) -->
+          <div class="card pillar-card event-list-card" data-event-category="class" data-default-recent="true" style="border: 2px solid var(--accent-gold); background: rgba(10, 17, 40, 0.95); padding: 1.5rem;">
             <div class="event-date-tag" style="color: var(--accent-gold); font-weight: 700; margin-bottom: 0.4rem;">Oct 22, 2026 • 🎓 101 Live Socratic Session (Class 5.2)</div>
             <h3 style="color: var(--accent-gold); font-size: 1.25rem; margin-bottom: 0.75rem;">Lesson 5.2: Typing Domains: How Code Validates Data</h3>
             <p style="margin-bottom: 1.25rem; color: #cbd5e1; line-height: 1.6; font-size: 0.95rem;">
-              Live cohort Socratic discussion &amp; 4 explainer clips accompanying <strong>Legal Engineering 101 Class 5.2</strong> on typing domains, black-box AI boundaries, and agent liability.
+              Live cohort Socratic discussion &amp; 5 explainer clips accompanying <strong>Legal Engineering 101 Class 5.2</strong> on typing domains, black-box AI boundaries, and agent liability.
             </p>
             <div class="card-actions" style="display: flex; gap: 0.55rem; flex-wrap: wrap;">
               <a href="/event/2026-10-22/" class="btn btn-primary" style="background: var(--accent-gold); color: #0a1128; font-weight: 800; padding: 0.5rem 1rem; border-radius: 6px; font-size: 0.88rem;">🗣️ Event Recording ➔</a>
@@ -149,12 +146,12 @@
             </div>
           </div>
 
-          <!-- Recent 2: Oct 15, 2026 (Class 5.1) -->
-          <div class="card pillar-card event-list-card" data-event-category="class" style="border: 1px solid var(--border-color); background: rgba(10, 17, 40, 0.8); padding: 1.5rem;">
+          <!-- Recent Class 2: Oct 15, 2026 (Class 5.1) -->
+          <div class="card pillar-card event-list-card" data-event-category="class" data-default-recent="true" style="border: 1px solid var(--border-color); background: rgba(10, 17, 40, 0.8); padding: 1.5rem;">
             <div class="event-date-tag" style="color: var(--accent-cyan); font-weight: 700; margin-bottom: 0.4rem;">Oct 15, 2026 • 🎓 101 Live Socratic Session (Class 5.1)</div>
             <h3 style="color: var(--accent-cyan); font-size: 1.25rem; margin-bottom: 0.75rem;">Lesson 5.1: Active Scripts vs. Static Sheets</h3>
             <p style="margin-bottom: 1.25rem; color: #cbd5e1; line-height: 1.6; font-size: 0.95rem;">
-              Live cohort Socratic discussion &amp; 4 explainer clips accompanying <strong>Legal Engineering 101 Class 5.1</strong> on transitioning from static spreadsheets to active scripts.
+              Live cohort Socratic discussion &amp; 5 explainer clips accompanying <strong>Legal Engineering 101 Class 5.1</strong> on transitioning from static spreadsheets to active scripts.
             </p>
             <div class="card-actions" style="display: flex; gap: 0.55rem; flex-wrap: wrap;">
               <a href="/event/2026-10-15/" class="btn btn-primary" style="background: var(--accent-gold); color: #0a1128; font-weight: 800; padding: 0.5rem 1rem; border-radius: 6px; font-size: 0.88rem;">🗣️ Event Recording ➔</a>
@@ -162,16 +159,42 @@
             </div>
           </div>
 
-          <!-- Recent 3: Oct 8, 2026 (Class 4.2) -->
-          <div class="card pillar-card event-list-card" data-event-category="class" style="border: 1px solid var(--border-color); background: rgba(10, 17, 40, 0.8); padding: 1.5rem;">
+          <!-- Recent Class 3: Oct 8, 2026 (Class 4.2) -->
+          <div class="card pillar-card event-list-card" data-event-category="class" data-default-recent="true" style="border: 1px solid var(--border-color); background: rgba(10, 17, 40, 0.8); padding: 1.5rem;">
             <div class="event-date-tag" style="color: var(--accent-cyan); font-weight: 700; margin-bottom: 0.4rem;">Oct 8, 2026 • 🎓 101 Live Socratic Session (Class 4.2)</div>
             <h3 style="color: var(--accent-cyan); font-size: 1.25rem; margin-bottom: 0.75rem;">Lesson 4.2: Data Primitives 101: Strings, Numbers, Booleans</h3>
             <p style="margin-bottom: 1.25rem; color: #cbd5e1; line-height: 1.6; font-size: 0.95rem;">
-              Live cohort Socratic discussion &amp; 4 explainer clips accompanying <strong>Legal Engineering 101 Class 4.2</strong> on strings, fixed-point integers, and boolean triggers.
+              Live cohort Socratic discussion &amp; 5 explainer clips accompanying <strong>Legal Engineering 101 Class 4.2</strong> on strings, fixed-point integers, and boolean triggers.
             </p>
             <div class="card-actions" style="display: flex; gap: 0.55rem; flex-wrap: wrap;">
               <a href="/event/2026-10-08/" class="btn btn-primary" style="background: var(--accent-gold); color: #0a1128; font-weight: 800; padding: 0.5rem 1rem; border-radius: 6px; font-size: 0.88rem;">🗣️ Event Recording ➔</a>
               <a href="/101/4.2/" class="btn btn-outline" style="padding: 0.5rem 0.95rem; border-radius: 6px; font-size: 0.88rem; border-color: var(--accent-cyan); color: var(--accent-cyan);">📘 101 Module 4.2 ➔</a>
+            </div>
+          </div>
+
+          <!-- Recent Interview 1 (Shown when filtering by '🎙️ Guest Interviews'): Sept 18, 2026 (Lukas Küng) -->
+          <div class="card pillar-card event-list-card" data-event-category="interview" style="display: none; border: 2px solid var(--accent-gold); background: rgba(10, 17, 40, 0.95); padding: 1.5rem;">
+            <div class="event-date-tag" style="color: var(--accent-gold); font-weight: 700; margin-bottom: 0.4rem;">Sept 18, 2026 • 🎙️ Guest Interview Event</div>
+            <h3 style="color: var(--accent-gold); font-size: 1.25rem; margin-bottom: 0.75rem;">Swiss DAO Researcher Lukas Küng: Turning Fragile DAOs into Legal Runtimes</h3>
+            <p style="margin-bottom: 1.25rem; color: #cbd5e1; line-height: 1.6; font-size: 0.95rem;">
+              1-on-1 Roadmap Interview with Swiss DAO Researcher Lukas Küng (ZHAW / UNIC / DAWO) &amp; Legal Engineer Kyle MacLean Smith (11 Video Clips + Full Audio).
+            </p>
+            <div class="card-actions" style="display: flex; gap: 0.55rem; flex-wrap: wrap;">
+              <a href="/interview/lucas-kung/" class="btn btn-primary" style="background: var(--accent-gold); color: #0a1128; font-weight: 800; padding: 0.5rem 1rem; border-radius: 6px; font-size: 0.88rem;">🎙️ Open Interview Hub ➔</a>
+              <a href="/interview/lucas-kung/quiz-learned/" data-progressive-quiz-cid="interview_lucas_kung" data-learned-href="/interview/lucas-kung/quiz-learned/" data-expert-href="/interview/lucas-kung/quiz-expert/" class="btn btn-outline" style="padding: 0.5rem 0.95rem; border-radius: 6px; font-size: 0.88rem; border-color: var(--accent-cyan); color: var(--accent-cyan);">📘 Take 5-Q Learned Quiz ➔</a>
+            </div>
+          </div>
+
+          <!-- Recent Interview 2 (Shown when filtering by '🎙️ Guest Interviews'): Sept 8, 2026 (James Wigginton) -->
+          <div class="card pillar-card event-list-card" data-event-category="interview" style="display: none; border: 2px solid var(--accent-cyan); background: rgba(10, 17, 40, 0.9); padding: 1.5rem;">
+            <div class="event-date-tag" style="color: var(--accent-cyan); font-weight: 700; margin-bottom: 0.4rem;">Sept 8, 2026 • 🎙️ Guest Interview Event</div>
+            <h3 style="color: var(--accent-cyan); font-size: 1.25rem; margin-bottom: 0.75rem;">Attorney James Wigginton: Replacing Digital Landlords with Cooperative Math</h3>
+            <p style="margin-bottom: 1.25rem; color: #cbd5e1; line-height: 1.6; font-size: 0.95rem;">
+              1-on-1 Roadmap Interview with Attorney James Wigginton &amp; Legal Engineer Kyle MacLean Smith examining user data sovereignty &amp; bounded 2D ratio optimization (3 Video Clips + Full Audio).
+            </p>
+            <div class="card-actions" style="display: flex; gap: 0.55rem; flex-wrap: wrap;">
+              <a href="/interview/2026-09-08/james-wigginton/" class="btn btn-primary" style="background: var(--accent-cyan); color: #0a1128; font-weight: 800; padding: 0.5rem 1rem; border-radius: 6px; font-size: 0.88rem;">🎙️ Open Interview Hub ➔</a>
+              <a href="/interview/2026-09-08/james-wigginton/quiz-learned/" data-progressive-quiz-cid="2026-09-08-james-wigginton" data-learned-href="/interview/2026-09-08/james-wigginton/quiz-learned/" data-expert-href="/interview/2026-09-08/james-wigginton/quiz-expert/" class="btn btn-outline" style="padding: 0.5rem 0.95rem; border-radius: 6px; font-size: 0.88rem; border-color: var(--accent-gold); color: var(--accent-gold);">📘 Take 5-Q Learned Quiz ➔</a>
             </div>
           </div>
 

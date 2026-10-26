@@ -1,6 +1,6 @@
 /*
   LexClinic Education Platform — Live Google Calendar Events, Category Filter & Privacy Renderer
-  Build Version: 20261025_v8
+  Build Version: 20261025_v13
 */
 
 window.filterEventsByCategory = function(category, btnEl) {
@@ -13,15 +13,48 @@ window.filterEventsByCategory = function(category, btnEl) {
     b.style.fontWeight = isSelected ? '800' : '600';
   });
 
+  // 1. In #recent-three-events-grid, show up to 3 most recent recorded events matching the selected category!
+  //    - When category === 'all': show the top 3 overall recent events (which have data-default-recent="true")
+  //    - When category === 'interview': show the 2 recorded interviews (Sept 18 Lukas Küng & Sept 8 James Wigginton) right in the 3 Most Recent section!
+  //    - When category === 'class': show the 3 most recent Socratic classes
+  const recentGrid = document.getElementById('recent-three-events-grid');
+  const recentSection = document.getElementById('recent-sessions');
+  const monthlySection = document.getElementById('monthly-archives');
+
   const cards = document.querySelectorAll('[data-event-category]');
+  let shownInRecent = 0;
+
   cards.forEach(card => {
-    const cardCat = card.getAttribute('data-event-category') || 'all';
-    if (category === 'all' || cardCat.split(',').includes(category)) {
-      card.style.display = '';
+    const cardCats = (card.getAttribute('data-event-category') || 'all').split(',');
+    const isInRecentGrid = recentGrid && recentGrid.contains && recentGrid.contains(card);
+
+    if (isInRecentGrid) {
+      const isDefaultRecent = card.getAttribute('data-default-recent') === 'true';
+      if (category === 'all') {
+        card.style.display = isDefaultRecent ? '' : 'none';
+        if (isDefaultRecent) shownInRecent++;
+      } else if (cardCats.includes(category) && shownInRecent < 3) {
+        card.style.display = '';
+        shownInRecent++;
+      } else {
+        card.style.display = 'none';
+      }
     } else {
-      card.style.display = 'none';
+      if (category === 'all' || cardCats.includes(category)) {
+        card.style.display = '';
+      } else {
+        card.style.display = 'none';
+      }
     }
   });
+
+  // Hide Recent Recorded & Monthly Archives sections when filtering strictly by Upcoming Director/Collaborators' Calls (which have no recorded media)
+  if (recentSection) {
+    recentSection.style.display = (category === 'director_call' || category === 'collaborator_call') ? 'none' : '';
+  }
+  if (monthlySection) {
+    monthlySection.style.display = (category === 'director_call' || category === 'collaborator_call') ? 'none' : '';
+  }
 };
 
 document.addEventListener('DOMContentLoaded', async () => {
@@ -29,7 +62,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   if (!upcomingContainer) return;
 
   try {
-    const response = await fetch('/events.json?v=20261025_v12');
+    const response = await fetch('/events.json?v=20261025_v13');
     if (!response.ok) return;
     const events = await response.json();
 
@@ -40,10 +73,10 @@ document.addEventListener('DOMContentLoaded', async () => {
     const isLexClinicMember = userEmail.toLowerCase().endsWith("@lex.clinic");
 
     const catLabels = {
-      class: '🎓 Socratic Class',
-      interview: '🎙️ Interview',
+      class: '🎓 101 Live Socratic Session',
+      interview: '🎙️ Guest Interview',
       director_call: '🏛️ Director Call',
-      partner_call: '🌐 Partner / Root Node Call'
+      collaborator_call: "🌐 Collaborators' Call"
     };
 
     let html = '';

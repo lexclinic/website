@@ -90,13 +90,19 @@ async function run(webDir) {
   const btnClass = { getAttribute: () => 'class', style: {} };
   const btnInterview = { getAttribute: () => 'interview', style: {} };
 
-  const cardClass = { getAttribute: () => 'class', style: { display: '' } };
-  const cardInterview = { getAttribute: () => 'interview', style: { display: '' } };
+  const cardClass = { getAttribute: (k) => (k === 'data-default-recent' ? 'true' : 'class'), style: { display: '' } };
+  const cardInterview = { getAttribute: (k) => (k === 'data-default-recent' ? null : 'interview'), style: { display: 'none' } };
 
   const eventsSandbox = {
     window: {},
     document: {
       addEventListener: () => {},
+      getElementById: (id) => {
+        if (id === 'recent-three-events-grid') {
+          return { contains: (el) => el === cardClass || el === cardInterview };
+        }
+        return null;
+      },
       querySelectorAll: (sel) => {
         if (sel === '.event-cat-filter-btn') return [btnAll, btnClass, btnInterview];
         if (sel === '[data-event-category]') return [cardClass, cardInterview];
@@ -117,10 +123,10 @@ async function run(webDir) {
   assert.strictEqual(btnInterview.style.fontWeight, '800', 'Selected filter pill must have bold 800 weight');
   assertions += 3;
 
-  // Filter back to 'all'
+  // Filter back to 'all' (in #recent-three-events-grid, only data-default-recent="true" top 3 overall events show)
   eventsSandbox.window.filterEventsByCategory('all', btnAll);
-  assert.strictEqual(cardInterview.style.display, '', 'Interview card must be visible when filtering by all');
-  assert.strictEqual(cardClass.style.display, '', 'Class card must be visible when filtering by all');
+  assert.strictEqual(cardInterview.style.display, 'none', 'Older interview card in recent grid should hide when returning to All overall top-3 view');
+  assert.strictEqual(cardClass.style.display, '', 'Top-3 default-recent class card must be visible when filtering by all');
   assertions += 2;
 
   // --------------------------------------------------------------------------
