@@ -37,12 +37,13 @@ async function readSharedLedger(env = {}) {
 
   let ledger = {
     meta: {
-      system: "LexClinic Legal Engineering Media Notes & Approvals Shared Ledger",
-      version: "2.0.0",
+      system: "LexClinic Legal Engineering Media Notes, Approvals & Watch History Shared Ledger",
+      version: "2.1.0",
       updated_at: new Date().toISOString()
     },
     approvals: {},
-    notes: []
+    notes: [],
+    watch_history: {}
   };
 
   if (token) {
@@ -56,6 +57,7 @@ async function readSharedLedger(env = {}) {
         if (parsed && typeof parsed === "object") {
           ledger.approvals = parsed.approvals || {};
           ledger.notes = Array.isArray(parsed.notes) ? parsed.notes : [];
+          ledger.watch_history = parsed.watch_history || {};
           if (parsed.meta) ledger.meta = parsed.meta;
         }
       } catch (e) {}
@@ -133,6 +135,27 @@ function applyItemToLedger(ledger, item) {
     }
   }
 
+  // 3. Handle Watch Progress Record
+  if (typeof item.progress === "number" && item.progress > 0) {
+    ledger.watch_history = ledger.watch_history || {};
+    const watchKey = `${reviewer}|${cardId}`;
+    const existingWatch = ledger.watch_history[watchKey];
+    const nextProg = Math.min(100, Math.max(0, Math.round(item.progress)));
+    if (!existingWatch || nextProg > (existingWatch.progress || 0)) {
+      ledger.watch_history[watchKey] = {
+        uid,
+        card_id: cardId,
+        page_url: item.page_url || (uid.includes("#") ? uid.split("#")[0] : "/"),
+        video_title: item.video_title || cardId,
+        progress: nextProg,
+        current_time: item.current_time || 0,
+        user_email: reviewer,
+        updated_at: timestamp
+      };
+      changed = true;
+    }
+  }
+
   return changed;
 }
 
@@ -146,7 +169,8 @@ export async function onRequestGet(context) {
       total_approvals: Object.keys(ledger.approvals || {}).length,
       total_notes: (ledger.notes || []).length,
       approvals: ledger.approvals || {},
-      notes: ledger.notes || []
+      notes: ledger.notes || [],
+      watch_history: ledger.watch_history || {}
     }), {
       headers: {
         "Content-Type": "application/json",
@@ -192,7 +216,8 @@ export async function onRequestPost(context) {
       total_approvals: Object.keys(ledger.approvals || {}).length,
       total_notes: (ledger.notes || []).length,
       approvals: ledger.approvals || {},
-      notes: ledger.notes || []
+      notes: ledger.notes || [],
+      watch_history: ledger.watch_history || {}
     }), {
       headers: {
         "Content-Type": "application/json",

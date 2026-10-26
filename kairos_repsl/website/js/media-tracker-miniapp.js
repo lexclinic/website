@@ -36,7 +36,7 @@ class MediaTrackerMeter {
       if (history[this.id]) {
         return history[this.id];
       }
-      // Fallback: search by title
+      // Fallback 1: search by title
       const cleanTitle = (this.title || "").toLowerCase().trim();
       for (const key in history) {
         if (history[key] && history[key].video_title) {
@@ -44,6 +44,19 @@ class MediaTrackerMeter {
             return history[key];
           }
         }
+      }
+      // Fallback 2: if the logged-in user has already approved this media card (Thorough or Pass/Star), treat as watched!
+      const userEmail = ((window.getSanitizedEmail ? window.getSanitizedEmail() : "") || localStorage.getItem("lexclinic_user_email") || "").toLowerCase().trim();
+      const approvals = JSON.parse(localStorage.getItem("lexclinic_media_approvals") || "{}");
+      const canonicalUid = (window.location ? window.location.pathname : "/") + "#" + this.id;
+      const appRec = approvals[canonicalUid] || approvals[this.id];
+      if (appRec && (!userEmail || !appRec.reviewer || appRec.reviewer.toLowerCase() === userEmail)) {
+        return {
+          progress: appRec.depth === "cursory" ? 50 : 100,
+          current_time: 0,
+          video_title: this.title,
+          user_email: userEmail || appRec.reviewer
+        };
       }
       return null;
     } catch(err) {
@@ -87,19 +100,45 @@ class MediaTrackerMeter {
 
   recordProgress(prog, currentTime) {
     const userEmail = (window.getSanitizedEmail ? window.getSanitizedEmail() : "") || localStorage.getItem("lexclinic_user_email") || "";
-    
+    const cleanProg = Math.min(100, Math.max(0, Math.round(prog)));
+    const pageUrl = window.location ? window.location.pathname : "/";
+
     const record = {
-      progress: Math.min(100, Math.max(0, prog)),
+      video_id: this.id,
+      card_id: this.id,
+      page_url: pageUrl,
+      media_type: this.mediaType,
+      progress: cleanProg,
       current_time: currentTime || 0,
       video_title: this.title,
       user_email: userEmail,
+      timestamp: new Date().toISOString(),
       updated_at: new Date().toISOString()
     };
 
     try {
       const history = JSON.parse(localStorage.getItem("lexclinic_video_watch_history") || "{}");
+      const prevProg = history[this.id] ? (history[this.id].progress || 0) : 0;
       history[this.id] = record;
       localStorage.setItem("lexclinic_video_watch_history", JSON.stringify(history));
+
+      // Sync to cloud ledger when crossing 25%, 50%, 75%, or >=90% completion
+      if (userEmail && window.fetch && cleanProg > prevProg && (cleanProg >= 90 || cleanProg % 25 === 0)) {
+        window.fetch("/api/media-notes", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            uid: pageUrl + "#" + this.id,
+            card_id: this.id,
+            page_url: pageUrl,
+            video_title: this.title,
+            progress: cleanProg,
+            current_time: currentTime || 0,
+            reviewer: userEmail,
+            timestamp: record.updated_at
+          })
+        }).catch(() => {});
+      }
     } catch(err) {}
 
     this.refreshUI();

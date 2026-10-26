@@ -352,12 +352,13 @@ function updateAuthButtonVisibility() {
   }
 }
 
-// Gather all localStorage approvals & notes and sync with /api/media-notes
+// Gather all localStorage approvals, notes & watch history and sync with /api/media-notes
 async function syncAndHydrateMediaLedger() {
   const allHistory = JSON.parse(localStorage.getItem('lexclinic_notes_history') || '{}');
   const allApprovals = JSON.parse(localStorage.getItem('lexclinic_media_approvals') || '{}');
+  const allWatchHistory = JSON.parse(localStorage.getItem('lexclinic_video_watch_history') || '{}');
   const legacyComments = JSON.parse(localStorage.getItem('lexclinic_media_comments') || '{}');
-  const userEmail = (window.getSanitizedEmail ? window.getSanitizedEmail() : "") || "kyle@lex.clinic";
+  const userEmail = (window.getSanitizedEmail ? window.getSanitizedEmail() : "") || (localStorage.getItem("lexclinic_user_email") || "").toLowerCase().trim() || "kyle@lex.clinic";
 
   // 1. Immediately hydrate buttons from localStorage
   Object.keys(allHistory).forEach(key => {
@@ -415,6 +416,23 @@ async function syncAndHydrateMediaLedger() {
     }
   });
 
+  Object.keys(allWatchHistory).forEach(cardId => {
+    const wRec = allWatchHistory[cardId];
+    if (wRec && typeof wRec.progress === 'number' && wRec.progress > 0) {
+      const pageUrl = wRec.page_url || window.location.pathname;
+      localItemsToPush.push({
+        uid: pageUrl + '#' + cardId,
+        card_id: cardId,
+        page_url: pageUrl,
+        video_title: wRec.video_title || cardId,
+        progress: wRec.progress,
+        current_time: wRec.current_time || 0,
+        reviewer: wRec.user_email || userEmail,
+        timestamp: wRec.updated_at || wRec.timestamp || new Date().toISOString()
+      });
+    }
+  });
+
   Object.keys(legacyComments).forEach(cardId => {
     const text = legacyComments[cardId];
     if (text && typeof text === 'string' && text.trim()) {
@@ -444,9 +462,12 @@ async function syncAndHydrateMediaLedger() {
       const data = await res.json();
       sharedServerApprovals = data.approvals || {};
       sharedServerNotes = Array.isArray(data.notes) ? data.notes : [];
+      const sharedWatchHistory = data.watch_history || {};
 
       // Merge server approvals back into localStorage & hydrate DOM buttons
       let mergedApprovals = { ...allApprovals };
+      let mergedWatch = { ...allWatchHistory };
+
       Object.keys(sharedServerApprovals).forEach(uid => {
         const rec = sharedServerApprovals[uid];
         if (rec && rec.rating) {
@@ -454,9 +475,55 @@ async function syncAndHydrateMediaLedger() {
           mergedApprovals[uid] = rec;
           mergedApprovals[cardId] = rec;
           updateApprovalButtonUI(cardId, rec);
+
+          // If the active user approved this card (or reviewed it thoroughly), also hydrate watch history so the meter shows 100% Watched!
+          if (!rec.reviewer || rec.reviewer.toLowerCase() === userEmail.toLowerCase()) {
+            const targetProg = rec.depth === 'cursory' ? 50 : 100;
+            if (!mergedWatch[cardId] || (mergedWatch[cardId].progress || 0) < targetProg) {
+              mergedWatch[cardId] = {
+                video_id: cardId,
+                card_id: cardId,
+                page_url: rec.page_url || (uid.includes('#') ? uid.split('#')[0] : window.location.pathname),
+                progress: targetProg,
+                current_time: 0,
+                video_title: cardId,
+                user_email: rec.reviewer || userEmail,
+                timestamp: rec.timestamp || new Date().toISOString(),
+                updated_at: rec.timestamp || new Date().toISOString()
+              };
+            }
+          }
         }
       });
+
+      // Merge server watch_history records for this user
+      Object.keys(sharedWatchHistory).forEach(wKey => {
+        const wRec = sharedWatchHistory[wKey];
+        if (wRec && wRec.card_id && (!wRec.user_email || wRec.user_email.toLowerCase() === userEmail.toLowerCase())) {
+          const cid = wRec.card_id;
+          if (!mergedWatch[cid] || (wRec.progress || 0) > (mergedWatch[cid].progress || 0)) {
+            mergedWatch[cid] = {
+              video_id: cid,
+              card_id: cid,
+              page_url: wRec.page_url || window.location.pathname,
+              progress: wRec.progress,
+              current_time: wRec.current_time || 0,
+              video_title: wRec.video_title || cid,
+              user_email: wRec.user_email || userEmail,
+              timestamp: wRec.updated_at || new Date().toISOString(),
+              updated_at: wRec.updated_at || new Date().toISOString()
+            };
+          }
+        }
+      });
+
       localStorage.setItem('lexclinic_media_approvals', JSON.stringify(mergedApprovals));
+      localStorage.setItem('lexclinic_video_watch_history', JSON.stringify(mergedWatch));
+
+      // Re-refresh all MediaTrackerMeter bars on the page now that approvals & watch history are hydrated!
+      if (window.initAllMediaMeters) {
+        window.initAllMediaMeters();
+      }
 
       // Hydrate comment counts from server notes
       const noteCountsByCard = {};
@@ -488,10 +555,18 @@ window.updateApprovalButtonUI = updateApprovalButtonUI;
 window.updateAuthButtonVisibility = updateAuthButtonVisibility;
 window.syncAndHydrateMediaLedger = syncAndHydrateMediaLedger;
 
-document.addEventListener('DOMContentLoaded', () => {
+// CRITICAL FIX: Because watch-tracker.js injects media-comments-approval.js dynamically,
+// DOMContentLoaded has often ALREADY fired by the time this script executes!
+// Always run immediately if readyState !== 'loading', AND also bind DOMContentLoaded as fallback.
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', () => {
+    updateAuthButtonVisibility();
+    syncAndHydrateMediaLedger();
+  });
+} else {
   updateAuthButtonVisibility();
   syncAndHydrateMediaLedger();
-});
+}
 
 window.addEventListener('storage', () => {
   updateAuthButtonVisibility();

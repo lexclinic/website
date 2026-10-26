@@ -259,7 +259,9 @@ async function run(webDir) {
   await env.windowObj.syncAndHydrateMediaLedger();
   assert.ok(env.mockServerLedger.total_approvals >= 1, 'syncAndHydrateMediaLedger should push localStorage approvals to /api/media-notes');
   assert.ok(env.mockServerLedger.total_notes >= 1, 'syncAndHydrateMediaLedger should push localStorage notes to /api/media-notes');
-  assertions += 4;
+  const hydratedWatch = JSON.parse(env.localStorageMock.getItem('lexclinic_video_watch_history') || '{}');
+  assert.ok(hydratedWatch['card_interview_lucas_v1_1'] && hydratedWatch['card_interview_lucas_v1_1'].progress === 100, 'Approved thorough media card must automatically hydrate watch history to 100% Watched');
+  assertions += 5;
 
   console.log(` ✅ SUITE 01 PASSED: ${assertions} assertions verified (Auth, 24h Disclaimer, 2-Step Approvals, Legacy Aliases, Notes Sync)!`);
   return { passed: true, assertions };
