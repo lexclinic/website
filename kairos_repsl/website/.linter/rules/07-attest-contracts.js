@@ -22,6 +22,25 @@ function run(webDir, config) {
     }
   }
 
+  // 1b. Verify /nft/index.html and /NFT/index.html exist and have ILNA33X & IERC7827Tokenized interfaces and interactive codec
+  for (const dirName of ["nft", "NFT"]) {
+    const nftFile = path.join(webDir, dirName, "index.html");
+    if (!fs.existsSync(nftFile)) {
+      violations.push(`${dirName}/index.html is missing`);
+    } else {
+      const nftHtml = fs.readFileSync(nftFile, "utf8");
+      if (!nftHtml.includes("ILNA33X") || !nftHtml.includes("IERC7827Tokenized") || !nftHtml.includes("0x69568Cc6bd574C9729F9e73CB2Ce7b4b9977710A")) {
+        violations.push(`${dirName}/index.html is missing ILNA33X / IERC7827Tokenized / QGOV Mainnet contract specification`);
+      }
+      if (!nftHtml.includes("lna-in-hex") || !nftHtml.includes("loadLnaPreset")) {
+        violations.push(`${dirName}/index.html is missing interactive LNA-33X Hex<->ASCII codec`);
+      }
+      if (nftHtml.includes("status-badge") || nftHtml.includes("hero-badge")) {
+        violations.push(`${dirName}/index.html contains redundant status-badge or hero-badge pills`);
+      }
+    }
+  }
+
   // 2. Verify /attest/index.html exists
   const attestFile = path.join(webDir, "attest", "index.html");
   if (!fs.existsSync(attestFile)) {
