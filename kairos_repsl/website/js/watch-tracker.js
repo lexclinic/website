@@ -5,7 +5,7 @@
 (function() {
   function loadScript(src) {
     const script = document.createElement('script');
-    script.src = src + '?v=20261025_v14';
+    script.src = src + '?v=20261025_v15';
     script.async = false;
     document.head.appendChild(script);
   }

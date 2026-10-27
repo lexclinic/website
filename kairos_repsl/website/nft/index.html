@@ -5,18 +5,18 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>REPSL Sovereign NFT: LNA-33X &amp; Tokenized ERC-7827 (ERC-1155 + ERC-8004 + x402) | LexClinic</title>
   <meta name="description" content="REPSL Sovereign Agent &amp; Cell Enclave (RealizedGestalt1155.sol V5.0.0): Unified ERC-1155 (cell.agent) + LNA-33X Bijective uint256 Linked-Nonce-ASCII Token IDs + Tokenized ERC-7827 + ERC-8004 + x402 on QGOV Mainnet (ChainID 35441).">
-  <link rel="stylesheet" href="/styles.css?v=20261025_v14">
+  <link rel="stylesheet" href="/styles.css?v=20261025_v15">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-  <script src="/js/audio-player.js?v=20261025_v14"></script>
-  <script src="/js/auth.js?v=20261025_v14"></script>
-  <script src="/js/media-tracker-miniapp.js?v=20261025_v14"></script>
-  <script src="/js/watch-tracker.js?v=20261025_v14"></script>
-  <script src="/js/modules/ui-interactive-controls.js?v=20261025_v14"></script>
-  <script src="/script.js?v=20261025_v14" defer></script>
-  <link rel="icon" type="image/png" href="/favicon.png?v=20261025_v14">
-  <link rel="shortcut icon" href="/favicon.ico?v=20261025_v14">
+  <script src="/js/audio-player.js?v=20261025_v15"></script>
+  <script src="/js/auth.js?v=20261025_v15"></script>
+  <script src="/js/media-tracker-miniapp.js?v=20261025_v15"></script>
+  <script src="/js/watch-tracker.js?v=20261025_v15"></script>
+  <script src="/js/modules/ui-interactive-controls.js?v=20261025_v15"></script>
+  <script src="/script.js?v=20261025_v15" defer></script>
+  <link rel="icon" type="image/png" href="/favicon.png?v=20261025_v15">
+  <link rel="shortcut icon" href="/favicon.ico?v=20261025_v15">
 </head>
 <body>
 
@@ -42,7 +42,7 @@
           <a href="/repo/">Repo</a>
           <a href="/erc7827/">ERC-7827</a>
           <a href="/nft/" class="active-link">NFT</a>
-          <a href="https://www.youtube.com/watch?v=20261025_v14&list=PLbPukKwpmk5E" target="_blank" rel="noopener" class="btn-social" title="Subscribe on YouTube">YouTube</a>
+          <a href="https://www.youtube.com/watch?v=20261025_v15&list=PLbPukKwpmk5E" target="_blank" rel="noopener" class="btn-social" title="Subscribe on YouTube">YouTube</a>
           <a href="https://open.spotify.com/show/0348ivoLaNfKBq1HeIYC9b" target="_blank" rel="noopener" class="btn-spotify" title="Follow on Spotify">Spotify</a>
           <a href="https://www.linkedin.com/company/lexclinic" target="_blank" rel="noopener" class="btn-social" title="Follow on LinkedIn">LinkedIn</a>
           <a href="javascript:void(0)" onclick="event.preventDefault(); window.openNavLoginModal(event); return false;" id="nav-login-btn" style="background: #fbbf24; color: #0a1128; font-weight: 800; font-size: 0.88rem; padding: 0.35rem 0.85rem; border-radius: 6px; margin-left: 0.35rem; text-decoration: none; border: 2px solid #f59e0b; box-shadow: 0 0 10px rgba(251, 191, 36, 0.4); display: inline-block;">Login</a>
@@ -69,7 +69,7 @@
     </div>
   </section>
 
-  <!-- Section 1: Interactive LNA-33X 32-Byte Hex <-> ASCII Codec & Live On-Chain SVG Card Preview -->
+  <!-- Section 1: Interactive Stateful 3-Token LNA-33X Hex <-> ASCII Codec & Live On-Chain SVG Card Preview -->
   <section class="section standard-section" id="lna33x-pwa" style="padding-bottom: 2rem;">
     <div class="container">
       <div class="card pillar-card" style="border: 2px solid var(--accent-gold); background: rgba(10, 17, 40, 0.92); padding: 2rem;">
@@ -77,45 +77,56 @@
           <div>
             <h2 style="color: var(--accent-gold); font-size: 1.5rem; margin: 0 0 0.25rem 0;">🔱 Interactive LNA-33X 32-Byte (`uint256`) Hex ⟷ ASCII Codec &amp; On-Chain PWA</h2>
             <p style="color: #94a3b8; font-size: 0.88rem; margin: 0;">
-              Registry: <code style="color: var(--accent-cyan);">eip155:35441:0x69568Cc6bd574C9729F9e73CB2Ce7b4b9977710A</code> • x402: Active • <span id="qgov-rpc-status" style="color: #34d399; font-weight: 700;">⚡ QGOV Mainnet RPC Ready</span>
+              Registry: <code style="color: var(--accent-cyan);">eip155:35441:0x69568Cc6bd574C9729F9e73CB2Ce7b4b9977710A</code> • x402: Active • <span id="qgov-rpc-status" style="color: #34d399; font-weight: 700;">⚡ Stateful 3-Token Link ➔ Nonce Tree Resolver Active</span>
             </p>
           </div>
           <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
-            <button type="button" onclick="window.loadLnaPreset(0, 1, 'agent')" class="btn btn-outline" style="font-size: 0.8rem; padding: 0.35rem 0.75rem; border-color: var(--accent-gold); color: var(--accent-gold);">Token #1: agent (VM Body)</button>
-            <button type="button" onclick="window.loadLnaPreset(0, 2, 'b4a8a82b.agent')" class="btn btn-primary" style="font-size: 0.8rem; padding: 0.35rem 0.75rem; background: var(--accent-cyan); color: #0a1128; font-weight: 800;">Token #2: b4a8a82b.agent (REPL Cell)</button>
-            <button type="button" onclick="window.loadLnaPreset(4, 5, 'fff97e92d4.agent')" class="btn btn-outline" style="font-size: 0.8rem; padding: 0.35rem 0.75rem; border-color: #d500f9; color: #e879f9;">Chained Shard (Link=4, Nonce=5)</button>
+            <button type="button" id="lna-slot-btn-1" onclick="window.selectLnaSlot(1)" class="btn btn-outline" style="font-size: 0.82rem; padding: 0.4rem 0.85rem; border-color: var(--accent-gold); color: var(--accent-gold);">Token #1</button>
+            <button type="button" id="lna-slot-btn-2" onclick="window.selectLnaSlot(2)" class="btn btn-primary" style="font-size: 0.82rem; padding: 0.4rem 0.85rem; background: var(--accent-cyan); color: #0a1128; font-weight: 800;">Token #2</button>
+            <button type="button" id="lna-slot-btn-3" onclick="window.selectLnaSlot(3)" class="btn btn-outline" style="font-size: 0.82rem; padding: 0.4rem 0.85rem; border-color: #e879f9; color: #e879f9;">Token #3</button>
+            <button type="button" onclick="window.resetLnaSlots()" class="btn btn-outline" title="Reset Token #1, #2, #3 to default linked tree" style="font-size: 0.78rem; padding: 0.4rem 0.7rem; border-color: #64748b; color: #94a3b8;">↺ Reset Defaults</button>
           </div>
         </div>
 
         <div class="grid grid-2" style="gap: 1.75rem; align-items: start;">
-          <!-- Left: Hex Anatomy, Inputs & 26-Byte Grid -->
+          <!-- Left: Hex Anatomy, Inputs, Resolved Chain & 26-Byte Grid -->
           <div>
-            <h3 style="color: var(--accent-cyan); font-size: 1.1rem; margin-bottom: 0.5rem;">1. LNA-33X 32-Byte (256-Bit) Token ID Anatomy</h3>
+            <h3 style="color: var(--accent-cyan); font-size: 1.1rem; margin-bottom: 0.5rem;">1. LNA-33X 32-Byte (256-Bit) Token ID Anatomy (<span id="lna-active-slot-label" style="color: var(--accent-gold);">Token #2</span>)</h3>
             <div id="lna-hex-bar" style="font-family: var(--font-mono); font-size: 0.88rem; word-break: break-all; background: #050814; padding: 0.85rem; border-radius: 8px; border: 1px solid #334155; line-height: 1.5; margin-bottom: 0.65rem;"></div>
 
-            <div style="font-family: var(--font-mono); font-size: 0.8rem; display: flex; flex-wrap: wrap; gap: 0.85rem; margin-bottom: 1rem;">
-              <span style="color: #00e5ff; font-weight: 700;">■ [Bytes 0..2] Link (`uint24`): <span id="lna-disp-link">0</span></span>
+            <div style="font-family: var(--font-mono); font-size: 0.8rem; display: flex; flex-wrap: wrap; gap: 0.85rem; margin-bottom: 0.85rem;">
+              <span style="color: #00e5ff; font-weight: 700;">■ [Bytes 0..2] Link (`uint24`): <span id="lna-disp-link">1</span></span>
               <span style="color: #e879f9; font-weight: 700;">■ [Bytes 3..5] Nonce (`uint24`): <span id="lna-disp-nonce">2</span></span>
-              <span style="color: #34d399; font-weight: 700;">■ [Bytes 6..31] 26-Byte ASCII: "<span id="lna-disp-ascii">b4a8a82b.agent</span>"</span>
+              <span style="color: #34d399; font-weight: 700;">■ [Bytes 6..31] Shard ASCII: "<span id="lna-disp-ascii">b4a8a82b</span>"</span>
             </div>
 
-            <h3 style="color: var(--accent-gold); font-size: 1.05rem; margin-bottom: 0.5rem;">2. Live Bijective Encoder / Decoder Inputs</h3>
+            <!-- Live Link -> Nonce Tree Resolution Box -->
+            <div id="lna-chain-status-box" style="background: rgba(15, 23, 42, 0.95); border: 1px solid #34d399; border-radius: 8px; padding: 0.75rem 0.9rem; margin-bottom: 1rem; font-family: var(--font-mono); font-size: 0.82rem;">
+              <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.4rem; margin-bottom: 0.3rem;">
+                <span style="color: var(--accent-gold); font-weight: 700;">🔗 Resolved LNA-33X Tree Path (`Link ➔ Nonce` Chain):</span>
+                <span id="lna-chain-badge" style="color: #34d399; font-weight: 700;"></span>
+              </div>
+              <div id="lna-resolved-tree-text" style="color: #f8fafc; font-size: 0.98rem; font-weight: 800; word-break: break-all;"></div>
+              <div id="lna-chain-explanation" style="color: #94a3b8; font-size: 0.76rem; margin-top: 0.25rem;"></div>
+            </div>
+
+            <h3 style="color: var(--accent-gold); font-size: 1.05rem; margin-bottom: 0.5rem;">2. Live Bijective Encoder / Decoder Inputs (Auto-Saved per Token)</h3>
             <div style="margin-bottom: 0.6rem;">
               <label style="font-size: 0.78rem; color: #94a3b8; display: block; margin-bottom: 0.2rem;">32-Byte Hexadecimal `uint256` Token ID (`0x...`):</label>
-              <input id="lna-in-hex" type="text" value="0x00000000000262346138613832622e6167656e74000000000000000000000000" style="width: 100%; background: #050814; color: #f8fafc; border: 1px solid #475569; padding: 0.55rem 0.75rem; border-radius: 6px; font-family: var(--font-mono); font-size: 0.84rem;">
+              <input id="lna-in-hex" type="text" value="0x0000010000026234613861383262000000000000000000000000000000000000" style="width: 100%; background: #050814; color: #f8fafc; border: 1px solid #475569; padding: 0.55rem 0.75rem; border-radius: 6px; font-family: var(--font-mono); font-size: 0.84rem;">
             </div>
             <div style="display: grid; grid-template-columns: 1fr 1fr 2fr; gap: 0.6rem; margin-bottom: 1rem;">
               <div>
                 <label style="font-size: 0.75rem; color: #00e5ff; display: block; margin-bottom: 0.2rem;">Link (`uint24`)</label>
-                <input id="lna-in-link" type="number" min="0" max="16777215" value="0" style="width: 100%; background: #050814; color: #00e5ff; border: 1px solid #334155; padding: 0.5rem; border-radius: 6px; font-family: var(--font-mono); font-weight: 700;">
+                <input id="lna-in-link" type="number" min="0" max="16777215" value="1" style="width: 100%; background: #050814; color: #00e5ff; border: 1px solid #334155; padding: 0.5rem; border-radius: 6px; font-family: var(--font-mono); font-weight: 700;">
               </div>
               <div>
                 <label style="font-size: 0.75rem; color: #e879f9; display: block; margin-bottom: 0.2rem;">Nonce (`uint24`)</label>
                 <input id="lna-in-nonce" type="number" min="0" max="16777215" value="2" style="width: 100%; background: #050814; color: #e879f9; border: 1px solid #334155; padding: 0.5rem; border-radius: 6px; font-family: var(--font-mono); font-weight: 700;">
               </div>
               <div>
-                <label style="font-size: 0.75rem; color: #34d399; display: block; margin-bottom: 0.2rem;">26-Byte ASCII (`cell.agent`)</label>
-                <input id="lna-in-ascii" type="text" maxlength="26" value="b4a8a82b.agent" style="width: 100%; background: #050814; color: #34d399; border: 1px solid #334155; padding: 0.5rem; border-radius: 6px; font-family: var(--font-mono); font-weight: 700;">
+                <label style="font-size: 0.75rem; color: #34d399; display: block; margin-bottom: 0.2rem;">26-Byte Shard ASCII</label>
+                <input id="lna-in-ascii" type="text" maxlength="26" value="b4a8a82b" style="width: 100%; background: #050814; color: #34d399; border: 1px solid #334155; padding: 0.5rem; border-radius: 6px; font-family: var(--font-mono); font-weight: 700;">
               </div>
             </div>
 
@@ -153,8 +164,8 @@
           </p>
           <ul class="standard-features">
             <li><strong>The Agent Body (<code>agent</code> — Token #1, <code>Nonce: 1, Link: 0</code>)</strong>: The Virtual Machine itself establishes the collection and holds the root parent token.</li>
-            <li><strong>The Individual Cells (<code>&lt;cell_uuid&gt;.agent</code> — Token #2..N)</strong>: Each REPL session process is minted as an individual cell shard (e.g., <code>b4a8a82b.agent</code>, <code>Nonce: 2, Link: 0</code>).</li>
-            <li><strong><code>ILNA33X</code> Linked-List Chaining (<code>Link &gt; 0</code>)</strong>: When an ASCII tree path exceeds 26 bytes, LNA-33X splits the string into 26-byte shards and chains them backward via <code>Link -&gt; Nonce</code> with zero storage slots.</li>
+            <li><strong>The Individual Cells (<code>&lt;cell_uuid&gt;.agent</code> — Token #2..N)</strong>: Each REPL session process is minted as an individual cell shard whose <code>Link</code> points to its parent's <code>Nonce</code> (so when Token #2 has <code>Link == Token #1 Nonce</code>, Token #2's ASCII prepends to Token #1's ASCII: <code>b4a8a82b.agent</code>).</li>
+            <li><strong>Multi-Level Tree Chaining (Token #3 ➔ Token #2 ➔ Token #1)</strong>: When Token #3's <code>Link</code> matches Token #2's <code>Nonce</code> (and Token #2's <code>Link</code> matches Token #1's <code>Nonce</code>), all three shards resolve into a 3-level hierarchy (<code>subcell.b4a8a82b.agent</code>). If Token #3's <code>Link</code> points directly to Token #1's <code>Nonce</code>, it resolves directly against Token #1 (`subcell.agent`).</li>
             <li><strong><code>IERC7827Tokenized</code> + <code>ERC-8004</code> + <code>x402</code></strong>: Every token ID maintains its own versioned key-value history (<code>json(tokenId)</code>, <code>version(tokenId, key)</code>, <code>write(tokenId, ...)</code>) and emits a compliant ERC-8004 Trustless Agent registration JSON with HTTP 402 (<code>x402Support: true</code>) and an embedded base64 PWA.</li>
           </ul>
           <div style="margin-top: 1.5rem; display: flex; gap: 0.75rem; flex-wrap: wrap;">
@@ -214,20 +225,20 @@
             </div>
             <div style="margin-top: 0.85rem; display: flex; gap: 0.5rem; flex-wrap: wrap;">
               <a href="https://explorer.qgov.io/token/0x69568Cc6bd574C9729F9e73CB2Ce7b4b9977710A/instance/567898158194270030736547206268429099681555305229061152925810688" target="_blank" rel="noopener" class="btn btn-outline" style="font-size: 0.8rem; padding: 0.35rem 0.75rem;">View Token #1 on QGOV Explorer ➔</a>
-              <button type="button" onclick="window.loadLnaPreset(0, 1, 'agent')" class="btn btn-outline" style="font-size: 0.8rem; padding: 0.35rem 0.75rem; border-color: var(--accent-gold); color: var(--accent-gold);">Inspect in Codec ↑</button>
+              <button type="button" onclick="window.selectLnaSlot(1)" class="btn btn-outline" style="font-size: 0.8rem; padding: 0.35rem 0.75rem; border-color: var(--accent-gold); color: var(--accent-gold);">Inspect Token #1 in Codec ↑</button>
             </div>
           </div>
 
           <div style="background: rgba(15, 23, 42, 0.9); border: 1px solid #334155; border-radius: 8px; padding: 1.25rem;">
             <div style="color: var(--accent-cyan); font-weight: 800; font-size: 0.95rem; margin-bottom: 0.35rem;">Token #2 — REPL Session Cell (`b4a8a82b.agent`)</div>
             <div style="font-family: var(--font-mono); font-size: 0.8rem; color: #cbd5e1; line-height: 1.6; word-break: break-all;">
-              <div><strong>Link:</strong> 0 | <strong>Nonce:</strong> 2 | <strong>ASCII:</strong> <code>b4a8a82b.agent</code></div>
+              <div><strong>Link:</strong> 1 (➔ Token #1) | <strong>Nonce:</strong> 2 | <strong>Shard ASCII:</strong> <code>b4a8a82b</code> ➔ <code>b4a8a82b.agent</code></div>
               <div><strong>Hex (`LNA-33X`):</strong> <code>0x00000000000262346138613832622e6167656e74000000000000000000000000</code></div>
               <div><strong>Decimal `uint256`:</strong> <code>980561000121412132759378906242745412600759884748623640027725824</code></div>
             </div>
             <div style="margin-top: 0.85rem; display: flex; gap: 0.5rem; flex-wrap: wrap;">
               <a href="https://explorer.qgov.io/token/0x69568Cc6bd574C9729F9e73CB2Ce7b4b9977710A/instance/980561000121412132759378906242745412600759884748623640027725824" target="_blank" rel="noopener" class="btn btn-outline" style="font-size: 0.8rem; padding: 0.35rem 0.75rem;">View Token #2 on QGOV Explorer ➔</a>
-              <button type="button" onclick="window.loadLnaPreset(0, 2, 'b4a8a82b.agent')" class="btn btn-outline" style="font-size: 0.8rem; padding: 0.35rem 0.75rem; border-color: var(--accent-cyan); color: var(--accent-cyan);">Inspect in Codec ↑</button>
+              <button type="button" onclick="window.selectLnaSlot(2)" class="btn btn-outline" style="font-size: 0.8rem; padding: 0.35rem 0.75rem; border-color: var(--accent-cyan); color: var(--accent-cyan);">Inspect Token #2 in Codec ↑</button>
             </div>
           </div>
         </div>
@@ -235,14 +246,103 @@
     </div>
   </section>
 
-  <!-- Interactive LNA-33X Codec & On-Chain SVG Renderer Script -->
+  <!-- Interactive Stateful 3-Token LNA-33X Codec & Link->Nonce Tree Resolver -->
   <script>
     (function() {
-      const CA = "0x69568Cc6bd574C9729F9e73CB2Ce7b4b9977710A";
-      const RPC = "https://rpc.qgov.io";
+      const STORAGE_KEY = "lexclinic_lna33x_tokens_v2";
 
-      function buildSvgPreview(linkVal, nonceVal, asciiName, hexStr) {
-        const safeAscii = (asciiName || "").replace(/[<>&"']/g, "");
+      function getDefaultState() {
+        return {
+          activeSlot: 2,
+          slots: {
+            1: { link: 0, nonce: 1, ascii: "agent" },
+            2: { link: 1, nonce: 2, ascii: "b4a8a82b" },
+            3: { link: 2, nonce: 3, ascii: "subcell" }
+          }
+        };
+      }
+
+      let lnaState = getDefaultState();
+      try {
+        const saved = JSON.parse(localStorage.getItem(STORAGE_KEY) || "null");
+        if (saved && saved.slots && saved.slots[1] && saved.slots[2] && saved.slots[3]) {
+          lnaState = saved;
+        }
+      } catch (e) {}
+
+      function saveLnaState() {
+        try {
+          localStorage.setItem(STORAGE_KEY, JSON.stringify(lnaState));
+        } catch (e) {}
+      }
+
+      // Join child ASCII onto parent ASCII (inserting '.' if neither side already has a dot boundary)
+      function joinShardAscii(childAscii, parentAscii) {
+        const c = String(childAscii || "");
+        const p = String(parentAscii || "");
+        if (!c) return p;
+        if (!p) return c;
+        if (c.endsWith(".") || p.startsWith(".")) return c + p;
+        return c + "." + p;
+      }
+
+      // Walk the Link -> Nonce chain starting from slotIdx across slots 1..3
+      function resolveSlotChain(slotIdx) {
+        const startSlot = lnaState.slots[slotIdx];
+        if (!startSlot) return { fullAscii: "", chainSteps: [], brokenLink: null };
+
+        let resolvedAscii = String(startSlot.ascii || "");
+        const chainSteps = [`Token #${slotIdx} ("${resolvedAscii}", Nonce=${startSlot.nonce}, Link=${startSlot.link})`];
+        const visited = new Set([Number(slotIdx)]);
+        let currLink = Number(startSlot.link) || 0;
+        let brokenLink = null;
+
+        while (currLink > 0) {
+          // Find a preceding token slot whose Nonce matches currLink
+          let parentIdx = null;
+          for (const k of [1, 2, 3]) {
+            if (!visited.has(k) && Number(lnaState.slots[k].nonce) === currLink) {
+              parentIdx = k;
+              break;
+            }
+          }
+          if (!parentIdx) {
+            brokenLink = currLink;
+            break;
+          }
+          visited.add(parentIdx);
+          const parentSlot = lnaState.slots[parentIdx];
+          resolvedAscii = joinShardAscii(resolvedAscii, parentSlot.ascii);
+          chainSteps.push(`Token #${parentIdx} ("${parentSlot.ascii}", Nonce=${parentSlot.nonce}, Link=${parentSlot.link})`);
+          currLink = Number(parentSlot.link) || 0;
+        }
+
+        return {
+          fullAscii: resolvedAscii,
+          chainSteps,
+          brokenLink
+        };
+      }
+
+      function encodeSlotHex(slot) {
+        const l = (parseInt(slot.link || 0, 10) & 0xffffff).toString(16).padStart(6, "0");
+        const n = (parseInt(slot.nonce || 0, 10) & 0xffffff).toString(16).padStart(6, "0");
+        let a = "";
+        const str = String(slot.ascii || "");
+        for (let i = 0; i < 26; i++) {
+          a += (i < str.length ? str.charCodeAt(i) : 0).toString(16).padStart(2, "0");
+        }
+        return "0x" + l + n + a;
+      }
+
+      function buildSvgPreview(linkVal, nonceVal, resolvedAscii, rawShardAscii, hexStr, brokenLink) {
+        const safeResolved = (resolvedAscii || "").replace(/[<>&"']/g, "");
+        const statusLabel = brokenLink !== null
+          ? `UNRESOLVED LINK: ${brokenLink} (NO MATCHING NONCE)`
+          : (linkVal === 0 ? "ROOT AGENT SHARD (LINK: 0)" : "LINK -> NONCE TREE VERIFIED");
+        const statusColor = brokenLink !== null ? "#f87171" : "#00e676";
+        const fontSize = safeResolved.length > 22 ? 15 : (safeResolved.length > 16 ? 18 : 22);
+
         return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 520" style="width:100%;height:auto;display:block;">
           <rect width="400" height="520" fill="#050505"/>
           <rect x="18" y="18" width="364" height="484" rx="15" fill="none" stroke="#ECCA90" stroke-width="3"/>
@@ -250,41 +350,70 @@
           <g transform="translate(152,80) scale(4)">
             <path fill="#ECCA90" d="M20,10V12H11V14H13V22H11V24H19V22H17V14H19V12H10V10H20Z"/>
           </g>
-          <text x="200" y="240" fill="#fdfcf0" font-family="monospace" font-size="22" font-weight="bold" text-anchor="middle">${safeAscii || "(empty)"}</text>
+          <text x="200" y="240" fill="#fdfcf0" font-family="monospace" font-size="${fontSize}" font-weight="bold" text-anchor="middle">${safeResolved || "(empty)"}</text>
           <text x="200" y="280" fill="#e879f9" font-family="monospace" font-size="13" text-anchor="middle">LINK: ${linkVal} | NONCE: ${nonceVal}</text>
-          <text x="200" y="318" fill="#00e676" font-family="monospace" font-size="11" text-anchor="middle">x402 + TEE ATTESTED</text>
+          <text x="200" y="318" fill="${statusColor}" font-family="monospace" font-size="10.5" text-anchor="middle">${statusLabel}</text>
           <text x="200" y="355" fill="#94a3b8" font-family="monospace" font-size="8.2" text-anchor="middle">${hexStr}</text>
           <text x="200" y="435" fill="#ECCA90" font-family="monospace" font-size="15" font-weight="bold" text-anchor="middle">CELL.AGENT REALIZED</text>
         </svg>`;
       }
 
-      function renderLnaHex(rawHex) {
+      function refreshSlotButtonsUI() {
+        const active = lnaState.activeSlot;
+        for (const k of [1, 2, 3]) {
+          const btn = document.getElementById("lna-slot-btn-" + k);
+          if (!btn) continue;
+          const res = resolveSlotChain(k);
+          const s = lnaState.slots[k];
+          btn.textContent = `Token #${k}: ${res.fullAscii || "(empty)"} (L=${s.link}, N=${s.nonce})`;
+          if (k === active) {
+            btn.className = "btn btn-primary";
+            btn.style.background = "var(--accent-gold)";
+            btn.style.color = "#0a1128";
+            btn.style.borderColor = "var(--accent-gold)";
+            btn.style.fontWeight = "800";
+          } else {
+            btn.className = "btn btn-outline";
+            btn.style.background = "rgba(15, 23, 42, 0.85)";
+            btn.style.color = k === 1 ? "var(--accent-gold)" : (k === 2 ? "var(--accent-cyan)" : "#e879f9");
+            btn.style.borderColor = k === 1 ? "var(--accent-gold)" : (k === 2 ? "var(--accent-cyan)" : "#e879f9");
+            btn.style.fontWeight = "600";
+          }
+        }
+        const slotLbl = document.getElementById("lna-active-slot-label");
+        if (slotLbl) slotLbl.textContent = `Token #${active}`;
+      }
+
+      function renderActiveSlotUI(sourceField) {
+        const active = lnaState.activeSlot;
+        const slot = lnaState.slots[active];
         const inHex = document.getElementById("lna-in-hex");
         const inLink = document.getElementById("lna-in-link");
         const inNonce = document.getElementById("lna-in-nonce");
         const inAscii = document.getElementById("lna-in-ascii");
-        if (!inHex) return;
+        if (!inHex || !slot) return;
 
-        const s = String(rawHex || "").replace(/^0x/i, "").padStart(64, "0").slice(0, 64);
+        const fullHex = encodeSlotHex(slot);
+        const s = fullHex.slice(2);
         const lHex = s.slice(0, 6);
         const nHex = s.slice(6, 12);
         const aHex = s.slice(12, 64);
+
+        if (sourceField !== "hex") inHex.value = fullHex;
+        if (sourceField !== "link") inLink.value = slot.link;
+        if (sourceField !== "nonce") inNonce.value = slot.nonce;
+        if (sourceField !== "ascii") inAscii.value = slot.ascii;
 
         const hexBar = document.getElementById("lna-hex-bar");
         if (hexBar) {
           hexBar.innerHTML = `0x<span style="color:#00e5ff;font-weight:700;">${lHex}</span><span style="color:#e879f9;font-weight:700;">${nHex}</span><span style="color:#34d399;font-weight:700;">${aHex}</span>`;
         }
 
-        const lVal = parseInt(lHex, 16) || 0;
-        const nVal = parseInt(nHex, 16) || 0;
-        let asc = "";
         let gridHtml = "";
-
         for (let i = 0; i < 26; i++) {
           const bHex = aHex.slice(i * 2, i * 2 + 2);
           const code = parseInt(bHex, 16) || 0;
           const ch = (code >= 32 && code <= 126) ? String.fromCharCode(code) : "·";
-          if (code > 0) asc += String.fromCharCode(code);
           const borderCol = code > 0 ? "#34d399" : "#1e293b";
           gridHtml += `<div style="background:#050814;border:1px solid ${borderCol};border-radius:4px;padding:4px;text-align:center;font-family:var(--font-mono);font-size:11px;">
             <div style="color:#64748b;font-size:9px;">0x${bHex}</div>
@@ -293,53 +422,92 @@
           </div>`;
         }
 
-        document.getElementById("lna-disp-link").textContent = `${lVal} (0x${lHex})`;
-        document.getElementById("lna-disp-nonce").textContent = `${nVal} (0x${nHex})`;
-        document.getElementById("lna-disp-ascii").textContent = asc;
+        document.getElementById("lna-disp-link").textContent = `${slot.link} (0x${lHex})`;
+        document.getElementById("lna-disp-nonce").textContent = `${slot.nonce} (0x${nHex})`;
+        document.getElementById("lna-disp-ascii").textContent = slot.ascii;
         document.getElementById("lna-byte-grid").innerHTML = gridHtml;
 
-        if (document.activeElement !== inLink) inLink.value = lVal;
-        if (document.activeElement !== inNonce) inNonce.value = nVal;
-        if (document.activeElement !== inAscii) inAscii.value = asc;
+        // Resolve Link -> Nonce chain across Token #1, #2, #3
+        const chainRes = resolveSlotChain(active);
+        const statusBox = document.getElementById("lna-chain-status-box");
+        const badgeEl = document.getElementById("lna-chain-badge");
+        const resolvedTextEl = document.getElementById("lna-resolved-tree-text");
+        const explainEl = document.getElementById("lna-chain-explanation");
 
-        const fullHex = "0x" + s;
-        document.getElementById("lna-svg-container").innerHTML = buildSvgPreview(lVal, nVal, asc, fullHex);
+        if (resolvedTextEl) resolvedTextEl.textContent = chainRes.fullAscii || "(empty)";
+
+        if (chainRes.brokenLink !== null) {
+          if (statusBox) statusBox.style.borderColor = "#f87171";
+          if (badgeEl) {
+            badgeEl.style.color = "#f87171";
+            badgeEl.textContent = `⚠️ Unlinked (Link=${chainRes.brokenLink} matches no Token Nonce)`;
+          }
+          if (explainEl) {
+            explainEl.textContent = `Chain stopped at Link=${chainRes.brokenLink} because no preceding token has Nonce=${chainRes.brokenLink}. Only "${chainRes.fullAscii}" is rendered.`;
+          }
+        } else if (Number(slot.link) === 0) {
+          if (statusBox) statusBox.style.borderColor = "var(--accent-gold)";
+          if (badgeEl) {
+            badgeEl.style.color = "var(--accent-gold)";
+            badgeEl.textContent = "🏛️ Root Shard (Link = 0)";
+          }
+          if (explainEl) {
+            explainEl.textContent = `Root shard: Link is 0, so "${slot.ascii}" stands alone as the parent root node.`;
+          }
+        } else {
+          if (statusBox) statusBox.style.borderColor = "#34d399";
+          if (badgeEl) {
+            badgeEl.style.color = "#34d399";
+            badgeEl.textContent = `✅ Chained (${chainRes.chainSteps.length} Shards Linked)`;
+          }
+          if (explainEl) {
+            explainEl.textContent = "Chain: " + chainRes.chainSteps.join(" ➔ ");
+          }
+        }
+
+        document.getElementById("lna-svg-container").innerHTML = buildSvgPreview(
+          slot.link,
+          slot.nonce,
+          chainRes.fullAscii,
+          slot.ascii,
+          fullHex,
+          chainRes.brokenLink
+        );
 
         try {
           const decStr = BigInt(fullHex).toString(10);
           document.getElementById("lna-dec-id-box").innerHTML = `<strong>uint256 (base-10):</strong> ${decStr}`;
         } catch (e) {}
+
+        refreshSlotButtonsUI();
       }
 
-      function packLnaInputs() {
-        const inHex = document.getElementById("lna-in-hex");
-        const inLink = document.getElementById("lna-in-link");
-        const inNonce = document.getElementById("lna-in-nonce");
-        const inAscii = document.getElementById("lna-in-ascii");
-        if (!inHex) return;
-
-        const l = (parseInt(inLink.value || 0, 10) & 0xffffff).toString(16).padStart(6, "0");
-        const n = (parseInt(inNonce.value || 0, 10) & 0xffffff).toString(16).padStart(6, "0");
-        let a = "";
-        const str = String(inAscii.value || "");
-        for (let i = 0; i < 26; i++) {
-          a += (i < str.length ? str.charCodeAt(i) : 0).toString(16).padStart(2, "0");
-        }
-        inHex.value = "0x" + l + n + a;
-        renderLnaHex(inHex.value);
+      function selectLnaSlot(slotIdx) {
+        if (!lnaState.slots[slotIdx]) return;
+        lnaState.activeSlot = Number(slotIdx);
+        saveLnaState();
+        renderActiveSlotUI();
       }
+      window.selectLnaSlot = selectLnaSlot;
 
       function loadLnaPreset(linkVal, nonceVal, asciiStr) {
-        const inLink = document.getElementById("lna-in-link");
-        const inNonce = document.getElementById("lna-in-nonce");
-        const inAscii = document.getElementById("lna-in-ascii");
-        if (!inLink) return;
-        inLink.value = linkVal;
-        inNonce.value = nonceVal;
-        inAscii.value = asciiStr;
-        packLnaInputs();
+        const active = lnaState.activeSlot;
+        lnaState.slots[active] = {
+          link: Math.max(0, parseInt(linkVal || 0, 10) & 0xffffff),
+          nonce: Math.max(0, parseInt(nonceVal || 0, 10) & 0xffffff),
+          ascii: String(asciiStr || "").slice(0, 26)
+        };
+        saveLnaState();
+        renderActiveSlotUI();
       }
       window.loadLnaPreset = loadLnaPreset;
+
+      function resetLnaSlots() {
+        lnaState = getDefaultState();
+        saveLnaState();
+        renderActiveSlotUI();
+      }
+      window.resetLnaSlots = resetLnaSlots;
 
       function initLnaCodec() {
         const inHex = document.getElementById("lna-in-hex");
@@ -348,11 +516,44 @@
         const inAscii = document.getElementById("lna-in-ascii");
         if (!inHex) return;
 
-        inHex.addEventListener("input", () => renderLnaHex(inHex.value));
-        inLink.addEventListener("input", packLnaInputs);
-        inNonce.addEventListener("input", packLnaInputs);
-        inAscii.addEventListener("input", packLnaInputs);
-        renderLnaHex(inHex.value);
+        inHex.addEventListener("input", () => {
+          const s = String(inHex.value || "").replace(/^0x/i, "").padStart(64, "0").slice(0, 64);
+          const lVal = parseInt(s.slice(0, 6), 16) || 0;
+          const nVal = parseInt(s.slice(6, 12), 16) || 0;
+          const aHex = s.slice(12, 64);
+          let asc = "";
+          for (let i = 0; i < 26; i++) {
+            const code = parseInt(aHex.slice(i * 2, i * 2 + 2), 16) || 0;
+            if (code > 0) asc += String.fromCharCode(code);
+          }
+          const active = lnaState.activeSlot;
+          lnaState.slots[active] = { link: lVal, nonce: nVal, ascii: asc };
+          saveLnaState();
+          renderActiveSlotUI("hex");
+        });
+
+        inLink.addEventListener("input", () => {
+          const active = lnaState.activeSlot;
+          lnaState.slots[active].link = Math.max(0, parseInt(inLink.value || 0, 10) & 0xffffff);
+          saveLnaState();
+          renderActiveSlotUI("link");
+        });
+
+        inNonce.addEventListener("input", () => {
+          const active = lnaState.activeSlot;
+          lnaState.slots[active].nonce = Math.max(0, parseInt(inNonce.value || 0, 10) & 0xffffff);
+          saveLnaState();
+          renderActiveSlotUI("nonce");
+        });
+
+        inAscii.addEventListener("input", () => {
+          const active = lnaState.activeSlot;
+          lnaState.slots[active].ascii = String(inAscii.value || "").slice(0, 26);
+          saveLnaState();
+          renderActiveSlotUI("ascii");
+        });
+
+        renderActiveSlotUI();
       }
 
       if (document.readyState === "loading") {
@@ -393,7 +594,7 @@
       </div>
       <div class="footer-col">
         <h4>Connect &amp; Media</h4>
-        <p>YouTube: <a href="https://www.youtube.com/watch?v=20261025_v14&list=PLbPukKwpmk5E" target="_blank" rel="noopener">Legal Engineering 101 Playlist</a></p>
+        <p>YouTube: <a href="https://www.youtube.com/watch?v=20261025_v15&list=PLbPukKwpmk5E" target="_blank" rel="noopener">Legal Engineering 101 Playlist</a></p>
         <p>Spotify: <a href="https://open.spotify.com/show/0348ivoLaNfKBq1HeIYC9b" target="_blank" rel="noopener">LexClinic Spotify Show</a></p>
         <p>LinkedIn: <a href="https://www.linkedin.com/company/lexclinic" target="_blank" rel="noopener">LexClinic Company Page</a></p>
         <p class="disclaimer">
