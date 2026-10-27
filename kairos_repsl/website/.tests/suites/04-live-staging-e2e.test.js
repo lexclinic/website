@@ -37,6 +37,8 @@ async function run(webDir) {
     { path: "/attest/", mustInclude: "Human Review Media Approvals" },
     { path: "/ERC-7827/", mustInclude: "IERC7827" },
     { path: "/erc7827/", mustInclude: "IERC7827" },
+    { path: "/nft/", mustInclude: "ILNA33X" },
+    { path: "/NFT/", mustInclude: "IERC7827Tokenized" },
     { path: "/fiduciary/", mustInclude: "Fiduciary" },
     { path: "/collaborate/", mustInclude: "Collaborate" }
   ];
