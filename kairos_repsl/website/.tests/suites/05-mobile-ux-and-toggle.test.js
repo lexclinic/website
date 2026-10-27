@@ -139,6 +139,87 @@ async function run(webDir) {
   assert.ok(finalMediaBlock.includes('grid-template-columns: 1fr !important;'), 'Final mobile @media block must collapse .grid-2 and .grid-3 to 1fr single column');
   assertions += 3;
 
+  // --------------------------------------------------------------------------
+  // Test 5.4: Verify Stateful 3-Token LNA-33X Link -> Nonce Tree Resolver on /nft/index.html
+  // --------------------------------------------------------------------------
+  const nftHtml = fs.readFileSync(path.join(webDir, 'nft', 'index.html'), 'utf8');
+  const scriptMatch = nftHtml.match(/<script>\s*\(function\(\)\s*\{[\s\S]*?<\/script>/);
+  assert.ok(scriptMatch, 'nft/index.html must contain inline LNA-33X codec script');
+  const nftScriptCode = scriptMatch[0].replace(/^<script>/, '').replace(/<\/script>$/, '');
+
+  const nftElements = {};
+  const makeNftEl = (id, val = '') => {
+    const el = {
+      id,
+      value: val,
+      textContent: '',
+      innerHTML: '',
+      className: '',
+      style: {},
+      listeners: {},
+      addEventListener(ev, fn) { this.listeners[ev] = fn; }
+    };
+    nftElements[id] = el;
+    return el;
+  };
+  [
+    'lna-in-hex', 'lna-in-link', 'lna-in-nonce', 'lna-in-ascii',
+    'lna-hex-bar', 'lna-disp-link', 'lna-disp-nonce', 'lna-disp-ascii',
+    'lna-byte-grid', 'lna-chain-status-box', 'lna-chain-badge',
+    'lna-resolved-tree-text', 'lna-chain-explanation', 'lna-svg-container',
+    'lna-dec-id-box', 'lna-slot-btn-1', 'lna-slot-btn-2', 'lna-slot-btn-3',
+    'lna-active-slot-label'
+  ].forEach(id => makeNftEl(id));
+
+  const nftStorage = {};
+  const nftSandbox = {
+    window: {},
+    BigInt,
+    parseInt,
+    Number,
+    String,
+    Math,
+    Set,
+    JSON,
+    localStorage: {
+      getItem: (k) => nftStorage[k] || null,
+      setItem: (k, v) => { nftStorage[k] = String(v); }
+    },
+    document: {
+      readyState: 'complete',
+      activeElement: null,
+      getElementById: (id) => nftElements[id] || null,
+      addEventListener: () => {}
+    }
+  };
+  nftSandbox.window = nftSandbox;
+  vm.createContext(nftSandbox);
+  vm.runInContext(nftScriptCode, nftSandbox);
+
+  // Default active slot is Token #2 (Link=1 -> Token #1 Nonce=1 -> "b4a8a82b.agent")
+  assert.strictEqual(nftElements['lna-resolved-tree-text'].textContent, 'b4a8a82b.agent', 'Token #2 with Link=1 matching Token #1 Nonce=1 must resolve to b4a8a82b.agent');
+
+  // Switch to Token #3 (Link=2 -> Token #2 Nonce=2 -> Token #1 Nonce=1 -> "subcell.b4a8a82b.agent")
+  nftSandbox.window.selectLnaSlot(3);
+  assert.strictEqual(nftElements['lna-resolved-tree-text'].textContent, 'subcell.b4a8a82b.agent', 'Token #3 with Link=2 matching Token #2 Nonce=2 must resolve 3-level chain subcell.b4a8a82b.agent');
+
+  // Point Token #3's Link directly to Token #1's Nonce (Link=1) -> "subcell.agent" (skipping Token #2)
+  nftElements['lna-in-link'].value = '1';
+  nftElements['lna-in-link'].listeners['input']();
+  assert.strictEqual(nftElements['lna-resolved-tree-text'].textContent, 'subcell.agent', 'Token #3 with Link=1 matching Token #1 Nonce=1 must resolve to subcell.agent');
+
+  // Switch to Token #1 and change Token #1's Nonce from 1 to 9 -> now Token #2 (Link=1) will NOT line up with Token #1 Nonce=9!
+  nftSandbox.window.selectLnaSlot(1);
+  nftElements['lna-in-nonce'].value = '9';
+  nftElements['lna-in-nonce'].listeners['input']();
+
+  // Switch back to Token #2: its inputs (Link=1, Nonce=2, ASCII="b4a8a82b") are remembered, AND because Token #1 Nonce is now 9, Token #2 does NOT append Token #1's ASCII!
+  nftSandbox.window.selectLnaSlot(2);
+  assert.strictEqual(String(nftElements['lna-in-ascii'].value), 'b4a8a82b', 'Token #2 must remember its ASCII input when switching back');
+  assert.strictEqual(nftElements['lna-resolved-tree-text'].textContent, 'b4a8a82b', 'When Token #1 Nonce (9) does not match Token #2 Link (1), Token #2 must NOT append Token #1 ASCII');
+  assert.ok(nftElements['lna-chain-badge'].textContent.includes('Unlinked'), 'Unaligned Link -> Nonce must display Unlinked warning badge');
+  assertions += 7;
+
   console.log(` ✅ SUITE 05 PASSED: ${assertions} assertions verified (Mobile Hamburger Menu, Touch Guard, Category Filter Pills, & Mobile CSS Cascade)!`);
   return { passed: true, assertions };
 }
