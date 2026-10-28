@@ -218,7 +218,12 @@ async function run(webDir) {
   assert.strictEqual(String(nftElements['lna-in-ascii'].value), 'b4a8a82b', 'Token #2 must remember its ASCII input when switching back');
   assert.strictEqual(nftElements['lna-resolved-tree-text'].textContent, 'b4a8a82b', 'When Token #1 Nonce (9) does not match Token #2 Link (1), Token #2 must NOT append Token #1 ASCII');
   assert.ok(nftElements['lna-chain-badge'].textContent.includes('Unlinked'), 'Unaligned Link -> Nonce must display Unlinked warning badge');
-  assertions += 7;
+
+  // Verify Link cannot be set larger than Nonce (Token #2 has Nonce=2; attempting to set Link=9 must clamp Link to 2)
+  nftElements['lna-in-link'].value = '9';
+  nftElements['lna-in-link'].listeners['input']();
+  assert.strictEqual(Number(nftElements['lna-in-link'].value), 2, 'Link input must be clamped so it cannot exceed Nonce (2)');
+  assertions += 8;
 
   console.log(` ✅ SUITE 05 PASSED: ${assertions} assertions verified (Mobile Hamburger Menu, Touch Guard, Category Filter Pills, & Mobile CSS Cascade)!`);
   return { passed: true, assertions };
