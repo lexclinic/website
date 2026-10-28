@@ -5,18 +5,18 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>REPSL Sovereign NFT: LNA-33X &amp; Tokenized ERC-7827 (ERC-1155 + ERC-8004 + x402) | LexClinic</title>
   <meta name="description" content="REPSL Sovereign Agent &amp; Cell Enclave (RealizedGestalt1155.sol V5.0.0): Unified ERC-1155 (cell.agent) + LNA-33X Bijective uint256 Linked-Nonce-ASCII Token IDs + Tokenized ERC-7827 + ERC-8004 + x402 on QGOV Mainnet (ChainID 35441).">
-  <link rel="stylesheet" href="/styles.css?v=20261025_v16">
+  <link rel="stylesheet" href="/styles.css?v=20261025_v17">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-  <script src="/js/audio-player.js?v=20261025_v16"></script>
-  <script src="/js/auth.js?v=20261025_v16"></script>
-  <script src="/js/media-tracker-miniapp.js?v=20261025_v16"></script>
-  <script src="/js/watch-tracker.js?v=20261025_v16"></script>
-  <script src="/js/modules/ui-interactive-controls.js?v=20261025_v16"></script>
-  <script src="/script.js?v=20261025_v16" defer></script>
-  <link rel="icon" type="image/png" href="/favicon.png?v=20261025_v16">
-  <link rel="shortcut icon" href="/favicon.ico?v=20261025_v16">
+  <script src="/js/audio-player.js?v=20261025_v17"></script>
+  <script src="/js/auth.js?v=20261025_v17"></script>
+  <script src="/js/media-tracker-miniapp.js?v=20261025_v17"></script>
+  <script src="/js/watch-tracker.js?v=20261025_v17"></script>
+  <script src="/js/modules/ui-interactive-controls.js?v=20261025_v17"></script>
+  <script src="/script.js?v=20261025_v17" defer></script>
+  <link rel="icon" type="image/png" href="/favicon.png?v=20261025_v17">
+  <link rel="shortcut icon" href="/favicon.ico?v=20261025_v17">
 </head>
 <body>
 
@@ -42,7 +42,7 @@
           <a href="/repo/">Repo</a>
           <a href="/erc7827/">ERC-7827</a>
           <a href="/nft/" class="active-link">NFT</a>
-          <a href="https://www.youtube.com/watch?v=20261025_v16&list=PLbPukKwpmk5E" target="_blank" rel="noopener" class="btn-social" title="Subscribe on YouTube">YouTube</a>
+          <a href="https://www.youtube.com/watch?v=20261025_v17&list=PLbPukKwpmk5E" target="_blank" rel="noopener" class="btn-social" title="Subscribe on YouTube">YouTube</a>
           <a href="https://open.spotify.com/show/0348ivoLaNfKBq1HeIYC9b" target="_blank" rel="noopener" class="btn-spotify" title="Follow on Spotify">Spotify</a>
           <a href="https://www.linkedin.com/company/lexclinic" target="_blank" rel="noopener" class="btn-social" title="Follow on LinkedIn">LinkedIn</a>
           <a href="javascript:void(0)" onclick="event.preventDefault(); window.openNavLoginModal(event); return false;" id="nav-login-btn" style="background: #fbbf24; color: #0a1128; font-weight: 800; font-size: 0.88rem; padding: 0.35rem 0.85rem; border-radius: 6px; margin-left: 0.35rem; text-decoration: none; border: 2px solid #f59e0b; box-shadow: 0 0 10px rgba(251, 191, 36, 0.4); display: inline-block;">Login</a>
@@ -164,7 +164,7 @@
           </p>
           <ul class="standard-features">
             <li><strong>The Agent Body (<code>agent</code> — Token #1, <code>Nonce: 1, Link: 0</code>)</strong>: The Virtual Machine itself establishes the collection and holds the root parent token.</li>
-            <li><strong>The Individual Cells (<code>&lt;cell_uuid&gt;.agent</code> — Token #2..N)</strong>: Each REPL session process is minted as an individual cell shard whose <code>Link</code> points backward to a preceding parent's <code>Nonce</code> (<code>Link &le; Nonce</code>). When Token #2 has <code>Link == Token #1 Nonce</code>, Token #2's ASCII prepends to Token #1's ASCII: <code>b4a8a82b.agent</code>.</li>
+            <li><strong>The Individual Cells (<code>&lt;cell_uuid&gt;.agent</code> — Token #2..N)</strong>: Each REPL session process is minted as an individual cell shard whose <code>Link</code> points backward to a preceding parent's <code>Nonce</code> (<code>Link &lt; Nonce</code>). When Token #2 has <code>Link == Token #1 Nonce</code>, Token #2's ASCII prepends to Token #1's ASCII: <code>b4a8a82b.agent</code>.</li>
             <li><strong>Multi-Level Tree Chaining (Token #3 ➔ Token #2 ➔ Token #1)</strong>: When Token #3's <code>Link</code> matches Token #2's <code>Nonce</code> (and Token #2's <code>Link</code> matches Token #1's <code>Nonce</code>), all three shards resolve into a 3-level hierarchy (<code>subcell.b4a8a82b.agent</code>). If Token #3's <code>Link</code> points directly to Token #1's <code>Nonce</code>, it resolves directly against Token #1 (`subcell.agent`).</li>
             <li><strong><code>IERC7827Tokenized</code> + <code>ERC-8004</code> + <code>x402</code></strong>: Every token ID maintains its own versioned key-value history (<code>json(tokenId)</code>, <code>version(tokenId, key)</code>, <code>write(tokenId, ...)</code>) and emits a compliant ERC-8004 Trustless Agent registration JSON with HTTP 402 (<code>x402Support: true</code>) and an embedded base64 PWA.</li>
           </ul>
@@ -408,7 +408,7 @@
         const aHex = s.slice(12, 64);
 
         if (sourceField !== "hex") inHex.value = fullHex;
-        inLink.max = String(slot.nonce);
+        inLink.max = String(Math.max(0, Number(slot.nonce || 0) - 1));
         if (sourceField !== "link") inLink.value = slot.link;
         if (sourceField !== "nonce") inNonce.value = slot.nonce;
         if (sourceField !== "ascii") inAscii.value = slot.ascii;
@@ -501,8 +501,9 @@
 
       function loadLnaPreset(linkVal, nonceVal, asciiStr) {
         const active = lnaState.activeSlot;
-        const nVal = Math.max(0, parseInt(nonceVal || 0, 10) & 0xffffff);
-        const lVal = Math.min(nVal, Math.max(0, parseInt(linkVal || 0, 10) & 0xffffff));
+        const nVal = Math.max(1, parseInt(nonceVal || 1, 10) & 0xffffff);
+        const maxLink = Math.max(0, nVal - 1);
+        const lVal = Math.min(maxLink, Math.max(0, parseInt(linkVal || 0, 10) & 0xffffff));
         lnaState.slots[active] = {
           link: lVal,
           nonce: nVal,
@@ -529,8 +530,9 @@
 
         inHex.addEventListener("input", () => {
           const s = String(inHex.value || "").replace(/^0x/i, "").padStart(64, "0").slice(0, 64);
-          const nVal = parseInt(s.slice(6, 12), 16) || 0;
-          const lVal = Math.min(nVal, parseInt(s.slice(0, 6), 16) || 0);
+          const nVal = Math.max(1, parseInt(s.slice(6, 12), 16) || 1);
+          const maxLink = Math.max(0, nVal - 1);
+          const lVal = Math.min(maxLink, parseInt(s.slice(0, 6), 16) || 0);
           const aHex = s.slice(12, 64);
           let asc = "";
           for (let i = 0; i < 26; i++) {
@@ -545,7 +547,7 @@
 
         inLink.addEventListener("input", () => {
           const active = lnaState.activeSlot;
-          const maxLink = Math.max(0, Number(lnaState.slots[active].nonce) || 0);
+          const maxLink = Math.max(0, (Number(lnaState.slots[active].nonce) || 1) - 1);
           const clampedLink = Math.min(maxLink, Math.max(0, parseInt(inLink.value || 0, 10) & 0xffffff));
           lnaState.slots[active].link = clampedLink;
           inLink.value = clampedLink;
@@ -555,11 +557,12 @@
 
         inNonce.addEventListener("input", () => {
           const active = lnaState.activeSlot;
-          const nVal = Math.max(0, parseInt(inNonce.value || 0, 10) & 0xffffff);
+          const nVal = Math.max(1, parseInt(inNonce.value || 1, 10) & 0xffffff);
+          const maxLink = Math.max(0, nVal - 1);
           lnaState.slots[active].nonce = nVal;
-          if (lnaState.slots[active].link > nVal) {
-            lnaState.slots[active].link = nVal;
-            inLink.value = nVal;
+          if (lnaState.slots[active].link > maxLink) {
+            lnaState.slots[active].link = maxLink;
+            inLink.value = maxLink;
           }
           saveLnaState();
           renderActiveSlotUI("nonce");
@@ -613,7 +616,7 @@
       </div>
       <div class="footer-col">
         <h4>Connect &amp; Media</h4>
-        <p>YouTube: <a href="https://www.youtube.com/watch?v=20261025_v16&list=PLbPukKwpmk5E" target="_blank" rel="noopener">Legal Engineering 101 Playlist</a></p>
+        <p>YouTube: <a href="https://www.youtube.com/watch?v=20261025_v17&list=PLbPukKwpmk5E" target="_blank" rel="noopener">Legal Engineering 101 Playlist</a></p>
         <p>Spotify: <a href="https://open.spotify.com/show/0348ivoLaNfKBq1HeIYC9b" target="_blank" rel="noopener">LexClinic Spotify Show</a></p>
         <p>LinkedIn: <a href="https://www.linkedin.com/company/lexclinic" target="_blank" rel="noopener">LexClinic Company Page</a></p>
         <p class="disclaimer">
