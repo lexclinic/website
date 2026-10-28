@@ -140,7 +140,7 @@ async function run(webDir) {
   assertions += 3;
 
   // --------------------------------------------------------------------------
-  // Test 5.4: Verify Stateful 3-Token LNA-33X Link -> Nonce Tree Resolver on /nft/index.html
+  // Test 5.4: Verify Stateful 6-Token SeedTree LNA-33X (Link-as-.) Resolver on /nft/index.html
   // --------------------------------------------------------------------------
   const nftHtml = fs.readFileSync(path.join(webDir, 'nft', 'index.html'), 'utf8');
   const scriptMatch = nftHtml.match(/<script>\s*\(function\(\)\s*\{[\s\S]*?<\/script>/);
@@ -168,6 +168,7 @@ async function run(webDir) {
     'lna-byte-grid', 'lna-chain-status-box', 'lna-chain-badge',
     'lna-resolved-tree-text', 'lna-chain-explanation', 'lna-svg-container',
     'lna-dec-id-box', 'lna-slot-btn-1', 'lna-slot-btn-2', 'lna-slot-btn-3',
+    'lna-slot-btn-4', 'lna-slot-btn-5', 'lna-slot-btn-6',
     'lna-active-slot-label'
   ].forEach(id => makeNftEl(id));
 
@@ -196,34 +197,35 @@ async function run(webDir) {
   vm.createContext(nftSandbox);
   vm.runInContext(nftScriptCode, nftSandbox);
 
-  // Default active slot is Token #2 (Link=1 -> Token #1 Nonce=1 -> "b4a8a82b.agent")
-  assert.strictEqual(nftElements['lna-resolved-tree-text'].textContent, 'b4a8a82b.agent', 'Token #2 with Link=1 matching Token #1 Nonce=1 must resolve to b4a8a82b.agent');
+  // Default active slot is Token #6 (Nonce=6, Link=4 -> Nonce 4 "np", Link=3 -> Nonce 3 "$1", Link=1 -> Nonce 1 "agent" => "agent.$1.np.$1")
+  assert.strictEqual(nftElements['lna-resolved-tree-text'].textContent, 'agent.$1.np.$1', 'Token #6 must resolve 4-level Link-as-Dot SeedTree path agent.$1.np.$1');
+  assert.ok(nftElements['lna-svg-container'].innerHTML.includes('[SIDE 1/3: LNA-33X SEEDTREE TILE]') && nftElements['lna-svg-container'].innerHTML.includes('[SIDE 3/3: ON-CHAIN SEEDTREE ORACLE]'), 'SVG preview must render 3-sided SMIL-animated SeedTree SVG');
 
-  // Switch to Token #3 (Link=2 -> Token #2 Nonce=2 -> Token #1 Nonce=1 -> "subcell.b4a8a82b.agent")
+  // Switch to Token #4 (Nonce=4, Link=3, ASCII="np" => "agent.$1.np")
+  nftSandbox.window.selectLnaSlot(4);
+  assert.strictEqual(nftElements['lna-resolved-tree-text'].textContent, 'agent.$1.np', 'Token #4 must resolve to agent.$1.np');
+
+  // Verify dots ('.') are automatically stripped from the 26-byte ASCII input (require(b[i] != 0x2e))
+  nftElements['lna-in-ascii'].value = 'np.bad';
+  nftElements['lna-in-ascii'].listeners['input']();
+  assert.strictEqual(String(nftElements['lna-in-ascii'].value), 'npbad', 'Dots (.) must be stripped from 26-byte ASCII input because Link IS the dot separator');
+
+  // Switch to Token #3 and change its Nonce from 3 to 9 -> now Token #4 (Link=3) will NOT line up with Token #3 Nonce=9!
   nftSandbox.window.selectLnaSlot(3);
-  assert.strictEqual(nftElements['lna-resolved-tree-text'].textContent, 'subcell.b4a8a82b.agent', 'Token #3 with Link=2 matching Token #2 Nonce=2 must resolve 3-level chain subcell.b4a8a82b.agent');
-
-  // Point Token #3's Link directly to Token #1's Nonce (Link=1) -> "subcell.agent" (skipping Token #2)
-  nftElements['lna-in-link'].value = '1';
-  nftElements['lna-in-link'].listeners['input']();
-  assert.strictEqual(nftElements['lna-resolved-tree-text'].textContent, 'subcell.agent', 'Token #3 with Link=1 matching Token #1 Nonce=1 must resolve to subcell.agent');
-
-  // Switch to Token #1 and change Token #1's Nonce from 1 to 9 -> now Token #2 (Link=1) will NOT line up with Token #1 Nonce=9!
-  nftSandbox.window.selectLnaSlot(1);
   nftElements['lna-in-nonce'].value = '9';
   nftElements['lna-in-nonce'].listeners['input']();
 
-  // Switch back to Token #2: its inputs (Link=1, Nonce=2, ASCII="b4a8a82b") are remembered, AND because Token #1 Nonce is now 9, Token #2 does NOT append Token #1's ASCII!
-  nftSandbox.window.selectLnaSlot(2);
-  assert.strictEqual(String(nftElements['lna-in-ascii'].value), 'b4a8a82b', 'Token #2 must remember its ASCII input when switching back');
-  assert.strictEqual(nftElements['lna-resolved-tree-text'].textContent, 'b4a8a82b', 'When Token #1 Nonce (9) does not match Token #2 Link (1), Token #2 must NOT append Token #1 ASCII');
+  // Switch back to Token #4: its ASCII ("npbad") is remembered, AND because no token has Nonce=3 anymore, it does NOT prepend parent ASCII!
+  nftSandbox.window.selectLnaSlot(4);
+  assert.strictEqual(String(nftElements['lna-in-ascii'].value), 'npbad', 'Token #4 must remember its edited ASCII input when switching back');
+  assert.strictEqual(nftElements['lna-resolved-tree-text'].textContent, 'npbad', 'When Link (3) matches no preceding Token Nonce, only the token own ASCII renders');
   assert.ok(nftElements['lna-chain-badge'].textContent.includes('Unlinked'), 'Unaligned Link -> Nonce must display Unlinked warning badge');
 
-  // Verify Link must be at least 1 less than Nonce (Token #2 has Nonce=2; attempting to set Link=2 or Link=9 must clamp Link to Nonce - 1 = 1)
-  nftElements['lna-in-link'].value = '2';
+  // Verify Link must be at least 1 less than Nonce (Token #4 has Nonce=4; attempting to set Link=4 or Link=9 must clamp Link to Nonce - 1 = 3)
+  nftElements['lna-in-link'].value = '4';
   nftElements['lna-in-link'].listeners['input']();
-  assert.strictEqual(Number(nftElements['lna-in-link'].value), 1, 'Link input must be clamped to at most Nonce - 1 (1 when Nonce is 2)');
-  assertions += 8;
+  assert.strictEqual(Number(nftElements['lna-in-link'].value), 3, 'Link input must be clamped to at most Nonce - 1 (3 when Nonce is 4)');
+  assertions += 9;
 
   console.log(` ✅ SUITE 05 PASSED: ${assertions} assertions verified (Mobile Hamburger Menu, Touch Guard, Category Filter Pills, & Mobile CSS Cascade)!`);
   return { passed: true, assertions };
