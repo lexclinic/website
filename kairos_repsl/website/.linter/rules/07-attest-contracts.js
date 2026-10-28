@@ -35,6 +35,9 @@ function run(webDir, config) {
       if (!nftHtml.includes("lna-in-hex") || !nftHtml.includes("loadLnaPreset")) {
         violations.push(`${dirName}/index.html is missing interactive LNA-33X Hex<->ASCII codec`);
       }
+      if (/instead\s+of/i.test(nftHtml) || /zero\s+need\s+for\s+ERC-721/i.test(nftHtml) || /ERC-721\s+or\s+ENS/i.test(nftHtml)) {
+        violations.push(`${dirName}/index.html contains forbidden 'instead of' or anti-ERC-721 / anti-ENS phrasing`);
+      }
       if (nftHtml.includes("status-badge") || nftHtml.includes("hero-badge")) {
         violations.push(`${dirName}/index.html contains redundant status-badge or hero-badge pills`);
       }
