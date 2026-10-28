@@ -22,17 +22,20 @@ function run(webDir, config) {
     }
   }
 
-  // 1b. Verify /nft/index.html and /NFT/index.html exist and have ILNA33X & IERC7827Tokenized interfaces and interactive codec
+  // 1b. Verify /nft/index.html and /NFT/index.html exist and have ILNA33X & IERC7827Tokenized interfaces and interactive 6-Token SeedTree codec
   for (const dirName of ["nft", "NFT"]) {
     const nftFile = path.join(webDir, dirName, "index.html");
     if (!fs.existsSync(nftFile)) {
       violations.push(`${dirName}/index.html is missing`);
     } else {
       const nftHtml = fs.readFileSync(nftFile, "utf8");
-      if (!nftHtml.includes("ILNA33X") || !nftHtml.includes("IERC7827Tokenized") || !nftHtml.includes("0x69568Cc6bd574C9729F9e73CB2Ce7b4b9977710A")) {
-        violations.push(`${dirName}/index.html is missing ILNA33X / IERC7827Tokenized / QGOV Mainnet contract specification`);
+      if (!nftHtml.includes("ILNA33X") || !nftHtml.includes("IERC7827Tokenized") || !nftHtml.includes("0x84728E6AC2b3643C4aE42C313bd63bD660873572")) {
+        violations.push(`${dirName}/index.html is missing ILNA33X / IERC7827Tokenized / V6.2.0 QGOV Mainnet contract specification (0x84728E6AC2b3643C4aE42C313bd63bD660873572)`);
       }
-      if (!nftHtml.includes("lna-in-hex") || !nftHtml.includes("loadLnaPreset")) {
+      if (!nftHtml.includes("agent.$1.np.$1") || !nftHtml.includes("resolvePath")) {
+        violations.push(`${dirName}/index.html is missing 6-Token Forensic SeedTree (agent.$1.np.$1) and resolvePath specification`);
+      }
+      if (!nftHtml.includes("lna-in-hex") || !nftHtml.includes("selectLnaSlot")) {
         violations.push(`${dirName}/index.html is missing interactive LNA-33X Hex<->ASCII codec`);
       }
       if (/instead\s+of/i.test(nftHtml) || /zero\s+need\s+for\s+ERC-721/i.test(nftHtml) || /ERC-721\s+or\s+ENS/i.test(nftHtml)) {
