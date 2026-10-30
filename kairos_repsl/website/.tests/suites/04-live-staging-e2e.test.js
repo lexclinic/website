@@ -31,6 +31,7 @@ async function run(webDir) {
     { path: "/event/2026-09-17/", mustInclude: "nhYRLFgyRq8" },
     { path: "/event/2026-09-24/", mustInclude: "CIzyHeopPcQ" },
     { path: "/event/2026-10-22/", mustInclude: "Lesson 5.2" },
+    { path: "/event/2026-10-29/", mustInclude: "a0VOIB2_jgQ" },
     { path: "/interview/", mustInclude: "Lukas Küng" },
     { path: "/interview/lucas-kung/", mustInclude: "BpRTnQ4128Y" },
     { path: "/interview/2026-09-08/james-wigginton/", mustInclude: "fxIGwkdpa28" },
@@ -105,6 +106,7 @@ async function run(webDir) {
     "/event/2026-10-08/audio.m4a",
     "/event/2026-10-15/audio.m4a",
     "/event/2026-10-22/audio.m4a",
+    "/event/2026-10-29/audio.m4a",
     "/interview/lucas-kung/audio.m4a",
     "/interview/2026-09-08/james-wigginton/audio.m4a"
   ];

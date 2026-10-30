@@ -114,6 +114,16 @@
         "id": "EVENT-BIJECTION-AND-QUIZ-GATING-01",
         "description": "Restore exact Socratic Event <-> 101 Class bijection (Aug 22 Clinic+ExpWit, Aug 24 <-> 1.2, Aug 28 <-> 2.1, Sept 4 <-> 2.2, Sept 17 <-> 3.1, Sept 24 <-> 3.2, Oct 1 <-> 4.1, Oct 8 <-> 4.2, Oct 15 <-> 5.1, Oct 22 <-> 5.2) with authentic YouTube clip IDs, remove duplicate Aug 13/20 pages, and tighten quiz CTAs to a single progressive button with prerequisite gating on /quiz-expert/",
         "status": "[x]"
+      },
+      {
+        "id": "NFT-SEEDTREE-V620-01",
+        "description": "Deploy /nft/ and /NFT/ (RealizedGestalt1155.sol V6.2.0 at 0x84728E6AC2b3643C4aE42C313bd63bD660873572) next to /erc7827/ with stateful 6-Token SeedTree (Link-as-., dot-free ASCII, N6 default) and 3-Sided SMIL SVG preview",
+        "status": "[x]"
+      },
+      {
+        "id": "EVENT-OCT29-CLASS61-STAGE-01",
+        "description": "Process Oct 29, 2026 (Class 6.1) Socratic Session media from Google Drive (When_Legal_Contracts_Execute_Themselves.m4a + 5 unlisted YouTube clips + Whisper transcript), build /event/2026-10-29/, link /101/6.1/ <-> /event/2026-10-29/, update /event/ Top 3 Recent (Oct 29, Oct 22, Oct 15) & Upcoming (Nov 5 Class 6.2), and deploy strictly to staging (stage.lex.clinic)",
+        "status": "[x]"
       }
     ]
   },

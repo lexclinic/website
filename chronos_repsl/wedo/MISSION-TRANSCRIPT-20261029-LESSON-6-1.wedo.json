@@ -1,0 +1,95 @@
+{
+  "wedo_instance": {
+    "id": "MISSION-TRANSCRIPT-20261029-LESSON-6-1",
+    "description": "Forensic Transcript & Gemini Summary Correction Strike for LexClinic 2026 — Lesson 6.1 (2026-10-29 14:30 PDT)",
+    "status": "[completed]",
+    "meta": {
+      "protocol": "WeDo-JSON",
+      "version": "1.0.0",
+      "boilerplate": "kairos_repsl/json/boilerplates/transcript_forensic_correction.wedo.json",
+      "tooling": "py/substrate/transcript_strike.py",
+      "target_drive_file_id": "1SeTThpXcl2nHN1jDDYQj5zGw2IjKkFASHY4fxPL9TXk",
+      "upgraded_copy_drive_file_id": "1j-dmXjhYK4U1gTFc7j2Fq3sgczyW-NJeKLrnuqP7coA",
+      "companion_recording_id": "1JLYIMHvHJS3x64U6SSPGlD913bNtMdLn",
+      "companion_chat_id": "1aqb0H6sX9cqka88UCwVxJkeS2G6D2VWK",
+      "companion_attendance_id": "1GqnUNsC-Fv2fejIY9gEHpserLUs7eZlYrHVXnq67fzw",
+      "provenance_reference": "/event/2026-10-29/",
+      "total_rules_applied": "107/108",
+      "total_replacements_count": 151,
+      "remaining_error_strings": 0
+    },
+    "audit_findings": {
+      "Category_A_Speaker_Attribution_And_Screen_Share": [
+        "Replaced 8 occurrences of 'Daniel Rivera's Presentation: ' (00:34:30–00:41:20) with 'LexClinic Class 6.1 Explainer Video (Screen-Shared by Daniel Rivera): ' to separate the pre-recorded Class 6.1 lecture from Daniel Rivera's live remarks.",
+        "Neutralized 4 hot-mic bleed/crosstalk interjections ('God.', 'f***.', 'saw', 'deer.') at 00:28:28 and 00:53:16 without affecting legitimate prose ('where I saw this guy' preserved via EXACT_RUN matching)."
+      ],
+      "Category_B_Sovereign_Stack_And_Technical_Terms": [
+        "Normalized 'LNA 33X' / 'ln 33x' -> 'LNA-33X' (5x) and clarified 'LNA stands for Link, Nonce, and ASCII (Address)' (2x) per website/nft/index.html (RealizedGestalt1155.sol V6.2.0).",
+        "Normalized 'ERC 7827' -> 'ERC-7827' (3x), 'ERC 804' -> 'ERC-8004' (3x), and 'X42' -> 'x402' (3x).",
+        "Normalized 'NP see agent uh one NP1' -> 'NP—see agent.$1.np.$1' (matching SeedTree Shard N6 on QGOV Mainnet).",
+        "Normalized 'knots' / 'knot' / 'nons' / 'nonses' / 'anons' / 'NAS' / 'notch' -> 'nonce' / 'nonces' across 21 distinct phrases, plus 'What is death of nons' -> 'What is 'def of nonce'' (matching Baba John's Meet Chat message 'What is defof nonce').",
+        "Normalized 'NFPS' / 'NFTTS' / 'empty' / 'entity' -> 'NFT' / 'NFTs' and 'nonfgeable' / 'nonfgeible' / 'non-f fungeible' / 'not fungeible' / 'fungeible' / 'funible' -> 'non-fungible' / 'fungible'.",
+        "Normalized 'meaningful like lex clinic uh so so and e...' -> 'meaningful like lexclinic.eth—that's the tree structure because .eth is the domain and then the subdomain is lexclinic'.",
+        "Normalized 'ox address' / 'ox addresses' -> '0x address' / '0x addresses' (5x), 'hexadimal' / 'hexodimal' -> 'hexadecimal' (3x), 'aski' -> 'ASCII' (1x).",
+        "Normalized 'civil attacks' -> 'Sybil attacks' (1x), 'wider bitcoin passport' -> 'wider Gitcoin Passport' (1x), 'soul bound tokens' -> 'Soulbound tokens' (1x), 'Salana' -> 'Solana' (2x), 'Soul' -> 'SOL' (1x).",
+        "Normalized 'parah one' / 'par one' -> 'para1' (6x), 'pair two' / 'para two' -> 'para2' (2x), and 'par one two equal sign para two' -> 'para1 == para2' (1x)."
+      ],
+      "Category_C_Venture_Legal_And_Regulatory_Architecture": [
+        "Normalized 'Kahill' -> 'Cahill' (8x) across Quick notes, Next steps, Details, and Transcript.",
+        "Normalized 'Lex Clinic' -> 'LexClinic' (3x).",
+        "Normalized 'the Micah kind of way doing it on as a lensure side of things' -> 'the MiCA kind of way of doing it on a licensure side of things' (Markets in Crypto-Assets regulation).",
+        "Normalized 'exeutional access' / 'known institutionally... exitutionally' -> 'extitutional access' / 'known extitutionally'."
+      ],
+      "Category_D_External_Partners_People_Protocols_And_History": [
+        "Normalized 'Aberdasher Labs' / 'Aberdash Lab' -> 'Haberdasher Labs' (3x), 'Kelly GGG' / 'had to Kelly' -> 'Kali.gg' (4x, Ross Campbell), 'Charverse' -> 'CharmVerse' (3x), 'based house' -> 'Based House' (1x).",
+        "Normalized 'hats protocol' / 'Hats protocol' / 'has protocol' / 'ads protocol' -> 'Hats Protocol' (15x total) and 'ENF protocol' -> 'ENS protocol' (1x).",
+        "Normalized 'board date collection' -> 'Bored Ape collection' (1x) and 'crypto punks collection' -> 'CryptoPunks collection' (1x).",
+        "Normalized 'influence by William piece' -> 'influence by William Entriken (ERC-721 lead author)' (1x), 'Livveness' -> 'Leibniz' (3x total), and 'Whimos' -> 'Waymos' (1x).",
+        "Resolved Kyle Smith's inline prompt at 00:48:27 ('for the agents in this transcript. When was the equal sign invented?') with an inline Agent Note citing Robert Recorde's 1557 The Whetstone of Witte and Gottfried Wilhelm Leibniz's (Doctor of Law, 1666) subsequent popularization of '=' in calculus alongside Leibniz's Law of Equality."
+      ],
+      "Category_E_Gemini_Summary_Logic_And_Factual_Alignment": [
+        "Corrected Gemini Details heading 'Presentation on Transitioning Contracts to Software Runtimes' -> 'Class 6.1 Explainer Video: Transitioning Contracts to Software Runtimes'.",
+        "Corrected Gemini Details claim 'In a presentation on contract transformation, Daniel Rivera argued that legal agreements must shift from static paper documents to active, executing software runtimes' -> 'Daniel Rivera screen-shared the pre-recorded LexClinic Class 6.1 Explainer Video, which explains how legal agreements shift from static paper documents to active, executing software runtimes'.",
+        "Corrected Gemini Details summary of Baba John's blog post to distinguish his newly published external blog post (which added a link to LexClinic) from his redundancy observation comparing the Class 6.1 video to the Class 1.2 video."
+      ]
+    },
+    "tasks": [
+      {
+        "id": "TFC-DISCOVER-01",
+        "description": "Drive Discovery & Ownership/Audio Check: Located Google Doc 1SeTThpXcl2nHN1jDDYQj5zGw2IjKkFASHY4fxPL9TXk (owned by Daniel Rivera, daniel@lex.clinic, canEdit: true) along with companion Recording (1JLYIMHvHJS3x64U6SSPGlD913bNtMdLn, 230.98 MB), Chat (1aqb0H6sX9cqka88UCwVxJkeS2G6D2VWK), and Attendance CSV (1GqnUNsC-Fv2fejIY9gEHpserLUs7eZlYrHVXnq67fzw).",
+        "status": "[x]"
+      },
+      {
+        "id": "TFC-EXPORT-02",
+        "description": "Plain-Text Export & <w:t> XML Run Inspection: Exported Revision 12 baseline (.txt 63,869 bytes, .docx 517,430 bytes) and inspected all 566 OpenXML <w:t> text runs in word/document.xml via py/substrate/transcript_strike.py inspect.",
+        "status": "[x]"
+      },
+      {
+        "id": "TFC-AUDIT-LOCAL-03",
+        "description": "Local _repsl Repository Cross-Reference: Cross-referenced kairos_repsl/website/nft/index.html (RealizedGestalt1155.sol V6.2.0, ILNA33X, IERC7827Tokenized, ERC-8004, x402, agent.$1.np.$1), kairos_repsl/website/101/6.1/index.html, and LexClinic_Media_Notes_Approvals_Ledger.json.",
+        "status": "[x]"
+      },
+      {
+        "id": "TFC-AUDIT-WEB-04",
+        "description": "External Web Verification: Verified ERC-8004 ('Trustless Agents' standard) + x402 (HTTP 402 payment protocol), Haberdasher Labs (June 2026 shutdown / Hats Protocol public good transition), Kali.gg (Ross Campbell), William Entriken (ERC-721 lead author), Robert Recorde (1557 invention of '=' in The Whetstone of Witte), and Gottfried Wilhelm Leibniz (1666 Doctor Juris at University of Altdorf & Leibniz's Law of Equality).",
+        "status": "[x]"
+      },
+      {
+        "id": "TFC-MISREP-05",
+        "description": "Gemini Summary & Attribution Misrepresentation Audit: Audited Quick notes, Summary, Next steps, and Details; fixed Gemini's false attribution of the Class 6.1 explainer video thesis to Daniel Rivera and clarified Baba John's blog post vs. Class 1.2/6.1 video redundancy critique.",
+        "status": "[x]"
+      },
+      {
+        "id": "TFC-STRIKE-06",
+        "description": "Deterministic XML Patch & Drive API Upload: Applied 151 replacements across 107/108 rules to word/document.xml, validated XML via ET.fromstring, patched both the original Google Doc in-place (1SeTThpXcl2nHN1jDDYQj5zGw2IjKkFASHY4fxPL9TXk) and the owned (Upgraded) copy (1j-dmXjhYK4U1gTFc7j2Fq3sgczyW-NJeKLrnuqP7coA), and moved all temporary files to /home/mgit/metagit_trash/.",
+        "status": "[x]"
+      },
+      {
+        "id": "TFC-VERIFY-07",
+        "description": "Live Drive Verification & Chronos Anchoring: Re-exported both live Google Docs from Drive, confirmed 0 remaining error strings, verified exact occurrence counts of all 24 canonical terms, and anchored MISSION-TRANSCRIPT-20261029-LESSON-6-1.wedo.json in chronos_repsl/wedo/.",
+        "status": "[x]"
+      }
+    ]
+  },
+  "attribution": "LexClinic Legal Engineering Swarm (20261030)"
+}

@@ -175,13 +175,13 @@
   },
   {
     "id": "event-google-cal-2026-10-29",
-    "title": "LexClinic 2026 \u2014 Lesson 6.1",
+    "title": "LexClinic 2026 \u2014 Lesson 6.1: Grammatical Hurdles: Assigning vs. Evaluating",
     "date": "2026-10-29",
-    "url": "https://www.google.com/calendar/event?eid=Nmg1aGh1MjFkNzc4NThuNzVrZjVucWMxbDJfMjAyNjEwMjlUMjEzMDAwWiBreWxlQGxleC5jbGluaWM",
+    "url": "/event/2026-10-29/",
     "meet_url": "https://meet.google.com/xpy-vzuu-nmf",
-    "is_upcoming": true,
+    "is_upcoming": false,
     "is_private": false,
-    "description": "Socratic Session for LexClinic 2026. Automatically recorded and transcribed with Gemini Meeting Notes. Recording and transcript link will be emailed to all attendees upon meeting conclusion.",
+    "description": "Socratic session and audio recording deconstructing non-person AI agent standards (LNA-33X, ERC-7827, ERC-8004, x402), active variable assignment (=) vs. boolean condition evaluation (==), and right-to-left execution.",
     "category": "class"
   },
   {
