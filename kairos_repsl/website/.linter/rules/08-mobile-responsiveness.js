@@ -29,12 +29,22 @@ function run(webDir, config) {
     }
   }
 
-  // 2. Verify bindMobileToggle in ui-interactive-controls.js does NOT double-bind ontouchend = onclick
+  // 2. Verify bindMobileToggle in ui-interactive-controls.js does NOT double-bind ontouchend = onclick and registers /sw.js
   const uiControlsPath = path.join(webDir, "js/modules/ui-interactive-controls.js");
   if (fs.existsSync(uiControlsPath)) {
     const uiCode = fs.readFileSync(uiControlsPath, "utf8");
     if (uiCode.includes("ontouchend = toggleBtn.onclick")) {
       violations.push("js/modules/ui-interactive-controls.js binds ontouchend = toggleBtn.onclick, which double-fires on mobile touch and immediately closes the menu!");
+    }
+    if (!uiCode.includes('serviceWorker.register("/sw.js")')) {
+      violations.push("js/modules/ui-interactive-controls.js is missing PWA Service Worker registration (/sw.js)");
+    }
+  }
+
+  // 2b. Verify PWA /manifest.webmanifest, /sw.js, /icon-192.png, and /icon-512.png exist on disk
+  for (const pwaAsset of ["manifest.webmanifest", "sw.js", "icon-192.png", "icon-512.png"]) {
+    if (!fs.existsSync(path.join(webDir, pwaAsset))) {
+      violations.push(`PWA asset /${pwaAsset} is missing from website root`);
     }
   }
 
@@ -59,9 +69,12 @@ function run(webDir, config) {
     const rel = "/" + path.relative(webDir, hFile).split(path.sep).join("/");
     const html = fs.readFileSync(hFile, "utf8");
 
-    // Must have responsive viewport meta tag
+    // Must have responsive viewport meta tag and PWA manifest link
     if (!html.includes('name="viewport"') || !html.includes("width=device-width")) {
       violations.push(`${rel} is missing responsive <meta name="viewport" content="width=device-width, initial-scale=1.0">`);
+    }
+    if (!html.includes('href="/manifest.webmanifest"')) {
+      violations.push(`${rel} is missing PWA <link rel="manifest" href="/manifest.webmanifest">`);
     }
 
     // Every page with a .navbar must have #mobile-toggle and #nav-links

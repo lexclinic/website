@@ -40,6 +40,8 @@ async function run(webDir) {
     { path: "/erc7827/", mustInclude: "IERC7827" },
     { path: "/nft/", mustInclude: "ILNA33X" },
     { path: "/NFT/", mustInclude: "IERC7827Tokenized" },
+    { path: "/manifest.webmanifest", mustInclude: "LexClinic" },
+    { path: "/sw.js", mustInclude: "CACHE_NAME" },
     { path: "/fiduciary/", mustInclude: "Fiduciary" },
     { path: "/collaborate/", mustInclude: "Collaborate" }
   ];

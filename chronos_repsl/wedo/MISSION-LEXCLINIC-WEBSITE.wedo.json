@@ -124,6 +124,11 @@
         "id": "EVENT-OCT29-CLASS61-STAGE-01",
         "description": "Process Oct 29, 2026 (Class 6.1) Socratic Session media from Google Drive (When_Legal_Contracts_Execute_Themselves.m4a + 5 unlisted YouTube clips + Whisper transcript), build /event/2026-10-29/, link /101/6.1/ <-> /event/2026-10-29/, update /event/ Top 3 Recent (Oct 29, Oct 22, Oct 15) & Upcoming (Nov 5 Class 6.2), and deploy strictly to staging (stage.lex.clinic)",
         "status": "[x]"
+      },
+      {
+        "id": "PWA-STAGE-01",
+        "description": "Configure LexClinic as an installable Progressive Web App (PWA) with /manifest.webmanifest, /sw.js (network-first with offline cache fallback and byte-range audio pass-through), /icon-192.png & /icon-512.png, and <head> manifest/apple-mobile-web-app tags across all 99 HTML pages on staging",
+        "status": "[x]"
       }
     ]
   },
