@@ -1,0 +1,940 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>101 Curriculum Idea &amp; Novelty Map | LexClinic Education</title>
+  <meta name="description" content="Forensic transcript analysis mapping 41 novel ideas vs. 108 repeated concept-instances across all 12 Legal Engineering 101 classes (1.1 through 6.2).">
+  <link rel="stylesheet" href="/styles.css?v=20261025_v20">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <script src="/js/audio-player.js?v=20261025_v20"></script>
+  <script src="/js/auth.js?v=20261025_v20"></script>
+  <script src="/js/media-tracker-miniapp.js?v=20261025_v20"></script>
+  <script src="/js/watch-tracker.js?v=20261025_v20"></script>
+  <script src="/js/modules/ui-interactive-controls.js?v=20261025_v20"></script>
+  <script src="/script.js?v=20261025_v20" defer></script>
+  <link rel="icon" type="image/png" href="/favicon.png?v=20261025_v20">
+  <link rel="shortcut icon" href="/favicon.ico?v=20261025_v20">
+  <style>
+    .idea-stat-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1.25rem;
+      margin-bottom: 2rem;
+    }
+    .idea-stat-card {
+      background: rgba(15, 23, 42, 0.85);
+      border-radius: 12px;
+      padding: 1.35rem;
+      border: 2px solid rgba(56, 189, 248, 0.35);
+    }
+    .idea-stat-value {
+      font-size: 2.2rem;
+      font-weight: 800;
+      font-family: 'Fira Code', monospace;
+      line-height: 1.1;
+      margin-bottom: 0.35rem;
+    }
+    .idea-stat-label {
+      font-size: 0.92rem;
+      font-weight: 700;
+      color: #f8fafc;
+      margin-bottom: 0.25rem;
+    }
+    .idea-stat-sub {
+      font-size: 0.82rem;
+      color: #94a3b8;
+      line-height: 1.45;
+    }
+    .idea-table-wrap {
+      width: 100%;
+      overflow-x: auto;
+      border-radius: 10px;
+      border: 1px solid rgba(148, 163, 184, 0.25);
+      background: rgba(10, 17, 40, 0.9);
+    }
+    .idea-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.9rem;
+    }
+    .idea-table th,
+    .idea-table td {
+      padding: 0.85rem 1rem;
+      text-align: left;
+      border-bottom: 1px solid rgba(148, 163, 184, 0.16);
+      vertical-align: middle;
+    }
+    .idea-table th {
+      background: rgba(15, 23, 42, 0.95);
+      color: var(--accent-cyan);
+      font-weight: 700;
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+    .idea-table tr:hover td {
+      background: rgba(56, 189, 248, 0.05);
+    }
+    .ratio-bar {
+      display: flex;
+      width: 100%;
+      height: 10px;
+      border-radius: 999px;
+      overflow: hidden;
+      background: rgba(245, 158, 11, 0.25);
+      margin-top: 0.3rem;
+    }
+    .ratio-fill-novel {
+      background: #34d399;
+      height: 100%;
+    }
+    .ratio-fill-repeat {
+      background: #f59e0b;
+      height: 100%;
+    }
+    .idea-pill {
+      display: inline-block;
+      padding: 0.18rem 0.55rem;
+      border-radius: 999px;
+      font-family: 'Fira Code', monospace;
+      font-size: 0.76rem;
+      font-weight: 600;
+      margin: 0.15rem 0.2rem 0.15rem 0;
+    }
+    .idea-pill-novel {
+      background: rgba(52, 211, 153, 0.16);
+      color: #34d399;
+      border: 1px solid rgba(52, 211, 153, 0.45);
+    }
+    .idea-pill-repeat {
+      background: rgba(251, 191, 36, 0.14);
+      color: #fbbf24;
+      border: 1px solid rgba(251, 191, 36, 0.4);
+    }
+    .idea-pill-class {
+      background: rgba(56, 189, 248, 0.14);
+      color: var(--accent-cyan);
+      border: 1px solid rgba(56, 189, 248, 0.35);
+      text-decoration: none;
+    }
+    .idea-filter-bar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 1.5rem;
+      padding: 1rem 1.25rem;
+      background: rgba(15, 23, 42, 0.85);
+      border: 1px solid rgba(56, 189, 248, 0.3);
+      border-radius: 10px;
+    }
+    .idea-filter-btn {
+      background: rgba(30, 41, 59, 0.9);
+      color: #cbd5e1;
+      border: 1px solid rgba(148, 163, 184, 0.35);
+      padding: 0.45rem 0.85rem;
+      border-radius: 6px;
+      font-size: 0.84rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+    .idea-filter-btn.active,
+    .idea-filter-btn:hover {
+      background: rgba(56, 189, 248, 0.2);
+      color: var(--accent-cyan);
+      border-color: var(--accent-cyan);
+    }
+    .idea-search-input {
+      background: rgba(10, 17, 40, 0.95);
+      border: 1px solid rgba(56, 189, 248, 0.4);
+      color: #f8fafc;
+      padding: 0.48rem 0.85rem;
+      border-radius: 6px;
+      font-size: 0.86rem;
+      width: 100%;
+      max-width: 280px;
+    }
+    .idea-list {
+      list-style: none;
+      padding: 0;
+      margin: 0.75rem 0 0 0;
+    }
+    .idea-list li {
+      padding: 0.65rem 0.85rem;
+      margin-bottom: 0.5rem;
+      background: rgba(15, 23, 42, 0.7);
+      border-left: 3px solid #34d399;
+      border-radius: 0 8px 8px 0;
+      font-size: 0.92rem;
+      line-height: 1.55;
+      color: #e2e8f0;
+    }
+    .idea-time {
+      font-family: 'Fira Code', monospace;
+      font-size: 0.78rem;
+      color: #94a3b8;
+      margin-left: 0.35rem;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Unified Fixed Header Wrapper (Top Disclaimer + Navbar) -->
+  <header class="fixed-header-wrapper">
+    <div class="top-disclaimer-bar">
+      <span>⚖️ <strong>LEGAL DISCLAIMER:</strong> LexClinic Education, Inc. is applying for 501(c)(3) tax-exempt status. Materials, software runtimes, and APIs are for educational research and do not constitute formal legal advice. <a href="/help/#disclaimer">Read Full Disclaimer ➔</a></span>
+    </div>
+    <nav class="navbar">
+      <div class="nav-container">
+        <a href="/index.html" class="brand-logo">
+          <span class="logo-icon">⚖️</span>
+          <span class="logo-text">Lex<span class="highlight">Clinic</span></span>
+        </a>
+        <nav class="nav-links" id="nav-links">
+          <a href="/event/">Event</a>
+          <a href="/101">101</a>
+          <a href="/interview/">Interview</a>
+          <a href="/collaborate/">Collaborate</a>
+          <a href="/fiduciary/">Fiduciary</a>
+          <a href="/attest/">Attest</a>
+          <a href="/help/">Help</a>
+          <a href="/repo/">Repo</a>
+          <a href="/erc7827/">ERC-7827</a>
+          <a href="/nft/">NFT</a>
+          <a href="https://www.youtube.com/watch?v=20261025_v20&list=PLbPukKwpmk5E" target="_blank" rel="noopener" class="btn-social" title="Subscribe on YouTube">YouTube</a>
+          <a href="https://open.spotify.com/show/0348ivoLaNfKBq1HeIYC9b" target="_blank" rel="noopener" class="btn-spotify" title="Follow on Spotify">Spotify</a>
+          <a href="https://www.linkedin.com/company/lexclinic" target="_blank" rel="noopener" class="btn-social" title="Follow on LinkedIn">LinkedIn</a>
+          <a href="javascript:void(0)" onclick="event.preventDefault(); window.openNavLoginModal(event); return false;" id="nav-login-btn" style="background: #fbbf24; color: #0a1128; font-weight: 800; font-size: 0.88rem; padding: 0.35rem 0.85rem; border-radius: 6px; margin-left: 0.35rem; text-decoration: none; border: 2px solid #f59e0b; box-shadow: 0 0 10px rgba(251, 191, 36, 0.4); display: inline-block;">Login</a>
+        </nav>
+        <button class="mobile-toggle" id="mobile-toggle" aria-label="Toggle navigation">
+          ☰
+        </button>
+      </div>
+    </nav>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero page-hero">
+    <div class="container hero-content">
+      <div style="margin-bottom: 0.75rem;">
+        <a href="/101/" style="color: var(--accent-cyan); text-decoration: none; font-weight: 600; font-size: 0.92rem;">← Back to Legal Engineering 101 Curriculum</a>
+      </div>
+      <h1 class="hero-title">101 Curriculum <span class="gradient-text">Idea &amp; Novelty Map</span></h1>
+      <p class="hero-subtitle">
+        Forensic transcript audit mapping <strong>novel ideas vs. repeated concept-instances</strong> sequentially from Class 1.1 through Class 6.2 across all 12 Legal Engineering 101 lectures.
+      </p>
+      <div class="hero-actions">
+        <a href="#progression-matrix" class="btn btn-primary">📊 View Progression Matrix ➔</a>
+        <a href="#class-ledger" class="btn btn-outline" style="border-color: #34d399; color: #34d399;">🧬 Browse All 41 Novel Ideas (I1–I41) ➔</a>
+        <a href="#repeated-motifs" class="btn btn-outline" style="border-color: var(--accent-gold); color: var(--accent-gold);">🔁 Top Repeated Motifs ➔</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 1: Executive Telemetry & Root Cause -->
+  <section class="section" style="padding-top: 1rem;">
+    <div class="container">
+
+      <!-- 4 Key Metric Cards -->
+      <div class="idea-stat-grid">
+        <div class="idea-stat-card" style="border-color: #34d399;">
+          <div class="idea-stat-value" style="color: #34d399;">41 <span style="font-size: 1.1rem; font-weight: 600;">(27.5%)</span></div>
+          <div class="idea-stat-label">Unique (Novel) Ideas (I1–I41)</div>
+          <div class="idea-stat-sub">Distinct legal engineering concepts, metaphors, and code mechanics introduced across Classes 1.1–6.2.</div>
+        </div>
+
+        <div class="idea-stat-card" style="border-color: #fbbf24;">
+          <div class="idea-stat-value" style="color: #fbbf24;">108 <span style="font-size: 1.1rem; font-weight: 600;">(72.5%)</span></div>
+          <div class="idea-stat-label">Repeated Concept-Instances</div>
+          <div class="idea-stat-sub">Recurrent syllabus motifs reinforced across subsequent 101 Explainer videos after initial introduction.</div>
+        </div>
+
+        <div class="idea-stat-card" style="border-color: var(--accent-cyan);">
+          <div class="idea-stat-value" style="color: var(--accent-cyan);">149</div>
+          <div class="idea-stat-label">Total Concept-Instances Mapped</div>
+          <div class="idea-stat-sub">16 of the 41 unique ideas (39%) are already introduced by the conclusion of Class 1.2.</div>
+        </div>
+
+        <div class="idea-stat-card" style="border-color: #a855f7;">
+          <div class="idea-stat-value" style="color: #c084fc;">53% <span style="font-size: 1.1rem; font-weight: 600;">(Class 4.1)</span></div>
+          <div class="idea-stat-label">Live Socratic Cohort Outlier</div>
+          <div class="idea-stat-sub">Class 4.1 adds 10 novel ideas because it was generated from the live Socratic session transcript rather than the master syllabus.</div>
+        </div>
+      </div>
+
+      <!-- Executive Root Cause Diagnosis Card -->
+      <div class="card event-module-card" style="border: 2px solid var(--accent-cyan); background: rgba(15, 23, 42, 0.92); margin-bottom: 2.5rem;">
+        <div style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 0.85rem;">
+          <span style="font-size: 1.5rem;">🔬</span>
+          <h2 style="color: var(--accent-cyan); margin: 0; font-size: 1.35rem;">Executive Diagnosis: Why 72.5% of 101 Concept-Instances Repeat</h2>
+        </div>
+        <div class="grid grid-2" style="gap: 1.25rem;">
+          <div style="background: rgba(10, 17, 40, 0.75); padding: 1.1rem; border-radius: 8px; border: 1px solid rgba(56, 189, 248, 0.25);">
+            <h3 style="color: #34d399; font-size: 1rem; margin-top: 0; margin-bottom: 0.5rem;">1. Single-Syllabus Explainer Generation (11 of 12 Videos)</h3>
+            <p style="color: #cbd5e1; font-size: 0.9rem; line-height: 1.55; margin: 0;">
+              Classes <code>1.1–3.2</code> and <code>4.2–6.2</code> are single-narrator "Explainer" videos synthesized from the same master curriculum outline. Even when prompted to spotlight a specific module topic, the narrator walks through the full arc (<em>Static Paper vs. Runtime → Composer Metaphor → Primitives &amp; Right-to-Left Assignment → Horse &amp; Buggy to Waymos → Two Career Paths</em>) in almost every video.
+            </p>
+          </div>
+          <div style="background: rgba(10, 17, 40, 0.75); padding: 1.1rem; border-radius: 8px; border: 1px solid rgba(251, 191, 36, 0.25);">
+            <h3 style="color: var(--accent-gold); font-size: 1rem; margin-top: 0; margin-bottom: 0.5rem;">2. Live Socratic Transcript Grounding (Class 4.1 Spike)</h3>
+            <p style="color: #cbd5e1; font-size: 0.9rem; line-height: 1.55; margin: 0;">
+              While Classes <code>4.2</code> and <code>6.2</code> contain <strong>0% novel ideas</strong> (every concept appeared earlier), <strong>Class 4.1</strong> spikes to <strong>53% novelty (10 brand-new ideas)</strong> because it is a 22-minute two-host deep dive grounded in the live October 1 Socratic cohort session (7-line JS shareholder loop, <code>ReferenceError: people is not defined</code>, Leibniz's <em>Calculus Ratiocinator</em>, AI translation layer, and LexClinic API sandbox).
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Section 2: Quantitative Progression Table -->
+      <div id="progression-matrix" class="card event-module-card" style="border: 2px solid rgba(56, 189, 248, 0.4); margin-bottom: 2.5rem;">
+        <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.75rem; margin-bottom: 1rem;">
+          <div>
+            <h2 style="color: #f8fafc; margin: 0 0 0.25rem 0; font-size: 1.35rem;">📈 Sequential Novelty vs. Repetition Matrix (1.1 → 6.2)</h2>
+            <p style="color: #94a3b8; font-size: 0.9rem; margin: 0;">Tracking cumulative conceptual discovery from Class 1.1 (100% novel) to Class 6.2 (41 cumulative unique ideas).</p>
+          </div>
+          <div style="display: flex; gap: 0.75rem; align-items: center; font-size: 0.82rem;">
+            <span style="display: inline-flex; align-items: center; gap: 0.35rem; color: #34d399; font-weight: 600;"><span style="width: 10px; height: 10px; border-radius: 50%; background: #34d399; display: inline-block;"></span> Novel Idea</span>
+            <span style="display: inline-flex; align-items: center; gap: 0.35rem; color: #fbbf24; font-weight: 600;"><span style="width: 10px; height: 10px; border-radius: 50%; background: #fbbf24; display: inline-block;"></span> Repeated Idea</span>
+          </div>
+        </div>
+
+        <div class="idea-table-wrap">
+          <table class="idea-table">
+            <thead>
+              <tr>
+                <th>Class</th>
+                <th>Module Title</th>
+                <th>Total</th>
+                <th>Novel</th>
+                <th>Repeated</th>
+                <th>Novel vs. Repeated Ratio</th>
+                <th>Cumulative Unique</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><a href="/101/1.1/" class="idea-pill idea-pill-class">1.1</a></td>
+                <td><a href="/101/1.1/" style="color: #f8fafc; text-decoration: none; font-weight: 600;">What is a "Performance" in Law?</a></td>
+                <td style="font-family: 'Fira Code', monospace;">6</td>
+                <td><span class="idea-pill idea-pill-novel">+6</span></td>
+                <td><span class="idea-pill idea-pill-repeat">0</span></td>
+                <td>
+                  <div style="display: flex; justify-content: space-between; font-size: 0.78rem; font-family: 'Fira Code', monospace;">
+                    <span style="color: #34d399;">100% Novel</span>
+                    <span style="color: #94a3b8;">0% Rep</span>
+                  </div>
+                  <div class="ratio-bar"><div class="ratio-fill-novel" style="width: 100%;"></div></div>
+                </td>
+                <td style="font-family: 'Fira Code', monospace; font-weight: 700; color: var(--accent-cyan);">6</td>
+              </tr>
+              <tr>
+                <td><a href="/101/1.2/" class="idea-pill idea-pill-class">1.2</a></td>
+                <td><a href="/101/1.2/" style="color: #f8fafc; text-decoration: none; font-weight: 600;">What is a "Runtime" in Software?</a></td>
+                <td style="font-family: 'Fira Code', monospace;">14</td>
+                <td><span class="idea-pill idea-pill-novel">+10</span></td>
+                <td><span class="idea-pill idea-pill-repeat">4</span></td>
+                <td>
+                  <div style="display: flex; justify-content: space-between; font-size: 0.78rem; font-family: 'Fira Code', monospace;">
+                    <span style="color: #34d399;">71% Novel</span>
+                    <span style="color: #fbbf24;">29% Rep</span>
+                  </div>
+                  <div class="ratio-bar"><div class="ratio-fill-novel" style="width: 71.4%;"></div></div>
+                </td>
+                <td style="font-family: 'Fira Code', monospace; font-weight: 700; color: var(--accent-cyan);">16</td>
+              </tr>
+              <tr>
+                <td><a href="/101/2.1/" class="idea-pill idea-pill-class">2.1</a></td>
+                <td><a href="/101/2.1/" style="color: #f8fafc; text-decoration: none; font-weight: 600;">The Composer Metaphor: Designing Before "Play"</a></td>
+                <td style="font-family: 'Fira Code', monospace;">14</td>
+                <td><span class="idea-pill idea-pill-novel">+3</span></td>
+                <td><span class="idea-pill idea-pill-repeat">11</span></td>
+                <td>
+                  <div style="display: flex; justify-content: space-between; font-size: 0.78rem; font-family: 'Fira Code', monospace;">
+                    <span style="color: #34d399;">21% Novel</span>
+                    <span style="color: #fbbf24;">79% Rep</span>
+                  </div>
+                  <div class="ratio-bar"><div class="ratio-fill-novel" style="width: 21.4%;"></div></div>
+                </td>
+                <td style="font-family: 'Fira Code', monospace; font-weight: 700; color: var(--accent-cyan);">19</td>
+              </tr>
+              <tr>
+                <td><a href="/101/2.2/" class="idea-pill idea-pill-class">2.2</a></td>
+                <td><a href="/101/2.2/" style="color: #f8fafc; text-decoration: none; font-weight: 600;">Minimizing Social Transaction Costs</a></td>
+                <td style="font-family: 'Fira Code', monospace;">14</td>
+                <td><span class="idea-pill idea-pill-novel">+3</span></td>
+                <td><span class="idea-pill idea-pill-repeat">11</span></td>
+                <td>
+                  <div style="display: flex; justify-content: space-between; font-size: 0.78rem; font-family: 'Fira Code', monospace;">
+                    <span style="color: #34d399;">21% Novel</span>
+                    <span style="color: #fbbf24;">79% Rep</span>
+                  </div>
+                  <div class="ratio-bar"><div class="ratio-fill-novel" style="width: 21.4%;"></div></div>
+                </td>
+                <td style="font-family: 'Fira Code', monospace; font-weight: 700; color: var(--accent-cyan);">22</td>
+              </tr>
+              <tr>
+                <td><a href="/101/3.1/" class="idea-pill idea-pill-class">3.1</a></td>
+                <td><a href="/101/3.1/" style="color: #f8fafc; text-decoration: none; font-weight: 600;">Charles Goldfarb &amp; GML: The Web's Legal Origin</a></td>
+                <td style="font-family: 'Fira Code', monospace;">10</td>
+                <td><span class="idea-pill idea-pill-novel">+3</span></td>
+                <td><span class="idea-pill idea-pill-repeat">7</span></td>
+                <td>
+                  <div style="display: flex; justify-content: space-between; font-size: 0.78rem; font-family: 'Fira Code', monospace;">
+                    <span style="color: #34d399;">30% Novel</span>
+                    <span style="color: #fbbf24;">70% Rep</span>
+                  </div>
+                  <div class="ratio-bar"><div class="ratio-fill-novel" style="width: 30%;"></div></div>
+                </td>
+                <td style="font-family: 'Fira Code', monospace; font-weight: 700; color: var(--accent-cyan);">25</td>
+              </tr>
+              <tr>
+                <td><a href="/101/3.2/" class="idea-pill idea-pill-class">3.2</a></td>
+                <td><a href="/101/3.2/" style="color: #f8fafc; text-decoration: none; font-weight: 600;">Nick Szabo &amp; Smart Contracts: Hardcoding Consideration</a></td>
+                <td style="font-family: 'Fira Code', monospace;">14</td>
+                <td><span class="idea-pill idea-pill-novel">+3</span></td>
+                <td><span class="idea-pill idea-pill-repeat">11</span></td>
+                <td>
+                  <div style="display: flex; justify-content: space-between; font-size: 0.78rem; font-family: 'Fira Code', monospace;">
+                    <span style="color: #34d399;">21% Novel</span>
+                    <span style="color: #fbbf24;">79% Rep</span>
+                  </div>
+                  <div class="ratio-bar"><div class="ratio-fill-novel" style="width: 21.4%;"></div></div>
+                </td>
+                <td style="font-family: 'Fira Code', monospace; font-weight: 700; color: var(--accent-cyan);">28</td>
+              </tr>
+              <tr style="background: rgba(52, 211, 153, 0.07);">
+                <td><a href="/101/4.1/" class="idea-pill idea-pill-class">4.1</a></td>
+                <td><a href="/101/4.1/" style="color: #34d399; text-decoration: none; font-weight: 700;">Decoupling Logic from Assets: Instructions vs. Data ⚡</a></td>
+                <td style="font-family: 'Fira Code', monospace;">19</td>
+                <td><span class="idea-pill idea-pill-novel">+10</span></td>
+                <td><span class="idea-pill idea-pill-repeat">9</span></td>
+                <td>
+                  <div style="display: flex; justify-content: space-between; font-size: 0.78rem; font-family: 'Fira Code', monospace;">
+                    <span style="color: #34d399; font-weight: 700;">53% Novel</span>
+                    <span style="color: #fbbf24;">47% Rep</span>
+                  </div>
+                  <div class="ratio-bar"><div class="ratio-fill-novel" style="width: 52.6%;"></div></div>
+                </td>
+                <td style="font-family: 'Fira Code', monospace; font-weight: 700; color: #34d399;">38</td>
+              </tr>
+              <tr>
+                <td><a href="/101/4.2/" class="idea-pill idea-pill-class">4.2</a></td>
+                <td><a href="/101/4.2/" style="color: #f8fafc; text-decoration: none; font-weight: 600;">Data Primitives 101: Strings, Numbers, and Booleans</a></td>
+                <td style="font-family: 'Fira Code', monospace;">13</td>
+                <td><span class="idea-pill" style="background: rgba(148,163,184,0.15); color: #94a3b8;">0</span></td>
+                <td><span class="idea-pill idea-pill-repeat">13</span></td>
+                <td>
+                  <div style="display: flex; justify-content: space-between; font-size: 0.78rem; font-family: 'Fira Code', monospace;">
+                    <span style="color: #94a3b8;">0% Novel</span>
+                    <span style="color: #fbbf24;">100% Rep</span>
+                  </div>
+                  <div class="ratio-bar"><div class="ratio-fill-novel" style="width: 0%;"></div></div>
+                </td>
+                <td style="font-family: 'Fira Code', monospace; font-weight: 700; color: var(--accent-cyan);">38</td>
+              </tr>
+              <tr>
+                <td><a href="/101/5.1/" class="idea-pill idea-pill-class">5.1</a></td>
+                <td><a href="/101/5.1/" style="color: #f8fafc; text-decoration: none; font-weight: 600;">Active Scripts vs. Static Sheets</a></td>
+                <td style="font-family: 'Fira Code', monospace;">11</td>
+                <td><span class="idea-pill idea-pill-novel">+1</span></td>
+                <td><span class="idea-pill idea-pill-repeat">10</span></td>
+                <td>
+                  <div style="display: flex; justify-content: space-between; font-size: 0.78rem; font-family: 'Fira Code', monospace;">
+                    <span style="color: #34d399;">9% Novel</span>
+                    <span style="color: #fbbf24;">91% Rep</span>
+                  </div>
+                  <div class="ratio-bar"><div class="ratio-fill-novel" style="width: 9.1%;"></div></div>
+                </td>
+                <td style="font-family: 'Fira Code', monospace; font-weight: 700; color: var(--accent-cyan);">39</td>
+              </tr>
+              <tr>
+                <td><a href="/101/5.2/" class="idea-pill idea-pill-class">5.2</a></td>
+                <td><a href="/101/5.2/" style="color: #f8fafc; text-decoration: none; font-weight: 600;">Typing Domains: How Code Validates Data</a></td>
+                <td style="font-family: 'Fira Code', monospace;">9</td>
+                <td><span class="idea-pill idea-pill-novel">+1</span></td>
+                <td><span class="idea-pill idea-pill-repeat">8</span></td>
+                <td>
+                  <div style="display: flex; justify-content: space-between; font-size: 0.78rem; font-family: 'Fira Code', monospace;">
+                    <span style="color: #34d399;">11% Novel</span>
+                    <span style="color: #fbbf24;">89% Rep</span>
+                  </div>
+                  <div class="ratio-bar"><div class="ratio-fill-novel" style="width: 11.1%;"></div></div>
+                </td>
+                <td style="font-family: 'Fira Code', monospace; font-weight: 700; color: var(--accent-cyan);">40</td>
+              </tr>
+              <tr>
+                <td><a href="/101/6.1/" class="idea-pill idea-pill-class">6.1</a></td>
+                <td><a href="/101/6.1/" style="color: #f8fafc; text-decoration: none; font-weight: 600;">Grammatical Hurdles: Assigning vs. Evaluating</a></td>
+                <td style="font-family: 'Fira Code', monospace;">12</td>
+                <td><span class="idea-pill idea-pill-novel">+1</span></td>
+                <td><span class="idea-pill idea-pill-repeat">11</span></td>
+                <td>
+                  <div style="display: flex; justify-content: space-between; font-size: 0.78rem; font-family: 'Fira Code', monospace;">
+                    <span style="color: #34d399;">8% Novel</span>
+                    <span style="color: #fbbf24;">92% Rep</span>
+                  </div>
+                  <div class="ratio-bar"><div class="ratio-fill-novel" style="width: 8.3%;"></div></div>
+                </td>
+                <td style="font-family: 'Fira Code', monospace; font-weight: 700; color: var(--accent-cyan);">41</td>
+              </tr>
+              <tr>
+                <td><a href="/101/6.2/" class="idea-pill idea-pill-class">6.2</a></td>
+                <td><a href="/101/6.2/" style="color: #f8fafc; text-decoration: none; font-weight: 600;">Reading Right-to-Left: Adjusting Your Eyes</a></td>
+                <td style="font-family: 'Fira Code', monospace;">13</td>
+                <td><span class="idea-pill" style="background: rgba(148,163,184,0.15); color: #94a3b8;">0</span></td>
+                <td><span class="idea-pill idea-pill-repeat">13</span></td>
+                <td>
+                  <div style="display: flex; justify-content: space-between; font-size: 0.78rem; font-family: 'Fira Code', monospace;">
+                    <span style="color: #94a3b8;">0% Novel</span>
+                    <span style="color: #fbbf24;">100% Rep</span>
+                  </div>
+                  <div class="ratio-bar"><div class="ratio-fill-novel" style="width: 0%;"></div></div>
+                </td>
+                <td style="font-family: 'Fira Code', monospace; font-weight: 700; color: var(--accent-cyan);">41</td>
+              </tr>
+              <tr style="background: rgba(15, 23, 42, 0.98); font-weight: 700;">
+                <td colspan="2" style="color: var(--accent-cyan);">TOTAL ACROSS ALL 12 CLASSES (1.1 – 6.2)</td>
+                <td style="font-family: 'Fira Code', monospace; color: #f8fafc;">149</td>
+                <td><span class="idea-pill idea-pill-novel">41 (27.5%)</span></td>
+                <td><span class="idea-pill idea-pill-repeat">108 (72.5%)</span></td>
+                <td>
+                  <div class="ratio-bar"><div class="ratio-fill-novel" style="width: 27.5%;"></div></div>
+                </td>
+                <td style="font-family: 'Fira Code', monospace; color: #34d399;">41 Unique</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Section 3: Most Frequently Repeated Motifs -->
+      <div id="repeated-motifs" class="card event-module-card" style="border: 2px solid var(--accent-gold); margin-bottom: 2.5rem;">
+        <h2 style="color: var(--accent-gold); margin: 0 0 0.35rem 0; font-size: 1.35rem;">🔁 Top 10 Most Repeated Motifs Across the 12 Videos</h2>
+        <p style="color: #cbd5e1; font-size: 0.92rem; margin: 0 0 1.15rem 0;">
+          These core syllabus pillars appear across the vast majority of the 12 101 video transcripts.
+        </p>
+
+        <div class="idea-table-wrap">
+          <table class="idea-table">
+            <thead>
+              <tr>
+                <th>Idea ID &amp; Core Motif</th>
+                <th>First Introduced</th>
+                <th>Frequency (out of 12)</th>
+                <th>Classes Appearing In</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><span class="idea-pill idea-pill-novel">I1</span> <strong>Static Paper vs. Dynamic Calculus Mindset</strong></td>
+                <td><a href="/101/1.1/" class="idea-pill idea-pill-class">1.1</a></td>
+                <td style="font-family: 'Fira Code', monospace; color: #fbbf24; font-weight: 700;">12 / 12 (100%)</td>
+                <td>All 12 Classes (<code>1.1</code> – <code>6.2</code>)</td>
+              </tr>
+              <tr>
+                <td><span class="idea-pill idea-pill-novel">I3</span> <strong>Legal Performance = Software Runtime</strong></td>
+                <td><a href="/101/1.1/" class="idea-pill idea-pill-class">1.1</a></td>
+                <td style="font-family: 'Fira Code', monospace; color: #fbbf24; font-weight: 700;">12 / 12 (100%)</td>
+                <td>All 12 Classes (<code>1.1</code> – <code>6.2</code>)</td>
+              </tr>
+              <tr>
+                <td><span class="idea-pill idea-pill-novel">I4</span> <strong>Composer Metaphor (Verses, Choruses, Hit Play)</strong></td>
+                <td><a href="/101/1.1/" class="idea-pill idea-pill-class">1.1</a></td>
+                <td style="font-family: 'Fira Code', monospace; color: #fbbf24; font-weight: 700;">12 / 12 (100%)</td>
+                <td>All 12 Classes (<code>1.1</code> – <code>6.2</code>; <code>4.1</code> as Player Piano)</td>
+              </tr>
+              <tr>
+                <td><span class="idea-pill idea-pill-novel">I11</span> <strong>Reading Right-to-Left (Variable Assignment)</strong></td>
+                <td><a href="/101/1.2/" class="idea-pill idea-pill-class">1.2</a></td>
+                <td style="font-family: 'Fira Code', monospace; color: #fbbf24; font-weight: 700;">11 / 12 (92%)</td>
+                <td><code>1.2</code>, <code>2.1</code>, <code>2.2</code>, <code>3.1</code>, <code>3.2</code>, <code>4.1</code>, <code>4.2</code>, <code>5.1</code>, <code>5.2</code>, <code>6.1</code>, <code>6.2</code></td>
+              </tr>
+              <tr>
+                <td><span class="idea-pill idea-pill-novel">I5</span> <strong>3 Stages of Law (Horse &amp; Buggy → Cars → Waymos)</strong></td>
+                <td><a href="/101/1.1/" class="idea-pill idea-pill-class">1.1</a></td>
+                <td style="font-family: 'Fira Code', monospace; color: #fbbf24; font-weight: 700;">9 / 12 (75%)</td>
+                <td><code>1.1</code>, <code>1.2</code>, <code>2.1</code>, <code>2.2</code>, <code>3.2</code>, <code>4.2</code>, <code>5.1</code>, <code>6.1</code>, <code>6.2</code></td>
+              </tr>
+              <tr>
+                <td><span class="idea-pill idea-pill-novel">I13</span> <strong><code>And/Or</code> Ambiguity vs. Deterministic <code>if/else</code> Booleans</strong></td>
+                <td><a href="/101/1.2/" class="idea-pill idea-pill-class">1.2</a></td>
+                <td style="font-family: 'Fira Code', monospace; color: #fbbf24; font-weight: 700;">9 / 12 (75%)</td>
+                <td><code>1.2</code>, <code>2.1</code>, <code>2.2</code>, <code>3.1</code>, <code>4.1</code>, <code>4.2</code>, <code>5.2</code>, <code>6.1</code>, <code>6.2</code></td>
+              </tr>
+              <tr>
+                <td><span class="idea-pill idea-pill-novel">I14</span> <strong>Static Google Sheet vs. Active Script (Decoupling)</strong></td>
+                <td><a href="/101/1.2/" class="idea-pill idea-pill-class">1.2</a></td>
+                <td style="font-family: 'Fira Code', monospace; color: #fbbf24; font-weight: 700;">9 / 12 (75%)</td>
+                <td><code>1.2</code>, <code>2.1</code>, <code>3.1</code>, <code>4.1</code>, <code>4.2</code>, <code>5.1</code>, <code>5.2</code>, <code>6.1</code>, <code>6.2</code></td>
+              </tr>
+              <tr>
+                <td><span class="idea-pill idea-pill-novel">I12</span> <strong>Single <code>=</code> (Assignment) vs. Double <code>==</code> (Equality)</strong></td>
+                <td><a href="/101/1.2/" class="idea-pill idea-pill-class">1.2</a></td>
+                <td style="font-family: 'Fira Code', monospace; color: #fbbf24; font-weight: 700;">8 / 12 (67%)</td>
+                <td><code>1.2</code>, <code>2.1</code>, <code>2.2</code>, <code>4.2</code>, <code>5.1</code>, <code>5.2</code>, <code>6.1</code>, <code>6.2</code></td>
+              </tr>
+              <tr>
+                <td><span class="idea-pill idea-pill-novel">I16</span> <strong>Two Diverging Career Paths (Engineering vs. Lawyering)</strong></td>
+                <td><a href="/101/1.2/" class="idea-pill idea-pill-class">1.2</a></td>
+                <td style="font-family: 'Fira Code', monospace; color: #fbbf24; font-weight: 700;">8 / 12 (67%)</td>
+                <td><code>1.2</code>, <code>2.2</code>, <code>3.2</code>, <code>4.1</code>, <code>4.2</code>, <code>5.1</code>, <code>6.1</code>, <code>6.2</code></td>
+              </tr>
+              <tr>
+                <td><span class="idea-pill idea-pill-novel">I10</span> <strong>Three Core Data Primitives (Strings, Numbers, Booleans)</strong></td>
+                <td><a href="/101/1.2/" class="idea-pill idea-pill-class">1.2</a></td>
+                <td style="font-family: 'Fira Code', monospace; color: #fbbf24; font-weight: 700;">7 / 12 (58%)</td>
+                <td><code>1.2</code>, <code>2.1</code>, <code>2.2</code>, <code>4.1</code>, <code>4.2</code>, <code>5.2</code>, <code>6.2</code></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Section 4: Class-by-Class Ledger of Novel (I1-I41) & Repeated Ideas -->
+      <div id="class-ledger">
+        <div style="margin-bottom: 1rem;">
+          <h2 style="color: #f8fafc; margin: 0 0 0.3rem 0; font-size: 1.45rem;">🧬 Class-by-Class Transcript Ledger: Novel Ideas (I1–I41) vs. Repeated Ideas</h2>
+          <p style="color: #94a3b8; font-size: 0.92rem; margin: 0;">
+            Filter by novelty tier or search any concept, timestamp, or keyword across all 12 classes.
+          </p>
+        </div>
+
+        <!-- Filter & Search Bar -->
+        <div class="idea-filter-bar">
+          <div style="display: flex; flex-wrap: wrap; gap: 0.5rem;">
+            <button type="button" class="idea-filter-btn active" data-filter="all" onclick="window.filterIdeaClasses('all', this)">All 12 Classes</button>
+            <button type="button" class="idea-filter-btn" data-filter="high" onclick="window.filterIdeaClasses('high', this)">🔥 High Novelty (1.1, 1.2, 4.1)</button>
+            <button type="button" class="idea-filter-btn" data-filter="moderate" onclick="window.filterIdeaClasses('moderate', this)">📐 Moderate / Single Novelty (2.1–3.2, 5.1–6.1)</button>
+            <button type="button" class="idea-filter-btn" data-filter="zero" onclick="window.filterIdeaClasses('zero', this)">🔁 100% Repeated (4.2, 6.2)</button>
+          </div>
+          <input type="text" id="idea-search-box" class="idea-search-input" placeholder="🔍 Search I1–I41, Szabo, Leibniz, ==..." oninput="window.searchIdeaCards(this.value)">
+        </div>
+
+        <div id="idea-cards-container" style="display: flex; flex-direction: column; gap: 1.35rem;">
+
+          <!-- Class 1.1 -->
+          <div class="card event-module-card idea-class-card" data-novelty-tier="high" style="border: 2px solid #34d399;">
+            <div style="display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 0.75rem; margin-bottom: 0.75rem;">
+              <div>
+                <span class="idea-pill idea-pill-novel">6 Novel (100%)</span>
+                <span class="idea-pill idea-pill-repeat">0 Repeated (0%)</span>
+                <h3 style="color: var(--accent-cyan); margin: 0.4rem 0 0.2rem 0; font-size: 1.2rem;">Class 1.1: What is a "Performance" in Law?</h3>
+              </div>
+              <a href="/101/1.1/" class="btn btn-outline" style="font-size: 0.82rem; padding: 0.38rem 0.8rem;">Open Class 1.1 ➔</a>
+            </div>
+            <ul class="idea-list">
+              <li><span class="idea-pill idea-pill-novel">I1</span> <strong>Static Paper Illusion vs. Calculus Mindset:</strong> Traditional law views contracts as dead paper read left-to-right, hiding the active "calculus of obligations." <span class="idea-time">[50s–140s]</span></li>
+              <li><span class="idea-pill idea-pill-novel">I2</span> <strong>Legal Performance Defined:</strong> Real-world fulfillment of contractual obligations by human actors (delivering goods, paying funds). <span class="idea-time">[145s–174s]</span></li>
+              <li><span class="idea-pill idea-pill-novel">I3</span> <strong>Software Runtime = Legal Performance:</strong> Active execution of programmed instructions (<code>runtime</code>) maps 1-to-1 to fulfilling contractual duties (<code>performance</code>). <span class="idea-time">[180s–247s]</span></li>
+              <li><span class="idea-pill idea-pill-novel">I4</span> <strong>The Composer Metaphor:</strong> Designing verses, choruses, and loops beforehand, hitting "play," and watching the stage performance execute autonomously. <span class="idea-time">[247s–298s]</span></li>
+              <li><span class="idea-pill idea-pill-novel">I5</span> <strong>Three Stages of Law (Transportation Metaphor):</strong> <em>Direct Law</em> (19th c. horse &amp; buggy) → <em>Mechanized Law</em> (21st c. cars requiring new guardrails/negligence torts) → <em>Automated Law</em> (autonomous self-driving Waymos). <span class="idea-time">[298s–339s]</span></li>
+              <li><span class="idea-pill idea-pill-novel">I6</span> <strong>Reducing Societal Transaction Costs:</strong> Macroeconomic goal of mechanizing legal performances to eliminate manual verification friction. <span class="idea-time">[339s–411s]</span></li>
+            </ul>
+          </div>
+
+          <!-- Class 1.2 -->
+          <div class="card event-module-card idea-class-card" data-novelty-tier="high" style="border: 2px solid #34d399;">
+            <div style="display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 0.75rem; margin-bottom: 0.75rem;">
+              <div>
+                <span class="idea-pill idea-pill-novel">10 Novel (71%)</span>
+                <span class="idea-pill idea-pill-repeat">4 Repeated (29%)</span>
+                <h3 style="color: var(--accent-gold); margin: 0.4rem 0 0.2rem 0; font-size: 1.2rem;">Class 1.2: What is a "Runtime" in Software?</h3>
+              </div>
+              <a href="/101/1.2/" class="btn btn-outline" style="font-size: 0.82rem; padding: 0.38rem 0.8rem;">Open Class 1.2 ➔</a>
+            </div>
+            <p style="font-size: 0.85rem; color: #cbd5e1; margin: 0 0 0.5rem 0;">
+              <strong>Repeated from 1.1 (4):</strong> <span class="idea-pill idea-pill-repeat">I1 Static Paper vs. Calculus</span> <span class="idea-pill idea-pill-repeat">I3 Performance = Runtime</span> <span class="idea-pill idea-pill-repeat">I4 Composer Metaphor</span> <span class="idea-pill idea-pill-repeat">I5 Horse &amp; Buggy → Cars → Waymos</span>
+            </p>
+            <ul class="idea-list">
+              <li><span class="idea-pill idea-pill-novel">I7</span> <strong>Charles Goldfarb &amp; Markup Language:</strong> "Grandfather of the internet" digitized legal redline drafting into markup tags (precursor to HTML). <span class="idea-time">[208s–234s]</span></li>
+              <li><span class="idea-pill idea-pill-novel">I8</span> <strong>Nick Szabo &amp; Hardcoded Consideration:</strong> Hardcoded legal <em>consideration</em> into cryptography to incentivize decentralized network validators. <span class="idea-time">[234s–255s]</span></li>
+              <li><span class="idea-pill idea-pill-novel">I9</span> <strong>Logic vs. Grammar Gap ("5 Lessons First"):</strong> Lawyers already excel at logic/argumentation; the barrier is purely CS grammar and syntax. <span class="idea-time">[255s–282s]</span></li>
+              <li><span class="idea-pill idea-pill-novel">I10</span> <strong>Three Core Data Primitives:</strong> Strings (text/names), Numbers/Integers (values/deadlines), and Booleans (true/false gates). <span class="idea-time">[282s–301s]</span></li>
+              <li><span class="idea-pill idea-pill-novel">I11</span> <strong>Right-to-Left Variable Assignment &amp; Decoupling Logic from Data:</strong> Retraining eyes from left-to-right English to right-to-left code assignment (<code>$500</code> assigned to <code>rent</code>), separating instructions from data. <span class="idea-time">[302s–337s]</span></li>
+              <li><span class="idea-pill idea-pill-novel">I12</span> <strong>Single <code>=</code> (Assignment) vs. Double <code>==</code> (Equality Check):</strong> Single <code>=</code> puts a value into a variable container; double <code>==</code> evaluates whether two values are equal. <span class="idea-time">[337s–374s]</span></li>
+              <li><span class="idea-pill idea-pill-novel">I13</span> <strong>The <code>And/Or</code> Ambiguity Trap vs. Deterministic <code>if/else</code> Gates:</strong> Strategic legal ambiguity (<code>and/or</code>) collapses in strict Boolean <code>if/else</code> logic. <span class="idea-time">[374s–418s]</span></li>
+              <li><span class="idea-pill idea-pill-novel">I14</span> <strong>Static Google Sheet vs. Active JavaScript Script:</strong> Passive data sitting in a spreadsheet cell vs. dynamic primitives driving an active script. <span class="idea-time">[422s–455s]</span></li>
+              <li><span class="idea-pill idea-pill-novel">I15</span> <strong>1980s Unix Philosophy (Text Streams &amp; JSON):</strong> Modular programs doing one thing well and communicating via universal plain-text streams. <span class="idea-time">[455s–498s]</span></li>
+              <li><span class="idea-pill idea-pill-novel">I16</span> <strong>Two Diverging Career Paths (Engineering vs. Lawyering):</strong> Developers acting as specialized legal authorities (like patent agents) vs. traditional lawyers adopting programming syntax. <span class="idea-time">[548s–584s]</span></li>
+            </ul>
+          </div>
+
+          <!-- Class 2.1 -->
+          <div class="card event-module-card idea-class-card" data-novelty-tier="moderate" style="border: 2px solid var(--accent-cyan);">
+            <div style="display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 0.75rem; margin-bottom: 0.75rem;">
+              <div>
+                <span class="idea-pill idea-pill-novel">3 Novel (21%)</span>
+                <span class="idea-pill idea-pill-repeat">11 Repeated (79%)</span>
+                <h3 style="color: var(--accent-cyan); margin: 0.4rem 0 0.2rem 0; font-size: 1.2rem;">Class 2.1: The Composer Metaphor: Designing Before "Play"</h3>
+              </div>
+              <a href="/101/2.1/" class="btn btn-outline" style="font-size: 0.82rem; padding: 0.38rem 0.8rem;">Open Class 2.1 ➔</a>
+            </div>
+            <p style="font-size: 0.85rem; color: #cbd5e1; margin: 0 0 0.5rem 0;">
+              <strong>Repeated (11):</strong> <span class="idea-pill idea-pill-repeat">I1</span> <span class="idea-pill idea-pill-repeat">I3</span> <span class="idea-pill idea-pill-repeat">I4</span> <span class="idea-pill idea-pill-repeat">I5</span> <span class="idea-pill idea-pill-repeat">I6</span> <span class="idea-pill idea-pill-repeat">I7</span> <span class="idea-pill idea-pill-repeat">I8</span> <span class="idea-pill idea-pill-repeat">I10</span> <span class="idea-pill idea-pill-repeat">I11/I12</span> <span class="idea-pill idea-pill-repeat">I13</span> <span class="idea-pill idea-pill-repeat">I14/I15</span>
+            </p>
+            <ul class="idea-list">
+              <li><span class="idea-pill idea-pill-novel">I17</span> <strong><code>for</code> Loops as Explicit Legal Repetition:</strong> Translating implicit prose repetition ("for each employee") into explicit computational <code>for</code> loops. <span class="idea-time">[376s–407s]</span></li>
+              <li><span class="idea-pill idea-pill-novel">I18</span> <strong>Contract Chaining &amp; Modular Dependencies:</strong> Chaining contracts like software modules where a failed prerequisite (e.g., failed background check) automatically locks downstream contracts. <span class="idea-time">[407s–438s]</span></li>
+              <li><span class="idea-pill idea-pill-novel">I19</span> <strong>Pointers as Memory-Address Cross-References:</strong> Variables storing the memory address of another variable, acting like a hyperlink instead of duplicating dense clauses. <span class="idea-time">[480s–508s]</span></li>
+            </ul>
+          </div>
+
+          <!-- Class 2.2 -->
+          <div class="card event-module-card idea-class-card" data-novelty-tier="moderate" style="border: 2px solid var(--accent-gold);">
+            <div style="display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 0.75rem; margin-bottom: 0.75rem;">
+              <div>
+                <span class="idea-pill idea-pill-novel">3 Novel (21%)</span>
+                <span class="idea-pill idea-pill-repeat">11 Repeated (79%)</span>
+                <h3 style="color: var(--accent-gold); margin: 0.4rem 0 0.2rem 0; font-size: 1.2rem;">Class 2.2: Minimizing Social Transaction Costs</h3>
+              </div>
+              <a href="/101/2.2/" class="btn btn-outline" style="font-size: 0.82rem; padding: 0.38rem 0.8rem;">Open Class 2.2 ➔</a>
+            </div>
+            <p style="font-size: 0.85rem; color: #cbd5e1; margin: 0 0 0.5rem 0;">
+              <strong>Repeated (11):</strong> <span class="idea-pill idea-pill-repeat">I1</span> <span class="idea-pill idea-pill-repeat">I3</span> <span class="idea-pill idea-pill-repeat">I4</span> <span class="idea-pill idea-pill-repeat">I5</span> <span class="idea-pill idea-pill-repeat">I6</span> <span class="idea-pill idea-pill-repeat">I10</span> <span class="idea-pill idea-pill-repeat">I11</span> <span class="idea-pill idea-pill-repeat">I12</span> <span class="idea-pill idea-pill-repeat">I13</span> <span class="idea-pill idea-pill-repeat">I16</span> <span class="idea-pill idea-pill-repeat">I18</span>
+            </p>
+            <ul class="idea-list">
+              <li><span class="idea-pill idea-pill-novel">I20</span> <strong>Ricardian Contracts:</strong> Agreements formatted to be simultaneously machine-readable and human text-readable via cryptographic hashes. <span class="idea-time">[232s–268s]</span></li>
+              <li><span class="idea-pill idea-pill-novel">I21</span> <strong>2008 Financial Crisis Omnibus Securitizations &amp; Music Catalog Double-Assignments:</strong> Real-world examples of paper-archive friction freezing markets or double-assigning IP. <span class="idea-time">[354s–387s]</span></li>
+              <li><span class="idea-pill idea-pill-novel">I22</span> <strong>The Visa Network Analogy:</strong> Mechanized law acting like the Visa network replacing local cash/barter friction to scale global trust. <span class="idea-time">[393s–431s]</span></li>
+            </ul>
+          </div>
+
+          <!-- Class 3.1 -->
+          <div class="card event-module-card idea-class-card" data-novelty-tier="moderate" style="border: 2px solid var(--accent-cyan);">
+            <div style="display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 0.75rem; margin-bottom: 0.75rem;">
+              <div>
+                <span class="idea-pill idea-pill-novel">3 Novel (30%)</span>
+                <span class="idea-pill idea-pill-repeat">7 Repeated (70%)</span>
+                <h3 style="color: var(--accent-cyan); margin: 0.4rem 0 0.2rem 0; font-size: 1.2rem;">Class 3.1: Charles Goldfarb &amp; GML: The Web's Legal Origin</h3>
+              </div>
+              <a href="/101/3.1/" class="btn btn-outline" style="font-size: 0.82rem; padding: 0.38rem 0.8rem;">Open Class 3.1 ➔</a>
+            </div>
+            <p style="font-size: 0.85rem; color: #cbd5e1; margin: 0 0 0.5rem 0;">
+              <strong>Repeated (7):</strong> <span class="idea-pill idea-pill-repeat">I1</span> <span class="idea-pill idea-pill-repeat">I3</span> <span class="idea-pill idea-pill-repeat">I4</span> <span class="idea-pill idea-pill-repeat">I7</span> <span class="idea-pill idea-pill-repeat">I8</span> <span class="idea-pill idea-pill-repeat">I11/I14</span> <span class="idea-pill idea-pill-repeat">I13</span>
+            </p>
+            <ul class="idea-list">
+              <li><span class="idea-pill idea-pill-novel">I23</span> <strong>$20 Trillion Web Valuation:</strong> The $20T economic value resting on markup language and digital asset architecture. <span class="idea-time">[22s–42s]</span></li>
+              <li><span class="idea-pill idea-pill-novel">I24</span> <strong>Pre-1960s Drafting → 1969 GML → 1990s HTML Lineage:</strong> Explicit historical timeline of Generalized Markup Language. <span class="idea-time">[183s–189s, 254s–282s]</span></li>
+              <li><span class="idea-pill idea-pill-novel">I25</span> <strong>Imperative vs. Declarative Logic in Markup:</strong> How GML accommodated both imperative (step-by-step <em>how</em>) and declarative (final <em>outcome</em>) commands. <span class="idea-time">[282s–314s]</span></li>
+            </ul>
+          </div>
+
+          <!-- Class 3.2 -->
+          <div class="card event-module-card idea-class-card" data-novelty-tier="moderate" style="border: 2px solid var(--accent-gold);">
+            <div style="display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 0.75rem; margin-bottom: 0.75rem;">
+              <div>
+                <span class="idea-pill idea-pill-novel">3 Novel (21%)</span>
+                <span class="idea-pill idea-pill-repeat">11 Repeated (79%)</span>
+                <h3 style="color: var(--accent-gold); margin: 0.4rem 0 0.2rem 0; font-size: 1.2rem;">Class 3.2: Nick Szabo &amp; Smart Contracts: Hardcoding Consideration</h3>
+              </div>
+              <a href="/101/3.2/" class="btn btn-outline" style="font-size: 0.82rem; padding: 0.38rem 0.8rem;">Open Class 3.2 ➔</a>
+            </div>
+            <p style="font-size: 0.85rem; color: #cbd5e1; margin: 0 0 0.5rem 0;">
+              <strong>Repeated (11):</strong> <span class="idea-pill idea-pill-repeat">I1</span> <span class="idea-pill idea-pill-repeat">I3</span> <span class="idea-pill idea-pill-repeat">I4</span> <span class="idea-pill idea-pill-repeat">I5</span> <span class="idea-pill idea-pill-repeat">I8</span> <span class="idea-pill idea-pill-repeat">I9</span> <span class="idea-pill idea-pill-repeat">I11</span> <span class="idea-pill idea-pill-repeat">I15</span> <span class="idea-pill idea-pill-repeat">I16</span> <span class="idea-pill idea-pill-repeat">I18</span> <span class="idea-pill idea-pill-repeat">I20 (Ian Grigg 1996)</span>
+            </p>
+            <ul class="idea-list">
+              <li><span class="idea-pill idea-pill-novel">I26</span> <strong>Distributed Peer Node Free-Rider Dilemma:</strong> Why independent nodes won't expend electricity to execute code without built-in payment. <span class="idea-time">[137s–175s]</span></li>
+              <li><span class="idea-pill idea-pill-novel">I27</span> <strong>Blockchain Gas Fees = Legal Consideration (4-Step Lifecycle):</strong> Explicit mapping of gas fees to consideration across submission, peer validation, gas payout, and state update. <span class="idea-time">[215s–296s]</span></li>
+              <li><span class="idea-pill idea-pill-novel">I28</span> <strong>Replacing REST Calls with RPCs &amp; EVM JSON Objects:</strong> Moving from client-server REST to peer-to-peer Remote Procedure Calls (RPCs) on the Ethereum Virtual Machine. <span class="idea-time">[296s–324s]</span></li>
+            </ul>
+          </div>
+
+          <!-- Class 4.1 -->
+          <div class="card event-module-card idea-class-card" data-novelty-tier="high" style="border: 2px solid #34d399; background: rgba(15, 23, 42, 0.96);">
+            <div style="display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 0.75rem; margin-bottom: 0.75rem;">
+              <div>
+                <span class="idea-pill idea-pill-novel">10 Novel (53%) — Live Socratic Cohort Outlier ⚡</span>
+                <span class="idea-pill idea-pill-repeat">9 Repeated (47%)</span>
+                <h3 style="color: #34d399; margin: 0.4rem 0 0.2rem 0; font-size: 1.2rem;">Class 4.1: Decoupling Logic from Assets: Instructions vs. Data</h3>
+              </div>
+              <a href="/101/4.1/" class="btn btn-outline" style="font-size: 0.82rem; padding: 0.38rem 0.8rem; border-color: #34d399; color: #34d399;">Open Class 4.1 ➔</a>
+            </div>
+            <p style="font-size: 0.85rem; color: #cbd5e1; margin: 0 0 0.5rem 0;">
+              <strong>Repeated (9):</strong> <span class="idea-pill idea-pill-repeat">I1</span> <span class="idea-pill idea-pill-repeat">I3</span> <span class="idea-pill idea-pill-repeat">I7</span> <span class="idea-pill idea-pill-repeat">I10</span> <span class="idea-pill idea-pill-repeat">I11</span> <span class="idea-pill idea-pill-repeat">I13</span> <span class="idea-pill idea-pill-repeat">I14</span> <span class="idea-pill idea-pill-repeat">I16</span> <span class="idea-pill idea-pill-repeat">I17</span>
+            </p>
+            <ul class="idea-list">
+              <li><span class="idea-pill idea-pill-novel">I29</span> <strong>Chain of Title / Commercial Skyscraper Analogy:</strong> Collapsing millions of physical building details (steel beams, zoning) into "the Title" mirrors right-to-left variable assignment. <span class="idea-time">[405s–462s]</span></li>
+              <li><span class="idea-pill idea-pill-novel">I30</span> <strong>7-Line JavaScript LLC Shareholder Audit Demo:</strong> Iterating over 20 shareholders to append <code>"paid"</code> (on/before Oct 10) or <code>"tardy"</code> in a millisecond. <span class="idea-time">[561s–655s]</span></li>
+              <li><span class="idea-pill idea-pill-novel">I31</span> <strong>Infinite Scalability vs. Billable-Hour Unit Economics:</strong> 7 lines of code process 1,000,000 records at near-zero marginal cost vs. linear associate hours. <span class="idea-time">[655s–715s]</span></li>
+              <li><span class="idea-pill idea-pill-novel">I32</span> <strong><code>ReferenceError: people is not defined</code> = Missing Contractual Definition:</strong> Uninitialized variable crashes act as a compile-time forcing function preventing missing-definition lawsuits. <span class="idea-time">[720s–817s]</span></li>
+              <li><span class="idea-pill idea-pill-novel">I33</span> <strong>Gottfried Wilhelm Leibniz &amp; the <em>Calculus Ratiocinator</em>:</strong> 17th-century lawyer/mathematician who envisioned calculating legal disputes. <span class="idea-time">[822s–881s]</span></li>
+              <li><span class="idea-pill idea-pill-novel">I34</span> <strong>Equitable Interpretation ("Spirit of the Law") Tension:</strong> Pushback that human equity resists binary true/false reduction. <span class="idea-time">[913s–959s]</span></li>
+              <li><span class="idea-pill idea-pill-novel">I35</span> <strong>AI Code Generation as the Declarative Translation Layer:</strong> Lawyers write natural-language prompts of equitable intent; AI translates them into JavaScript/Solidity. <span class="idea-time">[959s–1025s]</span></li>
+              <li><span class="idea-pill idea-pill-novel">I36</span> <strong>LexClinic Platform as an Active API Sandbox:</strong> Generating API keys on <code>lex.clinic</code> for custom AI agents to interact with backend endpoints. <span class="idea-time">[1025s–1110s]</span></li>
+              <li><span class="idea-pill idea-pill-novel">I37</span> <strong>DAO Coalition Repo Cloning &amp; Firefox/Brave Magic-Link Bug:</strong> Open-source replication of LexClinic for the DAO Coalition, plus real-world browser cookie auth bugs illustrating runtime fragility. <span class="idea-time">[1110s–1197s]</span></li>
+              <li><span class="idea-pill idea-pill-novel">I38</span> <strong>Sheet Music vs. Player Piano Roll Metaphor:</strong> Sheet music requires a human interpreter; a perforated player-piano roll physically executes the music itself. <span class="idea-time">[1234s–1284s]</span></li>
+            </ul>
+          </div>
+
+          <!-- Class 4.2 -->
+          <div class="card event-module-card idea-class-card" data-novelty-tier="zero" style="border: 2px solid rgba(251, 191, 36, 0.5);">
+            <div style="display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 0.75rem; margin-bottom: 0.5rem;">
+              <div>
+                <span class="idea-pill" style="background: rgba(148,163,184,0.15); color: #94a3b8;">0 Novel (0%)</span>
+                <span class="idea-pill idea-pill-repeat">13 Repeated (100%)</span>
+                <h3 style="color: var(--accent-gold); margin: 0.4rem 0 0.2rem 0; font-size: 1.2rem;">Class 4.2: Data Primitives 101: Strings, Numbers, and Booleans</h3>
+              </div>
+              <a href="/101/4.2/" class="btn btn-outline" style="font-size: 0.82rem; padding: 0.38rem 0.8rem;">Open Class 4.2 ➔</a>
+            </div>
+            <p style="font-size: 0.88rem; color: #cbd5e1; margin: 0;">
+              <strong>Repeated (13 — 100%):</strong> <span class="idea-pill idea-pill-repeat">I1</span> <span class="idea-pill idea-pill-repeat">I3</span> <span class="idea-pill idea-pill-repeat">I4</span> <span class="idea-pill idea-pill-repeat">I5</span> <span class="idea-pill idea-pill-repeat">I7</span> <span class="idea-pill idea-pill-repeat">I8</span> <span class="idea-pill idea-pill-repeat">I10</span> <span class="idea-pill idea-pill-repeat">I11</span> <span class="idea-pill idea-pill-repeat">I12</span> <span class="idea-pill idea-pill-repeat">I13</span> <span class="idea-pill idea-pill-repeat">I14</span> <span class="idea-pill idea-pill-repeat">I15</span> <span class="idea-pill idea-pill-repeat">I16</span> <span class="idea-pill idea-pill-repeat">I18</span> — <em>Every concept in Class 4.2 was already introduced in Classes 1.1, 1.2, and 2.1.</em>
+            </p>
+          </div>
+
+          <!-- Class 5.1 -->
+          <div class="card event-module-card idea-class-card" data-novelty-tier="moderate" style="border: 2px solid var(--accent-cyan);">
+            <div style="display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 0.75rem; margin-bottom: 0.75rem;">
+              <div>
+                <span class="idea-pill idea-pill-novel">1 Novel (9%)</span>
+                <span class="idea-pill idea-pill-repeat">10 Repeated (91%)</span>
+                <h3 style="color: var(--accent-cyan); margin: 0.4rem 0 0.2rem 0; font-size: 1.2rem;">Class 5.1: Active Scripts vs. Static Sheets</h3>
+              </div>
+              <a href="/101/5.1/" class="btn btn-outline" style="font-size: 0.82rem; padding: 0.38rem 0.8rem;">Open Class 5.1 ➔</a>
+            </div>
+            <p style="font-size: 0.85rem; color: #cbd5e1; margin: 0 0 0.5rem 0;">
+              <strong>Repeated (10):</strong> <span class="idea-pill idea-pill-repeat">I1</span> <span class="idea-pill idea-pill-repeat">I3</span> <span class="idea-pill idea-pill-repeat">I4</span> <span class="idea-pill idea-pill-repeat">I5</span> <span class="idea-pill idea-pill-repeat">I6</span> <span class="idea-pill idea-pill-repeat">I9</span> <span class="idea-pill idea-pill-repeat">I11</span> <span class="idea-pill idea-pill-repeat">I12</span> <span class="idea-pill idea-pill-repeat">I14</span> <span class="idea-pill idea-pill-repeat">I16</span>
+            </p>
+            <ul class="idea-list">
+              <li><span class="idea-pill idea-pill-novel">I39</span> <strong>Typing Domains &amp; the "Active Canvas" (<code>"TEN"</code> vs. <code>10</code>):</strong> Defining <em>Typing Domains</em> and the <em>Active Canvas</em> as strict type gatekeepers preventing someone from typing the word <code>"TEN"</code> instead of the number <code>10</code>. <span class="idea-time">[262s–299s]</span></li>
+            </ul>
+          </div>
+
+          <!-- Class 5.2 -->
+          <div class="card event-module-card idea-class-card" data-novelty-tier="moderate" style="border: 2px solid var(--accent-gold);">
+            <div style="display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 0.75rem; margin-bottom: 0.75rem;">
+              <div>
+                <span class="idea-pill idea-pill-novel">1 Novel (11%)</span>
+                <span class="idea-pill idea-pill-repeat">8 Repeated (89%)</span>
+                <h3 style="color: var(--accent-gold); margin: 0.4rem 0 0.2rem 0; font-size: 1.2rem;">Class 5.2: Typing Domains: How Code Validates Data</h3>
+              </div>
+              <a href="/101/5.2/" class="btn btn-outline" style="font-size: 0.82rem; padding: 0.38rem 0.8rem;">Open Class 5.2 ➔</a>
+            </div>
+            <p style="font-size: 0.85rem; color: #cbd5e1; margin: 0 0 0.5rem 0;">
+              <strong>Repeated (8):</strong> <span class="idea-pill idea-pill-repeat">I1</span> <span class="idea-pill idea-pill-repeat">I3/I4</span> <span class="idea-pill idea-pill-repeat">I10</span> <span class="idea-pill idea-pill-repeat">I11</span> <span class="idea-pill idea-pill-repeat">I12</span> <span class="idea-pill idea-pill-repeat">I13</span> <span class="idea-pill idea-pill-repeat">I14</span> <span class="idea-pill idea-pill-repeat">I39</span>
+            </p>
+            <ul class="idea-list">
+              <li><span class="idea-pill idea-pill-novel">I40</span> <strong>"Bouncer at the Door" / Block-Sorting Machine &amp; Deterministic Collapse:</strong> Framing typing domains as a club bouncer and a physical block-sorting machine where forcing a round peg (string) into a square hole (number function) causes immediate <em>deterministic collapse</em>. <span class="idea-time">[249s–286s, 340s–420s]</span></li>
+            </ul>
+          </div>
+
+          <!-- Class 6.1 -->
+          <div class="card event-module-card idea-class-card" data-novelty-tier="moderate" style="border: 2px solid var(--accent-cyan);">
+            <div style="display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 0.75rem; margin-bottom: 0.75rem;">
+              <div>
+                <span class="idea-pill idea-pill-novel">1 Novel (8%)</span>
+                <span class="idea-pill idea-pill-repeat">11 Repeated (92%)</span>
+                <h3 style="color: var(--accent-cyan); margin: 0.4rem 0 0.2rem 0; font-size: 1.2rem;">Class 6.1: Grammatical Hurdles: Assigning vs. Evaluating</h3>
+              </div>
+              <a href="/101/6.1/" class="btn btn-outline" style="font-size: 0.82rem; padding: 0.38rem 0.8rem;">Open Class 6.1 ➔</a>
+            </div>
+            <p style="font-size: 0.85rem; color: #cbd5e1; margin: 0 0 0.5rem 0;">
+              <strong>Repeated (11):</strong> <span class="idea-pill idea-pill-repeat">I1</span> <span class="idea-pill idea-pill-repeat">I3</span> <span class="idea-pill idea-pill-repeat">I4</span> <span class="idea-pill idea-pill-repeat">I5</span> <span class="idea-pill idea-pill-repeat">I9</span> <span class="idea-pill idea-pill-repeat">I11</span> <span class="idea-pill idea-pill-repeat">I12</span> <span class="idea-pill idea-pill-repeat">I13</span> <span class="idea-pill idea-pill-repeat">I14</span> <span class="idea-pill idea-pill-repeat">I16</span> <span class="idea-pill idea-pill-repeat">I17</span>
+            </p>
+            <ul class="idea-list">
+              <li><span class="idea-pill idea-pill-novel">I41</span> <strong>Storage Box (<code>=</code>) vs. Weighing Scale (<code>==</code>) Analogy:</strong> Contrasting single <code>=</code> (packing an item into a storage box) against double <code>==</code> (placing two items on a balance scale to weigh if they are identical). <span class="idea-time">[157s–195s]</span></li>
+            </ul>
+          </div>
+
+          <!-- Class 6.2 -->
+          <div class="card event-module-card idea-class-card" data-novelty-tier="zero" style="border: 2px solid rgba(251, 191, 36, 0.5);">
+            <div style="display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 0.75rem; margin-bottom: 0.5rem;">
+              <div>
+                <span class="idea-pill" style="background: rgba(148,163,184,0.15); color: #94a3b8;">0 Novel (0%)</span>
+                <span class="idea-pill idea-pill-repeat">13 Repeated (100%)</span>
+                <h3 style="color: var(--accent-gold); margin: 0.4rem 0 0.2rem 0; font-size: 1.2rem;">Class 6.2: Reading Right-to-Left: Adjusting Your Eyes</h3>
+              </div>
+              <a href="/101/6.2/" class="btn btn-outline" style="font-size: 0.82rem; padding: 0.38rem 0.8rem;">Open Class 6.2 ➔</a>
+            </div>
+            <p style="font-size: 0.88rem; color: #cbd5e1; margin: 0;">
+              <strong>Repeated (13 — 100%):</strong> <span class="idea-pill idea-pill-repeat">I1</span> <span class="idea-pill idea-pill-repeat">I3</span> <span class="idea-pill idea-pill-repeat">I4</span> <span class="idea-pill idea-pill-repeat">I5</span> <span class="idea-pill idea-pill-repeat">I9</span> <span class="idea-pill idea-pill-repeat">I10/I14</span> <span class="idea-pill idea-pill-repeat">I11</span> <span class="idea-pill idea-pill-repeat">I12</span> <span class="idea-pill idea-pill-repeat">I13/I17</span> <span class="idea-pill idea-pill-repeat">I15</span> <span class="idea-pill idea-pill-repeat">I16</span> <span class="idea-pill idea-pill-repeat">I18</span> <span class="idea-pill idea-pill-repeat">I19/I20</span> — <em>Every concept in Class 6.2 was already introduced across Classes 1.1–3.2.</em>
+            </p>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Contact Footer -->
+  <footer class="footer">
+    <div class="container footer-content">
+      <div class="footer-col">
+        <div class="brand-logo footer-logo">
+          <span class="logo-icon">⚖️</span>
+          <span class="logo-text">Lex<span class="highlight">Clinic</span></span>
+        </div>
+        <p class="footer-tagline">LexClinic Education</p>
+        <p class="footer-address">
+          Authors of ERC-7827 | Open-Source Computational Law &amp; Legal Engineering
+        </p>
+      </div>
+      <div class="footer-col">
+        <h4>Navigation</h4>
+        <ul>
+          <li><a href="/event/">Event</a></li>
+          <li><a href="/101">Legal Engineering 101</a></li>
+          <li><a href="/interview/">Interview</a></li>
+          <li><a href="/collaborate/">Collaborate</a></li>
+          <li><a href="/fiduciary/">Fiduciary</a></li>
+          <li><a href="/attest/">Attest</a></li>
+          <li><a href="/help/">Help</a></li>
+          <li><a href="/repo/">Repository</a></li>
+          <li><a href="/erc7827/">ERC-7827 Standard</a></li>
+          <li><a href="/nft/">NFT (LNA-33X &amp; 7827T)</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Connect &amp; Media</h4>
+        <p>YouTube: <a href="https://www.youtube.com/watch?v=20261025_v20&list=PLbPukKwpmk5E" target="_blank" rel="noopener">Legal Engineering 101 Playlist</a></p>
+        <p>Spotify: <a href="https://open.spotify.com/show/0348ivoLaNfKBq1HeIYC9b" target="_blank" rel="noopener">LexClinic Spotify Show</a></p>
+        <p>LinkedIn: <a href="https://www.linkedin.com/company/lexclinic" target="_blank" rel="noopener">LexClinic Company Page</a></p>
+        <p class="disclaimer">
+          © 2026 LexClinic Education Inc. Delaware non-profit applying for 501(c)(3) tax-exempt status. Open public goods published under AGPL-3.0 &amp; Creative Commons Attribution-ShareAlike 4.0.</p>
+        <p class="disclaimer" style="margin-top: 0.5rem; font-size: 0.78rem; color: #94a3b8; line-height: 1.5;">
+          <strong>Educational &amp; Open-Source Disclaimer:</strong> LexClinic Education, Inc. is a Delaware non-profit corporation applying for 501(c)(3) tax-exempt status. All materials, software runtimes, and APIs are published for educational research under AGPL-3.0 and do not constitute formal legal advice or an attorney-client relationship. <a href="/help/#disclaimer" style="color: var(--accent-cyan); text-decoration: underline;">Read full disclaimer ➔</a>
+        </p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    window.filterIdeaClasses = function filterIdeaClasses(tier, btnEl) {
+      var buttons = document.querySelectorAll('.idea-filter-btn');
+      for (var i = 0; i < buttons.length; i++) {
+        buttons[i].classList.remove('active');
+      }
+      if (btnEl) {
+        btnEl.classList.add('active');
+      }
+      var cards = document.querySelectorAll('.idea-class-card');
+      for (var j = 0; j < cards.length; j++) {
+        var cardTier = cards[j].getAttribute('data-novelty-tier');
+        if (tier === 'all' || cardTier === tier) {
+          cards[j].style.display = '';
+        } else {
+          cards[j].style.display = 'none';
+        }
+      }
+    };
+
+    window.searchIdeaCards = function searchIdeaCards(query) {
+      var q = (query || '').toLowerCase().trim();
+      var cards = document.querySelectorAll('.idea-class-card');
+      for (var i = 0; i < cards.length; i++) {
+        var text = (cards[i].textContent || '').toLowerCase();
+        if (!q || text.indexOf(q) !== -1) {
+          cards[i].style.display = '';
+        } else {
+          cards[i].style.display = 'none';
+        }
+      }
+    };
+  </script>
+
+</body>
+</html>

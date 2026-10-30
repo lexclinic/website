@@ -1,0 +1,40 @@
+{
+  "wedo_instance": {
+    "id": "101-IDEA-NOVELTY-MAP",
+    "description": "LexClinic 101 Curriculum Transcript Idea & Novelty Mapping Dashboard (stage.lex.clinic/101/idea/) and Bottom-Up Banner Integration",
+    "status": "[completed]",
+    "meta": {
+      "protocol": "WeDo-JSON",
+      "version": "1.0.0",
+      "target_environment": "stage.lex.clinic",
+      "deployment_url": "https://stage.lex.clinic/101/idea/",
+      "classes_analyzed": "1.1 through 6.2 (12 classes)",
+      "total_concept_instances": 149,
+      "unique_novel_ideas": 41,
+      "repeated_instances": 108
+    },
+    "tasks": [
+      {
+        "id": "IDEA-MAP-01",
+        "description": "Audit all 12 Legal Engineering 101 transcripts (class_1.1 through class_6.2) in transcripts.json and map novel (I1-I41) vs. repeated ideas",
+        "status": "[x]"
+      },
+      {
+        "id": "IDEA-MAP-02",
+        "description": "Create dedicated /101/idea/index.html page with quantitative progression table, visual novelty bars, repeated motifs ranking, and filterable class-by-class I1-I41 transcript breakdown",
+        "status": "[x]"
+      },
+      {
+        "id": "IDEA-MAP-03",
+        "description": "Integrate /101/idea/ telemetry summary and CTA button inside the Bottom-Up Curriculum Philosophy banner on /101/index.html",
+        "status": "[x]"
+      },
+      {
+        "id": "IDEA-MAP-04",
+        "description": "Verify 100% compliance with LexClinic Modular Contract Linter (Rules 01-08) and deploy to stage.lex.clinic",
+        "status": "[x]"
+      }
+    ]
+  },
+  "attribution": "LexClinic Legal Engineering Swarm (20261030)"
+}
