@@ -62,7 +62,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   if (!upcomingContainer) return;
 
   try {
-    const response = await fetch('/events.json?v=20261025_v21');
+    const response = await fetch('/events.json?v=20261025_v22');
     if (!response.ok) return;
     const events = await response.json();
 

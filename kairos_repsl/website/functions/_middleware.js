@@ -11,6 +11,14 @@ export async function onRequest(context) {
     return await context.next();
   }
 
+  // CRITICAL FOR MOBILE PWA INSTALLERS (iOS Safari & Android Chrome):
+  // Browsers fetch /manifest.webmanifest, /sw.js, and home-screen icons in a credential-less background context.
+  // Always allow public read access to PWA metadata & icons even on staging so "Add to Home Screen" / "Install App" succeeds!
+  const pwaPublicPaths = ["/manifest.webmanifest", "/sw.js", "/icon-192.png", "/icon-512.png", "/favicon.png", "/favicon.ico"];
+  if (pwaPublicPaths.includes(url.pathname)) {
+    return await context.next();
+  }
+
   // STAGING ONLY: Enforce Basic Auth
   const cookies = request.headers.get("Cookie") || "";
   const authHeader = request.headers.get("Authorization");
