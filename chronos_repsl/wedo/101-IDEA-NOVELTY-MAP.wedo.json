@@ -5,23 +5,23 @@
     "status": "[completed]",
     "meta": {
       "protocol": "WeDo-JSON",
-      "version": "1.0.0",
+      "version": "1.1.0",
       "target_environment": "stage.lex.clinic",
       "deployment_url": "https://stage.lex.clinic/101/idea/",
       "classes_analyzed": "1.1 through 6.2 (12 classes)",
-      "total_concept_instances": 149,
-      "unique_novel_ideas": 41,
-      "repeated_instances": 108
+      "total_concept_instances": 143,
+      "unique_novel_ideas": 31,
+      "repeated_instances": 112
     },
     "tasks": [
       {
         "id": "IDEA-MAP-01",
-        "description": "Audit all 12 Legal Engineering 101 transcripts (class_1.1 through class_6.2) in transcripts.json and map novel (I1-I41) vs. repeated ideas",
+        "description": "Audit all 12 Legal Engineering 101 transcripts (class_1.1 through class_6.2, including restored class_4.1 Explainer transcript) in transcripts.json and map novel (I1-I31) vs. repeated ideas",
         "status": "[x]"
       },
       {
         "id": "IDEA-MAP-02",
-        "description": "Create dedicated /101/idea/index.html page with quantitative progression table, visual novelty bars, repeated motifs ranking, and filterable class-by-class I1-I41 transcript breakdown",
+        "description": "Create dedicated /101/idea/index.html page with quantitative progression table, visual novelty bars, repeated motifs ranking, and filterable class-by-class I1-I31 transcript breakdown",
         "status": "[x]"
       },
       {
