@@ -3,7 +3,7 @@
   Strategy: Network-First for HTML/JS/CSS/JSON with Offline Cache Fallback;
             Direct Pass-Through for HTTP 206 Byte-Range Media (.m4a/.mp4) & POST APIs
 */
-const CACHE_NAME = 'lexclinic-pwa-v20261025_v22';
+const CACHE_NAME = 'lexclinic-pwa-v20261025_v23';
 const PRECACHE_URLS = [
   '/',
   '/index.html',
@@ -13,7 +13,7 @@ const PRECACHE_URLS = [
   '/attest/',
   '/erc7827/',
   '/nft/',
-  '/styles.css?v=20261025_v22',
+  '/styles.css?v=20261025_v23',
   '/manifest.webmanifest',
   '/icon-192.png',
   '/icon-512.png'

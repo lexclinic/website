@@ -27,6 +27,9 @@ function run(webDir, config) {
     if (!css.includes("overflow-x: hidden")) {
       violations.push("styles.css is missing body overflow-x: hidden mobile horizontal scroll protection");
     }
+    if (!afterFinalMedia.includes("overflow-y: auto !important")) {
+      violations.push("styles.css .nav-links.active is missing overflow-y: auto !important (causes bottom mobile nav items like NFT/Login to clip off-screen)");
+    }
   }
 
   // 2. Verify bindMobileToggle in ui-interactive-controls.js does NOT double-bind ontouchend = onclick and registers /sw.js
@@ -84,6 +87,9 @@ function run(webDir, config) {
       }
       if (!html.includes('id="nav-links"')) {
         violations.push(`${rel} has a .navbar but is missing #nav-links container for mobile menu dropdown`);
+      }
+      if (!html.includes('href="/nft/"')) {
+        violations.push(`${rel} has a .navbar but is missing <a href="/nft/">NFT</a> in #nav-links`);
       }
     }
 
