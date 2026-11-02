@@ -1,0 +1,59 @@
+{
+  "wedo_instance": {
+    "id": "BOILERPLATE-TRANSCRIPT-FORENSIC-CORRECTION",
+    "description": "Reusable 7-Task WeDo-JSON Boilerplate (TFC-DISCOVER-01 through TFC-VERIFY-07) and 5-Category Substantive Audit Protocol for Google Meet Transcript & Gemini Summary Strikes",
+    "status": "[active]",
+    "meta": {
+      "protocol": "WeDo-JSON",
+      "version": "1.0.0",
+      "type": "Boilerplate-Workflow",
+      "tooling": "py/substrate/transcript_strike.py",
+      "philosophy": "Deterministic OpenXML (<w:t>) Google Doc patching grounded in local _repsl cross-referencing, external web verification, and Gemini Summary misrepresentation auditing."
+    },
+    "audit_categories": {
+      "Category_A": "Speaker Attribution & Screen-Share Tiles: Stripping "'s Presentation" and fixing misattributed quotes in the summary/notes.",
+      "Category_B": "Sovereign Stack & Technical Terms: REPSL (Read-Eval-Print Strange Loop), Hierarchical Script-Database, Neowise Computers, Ixian LLC, Isle Ventures, *.isle.ventures subdomains, ERC-7827, LNA-33X, ERC-8004, x402, Base Scale Calculus, Thales's theorem, GNU Screen, Google OAuth.",
+      "Category_C": "Venture, Legal & Regulatory Architecture: Decile Group / Decile Hub / Decile Capital, VC Lab, Founder Institute, Adeo Ressi, PACT, Series LP / Series LLC / Ricardian LLC, SEC Rule 506(b), Statute of Anne, Article I, Section 8, Clause 8, LexDAO / LexClinic, 501(c)(3) / 501(c)(4), Cahill, Form 1023, MiCA, shareholder primacy.",
+      "Category_D": "External Partners, People, Universities & Venues: Proper spelling and institutional roles of guests, DAO directors, protocol authors, professors, legislators, and event venues.",
+      "Category_E": "Gemini Summary Logic & Factual Alignment: Ensuring every bullet in Quick notes, Summary, Decisions, Next steps, and Details accurately reflects who said what and how the legal/technical architecture actually works."
+    },
+    "tasks": [
+      {
+        "id": "TFC-DISCOVER-01",
+        "description": "Drive Discovery & Ownership/Audio Check: Locate target Google Meet folder and Document ID on Drive, check whether the file is owned by you (patch in-place) or shared by an external collaborator (patch in-place if editable and/or create an (Upgraded) copy), and check if raw audio/video (.mp4/.m4a) exists.",
+        "status": "[ ]"
+      },
+      {
+        "id": "TFC-EXPORT-02",
+        "description": "Plain-Text Export & <w:t> XML Run Inspection: Export the full Google Doc to plain text for line-by-line reading and inspect the OpenXML <w:t> text runs in word/document.xml via py/substrate/transcript_strike.py inspect to see how phrases are segmented.",
+        "status": "[ ]"
+      },
+      {
+        "id": "TFC-AUDIT-LOCAL-03",
+        "description": "Local _repsl Repository Cross-Reference: Cross-check all internal project names, subdomains, standards (LNA-33X, ERC-7827, ERC-8004, x402), legal agreements, patents, and prior call transcripts against local kairos_repsl, chronos_repsl, and data_room_repsl.",
+        "status": "[ ]"
+      },
+      {
+        "id": "TFC-AUDIT-WEB-04",
+        "description": "External Web Verification: Run targeted web searches to verify external people, titles, companies, protocols, universities, venues, legislation, and books/papers.",
+        "status": "[ ]"
+      },
+      {
+        "id": "TFC-MISREP-05",
+        "description": "Gemini Summary & Attribution Misrepresentation Audit: Audit Gemini's generated Quick notes, Summary, Decisions, Next steps, and Details against the verbatim transcript to fix speaker attribution artifacts, entity/person conflations, and role/claim inversions.",
+        "status": "[ ]"
+      },
+      {
+        "id": "TFC-STRIKE-06",
+        "description": "Deterministic XML Patch & Drive API Upload: Compile the replacements JSON map, apply it to word/document.xml, validate XML structure (ET.fromstring), and upload via py/substrate/transcript_strike.py patch (moving any temporary files to /home/mgit/metagit_trash/).",
+        "status": "[ ]"
+      },
+      {
+        "id": "TFC-VERIFY-07",
+        "description": "Live Drive Verification & Chronos Anchoring: Re-export the live Google Doc from Drive to verify 0 remaining old error strings, confirm occurrence counts of all corrected terms, and record the completed MISSION-TRANSCRIPT-*.wedo.json manifest in chronos_repsl/wedo/.",
+        "status": "[ ]"
+      }
+    ]
+  },
+  "attribution": "LexClinic Legal Engineering Swarm (20261030)"
+}

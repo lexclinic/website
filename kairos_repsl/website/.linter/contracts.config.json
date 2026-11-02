@@ -17,6 +17,7 @@
     "openMediaCommentModal",
     "openNavLoginModal",
     "processInstantLogin",
+    "registerServiceWorker",
     "renderApprovalStep1",
     "renderApprovalStep2",
     "saveMediaComment",

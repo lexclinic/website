@@ -12,9 +12,10 @@ function run(webDir, config) {
     { date: "2026-09-17", month: "2026-09", mod: "3.1", minClips: 5, mustHaveYt: "nhYRLFgyRq8", inRecent3: false },
     { date: "2026-09-24", month: "2026-09", mod: "3.2", minClips: 5, mustHaveYt: "CIzyHeopPcQ", inRecent3: false },
     { date: "2026-10-01", month: "2026-10", mod: "4.1", minClips: 3, mustHaveYt: "5BAyi_n3lV4", inRecent3: false },
-    { date: "2026-10-08", month: "2026-10", mod: "4.2", minClips: 5, mustHaveYt: "PuHUnTEwveg", inRecent3: true },
+    { date: "2026-10-08", month: "2026-10", mod: "4.2", minClips: 5, mustHaveYt: "PuHUnTEwveg", inRecent3: false },
     { date: "2026-10-15", month: "2026-10", mod: "5.1", minClips: 5, mustHaveYt: "Bepdpe2WceI", inRecent3: true },
-    { date: "2026-10-22", month: "2026-10", mod: "5.2", minClips: 5, mustHaveYt: "3LvhVut6Jdw", inRecent3: true }
+    { date: "2026-10-22", month: "2026-10", mod: "5.2", minClips: 5, mustHaveYt: "3LvhVut6Jdw", inRecent3: true },
+    { date: "2026-10-29", month: "2026-10", mod: "6.1", minClips: 5, mustHaveYt: "a0VOIB2_jgQ", inRecent3: true }
   ];
 
   const requiredMonths = ["2026-10", "2026-09", "2026-08"];

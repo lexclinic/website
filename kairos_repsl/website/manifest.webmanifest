@@ -1,0 +1,80 @@
+{
+  "name": "LexClinic Education | Computational Law & Legal Engineering",
+  "short_name": "LexClinic",
+  "description": "LexClinic Education: Legal Engineering 101 Courseware, Live Socratic Sessions, Guest Interviews, ERC-7827 Attestations, and LNA-33X SeedTree NFTs.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "any",
+  "background_color": "#0a1128",
+  "theme_color": "#0a1128",
+  "categories": [
+    "education",
+    "reference",
+    "developer tools"
+  ],
+  "icons": [
+    {
+      "src": "/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Legal Engineering 101",
+      "short_name": "101 Hub",
+      "url": "/101/",
+      "icons": [
+        {
+          "src": "/icon-192.png",
+          "sizes": "192x192",
+          "type": "image/png"
+        }
+      ]
+    },
+    {
+      "name": "Socratic Events Hub",
+      "short_name": "Events",
+      "url": "/event/",
+      "icons": [
+        {
+          "src": "/icon-192.png",
+          "sizes": "192x192",
+          "type": "image/png"
+        }
+      ]
+    },
+    {
+      "name": "ERC-7827 Attestations",
+      "short_name": "Attest",
+      "url": "/attest/",
+      "icons": [
+        {
+          "src": "/icon-192.png",
+          "sizes": "192x192",
+          "type": "image/png"
+        }
+      ]
+    },
+    {
+      "name": "SeedTree NFT (LNA-33X)",
+      "short_name": "NFT",
+      "url": "/nft/",
+      "icons": [
+        {
+          "src": "/icon-192.png",
+          "sizes": "192x192",
+          "type": "image/png"
+        }
+      ]
+    }
+  ]
+}

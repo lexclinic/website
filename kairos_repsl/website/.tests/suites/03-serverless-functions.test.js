@@ -71,13 +71,23 @@ async function run(webDir) {
   });
   assert.strictEqual(prodRes.status, 200, 'Production lex.clinic request must bypass Basic Auth');
   assertions += 1;
+// B) Staging domain (stage.lex.clinic) without credentials -> returns 401
+const stageUnauthRes = await middleware.onRequest({
+  request: new Request('https://stage.lex.clinic/101/3.1/'),
+  next: async () => new Response('OK_STAGE', { status: 200 })
+});
+assert.strictEqual(stageUnauthRes.status, 401, 'Unauthenticated stage.lex.clinic request must return 401');
+assertions += 1;
 
-  // B) Staging domain (stage.lex.clinic) without credentials -> returns 401
-  const stageUnauthRes = await middleware.onRequest({
-    request: new Request('https://stage.lex.clinic/101/3.1/'),
-    next: async () => new Response('OK_STAGE', { status: 200 })
+// B2) Staging domain PWA assets (/manifest.webmanifest, /sw.js, /icon-192.png) without credentials -> returns 200 so iOS/Android PWA installer succeeds
+for (const pwaPath of ['/manifest.webmanifest', '/sw.js', '/icon-192.png', '/icon-512.png']) {
+  const pwaRes = await middleware.onRequest({
+    request: new Request('https://stage.lex.clinic' + pwaPath),
+    next: async () => new Response('OK_PWA', { status: 200 })
   });
-  assert.strictEqual(stageUnauthRes.status, 401, 'Unauthenticated stage.lex.clinic request must return 401');
+  assert.strictEqual(pwaRes.status, 200, `PWA asset ${pwaPath} on stage.lex.clinic must bypass Basic Auth (200) for mobile OS installers`);
+  assertions += 1;
+}
   assert.ok((stageUnauthRes.headers.get('WWW-Authenticate') || '').includes('Basic'), '401 response must include WWW-Authenticate Basic header');
   assertions += 2;
 

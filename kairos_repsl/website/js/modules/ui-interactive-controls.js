@@ -167,6 +167,14 @@
     } catch (e) {}
   }
 
+  function registerServiceWorker() {
+    try {
+      if (typeof navigator !== "undefined" && "serviceWorker" in navigator && navigator.serviceWorker && typeof navigator.serviceWorker.register === "function") {
+        navigator.serviceWorker.register("/sw.js").catch(() => {});
+      }
+    } catch (e) {}
+  }
+
   // Export Window Functions
   window.bindMobileToggle = bindMobileToggle;
   window.checkDisclaimerSplash = checkDisclaimerSplash;
@@ -174,6 +182,7 @@
   window.acknowledgeDisclaimer = acknowledgeDisclaimer;
   window.toggleFullscreenIframe = toggleFullscreenIframe;
   window.hydrateProgressiveQuizButtons = hydrateProgressiveQuizButtons;
+  window.registerServiceWorker = registerServiceWorker;
 
   // Auto-run on DOM load
   if (document.readyState === "loading") {
@@ -181,11 +190,13 @@
       bindMobileToggle();
       checkDisclaimerSplash();
       hydrateProgressiveQuizButtons();
+      registerServiceWorker();
     });
   } else {
     bindMobileToggle();
     checkDisclaimerSplash();
     hydrateProgressiveQuizButtons();
+    registerServiceWorker();
   }
 
 })();

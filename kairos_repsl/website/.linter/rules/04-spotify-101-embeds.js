@@ -100,10 +100,20 @@ function run(webDir, config) {
       violations.push(`101/${item.mod}/index.html still contains a direct href="quiz-expert/" link instead of using the single progressive quiz CTA`);
     }
 
-    // 7. Indexed in transcripts.json
-    const hasTranscript = transcripts.some(t => t.id === `class_${item.mod}` && t.transcript_text && t.transcript_text.length > 500);
+    // 7. Indexed in transcripts.json & distinct from Socratic event transcripts
+    const tEntry = transcripts.find(t => t.id === `class_${item.mod}`);
+    const hasTranscript = Boolean(tEntry && tEntry.transcript_text && tEntry.transcript_text.length > 500);
     if (!hasTranscript) {
       violations.push(`transcripts.json is missing Whisper transcript entry for class_${item.mod}`);
+    }
+    if (item.mod === "4.1") {
+      const ev41 = transcripts.find(t => t.id === "event_2026-10-01");
+      if (tEntry && ev41 && tEntry.transcript_text === ev41.transcript_text) {
+        violations.push("transcripts.json class_4.1 is a duplicate copy of event_2026-10-01 instead of the authentic lMvPOm2qM30 101 Explainer transcript");
+      }
+      if (html.includes("cycloidal") || html.includes("D^n terminus")) {
+        violations.push("101/4.1/index.html contains mismatched cycloidal / D^n terminus overview text instead of Class 4.1 Decoupling Logic from Assets overview");
+      }
     }
   }
 
