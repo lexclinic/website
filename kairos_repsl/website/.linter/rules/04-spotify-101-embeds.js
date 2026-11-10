@@ -102,6 +102,11 @@ function run(webDir, config) {
       violations.push(`101/${item.mod}/index.html still contains a direct href="quiz-expert/" link instead of using the single progressive quiz CTA`);
     }
 
+    // 6d. Template parity: speed controls (1.0x-2.0x), fullscreen wrapper, and copyCardDirectLink(..., this)
+    if (!html.includes("window.setVideoSpeed(") || !html.includes("requestFullscreen") || !/window\.copyCardDirectLink\([^)]*,\s*this\)/.test(html)) {
+      violations.push(`101/${item.mod}/index.html is missing canonical video speed controls, fullscreen handler, or copyCardDirectLink(..., this)`);
+    }
+
     // 7. Indexed in transcripts.json & distinct from Socratic event transcripts
     const tEntry = transcripts.find(t => t.id === `class_${item.mod}`);
     const hasTranscript = Boolean(tEntry && tEntry.transcript_text && tEntry.transcript_text.length > 500);
@@ -116,6 +121,16 @@ function run(webDir, config) {
       if (html.includes("cycloidal") || html.includes("D^n terminus")) {
         violations.push("101/4.1/index.html contains mismatched cycloidal / D^n terminus overview text instead of Class 4.1 Decoupling Logic from Assets overview");
       }
+    }
+  }
+
+  // 8. Verify strict ascending numerical order of Class X.Y cards in /101/index.html
+  const cardOrderMatches = [...hubHtml.matchAll(/<h3[^>]*>Class\s+(\d+\.\d+):/g)].map(m => m[1]);
+  for (let i = 1; i < cardOrderMatches.length; i++) {
+    const prev = cardOrderMatches[i - 1].split(".").map(Number);
+    const curr = cardOrderMatches[i].split(".").map(Number);
+    if (prev[0] > curr[0] || (prev[0] === curr[0] && prev[1] >= curr[1])) {
+      violations.push(`101/index.html Class card ordering violation: Class ${cardOrderMatches[i - 1]} appears before Class ${cardOrderMatches[i]}`);
     }
   }
 

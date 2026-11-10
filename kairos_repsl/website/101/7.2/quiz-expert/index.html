@@ -350,7 +350,6 @@
             if (form && form.style) form.style.display = 'block';
             const banner = document.getElementById('prior-completion-banner');
             if (banner) banner.style.display = 'block';
-            // If user navigated to generic /quiz or /quiz.html (smart mode) after already passing 5-Q Learned, automatically redirect/unlock 20-Q Expert!
             if (TIER_MODE === 'smart') {
               unlockMasteryQuiz();
               if (window.location && window.location.pathname && !window.location.pathname.includes('quiz-expert') && !window.location.pathname.includes('quiz-learned')) {
@@ -365,7 +364,6 @@
             if (form && form.style) form.style.display = 'none';
           }
 
-          // Also check remote /api/user-attest for logged-in user so cross-device / cleared-cache state restores automatically
           if (userEmail && window.fetch) {
             window.fetch('/api/user-attest?email=' + encodeURIComponent(userEmail))
               .then(r => r.ok ? r.json() : null)

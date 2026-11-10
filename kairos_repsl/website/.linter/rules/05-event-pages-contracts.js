@@ -112,6 +112,12 @@ function run(webDir, config) {
       violations.push(`event/${ev.date}/index.html has ${meterMatches.length} watch meters (expected >= ${ev.minClips + 1})`);
     }
 
+    if (ev.date >= "2026-10-01") {
+      if (!html.includes("#1ed760") || !html.includes("window.setAudioSpeed(") || !html.includes("window.setVideoSpeed(") || !html.includes("requestFullscreen") || !/window\.copyCardDirectLink\([^)]*,\s*this\)/.test(html)) {
+        violations.push(`event/${ev.date}/index.html is missing canonical template features (#1ed760 green audio box, speed controls, fullscreen button, or copyCardDirectLink(..., this))`);
+      }
+    }
+
     if (html.includes("status-badge") || html.includes("hero-badge")) {
       violations.push(`event/${ev.date}/index.html contains redundant status-badge or hero-badge pills`);
     }

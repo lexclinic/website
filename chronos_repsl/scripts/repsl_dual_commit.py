@@ -1,34 +1,47 @@
-import os, sys, json, subprocess, datetime
+#!/usr/bin/env python3
+import os
+import sys
+import json
+import shutil
+import subprocess
+import datetime
 
-# Sovereign Tri-Git Orchestrator & Pre-Commit Linter for Staging (stage.lex.clinic)
-print("=== LexClinic Staging Sovereign Tri-Git Orchestrator ===")
+print("=== LexClinic Staging Sovereign Commit & Push Orchestrator ===")
 timestamp = datetime.datetime.now(datetime.timezone.utc).isoformat()
-print(f"Timestamp: {timestamp}\n")
+print(f"Timestamp: {timestamp}")
+print()
 
-# Path definitions
 script_dir = os.path.dirname(os.path.abspath(__file__))
-repo_root = os.path.dirname(script_dir)
+repo_root = os.path.dirname(os.path.dirname(script_dir))
 kairos_dir = os.path.join(repo_root, "kairos_repsl")
-stage_root = os.path.dirname(repo_root)
-chronos_dir = os.path.join(stage_root, "chronos_repsl")
+web_dir = os.path.join(kairos_dir, "website")
 
-commit_msg = sys.argv[1] if len(sys.argv) > 1 else "feat(stage): synchronize staging web substrate to stage.lex.clinic"
+commit_msg = (
+    sys.argv[1]
+    if len(sys.argv) > 1
+    else "feat(stage): synchronize staging web substrate to stage.lex.clinic"
+)
 
 # STEP 1: Secret Scanning & Linter
-print("🔒 [Tri-Git Secret Linter]: Auditing staging kairos_repsl for secrets...")
-
+print("🔒 [1/3 Secret & Contract Linter]: Auditing staging substrate...")
 forbidden_patterns = [
-    "AKIA", "ASIA", "xoxb-", "xoxp-", "sq0idp-", "AIzaSy", "cfat_",
-    "PRIVATE KEY", "BEGIN RSA PRIVATE KEY", "ca48a30d"
+    "AKIA",
+    "ASIA",
+    "xoxb-",
+    "xoxp-",
+    "sq0idp-",
+    "AIzaSy",
+    "cfat_",
+    "PRIVATE KEY",
+    "BEGIN RSA PRIVATE KEY",
+    "ca48a30d",
 ]
 
 clean = True
 for root, dirs, files in os.walk(kairos_dir):
-    # Purge wrangler build artifacts
     if ".wrangler" in dirs:
         shutil_path = os.path.join(root, ".wrangler")
         print(f"🧹 Purging temporary build cache: {shutil_path}")
-        import shutil
         shutil.rmtree(shutil_path, ignore_errors=True)
 
     for file in files:
@@ -46,74 +59,57 @@ for root, dirs, files in os.walk(kairos_dir):
             pass
 
 if not clean:
-    print("❌ Tri-Git push aborted due to secret linter violations!")
+    print("❌ Push aborted due to secret linter violations!")
     sys.exit(1)
 
-print("✅ staging kairos_repsl is 100% clean and secret-free!\n")
+subprocess.run(["node", os.path.join(web_dir, ".linter", "runner.js")], cwd=repo_root, check=True)
+print("✅ Staging substrate is 100% clean, contract-verified, and secret-free!")
 
-# STEP 2: Staging Public GitHub Axis (.git_github) -> branch: stage
-print("🚀 [1/3 .git_github Axis]: Staging public code to branch 'stage'...")
-env_github = {**os.environ, "GIT_DIR": ".git_github", "GIT_WORK_TREE": "kairos_repsl"}
-subprocess.run(["git", "add", "."], cwd=repo_root, env=env_github, check=True)
+# STEP 2: Commit & Push to .git_repsl (origin/stage)
+print("🚀 [2/3 .git_repsl Axis]: Committing and pushing to GitHub 'stage' branch...")
+ssh_key = os.path.expanduser("~/.ssh/id_ed25519_lexclinic")
+ssh_cmd = f"ssh -i {ssh_key} -o StrictHostKeyChecking=no" if os.path.exists(ssh_key) else "ssh"
 
-res = subprocess.run(["git", "status", "--porcelain"], cwd=repo_root, env=env_github, capture_output=True, text=True)
-if res.stdout.strip():
-    subprocess.run(["git", "commit", "-m", commit_msg], cwd=repo_root, env=env_github, check=True)
-
-print("📤 Pushing .git_github to GitHub (branch: stage)...")
-subprocess.run(["git", "push", "--force", "origin", "stage"], cwd=repo_root, env=env_github, check=True)
-print("✅ Pushed to GitHub public 'stage' branch!\n")
-
-# STEP 3: Local Workspace Memory Axis (.git_repsl) -> branch: main
-print("🧠 [2/3 .git_repsl Local Axis]: Committing local workspace memory state...")
-env_repsl = {**os.environ, "GIT_DIR": ".git_repsl", "GIT_WORK_TREE": "kairos_repsl"}
-subprocess.run(["git", "add", "."], cwd=repo_root, env=env_repsl, check=True)
-
-res_repsl = subprocess.run(["git", "status", "--porcelain"], cwd=repo_root, env=env_repsl, capture_output=True, text=True)
-if res_repsl.stdout.strip():
-    subprocess.run(["git", "commit", "-m", commit_msg], cwd=repo_root, env=env_repsl, check=True)
-print("✅ Local .git_repsl workspace memory updated!\n")
-
-# STEP 4: Chronos Audit Snapshot (.git_github_context) -> branch: stage
-print("⏳ [3/3 .git_github_context Axis]: Archiving Chronos audit snapshot to stage branch...")
-snapshot_file = os.path.join(chronos_dir, f"snapshot_{int(datetime.datetime.now().timestamp())}.json")
-os.makedirs(chronos_dir, exist_ok=True)
-
-snapshot_data = {
-    "timestamp": timestamp,
-    "target": "stage.lex.clinic",
-    "commit_message": commit_msg,
-    "status": "staging_sync_complete"
+env_repsl = {
+    **os.environ,
+    "GIT_DIR": ".git_repsl",
+    "GIT_WORK_TREE": ".",
+    "GIT_SSH_COMMAND": ssh_cmd,
 }
 
-with open(snapshot_file, "w") as f:
-    json.dump(snapshot_data, f, indent=2)
+subprocess.run(["git", "add", "-A"], cwd=repo_root, env=env_repsl, check=True)
+res_repsl = subprocess.run(
+    ["git", "status", "--porcelain"], cwd=repo_root, env=env_repsl, capture_output=True, text=True
+)
+if res_repsl.stdout.strip():
+    subprocess.run(["git", "commit", "-m", commit_msg], cwd=repo_root, env=env_repsl, check=True)
+else:
+    print("ℹ️ Working tree already clean; nothing new to commit.")
 
-env_context = {**os.environ, "GIT_DIR": ".git_github_context", "GIT_WORK_TREE": "kairos_repsl"}
-subprocess.run(["git", "add", "."], cwd=repo_root, env=env_context, check=True)
+subprocess.run(["git", "push", "origin", "stage"], cwd=repo_root, env=env_repsl, check=True)
+print("✅ Pushed cleanly to GitHub public 'stage' branch (triggers Cloudflare Pages stage-lex-clinic)!")
 
-res_ctx = subprocess.run(["git", "status", "--porcelain"], cwd=repo_root, env=env_context, capture_output=True, text=True)
-if res_ctx.stdout.strip():
-    subprocess.run(["git", "commit", "-m", f"chronos: {commit_msg}"], cwd=repo_root, env=env_context, check=True)
-
-print("📤 Pushing Chronos audit snapshot to git@github.com:lexclinic/website_context.git (branch: stage)...")
-subprocess.run(["git", "push", "--force", "origin", "stage"], cwd=repo_root, env=env_context, check=True)
-print("✅ Pushed Chronos audit snapshot to website_context.git (branch: stage)!\n")
-
-# STEP 5: Deploy to Cloudflare Pages (project: stage-lex-clinic, branch: stage)
-print("🌐 [Cloudflare Pages Deployment]: Deploying to production branch 'stage' on project 'stage-lex-clinic'...")
+# STEP 3: Optional Direct Wrangler Upload if CLOUDFLARE_API_TOKEN is configured
 secrets_path = os.path.expanduser("~/.config/lexclinic_secrets.env")
 if os.path.exists(secrets_path):
     with open(secrets_path) as sf:
         for line in sf:
             if line.startswith("export "):
                 k, v = line.replace("export ", "").strip().split("=", 1)
-                os.environ[k] = v.strip('"\'')
+                os.environ[k] = v.strip("'\"")
 
-cf_account = os.environ.get("CLOUDFLARE_ACCOUNT_ID", "00f333bbbcab399bf690494e2ce98ed9")
 cf_token = os.environ.get("CLOUDFLARE_API_TOKEN", "")
+if cf_token:
+    print("🌐 [3/3 Cloudflare Pages Direct Deploy]: Deploying via Wrangler...")
+    cf_account = os.environ.get("CLOUDFLARE_ACCOUNT_ID", "00f333bbbcab399bf690494e2ce98ed9")
+    env_deploy = {**os.environ, "CLOUDFLARE_ACCOUNT_ID": cf_account, "CLOUDFLARE_API_TOKEN": cf_token}
+    subprocess.run(
+        ["npx", "--yes", "wrangler", "pages", "deploy", ".", "--project-name=stage-lex-clinic", "--branch=stage"],
+        cwd=web_dir,
+        env=env_deploy,
+        check=True,
+    )
+else:
+    print("🌐 [3/3 Cloudflare Pages]: GitHub 'stage' branch push complete (Cloudflare Git integration active).")
 
-env_deploy = {**os.environ, "CLOUDFLARE_ACCOUNT_ID": cf_account, "CLOUDFLARE_API_TOKEN": cf_token}
-subprocess.run(["npx", "--yes", "wrangler", "pages", "deploy", ".", "--project-name=stage-lex-clinic", "--branch=stage"], cwd=kairos_dir, env=env_deploy, check=True)
-
-print("\n🎉 Staging Tri-Git Orchestration & Cloudflare Deployment Complete!")
+print("🎉 Staging Orchestration Complete!")

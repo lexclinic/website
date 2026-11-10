@@ -1,0 +1,52 @@
+{
+  "type": "socratic_event",
+  "event_date": "2026-11-05",
+  "class_id": "6.2",
+  "lesson_title": "Reading Right-to-Left: Adjusting Your Eyes",
+  "page_title": "LexClinic 2026 — Lesson 6.2: Reading Right-to-Left: Adjusting Your Eyes (Nov 5, 2026) | LexClinic",
+  "meta_description": "Thursday, November 5, 2026 • Socratic Session for Class 6.2. Recorded live with Gemini Meeting Notes and companion explainer clips covering right-to-left variable assignment, Leibniz's legal calculus, cognitive novelty ratios, Non-Person (.np) VM NFTs, Reverse Centaurs, and Chronos vs. Kairos.",
+  "hero_title": "LexClinic 2026 — Lesson 6.2: Reading Right-to-Left: Adjusting Your Eyes",
+  "hero_subtitle_html": "Thursday, November 5, 2026 • Socratic Session for Class 6.2. Recorded live with Gemini Meeting Notes and companion explainer clips covering right-to-left variable assignment, Leibniz's legal calculus, cognitive novelty ratios, Non-Person (<code>.np</code>) VM NFTs, Reverse Centaurs, and Chronos vs. Kairos.",
+  "overview_html": "<p style=\"line-height: 1.7; color: var(--text-main); font-size: 1.05rem; margin-bottom: 1.25rem;\">\n          In this live cohort Socratic session for <strong>Lesson 6.2: Reading Right-to-Left: Adjusting Your Eyes</strong>, participants examine how legal drafters retrain their reading direction to trace variable assignment from right to left (`rent = 2000`), why Gottfried Wilhelm Leibniz (a Doctor of Law) co-invented calculus and symbolic binary logic to mechanize jurisprudence, how introductory vs. advanced legal engineering curricula balance cognitive novelty and spiral review (`40:60 → 60:40 → 80:20`), and how sovereign `1-VM-1-Contract` Non-Person (`.np`) agents preserve human-in-the-loop accountability across `Chronos` (immutable forensic logs) and `Kairos` (active executable runtime).\n        </p>",
+  "takeaways_html": "<div style=\"display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1rem;\">\n          <div style=\"background: rgba(15, 23, 42, 0.75); border: 1px solid rgba(56, 189, 248, 0.3); border-radius: 8px; padding: 1rem;\">\n            <h4 style=\"color: var(--accent-cyan); margin: 0 0 0.4rem 0;\">⚖️ Right-to-Left Assignment &amp; Leibniz's Legal Calculus</h4>\n            <p style=\"font-size: 0.92rem; color: #cbd5e1; margin: 0; line-height: 1.5;\">Overcoming English left-to-right prose bias by evaluating expressions on the right and packing them into the variable container on the left, continuing Leibniz's 1666 legal calculus (`De Arte Combinatoria`) and Alonzo Church's lambda calculus.</p>\n          </div>\n          <div style=\"background: rgba(15, 23, 42, 0.75); border: 1px solid rgba(251, 191, 36, 0.3); border-radius: 8px; padding: 1rem;\">\n            <h4 style=\"color: var(--accent-gold); margin: 0 0 0.4rem 0;\">📊 Pedagogical Novelty Ratios (40:60 → 60:40 → 80:20)</h4>\n            <p style=\"font-size: 0.92rem; color: #cbd5e1; margin: 0; line-height: 1.5;\">Applying Cognitive Load Theory and Spiral Curriculum design: 40% new concepts / 60% review in 101 introductory cohorts to prevent syntax overload, shifting to 60:40 in 201 and 80:20 in 301 seminars.</p>\n          </div>\n          <div style=\"background: rgba(15, 23, 42, 0.75); border: 1px solid rgba(52, 211, 153, 0.3); border-radius: 8px; padding: 1rem;\">\n            <h4 style=\"color: #34d399; margin: 0 0 0.4rem 0;\">🤖 Sovereign 1-VM-1-Contract &amp; .np Safe Harbors</h4>\n            <p style=\"font-size: 0.92rem; color: #cbd5e1; margin: 0; line-height: 1.5;\">Deploying one dedicated smart contract per virtual machine (`agent.$1.np.$1`) with explicit `.np` Non-Person disclosure to prevent commingled state and enforce human-in-the-loop supervisory attestation.</p>\n          </div>\n          <div style=\"background: rgba(15, 23, 42, 0.75); border: 1px solid rgba(168, 85, 247, 0.3); border-radius: 8px; padding: 1rem;\">\n            <h4 style=\"color: #c084fc; margin: 0 0 0.4rem 0;\">⏳ Reverse Centaurs &amp; Chronos vs. Kairos</h4>\n            <p style=\"font-size: 0.92rem; color: #cbd5e1; margin: 0; line-height: 1.5;\">Avoiding Cory Doctorow's \"Reverse Centaur\" trap and Jevons Paradox by pairing `Kairos` (the active executable runtime) with `Chronos` (append-only forensic audit logs) so human counsel remains the sovereign pilot.</p>\n          </div>\n        </div>",
+  "audio_slug": "from-static-contracts-to-executable-code",
+  "audio_title": "From Static Contracts to Executable Code — Full Session Audio Stream",
+  "clips": [
+    {
+      "slug": "from-static-contracts-to-executable-code",
+      "title": "From Static Contracts to Executable Code — Full Session Audio Stream",
+      "iframe_id": "yt_frame_card_event_nov05_clip1",
+      "youtube_id": "tOS-4HdTJOI"
+    },
+    {
+      "slug": "programming-the-law",
+      "title": "Clip 2: Programming the Law",
+      "iframe_id": "yt_frame_card_event_nov05_clip2",
+      "youtube_id": "xu5yAryW89E"
+    },
+    {
+      "slug": "legal-tech-pedagogy",
+      "title": "Clip 3: Legal Tech Pedagogy",
+      "iframe_id": "yt_frame_card_event_nov05_clip3",
+      "youtube_id": "H228NLpcxI0"
+    },
+    {
+      "slug": "legal-engineering-explainer",
+      "title": "Clip 4: Legal Engineering Explainer",
+      "iframe_id": "yt_frame_card_event_nov05_clip4",
+      "youtube_id": "kB49ttZdVxo"
+    },
+    {
+      "slug": "the-efficiency-paradox",
+      "title": "Clip 5: The Efficiency Paradox",
+      "iframe_id": "yt_frame_card_event_nov05_clip5",
+      "youtube_id": "stOs6vGGyUI"
+    },
+    {
+      "slug": "automated-law",
+      "title": "Clip 6: Automated Law",
+      "iframe_id": "yt_frame_card_event_nov05_clip6",
+      "youtube_id": "b54RYPh8KUQ"
+    }
+  ]
+}
