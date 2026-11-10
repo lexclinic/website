@@ -17,7 +17,7 @@ kairos_dir = os.path.join(repo_root, "kairos_repsl")
 web_dir = os.path.join(kairos_dir, "website")
 
 commit_msg = (
-    sys.argv[1]
+    " ".join(sys.argv[1:]).strip()
     if len(sys.argv) > 1
     else "feat(stage): synchronize staging web substrate to stage.lex.clinic"
 )
