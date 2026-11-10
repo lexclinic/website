@@ -986,7 +986,9 @@ def sync_event_hubs_and_linter(web_dir: Path, spec: dict) -> None:
     month_str = event_date[:7]
     class_id = spec["class_id"]
     lesson_title = spec["lesson_title"]
-    short_date = spec.get("short_date", event_date)
+    from datetime import datetime as _dt
+    default_short = _dt.strptime(event_date, "%Y-%m-%d").strftime("%b %-d")
+    short_date = spec.get("short_date", default_short)
     clips_count = len(spec.get("clips", []))
     first_yt = spec["clips"][0]["youtube_id"] if spec.get("clips") else ""
     summary_html = spec.get(
