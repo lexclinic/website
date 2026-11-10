@@ -129,8 +129,18 @@
         "id": "PWA-STAGE-01",
         "description": "Configure LexClinic as an installable Progressive Web App (PWA) with /manifest.webmanifest, /sw.js (network-first with offline cache fallback and byte-range audio pass-through), /icon-192.png & /icon-512.png, and <head> manifest/apple-mobile-web-app tags across all 99 HTML pages on staging",
         "status": "[x]"
+      },
+      {
+        "id": "EVENT-NOV05-CLASS62-AND-MOD7-STAGE-01",
+        "description": "Process Nov 5, 2026 (Class 6.2) Socratic Session media from Google Drive (From_Static_Contracts_to_Executable_Code.m4a + 6 unlisted YouTube clips + forensic Whisper transcript), build /event/2026-11-05/ and /event/2026-11/, link /101/6.2/ <-> /event/2026-11-05/, publish 101 Modules 7.1 (r7ZmnxfSY-0 + Spotify 401NGruWP07zbTvh2K2nmk) & 7.2 (fV3yLAEuAg0 + Spotify 0njS92rFADH65LPe5DhWni) with 20-question transcript-grounded dual-route quizzes, and update /event/ Top 3 Recent (Nov 5, Oct 29, Oct 22) & Upcoming (Nov 12 Class 7.1)",
+        "status": "[x]"
+      },
+      {
+        "id": "IDEA-MAP-DEPTH-AND-MOD7-STAGE-01",
+        "description": "Upgrade /101/idea/ and /101/ Bottom-Up Banner to add the 3-Tier Concept Depth & Breadth dimension (T1 Novel Seeds 19.6% [33] + T2 Deepened/Fleshed-Out Spiral Elaborations 20.2% [34] = 39.9% Combined Generative Learning vs. 60.1% [101] T3 Baseline Review across all 14 classes 1.1-7.2, 168 total instances, I1-I33), Pedagogical Research & Course-Level Benchmarks (101 40:60 vs. 201 60:40 vs. 301/PhD 80:20), and responsive mobile table scrolling (<= 768px) in /styles.css while maintaining strict /event/ and /101/ weekly sync scope",
+        "status": "[x]"
       }
     ]
   },
-  "attribution": "LexClinic Swarm (20260828)"
+  "attribution": "LexClinic Swarm (20261110)"
 }

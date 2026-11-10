@@ -12,15 +12,19 @@ async function run(webDir) {
   // --------------------------------------------------------------------------
   const pageRoutes = [
     { path: "/", mustInclude: "LexClinic" },
-    { path: "/101/", mustInclude: "Legal Engineering 101" },
+    { path: "/101/", mustInclude: "39.9% Generative" },
+    { path: "/101/idea/", mustInclude: "Gottfried Wilhelm Leibniz", mustNotInclude: "<audio" },
     { path: "/101/3.1/", mustInclude: "Charles Goldfarb", mustNotInclude: "<audio" },
     { path: "/101/6.1/", mustInclude: "Grammatical Hurdles", mustNotInclude: "<audio" },
     { path: "/101/6.2/", mustInclude: "Reading Right-to-Left", mustNotInclude: "<audio" },
+    { path: "/101/7.1/", mustInclude: "Boolean Logic 101", mustNotInclude: "<audio" },
+    { path: "/101/7.2/", mustInclude: "Nested If/Else Logic", mustNotInclude: "<audio" },
     { path: "/101/6.2/quiz-learned/", mustInclude: "5-Question Learned Quiz", mustNotInclude: "copyCardDirectLink" },
     { path: "/101/6.2/quiz-expert/", mustInclude: "20-Question Expert Quiz", mustNotInclude: "copyCardDirectLink" },
     { path: "/interview/lucas-kung/quiz-learned/", mustInclude: "5-Question Learned Quiz", mustNotInclude: "copyCardDirectLink" },
     { path: "/interview/lucas-kung/quiz-expert/", mustInclude: "20-Question Expert Quiz", mustNotInclude: "copyCardDirectLink" },
     { path: "/event/", mustInclude: "3 Most Recent Recorded Events", mustNotInclude: "/event/2026-08-22/" },
+    { path: "/event/2026-11/", mustInclude: "November 2026" },
     { path: "/event/2026-10/", mustInclude: "October 2026" },
     { path: "/event/2026-09/", mustInclude: "Lukas Küng" },
     { path: "/event/2026-08/", mustInclude: "August 2026" },
@@ -32,13 +36,14 @@ async function run(webDir) {
     { path: "/event/2026-09-24/", mustInclude: "CIzyHeopPcQ" },
     { path: "/event/2026-10-22/", mustInclude: "Lesson 5.2" },
     { path: "/event/2026-10-29/", mustInclude: "a0VOIB2_jgQ" },
+    { path: "/event/2026-11-05/", mustInclude: "tOS-4HdTJOI" },
     { path: "/interview/", mustInclude: "Lukas Küng" },
     { path: "/interview/lucas-kung/", mustInclude: "BpRTnQ4128Y" },
     { path: "/interview/2026-09-08/james-wigginton/", mustInclude: "fxIGwkdpa28" },
     { path: "/attest/", mustInclude: "Human Review Media Approvals" },
     { path: "/ERC-7827/", mustInclude: "IERC7827" },
     { path: "/erc7827/", mustInclude: "IERC7827" },
-    { path: "/nft/", mustInclude: "ILNA33X" },
+    { path: "/nft/", mustInclude: "Sovereign 1-VM-1-Contract" },
     { path: "/NFT/", mustInclude: "IERC7827Tokenized" },
     { path: "/manifest.webmanifest", mustInclude: "LexClinic" },
     { path: "/sw.js", mustInclude: "CACHE_NAME" },
@@ -65,7 +70,7 @@ async function run(webDir) {
   // --------------------------------------------------------------------------
   const quizBases = [
     "/101/1.1", "/101/1.2", "/101/2.1", "/101/2.2", "/101/3.1", "/101/3.2",
-    "/101/4.1", "/101/4.2", "/101/5.1", "/101/5.2", "/101/6.1", "/101/6.2",
+    "/101/4.1", "/101/4.2", "/101/5.1", "/101/5.2", "/101/6.1", "/101/6.2", "/101/7.1", "/101/7.2",
     "/101", "/event/2026-08-24", "/event/2026-09-04", "/event/2026-09-17", "/event/2026-09-24",
     "/interview/lucas-kung", "/interview/2026-09-08/james-wigginton"
   ];
@@ -109,6 +114,7 @@ async function run(webDir) {
     "/event/2026-10-15/audio.m4a",
     "/event/2026-10-22/audio.m4a",
     "/event/2026-10-29/audio.m4a",
+    "/event/2026-11-05/audio.m4a",
     "/interview/lucas-kung/audio.m4a",
     "/interview/2026-09-08/james-wigginton/audio.m4a"
   ];

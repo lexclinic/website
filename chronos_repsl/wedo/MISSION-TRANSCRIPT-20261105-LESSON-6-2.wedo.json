@@ -1,0 +1,33 @@
+{
+  "wedo_instance": {
+    "id": "MISSION-TRANSCRIPT-20261105-LESSON-6-2",
+    "description": "Forensic Transcript & Summary Upgrade for LexClinic 2026 \u2014 Lesson 6.2 (Nov 5, 2026)",
+    "status": "[completed]",
+    "meta": {
+      "protocol": "WeDo-JSON",
+      "version": "1.0.0",
+      "original_doc_id": "1wPUrEFq1-fkQvdv_JAE2dFwqOcuOLKT0-ncbjbNhMzA",
+      "upgraded_doc_id": "1ECMR9EgZu9iVIWNczG-oZX--YvtxBSXQ3yZTscHGvHU",
+      "attendance_sheet_id": "1wdrC2jAb1vBXxzMJ2MFNUQbXQTEdhNIHgkhLtMsCJF8",
+      "recording_mp4_id": "1HSrbJN8zKlN5ucE_b0zssy00gE82OuM_"
+    },
+    "tasks": [
+      {
+        "id": "GOOGLE-DOC-STRIKE",
+        "description": "Verify XML (<w:t>) in-place and upgraded Google Doc patch for Lesson 6.2 (Chronos/Kairos, Non-Person .np VM NFTs, cognitive novelty ratios, Reverse Centaur, Jevons Paradox)",
+        "status": "[x]"
+      },
+      {
+        "id": "WHISPER-TRANSCRIPT-CLEANUP",
+        "description": "Transcribe From_Static_Contracts_to_Executable_Code.m4a and apply domain-vocabulary forensic corrections in transcripts.json (event_2026-11-05)",
+        "status": "[x]"
+      },
+      {
+        "id": "WEBSITE-UPGRADE-FROM-TRANSCRIPT",
+        "description": "Execute website upgrades recorded in the Lesson 6.2 Socratic transcript: (1) Upgrade /101/idea/ and /101/ banner with Tier 2 Concept Depth & Breadth (Fleshed-Out Spiral Elaboration) across all 14 classes (1.1-7.2: 33 T1 Novel Seeds [19.6%] + 34 T2 Deepened Elaborations [20.2%] = 67/168 [39.9%] Combined Generative Content vs. 101/168 [60.1%] T3 Baseline Review, validating the 40:60 101 target), (2) Add Pedagogical Research & Multi-Level Course Benchmarks (101 40:60 vs. 201 60:40 vs. 301/Professional 80:20) and Next-Iteration 101 Seeds (Leibniz 1667 Doctor of Law calculus, Alonzo Church Lambda Calculus, Goldfarb DOM), and (3) Add Sovereign 1-VM-1-Contract, .np Non-Person Safe Harbor & Chronos/Kairos Evidentiary Doctrine section to /nft/",
+        "status": "[x]"
+      }
+    ]
+  },
+  "attribution": "LexClinic Legal Engineering Swarm (20261110)"
+}

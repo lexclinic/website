@@ -1,0 +1,30 @@
+{
+  "wedo_instance": {
+    "id": "101-MODULE-7.1",
+    "description": "LexClinic 101 Courseware Manifest \u2014 Class 7.1: Boolean Logic 101: True/False Legal Gates",
+    "status": "[completed]",
+    "meta": {
+      "protocol": "WeDo-JSON",
+      "version": "1.0.0",
+      "module_id": "7.1",
+      "title": "Class 7.1: Boolean Logic 101: True/False Legal Gates",
+      "youtube_id": "r7ZmnxfSY-0",
+      "module_overview_youtube_id": "xPE9-SaZZMA",
+      "spotify_episode_id": "401NGruWP07zbTvh2K2nmk",
+      "scheduled_socratic_session": "2026-11-12"
+    },
+    "tasks": [
+      {
+        "id": "YT-PUBLIC-AND-WHISPER",
+        "description": "Set YouTube lecture r7ZmnxfSY-0 to public and transcribe audio with Whisper into transcripts.json (class_7.1)",
+        "status": "[x]"
+      },
+      {
+        "id": "MODULE-AND-QUIZ-BUILD",
+        "description": "Build /101/7.1/index.html (with Spotify 401NGruWP07zbTvh2K2nmk & YouTube r7ZmnxfSY-0) and 20-question transcript-grounded dual-route quizzes (/101/7.1/quiz-learned/ & /101/7.1/quiz-expert/)",
+        "status": "[x]"
+      }
+    ]
+  },
+  "attribution": "LexClinic Legal Engineering Swarm (20261110)"
+}

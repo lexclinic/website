@@ -16,7 +16,9 @@ function run(webDir, config) {
     { mod: "5.1", yt: "tw3o5UkqQFg", spotify: "2EclBQctcAg5ckYXsJP4Yc" },
     { mod: "5.2", yt: "OtYJCzsxwdE", spotify: "3DRmjl3Vq6VzicLbAblCDH" },
     { mod: "6.1", yt: "fz5ON8vs_gQ", spotify: "40sELGiloMWg7k8iI5chpI" },
-    { mod: "6.2", yt: "jAmvvgllLPg", spotify: "2IhGZEMrXXg1rkzg9eSfuz" }
+    { mod: "6.2", yt: "jAmvvgllLPg", spotify: "2IhGZEMrXXg1rkzg9eSfuz" },
+    { mod: "7.1", yt: "r7ZmnxfSY-0", spotify: "401NGruWP07zbTvh2K2nmk" },
+    { mod: "7.2", yt: "fV3yLAEuAg0", spotify: "0njS92rFADH65LPe5DhWni" }
   ];
 
   const violations = [];

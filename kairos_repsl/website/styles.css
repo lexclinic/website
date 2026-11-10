@@ -1517,5 +1517,32 @@ body.auth-logged-in .btn-unlogged-prompt {
     padding: 1.35rem !important;
     max-height: 88vh !important;
   }
+
+  .idea-table-wrap {
+    width: 100% !important;
+    max-width: 100% !important;
+    overflow-x: auto !important;
+    -webkit-overflow-scrolling: touch !important;
+    display: block !important;
+  }
+
+  .idea-table {
+    min-width: 780px !important;
+    width: 100% !important;
+  }
+
+  .idea-table th,
+  .idea-table td,
+  .idea-table a,
+  .idea-table span,
+  .idea-table code,
+  .idea-table div {
+    word-break: normal !important;
+    overflow-wrap: normal !important;
+  }
+
+  .idea-table th {
+    white-space: nowrap !important;
+  }
 }
 
