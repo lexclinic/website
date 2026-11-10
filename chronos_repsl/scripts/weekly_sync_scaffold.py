@@ -921,6 +921,197 @@ def upsert_101_hub_card(web_dir: Path, spec: dict) -> None:
     hub_path.write_text(content, encoding="utf-8")
 
 
+def sync_101_attest_and_linter(web_dir: Path, spec: dict) -> None:
+    """Idempotently registers Class X.Y in /attest/index.html and Linter Rules 04 & 07."""
+    cid = spec["class_id"]
+    cid_under = cid.replace(".", "_")
+    lesson_title = spec["lesson_title"]
+    yt_id = spec["youtube_id"]
+    sp_id = spec["spotify_id"]
+
+    # 1. /attest/index.html
+    attest_path = web_dir / "attest" / "index.html"
+    if attest_path.exists():
+        att_raw = attest_path.read_text(encoding="utf-8")
+        entry_line = (
+            f'      {{ id: "{cid}", aliases: ["{cid}", "class_{cid}", "class_{cid_under}"], '
+            f'title: "Class {cid}: {lesson_title}", category: "Legal Engineering 101", '
+            f'totalQuestions: 20, url: "/101/{cid}/quiz.html", '
+            f'learnedUrl: "/101/{cid}/quiz-learned/", expertUrl: "/101/{cid}/quiz-expert/" }},'
+        )
+        existing_pat = re.compile(rf'^[ \t]*\{{\s*id:\s*"{re.escape(cid)}".*?\}},?$', re.MULTILINE)
+        if existing_pat.search(att_raw):
+            att_raw = existing_pat.sub(entry_line, att_raw, count=1)
+        else:
+            anchor = '      { id: "101", aliases: ["101", "101-all"]'
+            if anchor in att_raw:
+                att_raw = att_raw.replace(anchor, entry_line + NL + anchor, 1)
+        attest_path.write_text(att_raw, encoding="utf-8")
+
+    # 2. .linter/rules/04-spotify-101-embeds.js
+    r04_path = web_dir / ".linter" / "rules" / "04-spotify-101-embeds.js"
+    if r04_path.exists():
+        r04_raw = r04_path.read_text(encoding="utf-8")
+        if f'mod: "{cid}"' not in r04_raw:
+            new_item = f'    {{ mod: "{cid}", yt: "{yt_id}", spotify: "{sp_id}" }}'
+            r04_raw = re.sub(
+                r'(\{\s*mod:\s*"\d+\.\d+",\s*yt:\s*"[^"]+",\s*spotify:\s*"[^"]+"\s*\})\s*(\n\s*\];)',
+                rf"\1,{NL}{new_item}\2",
+                r04_raw,
+                count=1,
+            )
+            r04_path.write_text(r04_raw, encoding="utf-8")
+
+    # 3. .linter/rules/07-attest-contracts.js
+    r07_path = web_dir / ".linter" / "rules" / "07-attest-contracts.js"
+    if r07_path.exists():
+        r07_raw = r07_path.read_text(encoding="utf-8")
+        key_str = f'"/101/{cid}/quiz.html": "class_{cid}"'
+        if key_str not in r07_raw:
+            r07_raw = re.sub(
+                r'("/101/\d+\.\d+/quiz\.html":\s*"class_\d+\.\d+")',
+                rf"\1,{NL}    {key_str}",
+                r07_raw,
+                count=1,
+            )
+            r07_path.write_text(r07_raw, encoding="utf-8")
+
+
+def sync_event_hubs_and_linter(web_dir: Path, spec: dict) -> None:
+    """
+    Idempotently synchronizes companion 101 links, monthly archive (/event/YYYY-MM/index.html),
+    main event hub (/event/index.html), and Linter Rule 05 when --update-hub is passed with --compile-event.
+    """
+    event_date = spec["event_date"]
+    month_str = event_date[:7]
+    class_id = spec["class_id"]
+    lesson_title = spec["lesson_title"]
+    short_date = spec.get("short_date", event_date)
+    clips_count = len(spec.get("clips", []))
+    first_yt = spec["clips"][0]["youtube_id"] if spec.get("clips") else ""
+    summary_html = spec.get(
+        "hub_card_summary_html",
+        f"Live cohort Socratic discussion &amp; {clips_count} explainer clips accompanying <strong>Legal Engineering 101 Class {class_id}</strong>.",
+    )
+
+    # 1. Flip 101/<class_id>/index.html & 101/index.html companion Socratic buttons to recorded event URL
+    mod_idx = web_dir / "101" / class_id / "index.html"
+    if mod_idx.exists():
+        m_raw = mod_idx.read_text(encoding="utf-8")
+        m_raw = re.sub(
+            r'<a href="/event/"([^>]*)>🔥[^<]*Live Socratic Session[^<]*</a>',
+            f'<a href="/event/{event_date}/"\\1>🗣️ {short_date} Socratic Recording ➔</a>',
+            m_raw,
+        )
+        mod_idx.write_text(m_raw, encoding="utf-8")
+
+    hub_101 = web_dir / "101" / "index.html"
+    if hub_101.exists():
+        h_raw = hub_101.read_text(encoding="utf-8")
+        card_pat = re.compile(
+            rf'(<!-- Class {re.escape(class_id)} Card -->.*?<a href="/101/{re.escape(class_id)}/"[^>]*>[^<]*</a>\s*)'
+            rf'<a href="[^"]*"([^>]*)>[^<]*</a>',
+            re.DOTALL,
+        )
+        if card_pat.search(h_raw):
+            h_raw = card_pat.sub(
+                rf'\1<a href="/event/{event_date}/"\2>🗣️ {short_date} Socratic Recording ➔</a>',
+                h_raw,
+                count=1,
+            )
+            hub_101.write_text(h_raw, encoding="utf-8")
+
+    # 2. Upsert card into /event/<YYYY-MM>/index.html
+    month_idx = web_dir / "event" / month_str / "index.html"
+    if month_idx.exists():
+        m_html = month_idx.read_text(encoding="utf-8")
+        if f'/event/{event_date}/' not in m_html:
+            month_card = f"""          <div class="card pillar-card event-list-card" data-event-category="class" style="border: 2px solid var(--accent-gold); background: rgba(10, 17, 40, 0.85); padding: 1.5rem;">
+            <div class="event-date-tag" style="color: var(--accent-gold); font-weight: 700; margin-bottom: 0.4rem;">{short_date}, 2026 • 🎓 101 Live Socratic Session (Class {class_id})</div>
+            <h3 style="color: var(--accent-gold); font-size: 1.3rem; margin-bottom: 0.75rem;">LexClinic 2026 — Lesson {class_id}: {lesson_title}</h3>
+            <p style="margin-bottom: 1.25rem; color: #cbd5e1; line-height: 1.6;">
+              {summary_html}
+            </p>
+            <div class="card-actions" style="display: flex; gap: 0.65rem; flex-wrap: wrap;">
+              <a href="/event/{event_date}/" class="btn btn-primary" style="background: var(--accent-gold); color: #0a1128; font-weight: 800; padding: 0.5rem 1.05rem; border-radius: 6px; font-size: 0.88rem;">🗣️ Open Event Recording ➔</a><a href="/101/{class_id}/" class="btn btn-outline" style="padding: 0.5rem 1rem; border-radius: 6px; font-size: 0.88rem;">📘 101 Module {class_id} ➔</a><a href="/101/{class_id}/quiz-learned/" data-progressive-quiz-cid="{class_id}" data-learned-href="/101/{class_id}/quiz-learned/" data-expert-href="/101/{class_id}/quiz-expert/" class="btn btn-outline" style="padding: 0.5rem 1rem; border-radius: 6px; font-size: 0.88rem;">📘 Take 5-Q Learned Quiz ➔</a>
+            </div>
+          </div>"""
+            m_html = m_html.replace(
+                '<div class="grid grid-2" style="gap: 1.5rem;">',
+                '<div class="grid grid-2" style="gap: 1.5rem;">' + NL + NL + month_card,
+                1,
+            )
+            month_idx.write_text(m_html, encoding="utf-8")
+
+    # 3. Rotate #recent-three-events-grid in /event/index.html if not already present
+    ev_hub = web_dir / "event" / "index.html"
+    if ev_hub.exists():
+        eh_raw = ev_hub.read_text(encoding="utf-8")
+        if f'/event/{event_date}/' not in eh_raw:
+            grid_pat = re.compile(
+                r'(<div class="grid grid-3" id="recent-three-events-grid"[^>]*>\s*)(.*?)(\s*</div>\s*</div>\s*</div>\s*</section>)',
+                re.DOTALL,
+            )
+            gm = grid_pat.search(eh_raw)
+            if gm:
+                cards_block = gm.group(2)
+                card_matches = list(
+                    re.finditer(
+                        r'(?:<!-- Recent Class \d+:.*?-->\s*)?<div class="card pillar-card event-list-card"[^>]*data-default-recent="true"[^>]*>.*?</div>\s*</div>',
+                        cards_block,
+                        re.DOTALL,
+                    )
+                )
+                kept_cards = []
+                for idx, cm in enumerate(card_matches[:2], start=2):
+                    c_txt = cm.group(0)
+                    c_txt = re.sub(r"<!-- Recent Class \d+:", f"<!-- Recent Class {idx}:", c_txt)
+                    c_txt = c_txt.replace("border: 2px solid var(--accent-gold); background: rgba(10, 17, 40, 0.95);", "border: 1px solid var(--border-color); background: rgba(10, 17, 40, 0.8);")
+                    c_txt = re.sub(r'(<div class="event-date-tag" style="color:\s*)var\(--accent-gold\)', r"\1var(--accent-cyan)", c_txt)
+                    c_txt = re.sub(r'(<h3 style="color:\s*)var\(--accent-gold\)', r"\1var(--accent-cyan)", c_txt)
+                    kept_cards.append("          " + c_txt.strip())
+
+                new_recent_card = f"""          <!-- Recent Class 1: {short_date}, 2026 (Class {class_id}) -->
+          <div class="card pillar-card event-list-card" data-event-category="class" data-default-recent="true" style="border: 2px solid var(--accent-gold); background: rgba(10, 17, 40, 0.95); padding: 1.5rem;">
+            <div class="event-date-tag" style="color: var(--accent-gold); font-weight: 700; margin-bottom: 0.4rem;">{short_date}, 2026 • 🎓 101 Live Socratic Session (Class {class_id})</div>
+            <h3 style="color: var(--accent-gold); font-size: 1.25rem; margin-bottom: 0.75rem;">Lesson {class_id}: {lesson_title}</h3>
+            <p style="margin-bottom: 1.25rem; color: #cbd5e1; line-height: 1.6; font-size: 0.95rem;">
+              {summary_html}
+            </p>
+            <div class="card-actions" style="display: flex; gap: 0.55rem; flex-wrap: wrap;">
+              <a href="/event/{event_date}/" class="btn btn-primary" style="background: var(--accent-gold); color: #0a1128; font-weight: 800; padding: 0.5rem 1rem; border-radius: 6px; font-size: 0.88rem;">🗣️ Event Recording ➔</a>
+              <a href="/101/{class_id}/" class="btn btn-outline" style="padding: 0.5rem 0.95rem; border-radius: 6px; font-size: 0.88rem; border-color: var(--accent-cyan); color: var(--accent-cyan);">📘 101 Module {class_id} ➔</a>
+            </div>
+          </div>"""
+                all_three = (NL + NL).join([new_recent_card] + kept_cards)
+                eh_raw = eh_raw[: gm.start(2)] + NL + all_three + NL + eh_raw[gm.end(2) :]
+                ev_hub.write_text(eh_raw, encoding="utf-8")
+
+    # 4. Register in .linter/rules/05-event-pages-contracts.js
+    r05_path = web_dir / ".linter" / "rules" / "05-event-pages-contracts.js"
+    if r05_path.exists():
+        r05_raw = r05_path.read_text(encoding="utf-8")
+        if f'date: "{event_date}"' not in r05_raw:
+            new_ev_line = (
+                f'    {{ date: "{event_date}", month: "{month_str}", mod: "{class_id}", '
+                f'minClips: {clips_count}, mustHaveYt: "{first_yt}", inRecent3: true }}'
+            )
+            r05_raw = re.sub(
+                r'(\{\s*date:\s*"\d{4}-\d{2}-\d{2}".*?inRecent3:\s*(?:true|false)\s*\})\s*(\n\s*\];)',
+                rf"\1,{NL}{new_ev_line}\2",
+                r05_raw,
+                count=1,
+            )
+            # Ensure only the last 3 entries in requiredEvents have inRecent3: true
+            ev_lines = list(re.finditer(r'\{\s*date:\s*"\d{4}-\d{2}-\d{2}".*?inRecent3:\s*(true|false)\s*\}', r05_raw))
+            for idx, m in enumerate(ev_lines):
+                should_be_recent = idx >= len(ev_lines) - 3
+                old_block = m.group(0)
+                new_block = re.sub(r"inRecent3:\s*(?:true|false)", f"inRecent3: {'true' if should_be_recent else 'false'}", old_block)
+                r05_raw = r05_raw.replace(old_block, new_block, 1)
+            r05_path.write_text(r05_raw, encoding="utf-8")
+
+
 def extract_event_spec(web_dir: Path, event_date: str) -> dict:
     ev_path = web_dir / "event" / event_date / "index.html"
     raw = ev_path.read_text(encoding="utf-8")
@@ -1104,6 +1295,8 @@ def main():
         out_file = web_dir / "event" / spec["event_date"] / "index.html"
         out_file.parent.mkdir(parents=True, exist_ok=True)
         out_file.write_text(html_out, encoding="utf-8")
+        if args.update_hub:
+            sync_event_hubs_and_linter(web_dir, spec)
         print(f"✅ Compiled Socratic Event page -> {out_file}")
 
     if args.compile_101:
@@ -1120,6 +1313,7 @@ def main():
         (mod_dir / "quiz.html").write_text(render_quiz_page(spec, "smart"), encoding="utf-8")
         if args.update_hub:
             upsert_101_hub_card(web_dir, spec)
+            sync_101_attest_and_linter(web_dir, spec)
         print(f"✅ Compiled 101 Module {cid} (index.html + quiz-learned + quiz-expert + quiz.html) -> {mod_dir}")
 
 
