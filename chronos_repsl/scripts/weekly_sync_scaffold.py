@@ -349,8 +349,13 @@ def render_event_page(spec: dict, base_dir: Path) -> str:
             return true;
           }});
           localStorage.setItem('lexclinic_quiz_submissions', JSON.stringify(cleaned));
-          localStorage.removeItem('lexclinic_quiz_answers_6.2');
-          localStorage.removeItem('lexclinic_quiz_answers_6.1');
+          if (localStorage.removeItem) {{
+            localStorage.removeItem('lexclinic_quiz_answers_6.2');
+            localStorage.removeItem('lexclinic_quiz_answers_6.1');
+          }} else {{
+            localStorage.setItem('lexclinic_quiz_answers_6.2', '{{}}');
+            localStorage.setItem('lexclinic_quiz_answers_6.1', '{{}}');
+          }}
           localStorage.setItem('lexclinic_quiz_reset_20261111_v2', '1');
         }}
       }} catch (e) {{}}
@@ -689,8 +694,10 @@ def render_quiz_page(spec: dict, mode: str) -> str:
               return true;
             }});
             localStorage.setItem('lexclinic_quiz_submissions', JSON.stringify(cleanedInit));
-            localStorage.removeItem('lexclinic_quiz_answers_6.2');
-            localStorage.removeItem('lexclinic_quiz_answers_6.1');
+            if (localStorage.removeItem) {{
+              localStorage.removeItem('lexclinic_quiz_answers_6.2');
+              localStorage.removeItem('lexclinic_quiz_answers_6.1');
+            }}
             localStorage.setItem('lexclinic_quiz_reset_20261111_v2', '1');
           }}
 
