@@ -172,14 +172,13 @@ def render_video_card(slug: str, heading: str, youtube_id: str, iframe_id: str =
             <button type="button" onclick="window.setVideoSpeed('{slug}', 1.25, this)" class="btn-speed" style="padding: 0.25rem 0.55rem; font-size: 0.78rem; background: rgba(30, 41, 59, 0.8); color: #e2e8f0; font-weight: 600; border: 1px solid #334155; border-radius: 4px; cursor: pointer;">1.25x</button>
             <button type="button" onclick="window.setVideoSpeed('{slug}', 1.5, this)" class="btn-speed" style="padding: 0.25rem 0.55rem; font-size: 0.78rem; background: rgba(30, 41, 59, 0.8); color: #e2e8f0; font-weight: 600; border: 1px solid #334155; border-radius: 4px; cursor: pointer;">1.5x</button>
             <button type="button" onclick="window.setVideoSpeed('{slug}', 1.75, this)" class="btn-speed" style="padding: 0.25rem 0.55rem; font-size: 0.78rem; background: rgba(30, 41, 59, 0.8); color: #e2e8f0; font-weight: 600; border: 1px solid #334155; border-radius: 4px; cursor: pointer;">1.75x</button>
-            <button type="button" onclick="window.setVideoSpeed('{slug}', 2.0, this)" class="btn-speed" style="padding: 0.25rem 0.55rem; font-size: 0.78rem; background: rgba(30, 41, 59, 0.8); color: #e2e8f0; font-weight: 600; border: 1px solid var(--accent-cyan); border-radius: 4px; cursor: pointer;">2.0x</button>
+            <button type="button" onclick="window.setVideoSpeed('{slug}', 2.0, this)" class="btn-speed" style="padding: 0.25rem 0.55rem; font-size: 0.78rem; background: rgba(30, 41, 59, 0.8); color: #e2e8f0; font-weight: 600; border: 1px solid #334155; border-radius: 4px; cursor: pointer;">2.0x</button>
           </div>
           <div style="display: flex; align-items: center; gap: 0.35rem; flex-wrap: wrap;">
             <button type="button" onclick="const iframe = this.closest('.card, .pillar-card').querySelector('iframe'); if (iframe) {{ if (iframe.requestFullscreen) iframe.requestFullscreen(); else if (iframe.webkitRequestFullscreen) iframe.webkitRequestFullscreen(); }}" class="btn" style="padding: 0.25rem 0.65rem; font-size: 0.78rem; background: rgba(56, 189, 248, 0.15); color: var(--accent-cyan); border: 1px solid var(--accent-cyan); border-radius: 4px; cursor: pointer; font-weight: 700;">⤢ Expand Fullscreen</button>
             <button type="button" onclick="window.openMediaCommentModal('{slug}', event)" class="btn btn-comment-{slug}" style="padding: 0.25rem 0.65rem; font-size: 0.78rem; background: rgba(56, 189, 248, 0.15); color: var(--accent-cyan); border: 1px solid var(--accent-cyan); border-radius: 4px; cursor: pointer; font-weight: 700;">💬 Notes</button>
             <button type="button" onclick="window.openMediaApprovalModal('{slug}', event)" class="btn btn-approval-{slug}" style="padding: 0.25rem 0.65rem; font-size: 0.78rem; background: rgba(56, 189, 248, 0.15); color: var(--accent-cyan); border: 1px solid var(--accent-cyan); border-radius: 4px; cursor: pointer; font-weight: 700;">👍 Approval</button>
-            <button type="button" onclick="window.openNavLoginModal(event)" class="btn btn-unlogged-prompt" style="padding: 0.25rem 0.65rem; font-size: 0.78rem; background: rgba(251, 191, 36, 0.15); color: #fbbf24; border: 1px solid #f59e0b; border-radius: 4px; cursor: pointer; font-weight: 700; display: inline-block;">🔒 Login for Notes &amp; Approvals</button>
-            <button type="button" onclick="window.copyCardDirectLink('{slug}', this)" class="btn btn-copy-link" style="padding: 0.25rem 0.65rem; font-size: 0.78rem; background: rgba(56, 189, 248, 0.15); color: var(--accent-cyan); border: 1px solid var(--accent-cyan); border-radius: 4px; cursor: pointer; font-weight: 700;">🔗 Copy Direct Link</button>
+            <button type="button" onclick="window.openNavLoginModal(event)" class="btn btn-unlogged-prompt" style="padding: 0.25rem 0.65rem; font-size: 0.78rem; background: rgba(251, 191, 36, 0.15); color: #fbbf24; border: 1px solid #f59e0b; border-radius: 4px; cursor: pointer; font-weight: 700; display: inline-block;">🔒 Login for Notes &amp; Approvals</button> <button type="button" onclick="window.copyCardDirectLink('{slug}', this)" class="btn btn-copy-link" style="padding: 0.25rem 0.65rem; font-size: 0.78rem; background: rgba(56, 189, 248, 0.15); color: var(--accent-cyan); border: 1px solid var(--accent-cyan); border-radius: 4px; cursor: pointer; font-weight: 700;">🔗 Copy Direct Link</button>
           </div>
         </div>
       </div>"""
@@ -190,7 +189,7 @@ def render_event_page(spec: dict, base_dir: Path) -> str:
     class_id = spec["class_id"]
     lesson_title = spec["lesson_title"]
     page_title = spec.get(
-        "page_title", f"LexClinic 2026 — Lesson {class_id}: {lesson_title} ({spec.get('short_date', date_str)}) | LexClinic"
+        "page_title", f"LexClinic 2026 — Lesson {class_id}: {lesson_title} | LexClinic"
     )
     meta_desc = spec["meta_description"]
     hero_title = spec.get("hero_title", f"LexClinic 2026 — Lesson {class_id}: {lesson_title}")
@@ -200,21 +199,14 @@ def render_event_page(spec: dict, base_dir: Path) -> str:
 
     takeaways_html = load_html_slot(spec, "takeaways_html", base_dir)
     if not takeaways_html and spec.get("takeaways"):
-        palette = [
-            ("rgba(56, 189, 248, 0.3)", "var(--accent-cyan)"),
-            ("rgba(251, 191, 36, 0.3)", "var(--accent-gold)"),
-            ("rgba(52, 211, 153, 0.3)", "#34d399"),
-            ("rgba(168, 85, 247, 0.3)", "#c084fc"),
-        ]
         tiles = []
-        for idx, t in enumerate(spec["takeaways"]):
-            border_c, title_c = palette[idx % len(palette)]
+        for t in spec["takeaways"]:
             t_heading = t["heading_html"] if "heading_html" in t else html.escape(t["heading"])
             t_body = t["body_html"] if "body_html" in t else html.escape(t["body"])
             tiles.append(
-                f"""          <div style="background: rgba(15, 23, 42, 0.75); border: 1px solid {border_c}; border-radius: 8px; padding: 1rem;">
-            <h4 style="color: {title_c}; margin: 0 0 0.4rem 0;">{t_heading}</h4>
-            <p style="font-size: 0.92rem; color: #cbd5e1; margin: 0; line-height: 1.5;">{t_body}</p>
+                f"""          <div style="background: rgba(10, 17, 40, 0.7); border: 1px solid var(--border-color); padding: 1rem; border-radius: 8px;">
+            <h4 style="color: var(--accent-cyan); margin-bottom: 0.4rem;">{t_heading}</h4>
+            <p style="font-size: 0.92rem; color: #cbd5e1; margin: 0;">{t_body}</p>
           </div>"""
             )
         takeaways_html = (
@@ -253,6 +245,7 @@ def render_event_page(spec: dict, base_dir: Path) -> str:
         clip_cards.append(render_video_card(c_slug, c_title, c_yt, c_frame_id, c_desc))
 
     clips_joined = (NL + NL).join(clip_cards)
+    clips_count = len(spec["clips"])
     custom_block = f"{NL}      {custom_sections_html}{NL}" if custom_sections_html else ""
 
     return f"""{render_common_head(page_title, meta_desc)}
@@ -262,9 +255,7 @@ def render_event_page(spec: dict, base_dir: Path) -> str:
   <section class="hero page-hero">
     <div class="container hero-content">
       <h1 class="hero-title">{hero_title}</h1>
-      <p class="hero-subtitle">
-        {hero_subtitle_html}
-      </p>
+      <p class="hero-subtitle">{hero_subtitle_html}</p>
       <div class="hero-actions" style="display: flex; gap: 0.75rem; justify-content: center; flex-wrap: wrap;">
         <a href="/101/{class_id}/" class="btn btn-primary" style="background: var(--accent-cyan); color: #0a1128; font-weight: 800;">📘 Companion 101 Module (Class {class_id}) ➔</a>
         <a href="/101/{class_id}/quiz-learned/" data-progressive-quiz-cid="{class_id}" data-learned-href="/101/{class_id}/quiz-learned/" data-expert-href="/101/{class_id}/quiz-expert/" class="btn btn-primary" style="background: var(--accent-gold); color: #0a1128; font-weight: 800;">📘 Take 5-Q Learned Quiz ➔</a>
@@ -283,19 +274,21 @@ def render_event_page(spec: dict, base_dir: Path) -> str:
           Socratic Session Overview &amp; Key Takeaways
         </h2>
         {overview_html}
+
         {takeaways_html}
       </div>{custom_block}
 
       <!-- 2. Native Audio Player Card -->
       <div class="card pillar-card" id="{audio_slug}" style="border: 2px solid #1ed760; margin-bottom: 2rem;">
+
         <h3 style="color: #1ed760; font-size: 1.25rem; margin-bottom: 0.75rem;">
           {audio_title}
         </h3>
 
         <div class="media-playback-meter-container" style="margin-top: 0.5rem; margin-bottom: 0.85rem; background: rgba(15, 23, 42, 0.9); border: 1px solid #334155; border-radius: 8px; padding: 0.85rem; box-shadow: 0 4px 12px rgba(0,0,0,0.5);">
           <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 0.4rem;">
-            <span class="meter-status-text" style="font-size: 0.88rem; font-weight: 700; color: #cbd5e1;">🎧 Unlistened Audio Recording</span>
-            <span class="meter-auth-hint" style="font-size: 0.8rem; color: #94a3b8;">🔒 Log in to save listen tracker</span>
+            <span class="meter-status-text" style="font-size: 0.88rem; font-weight: 700; color: #cbd5e1;">🎧 Unwatched Audio Track</span>
+            <span class="meter-auth-hint" style="font-size: 0.8rem; color: #94a3b8;">🔒 Log in to save watch tracker</span>
           </div>
           <div style="width: 100%; height: 8px; background: rgba(30, 41, 59, 0.8); border-radius: 4px; overflow: hidden; border: 1px solid #475569;">
             <div class="meter-fill-bar" style="width: 0%; height: 100%; background: linear-gradient(90deg, #38bdf8, #34d399); transition: width 0.4s ease;"></div>
@@ -304,7 +297,7 @@ def render_event_page(spec: dict, base_dir: Path) -> str:
 
         <audio id="audio-player-{audio_slug}" controls style="width: 100%; margin-bottom: 0.75rem; accent-color: #1ed760;" preload="metadata">
           <source src="audio.m4a" type="audio/mp4">
-          Your browser does not support the audio element.
+          Your browser does not support native audio playback.
         </audio>
 
         <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem; background: rgba(15, 23, 42, 0.8); padding: 0.65rem 0.85rem; border-radius: 6px; border: 1px solid #334155;">
@@ -314,18 +307,21 @@ def render_event_page(spec: dict, base_dir: Path) -> str:
             <button type="button" onclick="window.setAudioSpeed('audio-player-{audio_slug}', 1.25, this)" class="btn-speed" style="padding: 0.25rem 0.55rem; font-size: 0.78rem; background: rgba(30, 41, 59, 0.8); color: #e2e8f0; font-weight: 600; border: 1px solid #334155; border-radius: 4px; cursor: pointer;">1.25x</button>
             <button type="button" onclick="window.setAudioSpeed('audio-player-{audio_slug}', 1.5, this)" class="btn-speed" style="padding: 0.25rem 0.55rem; font-size: 0.78rem; background: rgba(30, 41, 59, 0.8); color: #e2e8f0; font-weight: 600; border: 1px solid #334155; border-radius: 4px; cursor: pointer;">1.5x</button>
             <button type="button" onclick="window.setAudioSpeed('audio-player-{audio_slug}', 1.75, this)" class="btn-speed" style="padding: 0.25rem 0.55rem; font-size: 0.78rem; background: rgba(30, 41, 59, 0.8); color: #e2e8f0; font-weight: 600; border: 1px solid #334155; border-radius: 4px; cursor: pointer;">1.75x</button>
-            <button type="button" onclick="window.setAudioSpeed('audio-player-{audio_slug}', 2.0, this)" class="btn-speed" style="padding: 0.25rem 0.55rem; font-size: 0.78rem; background: rgba(30, 41, 59, 0.8); color: #e2e8f0; font-weight: 600; border: 1px solid #1ed760; border-radius: 4px; cursor: pointer;">2.0x</button>
+            <button type="button" onclick="window.setAudioSpeed('audio-player-{audio_slug}', 2.0, this)" class="btn-speed" style="padding: 0.25rem 0.55rem; font-size: 0.78rem; background: rgba(30, 41, 59, 0.8); color: #e2e8f0; font-weight: 600; border: 1px solid #334155; border-radius: 4px; cursor: pointer;">2.0x</button>
           </div>
           <div style="display: flex; align-items: center; gap: 0.35rem; flex-wrap: wrap;">
             <button type="button" onclick="window.openMediaCommentModal('{audio_slug}', event)" class="btn btn-comment-{audio_slug}" style="padding: 0.25rem 0.65rem; font-size: 0.78rem; background: rgba(56, 189, 248, 0.15); color: var(--accent-cyan); border: 1px solid var(--accent-cyan); border-radius: 4px; cursor: pointer; font-weight: 700;">💬 Notes</button>
             <button type="button" onclick="window.openMediaApprovalModal('{audio_slug}', event)" class="btn btn-approval-{audio_slug}" style="padding: 0.25rem 0.65rem; font-size: 0.78rem; background: rgba(56, 189, 248, 0.15); color: var(--accent-cyan); border: 1px solid var(--accent-cyan); border-radius: 4px; cursor: pointer; font-weight: 700;">👍 Approval</button>
-            <button type="button" onclick="window.openNavLoginModal(event)" class="btn btn-unlogged-prompt" style="padding: 0.25rem 0.65rem; font-size: 0.78rem; background: rgba(251, 191, 36, 0.15); color: #fbbf24; border: 1px solid #f59e0b; border-radius: 4px; cursor: pointer; font-weight: 700; display: inline-block;">🔒 Login for Notes &amp; Approvals</button>
-            <button type="button" onclick="window.copyCardDirectLink('{audio_slug}', this)" class="btn btn-copy-link" style="padding: 0.25rem 0.65rem; font-size: 0.78rem; background: rgba(56, 189, 248, 0.15); color: var(--accent-cyan); border: 1px solid var(--accent-cyan); border-radius: 4px; cursor: pointer; font-weight: 700;">🔗 Copy Direct Link</button>
+            <button type="button" onclick="window.openNavLoginModal(event)" class="btn btn-unlogged-prompt" style="padding: 0.25rem 0.65rem; font-size: 0.78rem; background: rgba(251, 191, 36, 0.15); color: #fbbf24; border: 1px solid #f59e0b; border-radius: 4px; cursor: pointer; font-weight: 700; display: inline-block;">🔒 Login for Notes &amp; Approvals</button> <button type="button" onclick="window.copyCardDirectLink('{audio_slug}', this)" class="btn btn-copy-link" style="padding: 0.25rem 0.65rem; font-size: 0.78rem; background: rgba(56, 189, 248, 0.15); color: var(--accent-cyan); border: 1px solid var(--accent-cyan); border-radius: 4px; cursor: pointer; font-weight: 700;">🔗 Copy Direct Link</button>
           </div>
         </div>
       </div>
 
-      <!-- 3. Explainer Video Clips -->
+      <!-- 3. Session Explainer Video Clips ({clips_count} Modules) -->
+      <h2 style="color: var(--accent-gold); font-size: 1.5rem; margin-bottom: 1.25rem;">
+        🎥 Session Explainer Video Clips ({clips_count} Modules)
+      </h2>
+
 {clips_joined}
 
       <!-- 4. Bottom Actions -->
@@ -365,11 +361,33 @@ def render_101_module_page(spec: dict, base_dir: Path) -> str:
     if errors:
         raise ValueError("101 HTML Fragment Validation Failed: " + "; ".join(errors))
 
-    socratic = spec["socratic_companion"]
-    soc_href = socratic["href"]
-    soc_btn_label = socratic["button_label"]
-    soc_badge = socratic["badge_text"]
-    soc_desc = socratic["description_html"]
+    socratic = spec.get("socratic_companion") or {}
+    soc_href = socratic.get("href", "")
+    has_recorded_socratic = bool(soc_href and re.match(r"^/event/\d{4}-\d{2}-\d{2}/$", soc_href))
+
+    hero_soc_btn = ""
+    socratic_card_block = ""
+    bottom_soc_btn = ""
+    if has_recorded_socratic:
+        soc_btn_label = socratic["button_label"]
+        soc_badge = socratic["badge_text"]
+        soc_desc = socratic["description_html"]
+        hero_soc_btn = f'{NL}        <a href="{soc_href}" class="btn btn-outline">{soc_btn_label}</a>'
+        socratic_card_block = f"""
+      <!-- Live Socratic Cohort Companion Card -->
+      <div class="card pillar-card" id="card_101_{cid_underscored}_socratic_companion" style="border: 2px solid var(--accent-cyan); background: rgba(15, 23, 42, 0.9); max-width: 960px; margin: 0 auto 2rem auto;">
+        <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;">
+          <div style="flex: 1; min-width: 260px;">
+            <div style="color: var(--accent-cyan); font-weight: 700; font-size: 0.85rem; margin-bottom: 0.25rem;">{soc_badge}</div>
+            <h3 style="color: #e2e8f0; font-size: 1.2rem; margin: 0 0 0.4rem 0;">Class {class_id} Live Cohort Discussion &amp; Q&amp;A</h3>
+            <p style="color: #cbd5e1; font-size: 0.94rem; margin: 0; line-height: 1.5;">{soc_desc}</p>
+          </div>
+          <div style="display: flex; gap: 0.6rem; flex-wrap: wrap;">
+            <a href="{soc_href}" class="btn btn-outline" style="border-color: var(--accent-cyan); color: var(--accent-cyan); font-weight: 800; padding: 0.6rem 1.2rem; border-radius: 6px;">{soc_btn_label}</a>
+          </div>
+        </div>
+      </div>"""
+        bottom_soc_btn = f'{NL}        <a href="{soc_href}" class="btn btn-outline" style="font-size: 1.02rem; padding: 0.75rem 1.4rem;">{soc_btn_label}</a>'
 
     video_card = render_video_card(video_slug, full_heading, youtube_id)
     custom_block = f"{NL}      {custom_sections_html}{NL}" if custom_sections_html else ""
@@ -385,8 +403,7 @@ def render_101_module_page(spec: dict, base_dir: Path) -> str:
         {hero_subtitle_html}
       </p>
       <div class="hero-actions" style="display: flex; gap: 0.75rem; justify-content: center; flex-wrap: wrap;">
-        <a href="/101/{class_id}/quiz-learned/" data-progressive-quiz-cid="{class_id}" data-learned-href="/101/{class_id}/quiz-learned/" data-expert-href="/101/{class_id}/quiz-expert/" class="btn btn-primary" style="background: var(--accent-gold); color: #0a1128; font-weight: 800; font-size: 1.02rem; padding: 0.75rem 1.4rem;">📘 Take 5-Q Learned Quiz ➔</a>
-        <a href="{soc_href}" class="btn btn-outline">{soc_btn_label}</a>
+        <a href="/101/{class_id}/quiz-learned/" data-progressive-quiz-cid="{class_id}" data-learned-href="/101/{class_id}/quiz-learned/" data-expert-href="/101/{class_id}/quiz-expert/" class="btn btn-primary" style="background: var(--accent-gold); color: #0a1128; font-weight: 800; font-size: 1.02rem; padding: 0.75rem 1.4rem;">📘 Take 5-Q Learned Quiz ➔</a>{hero_soc_btn}
         <a href="/101" class="btn btn-outline">← Back to 101 Hub</a>
       </div>
     </div>
@@ -415,26 +432,11 @@ def render_101_module_page(spec: dict, base_dir: Path) -> str:
         <div style="border-radius: 12px; overflow: hidden;">
           <iframe style="border-radius:12px" src="https://open.spotify.com/embed/episode/{spotify_id}?utm_source=generator&theme=0" width="100%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
         </div>
-      </div>
-      
-      <!-- Live Socratic Cohort Companion Card -->
-      <div class="card pillar-card" id="card_101_{cid_underscored}_socratic_companion" style="border: 2px solid var(--accent-cyan); background: rgba(15, 23, 42, 0.9); max-width: 960px; margin: 0 auto 2rem auto;">
-        <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;">
-          <div style="flex: 1; min-width: 260px;">
-            <div style="color: var(--accent-cyan); font-weight: 700; font-size: 0.85rem; margin-bottom: 0.25rem;">{soc_badge}</div>
-            <h3 style="color: #e2e8f0; font-size: 1.2rem; margin: 0 0 0.4rem 0;">Class {class_id} Live Cohort Discussion &amp; Q&amp;A</h3>
-            <p style="color: #cbd5e1; font-size: 0.94rem; margin: 0; line-height: 1.5;">{soc_desc}</p>
-          </div>
-          <div style="display: flex; gap: 0.6rem; flex-wrap: wrap;">
-            <a href="{soc_href}" class="btn btn-outline" style="border-color: var(--accent-cyan); color: var(--accent-cyan); font-weight: 800; padding: 0.6rem 1.2rem; border-radius: 6px;">{soc_btn_label}</a>
-          </div>
-        </div>
-      </div>
+      </div>{socratic_card_block}
 
       <!-- Bottom Action Navigation -->
       <div style="margin-top: 2.5rem; display: flex; gap: 0.85rem; flex-wrap: wrap; align-items: center; justify-content: center;">
-        <a href="/101/{class_id}/quiz-learned/" data-progressive-quiz-cid="{class_id}" data-learned-href="/101/{class_id}/quiz-learned/" data-expert-href="/101/{class_id}/quiz-expert/" class="btn btn-primary" style="background: var(--accent-gold); color: #0a1128; font-weight: 800; font-size: 1.02rem; padding: 0.75rem 1.4rem;">📘 Take 5-Q Learned Quiz ➔</a>
-        <a href="{soc_href}" class="btn btn-outline" style="font-size: 1.02rem; padding: 0.75rem 1.4rem;">{soc_btn_label}</a>
+        <a href="/101/{class_id}/quiz-learned/" data-progressive-quiz-cid="{class_id}" data-learned-href="/101/{class_id}/quiz-learned/" data-expert-href="/101/{class_id}/quiz-expert/" class="btn btn-primary" style="background: var(--accent-gold); color: #0a1128; font-weight: 800; font-size: 1.02rem; padding: 0.75rem 1.4rem;">📘 Take 5-Q Learned Quiz ➔</a>{bottom_soc_btn}
         <a href="/101" class="btn btn-outline" style="font-size: 1.02rem; padding: 0.75rem 1.4rem;">⬅ Back to 101 Hub</a>
       </div>
 
@@ -864,9 +866,15 @@ def render_101_hub_card(spec: dict) -> str:
     default_icon = "⚖️" if is_odd else "🎥"
     icon = spec.get("hub_card_icon", default_icon)
     hub_summary_html = spec.get("hub_card_summary_html") or html.escape(spec["meta_description"])
-    socratic = spec["socratic_companion"]
-    soc_href = socratic["href"]
-    soc_btn = socratic["button_label"]
+    socratic = spec.get("socratic_companion") or {}
+    soc_href = socratic.get("href", "")
+    soc_btn = socratic.get("button_label", "")
+    has_recorded_socratic = bool(soc_href and re.match(r"^/event/\d{4}-\d{2}-\d{2}/$", soc_href))
+    soc_link_html = (
+        f' <a href="{soc_href}" class="btn btn-outline" style="font-size: 0.84rem; padding: 0.45rem 0.85rem; border-color: var(--accent-cyan); color: var(--accent-cyan);">{soc_btn}</a>'
+        if has_recorded_socratic
+        else ""
+    )
 
     return f"""        <!-- Class {class_id} Card -->
         <div class="card pillar-card" style="border: 2px solid {accent};">
@@ -877,7 +885,7 @@ def render_101_hub_card(spec: dict) -> str:
             {hub_summary_html}
           </p>
           <div class="card-actions" style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
-            <a href="/101/{class_id}/" class="btn btn-primary" style="font-size: 0.86rem; padding: 0.45rem 0.9rem;">📘 Open Module {class_id} ➔</a> <a href="{soc_href}" class="btn btn-outline" style="font-size: 0.84rem; padding: 0.45rem 0.85rem; border-color: var(--accent-cyan); color: var(--accent-cyan);">{soc_btn}</a>
+            <a href="/101/{class_id}/" class="btn btn-primary" style="font-size: 0.86rem; padding: 0.45rem 0.9rem;">📘 Open Module {class_id} ➔</a>{soc_link_html}
             <a href="/101/{class_id}/quiz-learned/" data-progressive-quiz-cid="{class_id}" data-learned-href="/101/{class_id}/quiz-learned/" data-expert-href="/101/{class_id}/quiz-expert/" class="btn btn-outline" style="font-size: 0.84rem; padding: 0.45rem 0.85rem; border-color: var(--accent-gold); color: var(--accent-gold);">📘 Take 5-Q Learned Quiz ➔</a>
           </div>
         </div>"""

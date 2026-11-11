@@ -83,14 +83,13 @@ function run(webDir, config) {
       violations.push(`101/index.html is missing link to /101/${item.mod}`);
     }
 
-    // 6b. Exact 1-to-1 Socratic Event bijection (1.1 has no separate recorded event; 1.2 through 6.2 must link to their exact Socratic event)
+    // 6b. No upcoming "Live Socratic Session" links in /101/; only recorded /event/YYYY-MM-DD/ sessions may be linked
+    if (html.includes("Live Socratic Session")) {
+      violations.push(`101/${item.mod}/index.html must NOT include upcoming 'Live Socratic Session' links`);
+    }
     if (item.mod === "1.1") {
       if (html.includes("_socratic_companion")) {
         violations.push("101/1.1/index.html must NOT have a fake Socratic Event companion card (1.1 is the foundational self-paced module)");
-      }
-    } else {
-      if (!html.includes("_socratic_companion") || !html.includes("/event/")) {
-        violations.push(`101/${item.mod}/index.html is missing the Live Socratic Cohort Companion card linking to /event/`);
       }
     }
 
@@ -124,7 +123,10 @@ function run(webDir, config) {
     }
   }
 
-  // 8. Verify strict ascending numerical order of Class X.Y cards in /101/index.html
+  // 8. Verify strict ascending numerical order of Class X.Y cards in /101/index.html and no Live Socratic Session links
+  if (hubHtml.includes("Live Socratic Session")) {
+    violations.push("101/index.html must NOT include upcoming 'Live Socratic Session' links");
+  }
   const cardOrderMatches = [...hubHtml.matchAll(/<h3[^>]*>Class\s+(\d+\.\d+):/g)].map(m => m[1]);
   for (let i = 1; i < cardOrderMatches.length; i++) {
     const prev = cardOrderMatches[i - 1].split(".").map(Number);
