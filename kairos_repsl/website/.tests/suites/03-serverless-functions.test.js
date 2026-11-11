@@ -102,6 +102,26 @@ for (const pwaPath of ['/manifest.webmanifest', '/sw.js', '/icon-192.png', '/ico
   assert.ok((stageAuthRes.headers.get('Set-Cookie') || '').includes('lexclinic_stage_auth=authorized'), 'Authenticated stage response must set auth cookie');
   assertions += 2;
 
+  // D) Audio .m4a byte-range request (Range: bytes=4-7) -> returns HTTP 206 Partial Content with sliced bytes
+  const stageRangeRes = await middleware.onRequest({
+    request: new Request('https://stage.lex.clinic/event/2026-11-05/audio.m4a', {
+      headers: {
+        Cookie: 'lexclinic_stage_auth=authorized',
+        Range: 'bytes=4-7'
+      }
+    }),
+    next: async () => new Response('0000ftypM4A 0000', {
+      status: 200,
+      headers: { 'Content-Type': 'audio/mp4' }
+    })
+  });
+  assert.strictEqual(stageRangeRes.status, 206, 'Audio .m4a Range request must return HTTP 206 Partial Content');
+  assert.strictEqual(stageRangeRes.headers.get('Accept-Ranges'), 'bytes', 'Audio .m4a response must include Accept-Ranges: bytes');
+  assert.strictEqual(stageRangeRes.headers.get('Content-Range'), 'bytes 4-7/16', 'Audio .m4a response must include exact Content-Range');
+  const slicedText = await stageRangeRes.text();
+  assert.strictEqual(slicedText, 'ftyp', 'Audio .m4a 206 response body must equal the exact requested byte slice');
+  assertions += 4;
+
   // --------------------------------------------------------------------------
   // Test 3.2: REST Transcripts API (functions/api/transcripts.js)
   // --------------------------------------------------------------------------

@@ -128,7 +128,10 @@ async function run(webDir) {
         "Range": "bytes=0-1023"
       }
     });
-    assert.ok(res.status === 200 || res.status === 206, `Audio route ${audioPath} must return 200 or 206 (got ${res.status})`);
+    assert.strictEqual(res.status, 206, `Audio route ${audioPath} must return HTTP 206 Partial Content on Range request (got ${res.status})`);
+    assert.strictEqual(res.headers.get("accept-ranges"), "bytes", `Audio route ${audioPath} must advertise Accept-Ranges: bytes`);
+    const contentRange = res.headers.get("content-range") || "";
+    assert.ok(contentRange.startsWith("bytes 0-1023/"), `Audio route ${audioPath} must return Content-Range 'bytes 0-1023/<total>' (got '${contentRange}')`);
     const contentType = (res.headers.get("content-type") || "").toLowerCase();
     assert.ok(
       contentType.includes("audio/mp4") || contentType.includes("audio/x-m4a") || contentType.includes("video/mp4"),
@@ -136,11 +139,11 @@ async function run(webDir) {
     );
 
     const buf = Buffer.from(await res.arrayBuffer());
-    assert.ok(buf.length >= 16, `Audio route ${audioPath} must return non-empty binary payload`);
+    assert.strictEqual(buf.length, 1024, `Audio route ${audioPath} Range bytes=0-1023 must return exactly 1024 bytes (got ${buf.length})`);
     // MP4 / M4A faststart files have 'ftyp' box header at bytes 4..8
     const boxType = buf.subarray(4, 8).toString('ascii');
     assert.strictEqual(boxType, 'ftyp', `Audio route ${audioPath} must begin with valid MP4 'ftyp' atom header (got '${boxType}')`);
-    assertions += 4;
+    assertions += 6;
   }));
 
   // --------------------------------------------------------------------------
