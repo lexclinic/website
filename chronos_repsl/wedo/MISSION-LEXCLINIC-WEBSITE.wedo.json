@@ -152,6 +152,11 @@
         "id": "WSYNC-HYBRID-COMPILER-AND-QUIZ-GRADUATION-01",
         "description": "Implement Low-Token Hybrid HTML + JSON Weekly Sync Compiler (chronos_repsl/scripts/weekly_sync_scaffold.py) with --update-hub automation for /event/ and /101/, enforce strict separation of concerns (no upcoming Live Socratic Session links on /101/), purge synthetic 5/5/5 test records from Google Drive (1GidiMBXRYmcDMnAPrgndS35-MsjY1WT7) and localStorage so /event/2026-11-05/ and /101/6.2/ cleanly start at the 5-Question Learned Quiz and graduate to the 20-Question Expert Quiz, and configure automated Direct Upload staging deployments in repsl_dual_commit.py",
         "status": "[x]"
+      },
+      {
+        "id": "BRAND-LOGOS-AND-AUDIO-RANGE-206-01",
+        "description": "Slice the 4 modern LexClinic Brand Architecture logos (/logo-ice.png, /logo-cpu.png, /logo-fak.png, /logo-mri.png), regenerate /logo-ice.png with a full-width hinged automotive hood, dual gas struts, and clean twin-plenum V8 engine bay, set the square CPU die render as the PWA icon across /icon-512.png, /icon-192.png, /favicon.png, and /favicon.ico, and implement RFC 9110 HTTP 206 Partial Content byte-range slicing for .m4a and .mp4 streams in functions/_middleware.js (verified across 440 assertions in Test Suites 03 & 04)",
+        "status": "[x]"
       }
     ]
   },
