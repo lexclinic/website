@@ -66,8 +66,13 @@
         "id": "TEMPLATE-PARITY-AND-IDEA-DEPTH-UPGRADE",
         "description": "Rebuild /event/2026-11-05/index.html matching /event/2026-10-29/ template parity (full-width cinema layout, 4-tile takeaway grid, #1ed760 audio card, speed controls 1.0x-2.0x, play meters, working copy-link buttons, and bottom navigation), and upgrade /101/idea/ and /101/ across Classes 1.1-7.2 (33 T1 Novel + 34 T2 Deepened = 67/168 [39.9%] Generative vs. 101/168 [60.1%] Review) with mobile responsive table scrolling on <= 768px viewports",
         "status": "[x]"
+      },
+      {
+        "id": "QUIZ-5Q-TO-20Q-GRADUATION-AND-SPEC-SYNC",
+        "description": "Purge synthetic pre-Nov-11 5/5/5 test records from Google Drive ledger (1GidiMBXRYmcDMnAPrgndS35-MsjY1WT7) and browser localStorage, and compile chronos_repsl/specs/event_2026-11-05.json + chronos_repsl/specs/module_101_6.2.json via weekly_sync_scaffold.py so /event/2026-11-05/ starts at the 5-Question Learned Quiz (/101/6.2/quiz-learned/) and graduates to the 20-Question Expert Quiz (/101/6.2/quiz-expert/)",
+        "status": "[x]"
       }
     ]
   },
-  "attribution": "LexClinic Legal Engineering Swarm (20261110)"
+  "attribution": "LexClinic Legal Engineering Swarm (20261111)"
 }

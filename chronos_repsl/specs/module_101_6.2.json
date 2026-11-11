@@ -1,0 +1,181 @@
+{
+  "type": "module_101",
+  "class_id": "6.2",
+  "lesson_title": "Reading Right-to-Left: Adjusting Your Eyes",
+  "meta_description": "Socratic Session for Class 6.2: Reading Right-to-Left: Adjusting Your Eyes. Overcoming English prose left-to-right reading bias by training your legal eye to trace variable assignment from right to left.",
+  "hero_subtitle_html": "Overcoming English prose left-to-right reading bias by training your legal eye to trace variable assignment from right to left.",
+  "overview_html": "<p style=\"line-height: 1.7; color: var(--text-main); font-size: 1.05rem; margin: 0;\">\n          Trains legal practitioners to overcome left-to-right English prose bias by reading variable assignments from right to left, unlocking boolean logic gates, contract chaining as modular software dependencies, the Unix philosophy of universal JSON text streams, and Ian Grigg's Ricardian contracts.\n        </p>",
+  "video_slug": "class-6-2-reading-right-to-left-adjusting-your-eyes",
+  "youtube_id": "jAmvvgllLPg",
+  "spotify_id": "2IhGZEMrXXg1rkzg9eSfuz",
+  "hub_card_icon": "🔄",
+  "hub_card_summary_html": "Trains the legal eye to overcome left-to-right prose bias by reading variable assignments right-to-left, unlocking contract chaining, Unix JSON streams, and Ricardian contracts.",
+  "socratic_companion": {
+    "badge_text": "🎓 101 LIVE SOCRATIC COHORT COMPANION • Nov 5, 2026",
+    "description_html": "Listen to the recorded Nov 5, 2026 live cohort Socratic session &amp; 6 explainer clips for Class 6.2.",
+    "href": "/event/2026-11-05/",
+    "button_label": "🗣️ Nov 5 Socratic Recording ➔"
+  },
+  "questions": [
+    {
+      "prompt": "According to Class 6.2, what is the real barrier holding brilliant legal minds back when reading computer code?",
+      "options": {
+        "A": "It's not the logic, it's the grammar — code uses a strict structural syntax that law school never trained lawyers to read.",
+        "B": "A lack of logical reasoning ability among lawyers.",
+        "C": "The inability of lawyers to understand conditional clauses."
+      }
+    },
+    {
+      "prompt": "What artistic metaphor does Class 6.2 use to describe a legal engineer designing a contract before hitting 'play' at runtime?",
+      "options": {
+        "A": "A musical composer writing a symphony — mapping out verses, conditions, and looping choruses before the stage performance begins.",
+        "B": "A painter throwing random paint at a canvas.",
+        "C": "A sculptor chiseling stone without a plan."
+      }
+    },
+    {
+      "prompt": "What is 'contract chaining' as defined in Class 6.2?",
+      "options": {
+        "A": "Treating legal agreements like dependent software modules where a broken prerequisite (e.g., payment or indemnity) automatically halts the downstream permission chain at runtime.",
+        "B": "Stapling multiple paper contracts together in a binder.",
+        "C": "Mailing sequential demand letters over several months."
+      }
+    },
+    {
+      "prompt": "What 1980s computer science design principle does Class 6.2 borrow to prevent reinventing the wheel in modular legal engineering?",
+      "options": {
+        "A": "The Unix philosophy — writing small, simple programs that do one thing well and communicate via universal text streams like JSON.",
+        "B": "Mainframe punch-card batch processing.",
+        "C": "Proprietary binary lock-in formats."
+      }
+    },
+    {
+      "prompt": "What is a Ricardian contract (invented by Ian Grigg) as explained in Class 6.2?",
+      "options": {
+        "A": "An agreement that combines conditional legalese alongside programming language so it is both machine-readable for automated runtime and text-readable for human lawyers.",
+        "B": "A verbal handshake agreement with no written record.",
+        "C": "A purely graphical flowchart with no text."
+      }
+    },
+    {
+      "prompt": "Why does Class 6.2 state that lawyers drafting complex clauses and sub-clauses are 'practically already doing nested logic'?",
+      "options": {
+        "A": "Because layered legal exceptions, provisos, and conditions follow the exact same logical structure as nested software conditionals.",
+        "B": "Because law schools require every student to write C++ compilers.",
+        "C": "Because legal briefs are written in binary machine code."
+      }
+    },
+    {
+      "prompt": "To build computational legal machinery, what crucial separation must be made between data and logic?",
+      "options": {
+        "A": "Decoupling passive data (strings, numbers, booleans) from active instructions (the machinery that manipulates the data).",
+        "B": "Merging all instructions and data into a single unformatted paragraph.",
+        "C": "Removing all numbers from financial contracts."
+      }
+    },
+    {
+      "prompt": "What does Class 6.2 call the transition from a static spreadsheet to an active running script where instructions manipulate passive data?",
+      "options": {
+        "A": "The active canvas.",
+        "B": "The dormant ledger.",
+        "C": "The paper archive."
+      }
+    },
+    {
+      "prompt": "Why does the single equals sign (`=`) cause instant cognitive dissonance for legal professionals?",
+      "options": {
+        "A": "Because a symbol known their entire life as 'this equals that' flips its meaning to become an active value-assignment command.",
+        "B": "Because the symbol does not exist on standard keyboards.",
+        "C": "Because it is only used in foreign languages."
+      }
+    },
+    {
+      "prompt": "What reading habit makes programmatic variable assignment look like nonsense until you retrain your eyes?",
+      "options": {
+        "A": "Deeply ingrained English prose left-to-right reading bias.",
+        "B": "Reading footnotes before headings.",
+        "C": "Skimming table of contents pages."
+      }
+    },
+    {
+      "prompt": "When tracing a variable assignment right-to-left in Class 6.2, what lives on the far right side (Step 1)?",
+      "options": {
+        "A": "The passive data or value being assigned.",
+        "B": "The empty variable container name.",
+        "C": "The return statement of the file."
+      }
+    },
+    {
+      "prompt": "In the right-to-left eye movement trace, what happens in Step 2 and Step 3?",
+      "options": {
+        "A": "Step 2 follows the active assignment instruction (`=`) moving left, and Step 3 stores the result in the variable waiting on the far left.",
+        "B": "Step 2 erases the right side, and Step 3 closes the browser.",
+        "C": "Step 2 compares two strings, and Step 3 prints a receipt."
+      }
+    },
+    {
+      "prompt": "Once you master right-to-left variable assignment, what binary foundation for digital decisions is unlocked?",
+      "options": {
+        "A": "True and false Boolean logic gates.",
+        "B": "Ambiguous natural-language adjectives.",
+        "C": "Handwritten margin notes."
+      }
+    },
+    {
+      "prompt": "How does contract chaining differ from a traditional paper breach of contract?",
+      "options": {
+        "A": "Instead of a paper breach argued over in court later, contract chaining enforces legal dependencies programmatically and live at runtime.",
+        "B": "Contract chaining requires waiting three years for arbitration.",
+        "C": "Contract chaining ignores payment defaults."
+      }
+    },
+    {
+      "prompt": "Why is JSON highlighted in Class 6.2 as the ideal universal text stream format under the Unix philosophy?",
+      "options": {
+        "A": "Because JSON is a universal structured text format that both human lawyers and computer programs/AI integrations can easily read.",
+        "B": "Because JSON files can only be opened on 1980s calculators.",
+        "C": "Because JSON encrypts text so humans cannot read it."
+      }
+    },
+    {
+      "prompt": "In Class 6.2, how do computer science 'pointer mechanics' function inside Ricardian contract frameworks?",
+      "options": {
+        "A": "They act as digital signposts linking modular clauses together across a network to form a seamless, permissionless chain of title.",
+        "B": "They move the mouse cursor on a desktop screen.",
+        "C": "They delete old versions of PDF files."
+      }
+    },
+    {
+      "prompt": "Who invented the Ricardian contract model referenced in Class 6.2?",
+      "options": {
+        "A": "Ian Grigg.",
+        "B": "Charles Goldfarb.",
+        "C": "Gottfried Wilhelm Leibniz."
+      }
+    },
+    {
+      "prompt": "In the macro evolution of the legal profession, what characterizes the 'Direct Law' stage?",
+      "options": {
+        "A": "Traditional analog lawyering — the 'horse and buggy' era.",
+        "B": "High-speed legal engineering with active drivers.",
+        "C": "Fully autonomous self-driving legal runtimes."
+      }
+    },
+    {
+      "prompt": "What characterizes the 'Mechanized Law' stage in Class 6.2?",
+      "options": {
+        "A": "The automobile era — legal engineering operating at hyperspeed, but still requiring active human drivers and new regulatory guardrails.",
+        "B": "Purely verbal common-law pleading.",
+        "C": "Autonomous AI agents with zero human oversight."
+      }
+    },
+    {
+      "prompt": "What two paths does Class 6.2 present to legal professionals as automated law accelerates?",
+      "options": {
+        "A": "The engineering path (building the computational systems) or the modernized lawyering path (where reading code syntax in reverse is as natural as writing a brief).",
+        "B": "Retiring from law or switching to paper-only filing.",
+        "C": "Avoiding all digital contracts."
+      }
+    }
+  ]
+}

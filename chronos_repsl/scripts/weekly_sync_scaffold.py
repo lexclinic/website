@@ -333,6 +333,30 @@ def render_event_page(spec: dict, base_dir: Path) -> str:
     </div>
   </section>
 
+  <script>
+    (function() {{
+      try {{
+        if (localStorage.getItem('lexclinic_quiz_reset_20261111_v2') !== '1') {{
+          const rawSubs = JSON.parse(localStorage.getItem('lexclinic_quiz_submissions') || '[]');
+          const subs = Array.isArray(rawSubs) ? rawSubs : Object.values(rawSubs);
+          const cleaned = subs.filter(s => {{
+            if (!s) return false;
+            const sc = String(s.score || '');
+            if (sc.split('/').length > 2) return false;
+            const cid = String(s.class_id || '');
+            const ts = String(s.timestamp || '');
+            if ((cid === '6.1' || cid === '6.2' || cid === 'class_6.1' || cid === 'class_6.2') && (!ts || ts < '2026-11-11T00:00:00.000Z')) return false;
+            return true;
+          }});
+          localStorage.setItem('lexclinic_quiz_submissions', JSON.stringify(cleaned));
+          localStorage.removeItem('lexclinic_quiz_answers_6.2');
+          localStorage.removeItem('lexclinic_quiz_answers_6.1');
+          localStorage.setItem('lexclinic_quiz_reset_20261111_v2', '1');
+        }}
+      }} catch (e) {{}}
+    }})();
+  </script>
+
 {render_common_footer()}"""
 
 
@@ -630,6 +654,10 @@ def render_quiz_page(spec: dict, mode: str) -> str:
       function unlockMasteryQuiz() {{
         currentStage = 2;
         const masteryContainer = document.getElementById('mastery-questions-container');
+        if (!masteryContainer && TIER_MODE === 'learned' && typeof window !== 'undefined' && window.location) {{
+          window.location.href = EXPERT_URL;
+          return;
+        }}
         if (masteryContainer) {{
           masteryContainer.style.display = 'block';
           const radios = masteryContainer.querySelectorAll('input[type="radio"]');
@@ -648,6 +676,24 @@ def render_quiz_page(spec: dict, mode: str) -> str:
 
       function restoreSavedQuizState() {{
         try {{
+          if (localStorage.getItem('lexclinic_quiz_reset_20261111_v2') !== '1') {{
+            const rawInit = JSON.parse(localStorage.getItem('lexclinic_quiz_submissions') || '[]');
+            const initSubs = Array.isArray(rawInit) ? rawInit : Object.values(rawInit);
+            const cleanedInit = initSubs.filter(s => {{
+              if (!s) return false;
+              const sc = String(s.score || '');
+              if (sc.split('/').length > 2) return false;
+              const cid = String(s.class_id || '');
+              const ts = String(s.timestamp || '');
+              if ((cid === '6.1' || cid === '6.2' || cid === 'class_6.1' || cid === 'class_6.2') && (!ts || ts < '2026-11-11T00:00:00.000Z')) return false;
+              return true;
+            }});
+            localStorage.setItem('lexclinic_quiz_submissions', JSON.stringify(cleanedInit));
+            localStorage.removeItem('lexclinic_quiz_answers_6.2');
+            localStorage.removeItem('lexclinic_quiz_answers_6.1');
+            localStorage.setItem('lexclinic_quiz_reset_20261111_v2', '1');
+          }}
+
           const savedAnswers = JSON.parse(localStorage.getItem('lexclinic_quiz_answers_' + CLASS_ID) || '{{}}');
           const form = document.getElementById(FORM_ID);
           if (form && savedAnswers && typeof savedAnswers === 'object') {{
@@ -669,6 +715,7 @@ def render_quiz_page(spec: dict, mode: str) -> str:
             const sc = String(s.score || '');
             if (sc.includes('/')) {{
               const parts = sc.split('/').map(Number);
+              if (parts.length > 2) return false;
               return parts[0] >= 4;
             }}
             return Number(sc) >= 4;
@@ -700,7 +747,16 @@ def render_quiz_page(spec: dict, mode: str) -> str:
               .then(data => {{
                 if (!data || !Array.isArray(data.submissions)) return;
                 const remoteMatch = data.submissions.filter(s => s && (s.class_id === CLASS_ID || s.class_id === 'class_' + CLASS_ID));
-                if (remoteMatch.length > 0) {{
+                const remotePassedLearned = remoteMatch.some(s => {{
+                  const sc = String(s.score || '');
+                  if (sc.includes('/')) {{
+                    const parts = sc.split('/').map(Number);
+                    if (parts.length > 2) return false;
+                    return parts[0] >= 4;
+                  }}
+                  return Number(sc) >= 4;
+                }});
+                if (remotePassedLearned) {{
                   const lockBanner = document.getElementById('expert-prerequisite-lock-banner');
                   if (lockBanner) lockBanner.style.display = 'none';
                   if (form && form.style) form.style.display = 'block';

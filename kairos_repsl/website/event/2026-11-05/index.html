@@ -361,6 +361,30 @@
     </div>
   </section>
 
+  <script>
+    (function() {
+      try {
+        if (localStorage.getItem('lexclinic_quiz_reset_20261111_v2') !== '1') {
+          const rawSubs = JSON.parse(localStorage.getItem('lexclinic_quiz_submissions') || '[]');
+          const subs = Array.isArray(rawSubs) ? rawSubs : Object.values(rawSubs);
+          const cleaned = subs.filter(s => {
+            if (!s) return false;
+            const sc = String(s.score || '');
+            if (sc.split('/').length > 2) return false;
+            const cid = String(s.class_id || '');
+            const ts = String(s.timestamp || '');
+            if ((cid === '6.1' || cid === '6.2' || cid === 'class_6.1' || cid === 'class_6.2') && (!ts || ts < '2026-11-11T00:00:00.000Z')) return false;
+            return true;
+          });
+          localStorage.setItem('lexclinic_quiz_submissions', JSON.stringify(cleaned));
+          localStorage.removeItem('lexclinic_quiz_answers_6.2');
+          localStorage.removeItem('lexclinic_quiz_answers_6.1');
+          localStorage.setItem('lexclinic_quiz_reset_20261111_v2', '1');
+        }
+      } catch (e) {}
+    })();
+  </script>
+
   <!-- Footer -->
   <footer class="footer">
     <div class="container footer-content">
