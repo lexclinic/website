@@ -1,17 +1,46 @@
 {
   "wedo_instance": {
     "id": "101-IDEA-NOVELTY-MAP",
-    "description": "LexClinic 101 Curriculum Transcript Idea & Novelty Mapping Dashboard (stage.lex.clinic/101/idea/) and Bottom-Up Banner Integration",
+    "description": "LexClinic 101 Curriculum 3-Tier Transcript Idea Novelty, Concept Depth & Breadth Mapping Dashboard (stage.lex.clinic/101/idea/) and Bottom-Up Banner Integration",
     "status": "[completed]",
     "meta": {
       "protocol": "WeDo-JSON",
-      "version": "1.1.0",
+      "version": "2.0.0",
       "target_environment": "stage.lex.clinic",
       "deployment_url": "https://stage.lex.clinic/101/idea/",
-      "classes_analyzed": "1.1 through 6.2 (12 classes)",
-      "total_concept_instances": 143,
-      "unique_novel_ideas": 31,
-      "repeated_instances": 112
+      "classes_analyzed": "1.1 through 7.2 (14 classes)",
+      "total_concept_instances": 168,
+      "tier_1_unique_novel_seeds": {
+        "count": 33,
+        "percentage": "19.6%",
+        "range": "I1-I33"
+      },
+      "tier_2_deepened_fleshed_out_instances": {
+        "count": 34,
+        "percentage": "20.2%",
+        "description": "Previously introduced seed concepts compounded with deeper syntax mechanics, multi-step translation pipelines, or expanded domain breadth (added per Lesson 6.2 Socratic audit)"
+      },
+      "combined_generative_learning_t1_plus_t2": {
+        "count": 67,
+        "percentage": "39.9%",
+        "benchmark_alignment": "Matches Kyle Smith's 40% New-or-Deepened / 60% Redundant target for Introductory 101 courses under the Expertise Reversal Effect and Bruner's Spiral Curriculum"
+      },
+      "tier_3_baseline_retrieval_instances": {
+        "count": 101,
+        "percentage": "60.1%"
+      },
+      "pedagogical_benchmarks": {
+        "early_novice_seed_target": "15%-20% novel seeds / 80%-85% review (Siegfried Engelmann Direct Instruction 85:15 Rule & John Sweller Cognitive Load Theory)",
+        "introductory_101_generative_target": "40% generative (T1 novel + T2 deepened) / 60% baseline review (LexClinic 101 actual: 39.9% / 60.1%)",
+        "intermediate_201_clinic_target": "60% generative / 40% review",
+        "advanced_301_professional_phd_target": "80% novel & deepened synthesis / 20% review"
+      },
+      "next_iteration_101_seeds_from_lesson_6_2": [
+        "Gottfried Wilhelm Leibniz (Doctor of Law, 1667): Calculus and symbolic logic invented by a lawyer as a child of jurisprudence",
+        "Alonzo Church & Lambda Calculus: Functional abstraction and variable binding bridging legal logic and deterministic execution",
+        "Charles Goldfarb's GML/SGML & Document Object Model (DOM): Websites and real-time domino-consequence UIs originating as structured legal documents",
+        "Fixed-Point Mathematics (trustless cryptographic evidentiary hashes) vs. Floating-Point Mathematics (stochastic AI requiring ongoing human-in-the-loop surveillance under 8 CFR 103.2(b)(3))"
+      ]
     },
     "tasks": [
       {
@@ -33,8 +62,23 @@
         "id": "IDEA-MAP-04",
         "description": "Verify 100% compliance with LexClinic Modular Contract Linter (Rules 01-08) and deploy to stage.lex.clinic",
         "status": "[x]"
+      },
+      {
+        "id": "IDEA-MAP-05-DEPTH-DIMENSION",
+        "description": "Upgrade /101/idea/ and /101/ banner per Lesson 6.2 Socratic audit (Nov 5, 2026) to add Tier 2 Concept Depth & Breadth (Fleshed-Out / Compounded Spiral Elaboration vs. Tier 1 First-Introduced Seed vs. Tier 3 Baseline Review), demonstrating that 19.6% Novel Seeds (33) + 20.2% Deepened Elaborations (34) = 39.9% Combined Generative Content vs. 60.1% Baseline Review (matching the 40:60 101 benchmark)",
+        "status": "[x]"
+      },
+      {
+        "id": "IDEA-MAP-06-MODULES-7-1-AND-7-2",
+        "description": "Extend /101/idea/ sequential audit matrix, top motifs ranking, and filterable class ledger from 12 classes (1.1-6.2) to all 14 published classes (1.1-7.2, 168 total concept-instances, I1-I33 including I32 3-Step Legal-to-Boolean Pipeline & Smart-Lock/Reader-Hat Auto-Revocation and I33 Nested Subclause Domino-Collapse & Standalone Boilerplate Plugin Nodes)",
+        "status": "[x]"
+      },
+      {
+        "id": "IDEA-MAP-07-PEDAGOGY-AND-MOBILE-TABLES",
+        "description": "Add Pedagogical Research & Course-Level Target Benchmarks (Engelmann 85:15, Sweller CLT, Bruner Spiral Curriculum, and 101 40:60 vs. 201 60:40 vs. 301/Professional 80:20 matrix) to /101/idea/, maintain strict Separation of Concerns from Socratic events, and enforce horizontal table scrolling without column squishing on narrow viewports (<= 768px) in /styles.css and /101/idea/",
+        "status": "[x]"
       }
     ]
   },
-  "attribution": "LexClinic Legal Engineering Swarm (20261030)"
+  "attribution": "LexClinic Legal Engineering Swarm (20261110)"
 }

@@ -244,6 +244,8 @@ function run(webDir, config) {
       { dir: "101/5.2", tid: "class_5.2" },
       { dir: "101/6.1", tid: "class_6.1" },
       { dir: "101/6.2", tid: "class_6.2" },
+      { dir: "101/7.1", tid: "class_7.1" },
+      { dir: "101/7.2", tid: "class_7.2" },
       { dir: "event/2026-08-24", tid: "2026-08-24-clinic-misc" },
       { dir: "event/2026-09-04", tid: "2026-09-04-class-2.2" },
       { dir: "event/2026-09-17", tid: "2026-09-17-class-3.1" },
@@ -257,6 +259,7 @@ function run(webDir, config) {
     for (const item of quizTranscriptMap) {
       const tText = transcriptsById[item.tid] || "";
       const expPath = path.join(webDir, item.dir, "quiz-expert", "index.html");
+      const lrnPath = path.join(webDir, item.dir, "quiz-learned", "index.html");
       if (!fs.existsSync(expPath) || !tText) continue;
       const expHtml = fs.readFileSync(expPath, "utf8");
       const qCards = expHtml.match(/<div class="quiz-question-card"[\s\S]*?<\/div>/g) || [];
@@ -269,6 +272,30 @@ function run(webDir, config) {
       }
       if (groundedCount < 18) {
         violations.push(`${item.dir}/quiz-expert/index.html has insufficient transcript grounding (${groundedCount}/20 questions grounded in transcript '${item.tid}')`);
+      }
+
+      if (fs.existsSync(lrnPath)) {
+        const lrnHtml = fs.readFileSync(lrnPath, "utf8");
+        const lCards = lrnHtml.match(/<div class="quiz-question-card"[\s\S]*?<\/div>/g) || [];
+        let lGrounded = 0;
+        for (const card of lCards) {
+          const words = (card.toLowerCase().match(/[a-z]{4,}/g) || []).filter(w => !stopWords.has(w));
+          const uniqueWords = Array.from(new Set(words));
+          const hits = uniqueWords.filter(w => tText.includes(w)).length;
+          if (hits >= 2) lGrounded++;
+        }
+        if (lGrounded < 4) {
+          violations.push(`${item.dir}/quiz-learned/index.html has insufficient transcript grounding (${lGrounded}/5 questions grounded in transcript '${item.tid}')`);
+        }
+        if (item.dir.startsWith("101/")) {
+          const cnum = item.dir.replace("101/", "");
+          for (const card of lCards) {
+            const wrongMatch = card.match(/Class\s+(\d+\.\d+)/i);
+            if (wrongMatch && wrongMatch[1] !== cnum) {
+              violations.push(`${item.dir}/quiz-learned/index.html contains copypasta question referencing Class ${wrongMatch[1]} instead of Class ${cnum}`);
+            }
+          }
+        }
       }
     }
   }

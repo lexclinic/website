@@ -13,12 +13,13 @@ function run(webDir, config) {
     { date: "2026-09-24", month: "2026-09", mod: "3.2", minClips: 5, mustHaveYt: "CIzyHeopPcQ", inRecent3: false },
     { date: "2026-10-01", month: "2026-10", mod: "4.1", minClips: 3, mustHaveYt: "5BAyi_n3lV4", inRecent3: false },
     { date: "2026-10-08", month: "2026-10", mod: "4.2", minClips: 5, mustHaveYt: "PuHUnTEwveg", inRecent3: false },
-    { date: "2026-10-15", month: "2026-10", mod: "5.1", minClips: 5, mustHaveYt: "Bepdpe2WceI", inRecent3: true },
+    { date: "2026-10-15", month: "2026-10", mod: "5.1", minClips: 5, mustHaveYt: "Bepdpe2WceI", inRecent3: false },
     { date: "2026-10-22", month: "2026-10", mod: "5.2", minClips: 5, mustHaveYt: "3LvhVut6Jdw", inRecent3: true },
-    { date: "2026-10-29", month: "2026-10", mod: "6.1", minClips: 5, mustHaveYt: "a0VOIB2_jgQ", inRecent3: true }
+    { date: "2026-10-29", month: "2026-10", mod: "6.1", minClips: 5, mustHaveYt: "a0VOIB2_jgQ", inRecent3: true },
+    { date: "2026-11-05", month: "2026-11", mod: "6.2", minClips: 6, mustHaveYt: "tOS-4HdTJOI", inRecent3: true }
   ];
 
-  const requiredMonths = ["2026-10", "2026-09", "2026-08"];
+  const requiredMonths = ["2026-11", "2026-10", "2026-09", "2026-08"];
   const violations = [];
 
   const transcriptsFile = path.join(webDir, "transcripts.json");
@@ -109,6 +110,12 @@ function run(webDir, config) {
     const meterMatches = html.match(/media-playback-meter-container/g) || [];
     if (meterMatches.length < ev.minClips + 1) {
       violations.push(`event/${ev.date}/index.html has ${meterMatches.length} watch meters (expected >= ${ev.minClips + 1})`);
+    }
+
+    if (ev.date >= "2026-10-01") {
+      if (!html.includes("#1ed760") || !html.includes("window.setAudioSpeed(") || !html.includes("window.setVideoSpeed(") || !html.includes("requestFullscreen") || !/window\.copyCardDirectLink\([^)]*,\s*this\)/.test(html)) {
+        violations.push(`event/${ev.date}/index.html is missing canonical template features (#1ed760 green audio box, speed controls, fullscreen button, or copyCardDirectLink(..., this))`);
+      }
     }
 
     if (html.includes("status-badge") || html.includes("hero-badge")) {

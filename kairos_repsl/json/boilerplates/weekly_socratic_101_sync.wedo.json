@@ -1,0 +1,67 @@
+{
+  "wedo_instance": {
+    "id": "BOILERPLATE-WEEKLY-SOCRATIC-101-SYNC",
+    "description": "Low-Token Hybrid HTML + JSON Weekly Sync Protocol for LexClinic Socratic Events (/event/YYYY-MM-DD/) and 101 Courseware Modules (/101/X.Y/). Eliminates O(N^2) context bloat and template drift while preserving rich LLM semantic HTML authoring.",
+    "status": "[TEMPLATE]",
+    "meta": {
+      "protocol": "WeDo-JSON",
+      "version": "2.0.0",
+      "compiler_script": "chronos_repsl/scripts/weekly_sync_scaffold.py",
+      "deploy_script": "chronos_repsl/scripts/repsl_dual_commit.py",
+      "specs_directory": "chronos_repsl/specs/",
+      "target_turn_budget": "8-12 tool calls max (~$3-$5 total session cost)",
+      "strict_scope_boundary": [
+        "kairos_repsl/website/event/",
+        "kairos_repsl/website/101/",
+        "kairos_repsl/website/attest/index.html",
+        "kairos_repsl/website/transcripts.json",
+        "kairos_repsl/website/.linter/rules/",
+        "chronos_repsl/specs/",
+        "chronos_repsl/scripts/weekly_sync_scaffold.py",
+        "chronos_repsl/wedo/"
+      ],
+      "forbidden_out_of_scope_paths": [
+        "kairos_repsl/website/nft/",
+        "kairos_repsl/website/fiduciary/",
+        "kairos_repsl/website/collaborate/",
+        "kairos_repsl/website/erc7827/"
+      ],
+      "token_efficiency_and_architectural_rules": {
+        "rule_1_never_hand_write_full_html_shells": "NEVER call write_file to emit 400-600 line HTML shells for /event/YYYY-MM-DD/index.html, /101/X.Y/index.html, or /101/X.Y/quiz-*/index.html. Author ONLY the compact JSON spec (with rich semantic HTML slots) in chronos_repsl/specs/ and run `python3 chronos_repsl/scripts/weekly_sync_scaffold.py` with `--update-hub`.",
+        "rule_2_llm_authored_html_slots": "Perform bespoke semantic HTML generation inside the spec's HTML slots (`hero_subtitle_html`, `overview_html`, `takeaways` / `takeaways_html`, `custom_sections_html`, `hub_card_summary_html`) or external fragment files (`overview_html_file`, `custom_sections_html_file`). Ensure `audio_slug` never collides with any clip's `slug`.",
+        "rule_3_never_read_full_hub_or_quiz_files": "NEVER read full 540-line quiz files or 1,100-line /101/idea/index.html files into context. Use `grep_search` with `context: 5` or `read_file` with narrow 40-line `start_line`/`end_line` windows when inspecting hub insertion points.",
+        "rule_4_single_source_of_truth_quizzes_5_to_20": "Author the 20 transcript-grounded Socratic questions ONCE in `chronos_repsl/specs/module_101_<X.Y>.json`. The compiler automatically generates `/101/<X.Y>/quiz-learned/index.html` (Stage 1: Q1-Q5), `/101/<X.Y>/quiz-expert/index.html` (Stage 2: Q1-Q20), and `/101/<X.Y>/quiz.html` (Smart Stage 1 -> Stage 2) so all modules and events start at 5 questions and graduate to 20 questions upon passing (4/5 or 5/5). Never leave synthetic test submissions in Google Drive (`1GidiMBXRYmcDMnAPrgndS35-MsjY1WT7`) that prematurely unlock Stage 2.",
+        "rule_5_strict_separation_of_concerns": "NEVER place upcoming unrecorded 'Live Socratic Session' links or cards inside `/101/` courseware (`101/index.html`, `101/X.Y/index.html`, or `101/idea/index.html`). Socratic companion links appear on `/101/` ONLY after the session is recorded and live at `/event/YYYY-MM-DD/`.",
+        "rule_6_automated_hub_and_linter_sync": "Passing `--update-hub` to `weekly_sync_scaffold.py` automatically updates `/101/index.html` (strictly ascending sequential order 1.1 -> N.2), `/event/index.html` (Upcoming + Top-3 Recent + Monthly Archive count), `/event/YYYY-MM/index.html`, bidirectional `/101/X.Y/` <-> `/event/YYYY-MM-DD/` companion links, `/attest/index.html`, and Linter Rules 04, 05, and 07."
+      }
+    },
+    "tasks": [
+      {
+        "id": "WSYNC-DISCOVER-01",
+        "description": "Media & Transcript Discovery: Fetch the new Socratic event GDrive folder / YouTube clip IDs and 101 YouTube/Spotify IDs. Transcribe audio with faster-whisper tiny.en (`audio.m4a` faststart in `/event/YYYY-MM-DD/audio.m4a` and `/101/X.Y/audio.m4a`), run `py/substrate/transcript_strike.py` for forensic transcript cleanup, and append entries to `transcripts.json`.",
+        "status": "[ ]"
+      },
+      {
+        "id": "WSYNC-SPEC-EVENT-02",
+        "description": "Author & Compile Socratic Event Spec (`chronos_repsl/specs/event_<YYYY-MM-DD>.json`): Copy `chronos_repsl/specs/event_2026-11-05.json`, author bespoke semantic HTML for `hero_subtitle_html`, `overview_html`, and the 4-tile `takeaways_html` (or `takeaways` list), populate unique `audio_slug`, `audio_title`, `upcoming`, and `clips[]`, and run `python3 chronos_repsl/scripts/weekly_sync_scaffold.py --compile-event chronos_repsl/specs/event_<YYYY-MM-DD>.json --update-hub`.",
+        "status": "[ ]"
+      },
+      {
+        "id": "WSYNC-SPEC-101-03",
+        "description": "Author & Compile 101 Module Spec (`chronos_repsl/specs/module_101_<X.Y>.json`): Copy `chronos_repsl/specs/module_101_7.1.json`, author unique `hero_subtitle_html`, `overview_html`, `hub_card_summary_html` (with `socratic_companion` empty `{}` until recorded), and 20 transcript-grounded questions (`questions`), then run `python3 chronos_repsl/scripts/weekly_sync_scaffold.py --compile-101 chronos_repsl/specs/module_101_<X.Y>.json --update-hub`.",
+        "status": "[ ]"
+      },
+      {
+        "id": "WSYNC-IDEA-MAP-04",
+        "description": "Surgical Idea Map Update (`/101/idea/index.html`): Using narrow line-range `read_file` + `replace`, append the new 101 lecture metrics (T1 Novel Seeds, T2 Deepened Spiral Elaborations, T3 Baseline Review) to `/101/idea/index.html` and the `/101/index.html` banner, keeping all tables wrapped in `.idea-table-wrap` / `.idea-table` and omitting Socratic event audit boxes.",
+        "status": "[ ]"
+      },
+      {
+        "id": "WSYNC-VERIFY-DEPLOY-05",
+        "description": "Contract Verification & Single-Command Staging Deploy: Verify `git --git-dir=.git_repsl --work-tree=. status --short` shows only `/event/`, `/101/`, `/attest/`, linter/test, spec, and wedo files (zero `/nft/` drift and zero tracked media binaries), then run `python3 chronos_repsl/scripts/repsl_dual_commit.py "<commit message>"` to execute all 8 linter rules, 5 test suites, git push (`stage`), and Direct Upload to `stage-lex-clinic`.",
+        "status": "[ ]"
+      }
+    ]
+  },
+  "attribution": "LexClinic Legal Engineering Swarm (20261111)"
+}

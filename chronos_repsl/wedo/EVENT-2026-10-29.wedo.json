@@ -1,0 +1,41 @@
+{
+  "wedo_instance": {
+    "id": "EVENT-2026-10-29",
+    "description": "LexClinic Socratic Event Manifest \u2014 Oct 29, 2026 (Lesson 6.1: Grammatical Hurdles: Assigning vs. Evaluating)",
+    "status": "[completed]",
+    "meta": {
+      "protocol": "WeDo-JSON",
+      "version": "1.0.0",
+      "event_date": "2026-10-29",
+      "companion_101_module": "6.1",
+      "companion_101_url": "/101/6.1/",
+      "event_url": "/event/2026-10-29/",
+      "audio_stream": "/event/2026-10-29/audio.m4a",
+      "youtube_clips": [
+        "a0VOIB2_jgQ",
+        "NIfa3O5_Uts",
+        "D82L0q1D9tE",
+        "d8X-3-7uX-M",
+        "u6tG-cR-gUo"
+      ]
+    },
+    "tasks": [
+      {
+        "id": "AUDIO-STREAM",
+        "description": "Compress When_Legal_Contracts_Execute_Themselves.m4a to faststart AAC (<25MB) at /event/2026-10-29/audio.m4a and index Whisper transcript",
+        "status": "[x]"
+      },
+      {
+        "id": "YOUTUBE-CLIPS",
+        "description": "Upload 5 explainer clips to YouTube (unlisted) and embed on /event/2026-10-29/index.html",
+        "status": "[x]"
+      },
+      {
+        "id": "BIJECTION-6-1",
+        "description": "Link /101/6.1/ and /event/2026-10-29/ bidirectionally",
+        "status": "[x]"
+      }
+    ]
+  },
+  "attribution": "LexClinic Legal Engineering Swarm (20261102)"
+}

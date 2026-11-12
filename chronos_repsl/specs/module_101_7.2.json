@@ -1,0 +1,181 @@
+{
+  "type": "module_101",
+  "class_id": "7.2",
+  "lesson_title": "Translating Clauses into Nested If/Else Logic",
+  "meta_description": "Class 7.2: Translating Clauses into Nested If/Else Logic. Systematically mapping prose legal clauses and subclauses into deterministic, collapsible nested if/else statements, falling-domino prerequisite hierarchies, and Hats Protocol contract chains.",
+  "hero_subtitle_html": "Systematically mapping prose legal clauses and subclauses into deterministic, collapsible nested <code>if/else</code> statements, falling-domino prerequisite hierarchies, and Hats Protocol contract chains.",
+  "overview_html": "<p style=\"line-height: 1.7; color: var(--text-main); font-size: 1.05rem; margin: 0;\">\n          Demonstrates the 3-step pipeline for translating traditional prose clauses and subclauses into collapsible nested <code>if/else</code> logic: (1) identifying the legal trigger, (2) defining the trigger as a binary Boolean condition, and (3) nesting the subclause outcome inside the parent condition. Using a commercial lease and Hats Protocol modular contract dependencies, it shows how a false parent condition causes downstream obligations and chains of title to collapse automatically like falling dominoes.\n        </p>",
+  "video_slug": "class-7-2-translating-clauses-into-nested-if-else-logic",
+  "youtube_id": "fV3yLAEuAg0",
+  "spotify_id": "0njS92rFADH65LPe5DhWni",
+  "hub_card_icon": "🎥",
+  "hub_card_summary_html": "Mapping traditional prose clauses and subclauses into deterministic, collapsible nested <code>if/else</code> hierarchies, domino-collapse prerequisite trees, and modular Hats Protocol contract chains.",
+  "socratic_companion": {
+    "badge_text": "🎓 101 LIVE SOCRATIC COHORT COMPANION • Nov 19, 2026 (Upcoming Live)",
+    "description_html": "Join the live Thursday, Nov 19, 2026 cohort Socratic discussion for Class 7.2 on the Events Hub.",
+    "href": "/event/",
+    "button_label": "🔥 Nov 19 Live Socratic Session ➔"
+  },
+  "questions": [
+    {
+      "prompt": "How does the LexClinic syllabus quote in Class 7.2 describe the bottleneck facing legal professionals?",
+      "options": {
+        "A": "Lawyers excel at legal logic, but simply lack familiarity with programming grammar, syntax, and computer science design principles.",
+        "B": "Lawyers lack logical reasoning and must complete a four-year computer science degree.",
+        "C": "Lawyers are unable to understand rules or conditional dependencies."
+      }
+    },
+    {
+      "prompt": "Why does the classic lawyer fallback 'and/or' collapse when fed into Boolean logic in Class 7.2?",
+      "options": {
+        "A": "Because Boolean logic consists of strict, absolute true or false gates and refuses to tolerate linguistic loopholes or gray areas.",
+        "B": "Because 'and/or' is too short to fit in a variable name.",
+        "C": "Because JavaScript only supports numbers and not words."
+      }
+    },
+    {
+      "prompt": "In Section 4 of Class 7.2, what are the three steps for mapping a commercial lease clause into nested if/else logic?",
+      "options": {
+        "A": "Step 1: Identify the prose trigger (rent paid by the 5th); Step 2: Define it as a binary Boolean condition; Step 3: Nest the subclause outcome inside that condition.",
+        "B": "Step 1: Print the lease; Step 2: File it in a cabinet; Step 3: Wait for a dispute.",
+        "C": "Step 1: Delete all deadlines; Step 2: Replace numbers with adjectives; Step 3: Remove the signature block."
+      }
+    },
+    {
+      "prompt": "What metaphor does Class 7.2 use to explain how a nested subclause behaves when its parent condition evaluates to false?",
+      "options": {
+        "A": "A falling domino — if the parent rent-payment condition evaluates to false, the subsequent nested subclause granting door access is entirely ignored and the late-fee/lock branch triggers.",
+        "B": "A random coin flip that ignores the parent condition.",
+        "C": "A static spreadsheet cell that never updates."
+      }
+    },
+    {
+      "prompt": "How does Hats Protocol scale nested clause logic to multiple agreements in Section 5 of Class 7.2?",
+      "options": {
+        "A": "By treating clauses like an NDA or indemnity as standalone modular nodes in a hierarchical tree where if an upstream prerequisite fails, the entire downstream chain of titles and permissions collapses automatically.",
+        "B": "By copying and pasting boilerplate text into hundreds of separate Word documents.",
+        "C": "By requiring manual court injunctions to revoke every individual permission."
+      }
+    },
+    {
+      "prompt": "Why does Class 7.2 say lawyers suffer from 'static fixation'?",
+      "options": {
+        "A": "Because they draft in frozen documents — like a lifeless cell in a spreadsheet waiting for a human to interpret it — rather than in an active runtime script.",
+        "B": "Because they write too many automated JavaScript loops.",
+        "C": "Because they refuse to read paper contracts."
+      }
+    },
+    {
+      "prompt": "How does Class 7.2 contrast a traditional legal 'performance' with a software 'runtime'?",
+      "options": {
+        "A": "A legal performance is a human manually fulfilling an obligation over time, whereas a software runtime is the active, automated execution of instructions by a computer.",
+        "B": "A legal performance is automated code, whereas a runtime is a paper filing cabinet.",
+        "C": "Both terms refer exclusively to theatrical stage plays."
+      }
+    },
+    {
+      "prompt": "In Class 7.2's music composer metaphor, how does a legal engineer reduce societal transaction costs?",
+      "options": {
+        "A": "By writing the verses, defining the looping choruses beforehand, architecting the symphony, and hitting play so the system automates execution.",
+        "B": "By jumping on stage and manually playing every instrument in real time.",
+        "C": "By leaving the musical score unfinished."
+      }
+    },
+    {
+      "prompt": "In Section 3 of Class 7.2, what is the difference between `rent = 2000` and `rent == 2000`?",
+      "options": {
+        "A": "Single `=` assigns the value $2,000 into the rent container, while double `==` evaluates whether the tenant actually paid $2,000.",
+        "B": "Single `=` checks equality, while double `==` deletes the variable.",
+        "C": "Both expressions mean the exact same thing in code."
+      }
+    },
+    {
+      "prompt": "Why does reading variable assignments in code feel unnatural at first to English readers in Class 7.2?",
+      "options": {
+        "A": "Because you must overcome left-to-right English prose bias and train your eyes to read right-to-left: the value on the right is assigned into the container on the left.",
+        "B": "Because code is written vertically from bottom to top.",
+        "C": "Because variable names cannot contain letters."
+      }
+    },
+    {
+      "prompt": "Why does Class 7.2 call Boolean logic the 'holy grail of legal engineering'?",
+      "options": {
+        "A": "Because its strict true/false gates eliminate 'maybes', 'best efforts', and 'commercially reasonable' gray areas, translating conditionals into deterministic collapsible code.",
+        "B": "Because it allows lawyers to bill more hours arguing over ambiguous words.",
+        "C": "Because it replaces deterministic rules with guesswork."
+      }
+    },
+    {
+      "prompt": "In the commercial lease pipeline in Class 7.2, what happens if the Boolean condition ('Did funds clear by midnight on the 5th?') evaluates to true?",
+      "options": {
+        "A": "The runtime executes the nested instruction to grant digital door access for the next 30 days.",
+        "B": "The runtime issues a late fee notice and locks the premises.",
+        "C": "The runtime crashes and deletes the lease."
+      }
+    },
+    {
+      "prompt": "What happens in the commercial lease pipeline if the Boolean rent condition evaluates to false?",
+      "options": {
+        "A": "The nested instruction granting door access is ignored, and the else branch triggers a late fee notice and locks the premises.",
+        "B": "The tenant is granted 30 days of free access anyway.",
+        "C": "The smart contract waits six months for a human landlord to check the bank account."
+      }
+    },
+    {
+      "prompt": "How does a strict deterministic hierarchy of nested subclauses impact enforcement costs in Class 7.2?",
+      "options": {
+        "A": "Because subclauses only activate if their parent condition explicitly evaluates to true, it eliminates the need for human interpretation and expensive enforcement.",
+        "B": "It triples the cost of litigation.",
+        "C": "It requires every subclause to be notarized in person."
+      }
+    },
+    {
+      "prompt": "Instead of copying and pasting boilerplate NDA or indemnity text, how does Class 7.2 treat those clauses in a modular architecture?",
+      "options": {
+        "A": "As standalone plugins or distinct nodes that multiple corporate agreements point to in a continuous hierarchical tree.",
+        "B": "As handwritten margin notes on paper addendums.",
+        "C": "As unindexed PDF attachments."
+      }
+    },
+    {
+      "prompt": "What happens in a chained contract hierarchy if an upstream prerequisite — like a required operating license or milestone payment — fails?",
+      "options": {
+        "A": "The entire downstream chain of titles and permissions automatically and instantly collapses the very second the condition evaluates to false.",
+        "B": "Downstream permissions remain active until a court rules otherwise.",
+        "C": "Only the upstream document is affected while downstream sub-agreements continue running."
+      }
+    },
+    {
+      "prompt": "In Section 6 of Class 7.2, how is 'Direct Law' characterized?",
+      "options": {
+        "A": "The horse-and-buggy era of traditional analog, manual lawyering.",
+        "B": "Self-driving autonomous smart contracts.",
+        "C": "Generative AI drafting with negligence guardrails."
+      }
+    },
+    {
+      "prompt": "How does Class 7.2 characterize 'Mechanized Law' (the era of cars)?",
+      "options": {
+        "A": "Using generative AI and automation tools to write static paper faster at hyperspeed, which still requires human drivers and guardrails like negligence precedents.",
+        "B": "Drafting contracts with quill pens.",
+        "C": "Fully autonomous runtimes that require zero human drivers."
+      }
+    },
+    {
+      "prompt": "How does Class 7.2 define 'Automated Law' (the Waymos of the legal world)?",
+      "options": {
+        "A": "Entirely autonomous, self-executing systems that do not just generate text, but natively execute legal logic.",
+        "B": "Using word processors to format paper briefs.",
+        "C": "Hiring more paralegals to proofread static PDFs."
+      }
+    },
+    {
+      "prompt": "What are the two empowering career paths described at the conclusion of Class 7.2?",
+      "options": {
+        "A": "The pure engineering path (developers acting like modern patent agents architecting complex systems) and the lawyering path (practitioners whose daily deliverables evolve into software written with programming syntax).",
+        "B": "Becoming a traditional stenographer or a paper archivist.",
+        "C": "Leaving the legal field entirely."
+      }
+    }
+  ]
+}

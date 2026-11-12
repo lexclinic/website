@@ -12,15 +12,19 @@ async function run(webDir) {
   // --------------------------------------------------------------------------
   const pageRoutes = [
     { path: "/", mustInclude: "LexClinic" },
-    { path: "/101/", mustInclude: "Legal Engineering 101" },
+    { path: "/101/", mustInclude: "39.9% Generative", mustNotInclude: "Live Socratic Session" },
+    { path: "/101/idea/", mustInclude: "Gottfried Wilhelm Leibniz", mustNotInclude: "<audio" },
     { path: "/101/3.1/", mustInclude: "Charles Goldfarb", mustNotInclude: "<audio" },
     { path: "/101/6.1/", mustInclude: "Grammatical Hurdles", mustNotInclude: "<audio" },
     { path: "/101/6.2/", mustInclude: "Reading Right-to-Left", mustNotInclude: "<audio" },
+    { path: "/101/7.1/", mustInclude: "Boolean Logic 101", mustNotInclude: "Live Socratic Session" },
+    { path: "/101/7.2/", mustInclude: "Nested If/Else Logic", mustNotInclude: "Live Socratic Session" },
     { path: "/101/6.2/quiz-learned/", mustInclude: "5-Question Learned Quiz", mustNotInclude: "copyCardDirectLink" },
     { path: "/101/6.2/quiz-expert/", mustInclude: "20-Question Expert Quiz", mustNotInclude: "copyCardDirectLink" },
     { path: "/interview/lucas-kung/quiz-learned/", mustInclude: "5-Question Learned Quiz", mustNotInclude: "copyCardDirectLink" },
     { path: "/interview/lucas-kung/quiz-expert/", mustInclude: "20-Question Expert Quiz", mustNotInclude: "copyCardDirectLink" },
     { path: "/event/", mustInclude: "3 Most Recent Recorded Events", mustNotInclude: "/event/2026-08-22/" },
+    { path: "/event/2026-11/", mustInclude: "November 2026" },
     { path: "/event/2026-10/", mustInclude: "October 2026" },
     { path: "/event/2026-09/", mustInclude: "Lukas Küng" },
     { path: "/event/2026-08/", mustInclude: "August 2026" },
@@ -32,6 +36,7 @@ async function run(webDir) {
     { path: "/event/2026-09-24/", mustInclude: "CIzyHeopPcQ" },
     { path: "/event/2026-10-22/", mustInclude: "Lesson 5.2" },
     { path: "/event/2026-10-29/", mustInclude: "a0VOIB2_jgQ" },
+    { path: "/event/2026-11-05/", mustInclude: "Session Explainer Video Clips (6 Modules)" },
     { path: "/interview/", mustInclude: "Lukas Küng" },
     { path: "/interview/lucas-kung/", mustInclude: "BpRTnQ4128Y" },
     { path: "/interview/2026-09-08/james-wigginton/", mustInclude: "fxIGwkdpa28" },
@@ -65,7 +70,7 @@ async function run(webDir) {
   // --------------------------------------------------------------------------
   const quizBases = [
     "/101/1.1", "/101/1.2", "/101/2.1", "/101/2.2", "/101/3.1", "/101/3.2",
-    "/101/4.1", "/101/4.2", "/101/5.1", "/101/5.2", "/101/6.1", "/101/6.2",
+    "/101/4.1", "/101/4.2", "/101/5.1", "/101/5.2", "/101/6.1", "/101/6.2", "/101/7.1", "/101/7.2",
     "/101", "/event/2026-08-24", "/event/2026-09-04", "/event/2026-09-17", "/event/2026-09-24",
     "/interview/lucas-kung", "/interview/2026-09-08/james-wigginton"
   ];
@@ -109,6 +114,7 @@ async function run(webDir) {
     "/event/2026-10-15/audio.m4a",
     "/event/2026-10-22/audio.m4a",
     "/event/2026-10-29/audio.m4a",
+    "/event/2026-11-05/audio.m4a",
     "/interview/lucas-kung/audio.m4a",
     "/interview/2026-09-08/james-wigginton/audio.m4a"
   ];
@@ -122,7 +128,10 @@ async function run(webDir) {
         "Range": "bytes=0-1023"
       }
     });
-    assert.ok(res.status === 200 || res.status === 206, `Audio route ${audioPath} must return 200 or 206 (got ${res.status})`);
+    assert.strictEqual(res.status, 206, `Audio route ${audioPath} must return HTTP 206 Partial Content on Range request (got ${res.status})`);
+    assert.strictEqual(res.headers.get("accept-ranges"), "bytes", `Audio route ${audioPath} must advertise Accept-Ranges: bytes`);
+    const contentRange = res.headers.get("content-range") || "";
+    assert.ok(contentRange.startsWith("bytes 0-1023/"), `Audio route ${audioPath} must return Content-Range 'bytes 0-1023/<total>' (got '${contentRange}')`);
     const contentType = (res.headers.get("content-type") || "").toLowerCase();
     assert.ok(
       contentType.includes("audio/mp4") || contentType.includes("audio/x-m4a") || contentType.includes("video/mp4"),
@@ -130,11 +139,11 @@ async function run(webDir) {
     );
 
     const buf = Buffer.from(await res.arrayBuffer());
-    assert.ok(buf.length >= 16, `Audio route ${audioPath} must return non-empty binary payload`);
+    assert.strictEqual(buf.length, 1024, `Audio route ${audioPath} Range bytes=0-1023 must return exactly 1024 bytes (got ${buf.length})`);
     // MP4 / M4A faststart files have 'ftyp' box header at bytes 4..8
     const boxType = buf.subarray(4, 8).toString('ascii');
     assert.strictEqual(boxType, 'ftyp', `Audio route ${audioPath} must begin with valid MP4 'ftyp' atom header (got '${boxType}')`);
-    assertions += 4;
+    assertions += 6;
   }));
 
   // --------------------------------------------------------------------------

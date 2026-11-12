@@ -1,0 +1,181 @@
+{
+  "type": "module_101",
+  "class_id": "7.1",
+  "lesson_title": "Boolean Logic 101: True/False Legal Gates",
+  "meta_description": "Class 7.1: Boolean Logic 101: True/False Legal Gates. Bridging static legal prose and active software runtimes by replacing ambiguous 'and/or' loopholes with strict Boolean true/false evaluation gates (==), Hats Protocol role trees, and Ricardian contracts.",
+  "hero_subtitle_html": "Bridging static legal prose and active software runtimes by replacing ambiguous \"and/or\" loopholes with strict Boolean true/false evaluation gates (<code>==</code>), Hats Protocol role trees, and Ricardian contracts.",
+  "overview_html": "<p style=\"line-height: 1.7; color: var(--text-main); font-size: 1.05rem; margin: 0;\">\n          Explores why the static paper medium holds back legal reasoning and how shifting to a computational calculus mindset turns a legal performance into an automated software runtime. Demonstrates why ambiguous \"and/or\" prose collapses inside Boolean true/false evaluation gates (<code>==</code>), how single equals (<code>=</code>) right-to-left variable assignment differs from double equals (<code>==</code>) comparison, and how Hats Protocol role trees and Ian Grigg's Ricardian contracts chain modular legal agreements together.\n        </p>",
+  "video_slug": "class-7-1-boolean-logic-101-true-false-legal-gates",
+  "youtube_id": "r7ZmnxfSY-0",
+  "spotify_id": "401NGruWP07zbTvh2K2nmk",
+  "hub_card_icon": "⚖️",
+  "hub_card_summary_html": "Bridging static legal contracts and active software runtimes with binary true/false legal gates, eliminating the \"and/or\" ambiguity trap, and building modular Hats Protocol chains.",
+  "socratic_companion": {
+    "badge_text": "🎓 101 LIVE SOCRATIC COHORT COMPANION • Nov 12, 2026 (Upcoming Live)",
+    "description_html": "Join the live Thursday, Nov 12, 2026 cohort Socratic discussion for Class 7.1 on the Events Hub.",
+    "href": "/event/",
+    "button_label": "🔥 Nov 12 Live Socratic Session ➔"
+  },
+  "questions": [
+    {
+      "prompt": "According to Class 7.1, what happens when a static legal contract transitions into an active software runtime?",
+      "options": {
+        "A": "It transforms from passive paper into an executing performance — a living set of instructions waiting to trigger an action.",
+        "B": "It remains a frozen PDF stored in a filing cabinet.",
+        "C": "It requires a human judge to manually read every line before any payment can clear."
+      }
+    },
+    {
+      "prompt": "How does Class 7.1 define the core function of Boolean logic gates in legal engineering?",
+      "options": {
+        "A": "Translating nuanced legal conditions and thresholds into absolute binary true or false gates that strictly control the flow of software execution.",
+        "B": "Allowing contracts to remain intentionally vague so parties can negotiate later.",
+        "C": "Replacing all numbers in a contract with poetic metaphors."
+      }
+    },
+    {
+      "prompt": "What are the three steps of the conditional translation process described in Class 7.1?",
+      "options": {
+        "A": "First isolate the specific legal obligation, second define it as a Boolean primitive (true or false), and third place it into an if/else statement.",
+        "B": "Print the contract, sign it in ink, and mail it to a courthouse.",
+        "C": "Delete all conditions, merge all clauses, and remove every variable."
+      }
+    },
+    {
+      "prompt": "In Class 7.1's short-term rental smart-lock example, how does the if/else statement execute?",
+      "options": {
+        "A": "If the rent payment is received, release the digital key; else, keep the door locked.",
+        "B": "Unlock the door regardless of whether rent was paid.",
+        "C": "Send a paper eviction notice six months after checkout."
+      }
+    },
+    {
+      "prompt": "Why does the traditional lawyer phrase 'and/or' cause a deterministic software runtime to fail in Class 7.1?",
+      "options": {
+        "A": "Because code cannot interpret a 'maybe' — if a legal condition is not strictly true or strictly false, the Boolean logic outright fails.",
+        "B": "Because computers cannot read the slash character.",
+        "C": "Because 'and/or' is only valid in criminal statutes."
+      }
+    },
+    {
+      "prompt": "What metaphor does Class 7.1 use in Section 1 to contrast a dead piece of paper with an active runtime contract?",
+      "options": {
+        "A": "A composer's sheet music — designing the system beforehand, hitting play, and watching the stage performance execute.",
+        "B": "A brick wall that never moves.",
+        "C": "A painting hanging in a museum."
+      }
+    },
+    {
+      "prompt": "What industry habit does Class 7.1 call 'static fixation'?",
+      "options": {
+        "A": "Viewing information as permanently frozen in a spreadsheet grid cell or on a physical page rather than as an active script.",
+        "B": "Writing modular smart contracts on Ethereum.",
+        "C": "Using double equals signs to evaluate conditions."
+      }
+    },
+    {
+      "prompt": "How does Class 7.1's 'active canvas' decouple a computational contract?",
+      "options": {
+        "A": "It strictly decouples the passive assets (your data) from the active machinery (the actual instructions).",
+        "B": "It combines all instructions and data into a single unindexed image.",
+        "C": "It removes all variables from the runtime."
+      }
+    },
+    {
+      "prompt": "Why do lawyers traditionally treat vagueness like 'and/or' as a feature rather than a bug in natural language drafting?",
+      "options": {
+        "A": "Because in human prose it leaves room for negotiation and gives clients wiggle room down the line.",
+        "B": "Because it makes computer code compile faster.",
+        "C": "Because it automatically enforces digital smart locks."
+      }
+    },
+    {
+      "prompt": "What computer science mechanism does Class 7.1 compare to 'putting square pegs only into square holes'?",
+      "options": {
+        "A": "Data typing domains that strictly validate data to prevent errors at runtime.",
+        "B": "Unstructured free-text footnotes.",
+        "C": "Verbal handshake agreements."
+      }
+    },
+    {
+      "prompt": "According to Section 4 of Class 7.1, what is the real friction lawyers face when adapting to a programming environment?",
+      "options": {
+        "A": "Not overarching logical reasoning, but micro-mechanics — specific syntax and grammatical hurdles like typing domains and the word 'equals'.",
+        "B": "An inability to understand rules or obligations.",
+        "C": "A lack of vocabulary in English."
+      }
+    },
+    {
+      "prompt": "In Computational Legalese, what does a single equals sign (`=`) actually mean?",
+      "options": {
+        "A": "An active assignment instruction: take the value on the right (e.g., 10) and assign it into the variable bucket on the left (e.g., x).",
+        "B": "A passive question asking whether two things are identical.",
+        "C": "A mathematical multiplication operator."
+      }
+    },
+    {
+      "prompt": "What operator must you use in Class 7.1 if you want to ask the Boolean question 'Are these two things identical?'",
+      "options": {
+        "A": "A double equals sign (`==`) to evaluate equality.",
+        "B": "A single equals sign (`=`).",
+        "C": "A semicolon (`;`)."
+      }
+    },
+    {
+      "prompt": "Why does Class 7.1 instruct you to force your eyes to read variable assignments from right to left?",
+      "options": {
+        "A": "Because you must figure out the final resulting value on the right side of `=` first before placing it into the variable bucket waiting on the left.",
+        "B": "Because computer monitors display text upside down.",
+        "C": "Because Boolean gates only read comments."
+      }
+    },
+    {
+      "prompt": "In Section 5 of Class 7.1, what are 'hat chains'?",
+      "options": {
+        "A": "Small modular contract blocks that snap together to form dependencies where breaking a prerequisite automatically revokes downstream access.",
+        "B": "Physical paper folders stored in a law library.",
+        "C": "Email threads between opposing counsel."
+      }
+    },
+    {
+      "prompt": "In Class 7.1's subscription example of hat chains, what happens if a patron stops paying their subscription?",
+      "options": {
+        "A": "The prerequisite contract breaks and their downstream 'reader hat' access is automatically revoked by the runtime without human enforcement.",
+        "B": "Nothing happens until a paralegal audits the account a year later.",
+        "C": "The patron is granted permanent administrator privileges."
+      }
+    },
+    {
+      "prompt": "In Class 7.1's transportation metaphor, what do the Horse-and-Buggy, the Car, and the Waymo represent?",
+      "options": {
+        "A": "Direct law (manual drafting), Mechanized law (coding smart contracts with human drivers), and Automated law (fully autonomous self-executing systems).",
+        "B": "Three types of municipal traffic tickets.",
+        "C": "Three generations of paper printing presses."
+      }
+    },
+    {
+      "prompt": "What governs asset transfers and legal relationships inside the 'Waymo' stage of Automated Law?",
+      "options": {
+        "A": "Strict true and false Boolean gates executing autonomously at runtime.",
+        "B": "Manual paper filing clerks stamping physical forms.",
+        "C": "Ambiguous 'and/or' clauses interpreted by juries."
+      }
+    },
+    {
+      "prompt": "What is the 'engineering path' in the two diverging career paths described at the end of Class 7.1?",
+      "options": {
+        "A": "Developers acting like modern patent agents — specialized legal authorities who write the complex under-the-hood computational logic.",
+        "B": "Traditional litigators who refuse to use computers.",
+        "C": "Court stenographers transcribing hearings by hand."
+      }
+    },
+    {
+      "prompt": "What is the 'lawyering path' described at the end of Class 7.1?",
+      "options": {
+        "A": "Traditional lawyers who evolve to write their daily legal deliverables using programming syntax as society transitions from static sheets to active scripts.",
+        "B": "Abandoning legal practice to become mechanical automotive engineers.",
+        "C": "Drafting exclusively on parchment with quill pens."
+      }
+    }
+  ]
+}

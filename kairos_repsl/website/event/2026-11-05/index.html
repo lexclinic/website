@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LexClinic 2026 — Lesson 6.2: Reading Right-to-Left: Adjusting Your Eyes | LexClinic</title>
+  <meta name="description" content="Recorded Socratic Session for Class 6.2 (November 5, 2026): From Static Contracts to Executable Code — Right-to-Left Variable Assignment, Leibniz&#x27;s Legal Calculus, Pedagogical Novelty Ratios, Non-Person (.np) VM NFTs, Reverse Centaurs, and Chronos vs. Kairos.">
+  <link rel="stylesheet" href="/styles.css?v=20261025_v23">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <script src="/js/audio-player.js?v=20261025_v23"></script>
+  <script src="/js/auth.js?v=20261025_v23"></script>
+  <script src="/js/media-tracker-miniapp.js?v=20261025_v23"></script>
+  <script src="/js/watch-tracker.js?v=20261025_v23"></script>
+  <script src="/js/modules/ui-interactive-controls.js?v=20261025_v23"></script>
+  <script src="/script.js?v=20261025_v23" defer></script>
+  <link rel="icon" type="image/png" href="/favicon.png?v=20261025_v23">
+  <link rel="shortcut icon" href="/favicon.ico?v=20261025_v23">
+  <link rel="manifest" href="/manifest.webmanifest">
+  <meta name="theme-color" content="#0a1128">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="LexClinic">
+  <link rel="apple-touch-icon" href="/icon-192.png">
+</head>
+<body>
+
+  <!-- Unified Fixed Header Wrapper -->
+  <header class="fixed-header-wrapper">
+    <div class="top-disclaimer-bar">
+      <span>⚖️ <strong>LEGAL DISCLAIMER:</strong> LexClinic Education, Inc. is applying for 501(c)(3) tax-exempt status. Materials, software runtimes, and APIs are for educational research and do not constitute formal legal advice. <a href="/help/#disclaimer">Read Full Disclaimer ➔</a></span>
+    </div>
+    <nav class="navbar">
+      <div class="nav-container">
+        <a href="/index.html" class="brand-logo">
+          <span class="logo-icon">⚖️</span>
+          <span class="logo-text">Lex<span class="highlight">Clinic</span></span>
+        </a>
+        <nav class="nav-links" id="nav-links">
+          <a href="/event/" class="active-link">Event</a>
+          <a href="/101">101</a>
+          <a href="/interview/">Interview</a>
+          <a href="/collaborate/">Collaborate</a>
+          <a href="/fiduciary/">Fiduciary</a>
+          <a href="/attest/">Attest</a>
+          <a href="/help/">Help</a>
+          <a href="/repo/">Repo</a>
+          <a href="/erc7827/">ERC-7827</a>
+          <a href="/nft/">NFT</a>
+          <a href="https://www.youtube.com/watch?v=20261025_v23&list=PLbPukKwpmk5E" target="_blank" rel="noopener" class="btn-social" title="Subscribe on YouTube">YouTube</a>
+          <a href="https://open.spotify.com/show/0348ivoLaNfKBq1HeIYC9b" target="_blank" rel="noopener" class="btn-spotify" title="Follow on Spotify">Spotify</a>
+          <a href="https://www.linkedin.com/company/lexclinic" target="_blank" rel="noopener" class="btn-social" title="Follow on LinkedIn">LinkedIn</a>
+          <a href="javascript:void(0)" onclick="event.preventDefault(); window.openNavLoginModal(event); return false;" id="nav-login-btn" style="background: #fbbf24; color: #0a1128; font-weight: 800; font-size: 0.88rem; padding: 0.35rem 0.85rem; border-radius: 6px; margin-left: 0.35rem; text-decoration: none; border: 2px solid #f59e0b; box-shadow: 0 0 10px rgba(251, 191, 36, 0.4); display: inline-block;">Login</a>
+        </nav>
+        <button class="mobile-toggle" id="mobile-toggle" aria-label="Toggle navigation">
+          ☰
+        </button>
+      </div>
+    </nav>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero page-hero">
+    <div class="container hero-content">
+      <h1 class="hero-title">LexClinic 2026 — Lesson 6.2: Reading Right-to-Left: Adjusting Your Eyes</h1>
+      <p class="hero-subtitle">Thursday, November 5, 2026 • Socratic Session for Class 6.2. Deconstructing right-to-left variable assignment, Leibniz's legal calculus, cognitive novelty ratios, Non-Person (<code>.np</code>) VM NFTs, Reverse Centaurs, and Chronos vs. Kairos.</p>
+      <div class="hero-actions" style="display: flex; gap: 0.75rem; justify-content: center; flex-wrap: wrap;">
+        <a href="/101/6.2/" class="btn btn-primary" style="background: var(--accent-cyan); color: #0a1128; font-weight: 800;">📘 Companion 101 Module (Class 6.2) ➔</a>
+        <a href="/101/6.2/quiz-learned/" data-progressive-quiz-cid="6.2" data-learned-href="/101/6.2/quiz-learned/" data-expert-href="/101/6.2/quiz-expert/" class="btn btn-primary" style="background: var(--accent-gold); color: #0a1128; font-weight: 800;">📘 Take 5-Q Learned Quiz ➔</a>
+        <a href="/event/" class="btn btn-outline">← Back to Events Hub</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Main Content -->
+  <section class="section">
+    <div class="container">
+
+      <!-- 1. Session Overview Card -->
+      <div class="card pillar-card" style="margin-bottom: 2rem;">
+        <h2 style="color: var(--accent-gold); font-size: 1.4rem; margin-bottom: 0.75rem;">
+          Socratic Session Overview &amp; Key Takeaways
+        </h2>
+        <p style='line-height: 1.7; color: var(--text-main); font-size: 1.05rem; margin-bottom: 1.25rem;'>In this live cohort Socratic session for <strong>Lesson 6.2: Reading Right-to-Left: Adjusting Your Eyes</strong>, participants examine how legal drafters retrain their reading direction to trace variable assignment from right to left (<code>rent = 2000</code>), why Gottfried Wilhelm Leibniz (a Doctor of Law) co-invented calculus and symbolic binary logic to mechanize jurisprudence, how introductory vs. advanced legal engineering curricula balance cognitive novelty and spiral review (<code>40:60 → 60:40 → 80:20</code>), and how sovereign <code>1-VM-1-Contract</code> Non-Person (<code>.np</code>) agents preserve human-in-the-loop accountability across <code>Chronos</code> (immutable forensic logs) and <code>Kairos</code> (active executable runtime).</p>
+
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1rem;">
+          <div style="background: rgba(10, 17, 40, 0.7); border: 1px solid var(--border-color); padding: 1rem; border-radius: 8px;">
+            <h4 style="color: var(--accent-cyan); margin-bottom: 0.4rem;">⚖️ Right-to-Left Assignment &amp; Leibniz's Legal Calculus</h4>
+            <p style="font-size: 0.92rem; color: #cbd5e1; margin: 0;">Overcoming English left-to-right prose bias by evaluating expressions on the right and packing them into the variable container on the left, continuing Leibniz's 1666 legal calculus (<code>De Arte Combinatoria</code>) and Alonzo Church's lambda calculus.</p>
+          </div>
+          <div style="background: rgba(10, 17, 40, 0.7); border: 1px solid var(--border-color); padding: 1rem; border-radius: 8px;">
+            <h4 style="color: var(--accent-cyan); margin-bottom: 0.4rem;">📊 Pedagogical Novelty Ratios (40:60 → 60:40 → 80:20)</h4>
+            <p style="font-size: 0.92rem; color: #cbd5e1; margin: 0;">Applying Cognitive Load Theory and Spiral Curriculum design: 40% new concepts / 60% review in 101 introductory cohorts to prevent syntax overload, shifting to 60:40 in 201 and 80:20 in 301 seminars.</p>
+          </div>
+          <div style="background: rgba(10, 17, 40, 0.7); border: 1px solid var(--border-color); padding: 1rem; border-radius: 8px;">
+            <h4 style="color: var(--accent-cyan); margin-bottom: 0.4rem;">🤖 Sovereign 1-VM-1-Contract &amp; .np Safe Harbors</h4>
+            <p style="font-size: 0.92rem; color: #cbd5e1; margin: 0;">Deploying one dedicated smart contract per virtual machine (<code>agent.$1.np.$1</code>) with explicit <code>.np</code> Non-Person disclosure to prevent commingled state and enforce human-in-the-loop supervisory attestation.</p>
+          </div>
+          <div style="background: rgba(10, 17, 40, 0.7); border: 1px solid var(--border-color); padding: 1rem; border-radius: 8px;">
+            <h4 style="color: var(--accent-cyan); margin-bottom: 0.4rem;">⏳ Reverse Centaurs &amp; Chronos vs. Kairos</h4>
+            <p style="font-size: 0.92rem; color: #cbd5e1; margin: 0;">Avoiding Cory Doctorow's &quot;Reverse Centaur&quot; trap and Jevons Paradox by pairing <code>Kairos</code> (the active executable runtime) with <code>Chronos</code> (append-only forensic audit logs) so human counsel remains the sovereign pilot.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- 2. Native Audio Player Card -->
+      <div class="card pillar-card" id="reading-right-to-left-adjusting-your-eyes" style="border: 2px solid #1ed760; margin-bottom: 2rem;">
+
+        <h3 style="color: #1ed760; font-size: 1.25rem; margin-bottom: 0.75rem;">
+          Reading Right-to-Left: Adjusting Your Eyes — Full Session Audio Stream
+        </h3>
+
+        <div class="media-playback-meter-container" style="margin-top: 0.5rem; margin-bottom: 0.85rem; background: rgba(15, 23, 42, 0.9); border: 1px solid #334155; border-radius: 8px; padding: 0.85rem; box-shadow: 0 4px 12px rgba(0,0,0,0.5);">
+          <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 0.4rem;">
+            <span class="meter-status-text" style="font-size: 0.88rem; font-weight: 700; color: #cbd5e1;">🎧 Unwatched Audio Track</span>
+            <span class="meter-auth-hint" style="font-size: 0.8rem; color: #94a3b8;">🔒 Log in to save watch tracker</span>
+          </div>
+          <div style="width: 100%; height: 8px; background: rgba(30, 41, 59, 0.8); border-radius: 4px; overflow: hidden; border: 1px solid #475569;">
+            <div class="meter-fill-bar" style="width: 0%; height: 100%; background: linear-gradient(90deg, #38bdf8, #34d399); transition: width 0.4s ease;"></div>
+          </div>
+        </div>
+
+        <audio id="audio-player-reading-right-to-left-adjusting-your-eyes" controls style="width: 100%; margin-bottom: 0.75rem; accent-color: #1ed760;" preload="metadata">
+          <source src="audio.m4a" type="audio/mp4">
+          Your browser does not support native audio playback.
+        </audio>
+
+        <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem; background: rgba(15, 23, 42, 0.8); padding: 0.65rem 0.85rem; border-radius: 6px; border: 1px solid #334155;">
+          <div style="display: flex; align-items: center; gap: 0.35rem;">
+            <span style="font-size: 0.82rem; font-weight: 700; color: #1ed760; margin-right: 0.25rem;">Speed:</span>
+            <button type="button" onclick="window.setAudioSpeed('audio-player-reading-right-to-left-adjusting-your-eyes', 1.0, this)" class="btn-speed" style="padding: 0.25rem 0.55rem; font-size: 0.78rem; background: #1ed760; color: #0a1128; font-weight: 800; border: 1px solid #1ed760; border-radius: 4px; cursor: pointer;">1.0x</button>
+            <button type="button" onclick="window.setAudioSpeed('audio-player-reading-right-to-left-adjusting-your-eyes', 1.25, this)" class="btn-speed" style="padding: 0.25rem 0.55rem; font-size: 0.78rem; background: rgba(30, 41, 59, 0.8); color: #e2e8f0; font-weight: 600; border: 1px solid #334155; border-radius: 4px; cursor: pointer;">1.25x</button>
+            <button type="button" onclick="window.setAudioSpeed('audio-player-reading-right-to-left-adjusting-your-eyes', 1.5, this)" class="btn-speed" style="padding: 0.25rem 0.55rem; font-size: 0.78rem; background: rgba(30, 41, 59, 0.8); color: #e2e8f0; font-weight: 600; border: 1px solid #334155; border-radius: 4px; cursor: pointer;">1.5x</button>
+            <button type="button" onclick="window.setAudioSpeed('audio-player-reading-right-to-left-adjusting-your-eyes', 1.75, this)" class="btn-speed" style="padding: 0.25rem 0.55rem; font-size: 0.78rem; background: rgba(30, 41, 59, 0.8); color: #e2e8f0; font-weight: 600; border: 1px solid #334155; border-radius: 4px; cursor: pointer;">1.75x</button>
+            <button type="button" onclick="window.setAudioSpeed('audio-player-reading-right-to-left-adjusting-your-eyes', 2.0, this)" class="btn-speed" style="padding: 0.25rem 0.55rem; font-size: 0.78rem; background: rgba(30, 41, 59, 0.8); color: #e2e8f0; font-weight: 600; border: 1px solid #334155; border-radius: 4px; cursor: pointer;">2.0x</button>
+          </div>
+          <div style="display: flex; align-items: center; gap: 0.35rem; flex-wrap: wrap;">
+            <button type="button" onclick="window.openMediaCommentModal('reading-right-to-left-adjusting-your-eyes', event)" class="btn btn-comment-reading-right-to-left-adjusting-your-eyes" style="padding: 0.25rem 0.65rem; font-size: 0.78rem; background: rgba(56, 189, 248, 0.15); color: var(--accent-cyan); border: 1px solid var(--accent-cyan); border-radius: 4px; cursor: pointer; font-weight: 700;">💬 Notes</button>
+            <button type="button" onclick="window.openMediaApprovalModal('reading-right-to-left-adjusting-your-eyes', event)" class="btn btn-approval-reading-right-to-left-adjusting-your-eyes" style="padding: 0.25rem 0.65rem; font-size: 0.78rem; background: rgba(56, 189, 248, 0.15); color: var(--accent-cyan); border: 1px solid var(--accent-cyan); border-radius: 4px; cursor: pointer; font-weight: 700;">👍 Approval</button>
+            <button type="button" onclick="window.openNavLoginModal(event)" class="btn btn-unlogged-prompt" style="padding: 0.25rem 0.65rem; font-size: 0.78rem; background: rgba(251, 191, 36, 0.15); color: #fbbf24; border: 1px solid #f59e0b; border-radius: 4px; cursor: pointer; font-weight: 700; display: inline-block;">🔒 Login for Notes &amp; Approvals</button> <button type="button" onclick="window.copyCardDirectLink('reading-right-to-left-adjusting-your-eyes', this)" class="btn btn-copy-link" style="padding: 0.25rem 0.65rem; font-size: 0.78rem; background: rgba(56, 189, 248, 0.15); color: var(--accent-cyan); border: 1px solid var(--accent-cyan); border-radius: 4px; cursor: pointer; font-weight: 700;">🔗 Copy Direct Link</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- 3. Session Explainer Video Clips (6 Modules) -->
+      <h2 style="color: var(--accent-gold); font-size: 1.5rem; margin-bottom: 1.25rem;">
+        🎥 Session Explainer Video Clips (6 Modules)
+      </h2>
+
+      <div class="card pillar-card" id="from-static-contracts-to-executable-code" style="border: 2px solid var(--accent-cyan); margin-bottom: 2rem;">
+        <h3 style="color: var(--accent-cyan); font-size: 1.25rem; margin-bottom: 0.75rem;">
+          Clip 1: From Static Contracts to Executable Code
+        </h3>
+        <div class="media-playback-meter-container" style="margin-top: 0.5rem; margin-bottom: 0.85rem; background: rgba(15, 23, 42, 0.9); border: 1px solid #334155; border-radius: 8px; padding: 0.85rem; box-shadow: 0 4px 12px rgba(0,0,0,0.5);">
+          <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 0.4rem;">
+            <span class="meter-status-text" style="font-size: 0.88rem; font-weight: 700; color: #cbd5e1;">🎥 Unwatched Video Clip</span>
+            <span class="meter-auth-hint" style="font-size: 0.8rem; color: #94a3b8;">🔒 Log in to save watch tracker</span>
+          </div>
+          <div style="width: 100%; height: 8px; background: rgba(30, 41, 59, 0.8); border-radius: 4px; overflow: hidden; border: 1px solid #475569;">
+            <div class="meter-fill-bar" style="width: 0%; height: 100%; background: linear-gradient(90deg, #38bdf8, #34d399); transition: width 0.4s ease;"></div>
+          </div>
+        </div>
+        <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 8px; border: 1px solid var(--border-color); background: #000; margin-bottom: 0.75rem;">
+          <iframe id="yt_frame_card_event_nov05_clip1" loading="lazy" src="https://www.youtube.com/embed/tOS-4HdTJOI?enablejsapi=1" allow="autoplay; fullscreen" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;" allowfullscreen></iframe>
+        </div>
+        <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem; background: rgba(15, 23, 42, 0.8); padding: 0.65rem 0.85rem; border-radius: 6px; border: 1px solid #334155;">
+          <div style="display: flex; align-items: center; gap: 0.35rem;">
+            <span style="font-size: 0.82rem; font-weight: 700; color: var(--accent-cyan); margin-right: 0.25rem;">Speed:</span>
+            <button type="button" onclick="window.setVideoSpeed('from-static-contracts-to-executable-code', 1.0, this)" class="btn-speed" style="padding: 0.25rem 0.55rem; font-size: 0.78rem; background: var(--accent-cyan); color: #0a1128; font-weight: 800; border: 1px solid var(--accent-cyan); border-radius: 4px; cursor: pointer;">1.0x</button>
+            <button type="button" onclick="window.setVideoSpeed('from-static-contracts-to-executable-code', 1.25, this)" class="btn-speed" style="padding: 0.25rem 0.55rem; font-size: 0.78rem; background: rgba(30, 41, 59, 0.8); color: #e2e8f0; font-weight: 600; border: 1px solid #334155; border-radius: 4px; cursor: pointer;">1.25x</button>
+            <button type="button" onclick="window.setVideoSpeed('from-static-contracts-to-executable-code', 1.5, this)" class="btn-speed" style="padding: 0.25rem 0.55rem; font-size: 0.78rem; background: rgba(30, 41, 59, 0.8); color: #e2e8f0; font-weight: 600; border: 1px solid #334155; border-radius: 4px; cursor: pointer;">1.5x</button>
+            <button type="button" onclick="window.setVideoSpeed('from-static-contracts-to-executable-code', 1.75, this)" class="btn-speed" style="padding: 0.25rem 0.55rem; font-size: 0.78rem; background: rgba(30, 41, 59, 0.8); color: #e2e8f0; font-weight: 600; border: 1px solid #334155; border-radius: 4px; cursor: pointer;">1.75x</button>
+            <button type="button" onclick="window.setVideoSpeed('from-static-contracts-to-executable-code', 2.0, this)" class="btn-speed" style="padding: 0.25rem 0.55rem; font-size: 0.78rem; background: rgba(30, 41, 59, 0.8); color: #e2e8f0; font-weight: 600; border: 1px solid #334155; border-radius: 4px; cursor: pointer;">2.0x</button>
+          </div>
+          <div style="display: flex; align-items: center; gap: 0.35rem; flex-wrap: wrap;">
+            <button type="button" onclick="const iframe = this.closest('.card, .pillar-card').querySelector('iframe'); if (iframe) { if (iframe.requestFullscreen) iframe.requestFullscreen(); else if (iframe.webkitRequestFullscreen) iframe.webkitRequestFullscreen(); }" class="btn" style="padding: 0.25rem 0.65rem; font-size: 0.78rem; background: rgba(56, 189, 248, 0.15); color: var(--accent-cyan); border: 1px solid var(--accent-cyan); border-radius: 4px; cursor: pointer; font-weight: 700;">⤢ Expand Fullscreen</button>
+            <button type="button" onclick="window.openMediaCommentModal('from-static-contracts-to-executable-code', event)" class="btn btn-comment-from-static-contracts-to-executable-code" style="padding: 0.25rem 0.65rem; font-size: 0.78rem; background: rgba(56, 189, 248, 0.15); color: var(--accent-cyan); border: 1px solid var(--accent-cyan); border-radius: 4px; cursor: pointer; font-weight: 700;">💬 Notes</button>
+            <button type="button" onclick="window.openMediaApprovalModal('from-static-contracts-to-executable-code', event)" class="btn btn-approval-from-static-contracts-to-executable-code" style="padding: 0.25rem 0.65rem; font-size: 0.78rem; background: rgba(56, 189, 248, 0.15); color: var(--accent-cyan); border: 1px solid var(--accent-cyan); border-radius: 4px; cursor: pointer; font-weight: 700;">👍 Approval</button>
+            <button type="button" onclick="window.openNavLoginModal(event)" class="btn btn-unlogged-prompt" style="padding: 0.25rem 0.65rem; font-size: 0.78rem; background: rgba(251, 191, 36, 0.15); color: #fbbf24; border: 1px solid #f59e0b; border-radius: 4px; cursor: pointer; font-weight: 700; display: inline-block;">🔒 Login for Notes &amp; Approvals</button> <button type="button" onclick="window.copyCardDirectLink('from-static-contracts-to-executable-code', this)" class="btn btn-copy-link" style="padding: 0.25rem 0.65rem; font-size: 0.78rem; background: rgba(56, 189, 248, 0.15); color: var(--accent-cyan); border: 1px solid var(--accent-cyan); border-radius: 4px; cursor: pointer; font-weight: 700;">🔗 Copy Direct Link</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="card pillar-card" id="programming-the-law" style="border: 2px solid var(--accent-cyan); margin-bottom: 2rem;">
+        <h3 style="color: var(--accent-cyan); font-size: 1.25rem; margin-bottom: 0.75rem;">
+          Clip 2: Programming the Law
+        </h3>
+        <div class="media-playback-meter-container" style="margin-top: 0.5rem; margin-bottom: 0.85rem; background: rgba(15, 23, 42, 0.9); border: 1px solid #334155; border-radius: 8px; padding: 0.85rem; box-shadow: 0 4px 12px rgba(0,0,0,0.5);">
+          <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 0.4rem;">
+            <span class="meter-status-text" style="font-size: 0.88rem; font-weight: 700; color: #cbd5e1;">🎥 Unwatched Video Clip</span>
+            <span class="meter-auth-hint" style="font-size: 0.8rem; color: #94a3b8;">🔒 Log in to save watch tracker</span>
+          </div>
+          <div style="width: 100%; height: 8px; background: rgba(30, 41, 59, 0.8); border-radius: 4px; overflow: hidden; border: 1px solid #475569;">
+            <div class="meter-fill-bar" style="width: 0%; height: 100%; background: linear-gradient(90deg, #38bdf8, #34d399); transition: width 0.4s ease;"></div>
+          </div>
+        </div>
+        <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 8px; border: 1px solid var(--border-color); background: #000; margin-bottom: 0.75rem;">
+          <iframe id="yt_frame_card_event_nov05_clip2" loading="lazy" src="https://www.youtube.com/embed/xu5yAryW89E?enablejsapi=1" allow="autoplay; fullscreen" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;" allowfullscreen></iframe>
+        </div>
+        <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem; background: rgba(15, 23, 42, 0.8); padding: 0.65rem 0.85rem; border-radius: 6px; border: 1px solid #334155;">
+          <div style="display: flex; align-items: center; gap: 0.35rem;">
+            <span style="font-size: 0.82rem; font-weight: 700; color: var(--accent-cyan); margin-right: 0.25rem;">Speed:</span>
+            <button type="button" onclick="window.setVideoSpeed('programming-the-law', 1.0, this)" class="btn-speed" style="padding: 0.25rem 0.55rem; font-size: 0.78rem; background: var(--accent-cyan); color: #0a1128; font-weight: 800; border: 1px solid var(--accent-cyan); border-radius: 4px; cursor: pointer;">1.0x</button>
+            <button type="button" onclick="window.setVideoSpeed('programming-the-law', 1.25, this)" class="btn-speed" style="padding: 0.25rem 0.55rem; font-size: 0.78rem; background: rgba(30, 41, 59, 0.8); color: #e2e8f0; font-weight: 600; border: 1px solid #334155; border-radius: 4px; cursor: pointer;">1.25x</button>
+            <button type="button" onclick="window.setVideoSpeed('programming-the-law', 1.5, this)" class="btn-speed" style="padding: 0.25rem 0.55rem; font-size: 0.78rem; background: rgba(30, 41, 59, 0.8); color: #e2e8f0; font-weight: 600; border: 1px solid #334155; border-radius: 4px; cursor: pointer;">1.5x</button>
+            <button type="button" onclick="window.setVideoSpeed('programming-the-law', 1.75, this)" class="btn-speed" style="padding: 0.25rem 0.55rem; font-size: 0.78rem; background: rgba(30, 41, 59, 0.8); color: #e2e8f0; font-weight: 600; border: 1px solid #334155; border-radius: 4px; cursor: pointer;">1.75x</button>
+            <button type="button" onclick="window.setVideoSpeed('programming-the-law', 2.0, this)" class="btn-speed" style="padding: 0.25rem 0.55rem; font-size: 0.78rem; background: rgba(30, 41, 59, 0.8); color: #e2e8f0; font-weight: 600; border: 1px solid #334155; border-radius: 4px; cursor: pointer;">2.0x</button>
+          </div>
+          <div style="display: flex; align-items: center; gap: 0.35rem; flex-wrap: wrap;">
+            <button type="button" onclick="const iframe = this.closest('.card, .pillar-card').querySelector('iframe'); if (iframe) { if (iframe.requestFullscreen) iframe.requestFullscreen(); else if (iframe.webkitRequestFullscreen) iframe.webkitRequestFullscreen(); }" class="btn" style="padding: 0.25rem 0.65rem; font-size: 0.78rem; background: rgba(56, 189, 248, 0.15); color: var(--accent-cyan); border: 1px solid var(--accent-cyan); border-radius: 4px; cursor: pointer; font-weight: 700;">⤢ Expand Fullscreen</button>
+            <button type="button" onclick="window.openMediaCommentModal('programming-the-law', event)" class="btn btn-comment-programming-the-law" style="padding: 0.25rem 0.65rem; font-size: 0.78rem; background: rgba(56, 189, 248, 0.15); color: var(--accent-cyan); border: 1px solid var(--accent-cyan); border-radius: 4px; cursor: pointer; font-weight: 700;">💬 Notes</button>
+            <button type="button" onclick="window.openMediaApprovalModal('programming-the-law', event)" class="btn btn-approval-programming-the-law" style="padding: 0.25rem 0.65rem; font-size: 0.78rem; background: rgba(56, 189, 248, 0.15); color: var(--accent-cyan); border: 1px solid var(--accent-cyan); border-radius: 4px; cursor: pointer; font-weight: 700;">👍 Approval</button>
+            <button type="button" onclick="window.openNavLoginModal(event)" class="btn btn-unlogged-prompt" style="padding: 0.25rem 0.65rem; font-size: 0.78rem; background: rgba(251, 191, 36, 0.15); color: #fbbf24; border: 1px solid #f59e0b; border-radius: 4px; cursor: pointer; font-weight: 700; display: inline-block;">🔒 Login for Notes &amp; Approvals</button> <button type="button" onclick="window.copyCardDirectLink('programming-the-law', this)" class="btn btn-copy-link" style="padding: 0.25rem 0.65rem; font-size: 0.78rem; background: rgba(56, 189, 248, 0.15); color: var(--accent-cyan); border: 1px solid var(--accent-cyan); border-radius: 4px; cursor: pointer; font-weight: 700;">🔗 Copy Direct Link</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="card pillar-card" id="legal-tech-pedagogy" style="border: 2px solid var(--accent-cyan); margin-bottom: 2rem;">
+        <h3 style="color: var(--accent-cyan); font-size: 1.25rem; margin-bottom: 0.75rem;">
+          Clip 3: Legal Tech Pedagogy
+        </h3>
+        <div class="media-playback-meter-container" style="margin-top: 0.5rem; margin-bottom: 0.85rem; background: rgba(15, 23, 42, 0.9); border: 1px solid #334155; border-radius: 8px; padding: 0.85rem; box-shadow: 0 4px 12px rgba(0,0,0,0.5);">
+          <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 0.4rem;">
+            <span class="meter-status-text" style="font-size: 0.88rem; font-weight: 700; color: #cbd5e1;">🎥 Unwatched Video Clip</span>
+            <span class="meter-auth-hint" style="font-size: 0.8rem; color: #94a3b8;">🔒 Log in to save watch tracker</span>
+          </div>
+          <div style="width: 100%; height: 8px; background: rgba(30, 41, 59, 0.8); border-radius: 4px; overflow: hidden; border: 1px solid #475569;">
+            <div class="meter-fill-bar" style="width: 0%; height: 100%; background: linear-gradient(90deg, #38bdf8, #34d399); transition: width 0.4s ease;"></div>
+          </div>
+        </div>
+        <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 8px; border: 1px solid var(--border-color); background: #000; margin-bottom: 0.75rem;">
+          <iframe id="yt_frame_card_event_nov05_clip3" loading="lazy" src="https://www.youtube.com/embed/H228NLpcxI0?enablejsapi=1" allow="autoplay; fullscreen" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;" allowfullscreen></iframe>
+        </div>
+        <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem; background: rgba(15, 23, 42, 0.8); padding: 0.65rem 0.85rem; border-radius: 6px; border: 1px solid #334155;">
+          <div style="display: flex; align-items: center; gap: 0.35rem;">
+            <span style="font-size: 0.82rem; font-weight: 700; color: var(--accent-cyan); margin-right: 0.25rem;">Speed:</span>
+            <button type="button" onclick="window.setVideoSpeed('legal-tech-pedagogy', 1.0, this)" class="btn-speed" style="padding: 0.25rem 0.55rem; font-size: 0.78rem; background: var(--accent-cyan); color: #0a1128; font-weight: 800; border: 1px solid var(--accent-cyan); border-radius: 4px; cursor: pointer;">1.0x</button>
+            <button type="button" onclick="window.setVideoSpeed('legal-tech-pedagogy', 1.25, this)" class="btn-speed" style="padding: 0.25rem 0.55rem; font-size: 0.78rem; background: rgba(30, 41, 59, 0.8); color: #e2e8f0; font-weight: 600; border: 1px solid #334155; border-radius: 4px; cursor: pointer;">1.25x</button>
+            <button type="button" onclick="window.setVideoSpeed('legal-tech-pedagogy', 1.5, this)" class="btn-speed" style="padding: 0.25rem 0.55rem; font-size: 0.78rem; background: rgba(30, 41, 59, 0.8); color: #e2e8f0; font-weight: 600; border: 1px solid #334155; border-radius: 4px; cursor: pointer;">1.5x</button>
+            <button type="button" onclick="window.setVideoSpeed('legal-tech-pedagogy', 1.75, this)" class="btn-speed" style="padding: 0.25rem 0.55rem; font-size: 0.78rem; background: rgba(30, 41, 59, 0.8); color: #e2e8f0; font-weight: 600; border: 1px solid #334155; border-radius: 4px; cursor: pointer;">1.75x</button>
+            <button type="button" onclick="window.setVideoSpeed('legal-tech-pedagogy', 2.0, this)" class="btn-speed" style="padding: 0.25rem 0.55rem; font-size: 0.78rem; background: rgba(30, 41, 59, 0.8); color: #e2e8f0; font-weight: 600; border: 1px solid #334155; border-radius: 4px; cursor: pointer;">2.0x</button>
+          </div>
+          <div style="display: flex; align-items: center; gap: 0.35rem; flex-wrap: wrap;">
+            <button type="button" onclick="const iframe = this.closest('.card, .pillar-card').querySelector('iframe'); if (iframe) { if (iframe.requestFullscreen) iframe.requestFullscreen(); else if (iframe.webkitRequestFullscreen) iframe.webkitRequestFullscreen(); }" class="btn" style="padding: 0.25rem 0.65rem; font-size: 0.78rem; background: rgba(56, 189, 248, 0.15); color: var(--accent-cyan); border: 1px solid var(--accent-cyan); border-radius: 4px; cursor: pointer; font-weight: 700;">⤢ Expand Fullscreen</button>
+            <button type="button" onclick="window.openMediaCommentModal('legal-tech-pedagogy', event)" class="btn btn-comment-legal-tech-pedagogy" style="padding: 0.25rem 0.65rem; font-size: 0.78rem; background: rgba(56, 189, 248, 0.15); color: var(--accent-cyan); border: 1px solid var(--accent-cyan); border-radius: 4px; cursor: pointer; font-weight: 700;">💬 Notes</button>
+            <button type="button" onclick="window.openMediaApprovalModal('legal-tech-pedagogy', event)" class="btn btn-approval-legal-tech-pedagogy" style="padding: 0.25rem 0.65rem; font-size: 0.78rem; background: rgba(56, 189, 248, 0.15); color: var(--accent-cyan); border: 1px solid var(--accent-cyan); border-radius: 4px; cursor: pointer; font-weight: 700;">👍 Approval</button>
+            <button type="button" onclick="window.openNavLoginModal(event)" class="btn btn-unlogged-prompt" style="padding: 0.25rem 0.65rem; font-size: 0.78rem; background: rgba(251, 191, 36, 0.15); color: #fbbf24; border: 1px solid #f59e0b; border-radius: 4px; cursor: pointer; font-weight: 700; display: inline-block;">🔒 Login for Notes &amp; Approvals</button> <button type="button" onclick="window.copyCardDirectLink('legal-tech-pedagogy', this)" class="btn btn-copy-link" style="padding: 0.25rem 0.65rem; font-size: 0.78rem; background: rgba(56, 189, 248, 0.15); color: var(--accent-cyan); border: 1px solid var(--accent-cyan); border-radius: 4px; cursor: pointer; font-weight: 700;">🔗 Copy Direct Link</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="card pillar-card" id="legal-engineering-explainer" style="border: 2px solid var(--accent-cyan); margin-bottom: 2rem;">
+        <h3 style="color: var(--accent-cyan); font-size: 1.25rem; margin-bottom: 0.75rem;">
+          Clip 4: Legal Engineering Explainer
+        </h3>
+        <div class="media-playback-meter-container" style="margin-top: 0.5rem; margin-bottom: 0.85rem; background: rgba(15, 23, 42, 0.9); border: 1px solid #334155; border-radius: 8px; padding: 0.85rem; box-shadow: 0 4px 12px rgba(0,0,0,0.5);">
+          <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 0.4rem;">
+            <span class="meter-status-text" style="font-size: 0.88rem; font-weight: 700; color: #cbd5e1;">🎥 Unwatched Video Clip</span>
+            <span class="meter-auth-hint" style="font-size: 0.8rem; color: #94a3b8;">🔒 Log in to save watch tracker</span>
+          </div>
+          <div style="width: 100%; height: 8px; background: rgba(30, 41, 59, 0.8); border-radius: 4px; overflow: hidden; border: 1px solid #475569;">
+            <div class="meter-fill-bar" style="width: 0%; height: 100%; background: linear-gradient(90deg, #38bdf8, #34d399); transition: width 0.4s ease;"></div>
+          </div>
+        </div>
+        <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 8px; border: 1px solid var(--border-color); background: #000; margin-bottom: 0.75rem;">
+          <iframe id="yt_frame_card_event_nov05_clip4" loading="lazy" src="https://www.youtube.com/embed/kB49ttZdVxo?enablejsapi=1" allow="autoplay; fullscreen" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;" allowfullscreen></iframe>
+        </div>
+        <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem; background: rgba(15, 23, 42, 0.8); padding: 0.65rem 0.85rem; border-radius: 6px; border: 1px solid #334155;">
+          <div style="display: flex; align-items: center; gap: 0.35rem;">
+            <span style="font-size: 0.82rem; font-weight: 700; color: var(--accent-cyan); margin-right: 0.25rem;">Speed:</span>
+            <button type="button" onclick="window.setVideoSpeed('legal-engineering-explainer', 1.0, this)" class="btn-speed" style="padding: 0.25rem 0.55rem; font-size: 0.78rem; background: var(--accent-cyan); color: #0a1128; font-weight: 800; border: 1px solid var(--accent-cyan); border-radius: 4px; cursor: pointer;">1.0x</button>
+            <button type="button" onclick="window.setVideoSpeed('legal-engineering-explainer', 1.25, this)" class="btn-speed" style="padding: 0.25rem 0.55rem; font-size: 0.78rem; background: rgba(30, 41, 59, 0.8); color: #e2e8f0; font-weight: 600; border: 1px solid #334155; border-radius: 4px; cursor: pointer;">1.25x</button>
+            <button type="button" onclick="window.setVideoSpeed('legal-engineering-explainer', 1.5, this)" class="btn-speed" style="padding: 0.25rem 0.55rem; font-size: 0.78rem; background: rgba(30, 41, 59, 0.8); color: #e2e8f0; font-weight: 600; border: 1px solid #334155; border-radius: 4px; cursor: pointer;">1.5x</button>
+            <button type="button" onclick="window.setVideoSpeed('legal-engineering-explainer', 1.75, this)" class="btn-speed" style="padding: 0.25rem 0.55rem; font-size: 0.78rem; background: rgba(30, 41, 59, 0.8); color: #e2e8f0; font-weight: 600; border: 1px solid #334155; border-radius: 4px; cursor: pointer;">1.75x</button>
+            <button type="button" onclick="window.setVideoSpeed('legal-engineering-explainer', 2.0, this)" class="btn-speed" style="padding: 0.25rem 0.55rem; font-size: 0.78rem; background: rgba(30, 41, 59, 0.8); color: #e2e8f0; font-weight: 600; border: 1px solid #334155; border-radius: 4px; cursor: pointer;">2.0x</button>
+          </div>
+          <div style="display: flex; align-items: center; gap: 0.35rem; flex-wrap: wrap;">
+            <button type="button" onclick="const iframe = this.closest('.card, .pillar-card').querySelector('iframe'); if (iframe) { if (iframe.requestFullscreen) iframe.requestFullscreen(); else if (iframe.webkitRequestFullscreen) iframe.webkitRequestFullscreen(); }" class="btn" style="padding: 0.25rem 0.65rem; font-size: 0.78rem; background: rgba(56, 189, 248, 0.15); color: var(--accent-cyan); border: 1px solid var(--accent-cyan); border-radius: 4px; cursor: pointer; font-weight: 700;">⤢ Expand Fullscreen</button>
+            <button type="button" onclick="window.openMediaCommentModal('legal-engineering-explainer', event)" class="btn btn-comment-legal-engineering-explainer" style="padding: 0.25rem 0.65rem; font-size: 0.78rem; background: rgba(56, 189, 248, 0.15); color: var(--accent-cyan); border: 1px solid var(--accent-cyan); border-radius: 4px; cursor: pointer; font-weight: 700;">💬 Notes</button>
+            <button type="button" onclick="window.openMediaApprovalModal('legal-engineering-explainer', event)" class="btn btn-approval-legal-engineering-explainer" style="padding: 0.25rem 0.65rem; font-size: 0.78rem; background: rgba(56, 189, 248, 0.15); color: var(--accent-cyan); border: 1px solid var(--accent-cyan); border-radius: 4px; cursor: pointer; font-weight: 700;">👍 Approval</button>
+            <button type="button" onclick="window.openNavLoginModal(event)" class="btn btn-unlogged-prompt" style="padding: 0.25rem 0.65rem; font-size: 0.78rem; background: rgba(251, 191, 36, 0.15); color: #fbbf24; border: 1px solid #f59e0b; border-radius: 4px; cursor: pointer; font-weight: 700; display: inline-block;">🔒 Login for Notes &amp; Approvals</button> <button type="button" onclick="window.copyCardDirectLink('legal-engineering-explainer', this)" class="btn btn-copy-link" style="padding: 0.25rem 0.65rem; font-size: 0.78rem; background: rgba(56, 189, 248, 0.15); color: var(--accent-cyan); border: 1px solid var(--accent-cyan); border-radius: 4px; cursor: pointer; font-weight: 700;">🔗 Copy Direct Link</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="card pillar-card" id="the-efficiency-paradox" style="border: 2px solid var(--accent-cyan); margin-bottom: 2rem;">
+        <h3 style="color: var(--accent-cyan); font-size: 1.25rem; margin-bottom: 0.75rem;">
+          Clip 5: The Efficiency Paradox
+        </h3>
+        <div class="media-playback-meter-container" style="margin-top: 0.5rem; margin-bottom: 0.85rem; background: rgba(15, 23, 42, 0.9); border: 1px solid #334155; border-radius: 8px; padding: 0.85rem; box-shadow: 0 4px 12px rgba(0,0,0,0.5);">
+          <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 0.4rem;">
+            <span class="meter-status-text" style="font-size: 0.88rem; font-weight: 700; color: #cbd5e1;">🎥 Unwatched Video Clip</span>
+            <span class="meter-auth-hint" style="font-size: 0.8rem; color: #94a3b8;">🔒 Log in to save watch tracker</span>
+          </div>
+          <div style="width: 100%; height: 8px; background: rgba(30, 41, 59, 0.8); border-radius: 4px; overflow: hidden; border: 1px solid #475569;">
+            <div class="meter-fill-bar" style="width: 0%; height: 100%; background: linear-gradient(90deg, #38bdf8, #34d399); transition: width 0.4s ease;"></div>
+          </div>
+        </div>
+        <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 8px; border: 1px solid var(--border-color); background: #000; margin-bottom: 0.75rem;">
+          <iframe id="yt_frame_card_event_nov05_clip5" loading="lazy" src="https://www.youtube.com/embed/stOs6vGGyUI?enablejsapi=1" allow="autoplay; fullscreen" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;" allowfullscreen></iframe>
+        </div>
+        <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem; background: rgba(15, 23, 42, 0.8); padding: 0.65rem 0.85rem; border-radius: 6px; border: 1px solid #334155;">
+          <div style="display: flex; align-items: center; gap: 0.35rem;">
+            <span style="font-size: 0.82rem; font-weight: 700; color: var(--accent-cyan); margin-right: 0.25rem;">Speed:</span>
+            <button type="button" onclick="window.setVideoSpeed('the-efficiency-paradox', 1.0, this)" class="btn-speed" style="padding: 0.25rem 0.55rem; font-size: 0.78rem; background: var(--accent-cyan); color: #0a1128; font-weight: 800; border: 1px solid var(--accent-cyan); border-radius: 4px; cursor: pointer;">1.0x</button>
+            <button type="button" onclick="window.setVideoSpeed('the-efficiency-paradox', 1.25, this)" class="btn-speed" style="padding: 0.25rem 0.55rem; font-size: 0.78rem; background: rgba(30, 41, 59, 0.8); color: #e2e8f0; font-weight: 600; border: 1px solid #334155; border-radius: 4px; cursor: pointer;">1.25x</button>
+            <button type="button" onclick="window.setVideoSpeed('the-efficiency-paradox', 1.5, this)" class="btn-speed" style="padding: 0.25rem 0.55rem; font-size: 0.78rem; background: rgba(30, 41, 59, 0.8); color: #e2e8f0; font-weight: 600; border: 1px solid #334155; border-radius: 4px; cursor: pointer;">1.5x</button>
+            <button type="button" onclick="window.setVideoSpeed('the-efficiency-paradox', 1.75, this)" class="btn-speed" style="padding: 0.25rem 0.55rem; font-size: 0.78rem; background: rgba(30, 41, 59, 0.8); color: #e2e8f0; font-weight: 600; border: 1px solid #334155; border-radius: 4px; cursor: pointer;">1.75x</button>
+            <button type="button" onclick="window.setVideoSpeed('the-efficiency-paradox', 2.0, this)" class="btn-speed" style="padding: 0.25rem 0.55rem; font-size: 0.78rem; background: rgba(30, 41, 59, 0.8); color: #e2e8f0; font-weight: 600; border: 1px solid #334155; border-radius: 4px; cursor: pointer;">2.0x</button>
+          </div>
+          <div style="display: flex; align-items: center; gap: 0.35rem; flex-wrap: wrap;">
+            <button type="button" onclick="const iframe = this.closest('.card, .pillar-card').querySelector('iframe'); if (iframe) { if (iframe.requestFullscreen) iframe.requestFullscreen(); else if (iframe.webkitRequestFullscreen) iframe.webkitRequestFullscreen(); }" class="btn" style="padding: 0.25rem 0.65rem; font-size: 0.78rem; background: rgba(56, 189, 248, 0.15); color: var(--accent-cyan); border: 1px solid var(--accent-cyan); border-radius: 4px; cursor: pointer; font-weight: 700;">⤢ Expand Fullscreen</button>
+            <button type="button" onclick="window.openMediaCommentModal('the-efficiency-paradox', event)" class="btn btn-comment-the-efficiency-paradox" style="padding: 0.25rem 0.65rem; font-size: 0.78rem; background: rgba(56, 189, 248, 0.15); color: var(--accent-cyan); border: 1px solid var(--accent-cyan); border-radius: 4px; cursor: pointer; font-weight: 700;">💬 Notes</button>
+            <button type="button" onclick="window.openMediaApprovalModal('the-efficiency-paradox', event)" class="btn btn-approval-the-efficiency-paradox" style="padding: 0.25rem 0.65rem; font-size: 0.78rem; background: rgba(56, 189, 248, 0.15); color: var(--accent-cyan); border: 1px solid var(--accent-cyan); border-radius: 4px; cursor: pointer; font-weight: 700;">👍 Approval</button>
+            <button type="button" onclick="window.openNavLoginModal(event)" class="btn btn-unlogged-prompt" style="padding: 0.25rem 0.65rem; font-size: 0.78rem; background: rgba(251, 191, 36, 0.15); color: #fbbf24; border: 1px solid #f59e0b; border-radius: 4px; cursor: pointer; font-weight: 700; display: inline-block;">🔒 Login for Notes &amp; Approvals</button> <button type="button" onclick="window.copyCardDirectLink('the-efficiency-paradox', this)" class="btn btn-copy-link" style="padding: 0.25rem 0.65rem; font-size: 0.78rem; background: rgba(56, 189, 248, 0.15); color: var(--accent-cyan); border: 1px solid var(--accent-cyan); border-radius: 4px; cursor: pointer; font-weight: 700;">🔗 Copy Direct Link</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="card pillar-card" id="automated-law" style="border: 2px solid var(--accent-cyan); margin-bottom: 2rem;">
+        <h3 style="color: var(--accent-cyan); font-size: 1.25rem; margin-bottom: 0.75rem;">
+          Clip 6: Automated Law
+        </h3>
+        <div class="media-playback-meter-container" style="margin-top: 0.5rem; margin-bottom: 0.85rem; background: rgba(15, 23, 42, 0.9); border: 1px solid #334155; border-radius: 8px; padding: 0.85rem; box-shadow: 0 4px 12px rgba(0,0,0,0.5);">
+          <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 0.4rem;">
+            <span class="meter-status-text" style="font-size: 0.88rem; font-weight: 700; color: #cbd5e1;">🎥 Unwatched Video Clip</span>
+            <span class="meter-auth-hint" style="font-size: 0.8rem; color: #94a3b8;">🔒 Log in to save watch tracker</span>
+          </div>
+          <div style="width: 100%; height: 8px; background: rgba(30, 41, 59, 0.8); border-radius: 4px; overflow: hidden; border: 1px solid #475569;">
+            <div class="meter-fill-bar" style="width: 0%; height: 100%; background: linear-gradient(90deg, #38bdf8, #34d399); transition: width 0.4s ease;"></div>
+          </div>
+        </div>
+        <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 8px; border: 1px solid var(--border-color); background: #000; margin-bottom: 0.75rem;">
+          <iframe id="yt_frame_card_event_nov05_clip6" loading="lazy" src="https://www.youtube.com/embed/b54RYPh8KUQ?enablejsapi=1" allow="autoplay; fullscreen" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;" allowfullscreen></iframe>
+        </div>
+        <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem; background: rgba(15, 23, 42, 0.8); padding: 0.65rem 0.85rem; border-radius: 6px; border: 1px solid #334155;">
+          <div style="display: flex; align-items: center; gap: 0.35rem;">
+            <span style="font-size: 0.82rem; font-weight: 700; color: var(--accent-cyan); margin-right: 0.25rem;">Speed:</span>
+            <button type="button" onclick="window.setVideoSpeed('automated-law', 1.0, this)" class="btn-speed" style="padding: 0.25rem 0.55rem; font-size: 0.78rem; background: var(--accent-cyan); color: #0a1128; font-weight: 800; border: 1px solid var(--accent-cyan); border-radius: 4px; cursor: pointer;">1.0x</button>
+            <button type="button" onclick="window.setVideoSpeed('automated-law', 1.25, this)" class="btn-speed" style="padding: 0.25rem 0.55rem; font-size: 0.78rem; background: rgba(30, 41, 59, 0.8); color: #e2e8f0; font-weight: 600; border: 1px solid #334155; border-radius: 4px; cursor: pointer;">1.25x</button>
+            <button type="button" onclick="window.setVideoSpeed('automated-law', 1.5, this)" class="btn-speed" style="padding: 0.25rem 0.55rem; font-size: 0.78rem; background: rgba(30, 41, 59, 0.8); color: #e2e8f0; font-weight: 600; border: 1px solid #334155; border-radius: 4px; cursor: pointer;">1.5x</button>
+            <button type="button" onclick="window.setVideoSpeed('automated-law', 1.75, this)" class="btn-speed" style="padding: 0.25rem 0.55rem; font-size: 0.78rem; background: rgba(30, 41, 59, 0.8); color: #e2e8f0; font-weight: 600; border: 1px solid #334155; border-radius: 4px; cursor: pointer;">1.75x</button>
+            <button type="button" onclick="window.setVideoSpeed('automated-law', 2.0, this)" class="btn-speed" style="padding: 0.25rem 0.55rem; font-size: 0.78rem; background: rgba(30, 41, 59, 0.8); color: #e2e8f0; font-weight: 600; border: 1px solid #334155; border-radius: 4px; cursor: pointer;">2.0x</button>
+          </div>
+          <div style="display: flex; align-items: center; gap: 0.35rem; flex-wrap: wrap;">
+            <button type="button" onclick="const iframe = this.closest('.card, .pillar-card').querySelector('iframe'); if (iframe) { if (iframe.requestFullscreen) iframe.requestFullscreen(); else if (iframe.webkitRequestFullscreen) iframe.webkitRequestFullscreen(); }" class="btn" style="padding: 0.25rem 0.65rem; font-size: 0.78rem; background: rgba(56, 189, 248, 0.15); color: var(--accent-cyan); border: 1px solid var(--accent-cyan); border-radius: 4px; cursor: pointer; font-weight: 700;">⤢ Expand Fullscreen</button>
+            <button type="button" onclick="window.openMediaCommentModal('automated-law', event)" class="btn btn-comment-automated-law" style="padding: 0.25rem 0.65rem; font-size: 0.78rem; background: rgba(56, 189, 248, 0.15); color: var(--accent-cyan); border: 1px solid var(--accent-cyan); border-radius: 4px; cursor: pointer; font-weight: 700;">💬 Notes</button>
+            <button type="button" onclick="window.openMediaApprovalModal('automated-law', event)" class="btn btn-approval-automated-law" style="padding: 0.25rem 0.65rem; font-size: 0.78rem; background: rgba(56, 189, 248, 0.15); color: var(--accent-cyan); border: 1px solid var(--accent-cyan); border-radius: 4px; cursor: pointer; font-weight: 700;">👍 Approval</button>
+            <button type="button" onclick="window.openNavLoginModal(event)" class="btn btn-unlogged-prompt" style="padding: 0.25rem 0.65rem; font-size: 0.78rem; background: rgba(251, 191, 36, 0.15); color: #fbbf24; border: 1px solid #f59e0b; border-radius: 4px; cursor: pointer; font-weight: 700; display: inline-block;">🔒 Login for Notes &amp; Approvals</button> <button type="button" onclick="window.copyCardDirectLink('automated-law', this)" class="btn btn-copy-link" style="padding: 0.25rem 0.65rem; font-size: 0.78rem; background: rgba(56, 189, 248, 0.15); color: var(--accent-cyan); border: 1px solid var(--accent-cyan); border-radius: 4px; cursor: pointer; font-weight: 700;">🔗 Copy Direct Link</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- 4. Bottom Actions -->
+      <div style="margin-top: 2.5rem; display: flex; gap: 1rem; flex-wrap: wrap; align-items: center; justify-content: center;">
+        <a href="/101/6.2/quiz-learned/" data-progressive-quiz-cid="6.2" data-learned-href="/101/6.2/quiz-learned/" data-expert-href="/101/6.2/quiz-expert/" class="btn btn-primary" style="background: var(--accent-gold); color: #0a1128; font-weight: 800; font-size: 1.02rem; padding: 0.75rem 1.4rem;">📘 Take 5-Q Learned Quiz ➔</a>
+        <a href="/event/" class="btn btn-outline" style="font-size: 1.05rem; padding: 0.75rem 1.75rem;">← Back to Events Hub</a>
+      </div>
+
+    </div>
+  </section>
+
+  <script>
+    (function() {
+      try {
+        if (localStorage.getItem('lexclinic_quiz_reset_20261111_v2') !== '1') {
+          const rawSubs = JSON.parse(localStorage.getItem('lexclinic_quiz_submissions') || '[]');
+          const subs = Array.isArray(rawSubs) ? rawSubs : Object.values(rawSubs);
+          const cleaned = subs.filter(s => {
+            if (!s) return false;
+            const sc = String(s.score || '');
+            if (sc.split('/').length > 2) return false;
+            const cid = String(s.class_id || '');
+            const ts = String(s.timestamp || '');
+            if ((cid === '6.1' || cid === '6.2' || cid === 'class_6.1' || cid === 'class_6.2') && (!ts || ts < '2026-11-11T00:00:00.000Z')) return false;
+            return true;
+          });
+          localStorage.setItem('lexclinic_quiz_submissions', JSON.stringify(cleaned));
+          if (localStorage.removeItem) {
+            localStorage.removeItem('lexclinic_quiz_answers_6.2');
+            localStorage.removeItem('lexclinic_quiz_answers_6.1');
+          } else {
+            localStorage.setItem('lexclinic_quiz_answers_6.2', '{}');
+            localStorage.setItem('lexclinic_quiz_answers_6.1', '{}');
+          }
+          localStorage.setItem('lexclinic_quiz_reset_20261111_v2', '1');
+        }
+      } catch (e) {}
+    })();
+  </script>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container footer-content">
+      <p>© 2026 LexClinic Education Inc. Delaware non-profit applying for 501(c)(3) tax-exempt status. Open public goods published under AGPL-3.0 &amp; Creative Commons Attribution-ShareAlike 4.0.</p>
+      <p class="disclaimer" style="margin-top: 0.5rem; font-size: 0.78rem; color: #94a3b8; line-height: 1.5;">
+        <strong>Educational &amp; Open-Source Disclaimer:</strong> LexClinic Education, Inc. is a Delaware non-profit corporation applying for 501(c)(3) tax-exempt status. All materials, software runtimes, and APIs are published for educational research under AGPL-3.0 and do not constitute formal legal advice or an attorney-client relationship. <a href="/help/#disclaimer" style="color: var(--accent-cyan); text-decoration: underline;">Read full disclaimer ➔</a>
+      </p>
+    </div>
+  </footer>
+
+</body>
+</html>

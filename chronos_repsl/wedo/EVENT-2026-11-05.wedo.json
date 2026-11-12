@@ -1,0 +1,78 @@
+{
+  "wedo_instance": {
+    "id": "EVENT-2026-11-05",
+    "description": "LexClinic Socratic Event Manifest \u2014 Nov 5, 2026 (Lesson 6.2: Reading Right-to-Left: Adjusting Your Eyes)",
+    "status": "[completed]",
+    "meta": {
+      "protocol": "WeDo-JSON",
+      "version": "1.0.0",
+      "event_date": "2026-11-05",
+      "companion_101_module": "6.2",
+      "companion_101_url": "/101/6.2/",
+      "event_url": "/event/2026-11-05/",
+      "monthly_archive_url": "/event/2026-11/",
+      "drive_folder_id": "1OGLTnmCxesx-s7JSPRZqPAzq0RvvZwHB",
+      "audio_stream": "/event/2026-11-05/audio.m4a",
+      "youtube_clips": [
+        {
+          "clip": 1,
+          "title": "C-Lead Video 6.2 - Clip 1: Legal Logic to Code",
+          "youtube_id": "tOS-4HdTJOI"
+        },
+        {
+          "clip": 2,
+          "title": "C-Lead Video 6.2 - Clip 2: Programming the Law",
+          "youtube_id": "xu5yAryW89E"
+        },
+        {
+          "clip": 3,
+          "title": "C-Lead Video 6.2 - Clip 3: Legal Tech Pedagogy",
+          "youtube_id": "H228NLpcxI0"
+        },
+        {
+          "clip": 4,
+          "title": "C-Lead Video 6.2 - Clip 4: Legal Engineering Explainer",
+          "youtube_id": "kB49ttZdVxo"
+        },
+        {
+          "clip": 5,
+          "title": "C-Lead Video 6.2 - Clip 5: The Efficiency Paradox",
+          "youtube_id": "stOs6vGGyUI"
+        },
+        {
+          "clip": 6,
+          "title": "C-Lead Video 6.2 - Clip 6: Automated Law",
+          "youtube_id": "b54RYPh8KUQ"
+        }
+      ]
+    },
+    "tasks": [
+      {
+        "id": "AUDIO-STREAM",
+        "description": "Compress From_Static_Contracts_to_Executable_Code.m4a (45.07 MB) to faststart AAC (8.89 MB) at /event/2026-11-05/audio.m4a and index cleaned Whisper transcript (event_2026-11-05)",
+        "status": "[x]"
+      },
+      {
+        "id": "YOUTUBE-CLIPS",
+        "description": "Upload all 6 MP4 explainer clips from Google Drive folder 1OGLTnmCxesx-s7JSPRZqPAzq0RvvZwHB to YouTube as unlisted and embed on /event/2026-11-05/index.html",
+        "status": "[x]"
+      },
+      {
+        "id": "BIJECTION-6-2",
+        "description": "Link /101/6.2/ and /event/2026-11-05/ bidirectionally and create /event/2026-11/ monthly archive",
+        "status": "[x]"
+      },
+      {
+        "id": "TEMPLATE-PARITY-AND-IDEA-DEPTH-UPGRADE",
+        "description": "Rebuild /event/2026-11-05/index.html matching /event/2026-10-29/ template parity (full-width cinema layout, 4-tile takeaway grid, #1ed760 audio card, speed controls 1.0x-2.0x, play meters, working copy-link buttons, and bottom navigation), and upgrade /101/idea/ and /101/ across Classes 1.1-7.2 (33 T1 Novel + 34 T2 Deepened = 67/168 [39.9%] Generative vs. 101/168 [60.1%] Review) with mobile responsive table scrolling on <= 768px viewports",
+        "status": "[x]"
+      },
+      {
+        "id": "QUIZ-5Q-TO-20Q-GRADUATION-AND-SPEC-SYNC",
+        "description": "Purge synthetic pre-Nov-11 5/5/5 test records from Google Drive ledger (1GidiMBXRYmcDMnAPrgndS35-MsjY1WT7) and browser localStorage, and compile chronos_repsl/specs/event_2026-11-05.json + chronos_repsl/specs/module_101_6.2.json via weekly_sync_scaffold.py so /event/2026-11-05/ starts at the 5-Question Learned Quiz (/101/6.2/quiz-learned/) and graduates to the 20-Question Expert Quiz (/101/6.2/quiz-expert/)",
+        "status": "[x]"
+      }
+    ]
+  },
+  "attribution": "LexClinic Legal Engineering Swarm (20261111)"
+}

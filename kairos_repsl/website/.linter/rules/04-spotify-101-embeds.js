@@ -16,7 +16,9 @@ function run(webDir, config) {
     { mod: "5.1", yt: "tw3o5UkqQFg", spotify: "2EclBQctcAg5ckYXsJP4Yc" },
     { mod: "5.2", yt: "OtYJCzsxwdE", spotify: "3DRmjl3Vq6VzicLbAblCDH" },
     { mod: "6.1", yt: "fz5ON8vs_gQ", spotify: "40sELGiloMWg7k8iI5chpI" },
-    { mod: "6.2", yt: "jAmvvgllLPg", spotify: "2IhGZEMrXXg1rkzg9eSfuz" }
+    { mod: "6.2", yt: "jAmvvgllLPg", spotify: "2IhGZEMrXXg1rkzg9eSfuz" },
+    { mod: "7.1", yt: "r7ZmnxfSY-0", spotify: "401NGruWP07zbTvh2K2nmk" },
+    { mod: "7.2", yt: "fV3yLAEuAg0", spotify: "0njS92rFADH65LPe5DhWni" }
   ];
 
   const violations = [];
@@ -81,14 +83,13 @@ function run(webDir, config) {
       violations.push(`101/index.html is missing link to /101/${item.mod}`);
     }
 
-    // 6b. Exact 1-to-1 Socratic Event bijection (1.1 has no separate recorded event; 1.2 through 6.2 must link to their exact Socratic event)
+    // 6b. No upcoming "Live Socratic Session" links in /101/; only recorded /event/YYYY-MM-DD/ sessions may be linked
+    if (html.includes("Live Socratic Session")) {
+      violations.push(`101/${item.mod}/index.html must NOT include upcoming 'Live Socratic Session' links`);
+    }
     if (item.mod === "1.1") {
       if (html.includes("_socratic_companion")) {
         violations.push("101/1.1/index.html must NOT have a fake Socratic Event companion card (1.1 is the foundational self-paced module)");
-      }
-    } else {
-      if (!html.includes("_socratic_companion") || !html.includes("/event/")) {
-        violations.push(`101/${item.mod}/index.html is missing the Live Socratic Cohort Companion card linking to /event/`);
       }
     }
 
@@ -98,6 +99,11 @@ function run(webDir, config) {
     }
     if (html.includes('href="quiz-expert/"')) {
       violations.push(`101/${item.mod}/index.html still contains a direct href="quiz-expert/" link instead of using the single progressive quiz CTA`);
+    }
+
+    // 6d. Template parity: speed controls (1.0x-2.0x), fullscreen wrapper, and copyCardDirectLink(..., this)
+    if (!html.includes("window.setVideoSpeed(") || !html.includes("requestFullscreen") || !/window\.copyCardDirectLink\([^)]*,\s*this\)/.test(html)) {
+      violations.push(`101/${item.mod}/index.html is missing canonical video speed controls, fullscreen handler, or copyCardDirectLink(..., this)`);
     }
 
     // 7. Indexed in transcripts.json & distinct from Socratic event transcripts
@@ -114,6 +120,19 @@ function run(webDir, config) {
       if (html.includes("cycloidal") || html.includes("D^n terminus")) {
         violations.push("101/4.1/index.html contains mismatched cycloidal / D^n terminus overview text instead of Class 4.1 Decoupling Logic from Assets overview");
       }
+    }
+  }
+
+  // 8. Verify strict ascending numerical order of Class X.Y cards in /101/index.html and no Live Socratic Session links
+  if (hubHtml.includes("Live Socratic Session")) {
+    violations.push("101/index.html must NOT include upcoming 'Live Socratic Session' links");
+  }
+  const cardOrderMatches = [...hubHtml.matchAll(/<h3[^>]*>Class\s+(\d+\.\d+):/g)].map(m => m[1]);
+  for (let i = 1; i < cardOrderMatches.length; i++) {
+    const prev = cardOrderMatches[i - 1].split(".").map(Number);
+    const curr = cardOrderMatches[i].split(".").map(Number);
+    if (prev[0] > curr[0] || (prev[0] === curr[0] && prev[1] >= curr[1])) {
+      violations.push(`101/index.html Class card ordering violation: Class ${cardOrderMatches[i - 1]} appears before Class ${cardOrderMatches[i]}`);
     }
   }
 

@@ -37,7 +37,15 @@
         "quiz_submissions_drive_id": "1GidiMBXRYmcDMnAPrgndS35-MsjY1WT7",
         "media_notes_approvals_ledger_drive_id": "1FcH5BakIJTMoyr5spdIW9WAaxB8mri0b"
       },
-      "how_to_extend": "When adding a new 101 module, event, interview, or quiz, append its route and expected media IDs to Rules 04/05/06/07 and Suite 04, then run both runners until 0 failures."
+      "weekly_sync_compiler_and_deploy_protocol": {
+        "boilerplate_wedo": "kairos_repsl/json/boilerplates/weekly_socratic_101_sync.wedo.json",
+        "compiler_script": "chronos_repsl/scripts/weekly_sync_scaffold.py (mirrored in /home/mgit/py/substrate/weekly_sync_scaffold.py)",
+        "specs_directory": "chronos_repsl/specs/ (event_YYYY-MM-DD.json, module_101_X.Y.json)",
+        "compile_event_cmd": "python3 chronos_repsl/scripts/weekly_sync_scaffold.py --compile-event chronos_repsl/specs/event_<YYYY-MM-DD>.json --update-hub",
+        "compile_101_cmd": "python3 chronos_repsl/scripts/weekly_sync_scaffold.py --compile-101 chronos_repsl/specs/module_101_<X.Y>.json --update-hub",
+        "single_command_deploy": "python3 chronos_repsl/scripts/repsl_dual_commit.py \"<commit message>\" (loads ~/.config/lexclinic_secrets.env, runs 8-rule linter, commits to .git_repsl stage, pushes to GitHub, and deploys via npx wrangler pages deploy to stage-lex-clinic)"
+      },
+      "how_to_extend": "For all weekly /event/ and /101/ edits, author or update JSON specs in chronos_repsl/specs/ and run weekly_sync_scaffold.py with --update-hub, then verify with .linter/runner.js and .tests/runner.js and deploy via repsl_dual_commit.py."
     },
     "tasks": [
       {
@@ -129,8 +137,28 @@
         "id": "PWA-STAGE-01",
         "description": "Configure LexClinic as an installable Progressive Web App (PWA) with /manifest.webmanifest, /sw.js (network-first with offline cache fallback and byte-range audio pass-through), /icon-192.png & /icon-512.png, and <head> manifest/apple-mobile-web-app tags across all 99 HTML pages on staging",
         "status": "[x]"
+      },
+      {
+        "id": "EVENT-NOV05-CLASS62-AND-MOD7-STAGE-01",
+        "description": "Process Nov 5, 2026 (Class 6.2) Socratic Session media from Google Drive (From_Static_Contracts_to_Executable_Code.m4a + 6 unlisted YouTube clips + forensic Whisper transcript), build /event/2026-11-05/ and /event/2026-11/, link /101/6.2/ <-> /event/2026-11-05/, publish 101 Modules 7.1 (r7ZmnxfSY-0 + Spotify 401NGruWP07zbTvh2K2nmk) & 7.2 (fV3yLAEuAg0 + Spotify 0njS92rFADH65LPe5DhWni) with 20-question transcript-grounded dual-route quizzes, and update /event/ Top 3 Recent (Nov 5, Oct 29, Oct 22) & Upcoming (Nov 12 Class 7.1)",
+        "status": "[x]"
+      },
+      {
+        "id": "IDEA-MAP-DEPTH-AND-MOD7-STAGE-01",
+        "description": "Upgrade /101/idea/ and /101/ Bottom-Up Banner to add the 3-Tier Concept Depth & Breadth dimension (T1 Novel Seeds 19.6% [33] + T2 Deepened/Fleshed-Out Spiral Elaborations 20.2% [34] = 39.9% Combined Generative Learning vs. 60.1% [101] T3 Baseline Review across all 14 classes 1.1-7.2, 168 total instances, I1-I33), Pedagogical Research & Course-Level Benchmarks (101 40:60 vs. 201 60:40 vs. 301/PhD 80:20), and responsive mobile table scrolling (<= 768px) in /styles.css while maintaining strict /event/ and /101/ weekly sync scope",
+        "status": "[x]"
+      },
+      {
+        "id": "WSYNC-HYBRID-COMPILER-AND-QUIZ-GRADUATION-01",
+        "description": "Implement Low-Token Hybrid HTML + JSON Weekly Sync Compiler (chronos_repsl/scripts/weekly_sync_scaffold.py) with --update-hub automation for /event/ and /101/, enforce strict separation of concerns (no upcoming Live Socratic Session links on /101/), purge synthetic 5/5/5 test records from Google Drive (1GidiMBXRYmcDMnAPrgndS35-MsjY1WT7) and localStorage so /event/2026-11-05/ and /101/6.2/ cleanly start at the 5-Question Learned Quiz and graduate to the 20-Question Expert Quiz, and configure automated Direct Upload staging deployments in repsl_dual_commit.py",
+        "status": "[x]"
+      },
+      {
+        "id": "BRAND-LOGOS-AND-AUDIO-RANGE-206-01",
+        "description": "Slice the 4 modern LexClinic Brand Architecture logos (/logo-ice.png, /logo-cpu.png, /logo-fak.png, /logo-mri.png), regenerate /logo-ice.png with a full-width hinged automotive hood, dual gas struts, and clean twin-plenum V8 engine bay, set the square CPU die render as the PWA icon across /icon-512.png, /icon-192.png, /favicon.png, and /favicon.ico, and implement RFC 9110 HTTP 206 Partial Content byte-range slicing for .m4a and .mp4 streams in functions/_middleware.js (verified across 440 assertions in Test Suites 03 & 04)",
+        "status": "[x]"
       }
     ]
   },
-  "attribution": "LexClinic Swarm (20260828)"
+  "attribution": "LexClinic Swarm (20261111)"
 }

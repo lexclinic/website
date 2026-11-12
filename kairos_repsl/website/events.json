@@ -185,25 +185,14 @@
     "category": "class"
   },
   {
-    "id": "event-google-cal-2026-11-04",
-    "title": "Bi-Weekly Collaborators' & Root Node Call",
-    "date": "2026-11-04",
-    "url": "https://www.google.com/calendar/event?eid=NDlkaHMzdm9rbHFvOGxqNmQ4bzFzc2xsbDBfMjAyNjExMDRUMTMwMDAwWiBreWxlQGxleC5jbGluaWM",
-    "meet_url": "https://meet.google.com/aij-bftf-ekg",
-    "is_upcoming": true,
-    "is_private": true,
-    "description": "Hey Root Nodes,\u00a0\n\nthis is a new link that allows us to have longer calls and the ability to record the session within google meet. Sorry for the hassle. The old invitation will be cancelled by Alice shortly.\u00a0\n\nCheers\nDaniel",
-    "category": "collaborator_call"
-  },
-  {
     "id": "event-google-cal-2026-11-05",
-    "title": "LexClinic 2026 \u2014 Lesson 6.2",
+    "title": "LexClinic 2026 \u2014 Lesson 6.2: Reading Right-to-Left: Adjusting Your Eyes",
     "date": "2026-11-05",
-    "url": "https://www.google.com/calendar/event?eid=Nmg1aGh1MjFkNzc4NThuNzVrZjVucWMxbDJfMjAyNjExMDVUMjIzMDAwWiBreWxlQGxleC5jbGluaWM",
+    "url": "/event/2026-11-05/",
     "meet_url": "https://meet.google.com/xpy-vzuu-nmf",
-    "is_upcoming": true,
+    "is_upcoming": false,
     "is_private": false,
-    "description": "Socratic Session for LexClinic 2026. Automatically recorded and transcribed with Gemini Meeting Notes. Recording and transcript link will be emailed to all attendees upon meeting conclusion.",
+    "description": "Socratic session and 6 explainer clips deconstructing right-to-left variable assignment, Leibniz's legal calculus, cognitive novelty ratios, Non-Person (.np) VM NFTs, Reverse Centaurs, and Chronos vs. Kairos.",
     "category": "class"
   },
   {

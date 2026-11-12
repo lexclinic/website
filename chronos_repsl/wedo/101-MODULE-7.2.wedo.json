@@ -1,0 +1,30 @@
+{
+  "wedo_instance": {
+    "id": "101-MODULE-7.2",
+    "description": "LexClinic 101 Courseware Manifest \u2014 Class 7.2: Translating Clauses into Nested If/Else Logic",
+    "status": "[completed]",
+    "meta": {
+      "protocol": "WeDo-JSON",
+      "version": "1.0.0",
+      "module_id": "7.2",
+      "title": "Class 7.2: Translating Clauses into Nested If/Else Logic",
+      "youtube_id": "fV3yLAEuAg0",
+      "module_overview_youtube_id": "xPE9-SaZZMA",
+      "spotify_episode_id": "0njS92rFADH65LPe5DhWni",
+      "scheduled_socratic_session": "2026-11-19"
+    },
+    "tasks": [
+      {
+        "id": "YT-PUBLIC-AND-WHISPER",
+        "description": "Set YouTube lecture fV3yLAEuAg0 to public and transcribe audio with Whisper into transcripts.json (class_7.2)",
+        "status": "[x]"
+      },
+      {
+        "id": "MODULE-AND-QUIZ-BUILD",
+        "description": "Build /101/7.2/index.html (with Spotify 0njS92rFADH65LPe5DhWni & YouTube fV3yLAEuAg0) and 20-question transcript-grounded dual-route quizzes (/101/7.2/quiz-learned/ & /101/7.2/quiz-expert/)",
+        "status": "[x]"
+      }
+    ]
+  },
+  "attribution": "LexClinic Legal Engineering Swarm (20261110)"
+}

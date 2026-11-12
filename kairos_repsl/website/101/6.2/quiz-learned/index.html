@@ -207,6 +207,10 @@
       function unlockMasteryQuiz() {
         currentStage = 2;
         const masteryContainer = document.getElementById('mastery-questions-container');
+        if (!masteryContainer && TIER_MODE === 'learned' && typeof window !== 'undefined' && window.location) {
+          window.location.href = EXPERT_URL;
+          return;
+        }
         if (masteryContainer) {
           masteryContainer.style.display = 'block';
           const radios = masteryContainer.querySelectorAll('input[type="radio"]');
@@ -225,6 +229,26 @@
 
       function restoreSavedQuizState() {
         try {
+          if (localStorage.getItem('lexclinic_quiz_reset_20261111_v2') !== '1') {
+            const rawInit = JSON.parse(localStorage.getItem('lexclinic_quiz_submissions') || '[]');
+            const initSubs = Array.isArray(rawInit) ? rawInit : Object.values(rawInit);
+            const cleanedInit = initSubs.filter(s => {
+              if (!s) return false;
+              const sc = String(s.score || '');
+              if (sc.split('/').length > 2) return false;
+              const cid = String(s.class_id || '');
+              const ts = String(s.timestamp || '');
+              if ((cid === '6.1' || cid === '6.2' || cid === 'class_6.1' || cid === 'class_6.2') && (!ts || ts < '2026-11-11T00:00:00.000Z')) return false;
+              return true;
+            });
+            localStorage.setItem('lexclinic_quiz_submissions', JSON.stringify(cleanedInit));
+            if (localStorage.removeItem) {
+              localStorage.removeItem('lexclinic_quiz_answers_6.2');
+              localStorage.removeItem('lexclinic_quiz_answers_6.1');
+            }
+            localStorage.setItem('lexclinic_quiz_reset_20261111_v2', '1');
+          }
+
           const savedAnswers = JSON.parse(localStorage.getItem('lexclinic_quiz_answers_' + CLASS_ID) || '{}');
           const form = document.getElementById(FORM_ID);
           if (form && savedAnswers && typeof savedAnswers === 'object') {
@@ -246,6 +270,7 @@
             const sc = String(s.score || '');
             if (sc.includes('/')) {
               const parts = sc.split('/').map(Number);
+              if (parts.length > 2) return false;
               return parts[0] >= 4;
             }
             return Number(sc) >= 4;
@@ -257,7 +282,6 @@
             if (form && form.style) form.style.display = 'block';
             const banner = document.getElementById('prior-completion-banner');
             if (banner) banner.style.display = 'block';
-            // If user navigated to generic /quiz or /quiz.html (smart mode) after already passing 5-Q Learned, automatically redirect/unlock 20-Q Expert!
             if (TIER_MODE === 'smart') {
               unlockMasteryQuiz();
               if (window.location && window.location.pathname && !window.location.pathname.includes('quiz-expert') && !window.location.pathname.includes('quiz-learned')) {
@@ -272,14 +296,22 @@
             if (form && form.style) form.style.display = 'none';
           }
 
-          // Also check remote /api/user-attest for logged-in user so cross-device / cleared-cache state restores automatically
           if (userEmail && window.fetch) {
             window.fetch('/api/user-attest?email=' + encodeURIComponent(userEmail))
               .then(r => r.ok ? r.json() : null)
               .then(data => {
                 if (!data || !Array.isArray(data.submissions)) return;
                 const remoteMatch = data.submissions.filter(s => s && (s.class_id === CLASS_ID || s.class_id === 'class_' + CLASS_ID));
-                if (remoteMatch.length > 0) {
+                const remotePassedLearned = remoteMatch.some(s => {
+                  const sc = String(s.score || '');
+                  if (sc.includes('/')) {
+                    const parts = sc.split('/').map(Number);
+                    if (parts.length > 2) return false;
+                    return parts[0] >= 4;
+                  }
+                  return Number(sc) >= 4;
+                });
+                if (remotePassedLearned) {
                   const lockBanner = document.getElementById('expert-prerequisite-lock-banner');
                   if (lockBanner) lockBanner.style.display = 'none';
                   if (form && form.style) form.style.display = 'block';
