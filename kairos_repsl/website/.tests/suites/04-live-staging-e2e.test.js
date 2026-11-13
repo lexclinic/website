@@ -115,6 +115,7 @@ async function run(webDir) {
     "/event/2026-10-22/audio.m4a",
     "/event/2026-10-29/audio.m4a",
     "/event/2026-11-05/audio.m4a",
+    "/event/2026-11-12/audio.m4a",
     "/interview/lucas-kung/audio.m4a",
     "/interview/2026-09-08/james-wigginton/audio.m4a"
   ];

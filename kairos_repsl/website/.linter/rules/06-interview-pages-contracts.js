@@ -12,7 +12,7 @@ function run(webDir, config) {
         "BpRTnQ4128Y", "b9zluOY9qpM", "h7P8r_cGvxw",
         "tnLETwm-dMY", "lBToaLiMPIM", "fVNCzWejRqo",
         "S205Glr5eJU", "dvbzF8T506w", "pKJYpUpdmqc",
-        "5u4cBvkOlo4", "s-TYcAsBv5A"
+        "5u4cBvkOlo4", "s-TYcAsBv5A", "58DVy_mvLgY"
       ],
       hubLinkPatterns: ["/interview/lucas-kung/", "/interview/2026-09-18/lucas-kung/"]
     },

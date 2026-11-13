@@ -1,0 +1,64 @@
+{
+  "wedo_instance": {
+    "id": "EVENT-2026-11-12",
+    "description": "LexClinic Socratic Event Manifest — Nov 12, 2026 (Lesson 7.1: Boolean Logic 101: True/False Legal Gates)",
+    "status": "[completed]",
+    "meta": {
+      "protocol": "WeDo-JSON",
+      "version": "1.0.0",
+      "event_date": "2026-11-12",
+      "companion_101_module": "7.1",
+      "companion_101_url": "/101/7.1/",
+      "event_url": "/event/2026-11-12/",
+      "monthly_archive_url": "/event/2026-11/",
+      "drive_folder_id": "1IBjviPwZdEPfrsM0P6B9ELeocSs0Bt31",
+      "upgraded_notes_doc_id": "1koKtRgPthPJtRxxq4ZhmS25tv9YUaG0Vf3oc1WUD6q0",
+      "audio_stream": "/event/2026-11-12/audio.m4a",
+      "youtube_clips": [
+        {
+          "clip": 1,
+          "title": "C-Lead Video 7.1 - Clip 1: Computational Legalese",
+          "youtube_id": "5kWl6Oe08cU"
+        },
+        {
+          "clip": 2,
+          "title": "C-Lead Video 7.1 - Clip 2: Legal Tech Pedagogy",
+          "youtube_id": "oEofbKsezh0"
+        },
+        {
+          "clip": 3,
+          "title": "C-Lead Video 7.1 - Clip 3: Sovereign Cloud Architecture",
+          "youtube_id": "9y6hUnQoLsU"
+        },
+        {
+          "clip": 4,
+          "title": "C-Lead Video 7.1 - Clip 4: Decentralized Governance",
+          "youtube_id": "NqReEBdaaNY"
+        },
+        {
+          "clip": 5,
+          "title": "C-Lead Video 7.1 - Clip 5: LexClinic Architecture",
+          "youtube_id": "dN6ukLGP2V0"
+        }
+      ]
+    },
+    "tasks": [
+      {
+        "id": "AUDIO-STREAM",
+        "description": "Compress Turning_Paper_Contracts_into_Executable_Code.m4a (35.27 MB) to faststart AAC (12.03 MB) at /event/2026-11-12/audio.m4a and index forensically verified timestamped transcript (event_2026-11-12) in transcripts.json",
+        "status": "[x]"
+      },
+      {
+        "id": "YOUTUBE-CLIPS",
+        "description": "Upload all 5 MP4 explainer clips from Google Drive folder 1IBjviPwZdEPfrsM0P6B9ELeocSs0Bt31 to YouTube as unlisted and embed on /event/2026-11-12/index.html",
+        "status": "[x]"
+      },
+      {
+        "id": "BIJECTION-7-1-AND-HUB-SYNC",
+        "description": "Compile chronos_repsl/specs/event_2026-11-12.json and chronos_repsl/specs/module_101_7.1.json via weekly_sync_scaffold.py --update-hub to link /101/7.1/ <-> /event/2026-11-12/, rotate Top-3 Recent Events on /event/index.html to Nov 12, Nov 5, Oct 29, advance Upcoming Event to Nov 19 (Class 7.2), and update /event/2026-11/index.html",
+        "status": "[x]"
+      }
+    ]
+  },
+  "attribution": "LexClinic Legal Engineering Swarm (20261112)"
+}
