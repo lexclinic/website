@@ -263,7 +263,29 @@ async function run(webDir) {
   assert.ok(hydratedWatch['card_interview_lucas_v1_1'] && hydratedWatch['card_interview_lucas_v1_1'].progress === 100, 'Approved thorough media card must automatically hydrate watch history to 100% Watched');
   assertions += 5;
 
-  console.log(` ✅ SUITE 01 PASSED: ${assertions} assertions verified (Auth, 24h Disclaimer, 2-Step Approvals, Legacy Aliases, Notes Sync)!`);
+  // Test 1.7: Multi-User Approval & Watch Progress Isolation (Kyle's approval must not show as Daniel's)
+  env.windowObj.processInstantLogin('daniel@lex.clinic');
+  await env.windowObj.syncAndHydrateMediaLedger();
+  assert.strictEqual(
+    env.elementsByClass['btn-approval-card_interview_lucas_v1_1'].innerHTML,
+    '👍 Approval',
+    'Switching to daniel@lex.clinic must reset approval button rather than displaying kyle@lex.clinic Starred rating'
+  );
+  const danielApprovals = JSON.parse(env.localStorageMock.getItem('lexclinic_media_approvals') || '{}');
+  assert.strictEqual(
+    danielApprovals['card_interview_lucas_v1_1'],
+    undefined,
+    'daniel@lex.clinic localStorage must not retain kyle@lex.clinic approval record'
+  );
+  const danielWatch = JSON.parse(env.localStorageMock.getItem('lexclinic_video_watch_history') || '{}');
+  assert.strictEqual(
+    danielWatch['card_interview_lucas_v1_1'],
+    undefined,
+    'daniel@lex.clinic localStorage must not retain kyle@lex.clinic watch history'
+  );
+  assertions += 3;
+
+  console.log(` ✅ SUITE 01 PASSED: ${assertions} assertions verified (Auth, 24h Disclaimer, 2-Step Approvals, Legacy Aliases, Notes Sync, Multi-User Isolation)!`);
   return { passed: true, assertions };
 }
 

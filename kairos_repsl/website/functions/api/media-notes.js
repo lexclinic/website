@@ -96,7 +96,14 @@ function applyItemToLedger(ledger, item) {
 
   // 1. Handle Approval Rating
   if (item.rating) {
-    const existing = ledger.approvals[uid] || ledger.approvals[cardId];
+    const primaryExisting = ledger.approvals[uid] || ledger.approvals[cardId];
+    const hasDifferentPrimaryReviewer = Boolean(
+      primaryExisting &&
+      primaryExisting.reviewer &&
+      primaryExisting.reviewer.toLowerCase() !== reviewer
+    );
+    const targetKey = hasDifferentPrimaryReviewer ? `${reviewer}|${uid}` : uid;
+    const existing = ledger.approvals[targetKey] || (!hasDifferentPrimaryReviewer ? primaryExisting : null);
     const isNewer = !existing || !existing.timestamp || new Date(timestamp) >= new Date(existing.timestamp);
     if (isNewer) {
       const record = {
@@ -108,7 +115,7 @@ function applyItemToLedger(ledger, item) {
         reviewer,
         timestamp
       };
-      ledger.approvals[uid] = record;
+      ledger.approvals[targetKey] = record;
       changed = true;
     }
   }
