@@ -1,14 +1,17 @@
 {
   "wedo_instance": {
     "id": "EVENT-2026-11-12",
-    "description": "LexClinic Socratic Event Manifest — Nov 12, 2026 (Lesson 7.1: Boolean Logic 101: True/False Legal Gates)",
-    "status": "[completed]",
+    "description": "LexClinic Weekly Socratic & 101 Sync Manifest — Nov 12, 2026 (Event: Lesson 7.1 Boolean Logic 101 + Next 101 Courseware: Class 8.1 The 'And/Or' Trap in Legal Drafting)",
+    "status": "[in_progress]",
     "meta": {
       "protocol": "WeDo-JSON",
       "version": "1.0.0",
       "event_date": "2026-11-12",
       "companion_101_module": "7.1",
       "companion_101_url": "/101/7.1/",
+      "next_101_module": "8.1",
+      "next_101_url": "/101/8.1/",
+      "next_101_youtube_id": "SnQgbGeeNrs",
       "event_url": "/event/2026-11-12/",
       "monthly_archive_url": "/event/2026-11/",
       "drive_folder_id": "1IBjviPwZdEPfrsM0P6B9ELeocSs0Bt31",
@@ -57,6 +60,21 @@
         "id": "BIJECTION-7-1-AND-HUB-SYNC",
         "description": "Compile chronos_repsl/specs/event_2026-11-12.json and chronos_repsl/specs/module_101_7.1.json via weekly_sync_scaffold.py --update-hub to link /101/7.1/ <-> /event/2026-11-12/, rotate Top-3 Recent Events on /event/index.html to Nov 12, Nov 5, Oct 29, advance Upcoming Event to Nov 19 (Class 7.2), and update /event/2026-11/index.html",
         "status": "[x]"
+      },
+      {
+        "id": "101-8-1-YT-UNLOCK",
+        "description": "Unlock C-Lead Video 8.1: The 'And/Or' Trap in Legal Drafting (SnQgbGeeNrs) on YouTube to public with explicit embeddable: true",
+        "status": "[x]"
+      },
+      {
+        "id": "101-8-1-COMPILE-AND-IDEA-MAP",
+        "description": "Transcribe SnQgbGeeNrs (class_8.1) into transcripts.json, author chronos_repsl/specs/module_101_8.1.json with 20 transcript-grounded questions and spotify_id='PENDING' ('Premieres Next Week' notice), run weekly_sync_scaffold.py --compile-101 chronos_repsl/specs/module_101_8.1.json --update-hub, and update /101/idea/index.html + /101/index.html novelty/depth metrics for Class 8.1",
+        "status": "[x]"
+      },
+      {
+        "id": "HUMAN-WEDO-SPOTIFY-8-1",
+        "description": "[HUMAN DELIVERABLE — NON-BLOCKING] User publishes 'Legal Engineering 101 Class 8.1 Deep Dive: The And/Or Trap in Legal Drafting' on Spotify show 0348ivoLaNfKBq1HeIYC9b so spotify_id='PENDING' on /101/8.1/ can be replaced with the live Spotify episode embed",
+        "status": "[ ]"
       }
     ]
   },

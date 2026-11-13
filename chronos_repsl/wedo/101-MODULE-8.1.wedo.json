@@ -1,0 +1,45 @@
+{
+  "wedo_instance": {
+    "id": "101-MODULE-8.1",
+    "description": "LexClinic 101 Courseware Manifest — Class 8.1: The 'And/Or' Trap in Legal Drafting",
+    "status": "[in_progress]",
+    "meta": {
+      "protocol": "WeDo-JSON",
+      "version": "1.0.0",
+      "module_id": "8.1",
+      "title": "Class 8.1: The 'And/Or' Trap in Legal Drafting",
+      "youtube_id": "SnQgbGeeNrs",
+      "module_overview_youtube_id": "xPE9-SaZZMA",
+      "spotify_episode_id": "PENDING",
+      "scheduled_socratic_session": "2026-11-26"
+    },
+    "tasks": [
+      {
+        "id": "YT-PUBLIC-EMBEDDABLE",
+        "description": "Set YouTube lecture SnQgbGeeNrs (C-Lead Video 8.1: The 'And/Or' Trap in Legal Drafting) to public with embeddable: true",
+        "status": "[x]"
+      },
+      {
+        "id": "WHISPER-TRANSCRIPT-8-1",
+        "description": "Transcribe YouTube lecture SnQgbGeeNrs into transcripts.json (class_8.1 / yt_SnQgbGeeNrs) with forensic cleanup",
+        "status": "[x]"
+      },
+      {
+        "id": "MODULE-AND-QUIZ-BUILD",
+        "description": "Compile chronos_repsl/specs/module_101_8.1.json (with spotify_id='PENDING' rendering the 'Premieres Next Week' audio tile) via weekly_sync_scaffold.py --compile-101 --update-hub to build /101/8.1/index.html, 5-Q/20-Q dual-route quizzes, /101/index.html card, /attest/ entry, and Linter Rules 04 & 07",
+        "status": "[x]"
+      },
+      {
+        "id": "IDEA-MAP-UPDATE-8-1",
+        "description": "Update /101/idea/index.html and /101/index.html Spiral Curriculum novelty & depth metrics to include Class 8.1 (15 classes, 180 instances, I1-I34)",
+        "status": "[x]"
+      },
+      {
+        "id": "HUMAN-WEDO-SPOTIFY-EPISODE",
+        "description": "[HUMAN DELIVERABLE — NON-BLOCKING] Publish 'Legal Engineering 101 Class 8.1 Deep Dive: The And/Or Trap in Legal Drafting' on Spotify show 0348ivoLaNfKBq1HeIYC9b, then replace spotify_id='PENDING' in chronos_repsl/specs/module_101_8.1.json and re-compile",
+        "status": "[ ]"
+      }
+    ]
+  },
+  "attribution": "LexClinic Legal Engineering Swarm (20261113)"
+}
