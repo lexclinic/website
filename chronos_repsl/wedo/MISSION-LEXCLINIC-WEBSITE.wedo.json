@@ -162,6 +162,11 @@
         "id": "EVENT-NOV12-CLASS71-STAGE-01",
         "description": "Publish Nov 12, 2026 (Class 7.1: Boolean Logic 101: True/False Legal Gates) Socratic Session to stage.lex.clinic using the v2.0.0 Low-Token Hybrid HTML + JSON Compiler (chronos_repsl/specs/event_2026-11-12.json): compress Turning_Paper_Contracts_into_Executable_Code.m4a to faststart AAC at /event/2026-11-12/audio.m4a, upload all 5 unlisted YouTube explainer clips (5kWl6Oe08cU, oEofbKsezh0, 9y6hUnQoLsU, NqReEBdaaNY, dN6ukLGP2V0), index event_2026-11-12 in transcripts.json, link /101/7.1/ <-> /event/2026-11-12/, rotate Top-3 Recent Events (Nov 12, Nov 5, Oct 29), advance Upcoming Event to Nov 19 (Class 7.2), and verify all 8 Linter Rules and 448 Integration & Byte-Range E2E Assertions",
         "status": "[x]"
+      },
+      {
+        "id": "YOUTUBE-CHANNEL-REORG-AND-TRANSCRIPTS-API-01",
+        "description": "Execute @lexclinic YouTube channel & playlist reorganization (create PLVZH6zhU-oss Legal Engineering Interviews [15 videos] and PLAeaXula32bY Socratic Legal Engineering Reviews [70 videos], standardize playlist titles, remove private items from public playlists, populate channel description/trailer ONwiUkc_tt4 and all 19 C-Lead 101 video descriptions), wire Module 4.3 (58DVy_mvLgY) into /interview/lucas-kung/ and Clip 0 (hgvyjpdO6Xw) into /event/2026-10-01/, and expand transcripts.json to 138 transcripts covering 100% of all 49 public YouTube videos and all 90 website-embedded videos with direct youtube_id lookup in /api/transcripts and /mcp/sse",
+        "status": "[x]"
       }
     ]
   },

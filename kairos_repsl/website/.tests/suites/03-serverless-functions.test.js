@@ -136,7 +136,7 @@ for (const pwaPath of ['/manifest.webmanifest', '/sw.js', '/icon-192.png', '/ico
   });
   assert.strictEqual(listRes.status, 200, 'GET /api/transcripts should return 200');
   const listData = await listRes.json();
-  assert.ok(listData.total_sessions >= 23, `Expected >= 23 transcripts, got ${listData.total_sessions}`);
+  assert.ok(listData.total_sessions >= 133, `Expected >= 133 transcripts (all sessions + public YouTube + website embeds), got ${listData.total_sessions}`);
   assertions += 2;
 
   // B) Fetch single transcript by ID (Class 6.1)
@@ -147,6 +147,16 @@ for (const pwaPath of ['/manifest.webmanifest', '/sw.js', '/icon-192.png', '/ico
   const singleData = await singleRes.json();
   assert.strictEqual(singleData.id, 'class_6.1', 'Returned transcript ID should match class_6.1');
   assert.strictEqual(singleData.audio_url, 'https://open.spotify.com/episode/40sELGiloMWg7k8iI5chpI', 'Class 6.1 audio_url should be its official Spotify episode URL');
+  assertions += 3;
+
+  // B2) Fetch public YouTube video transcript directly by youtube_id (xPE9-SaZZMA)
+  const ytRes = await transcriptsApi.onRequestGet({
+    request: new Request('https://stage.lex.clinic/api/transcripts?id=xPE9-SaZZMA')
+  });
+  assert.strictEqual(ytRes.status, 200, 'GET /api/transcripts?id=xPE9-SaZZMA should return 200');
+  const ytData = await ytRes.json();
+  assert.strictEqual(ytData.youtube_id, 'xPE9-SaZZMA', 'Returned youtube_id should match xPE9-SaZZMA');
+  assert.ok((ytData.transcript_text || '').length > 500, 'Public YouTube transcript_text should be populated');
   assertions += 3;
 
   // C) Full-text keyword search
