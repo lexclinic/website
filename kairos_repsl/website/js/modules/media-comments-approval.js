@@ -310,8 +310,8 @@ function updateApprovalButtonUI(cardId, record) {
     const btn = document.querySelector(`.btn-approval-${cid}`);
     if (!btn) return;
 
-    const ratingState = typeof record === 'object' ? record.rating : record;
-    const depth = (typeof record === 'object' && record.depth) ? record.depth : 'thorough';
+    const ratingState = (record && typeof record === 'object') ? record.rating : record;
+    const depth = (record && typeof record === 'object' && record.depth) ? record.depth : 'thorough';
     const depthTag = depth === 'thorough' ? 'Full' : 'Partial';
 
     if (ratingState === 'pass') {
