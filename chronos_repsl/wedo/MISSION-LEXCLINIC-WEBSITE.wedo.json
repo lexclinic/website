@@ -165,7 +165,7 @@
       },
       {
         "id": "YOUTUBE-CHANNEL-REORG-AND-TRANSCRIPTS-API-01",
-        "description": "Execute @lexclinic YouTube channel & playlist reorganization (create PLVZH6zhU-oss Legal Engineering Interviews [15 videos] and PLAeaXula32bY Socratic Legal Engineering Reviews [70 videos], standardize playlist titles, remove private items from public playlists, populate channel description/trailer ONwiUkc_tt4 and all 19 C-Lead 101 video descriptions), wire Module 4.3 (58DVy_mvLgY) into /interview/lucas-kung/ and Clip 0 (hgvyjpdO6Xw) into /event/2026-10-01/, and expand transcripts.json to 138 transcripts covering 100% of all 49 public YouTube videos and all 90 website-embedded videos with direct youtube_id lookup in /api/transcripts and /mcp/sse",
+        "description": "Execute @lexclinic YouTube channel & playlist reorganization (create PLVZH6zhU-oss Legal Engineering Interviews [15 videos] and PLAeaXula32bY Socratic Legal Engineering Reviews [70 videos], standardize playlist titles, remove private items from public playlists, re-add unlocked 8.1/8.2 lectures SnQgbGeeNrs & 1RNPJr_tzLc to PLbPukKwpmk5E, populate channel description/trailer ONwiUkc_tt4 and all 21 C-Lead 101 video descriptions), wire Module 4.3 (58DVy_mvLgY) into /interview/lucas-kung/ and Clip 0 (hgvyjpdO6Xw) into /event/2026-10-01/, and expand transcripts.json to 140 transcripts covering 100% of all 51 public YouTube videos and all 90 website-embedded videos with direct youtube_id lookup in /api/transcripts and /mcp/sse",
         "status": "[x]"
       }
     ]
