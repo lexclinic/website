@@ -37,6 +37,7 @@ async function run(webDir) {
     { path: "/event/2026-10-22/", mustInclude: "Lesson 5.2" },
     { path: "/event/2026-10-29/", mustInclude: "a0VOIB2_jgQ" },
     { path: "/event/2026-11-05/", mustInclude: "Session Explainer Video Clips (6 Modules)" },
+    { path: "/event/2026-11-12/", mustInclude: "5kWl6Oe08cU" },
     { path: "/interview/", mustInclude: "Lukas Küng" },
     { path: "/interview/lucas-kung/", mustInclude: "BpRTnQ4128Y" },
     { path: "/interview/2026-09-08/james-wigginton/", mustInclude: "fxIGwkdpa28" },
@@ -53,7 +54,11 @@ async function run(webDir) {
 
   await Promise.all(pageRoutes.map(async (r) => {
     const res = await fetch(STAGE_DOMAIN + r.path, {
-      headers: { "User-Agent": "LexClinicTestRunner/1.0", "Authorization": BASIC_AUTH }
+      headers: {
+        "User-Agent": "LexClinicTestRunner/1.0",
+        "Authorization": BASIC_AUTH,
+        "Cookie": "lexclinic_stage_auth=authorized"
+      }
     });
     assert.strictEqual(res.status, 200, `Live route ${r.path} must return HTTP 200 (got ${res.status})`);
     const text = await res.text();
