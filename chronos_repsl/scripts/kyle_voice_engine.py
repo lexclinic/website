@@ -212,9 +212,10 @@ def synthesize_tts(
     text: str,
     out_path: Path,
     corpus_dir: Path = DEFAULT_CORPUS_DIR,
-    model_choice: str = "xtts_v2",
+    model_choice: str = "f5_tts",
 ) -> Path:
     _install_torchaudio_soundfile_shim()
+    os.environ["PATH"] = "/home/mgit/.local/bin:" + os.environ.get("PATH", "")
     manifest_path = corpus_dir / "manifest.json"
     if not manifest_path.exists():
         print("Voice corpus not found; extracting reference clips first...")
@@ -227,60 +228,106 @@ def synthesize_tts(
     if not ref_wavs:
         raise RuntimeError(f"No reference WAV files found in {corpus_dir}")
 
-    from TTS.api import TTS
-
-    voice_cache_dir = corpus_dir / "voice_cache"
-    voice_cache_dir.mkdir(parents=True, exist_ok=True)
-
-    if model_choice == "your_tts":
-        model_name = "tts_models/multilingual/multi-dataset/your_tts"
-        speaker_wav = str(corpus_dir / "kyle_smith_master_reference.wav")
-        tts_kwargs = {"speaker_wav": speaker_wav, "language": "en"}
-    else:
-        model_name = "tts_models/multilingual/multi-dataset/xtts_v2"
-        cached_pth = voice_cache_dir / "kyle_maclean_smith_v2_300s.pth"
-        tts_kwargs = {
-            "speaker_wav": None if cached_pth.exists() else ref_wavs,
-            "speaker": "kyle_maclean_smith_v2_300s",
-            "voice_dir": str(voice_cache_dir),
-            "language": "en",
-            "gpt_cond_len": 300,
-            "gpt_cond_chunk_len": 6,
-            "max_ref_len": 30,
-            "sound_norm_refs": True,
-            "temperature": 0.35,
-            "top_p": 0.80,
-            "repetition_penalty": 5.0,
-        }
-
-    print(f"  Loading zero-shot voice cloning model: {model_name}...")
-    t0 = time.time()
-    tts = TTS(model_name).to("cpu")
-    ft_ckpt = corpus_dir / "finetuned_model" / "kyle_xtts_finetuned.pt"
-    if model_choice == "xtts_v2" and ft_ckpt.exists():
-        import torch.nn as nn
-        print(f"  Applying fine-tuned Kyle MacLean Smith GPT weights from {ft_ckpt.name}...")
-        ckpt = torch.load(ft_ckpt, map_location="cpu", weights_only=False)
-        gpt = tts.synthesizer.tts_model.gpt
-        top_blocks = nn.ModuleList(list(gpt.gpt.h[25:]))
-        top_blocks.load_state_dict(ckpt["top_blocks_state_dict"])
-        gpt.gpt.ln_f.load_state_dict(ckpt["ln_f_state_dict"])
-        gpt.final_norm.load_state_dict(ckpt["final_norm_state_dict"])
-        gpt.mel_head.load_state_dict(ckpt["mel_head_state_dict"])
-        gpt.text_head.load_state_dict(ckpt["text_head_state_dict"])
-        gpt.init_gpt_for_inference(kv_cache=True, use_deepspeed=False)
-        tts.synthesizer.tts_model.eval()
-    print(f"  Model loaded in {time.time() - t0:.1f}s. Synthesizing in Kyle MacLean Smith's voice...")
-
     out_path.parent.mkdir(parents=True, exist_ok=True)
     tmp_wav = out_path.with_suffix(".raw.wav") if out_path.suffix.lower() != ".wav" else out_path
 
-    t1 = time.time()
-    tts.tts_to_file(
-        text=text,
-        file_path=str(tmp_wav),
-        **tts_kwargs,
-    )
+    if model_choice == "f5_tts":
+        import torch
+        from f5_tts.api import F5TTS
+
+        torch.set_num_threads(4)
+        card4_5s = corpus_dir / "card4_natural_5s.wav"
+        ref_file = str(card4_5s if card4_5s.exists() else corpus_dir / "solo_06_agent_np_domain_a.wav")
+        ref_text = "Whomever is part of the domain, I can say this person is the CFO."
+
+        print("  Loading F5-TTS Continuous Flow Matching model (F5TTS_v1_Base + Vocos 24kHz)...")
+        t0 = time.time()
+        f5 = F5TTS(model="F5TTS_v1_Base", device="cpu")
+        f5.ema_model.transformer = torch.ao.quantization.quantize_dynamic(
+            f5.ema_model.transformer, {torch.nn.Linear}, dtype=torch.qint8
+        )
+        orig_forward = f5.ema_model.transformer.forward
+
+        def scheduled_cfg_forward(x, cond, text, time, mask=None, drop_audio_cond=False, drop_text=False, cfg_infer=False, cache=False):
+            t_val = float(time.item()) if time.ndim == 0 else float(time[0].item())
+            if cfg_infer and t_val > 0.55:
+                out_cond = orig_forward(
+                    x=x, cond=cond, text=text, time=time, mask=mask,
+                    drop_audio_cond=False, drop_text=False, cfg_infer=False, cache=cache
+                )
+                return torch.cat([out_cond, out_cond], dim=0)
+            return orig_forward(
+                x=x, cond=cond, text=text, time=time, mask=mask,
+                drop_audio_cond=drop_audio_cond, drop_text=drop_text, cfg_infer=cfg_infer, cache=cache
+            )
+
+        f5.ema_model.transformer.forward = scheduled_cfg_forward
+        print(f"  F5-TTS loaded in {time.time() - t0:.1f}s. Running Continuous Flow Matching...")
+        t1 = time.time()
+        f5.infer(
+            ref_file=ref_file,
+            ref_text=ref_text,
+            gen_text=text,
+            nfe_step=7,
+            cfg_strength=2.0,
+            speed=1.0,
+            progress=None,
+            file_wave=str(tmp_wav),
+            seed=42,
+        )
+    else:
+        from TTS.api import TTS
+
+        voice_cache_dir = corpus_dir / "voice_cache"
+        voice_cache_dir.mkdir(parents=True, exist_ok=True)
+
+        if model_choice == "your_tts":
+            model_name = "tts_models/multilingual/multi-dataset/your_tts"
+            speaker_wav = str(corpus_dir / "kyle_smith_master_reference.wav")
+            tts_kwargs = {"speaker_wav": speaker_wav, "language": "en"}
+        else:
+            model_name = "tts_models/multilingual/multi-dataset/xtts_v2"
+            cached_pth = voice_cache_dir / "kyle_maclean_smith_v2_300s.pth"
+            tts_kwargs = {
+                "speaker_wav": None if cached_pth.exists() else ref_wavs,
+                "speaker": "kyle_maclean_smith_v2_300s",
+                "voice_dir": str(voice_cache_dir),
+                "language": "en",
+                "gpt_cond_len": 300,
+                "gpt_cond_chunk_len": 6,
+                "max_ref_len": 30,
+                "sound_norm_refs": True,
+                "temperature": 0.35,
+                "top_p": 0.80,
+                "repetition_penalty": 5.0,
+            }
+
+        print(f"  Loading zero-shot voice cloning model: {model_name}...")
+        t0 = time.time()
+        tts = TTS(model_name).to("cpu")
+        ft_ckpt = corpus_dir / "finetuned_model" / "kyle_xtts_finetuned.pt"
+        if model_choice == "xtts_v2" and ft_ckpt.exists():
+            import torch
+            import torch.nn as nn
+            print(f"  Applying fine-tuned Kyle MacLean Smith GPT weights from {ft_ckpt.name}...")
+            ckpt = torch.load(ft_ckpt, map_location="cpu", weights_only=False)
+            gpt = tts.synthesizer.tts_model.gpt
+            top_blocks = nn.ModuleList(list(gpt.gpt.h[25:]))
+            top_blocks.load_state_dict(ckpt["top_blocks_state_dict"])
+            gpt.gpt.ln_f.load_state_dict(ckpt["ln_f_state_dict"])
+            gpt.final_norm.load_state_dict(ckpt["final_norm_state_dict"])
+            gpt.mel_head.load_state_dict(ckpt["mel_head_state_dict"])
+            gpt.text_head.load_state_dict(ckpt["text_head_state_dict"])
+            gpt.init_gpt_for_inference(kv_cache=True, use_deepspeed=False)
+            tts.synthesizer.tts_model.eval()
+        print(f"  Model loaded in {time.time() - t0:.1f}s. Synthesizing in Kyle MacLean Smith's voice...")
+
+        t1 = time.time()
+        tts.tts_to_file(
+            text=text,
+            file_path=str(tmp_wav),
+            **tts_kwargs,
+        )
     gen_sec = time.time() - t1
     dur = get_audio_duration(tmp_wav)
     print(f"  Generated {dur:.2f}s of speech in {gen_sec:.1f}s (RTF={gen_sec / max(dur, 0.1):.2f}x)")
@@ -380,11 +427,11 @@ def revoice_media(
         full_text = " ".join(s.text.strip() for s in segs).strip()
         print(f"  Transcribed ({len(full_text)} chars): {full_text[:100]}...")
         raw_dub_wav = DEFAULT_CACHE_DIR / "revoice_dub_raw.wav"
-        synthesize_tts(full_text, raw_dub_wav, corpus_dir=corpus_dir, model_choice="xtts_v2")
+        synthesize_tts(full_text, raw_dub_wav, corpus_dir=corpus_dir, model_choice="f5_tts")
         dub_dur = get_audio_duration(raw_dub_wav)
         ratio = dub_dur / max(src_dur, 0.1)
         if 0.75 <= ratio <= 1.45 and abs(ratio - 1.0) > 0.03:
-            print(f"  Time-aligning XTTS-v2 dub ({dub_dur:.1f}s -> {src_dur:.1f}s, atempo={ratio:.3f})...")
+            print(f"  Time-aligning F5-TTS dub ({dub_dur:.1f}s -> {src_dur:.1f}s, atempo={ratio:.3f})...")
             subprocess.run([
                 FFMPEG_BIN, "-y", "-i", str(raw_dub_wav),
                 "-af", f"atempo={ratio:.4f}",
@@ -465,10 +512,12 @@ def upload_samples_to_drive(
     files_to_upload = [
         (corpus_dir / "kyle_smith_master_reference.m4a", "audio/mp4"),
         (corpus_dir / "manifest.json", "application/json"),
-        (corpus_dir / "samples" / "sample_xttsv2_kyle.m4a", "audio/mp4"),
-        (corpus_dir / "samples" / "sample_yourtts_kyle.m4a", "audio/mp4"),
-        (corpus_dir / "samples" / "clip1_vc_preview_30s.mp4", "video/mp4"),
-        (corpus_dir / "samples" / "clip1_dub_preview_30s.mp4", "video/mp4"),
+        (corpus_dir / "samples" / "sample_f5tts_5min_kyle.m4a", "audio/mp4"),
+        (corpus_dir / "samples" / "sample_f5tts_kyle.m4a", "audio/mp4"),
+        (corpus_dir / "samples" / "clip1_dub_f5tts.m4a", "audio/mp4"),
+        (corpus_dir / "samples" / "clip1_cfm_preview.mp4", "video/mp4"),
+        (corpus_dir / "samples" / "sample_finetuned_kyle.m4a", "audio/mp4"),
+        (corpus_dir / "samples" / "clip1_dub_finetuned.m4a", "audio/mp4"),
     ]
 
     uploaded = {}
@@ -537,7 +586,7 @@ def main():
     p_tts.add_argument("--text", help="Text string to synthesize")
     p_tts.add_argument("--text-file", help="Path to text file to synthesize")
     p_tts.add_argument("--out", required=True, help="Output audio path (.wav or .m4a)")
-    p_tts.add_argument("--model", choices=["xtts_v2", "your_tts"], default="xtts_v2", help="Zero-shot TTS model")
+    p_tts.add_argument("--model", choices=["f5_tts", "xtts_v2", "your_tts"], default="f5_tts", help="TTS model (default: f5_tts Continuous Flow Matching)")
     p_tts.add_argument("--corpus-dir", default=str(DEFAULT_CORPUS_DIR), help="Reference voice corpus directory")
 
     p_rev = sub.add_parser("revoice", help="Re-voice an existing explainer MP4/M4A into Kyle's voice")

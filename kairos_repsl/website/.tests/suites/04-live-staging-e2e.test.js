@@ -12,13 +12,15 @@ async function run(webDir) {
   // --------------------------------------------------------------------------
   const pageRoutes = [
     { path: "/", mustInclude: "LexClinic" },
-    { path: "/101/", mustInclude: "39.9% Generative", mustNotInclude: "Live Socratic Session" },
+    { path: "/101/", mustInclude: "38.9% Generative", mustNotInclude: "Live Socratic Session" },
     { path: "/101/idea/", mustInclude: "Gottfried Wilhelm Leibniz", mustNotInclude: "<audio" },
     { path: "/101/3.1/", mustInclude: "Charles Goldfarb", mustNotInclude: "<audio" },
     { path: "/101/6.1/", mustInclude: "Grammatical Hurdles", mustNotInclude: "<audio" },
     { path: "/101/6.2/", mustInclude: "Reading Right-to-Left", mustNotInclude: "<audio" },
     { path: "/101/7.1/", mustInclude: "Boolean Logic 101", mustNotInclude: "Live Socratic Session" },
     { path: "/101/7.2/", mustInclude: "Nested If/Else Logic", mustNotInclude: "Live Socratic Session" },
+    { path: "/101/8.1/", mustInclude: "Premieres Next Week", mustNotInclude: "Live Socratic Session" },
+    { path: "/101/8.1/quiz-learned/", mustInclude: "5-Question Learned Quiz", mustNotInclude: "copyCardDirectLink" },
     { path: "/101/6.2/quiz-learned/", mustInclude: "5-Question Learned Quiz", mustNotInclude: "copyCardDirectLink" },
     { path: "/101/6.2/quiz-expert/", mustInclude: "20-Question Expert Quiz", mustNotInclude: "copyCardDirectLink" },
     { path: "/interview/lucas-kung/quiz-learned/", mustInclude: "5-Question Learned Quiz", mustNotInclude: "copyCardDirectLink" },
@@ -37,6 +39,7 @@ async function run(webDir) {
     { path: "/event/2026-10-22/", mustInclude: "Lesson 5.2" },
     { path: "/event/2026-10-29/", mustInclude: "a0VOIB2_jgQ" },
     { path: "/event/2026-11-05/", mustInclude: "Session Explainer Video Clips (6 Modules)" },
+    { path: "/event/2026-11-12/", mustInclude: "5kWl6Oe08cU" },
     { path: "/interview/", mustInclude: "Lukas Küng" },
     { path: "/interview/lucas-kung/", mustInclude: "BpRTnQ4128Y" },
     { path: "/interview/2026-09-08/james-wigginton/", mustInclude: "fxIGwkdpa28" },
@@ -53,7 +56,11 @@ async function run(webDir) {
 
   await Promise.all(pageRoutes.map(async (r) => {
     const res = await fetch(STAGE_DOMAIN + r.path, {
-      headers: { "User-Agent": "LexClinicTestRunner/1.0", "Authorization": BASIC_AUTH }
+      headers: {
+        "User-Agent": "LexClinicTestRunner/1.0",
+        "Authorization": BASIC_AUTH,
+        "Cookie": "lexclinic_stage_auth=authorized"
+      }
     });
     assert.strictEqual(res.status, 200, `Live route ${r.path} must return HTTP 200 (got ${res.status})`);
     const text = await res.text();
@@ -115,6 +122,7 @@ async function run(webDir) {
     "/event/2026-10-22/audio.m4a",
     "/event/2026-10-29/audio.m4a",
     "/event/2026-11-05/audio.m4a",
+    "/event/2026-11-12/audio.m4a",
     "/interview/lucas-kung/audio.m4a",
     "/interview/2026-09-08/james-wigginton/audio.m4a"
   ];

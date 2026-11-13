@@ -310,8 +310,8 @@ function updateApprovalButtonUI(cardId, record) {
     const btn = document.querySelector(`.btn-approval-${cid}`);
     if (!btn) return;
 
-    const ratingState = typeof record === 'object' ? record.rating : record;
-    const depth = (typeof record === 'object' && record.depth) ? record.depth : 'thorough';
+    const ratingState = (record && typeof record === 'object') ? record.rating : record;
+    const depth = (record && typeof record === 'object' && record.depth) ? record.depth : 'thorough';
     const depthTag = depth === 'thorough' ? 'Full' : 'Partial';
 
     if (ratingState === 'pass') {
@@ -358,9 +358,14 @@ async function syncAndHydrateMediaLedger() {
   const allApprovals = JSON.parse(localStorage.getItem('lexclinic_media_approvals') || '{}');
   const allWatchHistory = JSON.parse(localStorage.getItem('lexclinic_video_watch_history') || '{}');
   const legacyComments = JSON.parse(localStorage.getItem('lexclinic_media_comments') || '{}');
-  const userEmail = (window.getSanitizedEmail ? window.getSanitizedEmail() : "") || (localStorage.getItem("lexclinic_user_email") || "").toLowerCase().trim() || "kyle@lex.clinic";
+  const userEmail = ((window.getSanitizedEmail ? window.getSanitizedEmail() : "") || (localStorage.getItem("lexclinic_user_email") || "")).toLowerCase().trim();
+  const isOwnRecord = (recEmail) => {
+    if (!userEmail) return false;
+    if (!recEmail) return true;
+    return String(recEmail).toLowerCase().trim() === userEmail;
+  };
 
-  // 1. Immediately hydrate buttons from localStorage
+  // 1. Immediately hydrate buttons from localStorage (strictly scoped to active user for approvals)
   Object.keys(allHistory).forEach(key => {
     const cardId = key.includes('#') ? key.split('#')[1] : key;
     if (Array.isArray(allHistory[key]) && allHistory[key].length > 0) {
@@ -368,83 +373,101 @@ async function syncAndHydrateMediaLedger() {
     }
   });
 
+  const ownLocalApprovals = {};
   Object.keys(allApprovals).forEach(key => {
-    const cardId = key.includes('#') ? key.split('#')[1] : key;
-    updateApprovalButtonUI(cardId, allApprovals[key]);
+    const rec = allApprovals[key];
+    const cleanKey = key.includes('|') ? key.split('|').slice(1).join('|') : key;
+    const cardId = cleanKey.includes('#') ? cleanKey.split('#')[1] : cleanKey;
+    if (rec && isOwnRecord(rec.reviewer)) {
+      ownLocalApprovals[key] = rec;
+      updateApprovalButtonUI(cardId, rec);
+    } else {
+      updateApprovalButtonUI(cardId, null);
+    }
   });
 
-  // 2. Collect any localStorage items to push to shared server ledger
+  const ownLocalWatch = {};
+  Object.keys(allWatchHistory).forEach(cardId => {
+    const wRec = allWatchHistory[cardId];
+    if (wRec && isOwnRecord(wRec.user_email)) {
+      ownLocalWatch[cardId] = wRec;
+    }
+  });
+
+  // 2. Collect any localStorage items belonging to the logged-in user to push to shared server ledger
   const localItemsToPush = [];
   const seenApprovalUids = new Set();
 
-  Object.keys(allApprovals).forEach(key => {
-    const rec = allApprovals[key];
-    if (!rec) return;
-    const uid = (typeof rec === 'object' && rec.uid) ? rec.uid : key;
-    if (seenApprovalUids.has(uid)) return;
-    seenApprovalUids.add(uid);
+  if (userEmail) {
+    Object.keys(ownLocalApprovals).forEach(key => {
+      const rec = ownLocalApprovals[key];
+      if (!rec) return;
+      const uid = (typeof rec === 'object' && rec.uid) ? rec.uid : key;
+      if (seenApprovalUids.has(uid)) return;
+      seenApprovalUids.add(uid);
 
-    const cardId = uid.includes('#') ? uid.split('#')[1] : uid;
-    localItemsToPush.push({
-      uid: uid,
-      card_id: cardId,
-      page_url: (typeof rec === 'object' && rec.page_url) ? rec.page_url : (uid.includes('#') ? uid.split('#')[0] : window.location.pathname),
-      rating: typeof rec === 'object' ? rec.rating : rec,
-      depth: (typeof rec === 'object' && rec.depth) ? rec.depth : 'thorough',
-      reviewer: (typeof rec === 'object' && rec.reviewer) ? rec.reviewer : userEmail,
-      timestamp: (typeof rec === 'object' && rec.timestamp) ? rec.timestamp : new Date().toISOString()
+      const cardId = uid.includes('#') ? uid.split('#')[1] : uid;
+      localItemsToPush.push({
+        uid: uid,
+        card_id: cardId,
+        page_url: (typeof rec === 'object' && rec.page_url) ? rec.page_url : (uid.includes('#') ? uid.split('#')[0] : window.location.pathname),
+        rating: typeof rec === 'object' ? rec.rating : rec,
+        depth: (typeof rec === 'object' && rec.depth) ? rec.depth : 'thorough',
+        reviewer: (typeof rec === 'object' && rec.reviewer) ? rec.reviewer : userEmail,
+        timestamp: (typeof rec === 'object' && rec.timestamp) ? rec.timestamp : new Date().toISOString()
+      });
     });
-  });
 
-  Object.keys(allHistory).forEach(key => {
-    const arr = allHistory[key];
-    if (Array.isArray(arr)) {
-      arr.forEach(item => {
-        if (item && item.comment) {
-          const uid = item.uid || key;
-          const cardId = item.card_id || (uid.includes('#') ? uid.split('#')[1] : uid);
-          localItemsToPush.push({
-            uid: uid,
-            card_id: cardId,
-            page_url: item.page_url || (uid.includes('#') ? uid.split('#')[0] : window.location.pathname),
-            comment: item.comment,
-            reviewer: item.reviewer || userEmail,
-            timestamp: item.timestamp || new Date().toISOString()
-          });
-        }
-      });
-    }
-  });
+    Object.keys(allHistory).forEach(key => {
+      const arr = allHistory[key];
+      if (Array.isArray(arr)) {
+        arr.forEach(item => {
+          if (item && item.comment && isOwnRecord(item.reviewer)) {
+            const uid = item.uid || key;
+            const cardId = item.card_id || (uid.includes('#') ? uid.split('#')[1] : uid);
+            localItemsToPush.push({
+              uid: uid,
+              card_id: cardId,
+              page_url: item.page_url || (uid.includes('#') ? uid.split('#')[0] : window.location.pathname),
+              comment: item.comment,
+              reviewer: item.reviewer || userEmail,
+              timestamp: item.timestamp || new Date().toISOString()
+            });
+          }
+        });
+      }
+    });
 
-  Object.keys(allWatchHistory).forEach(cardId => {
-    const wRec = allWatchHistory[cardId];
-    if (wRec && typeof wRec.progress === 'number' && wRec.progress > 0) {
-      const pageUrl = wRec.page_url || window.location.pathname;
-      localItemsToPush.push({
-        uid: pageUrl + '#' + cardId,
-        card_id: cardId,
-        page_url: pageUrl,
-        video_title: wRec.video_title || cardId,
-        progress: wRec.progress,
-        current_time: wRec.current_time || 0,
-        reviewer: wRec.user_email || userEmail,
-        timestamp: wRec.updated_at || wRec.timestamp || new Date().toISOString()
-      });
-    }
-  });
+    Object.keys(ownLocalWatch).forEach(cardId => {
+      const wRec = ownLocalWatch[cardId];
+      if (wRec && typeof wRec.progress === 'number' && wRec.progress > 0) {
+        const pageUrl = wRec.page_url || window.location.pathname;
+        localItemsToPush.push({
+          uid: pageUrl + '#' + cardId,
+          card_id: cardId,
+          page_url: pageUrl,
+          video_title: wRec.video_title || cardId,
+          progress: wRec.progress,
+          current_time: wRec.current_time || 0,
+          reviewer: wRec.user_email || userEmail,
+          timestamp: wRec.updated_at || wRec.timestamp || new Date().toISOString()
+        });
+      }
+    });
 
-  Object.keys(legacyComments).forEach(cardId => {
-    const text = legacyComments[cardId];
-    if (text && typeof text === 'string' && text.trim()) {
-      localItemsToPush.push({
-        uid: '#' + cardId,
-        card_id: cardId,
-        comment: text.trim(),
-        reviewer: userEmail,
-        timestamp: new Date().toISOString()
-      });
-    }
-  });
+    Object.keys(legacyComments).forEach(cardId => {
+      const text = legacyComments[cardId];
+      if (text && typeof text === 'string' && text.trim()) {
+        localItemsToPush.push({
+          uid: '#' + cardId,
+          card_id: cardId,
+          comment: text.trim(),
+          reviewer: userEmail,
+          timestamp: new Date().toISOString()
+        });
+      }
+    });
+  }
 
   try {
     let res;
@@ -464,42 +487,41 @@ async function syncAndHydrateMediaLedger() {
       sharedServerNotes = Array.isArray(data.notes) ? data.notes : [];
       const sharedWatchHistory = data.watch_history || {};
 
-      // Merge server approvals back into localStorage & hydrate DOM buttons
-      let mergedApprovals = { ...allApprovals };
-      let mergedWatch = { ...allWatchHistory };
+      // Merge ONLY the active user's server approvals & watch history back into localStorage & DOM buttons
+      let mergedApprovals = { ...ownLocalApprovals };
+      let mergedWatch = { ...ownLocalWatch };
 
-      Object.keys(sharedServerApprovals).forEach(uid => {
-        const rec = sharedServerApprovals[uid];
-        if (rec && rec.rating) {
+      Object.keys(sharedServerApprovals).forEach(rawKey => {
+        const rec = sharedServerApprovals[rawKey];
+        if (rec && rec.rating && isOwnRecord(rec.reviewer)) {
+          const uid = rec.uid || (rawKey.includes('|') ? rawKey.split('|').slice(1).join('|') : rawKey);
           const cardId = rec.card_id || (uid.includes('#') ? uid.split('#')[1] : uid);
           mergedApprovals[uid] = rec;
           mergedApprovals[cardId] = rec;
           updateApprovalButtonUI(cardId, rec);
 
           // If the active user approved this card (or reviewed it thoroughly), also hydrate watch history so the meter shows 100% Watched!
-          if (!rec.reviewer || rec.reviewer.toLowerCase() === userEmail.toLowerCase()) {
-            const targetProg = rec.depth === 'cursory' ? 50 : 100;
-            if (!mergedWatch[cardId] || (mergedWatch[cardId].progress || 0) < targetProg) {
-              mergedWatch[cardId] = {
-                video_id: cardId,
-                card_id: cardId,
-                page_url: rec.page_url || (uid.includes('#') ? uid.split('#')[0] : window.location.pathname),
-                progress: targetProg,
-                current_time: 0,
-                video_title: cardId,
-                user_email: rec.reviewer || userEmail,
-                timestamp: rec.timestamp || new Date().toISOString(),
-                updated_at: rec.timestamp || new Date().toISOString()
-              };
-            }
+          const targetProg = rec.depth === 'cursory' ? 50 : 100;
+          if (!mergedWatch[cardId] || (mergedWatch[cardId].progress || 0) < targetProg) {
+            mergedWatch[cardId] = {
+              video_id: cardId,
+              card_id: cardId,
+              page_url: rec.page_url || (uid.includes('#') ? uid.split('#')[0] : window.location.pathname),
+              progress: targetProg,
+              current_time: 0,
+              video_title: cardId,
+              user_email: rec.reviewer || userEmail,
+              timestamp: rec.timestamp || new Date().toISOString(),
+              updated_at: rec.timestamp || new Date().toISOString()
+            };
           }
         }
       });
 
-      // Merge server watch_history records for this user
+      // Merge server watch_history records strictly for the active logged-in user
       Object.keys(sharedWatchHistory).forEach(wKey => {
         const wRec = sharedWatchHistory[wKey];
-        if (wRec && wRec.card_id && (!wRec.user_email || wRec.user_email.toLowerCase() === userEmail.toLowerCase())) {
+        if (wRec && wRec.card_id && isOwnRecord(wRec.user_email)) {
           const cid = wRec.card_id;
           if (!mergedWatch[cid] || (wRec.progress || 0) > (mergedWatch[cid].progress || 0)) {
             mergedWatch[cid] = {

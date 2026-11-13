@@ -32,30 +32,35 @@ class MediaTrackerMeter {
 
   getSavedRecord() {
     try {
+      const userEmail = ((window.getSanitizedEmail ? window.getSanitizedEmail() : "") || localStorage.getItem("lexclinic_user_email") || "").toLowerCase().trim();
+      const matchesUser = (recEmail) => {
+        if (!recEmail) return true;
+        if (!userEmail) return false;
+        return String(recEmail).toLowerCase().trim() === userEmail;
+      };
       const history = JSON.parse(localStorage.getItem("lexclinic_video_watch_history") || "{}");
-      if (history[this.id]) {
+      if (history[this.id] && matchesUser(history[this.id].user_email)) {
         return history[this.id];
       }
       // Fallback 1: search by title
       const cleanTitle = (this.title || "").toLowerCase().trim();
       for (const key in history) {
-        if (history[key] && history[key].video_title) {
+        if (history[key] && history[key].video_title && matchesUser(history[key].user_email)) {
           if (history[key].video_title.toLowerCase().trim() === cleanTitle) {
             return history[key];
           }
         }
       }
       // Fallback 2: if the logged-in user has already approved this media card (Thorough or Pass/Star), treat as watched!
-      const userEmail = ((window.getSanitizedEmail ? window.getSanitizedEmail() : "") || localStorage.getItem("lexclinic_user_email") || "").toLowerCase().trim();
       const approvals = JSON.parse(localStorage.getItem("lexclinic_media_approvals") || "{}");
       const canonicalUid = (window.location ? window.location.pathname : "/") + "#" + this.id;
       const appRec = approvals[canonicalUid] || approvals[this.id];
-      if (appRec && (!userEmail || !appRec.reviewer || appRec.reviewer.toLowerCase() === userEmail)) {
+      if (userEmail && appRec && appRec.reviewer && String(appRec.reviewer).toLowerCase().trim() === userEmail) {
         return {
           progress: appRec.depth === "cursory" ? 50 : 100,
           current_time: 0,
           video_title: this.title,
-          user_email: userEmail || appRec.reviewer
+          user_email: userEmail
         };
       }
       return null;

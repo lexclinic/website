@@ -111,7 +111,7 @@ export async function onRequestPost(context) {
       }
 
       if (toolName === "get_transcript") {
-        const found = transcriptsData.find(t => t.id === args.id || t.class_id === args.id);
+        const found = transcriptsData.find(t => t.id === args.id || t.class_id === args.id || t.youtube_id === args.id);
         return new Response(JSON.stringify({
           jsonrpc: "2.0",
           id,

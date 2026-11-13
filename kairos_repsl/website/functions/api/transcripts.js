@@ -25,7 +25,7 @@ export async function onRequestGet(context) {
 
   // 1. Single Transcript Request by ID
   if (idParam) {
-    const found = transcriptsData.find(t => t.id === idParam || t.class_id === idParam);
+    const found = transcriptsData.find(t => t.id === idParam || t.class_id === idParam || t.youtube_id === idParam);
     if (found) {
       return new Response(JSON.stringify(found, null, 2), { status: 200, headers });
     }
