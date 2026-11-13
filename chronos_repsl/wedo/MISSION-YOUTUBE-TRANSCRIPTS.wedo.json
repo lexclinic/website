@@ -1,48 +1,50 @@
 {
   "wedo_instance": {
     "id": "MISSION-YOUTUBE-TRANSCRIPTS",
-    "description": "LexClinic @lexclinic YouTube Channel Reorganization, oEmbed Verification, Playlist Architecture & 138-Video API Transcript Repository",
+    "description": "LexClinic @lexclinic YouTube Channel Reorganization, oEmbed Verification, Playlist Architecture & 140-Video API Transcript Repository",
     "status": "[completed]",
     "meta": {
       "protocol": "WeDo-JSON",
-      "version": "1.0.0",
+      "version": "1.2.0",
       "channel_id": "UCQ4-Cp30fiDGemPnbfyL5gQ",
-      "channel_handle": "@lexclinic",
-      "total_channel_videos_audited": 193,
-      "public_youtube_videos_transcribed": 49,
-      "website_embedded_videos_transcribed": 90,
-      "total_api_transcripts": 138,
-      "created_at": "2026-11-13T01:45:00Z"
+      "handle": "@lexclinic",
+      "repository": "/home/mgit/YouTube_repsl/repo_repsl",
+      "website_staging_sync": "/home/mgit/lex_clinic_stage_repsl/repo_repsl/kairos_repsl/website/transcripts.json",
+      "website_production_sync": "/home/mgit/lex_clinic_website_repsl/repo_repsl/kairos_repsl/website/transcripts.json",
+      "total_transcripts": 140,
+      "public_youtube_videos_covered": 51,
+      "website_embedded_youtube_videos_covered": 90,
+      "session_and_courseware_entries": 29
     },
     "tasks": [
       {
-        "id": "YT-OEMBED-RESTORE-01",
-        "description": "Audit all @lexclinic YouTube videos via YouTube Data API v3 & oEmbed and restore embeddable: true and publicStatsViewable: true on r7ZmnxfSY-0 (Class 7.1), fV3yLAEuAg0 (Class 7.2), and xPE9-SaZZMA (Module 5 Overview)",
+        "id": "YT-EMBED-FIX-01",
+        "description": "Verify and enforce status.embeddable=true and publicStatsViewable=true across all public C-Lead 101 lectures (1.1 through 8.2, including r7ZmnxfSY-0, fV3yLAEuAg0, SnQgbGeeNrs, and 1RNPJr_tzLc) and all website-embedded YouTube videos",
         "status": "[x]"
       },
       {
-        "id": "YT-PLAYLIST-REORG-02",
-        "description": "Create and populate public playlists 'Legal Engineering Interviews' (PLVZH6zhU-oss, 15 videos: James Wigginton 1-3 & Lukas Küng 1.1-4.3) and 'Socratic Legal Engineering Reviews (2026 Sessions)' (PLAeaXula32bY, 70 videos across Aug 22 through Nov 12 Class 7.1), assign Cq6rKw-WG8E to PLE_gpOjSjpAQ, YSAUbqgbdGM to PLmgM5u14bFq5HTxORPkE_I2wjmvkLBJg0, and cZCQ9Q3-o-A to PLd2sNOw-wfzM, and remove 3 private video references (SnQgbGeeNrs, 1RNPJr_tzLc, xl9cQfuOopM) from public playlists",
+        "id": "YT-PLAYLIST-ARCH-02",
+        "description": "Standardize @lexclinic playlist titles, set ONwiUkc_tt4 as channel trailer, remove private items from public playlists, re-add unlocked 8.1/8.2 lectures (SnQgbGeeNrs, 1RNPJr_tzLc) to PLbPukKwpmk5E, and organize all 15 interview clips into 'Legal Engineering Interviews' (PLVZH6zhU-oss) and all 70 Socratic session clips into 'Socratic Legal Engineering Reviews (2026 Sessions)' (PLAeaXula32bY)",
         "status": "[x]"
       },
       {
-        "id": "YT-METADATA-BRANDING-03",
-        "description": "Standardize playlist titles ('Computational Jurisprudence', 'Ix at ZuZones (Zuitzerland & ZuVillage)', 'Weekly Office Hours (2024-2025 Archive)', 'Legal Engineering How-To Guides'), populate channel description and set trailer to ONwiUkc_tt4, add descriptions with lex.clinic course/quiz links to all 19 public C-Lead 101 videos, and retitle FjPEPh3eDa8 & YSAUbqgbdGM",
+        "id": "YT-METADATA-DESC-03",
+        "description": "Populate structured courseware, quiz, and CC-BY-SA-4.0/AGPL-3.0 descriptions across all 21 public C-Lead 101 videos (1.1-8.2) and standardize titles for FjPEPh3eDa8 and YSAUbqgbdGM",
         "status": "[x]"
       },
       {
-        "id": "YT-WEBSITE-EMBEDS-WIRE-04",
-        "description": "Wire missing YouTube uploads into website pages: Module 4.3 (58DVy_mvLgY: AMM Math & Protocol Liquidity) on /interview/lucas-kung/index.html and Clip 0 (hgvyjpdO6Xw: Micro & Macro Legal Journey) on /event/2026-10-01/index.html, updating Linter Rules 05 and 06",
+        "id": "YT-WEBSITE-EMBEDS-04",
+        "description": "Wire unembedded Lukas Kung Module 4.3 (58DVy_mvLgY) into /interview/lucas-kung/index.html and Lesson 4.1 Clip 1 (hgvyjpdO6Xw) into /event/2026-10-01/index.html with full Linter Rules 05 and 06 contract verification",
         "status": "[x]"
       },
       {
-        "id": "YT-TRANSCRIPTS-API-REPO-05",
-        "description": "Maintain and expand transcripts.json (and YouTube_repsl/repo_repsl/kairos_repsl/transcripts/) to 138 complete transcripts covering 100% of all 49 public YouTube videos on @lexclinic (whether embedded on lex.clinic or not) plus 100% of all 90 website-embedded YouTube videos and 29 session/courseware entries, and enable direct youtube_id lookup in /api/transcripts and /mcp/sse",
+        "id": "YT-TRANSCRIPTS-REPO-05",
+        "description": "Extract and maintain timestamped transcripts for 100% of all 51 public @lexclinic YouTube videos and all 90 website-embedded YouTube videos (140 total entries in transcripts.json), with direct youtube_id lookup in /api/transcripts and /mcp/sse",
         "status": "[x]"
       },
       {
         "id": "YT-REPSL-COMMIT-AND-PROD-PROMOTE-06",
-        "description": "Commit YouTube_repsl/repo_repsl, lex_clinic_stage_repsl/repo_repsl (stage.lex.clinic), and promote verified staging substrate to lex_clinic_website_repsl/repo_repsl (lex.clinic production)",
+        "description": "Commit YouTube_repsl/repo_repsl, lex_clinic_stage_repsl/repo_repsl (stage.lex.clinic), and promote verified YouTube transcript API & clip embeds to lex_clinic_website_repsl/repo_repsl (lex.clinic production)",
         "status": "[x]"
       }
     ]

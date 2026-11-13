@@ -12,13 +12,15 @@ async function run(webDir) {
   // --------------------------------------------------------------------------
   const pageRoutes = [
     { path: "/", mustInclude: "LexClinic" },
-    { path: "/101/", mustInclude: "39.9% Generative", mustNotInclude: "Live Socratic Session" },
+    { path: "/101/", mustInclude: "38.9% Generative", mustNotInclude: "Live Socratic Session" },
     { path: "/101/idea/", mustInclude: "Gottfried Wilhelm Leibniz", mustNotInclude: "<audio" },
     { path: "/101/3.1/", mustInclude: "Charles Goldfarb", mustNotInclude: "<audio" },
     { path: "/101/6.1/", mustInclude: "Grammatical Hurdles", mustNotInclude: "<audio" },
     { path: "/101/6.2/", mustInclude: "Reading Right-to-Left", mustNotInclude: "<audio" },
     { path: "/101/7.1/", mustInclude: "Boolean Logic 101", mustNotInclude: "Live Socratic Session" },
     { path: "/101/7.2/", mustInclude: "Nested If/Else Logic", mustNotInclude: "Live Socratic Session" },
+    { path: "/101/8.1/", mustInclude: "Premieres Next Week", mustNotInclude: "Live Socratic Session" },
+    { path: "/101/8.1/quiz-learned/", mustInclude: "5-Question Learned Quiz", mustNotInclude: "copyCardDirectLink" },
     { path: "/101/6.2/quiz-learned/", mustInclude: "5-Question Learned Quiz", mustNotInclude: "copyCardDirectLink" },
     { path: "/101/6.2/quiz-expert/", mustInclude: "20-Question Expert Quiz", mustNotInclude: "copyCardDirectLink" },
     { path: "/interview/lucas-kung/quiz-learned/", mustInclude: "5-Question Learned Quiz", mustNotInclude: "copyCardDirectLink" },
