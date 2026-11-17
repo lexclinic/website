@@ -1034,15 +1034,21 @@ def sync_101_attest_and_linter(web_dir: Path, spec: dict) -> None:
     r04_path = web_dir / ".linter" / "rules" / "04-spotify-101-embeds.js"
     if r04_path.exists():
         r04_raw = r04_path.read_text(encoding="utf-8")
-        if f'mod: "{cid}"' not in r04_raw:
-            new_item = f'    {{ mod: "{cid}", yt: "{yt_id}", spotify: "{sp_id}" }}'
+        new_item = f'    {{ mod: "{cid}", yt: "{yt_id}", spotify: "{sp_id}" }}'
+        existing_r04_pat = re.compile(
+            rf'^[ \t]*\{{\s*mod:\s*"{re.escape(cid)}",\s*yt:\s*"[^"]+",\s*spotify:\s*"[^"]+"\s*\}}(,?)',
+            re.MULTILINE,
+        )
+        if existing_r04_pat.search(r04_raw):
+            r04_raw = existing_r04_pat.sub(rf"{new_item}\1", r04_raw, count=1)
+        else:
             r04_raw = re.sub(
                 r'(\{\s*mod:\s*"\d+\.\d+",\s*yt:\s*"[^"]+",\s*spotify:\s*"[^"]+"\s*\})\s*(\n\s*\];)',
                 rf"\1,{NL}{new_item}\2",
                 r04_raw,
                 count=1,
             )
-            r04_path.write_text(r04_raw, encoding="utf-8")
+        r04_path.write_text(r04_raw, encoding="utf-8")
 
     # 3. .linter/rules/07-attest-contracts.js
     r07_path = web_dir / ".linter" / "rules" / "07-attest-contracts.js"

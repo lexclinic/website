@@ -2,7 +2,7 @@
   "wedo_instance": {
     "id": "101-MODULE-8.1",
     "description": "LexClinic 101 Courseware Manifest — Class 8.1: The 'And/Or' Trap in Legal Drafting",
-    "status": "[in_progress]",
+    "status": "[completed]",
     "meta": {
       "protocol": "WeDo-JSON",
       "version": "1.0.0",
@@ -10,7 +10,7 @@
       "title": "Class 8.1: The 'And/Or' Trap in Legal Drafting",
       "youtube_id": "SnQgbGeeNrs",
       "module_overview_youtube_id": "xPE9-SaZZMA",
-      "spotify_episode_id": "PENDING",
+      "spotify_episode_id": "4cLY8SVq5GAgoKPQIQX82c",
       "scheduled_socratic_session": "2026-11-26"
     },
     "tasks": [
@@ -36,8 +36,8 @@
       },
       {
         "id": "HUMAN-WEDO-SPOTIFY-EPISODE",
-        "description": "[HUMAN DELIVERABLE — NON-BLOCKING] Publish 'Legal Engineering 101 Class 8.1 Deep Dive: The And/Or Trap in Legal Drafting' on Spotify show 0348ivoLaNfKBq1HeIYC9b, then replace spotify_id='PENDING' in chronos_repsl/specs/module_101_8.1.json and re-compile",
-        "status": "[ ]"
+        "description": "Publish 'Legal Engineering 101 Class 8.1 Deep Dive: The And/Or Trap in Legal Drafting' on Spotify show 0348ivoLaNfKBq1HeIYC9b (episode 4cLY8SVq5GAgoKPQIQX82c) and embed on /101/8.1/",
+        "status": "[x]"
       }
     ]
   },
