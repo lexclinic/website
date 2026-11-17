@@ -236,40 +236,23 @@ def synthesize_tts(
         from f5_tts.api import F5TTS
 
         torch.set_num_threads(4)
-        card4_5s = corpus_dir / "card4_natural_5s.wav"
-        ref_file = str(card4_5s if card4_5s.exists() else corpus_dir / "solo_06_agent_np_domain_a.wav")
-        ref_text = "Whomever is part of the domain, I can say this person is the CFO."
+        torch.set_flush_denormal(True)
+        card4_6s = corpus_dir / "card4_natural_6s.wav"
+        ref_file = str(card4_6s if card4_6s.exists() else corpus_dir / "solo_06_agent_np_domain_a.wav")
+        ref_text = "Whomever is part of the domain, I can say this person is the CFO and then so whatever virtual machine."
 
-        print("  Loading F5-TTS Continuous Flow Matching model (F5TTS_v1_Base + Vocos 24kHz)...")
+        print("  Loading F5-TTS Continuous Flow Matching model in Full FP32 (F5TTS_v1_Base + Vocos 24kHz)...")
         t0 = time.time()
         f5 = F5TTS(model="F5TTS_v1_Base", device="cpu")
-        f5.ema_model.transformer = torch.ao.quantization.quantize_dynamic(
-            f5.ema_model.transformer, {torch.nn.Linear}, dtype=torch.qint8
-        )
-        orig_forward = f5.ema_model.transformer.forward
-
-        def scheduled_cfg_forward(x, cond, text, time, mask=None, drop_audio_cond=False, drop_text=False, cfg_infer=False, cache=False):
-            t_val = float(time.item()) if time.ndim == 0 else float(time[0].item())
-            if cfg_infer and t_val > 0.55:
-                out_cond = orig_forward(
-                    x=x, cond=cond, text=text, time=time, mask=mask,
-                    drop_audio_cond=False, drop_text=False, cfg_infer=False, cache=cache
-                )
-                return torch.cat([out_cond, out_cond], dim=0)
-            return orig_forward(
-                x=x, cond=cond, text=text, time=time, mask=mask,
-                drop_audio_cond=drop_audio_cond, drop_text=drop_text, cfg_infer=cfg_infer, cache=cache
-            )
-
-        f5.ema_model.transformer.forward = scheduled_cfg_forward
-        print(f"  F5-TTS loaded in {time.time() - t0:.1f}s. Running Continuous Flow Matching...")
+        print(f"  F5-TTS loaded in {time.time() - t0:.1f}s. Running 8-Step Full-CFG FP32 Flow Matching...")
         t1 = time.time()
         f5.infer(
             ref_file=ref_file,
             ref_text=ref_text,
             gen_text=text,
-            nfe_step=7,
+            nfe_step=8,
             cfg_strength=2.0,
+            sway_sampling_coef=-1.0,
             speed=1.0,
             progress=None,
             file_wave=str(tmp_wav),

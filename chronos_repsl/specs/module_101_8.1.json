@@ -7,7 +7,7 @@
   "overview_html": "<p style='line-height: 1.7; color: var(--text-main); font-size: 1.05rem; margin: 0;'>Exposes why traditional legal drafting treats vagueness (such as <em>'within a reasonable timeframe'</em> or <em>'passport and/or driver&#39;s license'</em>) as a flexible feature on paper, yet turns it into a ticking time bomb inside deterministic software runtimes. When a clause relies on <code>and/or</code>, it masquerades as a logical operator without committing to whether <strong>both</strong> conditions (<code>AND</code>) or <strong>at least one</strong> condition (<code>OR</code>) must evaluate to <code>true</code>—forcing legal engineers to replace <code>and/or</code> with explicit, collapsible nested Boolean trees.</p>",
   "video_slug": "class-8-1-the-and-or-trap-in-legal-drafting",
   "youtube_id": "SnQgbGeeNrs",
-  "spotify_id": "PENDING",
+  "spotify_id": "4cLY8SVq5GAgoKPQIQX82c",
   "hub_card_icon": "⚖️",
   "hub_card_summary_html": "Exposing how fluid <code>and/or</code> legal phrasing shatters under strict Boolean operators and why drafters must map explicit true/false logic trees.",
   "socratic_companion": {},

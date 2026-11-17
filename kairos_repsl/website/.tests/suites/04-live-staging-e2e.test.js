@@ -19,7 +19,7 @@ async function run(webDir) {
     { path: "/101/6.2/", mustInclude: "Reading Right-to-Left", mustNotInclude: "<audio" },
     { path: "/101/7.1/", mustInclude: "Boolean Logic 101", mustNotInclude: "Live Socratic Session" },
     { path: "/101/7.2/", mustInclude: "Nested If/Else Logic", mustNotInclude: "Live Socratic Session" },
-    { path: "/101/8.1/", mustInclude: "Premieres Next Week", mustNotInclude: "Live Socratic Session" },
+    { path: "/101/8.1/", mustInclude: "4cLY8SVq5GAgoKPQIQX82c", mustNotInclude: "Live Socratic Session" },
     { path: "/101/8.1/quiz-learned/", mustInclude: "5-Question Learned Quiz", mustNotInclude: "copyCardDirectLink" },
     { path: "/101/6.2/quiz-learned/", mustInclude: "5-Question Learned Quiz", mustNotInclude: "copyCardDirectLink" },
     { path: "/101/6.2/quiz-expert/", mustInclude: "20-Question Expert Quiz", mustNotInclude: "copyCardDirectLink" },

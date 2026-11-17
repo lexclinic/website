@@ -2,7 +2,7 @@
   "wedo_instance": {
     "id": "EVENT-2026-11-12",
     "description": "LexClinic Weekly Socratic & 101 Sync Manifest — Nov 12, 2026 (Event: Lesson 7.1 Boolean Logic 101 + Next 101 Courseware: Class 8.1 The 'And/Or' Trap in Legal Drafting)",
-    "status": "[in_progress]",
+    "status": "[completed]",
     "meta": {
       "protocol": "WeDo-JSON",
       "version": "1.0.0",
@@ -73,8 +73,8 @@
       },
       {
         "id": "HUMAN-WEDO-SPOTIFY-8-1",
-        "description": "[HUMAN DELIVERABLE — NON-BLOCKING] User publishes 'Legal Engineering 101 Class 8.1 Deep Dive: The And/Or Trap in Legal Drafting' on Spotify show 0348ivoLaNfKBq1HeIYC9b so spotify_id='PENDING' on /101/8.1/ can be replaced with the live Spotify episode embed",
-        "status": "[ ]"
+        "description": "User published 'Legal Engineering 101 Class 8.1 Deep Dive: The And/Or Trap in Legal Drafting' on Spotify show 0348ivoLaNfKBq1HeIYC9b (episode 4cLY8SVq5GAgoKPQIQX82c) and embedded on /101/8.1/",
+        "status": "[x]"
       }
     ]
   },
