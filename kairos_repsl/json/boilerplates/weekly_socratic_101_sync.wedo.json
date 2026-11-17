@@ -38,7 +38,12 @@
     "tasks": [
       {
         "id": "WSYNC-DISCOVER-01",
-        "description": "Media & Transcript Discovery: Fetch the new Socratic event GDrive folder / YouTube clip IDs and 101 YouTube/Spotify IDs. Transcribe audio with faster-whisper tiny.en (`audio.m4a` faststart in `/event/YYYY-MM-DD/audio.m4a` and `/101/X.Y/audio.m4a`), run `py/substrate/transcript_strike.py` for forensic transcript cleanup, and append entries to `transcripts.json`.",
+        "description": "Media & Transcript Discovery: Fetch the new Socratic event GDrive folder / YouTube clip IDs and the next 101 module YouTube ID (unlocking YouTube privacyStatus to public with embeddable: true). Check Spotify show 0348ivoLaNfKBq1HeIYC9b for the new 101 podcast episode.",
+        "status": "[ ]"
+      },
+      {
+        "id": "WSYNC-HUMAN-SPOTIFY-101",
+        "description": "[NON-BLOCKING HUMAN DELIVERABLE] Weekly 101 Spotify Podcast Episode: Check if the next 101 class Deep Dive episode is live on Spotify (show 0348ivoLaNfKBq1HeIYC9b). If live, use its 22-char Spotify episode ID. If not yet published by the user, set `spotify_id` to `\"PENDING\"` so `weekly_sync_scaffold.py` renders the `'🎧 Podcast Deep Dive • Premieres Next Week'` notice on `/101/<X.Y>/index.html` without blocking publication, and keep this task tracked as `[ ]` in the weekly WeDo until the user publishes the episode.",
         "status": "[ ]"
       },
       {
@@ -48,7 +53,7 @@
       },
       {
         "id": "WSYNC-SPEC-101-03",
-        "description": "Author & Compile 101 Module Spec (`chronos_repsl/specs/module_101_<X.Y>.json`): Copy `chronos_repsl/specs/module_101_7.1.json`, author unique `hero_subtitle_html`, `overview_html`, `hub_card_summary_html` (with `socratic_companion` empty `{}` until recorded), and 20 transcript-grounded questions (`questions`), then run `python3 chronos_repsl/scripts/weekly_sync_scaffold.py --compile-101 chronos_repsl/specs/module_101_<X.Y>.json --update-hub`.",
+        "description": "Author & Compile 101 Module Spec (`chronos_repsl/specs/module_101_<X.Y>.json`): Copy `chronos_repsl/specs/module_101_7.1.json`, set `spotify_id` (or `\"PENDING\"` if premiering next week), author unique `hero_subtitle_html`, `overview_html`, `hub_card_summary_html` (with `socratic_companion` empty `{}` until recorded), and 20 transcript-grounded questions (`questions`), then run `python3 chronos_repsl/scripts/weekly_sync_scaffold.py --compile-101 chronos_repsl/specs/module_101_<X.Y>.json --update-hub`.",
         "status": "[ ]"
       },
       {

@@ -421,6 +421,19 @@ def render_101_module_page(spec: dict, base_dir: Path) -> str:
     video_card = render_video_card(video_slug, full_heading, youtube_id)
     custom_block = f"{NL}      {custom_sections_html}{NL}" if custom_sections_html else ""
 
+    if not spotify_id or str(spotify_id).upper().startswith("PENDING"):
+        spotify_inner_html = f"""        <div style="background: rgba(15, 23, 42, 0.85); border: 1px dashed #1db954; border-radius: 12px; padding: 1.25rem 1.5rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;">
+          <div style="flex: 1; min-width: 240px;">
+            <div style="color: #1db954; font-weight: 800; font-size: 0.88rem; letter-spacing: 0.03em; text-transform: uppercase; margin-bottom: 0.3rem;">🎧 Podcast Deep Dive • Premieres Next Week</div>
+            <p style="color: #cbd5e1; font-size: 0.95rem; margin: 0; line-height: 1.55;">The companion <strong>{full_heading}</strong> Deep Dive audio episode premieres next week on <em>LexClinic Legal Engineering Classes</em>.</p>
+          </div>
+          <a href="https://open.spotify.com/show/0348ivoLaNfKBq1HeIYC9b" target="_blank" rel="noopener" class="btn-spotify" style="padding: 0.55rem 1.15rem; font-weight: 800; font-size: 0.9rem; border-radius: 8px; text-decoration: none;">Follow Show on Spotify ➔</a>
+        </div>"""
+    else:
+        spotify_inner_html = f"""        <div style="border-radius: 12px; overflow: hidden;">
+          <iframe style="border-radius:12px" src="https://open.spotify.com/embed/episode/{spotify_id}?utm_source=generator&theme=0" width="100%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+        </div>"""
+
     return f"""{render_common_head(page_title, meta_desc)}
 {render_common_header("101")}
 
@@ -458,9 +471,7 @@ def render_101_module_page(spec: dict, base_dir: Path) -> str:
         <h3 style="color: #1db954; font-size: 1.25rem; margin-bottom: 0.75rem;">
           {full_heading} — Official Spotify Podcast Episode
         </h3>
-        <div style="border-radius: 12px; overflow: hidden;">
-          <iframe style="border-radius:12px" src="https://open.spotify.com/embed/episode/{spotify_id}?utm_source=generator&theme=0" width="100%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
-        </div>
+{spotify_inner_html}
       </div>{socratic_card_block}
 
       <!-- Bottom Action Navigation -->

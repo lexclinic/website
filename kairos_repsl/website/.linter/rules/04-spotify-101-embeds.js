@@ -18,7 +18,8 @@ function run(webDir, config) {
     { mod: "6.1", yt: "fz5ON8vs_gQ", spotify: "40sELGiloMWg7k8iI5chpI" },
     { mod: "6.2", yt: "jAmvvgllLPg", spotify: "2IhGZEMrXXg1rkzg9eSfuz" },
     { mod: "7.1", yt: "r7ZmnxfSY-0", spotify: "401NGruWP07zbTvh2K2nmk" },
-    { mod: "7.2", yt: "fV3yLAEuAg0", spotify: "0njS92rFADH65LPe5DhWni" }
+    { mod: "7.2", yt: "fV3yLAEuAg0", spotify: "0njS92rFADH65LPe5DhWni" },
+    { mod: "8.1", yt: "SnQgbGeeNrs", spotify: "PENDING" }
   ];
 
   const violations = [];
@@ -62,8 +63,12 @@ function run(webDir, config) {
       violations.push(`101/${item.mod}/index.html is missing expected YouTube lecture embed (${item.yt})`);
     }
 
-    // 3. Verify official Spotify episode embed
-    if (!html.includes(`https://open.spotify.com/embed/episode/${item.spotify}`)) {
+    // 3. Verify official Spotify episode embed (or 'Premieres Next Week' notice if spotify === "PENDING")
+    if (item.spotify === "PENDING") {
+      if (!html.includes("Premieres Next Week") || !html.includes("https://open.spotify.com/show/0348ivoLaNfKBq1HeIYC9b")) {
+        violations.push(`101/${item.mod}/index.html has PENDING Spotify episode but is missing 'Premieres Next Week' notice or Spotify show link`);
+      }
+    } else if (!html.includes(`https://open.spotify.com/embed/episode/${item.spotify}`)) {
       violations.push(`101/${item.mod}/index.html is missing expected Spotify episode embed (${item.spotify})`);
     }
 

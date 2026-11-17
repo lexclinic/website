@@ -1,0 +1,69 @@
+{
+  "wedo_instance": {
+    "id": "MISSION-TRANSCRIPT-20261112-LESSON-7-1",
+    "description": "Forensic Transcript & Gemini Summary Correction Strike for LexClinic 2026 — Lesson 7.1 (2026-11-12 15:30 PDT)",
+    "status": "[completed]",
+    "meta": {
+      "protocol": "WeDo-JSON",
+      "version": "1.2.0",
+      "boilerplate_id": "BOILERPLATE-TRANSCRIPT-FORENSIC-CORRECTION",
+      "target_drive_docs": [
+        {
+          "name": "LexClinic 2026 — Lesson 7.1 - 2026/11/12 15:30 PDT - Notes by Gemini",
+          "original_file_id": "11ZeH07rm0wEFOFBvCl_zT6CYyLpT7a-ItozU9zjKQ9w",
+          "upgraded_copy_id": "1koKtRgPthPJtRxxq4ZhmS25tv9YUaG0Vf3oc1WUD6q0",
+          "companion_recording_id": "14nTI9Xkx42wY9htFRJZTWh3yYoWx6uQm",
+          "companion_attendance_id": "1h81lRJVVnp8dMWVmsAVS_MB3E---EPcYijSs6xrlU9U",
+          "replacements_applied": 241,
+          "rules_matched": "95/95"
+        }
+      ],
+      "philosophy": "Every transcript & Gemini summary upgrade is a multi-pass forensic strike: (1) OpenXML (<w:t>) run-level inspection, (2) local repository cross-reference against _repsl data rooms and web codebases, (3) external web verification of legal/academic/historical authorities, and (4) deterministic replacement mapping and live Google Drive upload."
+    },
+    "tasks": [
+      {
+        "id": "TFC-DISCOVER-01",
+        "description": "Query Google Drive v3 API for newly shared or generated meeting transcripts, Gemini notes, attendance sheets, and companion MP4 recordings.",
+        "status": "[x]",
+        "notes": "Discovered LexClinic 2026 — Lesson 7.1 - 2026/11/12 15:30 PDT - Notes by Gemini (11ZeH07rm0wEFOFBvCl_zT6CYyLpT7a-ItozU9zjKQ9w, owned by daniel@lex.clinic, canEdit=true), companion MP4 recording (14nTI9Xkx42wY9htFRJZTWh3yYoWx6uQm, 331.2 MB), and Attendance spreadsheet (1h81lRJVVnp8dMWVmsAVS_MB3E---EPcYijSs6xrlU9U: Kyle Smith 59 min, Daniel Rivera 59 min, Baba John 53 min)."
+      },
+      {
+        "id": "TFC-EXPORT-02",
+        "description": "Export the Google Doc as both plain text (.txt) and OpenXML (.docx) using py/substrate/transcript_strike.py export and dump all <w:t> runs via inspect.",
+        "status": "[x]",
+        "notes": "Exported lesson_7_1.docx (1,051,055 bytes) and inspected all 597 <w:t> runs (runs 0000-0596)."
+      },
+      {
+        "id": "TFC-AUDIT-LOCAL-03",
+        "description": "Cross-reference every proper noun, entity, UI artifact, patent number, and curriculum metric against local _repsl repositories.",
+        "status": "[x]",
+        "notes": "Verified Class 7.1 spec (chronos_repsl/specs/module_101_7.1.json: 'hat chains' via Hats Protocol, 'Computational Legalese', Waymo automated law), 3-Tier Idea, Depth & Novelty Map (/101/idea/: 33 Tier-1 novel seeds, 34 Tier-2 deepened spiral elaborations, 101 Tier-3 baseline reviews), Lesson 6.2 Event Clip 3 (3_Legal_Tech_Pedagogy.mp4 on /event/2026-11-05/), UI pillar logos (logo-fak.png, logo-mri.png, logo-ice.png, logo-cpu.png), SeedTree patent (US Patent 12,664,142), osFig (🔱) enclave managing GCE VM repsl-lex, and Artizen DAO media (01_The_Artizen_DAO_Crisis.mp4)."
+      },
+      {
+        "id": "TFC-AUDIT-WEB-04",
+        "description": "Execute web searches to verify external legal, academic, and historical authorities discussed in the session.",
+        "status": "[x]",
+        "notes": "Verified Wyoming DUNA Act (Decentralized Unincorporated Nonprofit Association, Wyo. Stat. § 17-32-101 et seq., SF0050, effective July 1, 2024) as a statutory liability shield countering the unincorporated general-partnership personal liability holding in CFTC v. Ooki DAO (No. 3:22-cv-05416, N.D. Cal. June 8, 2023); Decile Group / Decile Hub VC Lab PACT (Pledge Agreement for Capital Transaction) non-binding commitment framework; Gottfried Wilhelm Leibniz's Dissertatio de Arte Combinatoria (1666) and calculus ratiocinator; and John Sweller (1988), Jerome Bruner (1960), and Siegfried Engelmann (85:15 Direct Instruction rule)."
+      },
+      {
+        "id": "TFC-MAP-05",
+        "description": "Author the deterministic JSON replacement map in kairos_repsl/json/lesson_7_1_replacements.json covering all 5 audit categories.",
+        "status": "[x]",
+        "notes": "Authored 95 rules in Meet_Recorder_repsl/repo_repsl/kairos_repsl/json/lesson_7_1_replacements.json and enhanced py/substrate/transcript_strike.py to support RUN_RANGE:<start>-<end>:<target> and RUN_AT:<idx>:<target> run-index targeting."
+      },
+      {
+        "id": "TFC-PATCH-06",
+        "description": "Execute py/substrate/transcript_strike.py patch to update the original Google Doc in-place and create an (Upgraded) copy on Google Drive.",
+        "status": "[x]",
+        "notes": "Applied 241 replacements across 95/95 rules (100% rule match) both in-place on 11ZeH07rm0wEFOFBvCl_zT6CYyLpT7a-ItozU9zjKQ9w and on the (Upgraded) copy 1koKtRgPthPJtRxxq4ZhmS25tv9YUaG0Vf3oc1WUD6q0."
+      },
+      {
+        "id": "TFC-VERIFY-07",
+        "description": "Re-export the updated Google Docs as plain text, verify zero remaining misattributions and positive counts of all canonical terms, and archive temporary files in .metagit_trash/.",
+        "status": "[x]",
+        "notes": "Verified 0 remaining 'Kyle Smith's Presentation' or 'Daniel Rivera's Presentation' instances across both 11ZeH07rm0wEFOFBvCl_zT6CYyLpT7a-ItozU9zjKQ9w and 1koKtRgPthPJtRxxq4ZhmS25tv9YUaG0Vf3oc1WUD6q0, with positive counts for all canonical terms and 2 embedded [Forensic Research Note] syntheses."
+      }
+    ]
+  },
+  "attribution": "LexClinic Legal Engineering Swarm (20261113)"
+}

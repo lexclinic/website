@@ -11,10 +11,10 @@
   "hub_card_icon": "⚖️",
   "hub_card_summary_html": "Bridging static legal contracts and active software runtimes with binary true/false legal gates, eliminating the \"and/or\" ambiguity trap, and building modular Hats Protocol chains.",
   "socratic_companion": {
-    "badge_text": "🎓 101 LIVE SOCRATIC COHORT COMPANION • Nov 12, 2026 (Upcoming Live)",
-    "description_html": "Join the live Thursday, Nov 12, 2026 cohort Socratic discussion for Class 7.1 on the Events Hub.",
-    "href": "/event/",
-    "button_label": "🔥 Nov 12 Live Socratic Session ➔"
+    "badge_text": "🎓 101 LIVE SOCRATIC COHORT COMPANION • Nov 12, 2026 (Recorded)",
+    "description_html": "Explore the recorded Thursday, Nov 12, 2026 cohort Socratic discussion and 5 explainer clips for Class 7.1.",
+    "href": "/event/2026-11-12/",
+    "button_label": "🗣️ Nov 12 Socratic Recording ➔"
   },
   "questions": [
     {

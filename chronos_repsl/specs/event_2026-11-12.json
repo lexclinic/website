@@ -1,0 +1,65 @@
+{
+  "type": "socratic_event",
+  "event_date": "2026-11-12",
+  "short_date": "Nov 12",
+  "class_id": "7.1",
+  "lesson_title": "Boolean Logic 101: True/False Legal Gates",
+  "page_title": "LexClinic 2026 — Lesson 7.1: Boolean Logic 101: True/False Legal Gates | LexClinic",
+  "meta_description": "Recorded Socratic Session for Class 7.1 (November 12, 2026): Turning Paper Contracts into Executable Code — Boolean Legal Gates, Cognitive Load & Spiral Curriculum, REPSL Confidential VMs & SeedTree (US Patent 12,664,142), and DAO Coalition Wyoming DUNA & PACT Governance.",
+  "hero_title": "LexClinic 2026 — Lesson 7.1: Boolean Logic 101: True/False Legal Gates",
+  "hero_subtitle_html": "Thursday, November 12, 2026 • Socratic Session for Class 7.1. Deconstructing binary true/false legal gates, the &quot;and/or&quot; ambiguity trap, cognitive load &amp; spiral pedagogy, REPSL Confidential VMs &amp; SeedTree (US Patent 12,664,142), and DAO Coalition Wyoming DUNA wrappers.",
+  "hub_card_summary_html": "Live cohort Socratic discussion &amp; 5 explainer clips accompanying <strong>Legal Engineering 101 Class 7.1</strong> on Boolean legal gates, Sweller/Bruner/Engelmann spiral pedagogy, REPSL Confidential VMs &amp; SeedTree (US Patent 12,664,142), and DAO Coalition Wyoming DUNA wrappers.",
+  "overview_html": "<p style='line-height: 1.7; color: var(--text-main); font-size: 1.05rem; margin-bottom: 1.25rem;'>In this live cohort Socratic session for <strong>Lesson 7.1: Boolean Logic 101: True/False Legal Gates</strong>, participants examine how static paper contracts transform into active software runtimes through a 3-step Boolean translation bridge (isolating the legal obligation, defining a binary <code>true/false</code> primitive, and embedding it in an <code>if/else</code> gate), why natural-language &quot;and/or&quot; vagueness crashes deterministic runtimes without strict data typing domains, how John Sweller's Cognitive Load Theory, Jerome Bruner's Spiral Curriculum, and Siegfried Engelmann's Direct Instruction govern the <code>/101/idea/</code> 3-Tier Depth &amp; Breadth Map, how REPSL <code>osFig</code> (<code>🔱</code>) Confidential VMs (<code>repsl-lex</code>) and US Patent 12,664,142 (SeedTree) reduce platform engineering costs by 70%, and how the DAO Coalition shields decentralized communities (such as Artizen DAO) from <em>CFTC v. Ooki DAO</em> general-partnership liability using Wyoming DUNA (Wyo. Stat. § 17-32-101 et seq.) wrappers and Decile Hub PACT commitments.</p>",
+  "takeaways": [
+    {
+      "heading_html": "⚖️ Computational Legalese &amp; 3-Step Boolean Gates",
+      "body_html": "Decoupling passive data from active instructions by isolating legal obligations, defining binary <code>true/false</code> primitives (<code>==</code> vs. right-to-left <code>=</code> assignment), Eliminating the &quot;and/or&quot; ambiguity trap via data typing domains, and chaining Hats Protocol role trees."
+    },
+    {
+      "heading_html": "🧠 Cognitive Load, Spiral Pedagogy &amp; Leibniz's Calculus",
+      "body_html": "Synthesizing George Boole's <em>Laws of Thought</em> (1854) and Leibniz's <em>calculus ratiocinator</em> (1666) with Sweller's 3–5 element working-memory bound, Bruner's Spiral Curriculum, and Engelmann's 85:15 Direct Instruction review ratio."
+    },
+    {
+      "heading_html": "☁️ REPSL Confidential VMs &amp; SeedTree (US Patent 12,664,142)",
+      "body_html": "Operating stateful agent VMs (<code>repsl-lex</code>) inside the <code>osFig</code> (<code>🔱</code>) enclave over persistent GNU <code>screen</code> PTY multiplexers (2 GB save states, $3/mo static IPs) while US Patent 12,664,142 prevents DOM/localStorage collisions and cuts build costs by 70%."
+    },
+    {
+      "heading_html": "🏛️ DAO Coalition, Wyoming DUNA &amp; Brand Architecture",
+      "body_html": "Shielding orphaned DAOs (Artizen DAO) from <em>CFTC v. Ooki DAO</em> personal liability via Wyoming DUNA (Wyo. Stat. § 17-32-101 et seq.) and Decile Hub PACT commitments, alongside the 4-pillar LexClinic Brand Architecture (<code>ICE</code>, <code>CPU</code>, <code>FAK</code>, <code>MRI</code>)."
+    }
+  ],
+  "audio_slug": "turning-paper-contracts-into-executable-code",
+  "audio_title": "Turning Paper Contracts into Executable Code — Full Session Audio Stream",
+  "clips": [
+    {
+      "slug": "computational-legalese",
+      "title": "Clip 1: Computational Legalese",
+      "iframe_id": "yt_frame_card_event_nov12_clip1",
+      "youtube_id": "5kWl6Oe08cU"
+    },
+    {
+      "slug": "legal-tech-pedagogy-7-1",
+      "title": "Clip 2: Legal Tech Pedagogy",
+      "iframe_id": "yt_frame_card_event_nov12_clip2",
+      "youtube_id": "oEofbKsezh0"
+    },
+    {
+      "slug": "sovereign-cloud-architecture",
+      "title": "Clip 3: Sovereign Cloud Architecture",
+      "iframe_id": "yt_frame_card_event_nov12_clip3",
+      "youtube_id": "9y6hUnQoLsU"
+    },
+    {
+      "slug": "decentralized-governance",
+      "title": "Clip 4: Decentralized Governance",
+      "iframe_id": "yt_frame_card_event_nov12_clip4",
+      "youtube_id": "NqReEBdaaNY"
+    },
+    {
+      "slug": "lexclinic-architecture",
+      "title": "Clip 5: LexClinic Architecture",
+      "iframe_id": "yt_frame_card_event_nov12_clip5",
+      "youtube_id": "dN6ukLGP2V0"
+    }
+  ]
+}
