@@ -1,0 +1,69 @@
+{
+  "wedo_instance": {
+    "id": "MISSION-TRANSCRIPT-20261119-LESSON-7-2",
+    "description": "Forensic Transcript & Gemini Summary Correction Strike for LexClinic 2026 — Lesson 7.2 (2026-11-19 14:33 PST)",
+    "status": "[completed]",
+    "meta": {
+      "protocol": "WeDo-JSON",
+      "version": "1.2.0",
+      "boilerplate_id": "BOILERPLATE-TRANSCRIPT-FORENSIC-CORRECTION",
+      "target_drive_docs": [
+        {
+          "name": "LexClinic 2026 — Lesson 7.2 - 2026/11/19 14:33 PST - Notes by Gemini",
+          "original_file_id": "1Hl108ZES6YiKs7LxE0JHF8G4bYHVdOY3lZlgmBaV4UA",
+          "upgraded_copy_id": "1-DehqhXL8YKDQWZCQVM5nob798hbxrQ9v4uOXDcpJ8Y",
+          "companion_recording_id": "1kLlWaIr6b_DUW_-VUHZxli7yuqM56Xwy",
+          "companion_attendance_id": "1gIuuJMWOBMbuVRwHE9ImiWjw5FmYCuMWDuiV6Bb9xP0",
+          "replacements_applied": 104,
+          "rules_matched": "90/90"
+        }
+      ],
+      "philosophy": "Every transcript & Gemini summary upgrade is a multi-pass forensic strike: (1) OpenXML (<w:t>) run-level inspection, (2) local repository cross-reference against _repsl data rooms and web codebases, (3) external web verification of legal/academic/historical authorities, and (4) deterministic replacement mapping and live Google Drive upload."
+    },
+    "tasks": [
+      {
+        "id": "TFC-DISCOVER-01",
+        "description": "Query Google Drive v3 API for newly shared or generated meeting transcripts, Gemini notes, attendance sheets, and companion MP4 recordings.",
+        "status": "[x]",
+        "notes": "Discovered LexClinic 2026 — Lesson 7.2 - 2026/11/19 14:33 PST - Notes by Gemini (1Hl108ZES6YiKs7LxE0JHF8G4bYHVdOY3lZlgmBaV4UA, owned by daniel@lex.clinic, canEdit=true), companion MP4 recording (1kLlWaIr6b_DUW_-VUHZxli7yuqM56Xwy), and Attendance spreadsheet (1gIuuJMWOBMbuVRwHE9ImiWjw5FmYCuMWDuiV6Bb9xP0: Kyle Smith 50 min, Sean Gonzalez 50 min, Baba John 49 min, Daniel Rivera 40 min)."
+      },
+      {
+        "id": "TFC-EXPORT-02",
+        "description": "Export the Google Doc as both plain text (.txt) and OpenXML (.docx) and dump all <w:t> runs.",
+        "status": "[x]",
+        "notes": "Exported lesson_7_2.docx (319,608 bytes) and inspected all 525 <w:t> runs (runs 0000-0524)."
+      },
+      {
+        "id": "TFC-AUDIT-LOCAL-03",
+        "description": "Cross-reference every proper noun, entity, UI artifact, patent number, and curriculum metric against local _repsl repositories.",
+        "status": "[x]",
+        "notes": "Verified Class 7.2 spec (chronos_repsl/specs/module_101_7.2.json: 'Translating Clauses into Nested If/Else Logic', single equals '=' assignment vs. double equals '==' comparison, Hats Protocol modular contract chains), /101/idea/ educational spiral, UI pillar logos (logo-fak.png, logo-mri.png, logo-ice.png, logo-cpu.png), SeedTree patent (US Patent 12,664,142), and F5-TTS voice-cloning audio sample."
+      },
+      {
+        "id": "TFC-AUDIT-WEB-04",
+        "description": "Execute web searches to verify external legal, academic, and historical authorities discussed in the session.",
+        "status": "[x]",
+        "notes": "Verified Robert Recorde's 1557 invention of the equals sign ('=') in The Whetstone of Witte and Gottfried Wilhelm Leibniz's popularization of '=', differential/integral calculus notation, deontic logic, characteristica universalis, and calculus ratiocinator; Bertrand Russell's 1901 Barber Paradox; Kurt Gödel's 1931 Incompleteness Theorems and Gödel numbering; Alonzo Church's 1936 lambda calculus proof that the Entscheidungsproblem is unsolvable; Charles Goldfarb's GML (1969) / SGML (1986) and <!DOCTYPE html> DOM heritage at IBM; and Nick Szabo (1994) and Ian Grigg's Ricardian Contracts."
+      },
+      {
+        "id": "TFC-MAP-05",
+        "description": "Author the deterministic JSON replacement map in kairos_repsl/json/lesson_7_2_replacements.json.",
+        "status": "[x]",
+        "notes": "Authored 90 rules in Meet_Recorder_repsl/repo_repsl/kairos_repsl/json/lesson_7_2_replacements.json, separating screen-shared Class 7.2 Explainer Video runs (236-285) from the synthetic voice-clone audio demo runs (492-497)."
+      },
+      {
+        "id": "TFC-PATCH-06",
+        "description": "Execute py/substrate/transcript_strike.py patch to update the original Google Doc in-place and create an (Upgraded) copy on Google Drive.",
+        "status": "[x]",
+        "notes": "Applied 104 replacements across 90/90 rules (100% rule match) both in-place on 1Hl108ZES6YiKs7LxE0JHF8G4bYHVdOY3lZlgmBaV4UA and on the (Upgraded) copy 1-DehqhXL8YKDQWZCQVM5nob798hbxrQ9v4uOXDcpJ8Y."
+      },
+      {
+        "id": "TFC-VERIFY-07",
+        "description": "Re-export the updated Google Docs as plain text and verify zero remaining misattributions and positive counts of all canonical terms.",
+        "status": "[x]",
+        "notes": "Verified 0 remaining 'Kyle Smith's Presentation:' instances across both 1Hl108ZES6YiKs7LxE0JHF8G4bYHVdOY3lZlgmBaV4UA and 1-DehqhXL8YKDQWZCQVM5nob798hbxrQ9v4uOXDcpJ8Y, with 12x Class 7.2 Explainer Video, 2x Synthetic Voice Clone Demo, and positive counts for all canonical terms and the embedded [Forensic Research Note]."
+      }
+    ]
+  },
+  "attribution": "LexClinic Legal Engineering Swarm (20261120)"
+}

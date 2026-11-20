@@ -1,0 +1,50 @@
+{
+  "wedo_instance": {
+    "id": "EVENT-2026-11-19",
+    "description": "LexClinic Weekly Socratic & 101 Sync Manifest — Nov 19, 2026 (Event: Lesson 7.2 Translating Clauses into Nested If/Else Logic + Next 101 Courseware: Class 8.2 Case Studies in Conditional Logic Failures)",
+    "status": "[in_progress]",
+    "meta": {
+      "protocol": "WeDo-JSON",
+      "version": "1.0.0",
+      "event_date": "2026-11-19",
+      "companion_101_module": "7.2",
+      "companion_101_url": "/101/7.2/",
+      "next_101_module": "8.2",
+      "next_101_url": "/101/8.2/",
+      "event_url": "/event/2026-11-19/",
+      "monthly_archive_url": "/event/2026-11/",
+      "meet_recording_drive_id": "1kLlWaIr6b_DUW_-VUHZxli7yuqM56Xwy",
+      "upgraded_notes_drive_id": "1-DehqhXL8YKDQWZCQVM5nob798hbxrQ9v4uOXDcpJ8Y",
+      "attendance_drive_id": "1gIuuJMWOBMbuVRwHE9ImiWjw5FmYCuMWDuiV6Bb9xP0",
+      "event_media_parent_folder_id": "1hsaErINc1MRvMqCQbaJh7AHN3Elvr0MM"
+    },
+    "tasks": [
+      {
+        "id": "FORENSIC-TRANSCRIPT-STRIKE-7-2",
+        "description": "Execute OpenXML forensic transcript & Gemini summary correction strike on Lesson 7.2 (1Hl108ZES6YiKs7LxE0JHF8G4bYHVdOY3lZlgmBaV4UA -> Upgraded copy 1-DehqhXL8YKDQWZCQVM5nob798hbxrQ9v4uOXDcpJ8Y, 104 replacements across 90/90 rules) and Nov 18 501c3 Review (1HdqbWDqGh4nutNS9zEfgwVIrY5cRhMnexuU_jIpSnak)",
+        "status": "[x]"
+      },
+      {
+        "id": "101-8-2-YT-UNLOCK-AND-COMPILE",
+        "description": "Unlock C-Lead Video 8.2 (1RNPJr_tzLc) on YouTube (public + embeddable), index class_8.2 in transcripts.json, compile chronos_repsl/specs/module_101_8.2.json with 20 transcript-grounded questions and spotify_id='PENDING' ('Premieres Next Week' notice), and update /101/idea/index.html + /101/index.html across all 16 classes (1.1-8.2, 192 instances, I1-I35)",
+        "status": "[x]"
+      },
+      {
+        "id": "HUMAN-WEDO-DRIVE-EVENT-7-2",
+        "description": "[HUMAN DELIVERABLE — EVENT 2026-11-19] Upload 'Nov 19 2026 (class 7.2)' folder containing the NotebookLM Audio Overview (.m4a) and Explainer Video Clips (.mp4) into Google Drive folder 1hsaErINc1MRvMqCQbaJh7AHN3Elvr0MM",
+        "status": "[ ]"
+      },
+      {
+        "id": "COMPILE-EVENT-2026-11-19",
+        "description": "Once 'Nov 19 2026 (class 7.2)' media folder is uploaded to Google Drive, compress audio.m4a to faststart AAC at /event/2026-11-19/audio.m4a, upload unlisted YouTube explainer clips, author chronos_repsl/specs/event_2026-11-19.json, and run weekly_sync_scaffold.py --compile-event chronos_repsl/specs/event_2026-11-19.json --update-hub",
+        "status": "[ ]"
+      },
+      {
+        "id": "HUMAN-WEDO-SPOTIFY-8-2",
+        "description": "[HUMAN DELIVERABLE — NON-BLOCKING] Publish 'Legal Engineering 101 Class 8.2 Deep Dive: Case Studies in Conditional Logic Failures' on Spotify show 0348ivoLaNfKBq1HeIYC9b so spotify_id='PENDING' on /101/8.2/ can be replaced with the live Spotify episode embed",
+        "status": "[ ]"
+      }
+    ]
+  },
+  "attribution": "LexClinic Legal Engineering Swarm (20261120)"
+}

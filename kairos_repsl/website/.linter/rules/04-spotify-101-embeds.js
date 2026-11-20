@@ -19,7 +19,8 @@ function run(webDir, config) {
     { mod: "6.2", yt: "jAmvvgllLPg", spotify: "2IhGZEMrXXg1rkzg9eSfuz" },
     { mod: "7.1", yt: "r7ZmnxfSY-0", spotify: "401NGruWP07zbTvh2K2nmk" },
     { mod: "7.2", yt: "fV3yLAEuAg0", spotify: "0njS92rFADH65LPe5DhWni" },
-    { mod: "8.1", yt: "SnQgbGeeNrs", spotify: "4cLY8SVq5GAgoKPQIQX82c" }
+    { mod: "8.1", yt: "SnQgbGeeNrs", spotify: "4cLY8SVq5GAgoKPQIQX82c" },
+    { mod: "8.2", yt: "1RNPJr_tzLc", spotify: "PENDING" }
   ];
 
   const violations = [];
