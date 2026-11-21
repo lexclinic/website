@@ -207,36 +207,26 @@
     "category": "class"
   },
   {
-    "id": "event-google-cal-2026-11-18",
-    "title": "Bi-Weekly Collaborators' & Root Node Call",
-    "date": "2026-11-18",
-    "url": "https://www.google.com/calendar/event?eid=NDlkaHMzdm9rbHFvOGxqNmQ4bzFzc2xsbDBfMjAyNjExMThUMTMwMDAwWiBreWxlQGxleC5jbGluaWM",
-    "meet_url": "https://meet.google.com/aij-bftf-ekg",
-    "is_upcoming": true,
-    "is_private": true,
-    "description": "Hey Root Nodes,\u00a0\n\nthis is a new link that allows us to have longer calls and the ability to record the session within google meet. Sorry for the hassle. The old invitation will be cancelled by Alice shortly.\u00a0\n\nCheers\nDaniel",
-    "category": "collaborator_call"
-  },
-  {
     "id": "event-google-cal-2026-11-19",
-    "title": "LexClinic 2026 \u2014 Lesson 7.2",
+    "title": "LexClinic 2026 \u2014 Lesson 7.2: Translating Clauses into Nested If/Else Logic",
     "date": "2026-11-19",
-    "url": "https://www.google.com/calendar/event?eid=Nmg1aGh1MjFkNzc4NThuNzVrZjVucWMxbDJfMjAyNjExMTlUMjIzMDAwWiBreWxlQGxleC5jbGluaWM",
+    "url": "/event/2026-11-19/",
     "meet_url": "https://meet.google.com/xpy-vzuu-nmf",
-    "is_upcoming": true,
+    "is_upcoming": false,
     "is_private": false,
-    "description": "Socratic Session for LexClinic 2026. Automatically recorded and transcribed with Gemini Meeting Notes. Recording and transcript link will be emailed to all attendees upon meeting conclusion.",
+    "description": "Socratic session and 5 explainer clips accompanying Legal Engineering 101 Class 7.2 on collapsible nested if/else clause trees, Hats Protocol contract chaining, the Leibniz\u2013Goldfarb\u2013Szabo\u2013Grigg computational lineage, Russell/G\u00f6del/Church formal logic limits, and REPSL osFig infrastructure.",
     "category": "class"
   },
   {
     "id": "event-google-cal-2026-11-26",
-    "title": "LexClinic 2026 \u2014 Lesson 8.1",
+    "title": "LexClinic 2026 \u2014 Lesson 8.1: The \"And/Or\" Trap in Legal Drafting",
     "date": "2026-11-26",
     "url": "https://www.google.com/calendar/event?eid=Nmg1aGh1MjFkNzc4NThuNzVrZjVucWMxbDJfMjAyNjExMjZUMjIzMDAwWiBreWxlQGxleC5jbGluaWM",
     "meet_url": "https://meet.google.com/xpy-vzuu-nmf",
     "is_upcoming": true,
     "is_private": false,
-    "description": "Socratic Session for LexClinic 2026. Automatically recorded and transcribed with Gemini Meeting Notes. Recording and transcript link will be emailed to all attendees upon meeting conclusion.",
+    "class_id": "8.1",
+    "description": "Weekly live cohort Socratic discussion & Q&A companion to Legal Engineering 101 Class 8.1: The \"And/Or\" Trap in Legal Drafting. Automatically recorded and transcribed with Gemini Meeting Notes.",
     "category": "class"
   },
   {
@@ -252,13 +242,14 @@
   },
   {
     "id": "event-google-cal-2026-12-03",
-    "title": "LexClinic 2026 \u2014 Lesson 8.2",
+    "title": "LexClinic 2026 \u2014 Lesson 8.2: Case Studies in Conditional Logic Failures",
     "date": "2026-12-03",
     "url": "https://www.google.com/calendar/event?eid=Nmg1aGh1MjFkNzc4NThuNzVrZjVucWMxbDJfMjAyNjEyMDNUMjIzMDAwWiBreWxlQGxleC5jbGluaWM",
     "meet_url": "https://meet.google.com/xpy-vzuu-nmf",
     "is_upcoming": true,
     "is_private": false,
-    "description": "Socratic Session for LexClinic 2026. Automatically recorded and transcribed with Gemini Meeting Notes. Recording and transcript link will be emailed to all attendees upon meeting conclusion.",
+    "class_id": "8.2",
+    "description": "Weekly live cohort Socratic discussion & Q&A companion to Legal Engineering 101 Class 8.2: Case Studies in Conditional Logic Failures. Automatically recorded and transcribed with Gemini Meeting Notes.",
     "category": "class"
   },
   {

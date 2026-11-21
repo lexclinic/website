@@ -144,13 +144,40 @@ function run(webDir, config) {
     }
   }
 
+  // Verify events.json is synchronized with recorded events (no recorded or past event may have is_upcoming: true)
+  const eventsJsonPath = path.join(webDir, "events.json");
+  if (!fs.existsSync(eventsJsonPath)) {
+    violations.push("events.json is missing");
+  } else {
+    const eventsList = JSON.parse(fs.readFileSync(eventsJsonPath, "utf8"));
+    const latestRecordedDate = requiredEvents[requiredEvents.length - 1].date;
+    for (const item of eventsList) {
+      if (item.date && item.date <= latestRecordedDate && item.is_upcoming === true) {
+        violations.push(`events.json still marks past/recorded date ${item.date} (${item.title}) as is_upcoming: true, which overwrites #upcoming-sessions-grid on /event/`);
+      }
+    }
+    for (const ev of requiredEvents) {
+      if (ev.date >= "2026-10-01") {
+        const entry = eventsList.find(e => e.date === ev.date && e.category === "class");
+        if (!entry || entry.is_upcoming !== false || entry.url !== `/event/${ev.date}/`) {
+          violations.push(`events.json must record ${ev.date} with is_upcoming: false and url: "/event/${ev.date}/"`);
+        }
+      }
+    }
+  }
+
+  // Verify event/index.html preserves hidden interview cards inside #recent-three-events-grid for category filtering
+  if (!eventHubHtml.includes('data-event-category="interview"') || !eventHubHtml.includes('/interview/lucas-kung/')) {
+    violations.push('event/index.html is missing data-event-category="interview" cards inside #recent-three-events-grid');
+  }
+
   if (violations.length > 0) {
     console.error(" ❌ RULE 05 FAILED: Event page, Bijection & Monthly Archive contract violations detected:");
     violations.forEach(v => console.error(`    - ${v}`));
     return false;
   }
 
-  console.log(` ✅ RULE 05 PASSED: All ${requiredEvents.length} recorded events, authentic YouTube clips, 1-to-1 101 Bijection, and 3 Monthly Archives verified!`);
+  console.log(` ✅ RULE 05 PASSED: All ${requiredEvents.length} recorded events, events.json sync, authentic YouTube clips, 1-to-1 101 Bijection, and 4 Monthly Archives verified!`);
   return true;
 }
 

@@ -1084,6 +1084,46 @@ def sync_event_hubs_and_linter(web_dir: Path, spec: dict) -> None:
         f"Live cohort Socratic discussion &amp; {clips_count} explainer clips accompanying <strong>Legal Engineering 101 Class {class_id}</strong>.",
     )
 
+    # 0. Synchronize /events.json (mark event_date as recorded is_upcoming=false, prune past unrecorded collaborator calls)
+    events_json_path = web_dir / "events.json"
+    if events_json_path.exists():
+        try:
+            ev_list = json.loads(events_json_path.read_text(encoding="utf-8"))
+            plain_summary = re.sub(r"<[^>]+>", "", html.unescape(summary_html))
+            filtered_ev = []
+            found_ev = False
+            for item in ev_list:
+                d = item.get("date", "")
+                cat = item.get("category", "")
+                if d == event_date and cat == "class":
+                    item["title"] = f"LexClinic 2026 \u2014 Lesson {class_id}: {lesson_title}"
+                    item["url"] = f"/event/{event_date}/"
+                    item["is_upcoming"] = False
+                    item["is_private"] = False
+                    item["description"] = plain_summary
+                    found_ev = True
+                    filtered_ev.append(item)
+                elif d <= event_date and item.get("is_upcoming") and cat in ("collaborator_call", "director_call"):
+                    # Prune unrecorded past governance calls so they never appear in upcoming or archives
+                    continue
+                else:
+                    filtered_ev.append(item)
+            if not found_ev:
+                filtered_ev.append({
+                    "id": f"event-google-cal-{event_date}",
+                    "title": f"LexClinic 2026 \u2014 Lesson {class_id}: {lesson_title}",
+                    "date": event_date,
+                    "url": f"/event/{event_date}/",
+                    "meet_url": "https://meet.google.com/xpy-vzuu-nmf",
+                    "is_upcoming": False,
+                    "is_private": False,
+                    "description": plain_summary,
+                    "category": "class",
+                })
+            events_json_path.write_text(json.dumps(filtered_ev, indent=2) + NL, encoding="utf-8")
+        except Exception as e:
+            print(f"⚠️ Warning: Could not update events.json: {e}")
+
     # 1. Flip 101/<class_id>/index.html & 101/index.html companion Socratic buttons to recorded event URL
     mod_idx = web_dir / "101" / class_id / "index.html"
     if mod_idx.exists():
@@ -1152,6 +1192,13 @@ def sync_event_hubs_and_linter(web_dir: Path, spec: dict) -> None:
                         re.DOTALL,
                     )
                 )
+                interview_matches = list(
+                    re.finditer(
+                        r'(?:<!-- Recent Interview \d+.*?-->\s*)?<div class="card pillar-card event-list-card"[^>]*data-event-category="interview"[^>]*>.*?</div>\s*</div>',
+                        cards_block,
+                        re.DOTALL,
+                    )
+                )
                 kept_cards = []
                 for idx, cm in enumerate(card_matches[:2], start=2):
                     c_txt = cm.group(0)
@@ -1160,6 +1207,8 @@ def sync_event_hubs_and_linter(web_dir: Path, spec: dict) -> None:
                     c_txt = re.sub(r'(<div class="event-date-tag" style="color:\s*)var\(--accent-gold\)', r"\1var(--accent-cyan)", c_txt)
                     c_txt = re.sub(r'(<h3 style="color:\s*)var\(--accent-gold\)', r"\1var(--accent-cyan)", c_txt)
                     kept_cards.append("          " + c_txt.strip())
+
+                interview_cards = ["          " + im.group(0).strip() for im in interview_matches]
 
                 new_recent_card = f"""          <!-- Recent Class 1: {short_date}, 2026 (Class {class_id}) -->
           <div class="card pillar-card event-list-card" data-event-category="class" data-default-recent="true" style="border: 2px solid var(--accent-gold); background: rgba(10, 17, 40, 0.95); padding: 1.5rem;">
@@ -1173,7 +1222,7 @@ def sync_event_hubs_and_linter(web_dir: Path, spec: dict) -> None:
               <a href="/101/{class_id}/" class="btn btn-outline" style="padding: 0.5rem 0.95rem; border-radius: 6px; font-size: 0.88rem; border-color: var(--accent-cyan); color: var(--accent-cyan);">📘 101 Module {class_id} ➔</a>
             </div>
           </div>"""
-                all_three = (NL + NL).join([new_recent_card] + kept_cards)
+                all_three = (NL + NL).join([new_recent_card] + kept_cards + interview_cards)
                 eh_raw = eh_raw[: gm.start(2)] + NL + all_three + NL + eh_raw[gm.end(2) :]
                 ev_hub.write_text(eh_raw, encoding="utf-8")
 

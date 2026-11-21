@@ -49,6 +49,11 @@
         "status": "[x]"
       },
       {
+        "id": "UPDATE-EVENT-HUB-AND-EVENTS-JSON",
+        "description": "Update /event/index.html (advance #upcoming-sessions-grid to Nov 26 Class 8.1 & Dec 2 Collaborators' Call, rotate #recent-three-events-grid to Nov 19 / Nov 12 / Nov 5 while preserving Guest Interview filter cards, update November 2026 Monthly Archive count to 3 Recorded Sessions), update /event/2026-11/index.html, and synchronize /events.json (mark 2026-11-19 as is_upcoming: false with /event/2026-11-19/ URL, remove past unrecorded 2026-11-18 Collaborators' Call, and enrich upcoming 8.1/8.2 titles so events.js renders the updated schedule on /event/)",
+        "status": "[x]"
+      },
+      {
         "id": "HUMAN-WEDO-SPOTIFY-8-2",
         "description": "[DEFERRED TO 101-MODULE-8.2.wedo.json] Publish 'Legal Engineering 101 Class 8.2 Deep Dive: Case Studies in Conditional Logic Failures' on Spotify show 0348ivoLaNfKBq1HeIYC9b when ready next week",
         "status": "[x]"

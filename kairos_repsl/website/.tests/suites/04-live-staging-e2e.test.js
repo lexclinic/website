@@ -28,6 +28,7 @@ async function run(webDir) {
     { path: "/interview/lucas-kung/quiz-learned/", mustInclude: "5-Question Learned Quiz", mustNotInclude: "copyCardDirectLink" },
     { path: "/interview/lucas-kung/quiz-expert/", mustInclude: "20-Question Expert Quiz", mustNotInclude: "copyCardDirectLink" },
     { path: "/event/", mustInclude: "3 Most Recent Recorded Events", mustNotInclude: "/event/2026-08-22/" },
+    { path: "/events.json", mustInclude: "/event/2026-11-19/", mustNotInclude: "event-google-cal-2026-11-18" },
     { path: "/event/2026-11/", mustInclude: "November 2026" },
     { path: "/event/2026-10/", mustInclude: "October 2026" },
     { path: "/event/2026-09/", mustInclude: "Lukas Küng" },
