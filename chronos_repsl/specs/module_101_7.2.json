@@ -11,10 +11,10 @@
   "hub_card_icon": "🎥",
   "hub_card_summary_html": "Mapping traditional prose clauses and subclauses into deterministic, collapsible nested <code>if/else</code> hierarchies, domino-collapse prerequisite trees, and modular Hats Protocol contract chains.",
   "socratic_companion": {
-    "badge_text": "🎓 101 LIVE SOCRATIC COHORT COMPANION • Nov 19, 2026 (Upcoming Live)",
-    "description_html": "Join the live Thursday, Nov 19, 2026 cohort Socratic discussion for Class 7.2 on the Events Hub.",
-    "href": "/event/",
-    "button_label": "🔥 Nov 19 Live Socratic Session ➔"
+    "badge_text": "🎓 101 LIVE SOCRATIC COHORT COMPANION • Nov 19, 2026",
+    "description_html": "Explore the recorded Thursday, Nov 19, 2026 cohort Socratic session &amp; 5 explainer clips for Class 7.2.",
+    "href": "/event/2026-11-19/",
+    "button_label": "🗣️ Nov 19 Socratic Recording ➔"
   },
   "questions": [
     {

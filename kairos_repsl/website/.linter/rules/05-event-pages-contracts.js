@@ -15,9 +15,10 @@ function run(webDir, config) {
     { date: "2026-10-08", month: "2026-10", mod: "4.2", minClips: 5, mustHaveYt: "PuHUnTEwveg", inRecent3: false },
     { date: "2026-10-15", month: "2026-10", mod: "5.1", minClips: 5, mustHaveYt: "Bepdpe2WceI", inRecent3: false },
     { date: "2026-10-22", month: "2026-10", mod: "5.2", minClips: 5, mustHaveYt: "3LvhVut6Jdw", inRecent3: false },
-    { date: "2026-10-29", month: "2026-10", mod: "6.1", minClips: 5, mustHaveYt: "a0VOIB2_jgQ", inRecent3: true },
+    { date: "2026-10-29", month: "2026-10", mod: "6.1", minClips: 5, mustHaveYt: "a0VOIB2_jgQ", inRecent3: false },
     { date: "2026-11-05", month: "2026-11", mod: "6.2", minClips: 6, mustHaveYt: "tOS-4HdTJOI", inRecent3: true },
-    { date: "2026-11-12", month: "2026-11", mod: "7.1", minClips: 5, mustHaveYt: "5kWl6Oe08cU", inRecent3: true }
+    { date: "2026-11-12", month: "2026-11", mod: "7.1", minClips: 5, mustHaveYt: "5kWl6Oe08cU", inRecent3: true },
+    { date: "2026-11-19", month: "2026-11", mod: "7.2", minClips: 5, mustHaveYt: "ns7jJN4_RQ0", inRecent3: true }
   ];
 
   const requiredMonths = ["2026-11", "2026-10", "2026-09", "2026-08"];

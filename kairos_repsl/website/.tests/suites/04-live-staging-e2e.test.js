@@ -42,6 +42,7 @@ async function run(webDir) {
     { path: "/event/2026-10-29/", mustInclude: "a0VOIB2_jgQ" },
     { path: "/event/2026-11-05/", mustInclude: "Session Explainer Video Clips (6 Modules)" },
     { path: "/event/2026-11-12/", mustInclude: "5kWl6Oe08cU" },
+    { path: "/event/2026-11-19/", mustInclude: "ns7jJN4_RQ0" },
     { path: "/interview/", mustInclude: "Lukas Küng" },
     { path: "/interview/lucas-kung/", mustInclude: "BpRTnQ4128Y" },
     { path: "/interview/2026-09-08/james-wigginton/", mustInclude: "fxIGwkdpa28" },
@@ -79,7 +80,7 @@ async function run(webDir) {
   // --------------------------------------------------------------------------
   const quizBases = [
     "/101/1.1", "/101/1.2", "/101/2.1", "/101/2.2", "/101/3.1", "/101/3.2",
-    "/101/4.1", "/101/4.2", "/101/5.1", "/101/5.2", "/101/6.1", "/101/6.2", "/101/7.1", "/101/7.2",
+    "/101/4.1", "/101/4.2", "/101/5.1", "/101/5.2", "/101/6.1", "/101/6.2", "/101/7.1", "/101/7.2", "/101/8.1", "/101/8.2",
     "/101", "/event/2026-08-24", "/event/2026-09-04", "/event/2026-09-17", "/event/2026-09-24",
     "/interview/lucas-kung", "/interview/2026-09-08/james-wigginton"
   ];
@@ -108,7 +109,7 @@ async function run(webDir) {
   }));
 
   // --------------------------------------------------------------------------
-  // Test 4.2: Verify All 11 Live Native Audio Streams (9 Event + 2 Interview)
+  // Test 4.2: Verify All 16 Live Native Audio Streams (14 Event + 2 Interview)
   // Serve Real MP4/AAC Audio Binaries (Content-Type: audio/mp4, Not HTML Fallback)
   // --------------------------------------------------------------------------
   const audioRoutes = [
@@ -125,6 +126,7 @@ async function run(webDir) {
     "/event/2026-10-29/audio.m4a",
     "/event/2026-11-05/audio.m4a",
     "/event/2026-11-12/audio.m4a",
+    "/event/2026-11-19/audio.m4a",
     "/interview/lucas-kung/audio.m4a",
     "/interview/2026-09-08/james-wigginton/audio.m4a"
   ];

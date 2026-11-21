@@ -1,0 +1,65 @@
+{
+  "type": "socratic_event",
+  "event_date": "2026-11-19",
+  "short_date": "Nov 19",
+  "class_id": "7.2",
+  "lesson_title": "Translating Clauses into Nested If/Else Logic",
+  "page_title": "LexClinic 2026 — Lesson 7.2: Translating Clauses into Nested If/Else Logic | LexClinic",
+  "meta_description": "Recorded Socratic Session for Class 7.2 (November 19, 2026): How Lawyers Are Becoming Software Engineers — LexClinic Legal Blueprint, Computational Law, How Lawyers Built Computing (Recorde, Leibniz, Goldfarb, Szabo, Grigg), The Limits of Logic (Russell, Gödel, Church), and LexClinic's Infrastructure.",
+  "hero_title": "LexClinic 2026 — Lesson 7.2: Translating Clauses into Nested If/Else Logic",
+  "hero_subtitle_html": "Thursday, November 19, 2026 • Socratic Session for Class 7.2. Translating hierarchical legal clauses into collapsible nested <code>if/else</code> trees, dual FLOSS (AGPL-3.0) &amp; US Patent 12,664,142 (SeedTree) licensing, the legal-computational lineage from Leibniz and Goldfarb to Szabo and Grigg, Gödel/Church formal logic limits, and REPSL <code>osFig</code> infrastructure.",
+  "hub_card_summary_html": "Live cohort Socratic discussion &amp; 5 explainer clips accompanying <strong>Legal Engineering 101 Class 7.2</strong> on collapsible nested <code>if/else</code> clause trees, Hats Protocol contract chaining, the Leibniz–Goldfarb–Szabo–Grigg computational lineage, Russell/Gödel/Church formal logic limits, and REPSL <code>osFig</code> infrastructure.",
+  "overview_html": "<p style='line-height: 1.7; color: var(--text-main); font-size: 1.05rem; margin-bottom: 1.25rem;'>In this live cohort Socratic session for <strong>Lesson 7.2: Translating Clauses into Nested If/Else Logic</strong>, participants explore how traditional indented legal clauses and subclauses map directly into collapsible nested <code>if/else</code> conditional trees and Hats Protocol modular contract dependencies, why LexClinic combines a Free/Libre Open Source Software (FLOSS / AGPL-3.0) educational base with a non-commercial patent license for US Patent 12,664,142 (SeedTree), how legal minds laid the foundations of modern computing—from Robert Recorde's 1557 <code>=</code> sign and Gottfried Wilhelm Leibniz's 1666 <em>De Arte Combinatoria</em> (Doctor of Law) to Harvard JD Charles Goldfarb's GML/SGML (<code>&lt;!DOCTYPE html&gt;</code>), Nick Szabo's Smart Contracts, and Ian Grigg's Ricardian Contracts—why Bertrand Russell's 1901 Barber Paradox, Kurt Gödel's 1931 Incompleteness Theorems, and Alonzo Church's 1936 <code>&lambda;</code>-calculus prove that self-referential legal systems require sovereign human exception handlers, and how REPSL <code>osFig</code> (<code>🔱</code>) VMs and local F5-TTS voice synthesis power the platform.</p>",
+  "takeaways": [
+    {
+      "heading_html": "⚖️ Collapsible Nested If/Else Trees &amp; Hats Protocol Chaining",
+      "body_html": "Translating indented prose clauses and subclauses into falling-domino nested <code>if/else</code> hierarchies (distinguishing right-to-left <code>=</code> state assignment from <code>==</code> equality evaluation) and chaining standalone modular contracts via Hats Protocol trees."
+    },
+    {
+      "heading_html": "🏛️ How Lawyers Built Computing (Leibniz, Goldfarb, Szabo &amp; Grigg)",
+      "body_html": "Tracing computational law from Robert Recorde (1557 <code>=</code> sign) and jurist Gottfried Wilhelm Leibniz (<em>characteristica universalis</em> &amp; <em>calculus ratiocinator</em>) to attorney Charles Goldfarb (GML/SGML/HTML), Nick Szabo (Smart Contracts), and Ian Grigg (Ricardian Contracts)."
+    },
+    {
+      "heading_html": "🧮 The Mathematical Limits of Logic (Russell, Gödel &amp; Church)",
+      "body_html": "Why Bertrand Russell's 1901 Barber Paradox, Kurt Gödel's 1931 Incompleteness Theorems (Gödel numbering), and Alonzo Church's 1936 <code>&lambda;</code>-calculus (<em>Entscheidungsproblem</em>) prove that formal code cannot be both complete and consistent without human fiduciary adjudication."
+    },
+    {
+      "heading_html": "☁️ Dual FLOSS/SeedTree Licensing &amp; REPSL osFig Infrastructure",
+      "body_html": "Combining AGPL-3.0 open-source education with non-commercial licensing of US Patent 12,664,142 (SeedTree), zero-config REPSL <code>osFig</code> (<code>🔱</code>) VMs on Google Cloud, the 4-pillar brand architecture (<code>ICE</code>, <code>CPU</code>, <code>FAK</code>, <code>MRI</code>), and local F5-TTS voice cloning."
+    }
+  ],
+  "audio_slug": "how-lawyers-are-becoming-software-engineers",
+  "audio_title": "How Lawyers Are Becoming Software Engineers — Full Session Audio Stream",
+  "clips": [
+    {
+      "slug": "lexclinic-legal-blueprint",
+      "title": "Clip 1: LexClinic Legal Blueprint",
+      "iframe_id": "yt_frame_card_event_nov19_clip1",
+      "youtube_id": "ns7jJN4_RQ0"
+    },
+    {
+      "slug": "computational-law-7-2",
+      "title": "Clip 2: Computational Law",
+      "iframe_id": "yt_frame_card_event_nov19_clip2",
+      "youtube_id": "PBQ8oCW8whE"
+    },
+    {
+      "slug": "how-lawyers-built-computing",
+      "title": "Clip 3: How Lawyers Built Computing",
+      "iframe_id": "yt_frame_card_event_nov19_clip3",
+      "youtube_id": "Cep7nF2T58w"
+    },
+    {
+      "slug": "the-limits-of-logic",
+      "title": "Clip 4: The Limits of Logic",
+      "iframe_id": "yt_frame_card_event_nov19_clip4",
+      "youtube_id": "fUHwVdgX95w"
+    },
+    {
+      "slug": "lexclinics-infrastructure",
+      "title": "Clip 5: LexClinic's Infrastructure",
+      "iframe_id": "yt_frame_card_event_nov19_clip5",
+      "youtube_id": "v-eWa16n_TM"
+    }
+  ]
+}
