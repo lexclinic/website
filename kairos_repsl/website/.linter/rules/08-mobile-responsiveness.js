@@ -88,8 +88,9 @@ function run(webDir, config) {
       if (!html.includes('id="nav-links"')) {
         violations.push(`${rel} has a .navbar but is missing #nav-links container for mobile menu dropdown`);
       }
-      if (!html.includes('href="/nft/"')) {
-        violations.push(`${rel} has a .navbar but is missing <a href="/nft/">NFT</a> in #nav-links`);
+      const navBlockMatch = html.match(/<nav[^>]*id="nav-links"[^>]*>([\s\S]*?)<\/nav>/i);
+      if (!navBlockMatch || !navBlockMatch[1].includes('href="/nft/"')) {
+        violations.push(`${rel} has a .navbar but is missing <a href="/nft/">NFT</a> inside #nav-links`);
       }
     }
 

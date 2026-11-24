@@ -1,0 +1,68 @@
+{
+  "wedo_instance": {
+    "id": "MISSION-TRANSCRIPT-20261118-501C3-REVIEW",
+    "description": "Forensic Transcript & Gemini Summary Correction Strike for 501c3 Review LexClinic (2026-11-18 14:00 PST)",
+    "status": "[completed]",
+    "meta": {
+      "protocol": "WeDo-JSON",
+      "version": "1.2.0",
+      "boilerplate_id": "BOILERPLATE-TRANSCRIPT-FORENSIC-CORRECTION",
+      "target_drive_docs": [
+        {
+          "name": "501c3 Review LexClinic - 2026/11/18 14:00 PST - Notes by Gemini",
+          "original_file_id": "1sT60Skq-j-Hnfkh2CuJSHS0bsKA-GMe5juqoC9jxmbk",
+          "upgraded_copy_id": "1HdqbWDqGh4nutNS9zEfgwVIrY5cRhMnexuU_jIpSnak",
+          "companion_recording_id": "1YS1qlAd0wI-I6JkR3Mk37eKXYvbbBx4F",
+          "replacements_applied": 103,
+          "rules_matched": "99/99"
+        }
+      ],
+      "philosophy": "Every transcript & Gemini summary upgrade is a multi-pass forensic strike: (1) OpenXML (<w:t>) run-level inspection, (2) local repository cross-reference against _repsl data rooms and web codebases, (3) external web verification of legal/academic/historical authorities, and (4) deterministic replacement mapping and live Google Drive upload."
+    },
+    "tasks": [
+      {
+        "id": "TFC-DISCOVER-01",
+        "description": "Query Google Drive v3 API for newly shared or generated meeting transcripts, Gemini notes, and companion MP4 recordings.",
+        "status": "[x]",
+        "notes": "Discovered 501c3 Review LexClinic - 2026/11/18 14:00 PST - Notes by Gemini (1sT60Skq-j-Hnfkh2CuJSHS0bsKA-GMe5juqoC9jxmbk, owned by daniel@lex.clinic, canEdit=true) and companion MP4 recording (1YS1qlAd0wI-I6JkR3Mk37eKXYvbbBx4F)."
+      },
+      {
+        "id": "TFC-EXPORT-02",
+        "description": "Export the Google Doc as both plain text (.txt) and OpenXML (.docx) and dump all <w:t> runs.",
+        "status": "[x]",
+        "notes": "Exported 501c3_1118.docx (1,110,170 bytes) and inspected all 872 <w:t> runs (runs 0000-0871)."
+      },
+      {
+        "id": "TFC-AUDIT-LOCAL-03",
+        "description": "Cross-reference every proper noun, entity, Form 1023 schedule, and Board resolution against local _repsl repositories.",
+        "status": "[x]",
+        "notes": "Cross-referenced against data_room_repsl/repo_repsl/kairos_repsl/governance/2026-11-18_Directors_Call_Agenda_Harris_1023_Submission_Review.md and MISSION-HARRIS-1023-SUBMISSION-REVIEW.wedo.json, verifying Cahill Gordon & Reindel LLP counsel (Harris Greenberg, Esq., Jason Schwartz, Esq., Chaim Herbstman, Esq.), Discrepancy 3A (duplicate Section 6.1 instead of Section 6.5 in Bylaws 02b and Section 5.1 Officer title alignment), Discrepancy 3B (Part VI Line 23 $2,000 technological expenses vs. Box 25 $6,000 itemization, correcting the ASR '2006' error in Quick Notes), and Discrepancy 3C (Form 2848 03a, Form 8821 03b, and Form 1023 Part X 04)."
+      },
+      {
+        "id": "TFC-AUDIT-WEB-04",
+        "description": "Execute web searches to verify external legal, academic, and historical authorities discussed in the session.",
+        "status": "[x]",
+        "notes": "Verified Phillip Capper and Richard Susskind's 1988 Latent Damage System (Latent Damage Law: The Expert System, Butterworths, translating the UK Latent Damage Act 1986 into deterministic if/then decision trees); Richard Susskind's Tomorrow's Lawyers (3rd ed. 2023); Gottfried Wilhelm Leibniz's characteristica universalis and calculus ratiocinator; Douglas Hofstadter's Gödel, Escher, Bach: An Eternal Golden Braid (1979) ('Strange Loop' in REPSL); Jaron Lanier's AI critiques; Stanford CodeX (Tony Lai); Balaji Srinivasan's 2013 Stanford/Coursera Startup Engineering MOOC; and Archipelago Linux, Ollama, Nous Hermes, and Nomad."
+      },
+      {
+        "id": "TFC-MAP-05",
+        "description": "Author the deterministic JSON replacement map in kairos_repsl/json/501c3_1118_replacements.json.",
+        "status": "[x]",
+        "notes": "Authored 99 rules in Meet_Recorder_repsl/repo_repsl/kairos_repsl/json/501c3_1118_replacements.json."
+      },
+      {
+        "id": "TFC-PATCH-06",
+        "description": "Execute py/substrate/transcript_strike.py patch to update the original Google Doc in-place and create an (Upgraded) copy on Google Drive.",
+        "status": "[x]",
+        "notes": "Applied 103 replacements across 99/99 rules (100% rule match) both in-place on 1sT60Skq-j-Hnfkh2CuJSHS0bsKA-GMe5juqoC9jxmbk and on the (Upgraded) copy 1HdqbWDqGh4nutNS9zEfgwVIrY5cRhMnexuU_jIpSnak."
+      },
+      {
+        "id": "TFC-VERIFY-07",
+        "description": "Re-export the updated Google Docs as plain text and verify all canonical entities and zero remaining factual/ASR errors.",
+        "status": "[x]",
+        "notes": "Verified 0 remaining '2006 technological expenses' or unclarified 'Form 2288' instances across both live documents, with positive counts for all canonical terms and the embedded [Forensic Research Note]."
+      }
+    ]
+  },
+  "attribution": "LexClinic Legal Engineering Swarm (20261120)"
+}

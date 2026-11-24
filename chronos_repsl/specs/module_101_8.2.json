@@ -1,0 +1,176 @@
+{
+  "type": "module_101",
+  "class_id": "8.2",
+  "lesson_title": "Case Studies in Conditional Logic Failures",
+  "meta_description": "Class 8.2: Case Studies in Conditional Logic Failures. Examining real-world conditional logic collapses (Próspera v. Honduras, RareDAO, and one-sided waivers) and how decoupling, Boolean gates, and Hats Protocol contract chaining prevent cascading liabilities.",
+  "hero_subtitle_html": "Examining real-world conditional logic collapses—from <em>Próspera v. Honduras</em> and RareDAO to one-sided click waivers—and how decoupling passive assets from active instructions and chaining modular contracts prevent cascading corporate failures.",
+  "overview_html": "<p style='line-height: 1.7; color: var(--text-main); font-size: 1.05rem; margin: 0;'>Investigates how 100-page paper agreements shatter when exposed to shifting real-world pressures due to ambiguous conditional logic—illustrated through the <em>Próspera v. Honduras</em> sovereignty dispute, RareDAO's rescinded Web3 deals, and one-sided click waivers lacking mutual privity. Demonstrates how legal engineers prevent cascading liabilities by decoupling passive data from active instructions, translating subjective <code>and/or</code> prose into nested <code>if/else</code> Boolean gates, and assembling modular <strong>Hats Protocol</strong> contract chains with on-chain countersign privity.</p>",
+  "video_slug": "class-8-2-case-studies-in-conditional-logic-failures",
+  "youtube_id": "1RNPJr_tzLc",
+  "spotify_id": "PENDING",
+  "hub_card_icon": "🎥",
+  "hub_card_summary_html": "Deconstructing real-world conditional logic failures (<em>Próspera v. Honduras</em>, RareDAO, one-sided waivers) and preventing cascading liabilities via Hats Protocol contract chaining.",
+  "socratic_companion": {},
+  "questions": [
+    {
+      "prompt": "Why does Class 8.2 warn that even a 100-page agreement drafted by elite attorneys can collapse in the real world?",
+      "options": {
+        "A": "Because static prose relying on a single ambiguous 'and/or' conditional clause breaks down under shifting real-world pressures and defaults to expensive post-facto litigation.",
+        "B": "Because courts automatically invalidate any contract longer than 50 pages.",
+        "C": "Because paper contracts execute too quickly for human lawyers to read."
+      }
+    },
+    {
+      "prompt": "How does Class 8.2 characterize the conceptual gap between traditional legal logic and strict collapsible code?",
+      "options": {
+        "A": "It is not a failure of intelligence, but a gap in syntax and structural thinking—the difference between describing a machine on paper and engineering its engine.",
+        "B": "Lawyers lack the analytical ability to understand logical rules.",
+        "C": "Computer code cannot express conditional obligations."
+      }
+    },
+    {
+      "prompt": "How does Class 8.2 contrast data typed into a static Google Sheet with data inside an active JavaScript runtime?",
+      "options": {
+        "A": "Spreadsheet data sits inert waiting for a human to act, whereas a JavaScript runtime continuously evaluates, validates, and triggers downstream actions automatically.",
+        "B": "Google Sheets execute smart contracts autonomously without human input.",
+        "C": "JavaScript runtimes store text passively without ever evaluating rules."
+      }
+    },
+    {
+      "prompt": "In Class 8.2, what is the legal world's closest equivalent to a computer science 'runtime'?",
+      "options": {
+        "A": "Performance—the actual real-world fulfillment of contractual obligations.",
+        "B": "Pre-contractual marketing negotiations.",
+        "C": "Archiving expired documents in a filing cabinet."
+      }
+    },
+    {
+      "prompt": "What real-world dispute does Class 8.2 cite to show how underlying ambiguities in jurisdictional agreements trigger severe conflicts over sovereignty and asset control when political power shifts?",
+      "options": {
+        "A": "The Próspera v. Honduras dispute.",
+        "B": "Marbury v. Madison.",
+        "C": "Hadley v. Baxendale."
+      }
+    },
+    {
+      "prompt": "Why did RareDAO abruptly rescind major Web3 deals in the corporate case study discussed in Class 8.2?",
+      "options": {
+        "A": "Because their static agreements lacked the dynamic conditional logic needed to adapt to sudden changes in business realities.",
+        "B": "Because their smart contracts executed too deterministically.",
+        "C": "Because the Unix operating system prohibited token transfers."
+      }
+    },
+    {
+      "prompt": "What structural logic flaw occurred in the early LexClinic platform waiver case study in Class 8.2?",
+      "options": {
+        "A": "The interface misclassified a one-sided waiver as a mutual agreement because its logic only required one party to click an 'I Agree' button without a countersignature.",
+        "B": "The platform required 20 separate cryptographic signatures for a public blog post.",
+        "C": "The waiver was written entirely in assembly language."
+      }
+    },
+    {
+      "prompt": "What is the 'crucial first step' in legal engineering to prevent fatal scope ambiguities in Class 8.2?",
+      "options": {
+        "A": "Decoupling—completely separating passive data (assets, token amounts, basic inputs) from the active instructions (the logic of execution).",
+        "B": "Mixing token amounts and execution rules inside the same prose paragraph.",
+        "C": "Replacing all numeric values with subjective adjectives."
+      }
+    },
+    {
+      "prompt": "Why does Class 8.2 call the equal sign the 'ultimate grammatical hurdle' for lawyers trained in English prose?",
+      "options": {
+        "A": "In English 'equals' means two things are the same, whereas in code a single `=` actively assigns a value right-to-left and a double `==` checks for equality.",
+        "B": "Programming languages forbid the use of the `=` character.",
+        "C": "In code, `==` assigns a variable from left to right."
+      }
+    },
+    {
+      "prompt": "How must legal engineers retrain their eyes when reading a variable assignment in Computational Legalese according to Class 8.2?",
+      "options": {
+        "A": "Read from right to left—taking the evaluated value on the right and packing it into the variable container on the left.",
+        "B": "Read from left to right just like standard English prose.",
+        "C": "Ignore the right side of the equation entirely."
+      }
+    },
+    {
+      "prompt": "What are the three clear steps for rebuilding a traditional contract into deterministic logic in Class 8.2?",
+      "options": {
+        "A": "1) Map standard clauses and subclauses; 2) strip subjective 'and/or' language into strict true/false Boolean gates; 3) build nested 'if A then B else C' conditional logic.",
+        "B": "1) Print the PDF; 2) add more 'and/or' clauses; 3) wait for a judge to interpret it.",
+        "C": "1) Delete all conditions; 2) merge data and instructions; 3) disable validation."
+      }
+    },
+    {
+      "prompt": "In Class 8.2's transportation metaphor for the three stages of law, why did moving from Stage 1 (horse-and-buggy Direct Law) to Stage 2 (40 mph Mechanized Law cars) require new legal frameworks?",
+      "options": {
+        "A": "Because wheels suddenly breaking at 40 mph required the invention of modern negligence torts and strict regulatory guardrails.",
+        "B": "Because cars moved slower than horses and buggies.",
+        "C": "Because traffic laws were abolished in the 1920s."
+      }
+    },
+    {
+      "prompt": "What does Stage 3 ('Automated Law') correspond to in Class 8.2's transportation metaphor?",
+      "options": {
+        "A": "Autonomous, self-executing Waymos of the legal system.",
+        "B": "Analog horse-drawn carriages.",
+        "C": "Manual typewriters and carbon paper."
+      }
+    },
+    {
+      "prompt": "What 1980s computer science principle does Class 8.2 cite as the universal foundation for both JSON-based legal records and modern AI chatbot interfaces?",
+      "options": {
+        "A": "The Unix philosophy: write modular programs that do one thing well and communicate via universal text streams.",
+        "B": "Storing all data in proprietary binary formats that cannot be read as text.",
+        "C": "Bundling every corporate operation into a single monolithic mainframe binary."
+      }
+    },
+    {
+      "prompt": "How does 'Contract Chaining' in Class 8.2 replace traditional monolithic paper agreements?",
+      "options": {
+        "A": "By treating legal clauses like modular software dependencies (such as Hats Protocol modules) that connect to multiple downstream agreements simultaneously.",
+        "B": "By stapling 500 pages of physical paper into a single binder.",
+        "C": "By prohibiting any agreement from referencing another contract."
+      }
+    },
+    {
+      "prompt": "In Class 8.2's 3-step 'anatomy of a failure' under Contract Chaining, what happens immediately when a base payment or compliance check fails its strict Boolean validation?",
+      "options": {
+        "A": "Step 2: the linked Hat module is automatically revoked; Step 3: every downstream contract relying on that dependency is automatically voided without waiting for a court date.",
+        "B": "Downstream contracts continue executing as normal for five years until trial.",
+        "C": "The system ignores the failed Boolean check and mints new tokens."
+      }
+    },
+    {
+      "prompt": "How does Computational Legalese fix the one-sided click-waiver flaw to establish mathematically provable mutual privity in Class 8.2?",
+      "options": {
+        "A": "By using on-chain countersign modules where an Offer Hat is minted and an Acceptance Hat is minted back in return, creating provable one-to-many privity.",
+        "B": "By making the 'I Agree' button larger on the screen.",
+        "C": "By removing the user's signature requirement altogether."
+      }
+    },
+    {
+      "prompt": "Why does Class 8.2 say Contract Chaining acts as an automated corporate defense mechanism?",
+      "options": {
+        "A": "Because deterministic dependency revocation stops cascading real-world liabilities at the exact moment a prerequisite condition fails.",
+        "B": "Because it hides contract breaches from counterparties.",
+        "C": "Because it replaces Boolean logic with subjective human discretion."
+      }
+    },
+    {
+      "prompt": "What two distinct career paths does Class 8.2 predict as legal deliverables rapidly turn into deterministic software?",
+      "options": {
+        "A": "Developers acting as specialized legal authorities operating in code (like patent agents), and traditional lawyers naturally writing in programming syntax.",
+        "B": "Full-time fax machine operators and physical court couriers.",
+        "C": "Eliminating all software engineers from compliance workflows."
+      }
+    },
+    {
+      "prompt": "What is the overarching thesis of Class 8.2 regarding the shift from passive paper to active software runtimes?",
+      "options": {
+        "A": "It is a fundamental, necessary upgrade to how human cooperation is enforced and how disastrous corporate conditional-logic failures are prevented.",
+        "B": "It is a temporary stylistic fad that applies only to tech startups.",
+        "C": "Static paper documents remain superior for handling dynamic multi-party dependencies."
+      }
+    }
+  ]
+}

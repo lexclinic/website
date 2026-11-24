@@ -3,7 +3,7 @@
   Strategy: Network-First for HTML/JS/CSS/JSON with Offline Cache Fallback;
             Direct Pass-Through for HTTP 206 Byte-Range Media (.m4a/.mp4) & POST APIs
 */
-const CACHE_NAME = 'lexclinic-pwa-v20261025_v23';
+const CACHE_NAME = 'lexclinic-pwa-v20261121';
 const PRECACHE_URLS = [
   '/',
   '/index.html',

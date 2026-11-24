@@ -1,0 +1,64 @@
+{
+  "wedo_instance": {
+    "id": "EVENT-2026-11-19",
+    "description": "LexClinic Weekly Socratic & 101 Sync Manifest — Nov 19, 2026 (Event: Lesson 7.2 Translating Clauses into Nested If/Else Logic + Next 101 Courseware: Class 8.2 Case Studies in Conditional Logic Failures)",
+    "status": "[completed]",
+    "meta": {
+      "protocol": "WeDo-JSON",
+      "version": "1.0.0",
+      "event_date": "2026-11-19",
+      "companion_101_module": "7.2",
+      "companion_101_url": "/101/7.2/",
+      "next_101_module": "8.2",
+      "next_101_url": "/101/8.2/",
+      "event_url": "/event/2026-11-19/",
+      "monthly_archive_url": "/event/2026-11/",
+      "meet_recording_drive_id": "1kLlWaIr6b_DUW_-VUHZxli7yuqM56Xwy",
+      "upgraded_notes_drive_id": "1-DehqhXL8YKDQWZCQVM5nob798hbxrQ9v4uOXDcpJ8Y",
+      "attendance_drive_id": "1gIuuJMWOBMbuVRwHE9ImiWjw5FmYCuMWDuiV6Bb9xP0",
+      "event_media_parent_folder_id": "1hsaErINc1MRvMqCQbaJh7AHN3Elvr0MM",
+      "event_media_folder_id": "1oPHoTzUWt1M4y4I659-hw2b6GrcDAei1",
+      "audio_m4a_drive_id": "1S3SClJwLO13PEnUvUxluiXnyN8egElgP",
+      "youtube_explainer_clips": [
+        "ns7jJN4_RQ0",
+        "PBQ8oCW8whE",
+        "Cep7nF2T58w",
+        "fUHwVdgX95w",
+        "v-eWa16n_TM"
+      ]
+    },
+    "tasks": [
+      {
+        "id": "FORENSIC-TRANSCRIPT-STRIKE-7-2",
+        "description": "Execute OpenXML forensic transcript & Gemini summary correction strike on Lesson 7.2 (1Hl108ZES6YiKs7LxE0JHF8G4bYHVdOY3lZlgmBaV4UA -> Upgraded copy 1-DehqhXL8YKDQWZCQVM5nob798hbxrQ9v4uOXDcpJ8Y, 104 replacements across 90/90 rules) and Nov 18 501c3 Review (1HdqbWDqGh4nutNS9zEfgwVIrY5cRhMnexuU_jIpSnak)",
+        "status": "[x]"
+      },
+      {
+        "id": "101-8-2-YT-UNLOCK-AND-COMPILE",
+        "description": "Unlock C-Lead Video 8.2 (1RNPJr_tzLc) on YouTube (public + embeddable), index class_8.2 in transcripts.json, compile chronos_repsl/specs/module_101_8.2.json with 20 transcript-grounded questions and spotify_id='PENDING' ('Premieres Next Week' notice), and update /101/idea/index.html + /101/index.html across all 16 classes (1.1-8.2, 192 instances, I1-I35)",
+        "status": "[x]"
+      },
+      {
+        "id": "HUMAN-WEDO-DRIVE-EVENT-7-2",
+        "description": "[HUMAN DELIVERABLE — EVENT 2026-11-19] Upload 'Nov 19 2026 (class 7.2)' folder (1oPHoTzUWt1M4y4I659-hw2b6GrcDAei1) containing How_Lawyers_Are_Becoming_Software_Engineers.m4a and 5 Explainer Video Clips (.mp4) into Google Drive folder 1hsaErINc1MRvMqCQbaJh7AHN3Elvr0MM",
+        "status": "[x]"
+      },
+      {
+        "id": "COMPILE-EVENT-2026-11-19",
+        "description": "Compress How_Lawyers_Are_Becoming_Software_Engineers.m4a to faststart AAC (20.72 MB) at /event/2026-11-19/audio.m4a, upload 5 unlisted YouTube explainer clips (ns7jJN4_RQ0, PBQ8oCW8whE, Cep7nF2T58w, fUHwVdgX95w, v-eWa16n_TM), author chronos_repsl/specs/event_2026-11-19.json, and compile /event/2026-11-19/ + hub updates",
+        "status": "[x]"
+      },
+      {
+        "id": "UPDATE-EVENT-HUB-AND-EVENTS-JSON",
+        "description": "Update /event/index.html (advance #upcoming-sessions-grid to Nov 26 Class 8.1 & Dec 2 Collaborators' Call, rotate #recent-three-events-grid to Nov 19 / Nov 12 / Nov 5 while preserving Guest Interview filter cards, update November 2026 Monthly Archive count to 3 Recorded Sessions), update /event/2026-11/index.html, and synchronize /events.json (mark 2026-11-19 as is_upcoming: false with /event/2026-11-19/ URL, remove past unrecorded 2026-11-18 Collaborators' Call, and enrich upcoming 8.1/8.2 titles so events.js renders the updated schedule on /event/)",
+        "status": "[x]"
+      },
+      {
+        "id": "HUMAN-WEDO-SPOTIFY-8-2",
+        "description": "[DEFERRED TO 101-MODULE-8.2.wedo.json] Publish 'Legal Engineering 101 Class 8.2 Deep Dive: Case Studies in Conditional Logic Failures' on Spotify show 0348ivoLaNfKBq1HeIYC9b when ready next week",
+        "status": "[x]"
+      }
+    ]
+  },
+  "attribution": "LexClinic Legal Engineering Swarm (20261120)"
+}

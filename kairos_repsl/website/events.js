@@ -62,11 +62,11 @@ document.addEventListener('DOMContentLoaded', async () => {
   if (!upcomingContainer) return;
 
   try {
-    const response = await fetch('/events.json?v=20261025_v23');
+    const response = await fetch('/events.json?v=20261121');
     if (!response.ok) return;
     const events = await response.json();
 
-    const upcomingEvents = events.filter(e => e.is_upcoming).slice(0, 4);
+    const upcomingEvents = events.filter(e => e.is_upcoming && !(e.url && e.url.startsWith('/event/'))).slice(0, 4);
     if (!upcomingEvents || upcomingEvents.length === 0) return;
 
     const userEmail = window.getSanitizedEmail ? window.getSanitizedEmail() : "";
@@ -87,6 +87,7 @@ document.addEventListener('DOMContentLoaded', async () => {
       const meetUrl = item.meet_url;
       const calUrl = item.url;
       const cat = item.category || (isDirectorCall ? 'director_call' : 'class');
+      const dataCat = (cat === 'collaborator_call' || cat === 'director_call') ? 'collaborator_call,director_call' : cat;
       const catLabel = catLabels[cat] || '📅 Event';
 
       const cardStyle = isNextUp
@@ -111,8 +112,12 @@ document.addEventListener('DOMContentLoaded', async () => {
         }
       }
 
+      const modBtnHtml = item.class_id
+        ? `<a href="/101/${item.class_id}/" class="btn btn-outline" style="font-size: 0.88rem; border-color: var(--accent-cyan); color: var(--accent-cyan);">📘 101 Module ${item.class_id} ➔</a>`
+        : '';
+
       html += `
-        <div class="card pillar-card event-list-card" data-event-category="${cat}" style="${cardStyle}">
+        <div class="card pillar-card event-list-card" data-event-category="${dataCat}" style="${cardStyle}">
           <div class="event-date-tag" style="color: ${titleColor}; font-weight: 700; margin-bottom: 0.5rem;">📅 ${item.date} • ${catLabel}</div>
           <h3 style="color: ${titleColor}; font-size: 1.25rem; margin-bottom: 0.75rem;">${item.title}</h3>
           <p style="margin-bottom: 1.25rem; font-size: 0.95rem; color: var(--text-main); line-height: 1.5;">
@@ -120,6 +125,7 @@ document.addEventListener('DOMContentLoaded', async () => {
           </p>
           <div class="card-actions" style="display: flex; gap: 0.75rem; flex-wrap: wrap;">
             ${meetButtonHtml}
+            ${modBtnHtml}
             ${calUrl ? `<a href="${calUrl}" target="_blank" rel="noopener" class="btn btn-outline" style="font-size: 0.88rem;">Add to Google Calendar 📅</a>` : ''}
           </div>
         </div>

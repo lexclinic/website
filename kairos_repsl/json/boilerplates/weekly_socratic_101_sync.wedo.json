@@ -12,6 +12,8 @@
       "target_turn_budget": "8-12 tool calls max (~$3-$5 total session cost)",
       "strict_scope_boundary": [
         "kairos_repsl/website/event/",
+        "kairos_repsl/website/events.json",
+        "kairos_repsl/website/events.js",
         "kairos_repsl/website/101/",
         "kairos_repsl/website/attest/index.html",
         "kairos_repsl/website/transcripts.json",
@@ -32,7 +34,7 @@
         "rule_3_never_read_full_hub_or_quiz_files": "NEVER read full 540-line quiz files or 1,100-line /101/idea/index.html files into context. Use `grep_search` with `context: 5` or `read_file` with narrow 40-line `start_line`/`end_line` windows when inspecting hub insertion points.",
         "rule_4_single_source_of_truth_quizzes_5_to_20": "Author the 20 transcript-grounded Socratic questions ONCE in `chronos_repsl/specs/module_101_<X.Y>.json`. The compiler automatically generates `/101/<X.Y>/quiz-learned/index.html` (Stage 1: Q1-Q5), `/101/<X.Y>/quiz-expert/index.html` (Stage 2: Q1-Q20), and `/101/<X.Y>/quiz.html` (Smart Stage 1 -> Stage 2) so all modules and events start at 5 questions and graduate to 20 questions upon passing (4/5 or 5/5). Never leave synthetic test submissions in Google Drive (`1GidiMBXRYmcDMnAPrgndS35-MsjY1WT7`) that prematurely unlock Stage 2.",
         "rule_5_strict_separation_of_concerns": "NEVER place upcoming unrecorded 'Live Socratic Session' links or cards inside `/101/` courseware (`101/index.html`, `101/X.Y/index.html`, or `101/idea/index.html`). Socratic companion links appear on `/101/` ONLY after the session is recorded and live at `/event/YYYY-MM-DD/`.",
-        "rule_6_automated_hub_and_linter_sync": "Passing `--update-hub` to `weekly_sync_scaffold.py` automatically updates `/101/index.html` (strictly ascending sequential order 1.1 -> N.2), `/event/index.html` (Upcoming + Top-3 Recent + Monthly Archive count), `/event/YYYY-MM/index.html`, bidirectional `/101/X.Y/` <-> `/event/YYYY-MM-DD/` companion links, `/attest/index.html`, and Linter Rules 04, 05, and 07."
+        "rule_6_automated_hub_and_linter_sync": "Passing `--update-hub` to `weekly_sync_scaffold.py` automatically updates `/101/index.html` (strictly ascending sequential order 1.1 -> N.2), `/event/index.html` (Upcoming + Top-3 Recent + Guest Interview filter cards + Monthly Archive count), `/events.json` (marking the recorded session `is_upcoming: false` with `/event/YYYY-MM-DD/` URL and pruning past unrecorded collaborator calls so `events.js` never overwrites `#upcoming-sessions-grid` with stale dates), `/event/YYYY-MM/index.html`, bidirectional `/101/X.Y/` <-> `/event/YYYY-MM-DD/` companion links, `/attest/index.html`, and Linter Rules 04, 05, and 07."
       }
     },
     "tasks": [
@@ -49,6 +51,11 @@
       {
         "id": "WSYNC-SPEC-EVENT-02",
         "description": "Author & Compile Socratic Event Spec (`chronos_repsl/specs/event_<YYYY-MM-DD>.json`): Copy `chronos_repsl/specs/event_2026-11-05.json`, author bespoke semantic HTML for `hero_subtitle_html`, `overview_html`, and the 4-tile `takeaways_html` (or `takeaways` list), populate unique `audio_slug`, `audio_title`, `upcoming`, and `clips[]`, and run `python3 chronos_repsl/scripts/weekly_sync_scaffold.py --compile-event chronos_repsl/specs/event_<YYYY-MM-DD>.json --update-hub`.",
+        "status": "[ ]"
+      },
+      {
+        "id": "WSYNC-EVENT-HUB-AND-JSON-02B",
+        "description": "Update `/event/` Hub Page (`/event/index.html`), Monthly Archive (`/event/YYYY-MM/index.html`), and `/events.json`: Advance `#upcoming-sessions-grid` on `/event/index.html` to the next Thursday Socratic session & next Collaborators' Call, rotate `#recent-three-events-grid` (preserving hidden `data-event-category=\"interview\"` cards), increment the Monthly Archive card count & summary on `/event/index.html` and `/event/YYYY-MM/index.html`, and update `kairos_repsl/website/events.json` (flipping the newly recorded session to `is_upcoming: false` with `/event/YYYY-MM-DD/` URL and pruning any past unrecorded collaborator calls so `events.js` renders accurate upcoming events).",
         "status": "[ ]"
       },
       {
